@@ -23,7 +23,7 @@ jobs:
       - name: Copy conformance profile to the ig
         run: cp qa/ProfilingGuidelinesR4.xml resources/
       - name: Validate profiles
-        uses: pieter-edelman-nictiz/hl7-validator-action@master
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.9
         with:
           version: "4.0"
           ig: resources/
@@ -31,7 +31,7 @@ jobs:
           profile: https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4
           source:  ${{ env.CHANGED_PROFILES }}
       - name: Validate examples
-        uses: pieter-edelman-nictiz/hl7-validator-action@master
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.9
         with:
           version: "4.0"
           ig: resources/

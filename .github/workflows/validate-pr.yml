@@ -1,4 +1,4 @@
-name: Profile QA - changed files
+name: Profile QA - full repository
 on: pull_request
 
 jobs:
@@ -18,14 +18,14 @@ jobs:
       - name: Copy conformance profile to the ig
         run: cp qa/ProfilingGuidelinesR4.xml resources/
       - name: Validate profiles
-        uses: pieter-edelman-nictiz/hl7-validator-action@master
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.9
         with:
           version: "4.0"
           ig: resources/
           recurse: true
           source: resources/zib-*
       - name: Validate examples
-        uses: pieter-edelman-nictiz/hl7-validator-action@master
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.9
         with:
           version: "4.0"
           ig: resources/
