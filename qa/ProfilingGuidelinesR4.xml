@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="v1.0-fhir-profiling-guidelines-r4" />
+  <url value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
+  <name value="ProfilingGuidelinesR4" />
+  <title value="FHIR Profiling Guidelines for FHIR R4" />
+  <status value="draft" />
+  <experimental value="true" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Profile to validate against Profiling Guidlines for R4." />
+  <purpose value="For QA on the StructureDefintions created for R4." />
+  <copyright value="CC0" />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="rim" />
+    <uri value="http://hl7.org/v3" />
+    <name value="RIM Mapping" />
+  </mapping>
+  <mapping>
+    <identity value="workflow" />
+    <uri value="http://hl7.org/fhir/workflow" />
+    <name value="Workflow Pattern" />
+  </mapping>
+  <mapping>
+    <identity value="w5" />
+    <uri value="http://hl7.org/fhir/fivews" />
+    <name value="FiveWs Pattern Mapping" />
+  </mapping>
+  <mapping>
+    <identity value="iso11179" />
+    <uri value="http://metadata-standards.org/11179/" />
+    <name value="ISO 11179" />
+  </mapping>
+  <mapping>
+    <identity value="objimpl" />
+    <uri value="http://hl7.org/fhir/object-implementation" />
+    <name value="Object Implementation Information" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="StructureDefinition" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/StructureDefinition" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="StructureDefinition">
+      <path value="StructureDefinition" />
+      <constraint>
+        <key value="sd-pg-06" />
+        <severity value="warning" />
+        <human value="If the sd is not an extension a mapping declaration should be present." />
+        <expression value="context.exists().not()  implies mapping.exists()" />
+        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
+      </constraint>
+    </element>
+    <element id="StructureDefinition.url">
+      <path value="StructureDefinition.url" />
+      <definition value="Any conformance resource needs a canonical URL. This preferably leads somewhere but does not have to be processable. Canonical URL's are about the identity of artifacts, not necessarily about retrieval location. URIs for the latter (for artifacts living in ART-DECOR) are described in ART-DECOR FHIR_URIs.&#xD;&#xA;&#xD;&#xA;For Nictiz profiles we SHALL use the following structure:" />
+      <constraint>
+        <key value="sd-pg-1" />
+        <severity value="warning" />
+        <human value="Does the URL match the profiling guideline expectations" />
+        <expression value="matches('http:\/\/nictiz.nl\/fhir\/4.0\/StructureDefinition\/.*')" />
+        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
+      </constraint>
+    </element>
+    <element id="StructureDefinition.title">
+      <path value="StructureDefinition.title" />
+      <definition value="Final part of the canonical URI (without hyphens, with 'zib' replaced by 'HCIM')" />
+      <min value="1" />
+    </element>
+    <element id="StructureDefinition.publisher">
+      <path value="StructureDefinition.publisher" />
+      <min value="1" />
+      <fixedString value="Nictiz" />
+    </element>
+    <element id="StructureDefinition.contact">
+      <path value="StructureDefinition.contact" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="StructureDefinition.contact.name">
+      <path value="StructureDefinition.contact.name" />
+      <min value="1" />
+      <fixedString value="Nictiz" />
+    </element>
+    <element id="StructureDefinition.contact.telecom">
+      <path value="StructureDefinition.contact.telecom" />
+      <patternContactPoint>
+        <system value="email" />
+        <value value="info@nictiz.nl" />
+        <use value="work" />
+      </patternContactPoint>
+    </element>
+    <element id="StructureDefinition.description">
+      <path value="StructureDefinition.description" />
+      <definition value="A(n) &lt;&lt;enter resource type&gt;&gt; resource as defined by the Dutch Health and Care Information models (Dutch: Zorginformatiebouwsteen or ZIB) &lt;&lt;Zorginformatiebouwsteen name&gt;&gt; &lt;&lt;version&gt;&gt; &lt;&lt;release&gt;&gt;&#xD;&#xA;Followed by the 'Concept' section from the HCIM" />
+      <min value="1" />
+    </element>
+    <element id="StructureDefinition.purpose">
+      <path value="StructureDefinition.purpose" />
+      <min value="1" />
+    </element>
+    <element id="StructureDefinition.copyright">
+      <path value="StructureDefinition.copyright" />
+      <min value="1" />
+      <fixedMarkdown value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+    </element>
+    <element id="StructureDefinition.fhirVersion">
+      <path value="StructureDefinition.fhirVersion" />
+      <min value="1" />
+      <fixedCode value="4.0.1" />
+    </element>
+    <element id="StructureDefinition.mapping.uri">
+      <path value="StructureDefinition.mapping.uri" />
+      <min value="1" />
+    </element>
+    <element id="StructureDefinition.mapping.name">
+      <path value="StructureDefinition.mapping.name" />
+      <min value="1" />
+    </element>
+    <element id="StructureDefinition.baseDefinition">
+      <path value="StructureDefinition.baseDefinition" />
+      <min value="1" />
+    </element>
+    <element id="StructureDefinition.snapshot">
+      <path value="StructureDefinition.snapshot" />
+      <max value="0" />
+    </element>
+    <element id="StructureDefinition.differential.element">
+      <path value="StructureDefinition.differential.element" />
+      <constraint>
+        <key value="sd-pg-02" />
+        <severity value="error" />
+        <human value="If mapping is added, then short exists" />
+        <expression value="mapping.map.exists()  implies short.exists()" />
+        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
+      </constraint>
+      <constraint>
+        <key value="sd-pg-03" />
+        <severity value="error" />
+        <human value="If mapping exists, a definition exists." />
+        <expression value="mapping.map.exists()  implies definition.exists()" />
+        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
+      </constraint>
+      <constraint>
+        <key value="sd-pg-04" />
+        <severity value="error" />
+        <human value="mapping.map.exists()  implies alias.exists()" />
+        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
+      </constraint>
+    </element>
+    <element id="StructureDefinition.differential.element.binding">
+      <path value="StructureDefinition.differential.element.binding" />
+      <constraint>
+        <key value="sd-pg-05" />
+        <severity value="error" />
+        <human value="If valueSet is bound a description needs to be present." />
+        <expression value="valueSet.exists()  implies description.exists()" />
+        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
+      </constraint>
+    </element>
+    <element id="StructureDefinition.differential.element.binding.description">
+      <path value="StructureDefinition.differential.element.binding.description" />
+      <min value="1" />
+    </element>
+    <element id="StructureDefinition.differential.element.mapping.comment">
+      <path value="StructureDefinition.differential.element.mapping.comment" />
+      <min value="1" />
+    </element>
+  </differential>
+</StructureDefinition>
