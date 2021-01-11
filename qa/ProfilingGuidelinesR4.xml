@@ -66,7 +66,7 @@
             <constraint>
                 <key value="sd-pg-01"/>
                 <severity value="warning"/>
-                <human value="Does the URL match the profiling guideline expectations"/>
+                <human value="The canonical URL should conform to the profiling guidelines"/>
                 <expression value="$this = 'http://nictiz.nl/fhir/4.0/StructureDefinition/' + StructureDefinition.id"/>
                 <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
             </constraint>
@@ -77,7 +77,7 @@
             <constraint>
                 <key value="sd-pg-07"/>
                 <severity value="warning"/>
-                <human value="Does the Name match the profiling guideline expectations"/>
+                <human value="The name of the StructureDefinition should conform to the profiling guidelines"/>
                 <!-- The following expression consists of two parts, because FHIRpath .upper() and \U (Regex uppercase transformation) are not supported. This is the best we can do to check if the id is capitalized, although id 'test-123' could lead to a false positive on name 'Xest123' -->
                 <expression value="$this.substring(0, 1).matches('[A-Z]') and $this.substring(1) = StructureDefinition.id.substring(1).replace('-','')"/>
                 <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
@@ -90,7 +90,7 @@
             <constraint>
                 <key value="sd-pg-08"/>
                 <severity value="warning"/>
-                <human value="Does the Title match the profiling guideline expectations"/>
+                <human value="The title of the StructureDefinirion should conform to the profiling guidelines"/>
                 <expression value="$this = StructureDefinition.id.replace('-',' ')"/>
                 <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
             </constraint>
@@ -98,6 +98,7 @@
         <element id="StructureDefinition.publisher">
             <path value="StructureDefinition.publisher"/>
             <min value="1"/>
+            <max value="1"/>
             <fixedString value="Nictiz"/>
         </element>
         <element id="StructureDefinition.contact">
@@ -207,7 +208,7 @@
             <constraint>
                 <key value="sd-pg-11"/>
                 <severity value="error"/>
-                <human value="If alias exists, mapping.map exists."/>
+                <human value="If an alias exists, mapping.map needs to be present."/>
                 <expression value="alias.exists() implies mapping.map.exists()"/>
                 <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
             </constraint>
@@ -217,7 +218,7 @@
             <constraint>
                 <key value="sd-pg-05"/>
                 <severity value="error"/>
-                <human value="If valueSet is bound a description needs to be present."/>
+                <human value="If a ValueSet is bound, a description needs to be present."/>
                 <expression value="valueSet.exists()  implies description.exists()"/>
                 <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
             </constraint>
