@@ -11,9 +11,10 @@ jobs:
           fetch-depth: 0
 
       - name: Get changed profiles
-        run: echo CHANGED_PROFILES=$(git diff --name-only origin/main -- resources/zib-*) >> $GITHUB_ENV
-      - name: Get changed examples
-        run: echo CHANGED_EXAMPLES=$(git diff --name-only origin/main -- examples) >> $GITHUB_ENV
+        id: get-changes
+        run: |
+          echo "::set-output name=changed_profiles::$(git diff --name-only origin/main -- resources/zib-*)"
+          echo "::set-output name=changed_examples::$(git diff --name-only origin/main -- examples)"
 
       - name: Restore validator cache
         uses: actions/cache@v2
@@ -23,20 +24,20 @@ jobs:
       - name: Copy conformance profile to the ig
         run: cp qa/ProfilingGuidelinesR4.xml resources/
       - name: Validate profiles
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.9
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.10
         with:
           version: "4.0"
           ig: resources/
           recurse: true
           profile: https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4
-          source:  ${{ env.CHANGED_PROFILES }}
+          source:  ${{ steps.get-changes.outputs.changed_profiles }}
       - name: Validate examples
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.9
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.10
         with:
           version: "4.0"
           ig: resources/
           recurse: true
-          source:  ${{ env.CHANGED_EXAMPLES }}
+          source:  ${{ steps.get-changes.outputs.changed_examples }}
 
       - name: Install Firely Terminal
         run: dotnet tool install -g firely.terminal
@@ -44,7 +45,7 @@ jobs:
         run: |
           mkdir snapshots
           fhir install hl7.fhir.r4.core 4.0.1
-          for sd in ${{ env.CHANGED_PROFILES }}; do
+          for sd in ${{ steps.get-changes.outputs.changed_profiles }}; do
             base=$(basename $sd .xml);
             fhir push $sd
             fhir snapshot
