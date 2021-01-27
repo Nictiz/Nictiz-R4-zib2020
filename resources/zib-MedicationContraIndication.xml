@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-medicationContraIndication" />
+  <url value="http://nictiz.nl/fhir/StructureDefintion/zib-MedicationContraIndication" />
+  <name value="ZibMedicationContraIndication" />
+  <title value="Zib MedicationContraIndication" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A contra-indication (CI) for medication safety is a condition or characteristic of a patient where healthcare professionals are not allowed to subscribe certain medicines, or only under certain conditions." />
+  <purpose value="This flag resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) zib-medicationContraIndication v1.0([release])] https://zibs.nl/wiki/MedicationContraIndication-v1.0(2020EN)" />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-medicationcontraindication-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/MedicationContraIndication-v1.0(2020EN)" />
+    <name value="zib MedicationContraIndication-v1.0(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Flag" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Flag" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Flag">
+      <path value="Flag" />
+      <mapping>
+        <identity value="zib-medicationcontraindication-v1.0-2020EN" />
+        <map value="NL-CM:9.14.1" />
+        <comment value="MedicationContraIndication" />
+      </mapping>
+    </element>
+    <element id="Flag.extension">
+      <path value="Flag.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Flag.extension:comment">
+      <path value="Flag.extension" />
+      <sliceName value="comment" />
+      <definition value="Comment on the contraindication important for interpretation which cannot be captured in any of the other data items. For example, a comment on a contraindication with an end date in the future." />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefintion/Comment" />
+      </type>
+      <mapping>
+        <identity value="zib-medicationcontraindication-v1.0-2020EN" />
+        <map value="NL-CM:9.14.7" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Flag.extension:reasonClosure">
+      <path value="Flag.extension" />
+      <sliceName value="reasonClosure" />
+      <short value="ReasonClosure" />
+      <definition value="Reason for closing the medication contraindication." />
+      <alias value="RedenVanAfsluiten" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefintion/ReasonClosure" />
+      </type>
+      <mapping>
+        <identity value="zib-medicationcontraindication-v1.0-2020EN" />
+        <map value="NL-CM:9.14.4" />
+        <comment value="ReasonClosure" />
+      </mapping>
+    </element>
+    <element id="Flag.code">
+      <path value="Flag.code" />
+      <short value="MedicationContraIndicationName" />
+      <definition value="The name and code of the contraindication from the Dutch National Contra-indication list (G-standard Thesaurus 40)." />
+      <alias value="MedicatieContraIndicatieNaam" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="129850005" />
+          <display value="At risk for negative response to medication" />
+        </coding>
+      </patternCodeableConcept>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.14.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-medicationcontraindication-v1.0-2020EN" />
+        <map value="NL-CM:9.14.6" />
+        <comment value="MedicationContraIndicationName" />
+      </mapping>
+    </element>
+    <element id="Flag.period.start">
+      <path value="Flag.period.start" />
+      <short value="StartDate" />
+      <definition value="The date and possibly time when the contra-indication for medication was identified." />
+      <alias value="BeginDatum" />
+      <mapping>
+        <identity value="zib-medicationcontraindication-v1.0-2020EN" />
+        <map value="NL-CM:9.14.2" />
+        <comment value="StartDate" />
+      </mapping>
+    </element>
+    <element id="Flag.period.end">
+      <path value="Flag.period.end" />
+      <short value="EndDate" />
+      <definition value="The date and, if applicable, time when the contraindication for medication monitoring is considered no longer applicable." />
+      <alias value="EindDatum" />
+      <mapping>
+        <identity value="zib-medicationcontraindication-v1.0-2020EN" />
+        <map value="NL-CM:9.14.3" />
+        <comment value="EndDate" />
+      </mapping>
+    </element>
+    <element id="Flag.author">
+      <path value="Flag.author" />
+      <short value="HealthProfessional" />
+      <definition value="The healthcare provider who takes responsibility for registering the contraindication." />
+      <alias value="Zorgverlener" />
+      <min value="1" />
+      <mapping>
+        <identity value="zib-medicationcontraindication-v1.0-2020EN" />
+        <map value="NL-CM:9.14.5" />
+        <comment value="Reporter::HealthProfessional" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
