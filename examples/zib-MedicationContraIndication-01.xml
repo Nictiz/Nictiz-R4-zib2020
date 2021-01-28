@@ -1,0 +1,33 @@
+<Flag xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://hl7.org/fhir"
+    xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/R4/flag.xsd">
+    <id value="zib-medicationcontraindication-01"/>
+    <meta>
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationContraIndication"/>
+    </meta>
+    <extension url="http://nictiz.nl/fhir/StructureDefinition/Comment">
+        <valueString value="Toelichting op de contraindicatie."/>
+    </extension>
+    <extension url="http://nictiz.nl/fhir/StructureDefintion/zib-MedicationContraIndication-ReasonClosure">
+        <valueString value="Patiënt doet niet meer aan sport waarbij doping verboden is"/>
+    </extension>   
+    <status value="inactive" />
+    <code>
+        <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.902.40"/><!-- G-Standaard TH040 Contraindicaties -->
+            <code value="43"/>
+            <display value="Kinderwens (man)"/>
+        </coding>
+    </code>
+    <subject>
+        <reference value="Patient/nl-core-patient-01"/>
+        <display value="Johan XXX_Helleman"/>
+    </subject>
+    <period>
+        <start value="1987-01-10"/>
+        <end value="2005-02-27"/>
+    </period>
+    <author>
+        <reference value="Practitioner/nl-core-practitioner-04"/>
+        <display value="Dr. D. de Vries"/>
+    </author>
+</Flag>
