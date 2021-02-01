@@ -53,14 +53,18 @@
     <element id="Flag.extension:comment">
       <path value="Flag.extension" />
       <sliceName value="comment" />
-      <short value="Comment" />
-      <definition value="Comment on the contraindication important for interpretation which cannot be captured in any of the other data items. For example, a comment on a contraindication with an end date in the future." />
-      <alias value="Toelichting" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/Comment" />
       </type>
+    </element>
+    <element id="Flag.extension:comment.value[x]">
+      <path value="Flag.extension.value[x]" />
+      <short value="Comment" />
+      <definition value="Comment on the contraindication important for interpretation which cannot be captured in any of the other data items. For example, a comment on a contraindication with an end date in the future." />
+      <alias value="Toelichting" />
       <mapping>
         <identity value="zib-medicationcontraindication-v1.0-2020EN" />
         <map value="NL-CM:9.14.7" />
@@ -70,14 +74,18 @@
     <element id="Flag.extension:reasonClosure">
       <path value="Flag.extension" />
       <sliceName value="reasonClosure" />
-      <short value="ReasonClosure" />
-      <definition value="Reason for closing the medication contraindication." />
-      <alias value="RedenVanAfsluiten" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/MedicationContraIndication-ReasonClosure" />
       </type>
+    </element>
+    <element id="Flag.extension:reasonClosure.value[x]">
+      <path value="Flag.extension.value[x]" />
+      <short value="ReasonClosure" />
+      <definition value="Reason for closing the medication contraindication." />
+      <alias value="RedenVanAfsluiten" />
       <mapping>
         <identity value="zib-medicationcontraindication-v1.0-2020EN" />
         <map value="NL-CM:9.14.4" />
@@ -138,7 +146,7 @@
       <mapping>
         <identity value="zib-medicationcontraindication-v1.0-2020EN" />
         <map value="NL-CM:9.14.5" />
-        <comment value="Reporter::HealthProfessional" />
+        <comment value="HealthProfessional" />
       </mapping>
     </element>
   </differential>
