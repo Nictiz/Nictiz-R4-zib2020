@@ -53,47 +53,47 @@
         <element id="StructureDefinition">
             <path value="StructureDefinition"/>
             <constraint>
+                <key value="sd-pg-01"/>
+                <severity value="warning"/>
+                <human value="The canonical URL should conform to the profiling guidelines"/>
+                <expression value="StructureDefinition.url = 'http://nictiz.nl/fhir/StructureDefinition/' + StructureDefinition.id"/>
+                <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
+            </constraint>
+            <constraint>
                 <key value="sd-pg-06"/>
                 <severity value="warning"/>
                 <human value="If the StructureDefinition is not an extension a mapping declaration should be present."/>
-                <expression value="context.exists().not()  implies mapping.exists()"/>
+                <expression value="context.exists().not() implies mapping.exists()"/>
+                <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
+            </constraint>
+            <constraint>
+                <key value="sd-pg-07"/>
+                <severity value="warning"/>
+                <human value="The name of the StructureDefinition should conform to the profiling guidelines"/>
+                <!-- The following expression consists of two parts, because FHIRpath .upper() and \U (Regex uppercase transformation) are not supported. This is the best we can do to check if the id is capitalized, although id 'test-123' could lead to a false positive on name 'Xest123' -->
+                <expression value="StructureDefinition.name.substring(0, 1).matches('[A-Z]') and StructureDefinition.name.substring(1) = StructureDefinition.id.substring(1).replace('-','')"/>
+                <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
+            </constraint>
+            <constraint>
+                <key value="sd-pg-08"/>
+                <severity value="warning"/>
+                <human value="The title of the StructureDefinition should conform to the profiling guidelines"/>
+                <expression value="StructureDefinition.title = StructureDefinition.id.replace('-',' ')"/>
                 <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
             </constraint>
         </element>
         <element id="StructureDefinition.url">
             <path value="StructureDefinition.url"/>
             <definition value="The canonical URL, which is the external identifier for conformance resources. All conformance resources SHALL have a canonical URL. This URL is preferably resolvable but does not have to be processable. Canonical URL's are about the identity of artifacts, not necessarily about retrieval location. Canonical URLs aren't meant to be human recognizable. The canonical URL will be created as: http://nictiz.nl/fhir/StructureDefinition/[id]"/>
-            <constraint>
-                <key value="sd-pg-01"/>
-                <severity value="warning"/>
-                <human value="The canonical URL should conform to the profiling guidelines"/>
-                <expression value="$this = 'http://nictiz.nl/fhir/StructureDefinition/' + StructureDefinition.id"/>
-                <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
-            </constraint>
         </element>
         <element id="StructureDefinition.name">
             <path value="StructureDefinition.name"/>
             <definition value="A recognizable name that is still computer processable. The name will be the .id capitalized, with hyphens removed."/>
-            <constraint>
-                <key value="sd-pg-07"/>
-                <severity value="warning"/>
-                <human value="The name of the StructureDefinition should conform to the profiling guidelines"/>
-                <!-- The following expression consists of two parts, because FHIRpath .upper() and \U (Regex uppercase transformation) are not supported. This is the best we can do to check if the id is capitalized, although id 'test-123' could lead to a false positive on name 'Xest123' -->
-                <expression value="$this.substring(0, 1).matches('[A-Z]') and $this.substring(1) = StructureDefinition.id.substring(1).replace('-','')"/>
-                <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
-            </constraint>
         </element>
         <element id="StructureDefinition.title">
             <path value="StructureDefinition.title"/>
             <definition value="A recognizable title purely for human consumption. The title will generally be the .id with hyphens replaced by spaces."/>
             <min value="1"/>
-            <constraint>
-                <key value="sd-pg-08"/>
-                <severity value="warning"/>
-                <human value="The title of the StructureDefinition should conform to the profiling guidelines"/>
-                <expression value="$this = StructureDefinition.id.replace('-',' ')"/>
-                <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
-            </constraint>
         </element>
         <element id="StructureDefinition.publisher">
             <path value="StructureDefinition.publisher"/>
@@ -180,8 +180,8 @@
             <constraint>
                 <key value="sd-pg-03"/>
                 <severity value="error"/>
-                <human value="If mapping.map exists, definition exists."/>
-                <expression value="mapping.map.exists() implies definition.exists()"/>
+                <human value="If mapping.map exists and the element is not the root element, definition should exist."/>
+                <expression value="(mapping.map.exists() and $this.indexOf('.') != -1) implies definition.exists()"/>
                 <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
             </constraint>
             <constraint>
