@@ -32,7 +32,7 @@
     <element id="Flag">
       <path value="Flag" />
       <short value="MedicationContraIndication" />
-      <comment value="A flag is a warning or notification of some kind presented to the user - it could be a physician or any other person involved in patient care. It usually represents something of sufficient significance to warrant a special representation of some kind - rather than just a note in the source. A flag has a subject that represents the resource that will trigger its display." />
+      <comment value="A flag is a warning or notification of some kind presented to the user - it could be a physician or any other person involved in patient care. It usually represents something of sufficient significance to warrant a special representation of some kind - rather than just a note in the source. A flag has a subject that represents the resource that will trigger its display.&#xD;&#xA;&#xD;&#xA;Status is not defined in the zib and it depends on the concepts ReasonClosure and EndDate. When the concepts ReasonClosure and EndDate are filled in, status is given a value that matches the situation." />
       <alias value="MedicatieContraIndicatie" />
       <mapping>
         <identity value="zib-medicationcontraindication-v1.0-2020EN" />
@@ -90,9 +90,29 @@
         <comment value="ReasonClosure" />
       </mapping>
     </element>
-    <element id="Flag.status">
-      <path value="Flag.status" />
-      <comment value="Reason Of Closure is a concept that defines the status of the medication contrandication." />
+    <element id="Flag.category">
+      <path value="Flag.category" />
+      <code>
+        <system value="http://snomed.info/sct" />
+        <code value="140401000146105" />
+        <display value="Medical contraindication related to medication" />
+      </code>
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Flag.category:medicationContraIndicationName">
+      <path value="Flag.category" />
+      <sliceName value="medicationContraIndicationName" />
+      <code>
+        <system value="http://snomed.info/sct" />
+        <code value="129850005" />
+        <display value="At risk for negative response to medication" />
+      </code>
     </element>
     <element id="Flag.code">
       <path value="Flag.code" />

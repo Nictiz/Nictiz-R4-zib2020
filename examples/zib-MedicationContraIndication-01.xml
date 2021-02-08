@@ -8,20 +8,33 @@
     </extension>
     <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationContraIndication-ReasonClosure">
         <valueString value="Patiënt doet niet meer aan sport waarbij doping verboden is."/>
-    </extension>   
-    <status value="inactive" />
+    </extension>
+    <status value="inactive"/>
+    <category>
+        <code>
+            <coding>
+                <system value="http://snomed.info/sct"/>
+                <code value="140401000146105"/>
+                <display value="Medical contraindication related to medication"/>
+            </coding>
+        </code>
+    </category>
+    <category>
+        <code>
+            <coding>
+                <system value="http://snomed.info/sct"/>
+                <code value="129850005"/>
+                <display value="At risk for negative response to medication"/>
+            </coding>
+        </code>
+    </category>
     <code>
         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="129850005"/>
-            <display value="At risk for negative response to medication"/>
-        </coding>
-        <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.902.40"/><!-- G-Standaard TH040 Contraindicaties -->
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.902.40"/> <!-- G-Standaard TH040 Contraindicaties -->
             <code value="43"/>
             <display value="Kinderwens (man)"/>
         </coding>
-    </code>    
+    </code>
     <subject>
         <reference value="Patient/nl-core-patient-01"/>
         <display value="Johan XXX_Helleman"/>
@@ -31,7 +44,7 @@
         <end value="2005-02-27"/>
     </period>
     <author>
-        <reference value="Practitioner/nl-core-practitioner-04"/>
-        <display value="Dr. D. de Vries"/>
+        <reference value="PractitionerRole/nl-core-practitionerrole-01"/>
+        <display value="Medisch specialisten, orthopedie"/>
     </author>
 </Flag>
