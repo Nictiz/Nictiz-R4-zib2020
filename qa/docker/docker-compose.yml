@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  validate:
+    build: .
+    container_name: qa-zib2020-r4
+    volumes:
+      - type: bind
+        source: ../..
+        target: /repo
+        read_only: true
