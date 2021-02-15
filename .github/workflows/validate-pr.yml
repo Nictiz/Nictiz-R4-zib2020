@@ -18,19 +18,24 @@ jobs:
       - name: Copy conformance profile to the ig
         run: cp qa/ProfilingGuidelinesR4.xml resources/
       - name: Validate profiles
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.9
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.11-beta1
         with:
           version: "4.0"
           ig: resources/
           recurse: true
+          profile: https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4
           source: resources/zib-*
+          fail-at: warning
+          zib-overrides: known-issues.yml
       - name: Validate examples
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.9
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.11-beta1
         with:
           version: "4.0"
           ig: resources/
           recurse: true
           source: example/*
+          fail-at: warning
+          zib-overrides: known-issues.yml
 
       - name: Install Firely Terminal
         run: dotnet tool install -g firely.terminal
@@ -50,5 +55,6 @@ jobs:
           max-file: qa/zibs2020.max
           structuredefinitions: snapshots/*
           zib-release: 2020
-          allow-level: 2
+          fail-at: warning
+          ignored-issues: known-issues.yml
 

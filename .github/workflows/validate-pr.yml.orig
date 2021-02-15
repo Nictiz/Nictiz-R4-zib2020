@@ -1,5 +1,5 @@
-name: Profile QA - changed files
-on: push
+name: Profile QA - full repository
+on: pull_request
 
 jobs:
   validate:
@@ -10,12 +10,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Get changed profiles
-        id: get-changes
-        run: |
-          echo "::set-output name=changed_profiles::$(git diff --name-only origin/main -- resources/zib-*)"
-          echo "::set-output name=changed_examples::$(git diff --name-only origin/main -- examples)"
-
       - name: Restore validator cache
         uses: actions/cache@v2
         with:
@@ -24,24 +18,37 @@ jobs:
       - name: Copy conformance profile to the ig
         run: cp qa/ProfilingGuidelinesR4.xml resources/
       - name: Validate profiles
+<<<<<<< HEAD
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.9
+=======
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.11-beta1
+>>>>>>> main
         with:
           version: "4.0"
           ig: resources/
           recurse: true
+<<<<<<< HEAD
+          source: resources/zib-*
+      - name: Validate examples
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.9
+=======
           profile: https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4
-          source:  ${{ steps.get-changes.outputs.changed_profiles }}
+          source: resources/zib-*
           fail-at: warning
           zib-overrides: known-issues.yml
       - name: Validate examples
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.11-beta1
+>>>>>>> main
         with:
           version: "4.0"
           ig: resources/
           recurse: true
-          source:  ${{ steps.get-changes.outputs.changed_examples }}
+          source: example/*
+<<<<<<< HEAD
+=======
           fail-at: warning
           zib-overrides: known-issues.yml
+>>>>>>> main
 
       - name: Install Firely Terminal
         run: dotnet tool install -g firely.terminal
@@ -49,7 +56,7 @@ jobs:
         run: |
           mkdir snapshots
           fhir install hl7.fhir.r4.core 4.0.1
-          for sd in ${{ steps.get-changes.outputs.changed_profiles }}; do
+          for sd in resources/zib-*; do
             base=$(basename $sd .xml);
             fhir push $sd
             fhir snapshot
@@ -61,6 +68,10 @@ jobs:
           max-file: qa/zibs2020.max
           structuredefinitions: snapshots/*
           zib-release: 2020
+<<<<<<< HEAD
+          allow-level: 2
+=======
           fail-at: warning
           ignored-issues: known-issues.yml
+>>>>>>> main
 
