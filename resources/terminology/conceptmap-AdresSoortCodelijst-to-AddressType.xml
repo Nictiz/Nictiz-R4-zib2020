@@ -1,0 +1,78 @@
+<ConceptMap xmlns="http://hl7.org/fhir">
+    <id value="AdresSoortCodelijst-to-AddressType"/>
+    <extension url="http://hl7.org/fhir/StructureDefinition/concept-bidirectional">
+        <valueBoolean value="false"/>
+    </extension>
+    <url value="http://nictiz.nl/fhir/ConceptMap/AdresSoortCodelijst-to-AddressType"/>
+    <version value="0.0.1"/>
+    <name value="AdresSoortCodelijst_to_AddressType"/>
+    <title value="AdresSoortCodelijst to AddressType"/>
+    <status value="draft"/>
+    <publisher value="Nictiz"/>
+    <contact>
+      <name value="Nictiz"/>
+      <telecom>
+        <system value="email"/>
+        <value value="info@nictiz.nl"/>
+        <use value="work"/>
+      </telecom>
+    </contact>
+    <description value="Maps AddressType codes as found in [zib AddressInformation v1.0 (2020)](https://zibs.nl/wiki/AddressInformation-v1.1(2020EN)) to Address.type codes as found in FHIR R4"/>
+    <sourceReference>
+        <reference value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.20.5.3--20200901000000"/>
+        <display value="AdresSoortCodelijst"/>
+    </sourceReference>
+    <targetReference>
+        <reference value="http://hl7.org/fhir/ValueSet/address-type"/>
+        <display value="AddressType"/>
+    </targetReference>
+    <group>
+        <!-- 2.16.840.1.113883.5.1119 -->
+        <source value="http://hl7.org/fhir/v3/AddressUse"/>
+        <target value="http://hl7.org/fhir/address-type"/>
+        <element>
+            <code value="PST"/>
+            <target>
+                <code value="postal"/>
+                <equivalence value="equal"/>
+            </target>
+        </element>
+        <element>
+            <code value="HP"/>
+            <target>
+                <code value="both"/>
+                <equivalence value="equivalent"/>
+                <comment value="HP: Primary Home/Officieel adres. An address that is both physical and postal. Use in conjunction with Address.use = 'home'. In exceptional cases, the HP-address is not the primary postal address, but nevertheless 'both' is the most suitable type to differentiate HP from PHYS."/>
+            </target>
+        </element>
+        <element>
+            <code value="PHYS"/>
+            <target>
+                <code value="physical"/>
+                <equivalence value="equivalent"/>
+                <comment value="PHYS: Visit Address/Woon-/verblijfadres. A physical address that can be visited. Use in conjunction with Address.use = 'home'"/>
+            </target>
+        </element>
+        <element>
+            <code value="TMP"/>
+            <target>
+                <equivalence value="unmatched"/>
+                <comment value="Temporary Address/Tijdelijk adres. Use Address.use = temp"/>
+            </target>
+        </element>
+        <element>
+            <code value="WP"/>
+            <target>
+                <equivalence value="unmatched"/>
+                <comment value="Work Place/Werkadres. Use Address.use = work. A work place could be postal/physical or both. Which it is, is not known from the zib AddressInformation."/>
+            </target>
+        </element>
+        <element>
+            <code value="HV"/>
+            <target>
+                <equivalence value="unmatched"/>
+                <comment value="HV: Vacation Home/Vakantie adres. A physical address that can be visited."/>
+            </target>
+        </element>
+    </group>
+</ConceptMap>
