@@ -46,7 +46,10 @@
   <differential>
     <element id="HumanName">
       <path value="HumanName" />
-      <comment value="Names may be changed, or repudiated, or people may have different names in different contexts. Names may be divided into parts of different type that have variable significance depending on context, though the division into parts does not always matter. With personal names, the different parts may or may not be imbued with some implicit meaning; various cultures associate different importance with the name parts and the degree to which systems must care about name parts around the world varies widely.&#xD;&#xA;&#xD;&#xA;A Dutch HumanName is a proper FHIR HumanName. Systems that do not understand any of the extensions, will be able to render and work with a Dutch name. Dutch names make certain name parts seaprately communicable. These parts are required for use in true Dutch systems when dealing with Dutch names, but may not have value for international systems when information gets sent abroad.&#xD;&#xA;&#xD;&#xA;To have true compatibility an implementer SHOULD use the core HumanName parts as intended. To have names work for Dutch context, the implementer SHOULD in addition use the extension elements.&#xD;&#xA;&#xD;&#xA;The extension elements cover birth name (NL: eigennaam / geslachtsnaam) and partner/spouse name. Both may have a prefix (NL: voorvoegsel). When a person marries, he or she may keep their own name, assume the partner name, append the partner name to their own name, or the other way around.&#xD;&#xA;&#xD;&#xA;For this reason, there are extensions for marking each part for what it is. &#xD;&#xA;&#xD;&#xA;Example: miss Irma Jongeneel marries mister de Haas and assumes the name Irma Jongeneel-de Haas&#xD;&#xA;family = &quot;Jongeneel-de Haas&quot;&#xD;&#xA;given = &quot;Irma&quot;&#xD;&#xA;humanname-own-name = &quot;Jongeneel&quot;&#xD;&#xA;humanname-partner-prefix = &quot;de &quot;&#xD;&#xA;humanname-partner-name = &quot;Haas&quot;" />
+      <short value="NameInformation" />
+      <definition value="Name information includes a person's given names, nickname, last name and possibly the partner's last name." />
+      <comment value="A Dutch HumanName is a proper FHIR HumanName. Systems that do not understand any of the extensions, will be able to render and work with a Dutch name. Dutch names make certain name parts seaprately communicable. These parts are required for use in true Dutch systems when dealing with Dutch names, but may not have value for international systems when information gets sent abroad.&#xD;&#xA;&#xD;&#xA;To have true compatibility an implementer SHOULD use the core HumanName parts as intended. To have names work for Dutch context, the implementer SHOULD in addition use the extension elements.&#xD;&#xA;&#xD;&#xA;The extension elements cover birth name (NL: achternaam) and partner/spouse name. Both may have a prefix (NL: voorvoegsel). When a person marries, he or she may keep their own name, assume the partner name, append the partner name to their own name, or the other way around.&#xD;&#xA;&#xD;&#xA;For this reason, there are extensions for marking each part for what it is. Example: miss Irma Jongeneel marries mister de Haas and assumes the name Irma Jongeneel-de Haas.&#xD;&#xA;family = &quot;Jongeneel-de Haas&quot;&#xD;&#xA;given = &quot;Irma&quot;&#xD;&#xA;humanname-own-name = &quot;Jongeneel&quot;&#xD;&#xA;humanname-partner-prefix = &quot;de &quot;&#xD;&#xA;humanname-partner-name = &quot;Haas&quot;&#xD;&#xA;&#xD;&#xA;The zib concept 'titles' cannot be fully mapped to FHIR. Systems are expected to do their best to provide the title information as structured as possible using the prefix and suffix elements confrom the definition of FHIR. The prefix element is used if systems cannot breakdown the title. Recieving systems need to expect and be resilient for a broader range of information stored in the prefix element than stated by it's definition." />
+      <alias value="Naamgegevens" />
       <example>
         <label value="Structured HumanName (preferred above unstructured)" />
         <valueHumanName>
@@ -90,6 +93,7 @@
         <human value="if you specify a prefix for an own name then an own name is also expected" />
         <expression value="name.family.extension('http://hl7.org/fhir/StructureDefinition/humanname-own-prefix').empty().not() implies name.family.extension('http://hl7.org/fhir/StructureDefinition/humanname-own-name').empty().not()" />
         <xpath value="not(f:extension[@url='http://hl7.org/fhir/StructureDefinition/humanname-own-prefix']) or f:extension[@url='http://hl7.org/fhir/StructureDefinition/humanname-own-name']" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
       </constraint>
       <constraint>
         <key value="nl-core-humanname-2" />
@@ -97,6 +101,7 @@
         <human value="if you specify a voorvoegsel for a partner name then a partner name is also expected" />
         <expression value="name.family.extension('http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix').empty().not() implies name.family.extension('http://hl7.org/fhir/StructureDefinition/humanname-partner-name').empty().not()" />
         <xpath value="not(f:extension[@url='http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix']) or f:extension[@url='http://hl7.org/fhir/StructureDefinition/humanname-partner-name']" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
       </constraint>
       <mapping>
         <identity value="zib-nameinformation-v1.1-2020EN" />
@@ -181,11 +186,6 @@
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/humanname-own-name" />
       </type>
-      <mapping>
-        <identity value="zib-nameinformation-v1.1-2020EN" />
-        <map value="NL-CM:20.4.10" />
-        <comment value="LastName" />
-      </mapping>
     </element>
     <element id="HumanName.family.extension:lastName.value[x]">
       <path value="HumanName.family.extension.value[x]" />
@@ -224,11 +224,6 @@
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/humanname-partner-name" />
       </type>
-      <mapping>
-        <identity value="zib-nameinformation-v1.1-2020EN" />
-        <map value="NL-CM:20.4.8" />
-        <comment value="PartnerLastName" />
-      </mapping>
     </element>
     <element id="HumanName.family.extension:partnerLastName.value[x]">
       <path value="HumanName.family.extension.value[x]" />
@@ -251,26 +246,6 @@
         <rules value="open" />
       </slicing>
       <comment value="To be conformant to the zib for NameInformation, at least the following 'ISO 21090 EN Qualifiers' SHALL be supported: BR, IN and CL. The qualifier 'BR' maps to the zib concept FirstNames, 'IN' maps to Initials and 'CL' to GivenName." />
-      <mapping>
-        <identity value="BRP" />
-        <map value="02.10" />
-        <comment value="Voornamen" />
-      </mapping>
-      <mapping>
-        <identity value="zib-nameinformation-v1.1-2020EN" />
-        <map value="NL-CM:20.4.4" />
-        <comment value="FirstNames. Qualifier 'BR'" />
-      </mapping>
-      <mapping>
-        <identity value="zib-nameinformation-v1.1-2020EN" />
-        <map value="NL-CM:20.4.5" />
-        <comment value="Initials. Qualifier 'IN'" />
-      </mapping>
-      <mapping>
-        <identity value="zib-nameinformation-v1.1-2020EN" />
-        <map value="NL-CM:20.4.6" />
-        <comment value="GivenName. Qualifier 'CL'" />
-      </mapping>
     </element>
     <element id="HumanName.given:firstNames">
       <path value="HumanName.given" />
@@ -388,7 +363,7 @@
       <path value="HumanName.prefix" />
       <short value="Titles" />
       <definition value="Noble and scientific titles. These can assist in formulating oral and formal addresing titles." />
-      <comment value="The zib concept 'titles' is mapped to elements prefix and suffix. It does not map completely in terms of semantic match and cardinality fit. The zibs has one concept that contains all the required information about noble and scientific titles, while FHIR uses a more technical  posistional way to capture the same information.&#xD;&#xA;&#xD;&#xA;Export&#xD;&#xA;Systems are expected to transform as much as possible to the FHIR datamodel and thereby to be as explicit as possible. Note that in order to mark the type of a prefix, you can use the FHIR standard extension for ISO 21090 EN Qualifiers. Examples include the use of the qualifier 'HON' to indicate honorific prefixes and 'AC' for academic prefixes. In circumstances where this is not possible, the prefix elements can be used for all information belong to the titles concept.&#xD;&#xA;&#xD;&#xA;Import&#xD;&#xA;Systems need to expect and be resilient for a broader range of information stored in the prefix element than stated by it's definition." />
+      <comment value="The zib concept 'titles' is mapped to elements prefix and suffix. It does not map completely in terms of semantic match and cardinality fit. The zibs has one concept that contains all the required information about noble and scientific titles, while FHIR uses a more technical  posistional way to capture the same information.&#xD;&#xA;&#xD;&#xA;Export &#xD;&#xA;Systems are expected to transform as much as possible to the FHIR datamodel and thereby to be as explicit as possible. Note that in order to mark the type of a prefix, you can use the FHIR standard extension for ISO 21090 EN Qualifiers. Examples include the use of the qualifier 'HON' to indicate honorific prefixes and 'AC' for academic prefixes. &#xD;&#xA;If it is not possible to breakup the zib concept titles to positioned prefixes and suffixes, the prefix element is used to store all information.&#xD;&#xA;&#xD;&#xA;Import&#xD;&#xA;Systems need to expect and be resilient for a broader range of information stored in the prefix element than stated by it's definition." />
       <alias value="Titels" />
       <mapping>
         <identity value="zib-nameinformation-v1.1-2020EN" />
