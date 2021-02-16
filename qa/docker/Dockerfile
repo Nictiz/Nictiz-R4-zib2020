@@ -24,5 +24,7 @@ RUN cd tools/zib-compliance-fhir && npm install && cd /
 
 RUN git clone -b v0.11 --depth 1 https://github.com/pieter-edelman-nictiz/hl7-fhir-validator-action /tools/hl7-fhir-validator-action
 
+RUN apt-get -y install dos2unix
 COPY entrypoint.sh ./entrypoint.sh
+RUN dos2unix ./entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
