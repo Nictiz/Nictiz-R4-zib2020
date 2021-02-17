@@ -48,7 +48,7 @@
       <path value="HumanName" />
       <short value="NameInformation" />
       <definition value="Name information includes a person's given names, nickname, last name and possibly the partner's last name." />
-      <comment value="A Dutch HumanName is a proper FHIR HumanName. Systems that do not understand any of the extensions, will be able to render and work with a Dutch name. Dutch names make certain name parts seaprately communicable. These parts are required for use in true Dutch systems when dealing with Dutch names, but may not have value for international systems when information gets sent abroad.&#xD;&#xA;&#xD;&#xA;To have true compatibility an implementer SHOULD use the core HumanName parts as intended. To have names work for Dutch context, the implementer SHOULD in addition use the extension elements.&#xD;&#xA;&#xD;&#xA;The extension elements cover birth name (NL: achternaam) and partner/spouse name. Both may have a prefix (NL: voorvoegsel). When a person marries, he or she may keep their own name, assume the partner name, append the partner name to their own name, or the other way around.&#xD;&#xA;&#xD;&#xA;For this reason, there are extensions for marking each part for what it is. Example: miss Irma Jongeneel marries mister de Haas and assumes the name Irma Jongeneel-de Haas.&#xD;&#xA;family = &quot;Jongeneel-de Haas&quot;&#xD;&#xA;given = &quot;Irma&quot;&#xD;&#xA;humanname-own-name = &quot;Jongeneel&quot;&#xD;&#xA;humanname-partner-prefix = &quot;de &quot;&#xD;&#xA;humanname-partner-name = &quot;Haas&quot;&#xD;&#xA;&#xD;&#xA;The zib concept 'titles' cannot be fully mapped to FHIR. Systems are expected to do their best to provide the title information as structured as possible using the prefix and suffix elements confrom the definition of FHIR. The prefix element is used if systems cannot breakdown the title. Recieving systems need to expect and be resilient for a broader range of information stored in the prefix element than stated by it's definition." />
+      <comment value="A Dutch HumanName is a proper FHIR HumanName. Systems that do not understand any of the extensions, will be able to render and work with a Dutch name. In addition, it is encouraged to provide a representation of the full name in the text element. Dutch names make certain name parts separately communicable. These parts are required for use in true Dutch systems when dealing with Dutch names but may not have value for international systems when information gets sent abroad.&#xD;&#xA;&#xD;&#xA;To have true compatibility an implementer SHOULD use the core HumanName parts as intended. To have names work for Dutch context, the implementer SHOULD in addition use the extension elements.&#xD;&#xA;&#xD;&#xA;The extension elements cover birth name (NL: achternaam) and partner/spouse name. Both may have a prefix (NL: voorvoegsel). When a person marries, he or she may keep their own name, assume the partner name, append the partner name to their own name, or the other way around.&#xD;&#xA;&#xD;&#xA;For this reason, there are extensions for marking each part for what it is. Example: miss Irma Jongeneel marries mister de Haas and assumes the name Irma Jongeneel-de Haas.&#xD;&#xA;family = &quot;Jongeneel-de Haas&quot;&#xD;&#xA;given = &quot;Irma&quot;&#xD;&#xA;humanname-own-name = &quot;Jongeneel&quot;&#xD;&#xA;humanname-partner-prefix = &quot;de &quot;&#xD;&#xA;humanname-partner-name = &quot;Haas&quot;&#xD;&#xA;&#xD;&#xA;This use of this element is discouraged because the zib model does not contain a corresponding concept. If use is provided, the HumanName SHOULD match with the value of use. To illustrate: if use is 'official' it is not expected that the HumanName contains the zib concept 'GivenName' (NL: roepnaam) because this is not part of an official name.&#xD;&#xA;If the use element is used, a full name is likely being given in multiple HumanName instances, with each instance having a use value that identifies the purpose. Receiving system need to expect the possibility of multiple instances of the HumanName datatype for a name&#xD;&#xA;&#xD;&#xA;The zib concept 'titles' cannot be fully mapped to FHIR. Systems are expected to do their best to provide the title information as structured as possible using the prefix and suffix elements conform the definition of FHIR. The prefix element is used if systems cannot breakdown the title. Receiving systems need to expect and be resilient for a broader range of information stored in the prefix element than stated by its definition.&#xD;&#xA;&#xD;&#xA;The zib mandates through a constraint that at least one last name needs to be present. This constraint is not present in this profile as it is expected that valid use cases exists where a last name is not present. Although conceptually every person may have a last name, practically this may not always be the case. For example in acute care situations." />
       <alias value="Naamgegevens" />
       <example>
         <label value="Structured HumanName (preferred above unstructured)" />
@@ -56,7 +56,6 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
             <valueCode value="NL4" />
           </extension>
-          <use value="official" />
           <family value="Jongeneel-de Haas">
             <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
               <valueString value="Jongeneel" />
@@ -83,7 +82,6 @@
       <example>
         <label value="Unstructured HumanName" />
         <valueHumanName>
-          <use value="official" />
           <text value="Irma Jongeneel-de Haas" />
         </valueHumanName>
       </example>
@@ -102,6 +100,12 @@
         <expression value="name.family.extension('http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix').empty().not() implies name.family.extension('http://hl7.org/fhir/StructureDefinition/humanname-partner-name').empty().not()" />
         <xpath value="not(f:extension[@url='http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix']) or f:extension[@url='http://hl7.org/fhir/StructureDefinition/humanname-partner-name']" />
         <source value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
+      </constraint>
+      <constraint>
+        <key value="nl-core-humanname-3" />
+        <severity value="warning" />
+        <human value="if you specify the name as 'official' then the name is expected to contain only official parts" />
+        <expression value="use = 'official' implies given.extension('http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier').where(value = 'CL').exists().not()" />
       </constraint>
       <mapping>
         <identity value="zib-nameinformation-v1.1-2020EN" />
@@ -149,6 +153,10 @@
         <map value="NL-CM:20.4.7" />
         <comment value="NameUsage" />
       </mapping>
+    </element>
+    <element id="HumanName.use">
+      <path value="HumanName.use" />
+      <comment value="This use of this element is discouraged because the zib model does not contain a corresponding concept. If use is provided, the HumanName SHOULD match with the value of use. To illustrate: if use is 'official' it is not expected that the HumanName contains the zib concept 'GivenName' (NL: roepnaam) because this is not part of an official name." />
     </element>
     <element id="HumanName.family.extension">
       <path value="HumanName.family.extension" />
