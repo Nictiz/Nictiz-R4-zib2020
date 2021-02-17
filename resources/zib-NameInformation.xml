@@ -15,9 +15,9 @@
     </telecom>
   </contact>
   <description value="Name information includes a person's given names, nickname, last name and possibly the partner's last name." />
-  <purpose value="This HumanName datatype represents the Dutch zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) NameInformation v1.1 (2020), https://zibs.nl/wiki/NameInformation-v1.1(2020EN)." />
+  <purpose value="This HumanName datatype represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) NameInformation v1.1 (2020)]( https://zibs.nl/wiki/NameInformation-v1.1(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
-  <fhirVersion value="4.0.1" />
+  <fhirVersion value="4.0.1" /> 
   <mapping>
     <identity value="v2" />
     <uri value="http://hl7.org/v2" />
@@ -136,15 +136,13 @@
       <short value="NameUsage" />
       <definition value="This concept indicates the last name or order of last names with which the person is to be addressed." />
       <alias value="Naamgebruik" />
-      <alias value="Voorkeursvolgorde van de naamdelen." />
+      <alias value="Voorkeursvolgorde van de naamdelen" />
       <binding>
         <strength value="required" />
+        <description value="Use ConceptMap NaamgebruikCodelijst-to-HumanNameAssemblyOrder to translate terminology from the functional model to profile terminology in ValueSet HumanNameAssemblyOrder"/> 
         <valueSet value="http://hl7.org/fhir/ValueSet/name-assembly-order|4.0.1">
           <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
-            <valueReference>
-              <reference value="http://nictiz.nl/fhir/ConceptMap/NaamgebruikCodelijst-to-HumanNameAssemblyOrder" />
-              <display value="NaamgebruikCodelijst-to-HumanNameAssemblyOrder" />
-            </valueReference>
+            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/NaamgebruikCodelijst-to-HumanNameAssemblyOrder"/>
           </extension>
         </valueSet>
       </binding>
