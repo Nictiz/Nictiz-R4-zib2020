@@ -18,7 +18,7 @@ jobs:
       - name: Copy conformance profile to the ig
         run: cp qa/ProfilingGuidelinesR4.xml resources/
       - name: Validate profiles
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.11-beta1
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.11
         with:
           version: "4.0"
           ig: resources/
@@ -26,29 +26,37 @@ jobs:
           profile: https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4
           source: resources/zib-*
           fail-at: warning
-          zib-overrides: known-issues.yml
+          ignored-issues: known-issues.yml
       - name: Validate examples
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.11-beta1
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.11
         with:
           version: "4.0"
           ig: resources/
           recurse: true
           source: example/*
           fail-at: warning
-          zib-overrides: known-issues.yml
+          ignored-issues: known-issues.yml
 
       - name: Install Firely Terminal
         run: dotnet tool install -g firely.terminal
       - name: Create snapshots in JSON format
         run: |
-          mkdir snapshots
+          mkdir flattened
+          cd flattened
+          ln -s ../package.json
+          ln -s ../fhirpkg.lock.json
+          for f in $(find ../resources -name "*.xml"); do ln -s $f; done
+          cd ..
+          
           fhir install hl7.fhir.r4.core 4.0.1
-          for sd in resources/zib-*; do
+          mkdir ../snapshots
+          for sd in zib-*.xml; do
             base=$(basename $sd .xml);
-            fhir push $sd
+            fhir push $base.xml
             fhir snapshot
-            fhir save snapshots/$base.json --json
+            fhir save ../snapshots/$base.json --json
           done
+          cd ..
       - name: Check zib compliance
         uses: pieter-edelman-nictiz/zib-compliance-fhir@action
         with:
@@ -56,5 +64,5 @@ jobs:
           structuredefinitions: snapshots/*
           zib-release: 2020
           fail-at: warning
-          ignored-issues: known-issues.yml
+          zib-overrides: known-issues.yml
 

@@ -19,41 +19,43 @@ jobs:
         run: cp qa/ProfilingGuidelinesR4.xml resources/
       - name: Validate profiles
 <<<<<<< HEAD
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.9
-=======
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.11-beta1
+=======
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.11
 >>>>>>> main
         with:
           version: "4.0"
           ig: resources/
           recurse: true
-<<<<<<< HEAD
-          source: resources/zib-*
-      - name: Validate examples
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.9
-=======
           profile: https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4
           source: resources/zib-*
           fail-at: warning
+<<<<<<< HEAD
           zib-overrides: known-issues.yml
       - name: Validate examples
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.11-beta1
+=======
+          ignored-issues: known-issues.yml
+      - name: Validate examples
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.11
 >>>>>>> main
         with:
           version: "4.0"
           ig: resources/
           recurse: true
           source: example/*
-<<<<<<< HEAD
-=======
           fail-at: warning
+<<<<<<< HEAD
           zib-overrides: known-issues.yml
+=======
+          ignored-issues: known-issues.yml
 >>>>>>> main
 
       - name: Install Firely Terminal
         run: dotnet tool install -g firely.terminal
       - name: Create snapshots in JSON format
         run: |
+<<<<<<< HEAD
           mkdir snapshots
           fhir install hl7.fhir.r4.core 4.0.1
           for sd in resources/zib-*; do
@@ -62,16 +64,34 @@ jobs:
             fhir snapshot
             fhir save snapshots/$base.json --json
           done
+=======
+          mkdir flattened
+          cd flattened
+          ln -s ../package.json
+          ln -s ../fhirpkg.lock.json
+          for f in $(find ../resources -name "*.xml"); do ln -s $f; done
+          cd ..
+          
+          fhir install hl7.fhir.r4.core 4.0.1
+          mkdir ../snapshots
+          for sd in zib-*.xml; do
+            base=$(basename $sd .xml);
+            fhir push $base.xml
+            fhir snapshot
+            fhir save ../snapshots/$base.json --json
+          done
+          cd ..
+>>>>>>> main
       - name: Check zib compliance
         uses: pieter-edelman-nictiz/zib-compliance-fhir@action
         with:
           max-file: qa/zibs2020.max
           structuredefinitions: snapshots/*
           zib-release: 2020
-<<<<<<< HEAD
-          allow-level: 2
-=======
           fail-at: warning
+<<<<<<< HEAD
           ignored-issues: known-issues.yml
+=======
+          zib-overrides: known-issues.yml
 >>>>>>> main
 
