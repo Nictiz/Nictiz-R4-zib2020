@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-NameInformation" />
+  <meta>
+    <versionId value="6" />
+    <lastUpdated value="2021-02-17T15:54:43.037+00:00" />
+  </meta>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
   <name value="ZibNameInformation" />
   <title value="zib NameInformation" />
   <status value="draft" />
+  <date value="2021-02-17T15:49:36.6747321Z" />
   <publisher value="Nictiz" />
   <contact>
     <name value="Nictiz" />
@@ -17,7 +22,7 @@
   <description value="Name information includes a person's given names, nickname, last name and possibly the partner's last name." />
   <purpose value="This HumanName datatype represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) NameInformation v1.1 (2020)]( https://zibs.nl/wiki/NameInformation-v1.1(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
-  <fhirVersion value="4.0.1" /> 
+  <fhirVersion value="4.0.1" />
   <mapping>
     <identity value="v2" />
     <uri value="http://hl7.org/v2" />
@@ -48,7 +53,7 @@
       <path value="HumanName" />
       <short value="NameInformation" />
       <definition value="Name information includes a person's given names, nickname, last name and possibly the partner's last name." />
-      <comment value="A Dutch HumanName is a proper FHIR HumanName. Systems that do not understand any of the extensions, will be able to render and work with a Dutch name. In addition, it is encouraged to provide a representation of the full name in the text element. Dutch names make certain name parts separately communicable. These parts are required for use in true Dutch systems when dealing with Dutch names but may not have value for international systems when information gets sent abroad.&#xD;&#xA;&#xD;&#xA;To have true compatibility an implementer SHOULD use the core HumanName parts as intended. To have names work for Dutch context, the implementer SHOULD in addition use the extension elements.&#xD;&#xA;&#xD;&#xA;The extension elements cover birth name (NL: achternaam) and partner/spouse name. Both may have a prefix (NL: voorvoegsel). When a person marries, he or she may keep their own name, assume the partner name, append the partner name to their own name, or the other way around.&#xD;&#xA;&#xD;&#xA;For this reason, there are extensions for marking each part for what it is. Example: miss Irma Jongeneel marries mister de Haas and assumes the name Irma Jongeneel-de Haas.&#xD;&#xA;family = &quot;Jongeneel-de Haas&quot;&#xD;&#xA;given = &quot;Irma&quot;&#xD;&#xA;humanname-own-name = &quot;Jongeneel&quot;&#xD;&#xA;humanname-partner-prefix = &quot;de &quot;&#xD;&#xA;humanname-partner-name = &quot;Haas&quot;&#xD;&#xA;&#xD;&#xA;This use of this element is discouraged because the zib model does not contain a corresponding concept. If use is provided, the HumanName SHOULD match with the value of use. To illustrate: if use is 'official' it is not expected that the HumanName contains the zib concept 'GivenName' (NL: roepnaam) because this is not part of an official name.&#xD;&#xA;If the use element is used, a full name is likely being given in multiple HumanName instances, with each instance having a use value that identifies the purpose. Receiving system need to expect the possibility of multiple instances of the HumanName datatype for a name&#xD;&#xA;&#xD;&#xA;The zib concept 'titles' cannot be fully mapped to FHIR. Systems are expected to do their best to provide the title information as structured as possible using the prefix and suffix elements conform the definition of FHIR. The prefix element is used if systems cannot breakdown the title. Receiving systems need to expect and be resilient for a broader range of information stored in the prefix element than stated by its definition.&#xD;&#xA;&#xD;&#xA;The zib mandates through a constraint that at least one last name needs to be present. This constraint is not present in this profile as it is expected that valid use cases exists where a last name is not present. Although conceptually every person may have a last name, practically this may not always be the case. For example in acute care situations." />
+      <comment value="**Extensions for Dutch names**&#xD;&#xA;This Dutch profile of the _HumanName_ datatype makes certain name parts separately communicable. These parts are required for use in true Dutch systems when dealing with Dutch names but may not have value for international systems. This profile however is a proper FHIR _HumanName_, meaning that systems that do not understand any of the extensions will be able to render and work with this Dutch name. To have true compatibility an implementer SHOULD use the core HumanName parts as intended. To have names work for Dutch context, the implementer SHOULD in addition use the extension elements. In addition, it is encouraged to provide a representation of the full name in the `HumanName.text` element.&#xD;&#xA;&#xD;&#xA;The extension elements cover birth name (NL: achternaam) and partner/spouse name. Both may have a prefix (NL: voorvoegsel). When a person marries, he or she may keep their own name, assume the partner name, append the partner name to their own name, or the other way around. For this reason, there are extensions for marking each part for what it is.&#xD;&#xA;&#xD;&#xA;Example: miss Irma Jongeneel marries mister de Haas and assumes the name Irma Jongeneel-de Haas.&#xD;&#xA;&#xD;&#xA;* `family` = &quot;Jongeneel-de Haas&quot;&#xD;&#xA;* `given` = &quot;Irma&quot;&#xD;&#xA;* `family.extension:lastName` = &quot;Jongeneel&quot;&#xD;&#xA;* `family.extension:partnerPrefix` = &quot;de &quot;&#xD;&#xA;* `family.extension:partnerLastName` = &quot;Haas&quot;&#xD;&#xA;&#xD;&#xA;**The `HumanName.use` element**&#xD;&#xA;&#xD;&#xA;The use of element `HumanName.use` is discouraged because the zib model does not contain a corresponding concept. If `.use` is populated, its value SHALL match the semantics of the other elements. To illustrate: if `.use` is set to _official_, it is not expected that the zib concept 'GivenName' (NL: roepnaam) is populated because this is not part of an official name.&#xD;&#xA;&#xD;&#xA;If the `.use` element is populated, it is likely that a full name can only be communicated using multiple instances of this profile, one for each purpose of `.use`. Receiving systems SHOULD be able to handle multiple instances of this datatype profile in an instance.&#xD;&#xA;&#xD;&#xA;**The zib concept 'titles'**&#xD;&#xA;&#xD;&#xA;The zib concept 'titles' for noble and scientific titles cannot be fully mapped to FHIR. Sending systems should make an effort to provide title information in the best way possible using the `.prefix` and `.suffix` elements conform the definition of FHIR. However, if it is not possible to break down the titles properly, it can be communicated as-is using the `.prefix` element . Receiving systems should be resilient for a broader range of information in the `.prefix` element than stated by its definition." />
       <alias value="Naamgegevens" />
       <example>
         <label value="Structured HumanName (preferred above unstructured)" />
@@ -56,6 +61,7 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
             <valueCode value="NL4" />
           </extension>
+          <text value="Irma Jongeneel-de Haas" />
           <family value="Jongeneel-de Haas">
             <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
               <valueString value="Jongeneel" />
@@ -106,6 +112,7 @@
         <severity value="warning" />
         <human value="if you specify the name as 'official' then the name is expected to contain only official parts" />
         <expression value="use = 'official' implies given.extension('http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier').where(value = 'CL').exists().not()" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
       </constraint>
       <mapping>
         <identity value="zib-nameinformation-v1.1-2020EN" />
@@ -139,10 +146,10 @@
       <alias value="Voorkeursvolgorde van de naamdelen" />
       <binding>
         <strength value="required" />
-        <description value="Use ConceptMap NaamgebruikCodelijst-to-HumanNameAssemblyOrder to translate terminology from the functional model to profile terminology in ValueSet HumanNameAssemblyOrder"/> 
+        <description value="Use ConceptMap NaamgebruikCodelijst-to-HumanNameAssemblyOrder to translate terminology from the functional model to profile terminology in ValueSet HumanNameAssemblyOrder" />
         <valueSet value="http://hl7.org/fhir/ValueSet/name-assembly-order|4.0.1">
           <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
-            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/NaamgebruikCodelijst-to-HumanNameAssemblyOrder"/>
+            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/NaamgebruikCodelijst-to-HumanNameAssemblyOrder" />
           </extension>
         </valueSet>
       </binding>
