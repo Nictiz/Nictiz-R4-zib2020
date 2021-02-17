@@ -47,14 +47,22 @@ jobs:
         run: dotnet tool install -g firely.terminal
       - name: Create snapshots in JSON format
         run: |
-          mkdir snapshots
+
+          mkdir flattened
+          cd flattened
+          ln -s ../package.json
+          ln -s ../fhirpkg.lock.json
+          for f in $(find ../resources -name "*.xml"); do ln -s $f; done
+          
           fhir install hl7.fhir.r4.core 4.0.1
-          for sd in ${{ steps.get-changes.outputs.changed_profiles }}; do
+          mkdir ../snapshots
+          for sd in ../${{ steps.get-changes.outputs.changed_profiles }}; do
             base=$(basename $sd .xml);
-            fhir push $sd
+            fhir push $base.xml
             fhir snapshot
-            fhir save snapshots/$base.json --json
+            fhir save ../snapshots/$base.json --json
           done
+          cd ..
       - name: Check zib compliance
         uses: pieter-edelman-nictiz/zib-compliance-fhir@action
         with:

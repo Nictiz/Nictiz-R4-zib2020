@@ -67,13 +67,21 @@ fi
 echo
 echo "+++ Checking zib compliance"
 echo "Generating snapshots"
-mkdir snapshots
-for sd in $profiles; do
+# For the snapshot generation to succeed, we need a flat list of profiles together with the package manifest.
+mkdir flattened
+cd flattened
+ln -s ../package.json
+ln -s ../fhirpkg.lock.json
+for f in $(find ../resources -name "*.xml"); do ln -s $f; done
+
+mkdir ../snapshots
+for sd in ../$profiles; do
   base=$(basename $sd .xml);
-  eval ~/.dotnet/tools/fhir push $sd $output_redirect
+  eval ~/.dotnet/tools/fhir push $base.xml $output_redirect
   eval ~/.dotnet/tools/fhir snapshot $output_redirect
-  eval ~/.dotnet/tools/fhir save snapshots/$base.json --json $output_redirect
+  eval ~/.dotnet/tools/fhir save ../snapshots/$base.json --json $output_redirect
 done
+cd ..
 
 if [ $? -eq 0 ]; then
   node $tools_dir/zib-compliance-fhir/index.js -m qa/zibs2020.max -z 2020 -r -l 2 -f text --fail-at warning --zib-overrides known-issues.yml snapshots/*json
