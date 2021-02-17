@@ -33,6 +33,7 @@ jobs:
           source:  ${{ steps.get-changes.outputs.changed_profiles }}
           fail-at: warning
           ignored-issues: known-issues.yml
+        continue-on-error: true
       - name: Validate examples
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.11
         with:
@@ -42,6 +43,7 @@ jobs:
           source:  ${{ steps.get-changes.outputs.changed_examples }}
           fail-at: warning
           ignored-issues: known-issues.yml
+        continue-on-error: true
 
       - name: Install Firely Terminal
         run: dotnet tool install -g firely.terminal
