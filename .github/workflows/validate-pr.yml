@@ -41,13 +41,15 @@ jobs:
         run: dotnet tool install -g firely.terminal
       - name: Create snapshots in JSON format
         run: |
-          mkdir snapshots
-
-          fhir pack resources
-          tar -xzf resources.tgz
-          cd package
+          mkdir flattened
+          cd flattened
+          ln -s ../package.json
+          ln -s ../fhirpkg.lock.json
+          for f in $(find ../resources -name "*.xml"); do ln -s $f; done
+          cd ..
           
           fhir install hl7.fhir.r4.core 4.0.1
+          mkdir ../snapshots
           for sd in zib-*.xml; do
             base=$(basename $sd .xml);
             fhir push $base.xml
