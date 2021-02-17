@@ -154,7 +154,7 @@
     <element id="Patient.name">
       <path value="Patient.name" />
       <short value="NameInformation" />
-      <definition value="Patient's full name." />
+      <definition value="Patient's full name.&#xD;&#xA;The cardinality differs from the zib to allow including several name elements with a different name.use each." />
       <alias value="Naamgegevens" />
       <type>
         <code value="HumanName" />
@@ -288,6 +288,10 @@
         <map value="NL-CM:0.1.31" />
         <comment value="MultipleBirthIndicator" />
       </mapping>
+    </element>
+    <element id="Patient.contact">
+      <path value="Patient.contact" />
+      <definition value="A contact party (e.g. guardian, partner, friend) for the patient.&#xD;&#xA;The cardinality differs from the zib to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not dot." />
     </element>
   </differential>
 </StructureDefinition>
