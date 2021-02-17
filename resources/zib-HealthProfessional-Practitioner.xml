@@ -48,5 +48,60 @@
   <type value="Practitioner" />
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
   <derivation value="constraint" />
-  
+  <differential>
+    <element id="Practitioner.identifier">
+      <path value="Practitioner.identifier" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <mapping>
+        <identity value="zib-healthprofessional-v3.5-2020EN" />
+        <map value="NL-CM:17.1.2" />
+      </mapping>
+    </element>
+    <element id="Practitioner.identifier:BIG">
+      <path value="Practitioner.identifier" />
+      <sliceName value="BIG" />
+    </element>
+    <element id="Practitioner.identifier:UZI">
+      <path value="Practitioner.identifier" />
+      <sliceName value="UZI" />
+    </element>
+    <element id="Practitioner.identifier:AGB">
+      <path value="Practitioner.identifier" />
+      <sliceName value="AGB" />
+    </element>
+    <element id="Practitioner.name">
+      <path value="Practitioner.name" />
+      <mapping>
+        <identity value="zib-healthprofessional-v3.5-2020EN" />
+        <map value="NL-CM:17.1.3" />
+      </mapping>
+    </element>
+    <element id="Practitioner.telecom">
+      <path value="Practitioner.telecom" />
+      <mapping>
+        <identity value="zib-healthprofessional-v3.5-2020EN" />
+        <map value="NL-CM:17.1.8" />
+      </mapping>
+    </element>
+    <element id="Practitioner.address">
+      <path value="Practitioner.address" />
+      <mapping>
+        <identity value="zib-healthprofessional-v3.5-2020EN" />
+        <map value="NL-CM:17.1.7" />
+      </mapping>
+    </element>
+    <element id="Practitioner.gender">
+      <path value="Practitioner.gender" />
+      <mapping>
+        <identity value="zib-healthprofessional-v3.5-2020EN" />
+        <map value="NL-CM:17.1.9" />
+      </mapping>
+    </element>
+  </differential>
 </StructureDefinition>

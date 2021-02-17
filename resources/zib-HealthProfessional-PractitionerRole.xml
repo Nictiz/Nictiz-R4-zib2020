@@ -48,5 +48,56 @@
   <type value="PractitionerRole" />
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
   <derivation value="constraint" />
-  
+  <differential>
+    <element id="PractitionerRole.identifier">
+      <path value="PractitionerRole.identifier" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="PractitionerRole.identifier:BIG">
+      <path value="PractitionerRole.identifier" />
+      <sliceName value="BIG" />
+    </element>
+    <element id="PractitionerRole.identifier:UZI">
+      <path value="PractitionerRole.identifier" />
+      <sliceName value="UZI" />
+    </element>
+    <element id="PractitionerRole.identifier:AGB">
+      <path value="PractitionerRole.identifier" />
+      <sliceName value="AGB" />
+    </element>
+    <element id="PractitionerRole.practitioner">
+      <path value="PractitionerRole.practitioner" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner" />
+      </type>
+    </element>
+    <element id="PractitionerRole.organization">
+      <path value="PractitionerRole.organization" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider-Organization" />
+      </type>
+      <mapping>
+        <identity value="zib-healthprofessional-v3.5-2020EN" />
+        <map value="NL-CM:17.1.6" />
+      </mapping>
+    </element>
+    <element id="PractitionerRole.specialty">
+      <path value="PractitionerRole.specialty" />
+      <max value="1" />
+      <mapping>
+        <identity value="zib-healthprofessional-v3.5-2020EN" />
+        <map value="NL-CM:17.1.4" />
+      </mapping>
+    </element>
+  </differential>
 </StructureDefinition>
