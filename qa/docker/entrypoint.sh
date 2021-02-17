@@ -67,14 +67,14 @@ fi
 echo
 echo "+++ Checking zib compliance"
 echo "Generating snapshots"
-mkdir snapshots
+# For the snapshot generation to succeed, we need a flat list of profiles together with the package manifest.
+mkdir flattened
+cd flattened
+ln -s ../package.json
+ln -s ../fhirpkg.lock.json
+for f in $(find ../resources -name "*.xml"); do ln -s $f; done
 
-# For the snapshot generation to succeed, we need a flat list of profiles together with the package manifest. The 
-# easiest way to do this, is to create a package and then unpack it. 
-eval ~/.dotnet/tools/fhir pack resources $output_redirect
-eval tar -xzf resources.tgz $output_redirect
-cd package
-
+mkdir ../snapshots
 for sd in ../$profiles; do
   base=$(basename $sd .xml);
   eval ~/.dotnet/tools/fhir push $base.xml $output_redirect
