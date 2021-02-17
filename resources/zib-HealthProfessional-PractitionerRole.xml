@@ -62,14 +62,23 @@
     <element id="PractitionerRole.identifier:BIG">
       <path value="PractitionerRole.identifier" />
       <sliceName value="BIG" />
+      <patternIdentifier>
+        <system value="http://fhir.nl/fhir/NamingSystem/big" />
+      </patternIdentifier>
     </element>
     <element id="PractitionerRole.identifier:UZI">
       <path value="PractitionerRole.identifier" />
       <sliceName value="UZI" />
+      <patternIdentifier>
+        <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers" />
+      </patternIdentifier>
     </element>
     <element id="PractitionerRole.identifier:AGB">
       <path value="PractitionerRole.identifier" />
       <sliceName value="AGB" />
+      <patternIdentifier>
+        <system value="http://fhir.nl/fhir/NamingSystem/agb-z" />
+      </patternIdentifier>
     </element>
     <element id="PractitionerRole.practitioner">
       <path value="PractitionerRole.practitioner" />
@@ -81,6 +90,9 @@
     </element>
     <element id="PractitionerRole.organization">
       <path value="PractitionerRole.organization" />
+      <short value="HealthcareProvider" />
+      <definition value="The organization the health professional works for." />
+      <alias value="Zorgaanbieder" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
@@ -89,14 +101,19 @@
       <mapping>
         <identity value="zib-healthprofessional-v3.5-2020EN" />
         <map value="NL-CM:17.1.6" />
+        <comment value="HealthcareProvider" />
       </mapping>
     </element>
     <element id="PractitionerRole.specialty">
       <path value="PractitionerRole.specialty" />
+      <short value="Specialty" />
+      <definition value="Health professional’s medical specialty. This refers to the recognized medical specialties as stated in the BIG Act. For example general practitioner or cardiologist." />
+      <alias value="Specialisme" />
       <max value="1" />
       <mapping>
         <identity value="zib-healthprofessional-v3.5-2020EN" />
         <map value="NL-CM:17.1.4" />
+        <comment value="Specialty" />
       </mapping>
     </element>
   </differential>

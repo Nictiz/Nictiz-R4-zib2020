@@ -58,49 +58,78 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <short value="HealthProfessionalIdentificationNumber" />
+      <definition value="The healthcare provider identification number is a number that uniquely identifies the healthcare provider. &#xD;&#xA;                        &#xD;The following numbers are used in the Netherlands: &#xD;1. UZI Health Professionals. Identification of health professionals (people) in the Dutch healthcare industry. &#xD;2. VEKTIS AGB-Z. Identifies health professionals and healthcare organizations &#xD;3. BIG-ID. The ID of the health professional listed in the BIG Register. &#xD;&#xA;                        &#xD;This information is not readily available for foreign health professionals." />
+      <alias value="ZorgverlenerIdentificatienummer" />
       <mapping>
         <identity value="zib-healthprofessional-v3.5-2020EN" />
         <map value="NL-CM:17.1.2" />
+        <comment value="HealthProfessionalIdentificationNumber" />
       </mapping>
     </element>
     <element id="Practitioner.identifier:BIG">
       <path value="Practitioner.identifier" />
       <sliceName value="BIG" />
+      <patternIdentifier>
+        <system value="http://fhir.nl/fhir/NamingSystem/big" />
+      </patternIdentifier>
     </element>
     <element id="Practitioner.identifier:UZI">
       <path value="Practitioner.identifier" />
       <sliceName value="UZI" />
+      <patternIdentifier>
+        <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers" />
+      </patternIdentifier>
     </element>
     <element id="Practitioner.identifier:AGB">
       <path value="Practitioner.identifier" />
       <sliceName value="AGB" />
+      <patternIdentifier>
+        <system value="http://fhir.nl/fhir/NamingSystem/agb-z" />
+      </patternIdentifier>
     </element>
     <element id="Practitioner.name">
       <path value="Practitioner.name" />
+      <short value="NameInformation" />
+      <definition value="Health professional’s full name. If a health professional identification number is entered, it will be the name as listed in UZI, AGB or by the healthcare center." />
+      <alias value="Naamgegevens" />
       <mapping>
         <identity value="zib-healthprofessional-v3.5-2020EN" />
         <map value="NL-CM:17.1.3" />
+        <comment value="NameInformation" />
       </mapping>
     </element>
     <element id="Practitioner.telecom">
       <path value="Practitioner.telecom" />
+      <short value="ContactInformation" />
+      <definition value="Health professional’s telephone number(s) or e-mail address(es)." />
+      <alias value="Contactgegevens" />
       <mapping>
         <identity value="zib-healthprofessional-v3.5-2020EN" />
         <map value="NL-CM:17.1.8" />
+        <comment value="ContactInformation" />
       </mapping>
     </element>
     <element id="Practitioner.address">
       <path value="Practitioner.address" />
+      <short value="AddressInformation" />
+      <definition value="Health professional’s address information." />
+      <alias value="Adresgegevens" />
       <mapping>
         <identity value="zib-healthprofessional-v3.5-2020EN" />
         <map value="NL-CM:17.1.7" />
+        <comment value="AddressInformation" />
       </mapping>
     </element>
     <element id="Practitioner.gender">
       <path value="Practitioner.gender" />
+      <short value="Gender" />
+      <definition value="Patient’s administrative gender." />
+      <alias value="Geslacht" />
       <mapping>
         <identity value="zib-healthprofessional-v3.5-2020EN" />
         <map value="NL-CM:17.1.9" />
+        <comment value="Gender" />
       </mapping>
     </element>
   </differential>
