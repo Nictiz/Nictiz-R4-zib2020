@@ -65,6 +65,11 @@
     <uri value="https://zibs.nl/wiki/LanguageProficiency-v3.2(2020EN)" />
     <name value="zib LanguageProficiency-v3.2(2020EN)" />
   </mapping>
+  <mapping>
+    <identity value="zib-contactinformation-v1.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/ContactInformation-v1.2(2020EN)" />
+    <name value="zib ContactInformation-v1.2(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="Patient" />
@@ -174,18 +179,42 @@
     </element>
     <element id="Patient.telecom">
       <path value="Patient.telecom" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
       <short value="ContactInformation" />
-      <definition value="Patient’s telephone number(s) or e-mail address(es).&#xD;&#xA;The cardinality differs from the zib to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not dot." />
+      <definition value="Patient’s telephone number(s) or e-mail address(es)." />
       <alias value="Contactgegevens" />
-      <type>
-        <code value="ContactPoint" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation" />
-      </type>
       <mapping>
         <identity value="zib-patient-v3.2-2020EN" />
         <map value="NL-CM:0.1.5" />
         <comment value="ContactInformation" />
       </mapping>
+      <mapping>
+        <identity value="zib-contactinformation-v1.2-2020EN" />
+        <map value="NL-CM:20.6.1" />
+        <comment value="ContactInformation" />
+      </mapping>
+    </element>
+    <element id="Patient.telecom:telephoneNumbers">
+      <path value="Patient.telecom" />
+      <sliceName value="telephoneNumbers" />
+      <type>
+        <code value="ContactPoint" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelephoneNumbers" />
+      </type>
+    </element>
+    <element id="Patient.telecom:e-mailAddresses">
+      <path value="Patient.telecom" />
+      <sliceName value="e-mailAddresses" />
+      <type>
+        <code value="ContactPoint" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-E-mailAddresses" />
+      </type>
     </element>
     <element id="Patient.gender">
       <path value="Patient.gender" />
