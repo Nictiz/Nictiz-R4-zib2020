@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-HealthProfessional-PractitionerRole" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
+  <name value="ZibHealthProfessionalPractitionerRole" />
+  <title value="zib HealthProfessional PractitionerRole" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A health professional is a person who is authorized to perform actions in the field of individual healthcare." />
+  <purpose value="This PractitionerRole resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) HealthProfessional v3.5 (2020)](https://zibs.nl/wiki/HealthProfessional-v3.5(2020EN)))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="v2" />
+    <uri value="http://hl7.org/v2" />
+    <name value="HL7 v2 Mapping" />
+  </mapping>
+  <mapping>
+    <identity value="rim" />
+    <uri value="http://hl7.org/v3" />
+    <name value="RIM Mapping" />
+  </mapping>
+  <mapping>
+    <identity value="servd" />
+    <uri value="http://www.omg.org/spec/ServD/1.0/" />
+    <name value="ServD" />
+  </mapping>
+  <mapping>
+    <identity value="w5" />
+    <uri value="http://hl7.org/fhir/fivews" />
+    <name value="FiveWs Pattern Mapping" />
+  </mapping>
+  <mapping>
+    <identity value="zib-healthprofessional-v3.5-2020EN" />
+    <uri value="https://zibs.nl/wiki/HealthProfessional-v3.5(2020EN)" />
+    <name value="Zib HealthProfessional-v3.5(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="PractitionerRole" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="PractitionerRole">
+      <path value="PractitionerRole" />
+      <comment value="The zib HealthProfessional is mapped for all but one concept (HealthProfessionalRole) to Practitioner and PractitioneRole. PractitionerRole covers the recording of the location and types of services that HealthProfessionals are able to provide for a HealthcareProvider. The zib concepts 'HealthProfessionalIdentificationNumber', 'Specialty' and 'HealthcareProvider' are therefore mapped to PractitionerRole. &#xD;&#xA;&#xD;&#xA;Although the zib concept name HealthProfessionalRole feels a match for PractitionerRole, this is not the case based on the definition and values of that concept. In contrary to the zib, the more clinical resources contain the role information the Healthprofessinal fullfills in the that specific case. An example is the Procedure.performer.role element. This prevents creating many HealthProfessional instances." />
+    </element>
+    <element id="PractitionerRole.identifier">
+      <path value="PractitionerRole.identifier" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="PractitionerRole.identifier:BIG">
+      <path value="PractitionerRole.identifier" />
+      <sliceName value="BIG" />
+      <patternIdentifier>
+        <system value="http://fhir.nl/fhir/NamingSystem/big" />
+      </patternIdentifier>
+    </element>
+    <element id="PractitionerRole.identifier:UZI">
+      <path value="PractitionerRole.identifier" />
+      <sliceName value="UZI" />
+      <patternIdentifier>
+        <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers" />
+      </patternIdentifier>
+    </element>
+    <element id="PractitionerRole.identifier:AGB">
+      <path value="PractitionerRole.identifier" />
+      <sliceName value="AGB" />
+      <patternIdentifier>
+        <system value="http://fhir.nl/fhir/NamingSystem/agb-z" />
+      </patternIdentifier>
+    </element>
+    <element id="PractitionerRole.practitioner">
+      <path value="PractitionerRole.practitioner" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner" />
+      </type>
+    </element>
+    <element id="PractitionerRole.organization">
+      <path value="PractitionerRole.organization" />
+      <short value="HealthcareProvider" />
+      <definition value="The organization the health professional works for." />
+      <alias value="Zorgaanbieder" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider-Organization" />
+      </type>
+      <mapping>
+        <identity value="zib-healthprofessional-v3.5-2020EN" />
+        <map value="NL-CM:17.1.6" />
+        <comment value="HealthcareProvider" />
+      </mapping>
+    </element>
+    <element id="PractitionerRole.specialty">
+      <path value="PractitionerRole.specialty" />
+      <short value="Specialty" />
+      <definition value="Health professional’s medical specialty. This refers to the recognized medical specialties as stated in the BIG Act. For example general practitioner or cardiologist." />
+      <alias value="Specialisme" />
+      <max value="1" />
+      <binding>
+        <strength value="required" />
+        <description value="Use profile terminology SpecialismeCodelijsten" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.22--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-healthprofessional-v3.5-2020EN" />
+        <map value="NL-CM:17.1.4" />
+        <comment value="Specialty" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
