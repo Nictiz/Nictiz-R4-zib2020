@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <url value="http://nictiz.nl/fhir/ext-zib-ContactInformation-TelecomType" />
-  <name value="ExtZibContactInformationTelecomType" />
+  <id value="ext-zib-ContactInformation-TelecomType" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-zib-ContactInformation-TelecomType" />
+  <name value="ExtzibContactInformationTelecomType" />
+  <title value="ext zib ContactInformation TelecomType" />
   <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The profile [zib-ContactPoint-TelephoneNumbers](http://nictiz.nl/fhir/StructureDefinition/zib-ContactPoint-TelephoneNumbers) maps the TelephoneNumbers concept from zib ContactInformation in the FHIR datatype _ContactPoint_. However, this concept cannot entirely represented. This extension binds the zib ValueSet TelecomTypeCodelijst to this profile." />
+  <purpose value="This extension represents the TelecomType concept [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) ContactInformation v1.2(2020)](https://zibs.nl/wiki/ContactInformation-v1.2(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
     <identity value="rim" />
     <uri value="http://hl7.org/v3" />
     <name value="RIM Mapping" />
+  </mapping>
+  <mapping>
+    <identity value="zib-contactinformation-v1.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/ContactInformation-v1.2(2020EN)" />
+    <name value="zib ContactInformation-v1.2(2020EN)" />
   </mapping>
   <kind value="complex-type" />
   <abstract value="false" />
@@ -21,17 +40,25 @@
   <differential>
     <element id="Extension.url">
       <path value="Extension.url" />
-      <fixedUri value="http://nictiz.nl/fhir/ext-zib-ContactInformation-TelecomType" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-zib-ContactInformation-TelecomType" />
     </element>
     <element id="Extension.value[x]">
       <path value="Extension.value[x]" />
+      <short value="TelecomType" />
+      <alias value="TelecomType" />
       <type>
         <code value="CodeableConcept" />
       </type>
       <binding>
         <strength value="required" />
+        <description value="Use profile terminology TelecomTypeCodelijst" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.20.6.1--20200901000000" />
       </binding>
+      <mapping>
+        <identity value="zib-contactinformation-v1.2-2020EN" />
+        <map value="NL-CM:20.6.5" />
+        <comment value="TelecomType" />
+      </mapping>
     </element>
   </differential>
 </StructureDefinition>
