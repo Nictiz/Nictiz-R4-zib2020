@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-ContactPerson" />
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson" />
@@ -31,13 +32,21 @@
     <element id="RelatedPerson">
       <path value="RelatedPerson" />
       <short value="Contact" />
-      <comment value="For the RelatedPerson.telecom and RelatedPerson.name element, we use the cardinality of FHIR. In the contact information zib there is a container that does not exist in FHIR. The container itself has a cardinality of 0 .. *. For the &#xD;&#xA;&#xD;&#xA;RelatedPerson.name element we use the same cardinality, because the given name is not allowed in this element. Some patients has more then 1 name, so the cardinality of 0 .. * it is possible to define multiple names." />
+      <comment value="The HCIM ContactPerson is meant to deal with both related persons and contacts. This profile targets instantiations of the HCIM ContactPerson who are related persons. An HCIM ContactPerson who is a contact for a patient, belongs in Patient.contact. If a person is both a related person and a contact person, then some data duplication is inevitable. This may or may not be resolved in a future version of the Patient/RelatedPerson resources." />
       <alias value="Contactpersoon" />
       <mapping>
         <identity value="zib-contactperson-v3.4-2020EN" />
         <map value="NL-CM:3.1.1" />
         <comment value="Contact" />
       </mapping>
+    </element>
+    <element id="RelatedPerson.patient">
+      <path value="RelatedPerson.patient" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient" />
+      </type>
     </element>
     <element id="RelatedPerson.relationship">
       <path value="RelatedPerson.relationship" />
@@ -87,6 +96,7 @@
       <path value="RelatedPerson.name" />
       <short value="NameInformation" />
       <definition value="Full name of the contact." />
+      <comment value="The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use." />
       <alias value="Naamgegevens" />
       <type>
         <code value="HumanName" />
@@ -100,8 +110,16 @@
     </element>
     <element id="RelatedPerson.telecom">
       <path value="RelatedPerson.telecom" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
       <short value="ContactInformation" />
       <definition value="The contact’s telephone number and/or e-mail address." />
+      <comment value="The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers inside the ContactInformation model which are 0..*. FHIR ContactPoint does not have these containers." />
       <alias value="Contactgegevens" />
       <type>
         <code value="ContactPoint" />
@@ -112,6 +130,22 @@
         <map value="NL-CM:3.1.6" />
         <comment value="ContactInformation" />
       </mapping>
+    </element>
+    <element id="RelatedPerson.telecom:telephoneNumbers">
+      <path value="RelatedPerson.telecom" />
+      <sliceName value="telephoneNumbers" />
+      <type>
+        <code value="ContactPoint" />
+        <profile value="http://niciz.nl/fhir/zib-ContactPoint-TelephoneNumbers" />
+      </type>
+    </element>
+    <element id="RelatedPerson.telecom:e-mailAddresses">
+      <path value="RelatedPerson.telecom" />
+      <sliceName value="e-mailAddresses" />
+      <type>
+        <code value="ContactPoint" />
+        <profile value="http://niciz.nl/fhir/zib-ContactPoint-E-mailAddresses" />
+      </type>
     </element>
     <element id="RelatedPerson.address">
       <path value="RelatedPerson.address" />
