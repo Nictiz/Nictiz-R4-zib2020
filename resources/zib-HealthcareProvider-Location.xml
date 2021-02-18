@@ -43,6 +43,11 @@
     <uri value="https://zibs.nl/wiki/HealthcareProvider-v3.4(2020EN)" />
     <name value="Zib HealthcareProvider-v3.4(2020EN)" />
   </mapping>
+  <mapping>
+    <identity value="zib-contactinformation-v1.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/ContactInformation-v1.2(2020EN)" />
+    <name value="zib ContactInformation-v1.2(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="Location" />
@@ -52,7 +57,6 @@
     <element id="Location">
       <path value="Location" />
       <short value="OrganizationLocation" />
-      <definition value="Details and position information for a physical place where services are provided and resources and participants may be stored, found, contained, or accommodated." />
       <alias value="OrganisatieLocatie" />
       <mapping>
         <identity value="zib-healthcareprovider-v3.4-2020EN" />
@@ -84,9 +88,33 @@
     </element>
     <element id="Location.telecom">
       <path value="Location.telecom" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <mapping>
+        <identity value="zib-contactinformation-v1.2-2020EN" />
+        <map value="NL-CM:20.6.1" />
+        <comment value="ContactInformation" />
+      </mapping>
+    </element>
+    <element id="Location.telecom:telephoneNumbers">
+      <path value="Location.telecom" />
+      <sliceName value="telephoneNumbers" />
       <type>
         <code value="ContactPoint" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelephoneNumbers" />
+      </type>
+    </element>
+    <element id="Location.telecom:e-mailAddresses">
+      <path value="Location.telecom" />
+      <sliceName value="e-mailAddresses" />
+      <type>
+        <code value="ContactPoint" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-E-mailAddresses" />
       </type>
     </element>
     <element id="Location.address">
