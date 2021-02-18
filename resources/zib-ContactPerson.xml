@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-ContactPerson" />
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson" />
@@ -21,6 +22,11 @@
     <identity value="zib-contactperson-v3.4-2020EN" />
     <uri value="https://zibs.nl/wiki/ContactPerson-v3.4(2020EN)" />
     <name value="zib ContactPerson-v3.4(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-contactinformation-v1.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/ContactInformation-v1.2(2020EN)" />
+    <name value="zib ContactInformation-v1.2(2020EN)" />
   </mapping>
   <kind value="resource" />
   <abstract value="false" />
@@ -120,13 +126,14 @@
       <definition value="The contact’s telephone number and/or e-mail address." />
       <comment value="The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers inside the ContactInformation model which are 0..*. FHIR ContactPoint does not have these containers." />
       <alias value="Contactgegevens" />
-      <type>
-        <code value="ContactPoint" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation" />
-      </type>
       <mapping>
         <identity value="zib-contactperson-v3.4-2020EN" />
         <map value="NL-CM:3.1.6" />
+        <comment value="ContactInformation" />
+      </mapping>
+      <mapping>
+        <identity value="zib-contactinformation-v1.2-2020EN" />
+        <map value="NL-CM:20.6.1" />
         <comment value="ContactInformation" />
       </mapping>
     </element>
@@ -135,7 +142,7 @@
       <sliceName value="telephoneNumbers" />
       <type>
         <code value="ContactPoint" />
-        <profile value="http://niciz.nl/fhir/zib-ContactPoint-TelephoneNumbers" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelephoneNumbers" />
       </type>
     </element>
     <element id="RelatedPerson.telecom:e-mailAddresses">
@@ -143,14 +150,12 @@
       <sliceName value="e-mailAddresses" />
       <type>
         <code value="ContactPoint" />
-        <profile value="http://niciz.nl/fhir/zib-ContactPoint-E-mailAddresses" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-E-mailAddresses" />
       </type>
     </element>
     <element id="RelatedPerson.address">
       <path value="RelatedPerson.address" />
-      <short value="AddressInformation" />
       <definition value="Contact’s address information." />
-      <alias value="Adresgegevens" />
       <type>
         <code value="Address" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation" />
