@@ -137,14 +137,17 @@
     <element id="Address.line.extension:streetName">
       <path value="Address.line.extension" />
       <sliceName value="streetName" />
-      <short value="Street" />
-      <definition value="Street name of the address." />
-      <alias value="Straat" />
       <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName" />
       </type>
+    </element>
+    <element id="Address.line.extension:streetName.value[x]">
+      <path value="Address.line.extension.value[x]" />
+      <short value="Street" />
+      <definition value="Street name of the address." />
+      <alias value="Straat" />
       <mapping>
         <identity value="zib-addressinformation-v1.1-2020EN" />
         <map value="NL-CM:20.5.2" />
@@ -154,14 +157,17 @@
     <element id="Address.line.extension:houseNumber">
       <path value="Address.line.extension" />
       <sliceName value="houseNumber" />
-      <short value="HouseNumber" />
-      <definition value="House number of the address." />
-      <alias value="Huisnummer" />
       <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber" />
       </type>
+    </element>
+    <element id="Address.line.extension:houseNumber.value[x]">
+      <path value="Address.line.extension.value[x]" />
+      <short value="HouseNumber" />
+      <definition value="House number of the address." />
+      <alias value="Huisnummer" />
       <mapping>
         <identity value="zib-addressinformation-v1.1-2020EN" />
         <map value="NL-CM:20.5.12" />
@@ -171,15 +177,18 @@
     <element id="Address.line.extension:houseNumberLetter-houseNumberAddition">
       <path value="Address.line.extension" />
       <sliceName value="houseNumberLetter-houseNumberAddition" />
-      <short value="HouseNumberLetter-HouseNumberAddition" />
-      <definition value="Export&#xD;&#xA;&#xD;&#xA;- If a HouseNumberLetter as well as a HouseNumberAddition is known: HouseNumberLetter first, followed by a space and finally the HouseNumberAddition.&#xD;&#xA;- If only a HouseNumberLetter is known, send just that. No trailing space is required.&#xD;&#xA;- If only a HouseNumberAddition is known, communicate that with a leading space.&#xD;&#xA;&#xD;&#xA;Import&#xD;&#xA;&#xD;&#xA;- If the value of buildingNumberSuffix contains no space, then the whole value is considered to be the HouseNumberLetter.&#xD;&#xA;- If the value of buildingNumberSuffix contains a space, then everything before the first space is considered to be the HouseNumberLetter, and the everything trailing the first space is considered to be the HouseNumberAddition.&#xD;&#xA;&#xD;&#xA;Note: While a leading space is allowed in string values in FHIR, the parsing of such space cannot be guaranteed in XML representations. Although aware of this issue, this mapping is not changed because of compatibility reasons. If an implementer cannot parse a leading space, the practical risk of mapping a HouseNumberIndication to a HouseNumberAddition is deemed insignificant." />
-      <alias value="Huisnummerletter" />
-      <alias value="Huisnummertoevoeging" />
       <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix" />
       </type>
+    </element>
+    <element id="Address.line.extension:houseNumberLetter-houseNumberAddition.value[x]">
+      <path value="Address.line.extension.value[x]" />
+      <short value="HouseNumberLetter-HouseNumberAddition" />
+      <definition value="Export&#xD;&#xA;&#xD;&#xA;- If a HouseNumberLetter as well as a HouseNumberAddition is known: HouseNumberLetter first, followed by a space and finally the HouseNumberAddition.&#xD;&#xA;- If only a HouseNumberLetter is known, send just that. No trailing space is required.&#xD;&#xA;- If only a HouseNumberAddition is known, communicate that with a leading space.&#xD;&#xA;&#xD;&#xA;Import&#xD;&#xA;&#xD;&#xA;- If the value of buildingNumberSuffix contains no space, then the whole value is considered to be the HouseNumberLetter.&#xD;&#xA;- If the value of buildingNumberSuffix contains a space, then everything before the first space is considered to be the HouseNumberLetter, and the everything trailing the first space is considered to be the HouseNumberAddition.&#xD;&#xA;&#xD;&#xA;Note: While a leading space is allowed in string values in FHIR, the parsing of such space cannot be guaranteed in XML representations. Although aware of this issue, this mapping is not changed because of compatibility reasons. If an implementer cannot parse a leading space, the practical risk of mapping a HouseNumberIndication to a HouseNumberAddition is deemed insignificant." />
+      <alias value="Huisnummerletter" />
+      <alias value="Huisnummertoevoeging" />
       <mapping>
         <identity value="zib-addressinformation-v1.1-2020EN" />
         <map value="NL-CM:20.5.11" />
@@ -194,14 +203,18 @@
     <element id="Address.line.extension:houseNumberIndication">
       <path value="Address.line.extension" />
       <sliceName value="houseNumberIndication" />
-      <short value="HouseNumberIndication" />
-      <definition value="The indication used for addresses which do not consist of the usual street name and house number." />
-      <alias value="AanduidingBijNummer" />
       <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator" />
       </type>
+    </element>
+    <element id="Address.line.extension:houseNumberIndication.value[x]">
+      <path value="Address.line.extension.value[x]" />
+      <short value="HouseNumberIndication" />
+      <definition value="The indication used for addresses which do not consist of the usual street name and house number." />
+      <comment value="The mapping of zib AddressInformation on the FHIR Address datatype is the result of compatibility with HL7v3, which is the format that a lot of healthcare data in the Netherlands is stored in.  As a result of this, the zib HouseNumberIndication concept with CD datatype is mapped to a FHIR string datatype with a constraint added (the value can only be 'by' or 'to')." />
+      <alias value="AanduidingBijNummer" />
       <constraint>
         <key value="houseNumberIndication" />
         <severity value="error" />
@@ -218,19 +231,11 @@
     <element id="Address.line.extension:additionalInformation">
       <path value="Address.line.extension" />
       <sliceName value="additionalInformation" />
-      <short value="AdditionalInformation" />
-      <definition value="Extra information such as the building name, building number, entrance, route number." />
-      <alias value="AdditioneleInformatie" />
       <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID" />
       </type>
-      <mapping>
-        <identity value="zib-addressinformation-v1.1-2020EN" />
-        <map value="NL-CM:20.5.7" />
-        <comment value="AdditionalInformation" />
-      </mapping>
     </element>
     <element id="Address.city">
       <path value="Address.city" />
@@ -295,45 +300,16 @@
       <short value="Country" />
       <definition value="Country in which the address is located." />
       <alias value="Land" />
+      <binding>
+        <strength value="required" />
+        <description value="Use profile terminology LandCodelijsten" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.10--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-addressinformation-v1.1-2020EN" />
         <map value="NL-CM:20.5.5" />
         <comment value="Country" />
       </mapping>
-    </element>
-    <element id="Address.country.extension:countryCode.value[x].coding">
-      <path value="Address.country.extension.value[x].coding" />
-      <slicing>
-        <discriminator>
-          <type value="pattern" />
-          <path value="$this" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Address.country.extension:countryCode.value[x].coding:countryGBACodelist">
-      <path value="Address.country.extension.value[x].coding" />
-      <sliceName value="countryGBACodelist" />
-      <patternCoding>
-        <system value="urn:oid:2.16.840.1.113883.2.4.4.16.34" />
-      </patternCoding>
-      <binding>
-        <strength value="required" />
-        <description value="CountryGBACodelist" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.20.5.1--20200901000000" />
-      </binding>
-    </element>
-    <element id="Address.country.extension:countryCode.value[x].coding:countryISOCodelist">
-      <path value="Address.country.extension.value[x].coding" />
-      <sliceName value="countryISOCodelist" />
-      <patternCoding>
-        <system value="urn:iso:std:iso:3166" />
-      </patternCoding>
-      <binding>
-        <strength value="required" />
-        <description value="CountryISOCodelist" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.20.5.2--20200901000000" />
-      </binding>
     </element>
   </differential>
 </StructureDefinition>
