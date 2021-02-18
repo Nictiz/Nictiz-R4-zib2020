@@ -43,6 +43,11 @@
     <uri value="https://zibs.nl/wiki/HealthcareProvider-v3.4(2020EN)" />
     <name value="Zib HealthcareProvider-v3.4(2020EN)" />
   </mapping>
+  <mapping>
+    <identity value="zib-contactinformation-v1.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/ContactInformation-v1.2(2020EN)" />
+    <name value="zib ContactInformation-v1.2(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="Organization" />
@@ -154,18 +159,42 @@
     </element>
     <element id="Organization.telecom">
       <path value="Organization.telecom" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
       <short value="ContactInformation" />
       <definition value="The information needed to contact the healthcare organization via telephone and/or e-mail." />
       <alias value="Contactgegevens" />
-      <type>
-        <code value="ContactPoint" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation" />
-      </type>
       <mapping>
         <identity value="zib-healthcareprovider-v3.4-2020EN" />
         <map value="NL-CM:17.2.6" />
         <comment value="ContactInformation" />
       </mapping>
+      <mapping>
+        <identity value="zib-contactinformation-v1.2-2020EN" />
+        <map value="NL-CM:20.6.1" />
+        <comment value="ContactInformation" />
+      </mapping>
+    </element>
+    <element id="Organization.telecom:telephoneNumbers">
+      <path value="Organization.telecom" />
+      <sliceName value="telephoneNumbers" />
+      <type>
+        <code value="ContactPoint" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelephoneNumbers" />
+      </type>
+    </element>
+    <element id="Organization.telecom:e-mailAddresses">
+      <path value="Organization.telecom" />
+      <sliceName value="e-mailAddresses" />
+      <type>
+        <code value="ContactPoint" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-E-mailAddresses" />
+      </type>
     </element>
     <element id="Organization.address">
       <path value="Organization.address" />
