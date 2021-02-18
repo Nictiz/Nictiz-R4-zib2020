@@ -92,6 +92,7 @@
       <path value="Practitioner.name" />
       <short value="NameInformation" />
       <definition value="Health professional’s full name. If a health professional identification number is entered, it will be the name as listed in UZI, AGB or by the healthcare center." />
+      <comment value="The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use." />
       <alias value="Naamgegevens" />
       <mapping>
         <identity value="zib-healthprofessional-v3.5-2020EN" />
@@ -126,11 +127,46 @@
       <short value="Gender" />
       <definition value="Patient’s administrative gender." />
       <alias value="Geslacht" />
+      <binding>
+        <strength value="required" />
+        <description value="Use ConceptMap 'GeslachtCodelijst-to-AdministrativeGender' to translate zib terminology to profile terminology in ValueSet 'AdministrativeGender'. This ConceptMap is based on GeslachtCodelijst as defined in the zib Patient to avoid duplication of ConceptMaps. The GeslachtCodelijst of Patient and HealthProfessional are identical in terms of codes." />
+        <valueSet value="http://hl7.org/fhir/ValueSet/administrative-gender|4.0.1">
+          <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
+            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/GeslachtCodelijst-to-AdministrativeGender" />
+          </extension>
+        </valueSet>
+      </binding>
       <mapping>
         <identity value="zib-healthprofessional-v3.5-2020EN" />
         <map value="NL-CM:17.1.9" />
         <comment value="Gender" />
       </mapping>
+    </element>
+    <element id="Practitioner.gender.extension">
+      <path value="Practitioner.gender.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Practitioner.gender.extension:genderCodelist">
+      <path value="Practitioner.gender.extension" />
+      <sliceName value="genderCodelist" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-code-specification" />
+      </type>
+    </element>
+    <element id="Practitioner.gender.extension:genderCodelist.value[x]">
+      <path value="Practitioner.gender.extension.value[x]" />
+      <binding>
+        <strength value="required" />
+        <description value="Use profile terminology GeslachtCodelijst" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.1.8--20200901000000" />
+      </binding>
     </element>
   </differential>
 </StructureDefinition>
