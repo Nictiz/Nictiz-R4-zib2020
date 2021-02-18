@@ -106,6 +106,10 @@
       <definition value="Health professional’s full name. If a health professional identification number is entered, it will be the name as listed in UZI, AGB or by the healthcare center." />
       <comment value="The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use." />
       <alias value="Naamgegevens" />
+      <type>
+        <code value="HumanName" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
+      </type>
       <mapping>
         <identity value="zib-healthprofessional-v3.5-2020EN" />
         <map value="NL-CM:17.1.3" />
@@ -114,6 +118,13 @@
     </element>
     <element id="Practitioner.telecom">
       <path value="Practitioner.telecom" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
       <short value="ContactInformation" />
       <definition value="Health professional’s telephone number(s) or e-mail address(es)." />
       <alias value="Contactgegevens" />
@@ -123,11 +134,31 @@
         <comment value="ContactInformation" />
       </mapping>
     </element>
+    <element id="Practitioner.telecom:telephoneNumbers">
+      <path value="Practitioner.telecom" />
+      <sliceName value="telephoneNumbers" />
+      <type>
+        <code value="ContactPoint" />
+        <profile value="http://niciz.nl/fhir/zib-ContactPoint-TelephoneNumbers" />
+      </type>
+    </element>
+    <element id="Practitioner.telecom:e-mailAddresses">
+      <path value="Practitioner.telecom" />
+      <sliceName value="e-mailAddresses" />
+      <type>
+        <code value="ContactPoint" />
+        <profile value="http://niciz.nl/fhir/zib-ContactPoint-E-mailAddresses" />
+      </type>
+    </element>
     <element id="Practitioner.address">
       <path value="Practitioner.address" />
       <short value="AddressInformation" />
       <definition value="Health professional’s address information." />
       <alias value="Adresgegevens" />
+      <type>
+        <code value="Address" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation" />
+      </type>
       <mapping>
         <identity value="zib-healthprofessional-v3.5-2020EN" />
         <map value="NL-CM:17.1.7" />
