@@ -35,14 +35,19 @@ if [ $changed_only == 0 ]; then
   profiles=resources/zib-*
   examples=examples/*
 else
-  profiles=$(git diff --name-only origin/main -- resources/zib-*)
+  profiles=$(git diff --name-only origin/main -- resources/zib-* resources/ext-*)
   examples=$(git diff --name-only origin/main -- examples)
 fi
 
 echo
 echo "+++ Validating profiles"
-cp qa/ProfilingGuidelinesR4.xml resources/
-eval java -jar $tools_dir/validator/validator.jar -version 4.0 -ig resources/ -recurse -profile https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4 $profiles -output $output_dir/profile_validation.xml $output_redirect
+mkdir ig
+cd ig
+ln -s ../resources
+ln -s ../qa/ProfilingGuidelinesR4.xml
+ls
+cd ..
+eval java -jar $tools_dir/validator/validator.jar -version 4.0 -ig ig/ -recurse -profile https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4 $profiles -output $output_dir/profile_validation.xml $output_redirect
 if [ $? -eq 0 ]; then
   python3 $tools_dir/hl7-fhir-validator-action/analyze_results.py --fail-at warning --ignored-issues known-issues.yml $output_dir/profile_validation.xml
 else
