@@ -13,7 +13,7 @@ jobs:
       - name: Get changed profiles
         id: get-changes
         run: |
-          echo "::set-output name=changed_profiles::$(git diff --name-only origin/main -- resources/zib-*)"
+          echo "::set-output name=changed_profiles::$(git diff --name-only origin/main -- resources/zib-* resources/ext-*)"
           echo "::set-output name=changed_examples::$(git diff --name-only origin/main -- examples)"
 
       - name: Restore validator cache
@@ -22,12 +22,18 @@ jobs:
           path: ~/.fhir/packages
           key: fhir-cache
       - name: Copy conformance profile to the ig
-        run: cp qa/ProfilingGuidelinesR4.xml resources/
+        run: |
+          mkdir ig
+          cd ig
+          ln -s ../resources
+          ln -s ../qa/ProfilingGuidelinesR4.xml
+          ls
+          cd ..
       - name: Validate profiles
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.11
         with:
           version: "4.0"
-          ig: resources/
+          ig: ig/
           recurse: true
           profile: https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4
           source:  ${{ steps.get-changes.outputs.changed_profiles }}
