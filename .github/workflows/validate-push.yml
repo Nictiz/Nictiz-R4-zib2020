@@ -63,13 +63,12 @@ jobs:
           
           fhir install hl7.fhir.r4.core 4.0.1
           mkdir ../snapshots
-          for sd in ../${{ steps.get-changes.outputs.changed_profiles }}; do
+          for sd in ${{ steps.get-changes.outputs.changed_profiles }}; do
             base=$(basename $sd .xml);
             fhir push $base.xml
             fhir snapshot
             fhir save ../snapshots/$base.json --json
           done
-          cd ..
       - name: Check zib compliance
         uses: pieter-edelman-nictiz/zib-compliance-fhir@action
         with:
