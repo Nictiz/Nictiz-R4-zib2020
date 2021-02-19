@@ -13,3 +13,9 @@ zib-ContactInformation-TelephoneNumbers:
     ContactPoint.use:
       - short: TelecomType / NumberType
         reason: The mapping of the zib to FHIR is indirect; the _combination_ of ContactPoint.system and ContactPoint.use maps to the _combination_ of TelecomType and NumberType
+
+zib-AddressInformation:
+  zib deviations:
+    Address.line.extension:houseNumberIndication.value[x]:
+      - datatype: string
+        reason: The mapping of zib AddressInformation on the FHIR Address datatype is the result of compatibility with HL7v3, which is the format that a lot of healthcare data in the Netherlands is stored in.  As a result of this, the zib HouseNumberIndication concept with CD datatype is mapped to a FHIR string datatype with a constraint added (the value can only be 'by' or 'to').
