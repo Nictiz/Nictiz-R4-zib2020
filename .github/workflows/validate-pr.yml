@@ -2,7 +2,7 @@ name: Profile QA - full repository
 on: pull_request
 
 jobs:
-  validate:
+  validate-all:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -10,25 +10,35 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Get profiles and extensions
+        id: get-profiles
+        run: |
+          echo "::set-output name=profiles::$(find resources -maxdepth 1 -name "zib-*.xml" -o -name "ext-*.xml")"
+
       - name: Restore validator cache
         uses: actions/cache@v2
         with:
           path: ~/.fhir/packages
           key: fhir-cache
-      - name: Copy conformance profile to the ig
-        run: cp qa/ProfilingGuidelinesR4.xml resources/
+      - name: Create ig with the ProfileGuidelines resource
+        run: |
+          mkdir ig
+          cd ig
+          ln -s ../resources
+          ln -s ../qa/ProfilingGuidelinesR4.xml
+          cd ..
       - name: Validate profiles
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.11
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.13
         with:
           version: "4.0"
-          ig: resources/
+          ig: ig/
           recurse: true
           profile: https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4
-          source: resources/zib-*
+          source: ${{ steps.get-profiles.outputs.profiles }}
           fail-at: warning
           ignored-issues: known-issues.yml
       - name: Validate examples
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.11
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.13
         with:
           version: "4.0"
           ig: resources/
@@ -46,11 +56,10 @@ jobs:
           ln -s ../package.json
           ln -s ../fhirpkg.lock.json
           for f in $(find ../resources -name "*.xml"); do ln -s $f; done
-          cd ..
           
           fhir install hl7.fhir.r4.core 4.0.1
           mkdir ../snapshots
-          for sd in zib-*.xml; do
+          for sd in ${{ steps.get-profiles.outputs.profiles }}; do
             base=$(basename $sd .xml);
             fhir push $base.xml
             fhir snapshot
@@ -64,5 +73,5 @@ jobs:
           structuredefinitions: snapshots/*
           zib-release: 2020
           fail-at: warning
-          zib-overrides: known-issues.yml
+          zib-deviations: known-issues.yml
 
