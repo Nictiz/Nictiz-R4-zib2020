@@ -185,7 +185,7 @@
     </element>
     <element id="Address.line.extension:houseNumberLetter-houseNumberAddition.value[x]">
       <path value="Address.line.extension.value[x]" />
-      <short value="HouseNumberLetter-HouseNumberAddition" />
+      <short value="HouseNumberLetter / HouseNumberAddition" />
       <definition value="Export&#xD;&#xA;&#xD;&#xA;- If a HouseNumberLetter as well as a HouseNumberAddition is known: HouseNumberLetter first, followed by a space and finally the HouseNumberAddition.&#xD;&#xA;- If only a HouseNumberLetter is known, send just that. No trailing space is required.&#xD;&#xA;- If only a HouseNumberAddition is known, communicate that with a leading space.&#xD;&#xA;&#xD;&#xA;Import&#xD;&#xA;&#xD;&#xA;- If the value of buildingNumberSuffix contains no space, then the whole value is considered to be the HouseNumberLetter.&#xD;&#xA;- If the value of buildingNumberSuffix contains a space, then everything before the first space is considered to be the HouseNumberLetter, and the everything trailing the first space is considered to be the HouseNumberAddition.&#xD;&#xA;&#xD;&#xA;Note: While a leading space is allowed in string values in FHIR, the parsing of such space cannot be guaranteed in XML representations. Although aware of this issue, this mapping is not changed because of compatibility reasons. If an implementer cannot parse a leading space, the practical risk of mapping a HouseNumberIndication to a HouseNumberAddition is deemed insignificant." />
       <alias value="Huisnummerletter" />
       <alias value="Huisnummertoevoeging" />
@@ -236,6 +236,16 @@
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID" />
       </type>
+    </element>
+    <element id="Address.line.extension:additionalInformation.value[x]">
+      <path value="Address.line.extension.value[x]" />
+      <short value="AdditionalInformation" />
+      <alias value="AdditioneleInformatie" />
+      <mapping>
+        <identity value="zib-addressinformation-v1.1-2020EN" />
+        <map value="NL-CM:20.5.7" />
+        <comment value="AdditionalInformation" />
+      </mapping>
     </element>
     <element id="Address.city">
       <path value="Address.city" />
