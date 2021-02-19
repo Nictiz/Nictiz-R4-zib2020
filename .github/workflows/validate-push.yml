@@ -42,10 +42,7 @@ jobs:
             fhir save ../snapshots/$base.json --json
           done
       - name: Dumb test
-        run: |
-          ls /home/runner/work/_actions/pieter-edelman-nictiz/zib-compliance-fhir/action/index.js
-          ls qa/zibs2020.max
-          ls snapshots/*
+        run: which node
       - name: Check zib compliance
         uses: pieter-edelman-nictiz/zib-compliance-fhir@action
         with:
@@ -53,6 +50,7 @@ jobs:
           structuredefinitions: snapshots/*
           zib-release: 2020
           fail-at: warning
+          zib-deviations: known-issues.yml
 
       - name: Create ig with the ProfileGuidelines resource
         run: |
