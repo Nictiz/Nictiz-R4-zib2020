@@ -32,7 +32,7 @@ done
 
 # If the "--changed-only" parameter is given, then we only check the changed files, otherwise the full set.
 if [ $changed_only == 0 ]; then
-  profiles=resources/zib-*
+  profiles=$(find resources -maxdepth 1 -name "zib-*.xml" -o -name "ext-*.xml")
   examples=examples/*
 else
   profiles=$(git diff --name-only origin/main -- resources/zib-* resources/ext-*)
@@ -45,7 +45,6 @@ mkdir ig
 cd ig
 ln -s ../resources
 ln -s ../qa/ProfilingGuidelinesR4.xml
-ls
 cd ..
 eval java -jar $tools_dir/validator/validator.jar -version 4.0 -ig ig/ -recurse -profile https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4 $profiles -output $output_dir/profile_validation.xml $output_redirect
 if [ $? -eq 0 ]; then
@@ -80,7 +79,7 @@ ln -s ../fhirpkg.lock.json
 for f in $(find ../resources -name "*.xml"); do ln -s $f; done
 
 mkdir ../snapshots
-for sd in ../$profiles; do
+for sd in $profiles; do
   base=$(basename $sd .xml);
   eval ~/.dotnet/tools/fhir push $base.xml $output_redirect
   eval ~/.dotnet/tools/fhir snapshot $output_redirect
