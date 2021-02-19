@@ -13,7 +13,7 @@ jobs:
       - name: Get changed profiles
         id: get-changes
         run: |
-          echo "::set-output name=changed_profiles::$(for f in $(git diff --name-only origin/main -- resources/zib-* resources/ext-*);do echo $f; done)"
+          echo "::set-output name=changed_profiles::$(git diff --name-only origin/main -- resources/zib-*)"
           echo "::set-output name=changed_examples::$(git diff --name-only origin/main -- examples)"
 
       - name: Restore validator cache
