@@ -16,7 +16,6 @@ jobs:
           changed_profiles=$(git diff --name-only origin/main -- resources/zib-* resources/ext-*)
           echo "::set-output name=changed_profiles::"$changed_profiles
           echo "::set-output name=changed_examples::$(git diff --name-only origin/main -- examples)"
-          pwd
 
       - name: Restore validator cache
         uses: actions/cache@v2
@@ -43,7 +42,7 @@ jobs:
             fhir save ../snapshots/$base.json --json
           done
       - name: Dumb test
-        run: which node
+        run: node /home/runner/work/_actions/pieter-edelman-nictiz/zib-compliance-fhir/action/index.js -m qa/zibs2020.max -z 2020 -v R4 -r true --fail-at warning  -f text snapshots/*
       - name: Check zib compliance
         uses: pieter-edelman-nictiz/zib-compliance-fhir@action
         with:
