@@ -285,7 +285,7 @@
     </element>
     <element id="Address.country">
       <path value="Address.country" />
-      <comment value="The FHIR datatype does not properly support coding the country using a CodeableConcept or Coding datatype. If the sender supports coded countries, it SHALL send the coded value using the code-specification extension under `Address.country.extension:countryCode`." />
+      <comment value="The FHIR datatype does not properly support coding the country using a CodeableConcept or Coding datatype. If the sender supports coded countries, it SHALL send the coded value using the CodeSpecification extension under `Address.country.extension:countryCode`." />
     </element>
     <element id="Address.country.extension">
       <path value="Address.country.extension" />
@@ -302,7 +302,7 @@
       <sliceName value="countryCode" />
       <type>
         <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-code-specification" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification" />
       </type>
     </element>
     <element id="Address.country.extension:countryCode.value[x]">
