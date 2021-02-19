@@ -56,7 +56,6 @@ jobs:
           ln -s ../package.json
           ln -s ../fhirpkg.lock.json
           for f in $(find ../resources -name "*.xml"); do ln -s $f; done
-          cd ..
           
           fhir install hl7.fhir.r4.core 4.0.1
           mkdir ../snapshots

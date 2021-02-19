@@ -52,7 +52,6 @@ jobs:
         run: dotnet tool install -g firely.terminal
       - name: Create snapshots in JSON format
         run: |
-
           mkdir flattened
           cd flattened
           ln -s ../package.json
@@ -61,7 +60,7 @@ jobs:
           
           fhir install hl7.fhir.r4.core 4.0.1
           mkdir ../snapshots
-          for sd in ../${{ steps.get-changes.outputs.changed_profiles }}; do
+          for sd in ${{ steps.get-changes.outputs.changed_profiles }}; do
             base=$(basename $sd .xml);
             fhir push $base.xml
             fhir snapshot
