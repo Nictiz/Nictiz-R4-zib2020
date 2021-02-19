@@ -42,7 +42,10 @@ jobs:
             fhir save ../snapshots/$base.json --json
           done
       - name: Dumb test
-        run: ls /home/runner/work/_actions/pieter-edelman-nictiz/zib-compliance-fhir/action/index.js
+        run: |
+          ls /home/runner/work/_actions/pieter-edelman-nictiz/zib-compliance-fhir/action/index.js
+          ls qa/zibs2020.max
+          ls snapshots/*
       - name: Check zib compliance
         uses: pieter-edelman-nictiz/zib-compliance-fhir@action
         with:
