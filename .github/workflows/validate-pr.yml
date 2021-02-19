@@ -11,7 +11,7 @@ jobs:
           fetch-depth: 0
 
       - name: Get profiles and extensions
-        id: get-changes
+        id: get-profiles
         run: |
           echo "::set-output name=profiles::$(find resources -maxdepth 1 -name "zib-*.xml" -o -name "ext-*.xml")"
 
@@ -34,7 +34,7 @@ jobs:
           ig: ig/
           recurse: true
           profile: https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4
-          source: ${{ steps.get-changes.outputs.profiles }}
+          source: ${{ steps.get-profiles.outputs.profiles }}
           fail-at: warning
           ignored-issues: known-issues.yml
       - name: Validate examples
@@ -59,7 +59,7 @@ jobs:
           
           fhir install hl7.fhir.r4.core 4.0.1
           mkdir ../snapshots
-          for sd in ${{ steps.get-changes.outputs.profiles }}; do
+          for sd in ${{ steps.get-profiles.outputs.profiles }}; do
             base=$(basename $sd .xml);
             fhir push $base.xml
             fhir snapshot

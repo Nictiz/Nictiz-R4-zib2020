@@ -14,41 +14,15 @@ jobs:
         id: get-changes
         run: |
           changed_profiles=$(git diff --name-only origin/main -- resources/zib-* resources/ext-*)
+          changed_examples=$(git diff --name-only origin/main -- examples)
           echo "::set-output name=changed_profiles::"$changed_profiles
-          echo "::set-output name=changed_examples::$(git diff --name-only origin/main -- examples)"
+          echo "::set-output name=changed_examples::"$changed_examples
 
       - name: Restore validator cache
         uses: actions/cache@v2
         with:
           path: ~/.fhir/packages
           key: fhir-cache
-
-      - name: Install Firely Terminal
-        run: dotnet tool install -g firely.terminal
-      - name: Create snapshots in JSON format
-        run: |
-          mkdir flattened
-          cd flattened
-          ln -s ../package.json
-          ln -s ../fhirpkg.lock.json
-          for f in $(find ../resources -name "*.xml"); do ln -s $f; done
-          
-          fhir install hl7.fhir.r4.core 4.0.1
-          mkdir ../snapshots
-          for sd in ${{ steps.get-changes.outputs.changed_profiles }}; do
-            base=$(basename $sd .xml);
-            fhir push $base.xml
-            fhir snapshot
-            fhir save ../snapshots/$base.json --json
-          done
-      - name: Check zib compliance
-        uses: pieter-edelman-nictiz/zib-compliance-fhir@action
-        with:
-          max-file: qa/zibs2020.max
-          structuredefinitions: snapshots/*
-          zib-release: 2020
-          fail-at: warning
-          zib-deviations: known-issues.yml
 
       - name: Create ig with the ProfileGuidelines resource
         run: |
@@ -77,5 +51,29 @@ jobs:
           fail-at: warning
           ignored-issues: known-issues.yml
 
-
-
+      - name: Install Firely Terminal
+        run: dotnet tool install -g firely.terminal
+      - name: Create snapshots in JSON format
+        run: |
+          mkdir flattened
+          cd flattened
+          ln -s ../package.json
+          ln -s ../fhirpkg.lock.json
+          for f in $(find ../resources -name "*.xml"); do ln -s $f; done
+          
+          fhir install hl7.fhir.r4.core 4.0.1
+          mkdir ../snapshots
+          for sd in ${{ steps.get-changes.outputs.changed_profiles }}; do
+            base=$(basename $sd .xml);
+            fhir push $base.xml
+            fhir snapshot
+            fhir save ../snapshots/$base.json --json
+          done
+      - name: Check zib compliance
+        uses: pieter-edelman-nictiz/zib-compliance-fhir@action
+        with:
+          max-file: qa/zibs2020.max
+          structuredefinitions: snapshots/*
+          zib-release: 2020
+          fail-at: warning
+          zib-deviations: known-issues.yml
