@@ -41,10 +41,8 @@ jobs:
             fhir snapshot
             fhir save ../snapshots/$base.json --json
           done
-      - name: Dumb test
-        run: node /home/runner/work/_actions/pieter-edelman-nictiz/zib-compliance-fhir/action/index.js -m qa/zibs2020.max -z 2020 -v R4 -r true --fail-at warning  -f text snapshots/*
       - name: Check zib compliance
-        uses: pieter-edelman-nictiz/zib-compliance-fhir@action
+        uses: pieter-edelman-nictiz/zib-compliance-fhir@debug
         with:
           max-file: qa/zibs2020.max
           structuredefinitions: snapshots/*
