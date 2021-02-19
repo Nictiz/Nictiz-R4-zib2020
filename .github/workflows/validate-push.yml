@@ -27,7 +27,7 @@ jobs:
         run: dotnet tool install -g firely.terminal
       - name: Create snapshots in JSON format
         run: |
-          echo ${{ steps.get-changes.outputs.changed_profiles }}
+          pwd
           mkdir flattened
           cd flattened
           ln -s ../package.json
@@ -43,6 +43,7 @@ jobs:
             fhir save ../snapshots/$base.json --json
           done
           cd ..
+          pwd
       - name: Check zib compliance
         uses: pieter-edelman-nictiz/zib-compliance-fhir@action
         with:
