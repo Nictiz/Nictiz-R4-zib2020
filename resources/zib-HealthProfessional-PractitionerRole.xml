@@ -125,5 +125,39 @@
         <comment value="Specialty" />
       </mapping>
     </element>
+    <element id="PractitionerRole.telecom">
+      <path value="PractitionerRole.telecom" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <short value="ContactInformation" />
+      <definition value="Health professional’s telephone number(s) or e-mail address(es) that are specific to the role/location/service." />
+      <alias value="Contactgegevens" />
+      <mapping>
+        <identity value="zib-healthprofessional-v3.5-2020EN" />
+        <map value="NL-CM:17.1.8" />
+        <comment value="ContactInformation" />
+      </mapping>
+    </element>
+    <element id="PractitionerRole.telecom:telephoneNumbers">
+      <path value="PractitionerRole.telecom" />
+      <sliceName value="telephoneNumbers" />
+      <type>
+        <code value="ContactPoint" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelephoneNumbers" />
+      </type>
+    </element>
+    <element id="PractitionerRole.telecom:e-mailAddresses">
+      <path value="PractitionerRole.telecom" />
+      <sliceName value="e-mailAddresses" />
+      <type>
+        <code value="ContactPoint" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-E-mailAddresses" />
+      </type>
+    </element>
   </differential>
 </StructureDefinition>
