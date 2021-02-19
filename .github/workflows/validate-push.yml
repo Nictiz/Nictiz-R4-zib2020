@@ -26,6 +26,7 @@ jobs:
         run: dotnet tool install -g firely.terminal
       - name: Create snapshots in JSON format
         run: |
+          echo ${{ steps.get-changes.outputs.changed_profiles }}
           mkdir flattened
           cd flattened
           ln -s ../package.json
@@ -48,8 +49,8 @@ jobs:
           structuredefinitions: snapshots/*
           zib-release: 2020
           fail-at: warning
-          zib-overrides: known-issues.yml
-          
+          zib-deviations: known-issues.yml
+
       - name: Create ig with the ProfileGuidelines resource
         run: |
           mkdir ig
