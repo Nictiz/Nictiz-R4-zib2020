@@ -42,7 +42,7 @@ jobs:
             fhir save ../snapshots/$base.json --json
           done
       - name: Check zib compliance
-        uses: pieter-edelman-nictiz/zib-compliance-fhir@debug
+        uses: pieter-edelman-nictiz/zib-compliance-fhir@action
         with:
           max-file: qa/zibs2020.max
           structuredefinitions: snapshots/*
