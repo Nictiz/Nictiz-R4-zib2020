@@ -3,6 +3,13 @@
 # If changed_only is set to not null, then we only check the changed files, otherwise the full set.
 if [[ $changed_only == 0 ]]; then
   profiles=resources/*
+  conceptmaps=$(
+    for file in resources/terminology/conceptmap-*;do
+      if [[ -f $file ]];then # Use an explicit check otherwise the process will return with exit code 1
+        echo $file;
+      fi
+    done
+  )
   examples=$(
     for file in examples/*;do
       if [[ -f $file ]];then # Use an explicit check otherwise the process will return with exit code 1
@@ -12,6 +19,7 @@ if [[ $changed_only == 0 ]]; then
   )
 else
   profiles=$(git diff --name-only origin/main -- resources/zib-* resources/ext-*)
+  conceptmaps=$(git diff --name-only origin/main -- resources/terminology/conceptmap-*)
   examples=$(git diff --name-only origin/main -- examples)
 fi
 
@@ -31,4 +39,5 @@ done
 # Export so we can use these variables in child processes as well
 export zib_profiles
 export other_profiles
+export conceptmaps
 export examples

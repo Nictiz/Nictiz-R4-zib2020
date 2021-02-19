@@ -17,6 +17,7 @@ jobs:
           source qa/automation/getresources.sh
           echo "::set-output name=zib_profiles::"$zib_profiles
           echo "::set-output name=other_profiles::"$other_profiles
+          echo "::set-output name=conceptmaps::"$conceptmaps
           echo "::set-output name=examples::"$examples
 
       - name: Restore validator cache
@@ -25,7 +26,7 @@ jobs:
           path: ~/.fhir/packages
           key: fhir-cache
 
-      - name: Create ig with the ProfileGuidelines resource
+      - name: Create ig with the ProfileGuidelines resources
         run: bash qa/automation/mkprofilingig.sh
       - name: Validate zib profiles
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.13
@@ -33,7 +34,7 @@ jobs:
           version: "4.0"
           ig: ig/
           recurse: true
-          profile: http://nictiz.nl/fhir/StructureDefinition/zib-fhir-profiling-guidelines-r4-v1.0
+          profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib
           source:  ${{ steps.get-resources.outputs.zib_profiles }}
           fail-at: warning
           ignored-issues: known-issues.yml
@@ -43,8 +44,18 @@ jobs:
           version: "4.0"
           ig: ig/
           recurse: true
-          profile: http://nictiz.nl/fhir/StructureDefinition/fhir-profiling-guidelines-r4-v1.0
+          profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions
           source:  ${{ steps.get-resources.outputs.other_profiles }}
+          fail-at: warning
+          ignored-issues: known-issues.yml
+      - name: Validate ConceptMaps
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.13
+        with:
+          version: "4.0"
+          ig: ig/
+          recurse: true
+          profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-ConceptMaps
+          source:  ${{ steps.get-resources.outputs.conceptmaps }}
           fail-at: warning
           ignored-issues: known-issues.yml
       - name: Validate examples
