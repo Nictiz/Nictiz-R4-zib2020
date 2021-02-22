@@ -42,11 +42,16 @@
         <severity value="error" />
         <human value="StuctureDefinition.id should start with 'zib-' or 'ext-zib'" />
         <expression value="StructureDefinition.id.startsWith('zib-') or StructureDefinition.id.startsWith('ext-zib-')" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-fhir-profiling-guidelines-r4-v1.0" />
       </constraint>
     </element>
     <element id="StructureDefinition.purpose">
-      <path value="StructureDefinition.purpose"/>
-      <min value="1"/>
+      <path value="StructureDefinition.purpose" />
+      <min value="1" />
+    </element>
+    <element id="StructureDefinition.abstract">
+      <path value="StructureDefinition.abstract" />
+      <fixedBoolean value="true" />
     </element>
   </differential>
 </StructureDefinition>
