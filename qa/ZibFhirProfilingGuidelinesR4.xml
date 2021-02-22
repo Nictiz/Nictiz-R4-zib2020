@@ -49,6 +49,7 @@
         <severity value="error" />
         <human value="StuctureDefinition.id should start 'ext-zib' if it defines an Extension" />
         <expression value="StructureDefinition.type = 'Extension' implies StructureDefinition.id.startsWith('ext-zib-')" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-fhir-profiling-guidelines-r4-v1.0" />
       </constraint>
     </element>
     <element id="StructureDefinition.purpose">
@@ -58,6 +59,16 @@
     <element id="StructureDefinition.abstract">
       <path value="StructureDefinition.abstract" />
       <fixedBoolean value="true" />
+    </element>
+    <element id="StructureDefinition.differential.element.type">
+      <path value="StructureDefinition.differential.element.type" />
+      <constraint>
+        <key value="sd-zpg-03" />
+        <severity value="error" />
+        <human value="References to other resource profiles should be added next to the HL7  base references." />
+        <expression value="code = 'Reference' implies (targetProfile.where($this.startsWith('http://hl7.org/fhir/StructureDefinition/')).exists() or profile.exists())" />
+        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4#Constraining_references" />
+      </constraint>
     </element>
   </differential>
 </StructureDefinition>
