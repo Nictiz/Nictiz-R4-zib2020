@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-    <id value="v1.0-fhir-profiling-guidelines-r4"/>
-    <url value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
-    <name value="ProfilingGuidelinesR4"/>
+    <id value="fhir-profiling-guidelines-r4-v1.0"/>
+    <url value="http://nictiz.nl/fhir/StructureDefinition/fhir-profiling-guidelines-r4-v1.0"/>
+    <name value="FhirProfilingGuidelinesR4"/>
     <title value="FHIR Profiling Guidelines for FHIR R4"/>
     <status value="draft"/>
     <experimental value="true"/>
@@ -140,7 +140,6 @@
                 For extensions:
                 - For extension representing a specific concept: This extension represents the [concept name] of ..., followed by a link to the functional description.
                 - For other extensions this will likely be absent."/>
-            <min value="1"/>
         </element>
         <element id="StructureDefinition.copyright">
             <path value="StructureDefinition.copyright"/>
@@ -189,20 +188,6 @@
                 <severity value="error"/>
                 <human value="If mapping.map exists, alias exists."/>
                 <expression value="mapping.map.exists() implies alias.exists()"/>
-                <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
-            </constraint>
-            <constraint>
-                <key value="sd-pg-09"/>
-                <severity value="warning"/>
-                <human value="If short exists, should mapping.map exist?"/>
-                <expression value="short.exists() implies mapping.map.exists()"/>
-                <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
-            </constraint>
-            <constraint>
-                <key value="sd-pg-10"/>
-                <severity value="warning"/>
-                <human value="If definition exists, should mapping.map exist?"/>
-                <expression value="definition.exists() implies mapping.map.exists()"/>
                 <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
             </constraint>
             <constraint>

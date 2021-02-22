@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-fhir-profiling-guidelines-r4-v1.0" />
+  <name value="ZibFhirProfilingGuidelinesR4" />
+  <status value="draft" />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="rim" />
+    <uri value="http://hl7.org/v3" />
+    <name value="RIM Mapping" />
+  </mapping>
+  <mapping>
+    <identity value="workflow" />
+    <uri value="http://hl7.org/fhir/workflow" />
+    <name value="Workflow Pattern" />
+  </mapping>
+  <mapping>
+    <identity value="w5" />
+    <uri value="http://hl7.org/fhir/fivews" />
+    <name value="FiveWs Pattern Mapping" />
+  </mapping>
+  <mapping>
+    <identity value="iso11179" />
+    <uri value="http://metadata-standards.org/11179/" />
+    <name value="ISO 11179" />
+  </mapping>
+  <mapping>
+    <identity value="objimpl" />
+    <uri value="http://hl7.org/fhir/object-implementation" />
+    <name value="Object Implementation Information" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="StructureDefinition" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/fhir-profiling-guidelines-r4-v1.0" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="StructureDefinition">
+      <path value="StructureDefinition" />
+      <constraint>
+        <key value="sd-zpg-01" />
+        <severity value="error" />
+        <human value="StuctureDefinition.id should start with 'zib-' or 'ext-zib'" />
+        <expression value="StructureDefinition.id.startsWith('zib-') or StructureDefinition.id.startsWith('ext-zib-')" />
+      </constraint>
+    </element>
+    <element id="StructureDefinition.purpose">
+      <path value="StructureDefinition.purpose"/>
+      <min value="1"/>
+    </element>
+  </differential>
+</StructureDefinition>
