@@ -40,9 +40,6 @@
                     <xsl:apply-templates select="node()|@*"/>
                 </xsl:copy>
             </xsl:when>
-            <!--<xsl:when test="count($concepts/*) gt 1">
-                <xsl:message terminate="yes">More then one concept found.</xsl:message>
-            </xsl:when>-->
             <xsl:otherwise>
                 <xsl:variable name="originalConcepts" as="element()*">
                     <xsl:for-each select="$concepts">
@@ -52,26 +49,37 @@
                 <xsl:copy>
                     <xsl:apply-templates select="@*"/>
                     <xsl:apply-templates select="f:path | f:representation | f:sliceName | f:sliceIsConstraining | f:label | f:code | f:slicing"/>
+                    <xsl:variable name="calculatedShort" select="string-join($originalConcepts/name[@language='en-US'][text() != '']/text(), ' / ')"/>
                     <xsl:choose>
                         <xsl:when test="f:short">
                             <xsl:apply-templates select="f:short"/>
-                            <xsl:if test="$showWarnings and $originalConcepts/name[@language='en-US']/text() and not(f:short/@value = $originalConcepts/name[@language='en-US']/text())">
-                                <xsl:message>Element with id '<xsl:value-of select="@id"/>' has short '<xsl:value-of select="f:short/@value"/>' which does not correspond with Zib2020 value '<xsl:value-of select="$originalConcepts/name[@language='en-US']/text()"/>'.</xsl:message>
+                            <xsl:if test="$showWarnings and not(f:short/@value = $calculatedShort)">
+                                <xsl:message>Element with id '<xsl:value-of select="@id"/>' has short '<xsl:value-of select="f:short/@value"/>' which does not correspond with Zib2020 value '<xsl:value-of select="$calculatedShort"/>'.</xsl:message>
                             </xsl:if>
                         </xsl:when>
-                        <xsl:when test="$originalConcepts/name[@language='en-US']/text()">
-                            <short value="{string-join($originalConcepts/name[@language='en-US']/text(),'-')}"/>
+                        <xsl:when test="$calculatedShort">
+                            <short value="{$calculatedShort}"/>
                         </xsl:when>
                     </xsl:choose>
+                    <xsl:variable name="calculatedDefinition">
+                        <xsl:choose>
+                            <xsl:when test="count($originalConcepts/desc[@language='en-US'][text() != '']) &gt; 1">
+                                <xsl:copy-of select="concat('* ', string-join($originalConcepts/desc[@language='en-US'][text() != '']/text(), '&#xD;&#xA;* '))"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="$originalConcepts/desc[@language='en-US'][text() != '']"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable> 
                     <xsl:choose>
                         <xsl:when test="f:definition">
                             <xsl:apply-templates select="f:definition"/>
-                            <xsl:if test="$showWarnings and $originalConcepts/desc[@language='en-US']/text() and not(f:definition/@value = $originalConcepts/desc[@language='en-US']/text())">
-                                <xsl:message>Element with id '<xsl:value-of select="@id"/>' has definition '<xsl:value-of select="f:definition/@value"/>' which does not correspond with Zib2020 value '<xsl:value-of select="$originalConcepts/desc[@language='en-US']/text()"/>'.</xsl:message>
+                            <xsl:if test="$showWarnings and not(f:definition/@value = $calculatedDefinition)">
+                                <xsl:message>Element with id '<xsl:value-of select="@id"/>' has definition '<xsl:value-of select="f:definition/@value"/>' which does not correspond with Zib2020 value '<xsl:value-of select="$calculatedDefinition"/>'.</xsl:message>
                             </xsl:if>
                         </xsl:when>
                         <xsl:when test="$originalConcepts/desc[@language='en-US']/text()">
-                            <definition value="{string-join($originalConcepts/desc[@language='en-US']/text(),'&#xD;')}"/>
+                            <definition value="{$calculatedDefinition}"/>
                         </xsl:when>
                     </xsl:choose>
                     <xsl:apply-templates select="f:comment | f:requirements"/>
