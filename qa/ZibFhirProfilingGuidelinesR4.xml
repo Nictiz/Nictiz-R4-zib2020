@@ -44,6 +44,12 @@
         <expression value="StructureDefinition.id.startsWith('zib-') or StructureDefinition.id.startsWith('ext-zib-')" />
         <source value="http://nictiz.nl/fhir/StructureDefinition/zib-fhir-profiling-guidelines-r4-v1.0" />
       </constraint>
+      <constraint>
+        <key value="sd-zpg-02" />
+        <severity value="error" />
+        <human value="StuctureDefinition.id should start 'ext-zib' if it defines an Extension" />
+        <expression value="StructureDefinition.type = 'Extension' implies StructureDefinition.id.startsWith('ext-zib-')" />
+      </constraint>
     </element>
     <element id="StructureDefinition.purpose">
       <path value="StructureDefinition.purpose" />
