@@ -14,7 +14,7 @@ jobs:
         id: get-resources
         run: |
           changed_only=1
-          source qa/automation/getresources.sh
+          source util/qaAutomation/getresources.sh
           echo "::set-output name=zib_profiles::"$zib_profiles
           echo "::set-output name=other_profiles::"$other_profiles
           echo "::set-output name=conceptmaps::"$conceptmaps
@@ -27,7 +27,7 @@ jobs:
           key: fhir-cache
 
       - name: Create ig with the ProfileGuidelines resources
-        run: bash qa/automation/mkprofilingig.sh
+        run: bash util/qaAutomation/mkprofilingig.sh
       - name: Validate zib profiles
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.13
         with:
@@ -71,7 +71,7 @@ jobs:
       - name: Install Firely Terminal
         run: dotnet tool install -g firely.terminal
       - name: Create snapshots in JSON format
-        run: bash qa/automation/generatezibsnapshots.sh ${{ steps.get-resources.outputs.zib_profiles }}
+        run: bash util/qaAutomation/generatezibsnapshots.sh ${{ steps.get-resources.outputs.zib_profiles }}
       - name: Check zib compliance
         uses: pieter-edelman-nictiz/zib-compliance-fhir@action
         with:
