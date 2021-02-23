@@ -1,7 +1,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="ProfilingGuidelinesR4-ConceptMaps"/>
   <url value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-ConceptMaps"/>
-  <name value="FhirProfilingGuidelinesR4_ConceptMaps"/>
+  <name value="ProfilingGuidelinesR4_ConceptMaps"/>
   <title value="ConceptMap conformance to FHIR Profiling Guidelines for FHIR R4"/>
   <status value="draft"/>
   <fhirVersion value="4.0.1"/>
@@ -58,7 +58,7 @@
         <key value="cm-pg-04"/>
         <severity value="warning"/>
         <human value="The title of the ConceptMap should conform to the profiling guidelines"/>
-        <expression value="ConceptMap.title = ConceptMap.id.replace('-',' ')"/>
+        <expression value="ConceptMap.title = ConceptMap.id.replace('-to-',' to ')"/>
         <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
       </constraint>
     </element>
