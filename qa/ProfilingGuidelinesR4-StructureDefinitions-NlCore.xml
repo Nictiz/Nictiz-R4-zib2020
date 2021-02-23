@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <url value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib" />
-  <name value="FhirProfilingGuidelinesR4-StructureDefinitions-Zib" />
-  <title value="Zib StructureDefinition conformance to FHIR Profiling Guidelines for FHIR R4"/>
+  <id value="ProfilingGuidelinesR4-StructureDefinition-NlCore" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinition-NlCore" />
+  <name value="ProfilingGuidelinesR4-StructureDefinition-NlCore" />
+  <title value="nl-core StructureDefinition conformance to FHIR Profiling Guidelines for FHIR R4"/>
   <status value="draft" />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -41,16 +42,14 @@
       <constraint>
         <key value="sd-zpg-01" />
         <severity value="error" />
-        <human value="StuctureDefinition.id should start with 'zib-' or 'ext-zib'" />
-        <expression value="StructureDefinition.id.startsWith('zib-') or StructureDefinition.id.startsWith('ext-zib-')" />
-        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
+        <human value="StuctureDefinition.id should start with 'nl-core-' or 'ext-nl-core'" />
+        <expression value="StructureDefinition.id.startsWith('nl-core-') or StructureDefinition.id.startsWith('ext-nl-core-')" />
       </constraint>
       <constraint>
         <key value="sd-zpg-02" />
         <severity value="error" />
         <human value="StuctureDefinition.id should start 'ext-zib' if it defines an Extension" />
-        <expression value="StructureDefinition.type = 'Extension' implies StructureDefinition.id.startsWith('ext-zib-')" />
-        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
+        <expression value="StructureDefinition.type = 'Extension' implies StructureDefinition.id.startsWith('ext-nl-core-')" />
       </constraint>
     </element>
     <element id="StructureDefinition.purpose">
@@ -60,16 +59,6 @@
     <element id="StructureDefinition.abstract">
       <path value="StructureDefinition.abstract" />
       <fixedBoolean value="true" />
-    </element>
-    <element id="StructureDefinition.differential.element.type">
-      <path value="StructureDefinition.differential.element.type" />
-      <constraint>
-        <key value="sd-zpg-03" />
-        <severity value="error" />
-        <human value="References to other resource profiles should be added next to the HL7  base references." />
-        <expression value="code = 'Reference' implies (targetProfile.where($this.startsWith('http://hl7.org/fhir/StructureDefinition/')).exists() or profile.exists())" />
-        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4#Constraining_references" />
-      </constraint>
     </element>
   </differential>
 </StructureDefinition>
