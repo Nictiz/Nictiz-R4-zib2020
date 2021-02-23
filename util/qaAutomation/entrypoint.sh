@@ -46,7 +46,6 @@ validate() {
     local output=$output_dir/validate-${1//[^[:alnum:]]/}.xml
     if [[ -n $3 ]]; then
       local profile_opt="-profile $3"
-      echo $profile_opt
     fi
     eval java -jar $tools_dir/validator/validator.jar -version 4.0 -ig ig/ -recurse $profile_opt $2 -output $output $output_redirect
     if [ $? -eq 0 ]; then
