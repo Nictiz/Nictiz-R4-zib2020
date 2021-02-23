@@ -33,53 +33,37 @@ done
 source /scripts/getresources.sh
 source /scripts/mkprofilingig.sh
 
-echo
-echo "+++ Validating zib profiles"
-if [[ -z $zib_profiles ]]; then
-  echo "No input, skipping"
-else
-  eval java -jar $tools_dir/validator/validator.jar -version 4.0 -ig ig/ -recurse -profile http://nictiz.nl/fhir/StructureDefinition/zib-fhir-profiling-guidelines-r4-v1.0 $zib_profiles -output $output_dir/zib_profile_validation.xml $output_redirect
-  if [ $? -eq 0 ]; then
-    python3 $tools_dir/hl7-fhir-validator-action/analyze_results.py --fail-at warning --ignored-issues known-issues.yml $output_dir/zib_profile_validation.xml
+# Run the HL7 Validator and analyze the output. Parameters:
+# $1: textual description of the resources being analyzed
+# $2: list of files to analyze (remember to quote them in case the list is empty)
+# $3: optional profile canonical to validate the resources against
+validate() {
+  echo
+  echo "+++ Validating $1"
+  if [[ -z $2 ]]; then
+    echo "No input, skipping"
   else
-    echo "There was an error running the validator. Re-run with the --debug option to see the output."
+    local output=$output_dir/validate-${1//[^[:alnum:]]/}.xml
+    if [[ -n $3 ]]; then
+      local profile_opt="-profile $3"
+      echo $profile_opt
+    fi
+    eval java -jar $tools_dir/validator/validator.jar -version 4.0 -ig ig/ -recurse $profile_opt $2 -output $output $output_redirect
+    if [ $? -eq 0 ]; then
+      python3 $tools_dir/hl7-fhir-validator-action/analyze_results.py --fail-at warning --ignored-issues known-issues.yml $output
+    else
+      echo "There was an error running the validator. Re-run with the --debug option to see the output."
+    fi
+    if [ $? -ne 0 ]; then
+      exit_code=1
+    fi
   fi
-  if [ $? -ne 0 ]; then
-    exit_code=1
-  fi
-fi
+}
 
-echo
-echo "+++ Validating other profiles"
-if [[ -z $other_profiles ]]; then
-  echo "No input, skipping"
-else
-  eval java -jar $tools_dir/validator/validator.jar -version 4.0 -ig ig/ -recurse -profile http://nictiz.nl/fhir/StructureDefinition/fhir-profiling-guidelines-r4-v1.0 $other_profiles -output $output_dir/other_profile_validation.xml $output_redirect
-  if [ $? -eq 0 ]; then
-    python3 $tools_dir/hl7-fhir-validator-action/analyze_results.py --fail-at warning --ignored-issues known-issues.yml $output_dir/other_profile_validation.xml
-  else
-    echo "There was an error running the validator. Re-run with the --debug option to see the output."
-  fi
-  if [ $? -ne 0 ]; then
-    exit_code=1
-  fi
-fi
-
-echo
-echo "+++ Validating examples"
-if [[ -z $examples ]]; then
-  echo "No input, skipping"
-else
-  eval java -jar $tools_dir/validator/validator.jar -version 4.0 -ig resources/ -recurse $examples -output $output_dir/example_validation.xml $output_redirect
-  if [ $? -eq 0 ]; then
-    python3 $tools_dir/hl7-fhir-validator-action/analyze_results.py --fail-at warning --ignored-issues known-issues.yml $output_dir/example_validation.xml
-  else
-    echo "There was an error running the validator. Re-run with the --debug option to see the output."
-  fi
-  if [ $? -ne 0 ]; then
-    exit_code=1
-  fi
-fi
+validate "zib profiles" "$zib_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib"
+validate "other profile" "$other_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions"
+validate "ConceptMaps" "$conceptmaps" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-ConceptMaps"
+validate "examples" "$examples"
 
 echo
 echo "+++ Checking zib compliance"
