@@ -4,6 +4,5 @@
 mkdir ig
 cd ig
 ln -s ../resources
-ln -s ../qa/FhirProfilingGuidelinesR4.xml
-ln -s ../qa/ZibFhirProfilingGuidelinesR4.xml
+ln -s ../qa/*.xml .
 cd ..

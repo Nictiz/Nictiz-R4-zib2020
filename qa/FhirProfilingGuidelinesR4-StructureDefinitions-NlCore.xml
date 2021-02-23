@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-fhir-profiling-guidelines-r4-v1.0" />
-  <name value="ZibFhirProfilingGuidelinesR4" />
+  <id value="ProfilingGuidelinesR4-StructureDefinition-NlCore" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinition-NlCore" />
+  <name value="ProfilingGuidelinesR4-StructureDefinition-NlCore" />
+  <title value="nl-core StructureDefinition conformance to FHIR Profiling Guidelines for FHIR R4"/>
   <status value="draft" />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -40,13 +42,23 @@
       <constraint>
         <key value="sd-zpg-01" />
         <severity value="error" />
-        <human value="StuctureDefinition.id should start with 'zib-' or 'ext-zib'" />
-        <expression value="StructureDefinition.id.startsWith('zib-') or StructureDefinition.id.startsWith('ext-zib-')" />
+        <human value="StuctureDefinition.id should start with 'nl-core-' or 'ext-nl-core'" />
+        <expression value="StructureDefinition.id.startsWith('nl-core-') or StructureDefinition.id.startsWith('ext-nl-core-')" />
+      </constraint>
+      <constraint>
+        <key value="sd-zpg-02" />
+        <severity value="error" />
+        <human value="StuctureDefinition.id should start 'ext-zib' if it defines an Extension" />
+        <expression value="StructureDefinition.type = 'Extension' implies StructureDefinition.id.startsWith('ext-nl-core-')" />
       </constraint>
     </element>
     <element id="StructureDefinition.purpose">
-      <path value="StructureDefinition.purpose"/>
-      <min value="1"/>
+      <path value="StructureDefinition.purpose" />
+      <min value="1" />
+    </element>
+    <element id="StructureDefinition.abstract">
+      <path value="StructureDefinition.abstract" />
+      <fixedBoolean value="true" />
     </element>
   </differential>
 </StructureDefinition>
