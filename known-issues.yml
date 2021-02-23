@@ -6,13 +6,8 @@ zib-ContactInformation-E-mailAddresses:
 zib-ContactInformation-TelephoneNumbers:
   zib deviations:
     ContactPoint.system:
-      - short: TelecomType / NumberType
-        reason: The mapping of the zib to FHIR is indirect; the _combination_ of ContactPoint.system and ContactPoint.use maps to the _combination_ of TelecomType and NumberType
       - cardinality: 1..1
         reason: Although TelecomType and NumberType are optional in the zib, ContactPoint.system is used to identify the TelephoneNumbers concept itself when this datatype is added to a profile. If only a telephone number is given without TelecomType and NumberType, this will fall in the default slice of the profile.
-    ContactPoint.use:
-      - short: TelecomType / NumberType
-        reason: The mapping of the zib to FHIR is indirect; the _combination_ of ContactPoint.system and ContactPoint.use maps to the _combination_ of TelecomType and NumberType
 
 zib-AddressInformation:
   zib deviations:
