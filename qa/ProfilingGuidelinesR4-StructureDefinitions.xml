@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-    <id value="fhir-profiling-guidelines-r4-v1.0"/>
-    <url value="http://nictiz.nl/fhir/StructureDefinition/fhir-profiling-guidelines-r4-v1.0"/>
-    <name value="FhirProfilingGuidelinesR4"/>
-    <title value="FHIR Profiling Guidelines for FHIR R4"/>
+    <id value="ProfilingGuidelinesR4-StructureDefinitions"/>
+    <url value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions"/>
+    <name value="ProfilingGuidelinesR4-StructureDefinitions"/>
+    <title value="StructureDefinition conformance to FHIR Profiling Guidelines for FHIR R4"/>
     <status value="draft"/>
     <experimental value="true"/>
     <publisher value="Nictiz"/>
@@ -81,10 +81,6 @@
                 <expression value="StructureDefinition.title = StructureDefinition.id.replace('-',' ')"/>
                 <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
             </constraint>
-        </element>
-        <element id="StructureDefinition.id">
-            <path value="StructureDefinition.id" />
-            <min value="1" />
         </element>
         <element id="StructureDefinition.url">
             <path value="StructureDefinition.url"/>
@@ -208,12 +204,13 @@
                 <key value="sd-pg-05"/>
                 <severity value="error"/>
                 <human value="If a ValueSet is bound, a description needs to be present."/>
-                <expression value="valueSet.exists() implies description.exists()"/>
+                <expression value="valueSet.exists()  implies description.exists()"/>
                 <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
             </constraint>
         </element>
         <element id="StructureDefinition.differential.element.binding.description">
             <path value="StructureDefinition.differential.element.binding.description"/>
+            <min value="1"/>
         </element>
         <element id="StructureDefinition.differential.element.mapping.comment">
             <path value="StructureDefinition.differential.element.mapping.comment"/>
