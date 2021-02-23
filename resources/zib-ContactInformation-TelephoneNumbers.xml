@@ -39,7 +39,7 @@
     <name value="zib ContactInformation-v1.2(2020EN)" />
   </mapping>
   <kind value="complex-type" />
-  <abstract value="false" />
+  <abstract value="true" />
   <type value="ContactPoint" />
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/ContactPoint" />
   <derivation value="constraint" />
@@ -72,12 +72,12 @@
       <max value="1" />
       <type>
         <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/Comment" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Comment" />
       </type>
     </element>
     <element id="ContactPoint.extension:comment.url">
       <path value="ContactPoint.extension.url" />
-      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/Comment" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-Comment" />
     </element>
     <element id="ContactPoint.extension:comment.value[x]">
       <path value="ContactPoint.extension.value[x]" />
@@ -98,10 +98,10 @@
       <min value="1" />
       <binding>
         <strength value="required" />
-        <description value="Use ConceptMap TelecomTypeCodelijst-to-ContactPointSystem to translate terminology from the functional model to profile terminology in ValueSet ContactPointSystem." />
-        <valueSet value="http://nictiz.nl/fhir/ValueSet/zib-ContactInformation-TelephoneNumbers-systems">
+        <description value="Use ConceptMap TelecomTypeCodelijst-to-ContactPointSystem-zib-ContactInformation-TelephoneNumbers to translate terminology from the functional model to profile terminology in ValueSet ContactPointSystem-zib-ContactInformation-TelephoneNumbers." />
+        <valueSet value="http://nictiz.nl/fhir/ValueSet/ContactPointSystem-zib-ContactInformation-TelephoneNumbers">
           <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
-            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/TelecomTypeCodelijst-to-ContactPointSystem" />
+            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/TelecomTypeCodelijst-to-ContactPointSystem-zib-ContactInformation-TelephoneNumbers" />
           </extension>
         </valueSet>
       </binding>
@@ -164,10 +164,10 @@
       <alias value="NummerSoort" />
       <binding>
         <strength value="required" />
-        <description value="Use ConceptMap NummerSoortCodelijst-to-ContactPointUse to translate terminology from the functional model to profile terminology in ValueSet ContactPointUse." />
-        <valueSet value="http://nictiz.nl/fhir/ValueSet/zib-ContactInformation-TelephoneNumbers-uses">
+        <description value="Use ConceptMap NummerSoortCodelijst-to-ContactPointUse-zib-ContactPoint-TelephoneNumbers to translate terminology from the functional model to profile terminology in ValueSet ContactPointUse-zib-ContactInformation-TelephoneNumbers." />
+        <valueSet value="http://nictiz.nl/fhir/ValueSet/ContactPointUse-zib-ContactInformation-TelephoneNumbers">
           <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
-            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/NummerSoortCodelijst-to-ContactPointUse" />
+            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/NummerSoortCodelijst-to-ContactPointUse-zib-ContactInformation-TelephoneNumbers" />
           </extension>
         </valueSet>
       </binding>
