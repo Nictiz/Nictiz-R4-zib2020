@@ -1,0 +1,23 @@
+zib-NameInformation:
+  zib deviations:
+    HumanName.extension:humannameAssemblyOrder.value[x]:
+      - cardinality: 1..1
+        reason: The used extension makes the value required (1..1), but the use of the extension itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
+    HumanName.family.extension:prefix.value[x]:
+      - cardinality: 1..1
+        reason: The used extension makes the value required (1..1), but the use of the extension itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
+    HumanName.family.extension:lastName.value[x]:
+      - cardinality: 1..1
+        reason: The used extension makes the value required (1..1), but the use of the extension itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
+    HumanName.family.extension:partnerPrefix.value[x]:
+      - cardinality: 1..1
+        reason: The used extension makes the value required (1..1), but the use of the extension itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
+    HumanName.family.extension:partnerLastName.value[x]:
+      - cardinality: 1..1
+        reason: The used extension makes the value required (1..1), but the use of the extension itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
+    HumanName.prefix:
+      - cardinality: 0..*
+        reason: prefix and suffix are mapped to the "titles" concept from the zib. There's a mismatch however in the way this information is represented in the zib and in FHIR. The mapping is documented in the profile.
+    HumanName.suffix:
+      - cardinality: 0..*
+        reason: prefix and suffix are mapped to the "titles" concept from the zib. There's a mismatch however in the way this information is represented in the zib and in FHIR. The mapping is documented in the profile.
