@@ -22,9 +22,13 @@ RUN ~/.dotnet/tools/fhir install hl7.fhir.r4.core 4.0.1
 RUN git clone -b action --depth 1 https://github.com/pieter-edelman-nictiz/zib-compliance-fhir.git /tools/zib-compliance-fhir
 RUN cd tools/zib-compliance-fhir && npm install && cd /
 
-RUN git clone -b v0.11 --depth 1 https://github.com/pieter-edelman-nictiz/hl7-fhir-validator-action /tools/hl7-fhir-validator-action
+RUN git clone -b v0.13 --depth 1 https://github.com/pieter-edelman-nictiz/hl7-fhir-validator-action /tools/hl7-fhir-validator-action
 
 RUN apt-get -y install dos2unix
-COPY entrypoint.sh ./entrypoint.sh
-RUN dos2unix ./entrypoint.sh
+RUN mkdir /scripts
+COPY getresources.sh /scripts/getresources.sh
+COPY mkprofilingig.sh /scripts/mkprofilingig.sh
+COPY generatezibsnapshots.sh /scripts/generatezibsnapshots.sh
+COPY entrypoint.sh entrypoint.sh
+RUN dos2unix /scripts/getresources.sh /scripts/mkprofilingig.sh /scripts/generatezibsnapshots.sh entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
