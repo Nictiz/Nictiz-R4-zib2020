@@ -11,30 +11,51 @@ jobs:
           fetch-depth: 0
 
       - name: Get profiles and extensions
-        id: get-profiles
+        id: get-resources
         run: |
-          echo "::set-output name=profiles::$(find resources -maxdepth 1 -name "zib-*.xml" -o -name "ext-*.xml")"
+          changed_only=0
+          source util/qaAutomation/getresources.sh
+          echo "::set-output name=zib_profiles::"$zib_profiles
+          echo "::set-output name=other_profiles::"$other_profiles
+          echo "::set-output name=conceptmaps::"$conceptmaps
+          echo "::set-output name=examples::"$examples
 
       - name: Restore validator cache
         uses: actions/cache@v2
         with:
           path: ~/.fhir/packages
           key: fhir-cache
+
       - name: Create ig with the ProfileGuidelines resource
-        run: |
-          mkdir ig
-          cd ig
-          ln -s ../resources
-          ln -s ../qa/ProfilingGuidelinesR4.xml
-          cd ..
-      - name: Validate profiles
+        run: bash util/qaAutomation/mkprofilingig.sh
+      - name: Validate zib profiles
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.13
         with:
           version: "4.0"
           ig: ig/
           recurse: true
-          profile: https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4
-          source: ${{ steps.get-profiles.outputs.profiles }}
+          profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib
+          source:  ${{ steps.get-resources.outputs.zib_profiles }}
+          fail-at: warning
+          ignored-issues: known-issues.yml
+      - name: Validate other profiles
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.13
+        with:
+          version: "4.0"
+          ig: ig/
+          recurse: true
+          profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions
+          source:  ${{ steps.get-resources.outputs.other_profiles }}
+          fail-at: warning
+          ignored-issues: known-issues.yml
+      - name: Validate ConceptMaps
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.13
+        with:
+          version: "4.0"
+          ig: ig/
+          recurse: true
+          profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-ConceptMaps
+          source:  ${{ steps.get-resources.outputs.conceptmaps }}
           fail-at: warning
           ignored-issues: known-issues.yml
       - name: Validate examples
@@ -43,29 +64,14 @@ jobs:
           version: "4.0"
           ig: resources/
           recurse: true
-          source: example/*
+          source:  ${{ steps.get-resources.outputs.examples }}
           fail-at: warning
           ignored-issues: known-issues.yml
 
       - name: Install Firely Terminal
         run: dotnet tool install -g firely.terminal
       - name: Create snapshots in JSON format
-        run: |
-          mkdir flattened
-          cd flattened
-          ln -s ../package.json
-          ln -s ../fhirpkg.lock.json
-          for f in $(find ../resources -name "*.xml"); do ln -s $f; done
-          
-          fhir install hl7.fhir.r4.core 4.0.1
-          mkdir ../snapshots
-          for sd in ${{ steps.get-profiles.outputs.profiles }}; do
-            base=$(basename $sd .xml);
-            fhir push $base.xml
-            fhir snapshot
-            fhir save ../snapshots/$base.json --json
-          done
-          cd ..
+        run: bash util/qaAutomation/generatezibsnapshots.sh ${{ steps.get-resources.outputs.zib_profiles }}
       - name: Check zib compliance
         uses: pieter-edelman-nictiz/zib-compliance-fhir@action
         with:
@@ -74,4 +80,3 @@ jobs:
           zib-release: 2020
           fail-at: warning
           zib-deviations: known-issues.yml
-
