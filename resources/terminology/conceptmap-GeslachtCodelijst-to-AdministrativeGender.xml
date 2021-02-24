@@ -1,64 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ConceptMap xmlns="http://hl7.org/fhir">
-  <id value="GeslachtCodelijst-to-AdministrativeGender"/>
-  <extension url="http://hl7.org/fhir/StructureDefinition/concept-bidirectional">
-    <valueBoolean value="false"/>
-  </extension>
-  <url value="http://nictiz.nl/fhir/ConceptMap/GeslachtCodelijst-to-AdministrativeGender"/>
-  <version value="0.0.1"/>
-  <name value="GeslachtCodelijst_to_AdministrativeGender"/>
-  <title value="GeslachtCodelijst to AdministrativeGender"/>
-  <status value="draft"/>
-  <publisher value="Nictiz"/>
-  <contact>
-    <name value="Nictiz"/>
-    <telecom>
-      <system value="email"/>
-      <value value="info@nictiz.nl"/>
-      <use value="work"/>
-    </telecom>
-  </contact>
-  <description value="Maps Gender codes as found in [zib Patient v3.2 (2020)](https://zibs.nl/wiki/Patient-v3.2(2020EN)) to Patient.gender codes as found in FHIR R4"/>
-  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
-  <sourceCanonical value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.1.8--20200901000000"/>
-  <targetCanonical value="http://hl7.org/fhir/ValueSet/administrative-gender"/>
-  <group>
-    <!-- 2.16.840.1.113883.5.1 -->
-    <source value="http://hl7.org/fhir/v3/AdministrativeGender"/>
-    <target value="http://hl7.org/fhir/administrative-gender"/>
-    <element>
-      <code value="M"/>
-      <target>
-        <code value="male"/>
-        <equivalence value="equal"/>
-      </target>
-    </element>
-    <element>
-      <code value="F"/>
-      <target>
-        <code value="female"/>
-        <equivalence value="equal"/>
-      </target>
-    </element>
-    <element>
-      <code value="UN"/>
-      <target>
-        <code value="other"/>
-        <equivalence value="narrower"/>
-        <comment value="Undifferentiated: The gender of a person could not be uniquely defined as male or female, such as hermaphrodite. Other: 'neither male nor female and not unknown'"/>
-      </target>
-    </element>
-  </group>
-  <group>
-    <!-- 2.16.840.1.113883.5.1008 -->
-    <source value="http://hl7.org/fhir/v3/NullFlavor"/>
-    <target value="http://hl7.org/fhir/administrative-gender"/>
-    <element>
-      <code value="UNK"/>
-      <target>
-        <code value="unknown"/>
-        <equivalence value="equal"/>
-      </target>
-    </element>
-  </group>
+    <id value="GeslachtCodelijst-to-AdministrativeGender"/>
+    <extension url="http://hl7.org/fhir/StructureDefinition/concept-bidirectional">
+        <valueBoolean value="false"/>
+    </extension>
+    <url value="http://nictiz.nl/fhir/ConceptMap/GeslachtCodelijst-to-AdministrativeGender"/>
+    <version value="0.0.1"/>
+    <name value="GeslachtCodelijst_to_AdministrativeGender"/>
+    <title value="GeslachtCodelijst to AdministrativeGender"/>
+    <status value="draft"/>
+    <publisher value="Nictiz"/>
+    <contact>
+      <name value="Nictiz"/>
+      <telecom>
+        <system value="email"/>
+        <value value="info@nictiz.nl"/>
+        <use value="work"/>
+      </telecom>
+    </contact>
+    <description value="Maps Gender codes as found in [zib Patient v3.2 (2020)](https://zibs.nl/wiki/Patient-v3.2(2020EN)) to Patient.gender codes as found in FHIR R4"/>
+    <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+    <sourceCanonical value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1--20200901000000"/>
+    <targetCanonical value="http://hl7.org/fhir/ValueSet/administrative-gender"/>
+    <group>
+        <!-- 2.16.840.1.113883.5.1 -->
+        <source value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+        <target value="http://hl7.org/fhir/administrative-gender"/>
+        <element>
+            <code value="M"/>
+            <target>
+                <code value="male"/>
+                <equivalence value="equal"/>
+            </target>
+        </element>
+        <element>
+            <code value="F"/>
+            <target>
+                <code value="female"/>
+                <equivalence value="equal"/>
+            </target>
+        </element>
+        <element>
+            <code value="UN"/>
+            <target>
+                <code value="other"/>
+                <equivalence value="narrower"/>
+                <comment value="Undifferentiated: The gender of a person could not be uniquely defined as male or female, such as hermaphrodite. Other: 'neither male nor female and not unknown'"/>
+            </target>
+        </element>
+    </group>
+    <group>
+        <!-- 2.16.840.1.113883.5.1008 -->
+        <source value="http://hl7.org/fhir/v3/NullFlavor"/>
+        <target value="http://hl7.org/fhir/administrative-gender"/>
+        <element>
+            <code value="UNK"/>
+            <target>
+                <code value="unknown"/>
+                <equivalence value="equal"/>
+            </target>
+        </element>
+    </group>
 </ConceptMap>
