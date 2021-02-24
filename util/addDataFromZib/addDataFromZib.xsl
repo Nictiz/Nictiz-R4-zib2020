@@ -6,13 +6,13 @@
     xmlns="http://hl7.org/fhir"
     exclude-result-prefixes="#all"
     version="2.0">
-    
+
     <xsl:output indent="yes"/>
     
     <!-- Show (optional) warnings to 'validate' content of profile -->
     <xsl:param name="showWarnings" select="true()"/>
     <!-- Zib2020 decor project file -->
-    <xsl:param name="allDatasets" select="document('zib2020bbr-decor.xml')/decor/datasets"/>
+    <xsl:param name="allDatasets" select="document('../zib2020bbr-decor.xml')/decor/datasets"/>
     
     <xsl:template match="node()|@*">
         <xsl:copy>
