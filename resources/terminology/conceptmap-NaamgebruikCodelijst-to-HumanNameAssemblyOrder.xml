@@ -1,0 +1,68 @@
+<ConceptMap xmlns="http://hl7.org/fhir">
+    <id value="NaamgebruikCodelijst-to-HumanNameAssemblyOrder"/>
+    <extension url="http://hl7.org/fhir/StructureDefinition/concept-bidirectional">
+        <valueBoolean value="true"/>
+    </extension>
+    <url value="http://nictiz.nl/fhir/ConceptMap/NaamgebruikCodelijst-to-HumanNameAssemblyOrder"/>
+    <version value="0.0.1"/>
+    <name value="NaamgebruikCodelijst_to_HumanNameAssemblyOrder"/>
+    <title value="NaamgebruikCodelijst to HumanNameAssemblyOrder"/>
+    <status value="active"/>
+    <publisher value="Nictiz"/>
+    <contact>
+      <name value="Nictiz"/>
+      <telecom>
+        <system value="email"/>
+        <value value="info@nictiz.nl"/>
+        <use value="work"/>
+      </telecom>
+    </contact>
+    <description value="Maps NameUsage codes as found in the [zib NameInformation v1.1 (2020)]( https://zibs.nl/wiki/NameInformation-v1.1(2020EN)) to HumanName.extension(humanname-assembly-order) codes as found in FHIR R4."/>
+    <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+    <sourceCanonical value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.20.4.1--20200901000000" />    
+    <targetCanonical value="http://hl7.org/fhir/ValueSet/name-assembly-order" />
+    <group>
+        <source value="urn:oid:2.16.840.1.113883.2.4.3.11.60.101.5.4"/>
+        <target value="http://terminology.hl7.org/CodeSystem/name-assembly-order"/>
+        <element>
+            <code value="NL1"/>
+            <target>
+                <code value="NL1"/>
+                <equivalence value="equal"/>
+            </target>
+        </element>
+        <element>
+            <code value="NL2"/>
+            <target>
+                <code value="NL2"/>
+                <equivalence value="equal"/>
+            </target>
+        </element>
+        <element>
+            <code value="NL3"/>
+            <target>
+                <code value="NL3"/>
+                <equivalence value="equal"/>
+            </target>
+        </element>
+        <element>
+            <code value="NL4"/>
+            <target>
+                <code value="NL4"/>
+                <equivalence value="equal"/>
+            </target>
+        </element>
+    </group>
+    <group>
+        <!-- 2.16.840.1.113883.5.1008 -->
+        <source value="http://hl7.org/fhir/v3/NullFlavor"/>
+        <target value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+        <element>
+            <code value="UNK"/>
+            <target>
+                <code value="UNK"/>
+                <equivalence value="equal"/>
+            </target>
+        </element>
+    </group>
+</ConceptMap>
