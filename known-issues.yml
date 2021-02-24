@@ -1,0 +1,24 @@
+ext-zib-LanguageProficiency-CommunicationDetails:
+  zib deviations:
+    Extension.value[x]:
+      - cardinality: 0..1
+        reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension should be added 0..* in the hosting element.
+zib-Patient:
+  zib deviations:
+    Patient.extension:nationality.extension:code.value[x]:
+      - cardinality: 1..1
+        reason: The used extension uses a cardinality of 1..1 on the value[x] element. However, the extension itself is added with a cardinality of 0..1.
+    Patient.name:
+      - cardinality: 0..*
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use. Documented in the profile too.
+      - datatype: HumanName
+        reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
+    Patient.telecom:
+      - short: ContactInformation
+        reason: The element represents both the zib HealthcareProvider concept ContactInformation as well as the root concept of the zib ContactInformation, due to the way the latter is mapped onto two profiles. Conceptually this represents the same concept, hence short can simple be "ContactInformation".
+    Patient.address:
+      - datatype: Address
+        reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
+
+
+
