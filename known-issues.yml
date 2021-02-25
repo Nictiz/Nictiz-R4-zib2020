@@ -64,9 +64,6 @@ zib-ContactPerson:
 
 zib-HealthcareProvider-Organization:
   zib deviations:
-    Organization.telecom:
-      - short: ContactInformation
-        reason: The element represents both the zib HealthcareProvider concept ContactInformation as well as the root concept of the zib ContactInformation, due to the way the latter is mapped onto two profiles. Conceptually this represents the same concept, hence short can simple be "ContactInformation".
     Organization.address:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
