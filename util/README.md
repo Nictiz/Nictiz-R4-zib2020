@@ -14,5 +14,5 @@ The XSLT allows for multiple mappings on one element (combining `.short` and `.d
 
 ## refreshTerminology
 
-This folder contains three xslt scripts that loop through all resources, find relevant canonicals for ValueSets, CodeSystems and NamingSystems and resolves them from ArtDecor. It overwrites previous resolved resources.
+This folder contains 2 xslt scripts that loop through all resources, find relevant canonicals for ValueSets and CodeSystems and resolves them from ArtDecor. It overwrites previous resolved resources.
 The *.xsl scripts can be runned with the same script as XML source and will place the output in resources/terminology.
