@@ -36,7 +36,7 @@
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template match="/">
+    <xsl:template match="/" name="refreshValueSets">
         <xsl:message>Input dir     : <xsl:value-of select="$inputdir"/></xsl:message>
         <xsl:message>Output dir    : <xsl:value-of select="$outputdir"/></xsl:message>
         <xsl:message>Duplicate ids : <xsl:value-of select="count($resourceIds) - count(distinct-values($resourceIds))"/></xsl:message>
