@@ -1,0 +1,8 @@
+- To do: add zib ContactPerson mapping to Patient.contact.
+- To do: zib Payer (probably) partially overlaps with zib Patient.
+- To do: check if the cardinality comments for .name and .telecom correspond with the comments used in ContactPerson.
+- Includes Nationality, MaritalStatus, LanguageProficiency.
+- Cardinality of Patient.extension:nationality left at 0..* due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time).
+- Cardinality of Patient.name left at 0..* to allow including several name elements with a different name.use each.
+- Cardinality of Patient.telecom left at 0..* to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not dot.
+- Added a comment to deceased[x]: When exporting the data, if deceasedDateTime (DateOfDeath) is present and has a value, DeathIndicator may be set to 'true', since DeathIndicator and DateOfDeath cannot both be represented at the same time.
