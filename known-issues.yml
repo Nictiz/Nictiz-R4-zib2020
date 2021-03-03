@@ -8,3 +8,8 @@ zib-ContactPerson:
     RelatedPerson.address:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
+    RelatedPerson.telecom:
+      - datatype: ContactPoint
+        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
+      - cardinality: 0..*
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.

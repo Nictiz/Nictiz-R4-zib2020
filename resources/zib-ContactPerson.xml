@@ -14,7 +14,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="A contact is a  person not being a healthcare professional who is involved in the patient’s care, such as family members, caregivers, mental caretakers, guardians and legal representatives.&#xD;&#xA;&#xD;&#xA;In addition to identification information such as the name, address and contact information can also be entered. The relationship to the patient and the role this person has can be entered as well." />
+  <description value="A contact is a person not being a healthcare professional who is involved in the patient’s care, such as family members, caregivers, mental caretakers, guardians and legal representatives.&#xD;&#xA;&#xD;&#xA;In addition to identification information such as the name, address and contact information can also be entered. The relationship to the patient and the role this person has can be entered as well." />
   <purpose value="This RelatedPerson resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) ContactPerson v3.4 (2020)](https://zibs.nl/wiki/ContactPerson-v3.4(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
@@ -124,7 +124,7 @@
       </slicing>
       <short value="ContactInformation" />
       <definition value="The contact’s telephone number and/or e-mail address." />
-      <comment value="The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers inside the ContactInformation model which are 0..*. FHIR ContactPoint does not have these containers." />
+      <comment value="The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers." />
       <alias value="Contactgegevens" />
       <mapping>
         <identity value="zib-contactperson-v3.4-2020EN" />
