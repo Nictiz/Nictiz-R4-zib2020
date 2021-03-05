@@ -18,6 +18,11 @@
   <purpose value="This HumanName datatype represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) NameInformation v1.1 (2020)]( https://zibs.nl/wiki/NameInformation-v1.1(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-nameinformation-v1.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/NameInformation-v1.1(2020EN)" />
+    <name value="zib NameInformation-v1.1(2020EN)" />
+  </mapping>
   <kind value="complex-type" />
   <abstract value="true" />
   <type value="HumanName" />
@@ -136,7 +141,7 @@
     </element>
     <element id="HumanName.use">
       <path value="HumanName.use" />
-      <comment value="This use of this element is discouraged because the zib model does not contain a corresponding concept. If use is provided, the HumanName SHOULD match with the value of use. To illustrate: if use is 'official' it is not expected that the HumanName contains the zib concept 'GivenName' (NL: roepnaam) because this is not part of an official name." />
+      <comment value="This use of this element is discouraged because the zib model does not contain a corresponding concept. If `use` is provided, it SHOULD align with the semantics of the other elements. To illustrate: if `use` is _official_ it is not expected that the zib concept 'GivenName' (NL: roepnaam) is present in the _HumanName_ container because this is not part of an official name." />
     </element>
     <element id="HumanName.family.extension">
       <path value="HumanName.family.extension" />
