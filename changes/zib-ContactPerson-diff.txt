@@ -1,4 +1,3 @@
-* Role in RelatedPerson is now a reference instead of an extension
-* Binding strenght changend to "Required" for "RelatieCodeLijst"
-* nl-core-humanname changed to zib-NameInformation
-* nl-core-adress changed to zib-AddressInformation
+* Added textual guidance on the root to guide usage of RelatedPerson versus Patient.
+* Removed the role extension (http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role) because RelatedPerson.relationship has changed from 0..1 to 0..1. The zib concept role is now mapped to a slice on relationship.
+* Updated to new zib-NameInformation and zib-AddressInformation and zib-ContactInformation profiles.
