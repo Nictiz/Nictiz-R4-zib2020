@@ -21,7 +21,7 @@
   <mapping>
     <identity value="zib-healthcareprovider-v3.4-2020EN" />
     <uri value="https://zibs.nl/wiki/HealthcareProvider-v3.4(2020EN)" />
-    <name value="Zib HealthcareProvider-v3.4(2020EN)" />
+    <name value="zib HealthcareProvider-v3.4(2020EN)" />
   </mapping>
   <mapping>
     <identity value="zib-contactinformation-v1.2-2020EN" />
@@ -38,7 +38,7 @@
       <path value="Organization" />
       <short value="HealthcareProvider" />
       <definition value="A healthcare provider is an organization that offers and provides medical, paramedic and/or nursing care to patients/clients. Examples include: hospitals, nursing homes, doctor’s offices." />
-      <comment value="The zib container OrganizationLocation and it's childern are mapped to a Location resource in the zib-HealthcareProvider-Location profile. That profile contains a reference to this profile. &#xD;&#xA;&#xD;&#xA;The Organization resource often exists as a hierarchy of organization resources, using the part-of property to provide the association of the child to its parent organization.&#xD;&#xA;This organizational hierarchy helps communicate the conceptual structure, whereas the Location resource provides the physical representation of the hierarchy.&#xD;&#xA;The linkage between Organization and Location is from each point in the location hierarchy to the appropriate level in the Organization hierarchy.&#xD;&#xA;&#xD;&#xA;When populating the organization and location hierarchies there is often not a clear distinction between these 2, however to assist in making the decision, Locations are always used for recording where a service occurs, and hence where encounters and observations are associated. The Organization property on these resources might not be the location where the service took place." />
+      <comment value="The OrganizationLocation concept from the zib is captured using a separate profile, zib-HealthcareProvider-Location (&lt;http://nictiz.nl/fhir/zib-HealthcareProvider-Location&gt;). That profile references this profile.&#xD;&#xA;&#xD;&#xA;Healthcare providers usually consitst of multiple organizational levels and physical locations. The hierarchical structure may be captured by using multiple instances of this profile, using the `Organization.partOf` element to refer to ther parent organization. The physical location is captured using the zib-HealthcareProvider-Location profile, which refers this profile at the appropriate level in the hierarchy. Often there's no clear distinction between an organizational structure and a physical location. As a rule of thumb, locations are always used for recording where a service occurs, and hence where encounters and observations take place." />
       <alias value="Zorgaanbieder" />
       <mapping>
         <identity value="zib-healthcareprovider-v3.4-2020EN" />
