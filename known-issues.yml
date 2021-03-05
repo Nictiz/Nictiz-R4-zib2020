@@ -13,10 +13,24 @@ zib-Patient:
         reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use. Documented in the profile too.
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
+    Patient.telecom:
+      - datatype: ContactPoint
+        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.    
+      - cardinality: 0..*
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
     Patient.address:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
-
+    Patient.communication:
+      - datatype: BackboneElement
+        reason: The root of zib LanguageProficiency is correctly mapped on the BackboneElement of Patient.communication. Rootconcept =! BackboneElement but that's not a problem.
+    Patient.communication.extension:languageControl:
+      - short: LanguageControlListening / LanguageControlSpeaking / LanguageControlReading
+        reason: Three zib concepts are mapped to one extension in FHIR and are differentiated by their type value.
+      - datatype: Extension
+        reason: The mapping is placed on the extension and not on the value[x] because of the nature of this extension. The extension itself contains a valueCoding that gets the zibs value. This datatype matches the zib CD type.
+      - cardinality: 0..*
+        reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.        
 zib-AddressInformation:
   zib deviations:
     Address.line.extension:streetName.value[x]:

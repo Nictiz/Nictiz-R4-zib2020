@@ -21,31 +21,6 @@
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
-    <identity value="rim" />
-    <uri value="http://hl7.org/v3" />
-    <name value="RIM Mapping" />
-  </mapping>
-  <mapping>
-    <identity value="cda" />
-    <uri value="http://hl7.org/v3/cda" />
-    <name value="CDA (R2)" />
-  </mapping>
-  <mapping>
-    <identity value="w5" />
-    <uri value="http://hl7.org/fhir/fivews" />
-    <name value="FiveWs Pattern Mapping" />
-  </mapping>
-  <mapping>
-    <identity value="v2" />
-    <uri value="http://hl7.org/v2" />
-    <name value="HL7 v2 Mapping" />
-  </mapping>
-  <mapping>
-    <identity value="loinc" />
-    <uri value="http://loinc.org" />
-    <name value="LOINC code for the element" />
-  </mapping>
-  <mapping>
     <identity value="zib-patient-v3.2-2020EN" />
     <uri value="https://zibs.nl/wiki/Patient-v3.2(2020EN)" />
     <name value="zib Patient-v3.2(2020EN)" />
@@ -164,6 +139,7 @@
       <path value="Patient.name" />
       <short value="NameInformation" />
       <definition value="Patient's full name.&#xD;&#xA;The cardinality differs from the zib to allow including several name elements with a different name.use each." />
+      <comment value="The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use." />
       <alias value="Naamgegevens" />
       <type>
         <code value="HumanName" />
@@ -186,6 +162,7 @@
       </slicing>
       <short value="ContactInformation" />
       <definition value="Patient’s telephone number(s) or e-mail address(es)." />
+      <comment value="The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers inside the ContactInformation model which are 0..*. FHIR ContactPoint does not have these containers." />
       <alias value="Contactgegevens" />
       <mapping>
         <identity value="zib-patient-v3.2-2020EN" />
@@ -252,6 +229,10 @@
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification" />
       </type>
+    </element>
+    <element id="Patient.gender.extension:geslachtCodelijst.url">
+      <path value="Patient.gender.extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification" />
     </element>
     <element id="Patient.gender.extension:geslachtCodelijst.value[x]">
       <path value="Patient.gender.extension.value[x]" />
@@ -401,7 +382,7 @@
     <element id="Patient.communication.extension:languageControl">
       <path value="Patient.communication.extension" />
       <sliceName value="languageControl" />
-      <short value="LanguageControlListening-LanguageControlSpeaking-LanguageControlReading" />
+      <short value="LanguageControlListening / LanguageControlSpeaking / LanguageControlReading" />
       <definition value="The ability to understand spoken text in the language in question.&#xD;The ability to express oneself in spoken language.&#xD;The ability to understand written text in he language in question." />
       <comment value="The zib concepts LanguageControlListening, LanguageControlReading, LanguageControlSpeaking are captured using a core extension from the R4 FHIR specification. Each of these three concepts is encoded as a copy of the extension, typed using the code in the type slice according to the following mapping:&#xD;&#xA;* LanguageControlListening maps to code 'RSP' (Received spoken)&#xD;&#xA;* LanguageControlReading maps to code 'RWR' (Received written)&#xD;&#xA;* LanguageControlSpeaking maps to code 'ESP' (Expressed spoken)" />
       <alias value="TaalvaardigheidBegrijpen" />
