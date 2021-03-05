@@ -75,7 +75,7 @@
             <xsl:variable name="codeSystemIDVersion" select="tokenize(tokenize(., '/')[last()], ':')[last()]"/>
             <xsl:choose>
                 <xsl:when test="$codeSystem">
-                    <!--<xsl:message>            INFO: Successful retrieval of CodeSystem id <xsl:value-of select="$codeSystemIDVersion"/></xsl:message>-->
+                    <xsl:message>            INFO: Successful retrieval of CodeSystem id <xsl:value-of select="$codeSystemIDVersion"/></xsl:message>
                     <xsl:result-document href="{concat($outputdir,'codesystem-',$codeSystemName,'-',$codeSystemIDVersion,'.xml')}" indent="yes" method="xml" omit-xml-declaration="yes">
                         <xsl:copy-of select="$codeSystem"/>
                     </xsl:result-document>
