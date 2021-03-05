@@ -62,8 +62,12 @@
       <alias value="EmailSoort" />
       <binding>
         <strength value="required" />
-        <description value="Use of contact point for the zib ContactInformation concept EmailAddresses" />
-        <valueSet value="http://nictiz.nl/fhir/ValueSet/ContactPointUse-zib-ContactInformation-E-mailAddresses" />
+        <description value="Use ConceptMap NummerSoortCodelijst-to-ContactPointUse-zib-ContactPoint-E-mailAddresses to translate terminology from the functional model to profile terminology in ValueSet ContactPointUse-zib-ContactInformation-E-mailAddresses." />
+        <valueSet value="http://nictiz.nl/fhir/ValueSet/ContactPointUse-zib-ContactInformation-E-mailAddresses">
+          <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
+            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/NummerSoortCodelijst-to-ContactPointUse-zib-ContactPoint-E-mailAddresses" />
+          </extension>
+        </valueSet>
       </binding>
       <mapping>
         <identity value="zib-contactinformation-v1.2-2020EN" />
