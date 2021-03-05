@@ -37,7 +37,7 @@
     <element id="RelatedPerson">
       <path value="RelatedPerson" />
       <short value="Contact" />
-      <comment value="The zib ContactPerson is meant to deal with both related persons and contacts. This profile targets instantiations of the zib ContactPerson who are related persons. An zib ContactPerson who is a contact for a patient, belongs in Patient.contact. If a person is both a related person and a contact person, then some data duplication is inevitable. This may or may not be resolved in a future version of the Patient/RelatedPerson resources." />
+      <comment value="Whereas the zib ContactPerson includes all (non-healthcare professional) persons that are involved in the care for a patient, FHIR distinguishes two use cases for these persons:&#xD;&#xA;&#xD;&#xA;* The RelatedPerson resource, and thereforeile, is used to capture information about any person that is related to the patient.&#xD;&#xA;* Iformation about persons that should be _contacted_ regarding the care for the patient is captured using the `Patient.contact` resource.&#xD;&#xA;&#xD;&#xA;If a person is both a related person and a contact person, then some data duplication is inevitable." />
       <alias value="Contactpersoon" />
       <mapping>
         <identity value="zib-contactperson-v3.4-2020EN" />
