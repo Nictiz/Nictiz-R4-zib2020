@@ -19,24 +19,9 @@
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
-    <identity value="v2" />
-    <uri value="http://hl7.org/v2" />
-    <name value="HL7 v2 Mapping" />
-  </mapping>
-  <mapping>
-    <identity value="rim" />
-    <uri value="http://hl7.org/v3" />
-    <name value="RIM Mapping" />
-  </mapping>
-  <mapping>
-    <identity value="servd" />
-    <uri value="http://www.omg.org/spec/ServD/1.0/" />
-    <name value="ServD" />
-  </mapping>
-  <mapping>
     <identity value="zib-nameinformation-v1.1-2020EN" />
     <uri value="https://zibs.nl/wiki/NameInformation-v1.1(2020EN)" />
-    <name value="Zib NameInformation-v1.1(2020EN)" />
+    <name value="zib NameInformation-v1.1(2020EN)" />
   </mapping>
   <kind value="complex-type" />
   <abstract value="true" />
@@ -156,7 +141,7 @@
     </element>
     <element id="HumanName.use">
       <path value="HumanName.use" />
-      <comment value="This use of this element is discouraged because the zib model does not contain a corresponding concept. If use is provided, the HumanName SHOULD match with the value of use. To illustrate: if use is 'official' it is not expected that the HumanName contains the zib concept 'GivenName' (NL: roepnaam) because this is not part of an official name." />
+      <comment value="This use of this element is discouraged because the zib model does not contain a corresponding concept. If `use` is provided, it SHOULD align with the semantics of the other elements. To illustrate: if `use` is _official_ it is not expected that the zib concept 'GivenName' (NL: roepnaam) is present in the _HumanName_ container because this is not part of an official name." />
     </element>
     <element id="HumanName.family.extension">
       <path value="HumanName.family.extension" />
@@ -253,7 +238,7 @@
         </discriminator>
         <rules value="open" />
       </slicing>
-      <comment value="To be conformant to the zib for NameInformation, at least the following 'ISO 21090 EN Qualifiers' SHALL be supported: BR, IN and CL. The qualifier 'BR' maps to the zib concept FirstNames, 'IN' maps to Initials and 'CL' to GivenName." />
+      <comment value="To be conformant to the zib for NameInformation, at least the following 'ISO 21090 EN Qualifiers' SHALL be supported: _BR_, _IN_ and _CL_. The qualifier _BR_ maps to the zib concept FirstNames, _IN_ maps to Initials and _CL_ to GivenName." />
     </element>
     <element id="HumanName.given:firstNames">
       <path value="HumanName.given" />
@@ -371,7 +356,7 @@
       <path value="HumanName.prefix" />
       <short value="Titles" />
       <definition value="Noble and scientific titles. These can assist in formulating oral and formal addresing titles." />
-      <comment value="The zib concept 'titles' is mapped to elements `HumanName.prefix` and `HumanName.suffix`. Semantically this mapping is not complete: the zib uses a single concept that contains all the required information about noble and scientific titles, while FHIR captures the same information in a structured way.&#xD;&#xA;&#xD;&#xA;**Export:**&#xD;&#xA;&#xD;&#xA;Systems are expected to transform as much as possible to the FHIR datamodel and thereby to be as explicit as possible. Note that in order to mark the type of a prefix, you can use the FHIR standard extension for ISO 21090 EN Qualifiers. Examples include the use of the qualifier 'HON' to indicate honorific prefixes and 'AC' for academic prefixes.&#xD;&#xA;&#xD;&#xA;If it is not possible to breakup the zib concept titles to positioned prefixes and suffixes, the prefix element is used to store all information.&#xD;&#xA;&#xD;&#xA;**Import:**&#xD;&#xA;&#xD;&#xA;Systems need to expect and be resilient for a broader range of information stored in the prefix element than stated by it's definition." />
+      <comment value="The zib concept 'titles' is mapped to elements `HumanName.prefix` and `HumanName.suffix`. Semantically this mapping is not complete: the zib uses a single concept that contains all the required information about noble and scientific titles, while FHIR captures the same information in a structured way.&#xD;&#xA;&#xD;&#xA;**Export:**&#xD;&#xA;&#xD;&#xA;Systems are expected to transform as much as possible to the FHIR datamodel and thereby to be as explicit as possible. Note that in order to mark the type of a prefix, you can use the FHIR standard extension for ISO 21090 EN Qualifiers. Examples include the use of the qualifier _HON_ to indicate honorific prefixes and _AC_ for academic prefixes.&#xD;&#xA;&#xD;&#xA;If it is not possible to breakup the zib concept titles to positioned prefixes and suffixes, the prefix element is used to store all information.&#xD;&#xA;&#xD;&#xA;**Import:**&#xD;&#xA;&#xD;&#xA;Systems need to expect and be resilient for a broader range of information stored in the prefix element than stated by it's definition." />
       <alias value="Titels" />
       <mapping>
         <identity value="zib-nameinformation-v1.1-2020EN" />
@@ -383,7 +368,7 @@
       <path value="HumanName.suffix" />
       <short value="Titles" />
       <definition value="Noble and scientific titles. These can assist in formulating oral and formal addresing titles." />
-      <comment value="The zib concept 'titles' is mapped to elements `HumanName.prefix` and `HumanName.suffix`. Semantically this mapping is not complete: the zib uses a single concept that contains all the required information about noble and scientific titles, while FHIR captures the same information in a structured way.&#xD;&#xA;&#xD;&#xA;**Export:**&#xD;&#xA;&#xD;&#xA;Systems are expected to transform as much as possible to the FHIR datamodel and thereby to be as explicit as possible. Note that in order to mark the type of a prefix, you can use the FHIR standard extension for ISO 21090 EN Qualifiers. Examples include the use of the qualifier 'HON' to indicate honorific prefixes and 'AC' for academic prefixes.&#xD;&#xA;&#xD;&#xA;If it is not possible to breakup the zib concept titles to positioned prefixes and suffixes, the prefix element is used to store all information.&#xD;&#xA;&#xD;&#xA;**Import:**&#xD;&#xA;&#xD;&#xA;Systems need to expect and be resilient for a broader range of information stored in the prefix element than stated by it's definition." />
+      <comment value="The zib concept 'titles' is mapped to elements `HumanName.prefix` and `HumanName.suffix`. Semantically this mapping is not complete: the zib uses a single concept that contains all the required information about noble and scientific titles, while FHIR captures the same information in a structured way.&#xD;&#xA;&#xD;&#xA;**Export:**&#xD;&#xA;&#xD;&#xA;Systems are expected to transform as much as possible to the FHIR datamodel and thereby to be as explicit as possible. Note that in order to mark the type of a prefix, you can use the FHIR standard extension for ISO 21090 EN Qualifiers. Examples include the use of the qualifier _HON_ to indicate honorific prefixes and _AC_ for academic prefixes.&#xD;&#xA;&#xD;&#xA;If it is not possible to breakup the zib concept titles to positioned prefixes and suffixes, the prefix element is used to store all information.&#xD;&#xA;&#xD;&#xA;**Import:**&#xD;&#xA;&#xD;&#xA;Systems need to expect and be resilient for a broader range of information stored in the prefix element than stated by it's definition." />
       <alias value="Titels" />
       <mapping>
         <identity value="zib-nameinformation-v1.1-2020EN" />
