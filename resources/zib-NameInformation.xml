@@ -67,23 +67,21 @@
         </valueHumanName>
       </example>
       <constraint>
-        <key value="nl-core-humanname-1" />
+        <key value="zib-NameInformation-1" />
         <severity value="error" />
         <human value="If a prefix for a familiy name is specified, the family name is expected as well" />
         <expression value="name.family.extension('http://hl7.org/fhir/StructureDefinition/humanname-own-prefix').empty().not() implies name.family.extension('http://hl7.org/fhir/StructureDefinition/humanname-own-name').empty().not()" />
-        <xpath value="not(f:extension[@url='http://hl7.org/fhir/StructureDefinition/humanname-own-prefix']) or f:extension[@url='http://hl7.org/fhir/StructureDefinition/humanname-own-name']" />
         <source value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
       </constraint>
       <constraint>
-        <key value="nl-core-humanname-2" />
+        <key value="zib-NameInformation-2" />
         <severity value="error" />
         <human value="If the prefix for a partner family name is specified, the partner family name is expected as well" />
         <expression value="name.family.extension('http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix').empty().not() implies name.family.extension('http://hl7.org/fhir/StructureDefinition/humanname-partner-name').empty().not()" />
-        <xpath value="not(f:extension[@url='http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix']) or f:extension[@url='http://hl7.org/fhir/StructureDefinition/humanname-partner-name']" />
         <source value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
       </constraint>
       <constraint>
-        <key value="nl-core-humanname-3" />
+        <key value="zib-NameInformation-3" />
         <severity value="warning" />
         <human value="If the name is specified as 'official' then the name is expected to contain only official parts" />
         <expression value="use = 'official' implies given.extension('http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier').where(value = 'CL').exists().not()" />
