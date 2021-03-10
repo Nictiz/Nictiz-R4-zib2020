@@ -193,7 +193,7 @@
       <path value="Address.line.extension.value[x]" />
       <short value="HouseNumberIndication" />
       <definition value="The indication used for addresses which do not consist of the usual street name and house number." />
-      <comment value="The mapping of zib AddressInformation on the FHIR Address datatype is the result of compatibility with HL7v3, which is the format that a lot of healthcare data in the Netherlands is stored in.  As a result of this, the zib HouseNumberIndication concept with CD datatype is mapped to a FHIR string datatype with a constraint added (the value can only be 'by' or 'to')." />
+      <comment value="The mapping of zib AddressInformation on the FHIR Address datatype is the result of compatibility with HL7v3, which is the format that a lot of healthcare data in the Netherlands is stored in. As a result of this, the coded zib HouseNumberIndication concept (CD datatype) is mapped to a FHIR string datatype with a constraint added (the value can only be 'by' or 'to')." />
       <alias value="AanduidingBijNummer" />
       <constraint>
         <key value="houseNumberIndication" />
@@ -231,7 +231,6 @@
       <path value="Address.city" />
       <short value="PlaceOfResidence" />
       <definition value="A geographically determined area which forms part of the municipal area. For Dutch places of residence, preferably use the name from the GBA, table 33 (OID: 2.16.840.1.113883.2.4.6.14)." />
-      <comment value="For Dutch places of residence, preferably use the name from the GBA, table 33 (OID: 2.16.840.1.113883.2.4.6.14)." />
       <alias value="Woonplaats" />
       <mapping>
         <identity value="zib-addressinformation-v1.1-2020EN" />
@@ -243,7 +242,6 @@
       <path value="Address.district" />
       <short value="Municipality" />
       <definition value="Municipality of residence. For Dutch municipalities, preferably use the name from the GBA, table 33 (OID: 2.16.840.1.113883.2.4.6.14)." />
-      <comment value="For Dutch municipalities, preferably use the name from the GBA, table 33 (OID: 2.16.840.1.113883.2.4.6.14)." />
       <alias value="Gemeente" />
       <mapping>
         <identity value="zib-addressinformation-v1.1-2020EN" />
@@ -255,7 +253,6 @@
       <path value="Address.postalCode" />
       <short value="Postcode" />
       <definition value="Postcode of the address. In Dutch addresses, preferably use the postcode from the Postcode table (OID: 2.16.840.1.113883.2.4.4.15)." />
-      <comment value="In Dutch addresses, preferably use the postcode from the Postcode table (OID: 2.16.840.1.113883.2.4.4.15)." />
       <alias value="Postcode" />
       <mapping>
         <identity value="zib-addressinformation-v1.1-2020EN" />
