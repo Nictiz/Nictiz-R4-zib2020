@@ -64,6 +64,17 @@
     </element>
     <element id="PractitionerRole.specialty">
       <path value="PractitionerRole.specialty" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="PractitionerRole.specialty:specialty">
+      <path value="PractitionerRole.specialty" />
+      <sliceName value="specialty" />
       <short value="Specialty" />
       <definition value="Health professional’s medical specialty. This refers to the recognized medical specialties as stated in the BIG Act. For example general practitioner or cardiologist." />
       <alias value="Specialisme" />
