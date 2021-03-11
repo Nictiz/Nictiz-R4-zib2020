@@ -2,7 +2,7 @@
 
 # If changed_only is set to not null, then we only check the changed files, otherwise the full set.
 if [[ $changed_only == 0 ]]; then
-  profiles=resources/*
+  profiles=${find resources -name "*.xml")
   conceptmaps=$(
     for file in resources/terminology/conceptmap-*;do
       if [[ -f $file ]];then # Use an explicit check otherwise the process will return with exit code 1
@@ -18,7 +18,7 @@ if [[ $changed_only == 0 ]]; then
     done
   )
 else
-  profiles=$(git diff --name-only origin/main -- resources/zib-* resources/ext-*)
+  profiles=$(git diff --name-only origin/main -- resources/zib/* resources/nl-core/*)
   conceptmaps=$(git diff --name-only origin/main -- resources/terminology/conceptmap-*)
   examples=$(git diff --name-only origin/main -- examples)
 fi
@@ -30,6 +30,8 @@ for file in $profiles; do
   if [[ -f $file ]]; then
     if [[ $(basename $file) =~ ^(zib-|ext-zib-) ]]; then
       zib_profiles="$zib_profiles $file"
+    elif [[ $(basename $file) =~ ^(nl-core-|ext-nl-core-) ]]; then
+      nlcore_profiles="$nlcore_profiles $file"
     else
       other_profiles="$other_profiles $file"
     fi
@@ -38,6 +40,7 @@ done
 
 # Export so we can use these variables in child processes as well
 export zib_profiles
+export nlcore_profiles
 export other_profiles
 export conceptmaps
 export examples
