@@ -8,3 +8,9 @@ zib-ContactInformation-TelephoneNumbers:
     ContactPoint.system:
       - cardinality: 1..1
         reason: Although TelecomType and NumberType are optional in the zib, ContactPoint.system is used to identify the TelephoneNumbers concept itself when this datatype is added to a profile. If only a telephone number is given without TelecomType and NumberType, this will fall in the default slice of the profile.
+
+nl-core-ContactInformation-E-mailAddresses:
+  ignored issues:
+    StructureDefinition:
+      - message: sd-pg-08
+        reason: The profiling guidelines assume the dashes from the id are replaced by spaces. However, "E-mail" from the zib name introduces a dash that's not part of the id.
