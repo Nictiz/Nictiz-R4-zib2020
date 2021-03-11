@@ -3,8 +3,8 @@
 # For the snapshot generation to succeed, we need a flat list of profiles together with the package manifest.
 mkdir flattened
 cd flattened
-ln -s ../package.json
-ln -s ../fhirpkg.lock.json
+ln -s ../resources/zib/package.json
+ln -s ../resources/zib/fhirpkg.lock.json
 for f in $(find ../resources -name "*.xml"); do ln -s $f; done
 
 # Make sure dependencies are in place
