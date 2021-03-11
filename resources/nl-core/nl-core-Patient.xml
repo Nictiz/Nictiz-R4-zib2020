@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-Patient" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+  <name value="NlcorePatient" />
+  <title value="nl core Patient" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <purpose value="A derived profile from [zib-Patient](http://nictiz.nl/fhir/StructureDefinition/zib-Patient) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib" />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-patient-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/Patient-v3.2(2020EN)" />
+    <name value="zib Patient-v3.2(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-nationality-v3.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/Nationality-v3.0(2020EN)" />
+    <name value="zib Nationality-v3.0(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-maritalstatus-v3.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/MaritalStatus-v3.1(2020EN)" />
+    <name value="zib MaritalStatus-v3.1(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-languageproficiency-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/LanguageProficiency-v3.2(2020EN)" />
+    <name value="zib LanguageProficiency-v3.2(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-contactinformation-v1.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/ContactInformation-v1.2(2020EN)" />
+    <name value="zib ContactInformation-v1.2(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-contactperson-v3.4-2020EN" />
+    <uri value="https://zibs.nl/wiki/ContactPerson-v3.4(2020EN)" />
+    <name value="zib ContactPerson-v3.4(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Patient" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Patient.name">
+      <path value="Patient.name" />
+      <type>
+        <code value="HumanName" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NameInformation" />
+      </type>
+    </element>
+    <element id="Patient.telecom:telephoneNumbers">
+      <path value="Patient.telecom" />
+      <sliceName value="telephoneNumbers" />
+      <type>
+        <code value="ContactPoint" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContanctInformation-TelephoneNumbers" />
+      </type>
+    </element>
+    <element id="Patient.telecom:e-mailAddresses">
+      <path value="Patient.telecom" />
+      <sliceName value="e-mailAddresses" />
+      <type>
+        <code value="ContactPoint" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactInformation-E-mailAddresses" />
+      </type>
+    </element>
+    <element id="Patient.address">
+      <path value="Patient.address" />
+      <type>
+        <code value="Address" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AddressInformation" />
+      </type>
+    </element>
+    <element id="Patient.contact.name">
+      <path value="Patient.contact.name" />
+      <type>
+        <code value="HumanName" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NameInformation" />
+      </type>
+    </element>
+    <element id="Patient.contact.telecom:telephoneNumbers">
+      <path value="Patient.contact.telecom" />
+      <sliceName value="telephoneNumbers" />
+      <type>
+        <code value="ContactPoint" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactInformation-TelephoneNumbers" />
+      </type>
+    </element>
+    <element id="Patient.contact.telecom:e-mailAddresses">
+      <path value="Patient.contact.telecom" />
+      <sliceName value="e-mailAddresses" />
+      <type>
+        <code value="ContactPoint" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactInformation-E-mailAddresses" />
+      </type>
+    </element>
+    <element id="Patient.contact.address">
+      <path value="Patient.contact.address" />
+      <type>
+        <code value="Address" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AddressInformation" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
