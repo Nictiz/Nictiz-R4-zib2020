@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ProfilingGuidelinesR4-StructureDefinitions-Zib" />
   <url value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib" />
-  <name value="ProfilingGuidelinesR4-StructureDefinitions-Zib" />
-  <title value="Zib StructureDefinition conformance to FHIR Profiling Guidelines for FHIR R4"/>
+  <name value="ProfilingGuidelinesR4StructureDefinitionsZib" />
+  <title value="Zib StructureDefinition conformance to FHIR Profiling Guidelines for FHIR R4" />
   <status value="draft" />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -56,6 +57,27 @@
     <element id="StructureDefinition.purpose">
       <path value="StructureDefinition.purpose" />
       <min value="1" />
+    </element>
+    <element id="StructureDefinition.mapping">
+      <path value="StructureDefinition.mapping" />
+      <constraint>
+        <key value="sd-zpg-04" />
+        <severity value="error" />
+        <human value="Zib mapping name and identity should follow the profiling guidelines" />
+        <expression value="name.lower().startsWith('zib') implies (name.startsWith('zib ') and identity.startsWith('zib-'))" />
+      </constraint>
+      <constraint>
+        <key value="sd-zpg-05" />
+        <severity value="error" />
+        <human value="The URI for zib mappings should align with the mapping name" />
+        <expression value="name.lower().startsWith('zib') implies uri = 'https://zibs.nl/wiki/' + name.replaceMatches('.* ', '')" />
+      </constraint>
+      <constraint>
+        <key value="sd-zpg-06" />
+        <severity value="error" />
+        <human value="The mapping identity and mapping name for zibs should align according to the profiling guidelines" />
+        <expression value="identity.lower().startsWith('zib') implies identity = name.replaceMatches('\\(.*', '').replace(' ', '-').lower() + name.replaceMatches('.*\\((?&lt;suffix&gt;.*)\\)', '-${suffix}')" />
+      </constraint>
     </element>
     <element id="StructureDefinition.abstract">
       <path value="StructureDefinition.abstract" />
