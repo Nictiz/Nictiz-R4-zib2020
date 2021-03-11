@@ -73,14 +73,14 @@
             <xsl:variable name="valueSetIDVersion" select="tokenize(., '/')[last()]"/>
             <xsl:choose>
               <xsl:when test="$valueSetExpand[self::f:ValueSet]">
-                <!--<xsl:message>         INFO: Successful expansion of ValueSet id <xsl:value-of select="$valueSetIDVersion"/>. <xsl:value-of select="$valueSetExpand//f:details/@value"/></xsl:message>-->
+                <xsl:message>         INFO: Successful expansion of ValueSet id <xsl:value-of select="$valueSetIDVersion"/>. <xsl:value-of select="$valueSetExpand//f:details/@value"/></xsl:message>
                 <xsl:result-document href="{concat($outputdir,$valueSetName,'-',$valueSetIDVersion,'-expand.xml')}" indent="yes" method="xml" omit-xml-declaration="yes">
                   <xsl:copy-of select="$valueSetExpand"/>
                 </xsl:result-document>
               </xsl:when>
               <xsl:otherwise>
-                <!--<xsl:message>         WARNING: Could not expand ValueSet id <xsl:value-of select="$valueSetIDVersion"/>. <xsl:value-of select="$valueSetExpand//f:details/@value"/></xsl:message>
-                <xsl:message>         INFO: Successful retrieval of ValueSet id <xsl:value-of select="$valueSetIDVersion"/></xsl:message>-->
+                <xsl:message>         WARNING: Could not expand ValueSet id <xsl:value-of select="$valueSetIDVersion"/>. <xsl:value-of select="$valueSetExpand//f:details/@value"/></xsl:message>
+                <xsl:message>         INFO: Successful retrieval of ValueSet id <xsl:value-of select="$valueSetIDVersion"/></xsl:message>
                 <xsl:result-document href="{concat($outputdir,$valueSetName,'-',$valueSetIDVersion,'.xml')}" indent="yes" method="xml" omit-xml-declaration="yes">
                   <xsl:copy-of select="$valueSet"/>
                 </xsl:result-document>
