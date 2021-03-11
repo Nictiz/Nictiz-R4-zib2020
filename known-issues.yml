@@ -62,61 +62,9 @@ zib-ContactInformation-TelephoneNumbers:
       - cardinality: 1..1
         reason: Although TelecomType and NumberType are optional in the zib, ContactPoint.system is used to identify the TelephoneNumbers concept itself when this datatype is added to a profile. If only a telephone number is given without TelecomType and NumberType, this will fall in the default slice of the profile.
 
-zib-ContactPerson:
-  zib deviations:
-    RelatedPerson.name:
-      - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use. Documented in the profile too.
-      - datatype: HumanName
-        reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
-    RelatedPerson.address:
-      - datatype: Address
-        reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
-    RelatedPerson.telecom:
-      - datatype: ContactPoint
-        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
-      - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
 
-zib-HealthcareProvider-Organization:
-  zib deviations:
-    Organization.address:
-      - datatype: Address
-        reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
-    Organization.telecom:
-      - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby still honoring the cardinality requirements of the zib.
-      - datatype: ContactPoint
-        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consits of two parts the rootconcept of the ContactInformation is mapped on .telecom.
-        
-zib-HealthcareProvider-Location:
-  zib deviations:
-    Location.telecom:
-      - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby still honoring the cardinality requirements of the zib.
-      - datatype: ContactPoint
-        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consits of two parts the rootconcept of the ContactInformation is mapped on .telecom.
-
-zib-HealthProfessional-Practitioner:
-  zib deviations:
-    Practitioner.name:
-      - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use. Documented in the profile too.
-      - datatype: HumanName
-        reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
-    Practitioner.telecom:
-      - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby still honoring the cardinality requirements of the zib.
-      - datatype: ContactPoint
-        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consits of two parts the rootconcept of the ContactInformation is mapped on .telecom.
-    Practitioner.address:
-      - datatype: Address
-        reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
-        
-zib-HealthProfessional-PractitionerRole:
-  zib deviations:
-    PractitionerRole.telecom:
-      - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby still honoring the cardinality requirements of the zib.
-      - datatype: ContactPoint
-        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consits of two parts the rootconcept of the ContactInformation is mapped on .telecom.
+nl-core-ContactInformation-E-mailAddresses:
+  ignored issues:
+    StructureDefinition:
+      - message: sd-pg-08
+        reason: The profiling guidelines assume the dashes from the id are replaced by spaces. However, "E-mail" from the zib name introduces a dash that's not part of the id.

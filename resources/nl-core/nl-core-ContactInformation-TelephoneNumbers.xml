@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-ContactInformation-TelephoneNumbers" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactInformation-TelephoneNumbers" />
+  <name value="NlcoreContactInformationTelephoneNumbers" />
+  <title value="nl core ContactInformation TelephoneNumbers" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <purpose value="A derived profile from [zib-ContactInformation-TelephoneNumbers](http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelephoneNumbers) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-contactinformation-v1.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/ContactInformation-v1.2(2020EN)" />
+    <name value="zib ContactInformation-v1.2(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <type value="ContactPoint" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelephoneNumbers" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="ContactPoint">
+      <path value="ContactPoint" />
+      <comment value="Implementation of the &quot;TelephoneNumbers&quot; concept of zib ContactInformation.&#xD;&#xA;&#xD;&#xA;Please note that, although the zib concepts TelecomType and NumberType are functionally equivalent to the FHIR concepts `ContactPoint.system` and `ContactPoint.use` respectively, a mismatch occurs on the concept of mobile phone numbers; the zib uses the first concept and FHIR the second. For this reason, the ValueSet on `ContactPoint.system` is too narrow and the zib code will need to be communicated using the [codeSpecification extension](http://nictiz.nl/fhir/StructureDefinition/ext-codeSpecification).&#xD;&#xA;&#xD;&#xA;For the entire zib, the complementary profile [nl-core-ContactInformation-E-mailAddresses](http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactInformation-E-mailAddresses) should be used. Both profiles can be added in a slice with the discriminator set to `profile`/`$this`." />
+    </element>
+  </differential>
+</StructureDefinition>
