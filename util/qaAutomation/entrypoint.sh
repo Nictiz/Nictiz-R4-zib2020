@@ -38,11 +38,11 @@ source /scripts/mkprofilingig.sh
 # $2: list of files to analyze (remember to quote them in case the list is empty)
 # $3: optional profile canonical to validate the resources against
 validate() {
-  echo
-  echo "+++ Validating $1"
   if [[ -z $2 ]]; then
-    echo "No input, skipping"
+    echo "No $1"
   else
+    echo
+    echo "+++ Validating $1"
     local output=$output_dir/validate-${1//[^[:alnum:]]/}.xml
     if [[ -n $3 ]]; then
       local profile_opt="-profile $3"
@@ -60,7 +60,8 @@ validate() {
 }
 
 validate "zib profiles" "$zib_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib"
-validate "other profile" "$other_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions"
+validate "nl-core profiles" "$zib_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore"
+validate "other profiles" "$other_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions"
 validate "ConceptMaps" "$conceptmaps" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-ConceptMaps"
 validate "examples" "$examples"
 
