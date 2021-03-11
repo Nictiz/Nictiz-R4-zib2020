@@ -37,12 +37,12 @@ source /scripts/mkprofilingig.sh
 # $1: textual description of the resources being analyzed
 # $2: list of files to analyze (remember to quote them in case the list is empty)
 # $3: optional profile canonical to validate the resources against
+echo
 validate() {
-  echo
-  echo "+++ Validating $1"
   if [[ -z $2 ]]; then
-    echo "No input, skipping"
+    echo -e "\033[1;36m+++ No $1 to check\033[0m"
   else
+    echo -e "\033[1;36m+++ Validating $1\033[0m"
     local output=$output_dir/validate-${1//[^[:alnum:]]/}.xml
     if [[ -n $3 ]]; then
       local profile_opt="-profile $3"
@@ -51,7 +51,7 @@ validate() {
     if [ $? -eq 0 ]; then
       python3 $tools_dir/hl7-fhir-validator-action/analyze_results.py --fail-at warning --ignored-issues known-issues.yml $output
     else
-      echo "There was an error running the validator. Re-run with the --debug option to see the output."
+      echo -e "\033[0;33mThere was an error running the validator. Re-run with the --debug option to see the output.\033[0m"
     fi
     if [ $? -ne 0 ]; then
       exit_code=1
@@ -60,12 +60,13 @@ validate() {
 }
 
 validate "zib profiles" "$zib_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib"
-validate "other profile" "$other_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions"
+validate "nl-core profiles" "$nlcore_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore"
+validate "other profiles" "$other_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions"
 validate "ConceptMaps" "$conceptmaps" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-ConceptMaps"
 validate "examples" "$examples"
 
 echo
-echo "+++ Checking zib compliance"
+echo -e "\033[1;36m+++ Checking zib compliance\033[0m"
 if [[ -z $zib_profiles ]]; then
   echo "No input, skipping"
 else
@@ -75,7 +76,7 @@ else
   if [ $? -eq 0 ]; then
     node $tools_dir/zib-compliance-fhir/index.js -m qa/zibs2020.max -z 2020 -r -l 2 -f text --fail-at warning --zib-overrides known-issues.yml snapshots/*json
   else
-    echo "There was an error during snapshot generation. Re-run with the --debug option to see the output."
+    echo -e "\033[0;33mThere was an error during snapshot generation. Re-run with the --debug option to see the output.\033[0m"
     echo "Skipping zib compliance check."
   fi
   if [ $? -ne 0 ]; then
