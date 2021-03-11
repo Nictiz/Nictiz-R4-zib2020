@@ -2,7 +2,7 @@
 
 # If changed_only is set to not null, then we only check the changed files, otherwise the full set.
 if [[ $changed_only == 0 ]]; then
-  profiles=resources/*
+  profiles=${find resources -name "*.xml")
   conceptmaps=$(
     for file in resources/terminology/conceptmap-*;do
       if [[ -f $file ]];then # Use an explicit check otherwise the process will return with exit code 1
