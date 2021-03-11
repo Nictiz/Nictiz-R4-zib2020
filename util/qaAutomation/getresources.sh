@@ -2,7 +2,7 @@
 
 # If changed_only is set to not null, then we only check the changed files, otherwise the full set.
 if [[ $changed_only == 0 ]]; then
-  profiles=${find resources -name "*.xml")
+  profiles=$(find resources/zib resources/nl-core -maxdepth 1 -name "*.xml")
   conceptmaps=$(
     for file in resources/terminology/conceptmap-*;do
       if [[ -f $file ]];then # Use an explicit check otherwise the process will return with exit code 1
@@ -25,6 +25,7 @@ fi
 
 # Separate zib from non-zib profiles
 zib_profiles=""
+nlcore_profiles=""
 other_profiles=""
 for file in $profiles; do
   if [[ -f $file ]]; then
