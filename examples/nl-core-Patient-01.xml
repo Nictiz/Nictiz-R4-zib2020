@@ -10,6 +10,13 @@
     </identifier>
     <communication>
         <extension url="http://hl7.org/fhir/StructureDefinition/patient-proficiency">
+            <extension url="level">
+                <valueCoding>
+                    <system value="http://terminology.hl7.org/CodeSystem/v3-LanguageAbilityProficiency"/>
+                    <code value="G"/>
+                    <display value="Good"/>
+                </valueCoding>
+            </extension>
             <extension url="type">
                 <valueCoding>
                     <system value="http://terminology.hl7.org/CodeSystem/v3-LanguageAbilityMode"/>
@@ -17,22 +24,8 @@
                     <display value="Received spoken"/>
                 </valueCoding>
             </extension>
-            <extension url="level">
-                <valueCoding>
-                    <system value="http://terminology.hl7.org/CodeSystem/v3-LanguageAbilityProficiency"/>
-                    <code value="G"/>
-                    <display value="Good"/>
-                </valueCoding>
-            </extension>
         </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/patient-proficiency">
-            <extension url="type">
-                <valueCoding>
-                    <system value="http://terminology.hl7.org/CodeSystem/v3-LanguageAbilityMode"/>
-                    <code value="ESP"/>
-                    <display value="Expressed spoken"/>
-                </valueCoding>
-            </extension>
             <extension url="level">
                 <valueCoding>
                     <system value="http://terminology.hl7.org/CodeSystem/v3-LanguageAbilityProficiency"/>
@@ -40,20 +33,27 @@
                     <display value="Fair"/>
                 </valueCoding>
             </extension>
-        </extension>
-        <extension url="http://hl7.org/fhir/StructureDefinition/patient-proficiency">
             <extension url="type">
                 <valueCoding>
                     <system value="http://terminology.hl7.org/CodeSystem/v3-LanguageAbilityMode"/>
-                    <code value="RWR"/>
-                    <display value="Received written"/>
+                    <code value="ESP"/>
+                    <display value="Expressed spoken"/>
                 </valueCoding>
             </extension>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/patient-proficiency">
             <extension url="level">
                 <valueCoding>
                     <system value="http://terminology.hl7.org/CodeSystem/v3-LanguageAbilityProficiency"/>
                     <code value="G"/>
                     <display value="Good"/>
+                </valueCoding>
+            </extension>
+            <extension url="type">
+                <valueCoding>
+                    <system value="http://terminology.hl7.org/CodeSystem/v3-LanguageAbilityMode"/>
+                    <code value="RWR"/>
+                    <display value="Received written"/>
                 </valueCoding>
             </extension>
         </extension>
