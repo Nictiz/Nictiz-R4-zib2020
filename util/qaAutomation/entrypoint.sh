@@ -37,8 +37,8 @@ source /scripts/mkprofilingig.sh
 # $1: textual description of the resources being analyzed
 # $2: list of files to analyze (remember to quote them in case the list is empty)
 # $3: optional profile canonical to validate the resources against
-echo
 validate() {
+  echo
   if [[ -z $2 ]]; then
     echo -e "\033[1;36m+++ No $1 to check\033[0m"
   else
@@ -49,7 +49,7 @@ validate() {
     fi
     eval java -jar $tools_dir/validator/validator.jar -version 4.0 -ig ig/ -recurse $profile_opt $2 -output $output $output_redirect
     if [ $? -eq 0 ]; then
-      python3 $tools_dir/hl7-fhir-validator-action/analyze_results.py --fail-at warning --ignored-issues known-issues.yml $output
+      python3 $tools_dir/hl7-fhir-validator-action/analyze_results.py --colorize --fail-at warning --ignored-issues known-issues.yml $output
     else
       echo -e "\033[0;33mThere was an error running the validator. Re-run with the --debug option to see the output.\033[0m"
     fi
