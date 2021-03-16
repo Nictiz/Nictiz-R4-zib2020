@@ -40,9 +40,9 @@ source /scripts/mkprofilingig.sh
 validate() {
   echo
   if [[ -z $2 ]]; then
-    echo -e "\033[1;36m+++ No $1 to check\033[0m"
+    echo -e "\033[1;37m+++ No $1 to check\033[0m"
   else
-    echo -e "\033[1;36m+++ Validating $1\033[0m"
+    echo -e "\033[1;37m+++ Validating $1\033[0m"
     local output=$output_dir/validate-${1//[^[:alnum:]]/}.xml
     if [[ -n $3 ]]; then
       local profile_opt="-profile $3"
@@ -66,7 +66,7 @@ validate "ConceptMaps" "$conceptmaps" "http://nictiz.nl/fhir/StructureDefinition
 validate "examples" "$examples"
 
 echo
-echo -e "\033[1;36m+++ Checking zib compliance\033[0m"
+echo -e "\033[1;37m+++ Checking zib compliance\033[0m"
 if [[ -z $zib_profiles ]]; then
   echo "No input, skipping"
 else
