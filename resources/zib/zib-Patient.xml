@@ -271,7 +271,6 @@
         </discriminator>
         <rules value="open" />
       </slicing>
-      <comment value="If there's no value in the instance, it means there is no statement on whether or not the individual is deceased. Most systems will interpret the absence of a value as a sign of the person being alive.&#xD;&#xA;&#xD;&#xA;The zib recognizes both the DeathIndicator (boolean) and DateOfDeath (datetime) concepts, whereas in FHIR only one of these concepts may be present. Therefore, if deceasedDateTime (DateOfDeath) is present and has a value, DeathIndicator is assumed to be true as well." />
     </element>
     <element id="Patient.deceased[x]:deceasedBoolean">
       <path value="Patient.deceasedBoolean" />
@@ -291,8 +290,9 @@
     <element id="Patient.deceased[x]:deceasedDateTime">
       <path value="Patient.deceasedDateTime" />
       <sliceName value="deceasedDateTime" />
-      <short value="DateOfDeath / DeathIndicator" />
-      <definition value="The date on which the patient died. A ‘vague’ date, such as only the year, is permitted.&#xD;&#xA;An indication stating whether the patient has died." />
+      <short value="DateOfDeath" />
+      <definition value="The date on which the patient died. A ‘vague’ date, such as only the year, is permitted." />
+      <comment value="The zib recognizes both the DeathIndicator (boolean) and DateOfDeath (datetime) concepts, whereas in FHIR only one of these concepts may be present. Therefore, if deceasedDateTime is present and has a value, its value can be mapped to DateOfDeath and DeathIndicator is assumed to be true." />
       <alias value="DatumOverlijden" />
       <alias value="OverlijdensIndicator" />
       <type>
