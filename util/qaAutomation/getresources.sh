@@ -3,13 +3,7 @@
 # If changed_only is set to not null, then we only check the changed files, otherwise the full set.
 if [[ $changed_only == 0 ]]; then
   profiles=$(find resources/zib resources/nl-core -maxdepth 1 -name "*.xml")
-  conceptmaps=$(
-    for file in resources/terminology/conceptmap-*;do
-      if [[ -f $file ]];then # Use an explicit check otherwise the process will return with exit code 1
-        echo $file;
-      fi
-    done
-  )
+  conceptmaps=$(find resources/zib/terminology resources/nl-core/terminology -maxdepth 1 -name "conceptmap-*.xml")
   examples=$(
     for file in examples/*;do
       if [[ -f $file ]];then # Use an explicit check otherwise the process will return with exit code 1
@@ -19,7 +13,7 @@ if [[ $changed_only == 0 ]]; then
   )
 else
   profiles=$(git diff --name-only origin/main -- resources/zib/* resources/nl-core/*)
-  conceptmaps=$(git diff --name-only origin/main -- resources/terminology/conceptmap-*)
+  conceptmaps=$(git diff --name-only origin/main -- resources/zib/terminology/conceptmap-* resources/nl-core/terminology/conceptmap*)
   examples=$(git diff --name-only origin/main -- examples)
 fi
 
