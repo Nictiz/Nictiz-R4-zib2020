@@ -30,7 +30,12 @@ zib-Patient:
       - datatype: Extension
         reason: The mapping is placed on the extension and not on the value[x] because of the nature of this extension. The extension itself contains a valueCoding that gets the zibs value. This datatype matches the zib CD type.
       - cardinality: 0..*
-        reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.        
+        reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
+  ignored issues:
+    StructureDefinition.differential.element[39].binding:
+      - message: "StructureDefinition.differential.element.binding.description: minimum required = 1, but only found 0"
+        reason: The description should be filled out for all bindings that are specified. However, this is only a constraint to the base binding (strength = required), not a new binding.
+        
 zib-AddressInformation:
   zib deviations:
     Address.line.extension:streetName.value[x]:

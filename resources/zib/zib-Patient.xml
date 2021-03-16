@@ -235,10 +235,6 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification" />
       </type>
     </element>
-    <element id="Patient.gender.extension:geslachtCodelijst.url">
-      <path value="Patient.gender.extension.url" />
-      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification" />
-    </element>
     <element id="Patient.gender.extension:geslachtCodelijst.value[x]">
       <path value="Patient.gender.extension.value[x]" />
       <short value="Gender" />
@@ -275,10 +271,9 @@
         </discriminator>
         <rules value="open" />
       </slicing>
-      <comment value="If there's no value in the instance, it means there is no statement on whether or not the individual is deceased. Most systems will interpret the absence of a value as a sign of the person being alive.&#xD;&#xA;&#xD;&#xA;When exporting the data, if deceasedDateTime (DateOfDeath) is present and has a value, DeathIndicator may be set to 'true', since DeathIndicator and DateOfDeath cannot both be represented at the same time." />
     </element>
     <element id="Patient.deceased[x]:deceasedBoolean">
-      <path value="Patient.deceased[x]" />
+      <path value="Patient.deceasedBoolean" />
       <sliceName value="deceasedBoolean" />
       <short value="DeathIndicator" />
       <definition value="An indication stating whether the patient has died." />
@@ -293,11 +288,13 @@
       </mapping>
     </element>
     <element id="Patient.deceased[x]:deceasedDateTime">
-      <path value="Patient.deceased[x]" />
+      <path value="Patient.deceasedDateTime" />
       <sliceName value="deceasedDateTime" />
       <short value="DateOfDeath" />
       <definition value="The date on which the patient died. A ‘vague’ date, such as only the year, is permitted." />
+      <comment value="The zib recognizes both the DeathIndicator (boolean) and DateOfDeath (datetime) concepts, whereas in FHIR only one of these concepts may be present. Therefore, if deceasedDateTime is present and has a value, its value can be mapped to DateOfDeath and DeathIndicator is assumed to be true." />
       <alias value="DatumOverlijden" />
+      <alias value="OverlijdensIndicator" />
       <type>
         <code value="dateTime" />
       </type>
@@ -305,6 +302,11 @@
         <identity value="zib-patient-v3.2-2020EN" />
         <map value="NL-CM:0.1.33" />
         <comment value="DateOfDeath" />
+      </mapping>
+      <mapping>
+        <identity value="zib-patient-v3.2-2020EN" />
+        <map value="NL-CM:0.1.32" />
+        <comment value="DeathIndicator" />
       </mapping>
     </element>
     <element id="Patient.address">
