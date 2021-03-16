@@ -32,3 +32,9 @@ zib-Patient:
       - cardinality: 0..*
         reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
 
+zib-ContactInformation-TelephoneNumbers:
+  zib deviations:
+    ContactPoint.system:
+      - cardinality: 1..1
+        reason: Although TelecomType and NumberType are optional in the zib, ContactPoint.system is used to identify the TelephoneNumbers concept itself when this datatype is added to a profile. If only a telephone number is given without TelecomType and NumberType, this will fall in the default slice of the profile.
+
