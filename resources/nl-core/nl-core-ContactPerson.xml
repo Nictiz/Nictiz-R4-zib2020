@@ -14,6 +14,7 @@
       <use value="work" />
     </telecom>
   </contact>
+  <description value="A contact is a person not being a healthcare professional who is involved in the patient’s care, such as family members, caregivers, mental caretakers, guardians and legal representatives.&#xD;&#xA;&#xD;&#xA;In addition to identification information such as the name, address and contact information can also be entered. The relationship to the patient and the role this person has can be entered as well." />
   <purpose value="A derived profile from [zib-ContactPerson](http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
@@ -37,7 +38,8 @@
       <path value="RelatedPerson.patient" />
       <type>
         <code value="Reference" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
       </type>
     </element>
     <element id="RelatedPerson.name">
