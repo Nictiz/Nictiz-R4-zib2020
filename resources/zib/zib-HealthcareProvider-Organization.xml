@@ -39,6 +39,11 @@
       <short value="HealthcareProvider" />
       <comment value="The zib HealthcareProvider is mapped to this Organization profile and a profile on Location(&amp;lt;http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider&amp;gt;). The Location profile acts as the focal resource of the HealthcareProvider because most references to this zib are concerned about the recording of the physical location where the care to patient/clients takes place rather than the organizational information. Often there's no clear distinction between an organizational structure and a physical location. As a rule of thumb, locations are always used for recording where a service occurs, and hence where encounters and observations take place.&#xD;&#xA;&#xD;&#xA;Healthcare providers usually consitst of multiple organizational levels and physical locations. The hierarchical structure may be captured by using multiple instances of this profile, using the `Organization.partOf` element to refer to ther parent organization. The physical location is captured using the zib-HealthcareProvider profile, which refers this profile at the appropriate level in the hierarchy." />
       <alias value="Zorgaanbieder" />
+      <mapping>
+        <identity value="zib-healthcareprovider-v3.4-2020EN" />
+        <map value="NL-CM:17.2.1" />
+        <comment value="HealthcareProvider" />
+      </mapping>
     </element>
     <element id="Organization.identifier">
       <path value="Organization.identifier" />

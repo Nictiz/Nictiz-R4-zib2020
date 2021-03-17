@@ -1,9 +1,11 @@
-zib-HealthcareProvider-Organization:
+zib-HealthcareProvider:
   zib deviations:
-    Organization.address:
+    Location.address:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
-    Organization.telecom:
+      - cardinality: 0..1
+        reason: Contacted zib centre to check if cardinality of HealthcareProvider is ok on 20201-03-17
+    Location.telecom:
       - cardinality: 0..*
         reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby still honoring the cardinality requirements of the zib.
       - datatype: ContactPoint
