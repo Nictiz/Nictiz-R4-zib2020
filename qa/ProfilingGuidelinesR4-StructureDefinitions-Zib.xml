@@ -53,6 +53,13 @@
         <expression value="StructureDefinition.type = 'Extension' implies StructureDefinition.id.startsWith('ext-zib-')" />
         <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
       </constraint>
+      <constraint>
+        <key value="sd-zpg-07"/>
+        <severity value="warning"/>
+        <human value="If the StructureDefinition is not an extension a mapping declaration should be present."/>
+        <expression value="context.exists().not() implies mapping.exists()"/>
+        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
+      </constraint>
     </element>
     <element id="StructureDefinition.purpose">
       <path value="StructureDefinition.purpose" />
