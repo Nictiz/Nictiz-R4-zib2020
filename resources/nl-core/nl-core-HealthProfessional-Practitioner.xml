@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="nl-core-HealthProfessional-PractitionerRole" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
-  <name value="NlcoreHealthProfessionalPractitionerRole" />
-  <title value="nl core HealthProfessional PractitionerRole" />
+  <id value="nl-core-HealthProfessional-Practitioner" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner" />
+  <name value="NlcoreHealthProfessionalPractitioner" />
+  <title value="nl core HealthProfessional Practitioner" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -15,7 +15,7 @@
     </telecom>
   </contact>
   <description value="A health professional is a person who is authorized to perform actions in the field of individual healthcare." />
-  <purpose value="This PractitionerRole resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) HealthProfessional v3.5 (2020)](https://zibs.nl/wiki/HealthProfessional-v3.5(2020EN)))." />
+  <purpose value="A derived profile from [zib-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -30,48 +30,38 @@
   </mapping>
   <kind value="resource" />
   <abstract value="false" />
-  <type value="PractitionerRole" />
-  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
+  <type value="Practitioner" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner" />
   <derivation value="constraint" />
   <differential>
-    <element id="PractitionerRole.practitioner">
-      <path value="PractitionerRole.practitioner" />
+    <element id="Practitioner.name">
+      <path value="Practitioner.name" />
       <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner" />
+        <code value="HumanName" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NameInformation" />
       </type>
     </element>
-    <element id="PractitionerRole.organization">
-      <path value="PractitionerRole.organization" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization" />
-      </type>
-    </element>
-    <element id="PractitionerRole.location">
-      <path value="PractitionerRole.location" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider" />
-      </type>
-    </element>
-    <element id="PractitionerRole.telecom:telephoneNumbers">
-      <path value="PractitionerRole.telecom" />
+    <element id="Practitioner.telecom:telephoneNumbers">
+      <path value="Practitioner.telecom" />
       <sliceName value="telephoneNumbers" />
       <type>
         <code value="ContactPoint" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactInformation-TelephoneNumbers" />
       </type>
     </element>
-    <element id="PractitionerRole.telecom:emailAddresses">
-      <path value="PractitionerRole.telecom" />
+    <element id="Practitioner.telecom:emailAddresses">
+      <path value="Practitioner.telecom" />
       <sliceName value="emailAddresses" />
       <type>
         <code value="ContactPoint" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactInformation-EmailAddresses" />
+      </type>
+    </element>
+    <element id="Practitioner.address">
+      <path value="Practitioner.address" />
+      <type>
+        <code value="Address" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AddressInformation" />
       </type>
     </element>
   </differential>
