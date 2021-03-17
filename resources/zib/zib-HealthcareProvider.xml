@@ -15,7 +15,7 @@
     </telecom>
   </contact>
   <description value="A healthcare provider is an organization that offers and provides medical, paramedic and/or nursing care to patients/clients. Examples include: hospitals, nursing homes, doctor’s offices." />
-  <purpose value="This Organization resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) HealthcareProvider v3.4 (2020)]( https://zibs.nl/wiki/HealthcareProvider-v3.4(2020EN))." />
+  <purpose value="This Location resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) HealthcareProvider v3.4 (2020)]( https://zibs.nl/wiki/HealthcareProvider-v3.4(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -30,114 +30,40 @@
   </mapping>
   <kind value="resource" />
   <abstract value="true" />
-  <type value="Organization" />
-  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Organization" />
+  <type value="Location" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Location" />
   <derivation value="constraint" />
   <differential>
-    <element id="Organization">
-      <path value="Organization" />
-      <short value="HealthcareProvider" />
-      <comment value="The OrganizationLocation concept from the zib is captured using a separate profile, zib-HealthcareProvider-Location (&lt;http://nictiz.nl/fhir/zib-HealthcareProvider-Location&gt;). That profile references this profile.&#xD;&#xA;&#xD;&#xA;Healthcare providers usually consitst of multiple organizational levels and physical locations. The hierarchical structure may be captured by using multiple instances of this profile, using the `Organization.partOf` element to refer to ther parent organization. The physical location is captured using the zib-HealthcareProvider-Location profile, which refers this profile at the appropriate level in the hierarchy. Often there's no clear distinction between an organizational structure and a physical location. As a rule of thumb, locations are always used for recording where a service occurs, and hence where encounters and observations take place." />
+    <element id="Location">
+      <path value="Location" />
+      <short value="HealthcareProvider / OrganizationLocation" />
+      <comment value="The zib HealthcareProvider is mapped to this Location profile and a profile on Organization (&amp;lt;http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider-Organization&amp;gt;). This Location profile acts as the focal resource of the HealthcareProvider because most references to this zib are concerned about the recording of the physical location where the care to patient/clients takes place rather than the organizational information. For the latter, the profile on Organization is used which is referenced using the `managingOrganization` element.&#xD;&#xA;&#xD;&#xA;Healthcare providers usually consist of multiple organizational levels and physical locations. The hierarchical structure may be captured by using multiple instances of this HealthcareProvider profile using the `Location.partOf` element to refer to their parent Location. Each instance refers the zib-HealthcareProvider-Organization at the appropriate level in the hierarchy. &#xD;&#xA;&#xD;&#xA;In consultation with 'Registratie aan de Bron', it is agreed to not include the zib concept LocationNumber (NL-CM:17.2.10) due to several reasons. Firstly, its use in the Dutch realm is unclear as this concept was initiated for the Belgium realm with specific requirements. Secondly, it cannot be mapped neatly in the FHIR model which would require the use of an extension. To avoid implementation of specific and not-used FHIR requirements, it is advised to create and use an extension at the use case level where this concept may deem necessary." />
+      <alias value="OrganisatieLocatie" />
       <alias value="Zorgaanbieder" />
       <mapping>
         <identity value="zib-healthcareprovider-v3.4-2020EN" />
         <map value="NL-CM:17.2.1" />
         <comment value="HealthcareProvider" />
       </mapping>
-    </element>
-    <element id="Organization.identifier">
-      <path value="Organization.identifier" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="$this" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <short value="HealthcareProviderIdentificationNumber" />
-      <definition value="The organization’s identification number. For Dutch healthcare providers, the URA number or the AGB number is used, if possible. Depending on the context other ID's are also possible. For foreign or non-affiliated healthcare providers, another unique identification number can be used. This must be accompanied by the name and/or code of the issuing organization." />
-      <alias value="ZorgaanbiederIdentificatienummer" />
       <mapping>
         <identity value="zib-healthcareprovider-v3.4-2020EN" />
-        <map value="NL-CM:17.2.2" />
-        <comment value="HealthcareProviderIdentificationNumber" />
+        <map value="NL-CM:17.2.9" />
+        <comment value="OrganizationLocation" />
       </mapping>
     </element>
-    <element id="Organization.identifier:URA">
-      <path value="Organization.identifier" />
-      <sliceName value="URA" />
-      <patternIdentifier>
-        <system value="http://fhir.nl/fhir/NamingSystem/ura" />
-      </patternIdentifier>
-    </element>
-    <element id="Organization.identifier:AGB">
-      <path value="Organization.identifier" />
-      <sliceName value="AGB" />
-      <patternIdentifier>
-        <system value="http://fhir.nl/fhir/NamingSystem/agb-z" />
-      </patternIdentifier>
-    </element>
-    <element id="Organization.type">
-      <path value="Organization.type" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="$this" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Organization.type:departmentSpecialty">
-      <path value="Organization.type" />
-      <sliceName value="departmentSpecialty" />
-      <short value="DepartmentSpecialty" />
-      <definition value="The specialty of the healthcare provider’s department. The departmental specialty can be filled in if further indication of the healthcare provider is needed. This refers to the recognized medical specialties as stated in the BIG Act." />
-      <comment value="The ValueSet binding strenght deviates from the zib because the binding strenght must be set to required in order to make the discriminator work. However, the open slice definition allows to extend codes." />
-      <alias value="AfdelingSpecialisme" />
-      <max value="1" />
-      <binding>
-        <strength value="required" />
-        <description value="Use profile terminology AfdelingSpecialismeCodelijst" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.2.4--20200901000000" />
-      </binding>
+    <element id="Location.name">
+      <path value="Location.name" />
+      <short value="LocationName" />
+      <definition value="Name of the location." />
+      <alias value="LocatieNaam" />
       <mapping>
         <identity value="zib-healthcareprovider-v3.4-2020EN" />
-        <map value="NL-CM:17.2.7" />
-        <comment value="DepartmentSpecialty" />
+        <map value="NL-CM:17.2.8" />
+        <comment value="LocationName" />
       </mapping>
     </element>
-    <element id="Organization.type:organizationType">
-      <path value="Organization.type" />
-      <sliceName value="organizationType" />
-      <short value="OrganizationType" />
-      <definition value="The type of healthcare provider, such as general hospital, or nursing home. If this field is filled in and an AGB code is used for the HealthcareProviderIdentificationNumber, the type must match the type implicitly contained in the AGB code." />
-      <comment value="The ValueSet binding strenght deviates from the zib because the binding strenght must be set to required in order to make the discriminator work. However, the open slice definition allows to extend codes." />
-      <alias value="OrganisatieType" />
-      <max value="1" />
-      <binding>
-        <strength value="required" />
-        <description value="Use profile terminology OrganisatieTypeCodelijst" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.2.3--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-healthcareprovider-v3.4-2020EN" />
-        <map value="NL-CM:17.2.4" />
-        <comment value="OrganizationType" />
-      </mapping>
-    </element>
-    <element id="Organization.name">
-      <path value="Organization.name" />
-      <short value="OrganizationName" />
-      <definition value="Name of the organization. If an identification number is given, the name must match the name that corresponds to the identification number." />
-      <alias value="OrganisatieNaam" />
-      <mapping>
-        <identity value="zib-healthcareprovider-v3.4-2020EN" />
-        <map value="NL-CM:17.2.3" />
-        <comment value="OrganizationName" />
-      </mapping>
-    </element>
-    <element id="Organization.telecom">
-      <path value="Organization.telecom" />
+    <element id="Location.telecom">
+      <path value="Location.telecom" />
       <slicing>
         <discriminator>
           <type value="profile" />
@@ -146,7 +72,6 @@
         <rules value="open" />
       </slicing>
       <short value="ContactInformation" />
-      <definition value="The information needed to contact the healthcare organization via telephone and/or e-mail." />
       <alias value="Contactgegevens" />
       <mapping>
         <identity value="zib-healthcareprovider-v3.4-2020EN" />
@@ -159,24 +84,24 @@
         <comment value="ContactInformation" />
       </mapping>
     </element>
-    <element id="Organization.telecom:telephoneNumbers">
-      <path value="Organization.telecom" />
+    <element id="Location.telecom:telephoneNumbers">
+      <path value="Location.telecom" />
       <sliceName value="telephoneNumbers" />
       <type>
         <code value="ContactPoint" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelephoneNumbers" />
       </type>
     </element>
-    <element id="Organization.telecom:e-mailAddresses">
-      <path value="Organization.telecom" />
-      <sliceName value="e-mailAddresses" />
+    <element id="Location.telecom:emailAddresses">
+      <path value="Location.telecom" />
+      <sliceName value="emailAddresses" />
       <type>
         <code value="ContactPoint" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-E-mailAddresses" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-EmailAddresses" />
       </type>
     </element>
-    <element id="Organization.address">
-      <path value="Organization.address" />
+    <element id="Location.address">
+      <path value="Location.address" />
       <short value="AddressInformation" />
       <definition value="The physical address of the healthcare provider’s location." />
       <alias value="Adresgegevens" />
@@ -189,6 +114,14 @@
         <map value="NL-CM:17.2.5" />
         <comment value="AddressInformation" />
       </mapping>
+    </element>
+    <element id="Location.managingOrganization">
+      <path value="Location.managingOrganization" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider-Organization" />
+      </type>
     </element>
   </differential>
 </StructureDefinition>
