@@ -140,6 +140,9 @@ zib-Patient:
         reason: The appropriate representation of zib LanguageProficiency in FHIR is Patient.communication, not a separate resource.
       - cardinality: 0..*
         reason: A patient may be proficient in multiple languages. The expected cardinality of 0..1 stems from the root concept of zib LanguageProficiency, but this cardinality is essentially without meaning.
+    Patient.communication.language:
+      - cardinality: 1..1
+        reason: The FHIR profiles are expected to implement zib cardinalities as conceptual cardinalities, but FHIR requires the language element to be present. This aligns with the intention of the zib, as the Language concept is required for zib LanguageProficiency to make sense.
     Patient.communication.extension:languageControl:
       - short: LanguageControlListening / LanguageControlSpeaking / LanguageControlReading
         reason: Three zib concepts are mapped to one extension in FHIR and are differentiated by their type value.
