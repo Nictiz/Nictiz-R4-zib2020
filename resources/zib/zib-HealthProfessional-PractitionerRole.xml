@@ -77,6 +77,7 @@
       <sliceName value="specialty" />
       <short value="Specialty" />
       <definition value="Health professional’s medical specialty. This refers to the recognized medical specialties as stated in the BIG Act. For example general practitioner or cardiologist." />
+      <comment value="The zib Specialty is mapped to a slice of the `.specialty` element to adhere to the open world modeling principle because this allows the use of other terminology next to the zibs required terminology." />
       <alias value="Specialisme" />
       <max value="1" />
       <binding>
@@ -121,12 +122,12 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelephoneNumbers" />
       </type>
     </element>
-    <element id="PractitionerRole.telecom:e-mailAddresses">
+    <element id="PractitionerRole.telecom:emailAddresses">
       <path value="PractitionerRole.telecom" />
-      <sliceName value="e-mailAddresses" />
+      <sliceName value="emailAddresses" />
       <type>
         <code value="ContactPoint" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-E-mailAddresses" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-EmailAddresses" />
       </type>
     </element>
   </differential>
