@@ -46,6 +46,12 @@ zib-ContactPerson:
       - cardinality: 0..*
         reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
 
+zib-MedicationContraIndication:
+  zib deviations:
+    Flag.code:
+      - cardinality: 1..1
+        reason: The zib profiles should relax the minimum cardinality from the zibs because of the conceptual cardinality concept. However, FHIR requires Flag.code to be 1..1. The case can be made that zib MedicationContraIndicationName will never be conceptual, because it is the defining factor for MedicationContraIndication. 
+
 zib-Patient:
   zib deviations:
     Patient.extension:nationality.extension:code.value[x]:
