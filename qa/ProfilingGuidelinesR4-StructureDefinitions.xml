@@ -60,13 +60,6 @@
                 <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
             </constraint>
             <constraint>
-                <key value="sd-pg-06"/>
-                <severity value="warning"/>
-                <human value="If the StructureDefinition is not an extension a mapping declaration should be present."/>
-                <expression value="context.exists().not() implies mapping.exists()"/>
-                <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
-            </constraint>
-            <constraint>
                 <key value="sd-pg-07"/>
                 <severity value="warning"/>
                 <human value="The name of the StructureDefinition should conform to the profiling guidelines"/>
@@ -79,6 +72,20 @@
                 <severity value="warning"/>
                 <human value="The title of the StructureDefinition should conform to the profiling guidelines"/>
                 <expression value="StructureDefinition.title = StructureDefinition.id.replace('-',' ')"/>
+                <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
+            </constraint>
+            <constraint>
+                <key value="sd-pg-09"/>
+                <severity value="error"/>
+                <human value="When a mapping is defined in the profile, it should be used on one or more of the elements."/>
+                <expression value="mapping.identity.subsetOf(%resource.differential.element.mapping.identity)"/>
+                <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
+            </constraint>
+            <constraint>
+                <key value="sd-pg-10"/>
+                <severity value="error"/>
+                <human value="When a mapping is defined on an element, it should be declared in the profile."/>
+                <expression value="differential.element.mapping.identity.subsetOf(%resource.mapping.identity)"/>
                 <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
             </constraint>
         </element>
@@ -207,10 +214,6 @@
                 <expression value="valueSet.exists()  implies description.exists()"/>
                 <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
             </constraint>
-        </element>
-        <element id="StructureDefinition.differential.element.binding.description">
-            <path value="StructureDefinition.differential.element.binding.description"/>
-            <min value="1"/>
         </element>
         <element id="StructureDefinition.differential.element.mapping.comment">
             <path value="StructureDefinition.differential.element.mapping.comment"/>
