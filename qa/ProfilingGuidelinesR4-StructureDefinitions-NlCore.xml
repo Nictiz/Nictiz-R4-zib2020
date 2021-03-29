@@ -2,7 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="ProfilingGuidelinesR4-StructureDefinitions-NlCore" />
   <url value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore" />
-  <name value="ProfilingGuidelinesR4-StructureDefinitions-NlCore" />
+  <name value="ProfilingGuidelinesR4StructureDefinitionsNlCore" />
   <title value="nl-core StructureDefinition conformance to FHIR Profiling Guidelines for FHIR R4" />
   <status value="draft" />
   <fhirVersion value="4.0.1" />
@@ -57,6 +57,12 @@
     <element id="StructureDefinition.purpose">
       <path value="StructureDefinition.purpose" />
       <min value="1" />
+      <constraint>
+        <key value="sd-pgnc-01" />
+        <severity value="error" />
+        <human value="The purpose field should conform to the profiling guidelines." />
+        <expression value="$this.matches('A derived profile from \\[.*\\]\\(http:\\/\\/nictiz\\.nl\\/fhir\\/StructureDefinition\\/.*\\) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib.')" />
+      </constraint>
     </element>
   </differential>
 </StructureDefinition>
