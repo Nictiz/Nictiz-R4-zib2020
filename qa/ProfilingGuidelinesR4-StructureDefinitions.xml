@@ -78,14 +78,14 @@
                 <key value="sd-pg-09"/>
                 <severity value="error"/>
                 <human value="When a mapping is defined in the profile, it should be used on one or more of the elements."/>
-                <expression value="mapping.identity.supersetOf(%resource.differential.element.mapping.identity)"/>
+                <expression value="mapping.identity.subsetOf(%resource.differential.element.mapping.identity)"/>
                 <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
             </constraint>
             <constraint>
                 <key value="sd-pg-10"/>
                 <severity value="error"/>
                 <human value="When a mapping is defined on an element, it should be declared in the profile."/>
-                <expression value="differential.element.mapping.identity.supersetOf(%resource.mapping.identity)"/>
+                <expression value="differential.element.mapping.identity.subsetOf(%resource.mapping.identity)"/>
                 <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
             </constraint>
         </element>
