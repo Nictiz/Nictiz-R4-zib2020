@@ -60,11 +60,18 @@
                 <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
             </constraint>
             <constraint>
+                <key value="sd-pg-12" />
+                <severity value="error" />
+                <human value="StuctureDefinition.id should start 'ext-' if it defines an Extension" />
+                <expression value="StructureDefinition.type = 'Extension' implies StructureDefinition.id.startsWith('ext-')" />
+                <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
+            </constraint>
+            <constraint>
                 <key value="sd-pg-07"/>
                 <severity value="warning"/>
                 <human value="The name of the StructureDefinition should conform to the profiling guidelines"/>
                 <!-- The following expression consists of two parts, because FHIRpath .upper() and \U (Regex uppercase transformation) are not supported. This is the best we can do to check if the id is capitalized, although id 'test-123' could lead to a false positive on name 'Xest123' -->
-                <expression value="StructureDefinition.name.substring(0, 1).matches('[A-Z]') and StructureDefinition.name.substring(1) = StructureDefinition.id.substring(1).replace('-','')"/>
+                <expression value="StructureDefinition.name.substring(0, 1).matches('[A-Z]') and StructureDefinition.name.substring(1) = StructureDefinition.id.substring(1).replace('-','').replace('.', '')"/>
                 <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
             </constraint>
             <constraint>
