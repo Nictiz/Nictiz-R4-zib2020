@@ -42,15 +42,8 @@
       <constraint>
         <key value="sd-zpg-01" />
         <severity value="error" />
-        <human value="StuctureDefinition.id should start with 'zib-' or 'ext-zib'" />
-        <expression value="StructureDefinition.id.startsWith('zib-') or StructureDefinition.id.startsWith('ext-zib-')" />
-        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
-      </constraint>
-      <constraint>
-        <key value="sd-zpg-02" />
-        <severity value="error" />
-        <human value="StuctureDefinition.id should start 'ext-zib' if it defines an Extension" />
-        <expression value="StructureDefinition.type = 'Extension' implies StructureDefinition.id.startsWith('ext-zib-')" />
+        <human value="StuctureDefinition.id should start with 'zib-' or 'ext-'" />
+        <expression value="StructureDefinition.id.startsWith('zib-') or StructureDefinition.id.startsWith('ext-')" />
         <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
       </constraint>
       <constraint>

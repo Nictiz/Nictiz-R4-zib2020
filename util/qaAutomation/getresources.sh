@@ -23,9 +23,9 @@ nlcore_profiles=""
 other_profiles=""
 for file in $profiles; do
   if [[ -f $file ]]; then
-    if [[ $(basename $file) =~ ^(zib-|ext-zib-) ]]; then
+    if [[ $(basename $file) =~ ^(zib-|ext-.*\.[A-Z]) ]]; then
       zib_profiles="$zib_profiles $file"
-    elif [[ $(basename $file) =~ ^(nl-core-|ext-nl-core-) ]]; then
+    elif [[ $(basename $file) =~ ^(nl-core-) ]]; then
       nlcore_profiles="$nlcore_profiles $file"
     else
       other_profiles="$other_profiles $file"
