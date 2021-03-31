@@ -104,6 +104,7 @@
       <path value="Location.address" />
       <short value="AddressInformation" />
       <definition value="The physical address of the healthcare provider’s location." />
+      <comment value="The cardinality mismatch with the zib (0..1 versus 0..*) is explained by the restriction of FHIR to limit the `Location.address` to a physical address while the zib allows for other types of addresses (e.g. a postal address). Other types of addresses than a physical address are given in `Organization.address` which is referenced by `Location.managingOrganization`." />
       <alias value="Adresgegevens" />
       <type>
         <code value="Address" />
