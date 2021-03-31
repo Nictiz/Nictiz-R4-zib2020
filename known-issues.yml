@@ -58,7 +58,7 @@ zib-HealthcareProvider:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
       - cardinality: 0..1
-        reason: Contacted zib centre to check if cardinality of HealthcareProvider is ok on 20201-03-17
+        reason: The cardinality mismatch with the zib (0..1 versus 0..*) is explained by the restriction of FHIR to limit the `Location.address` to a physical address while the zib allows for other types of addresses (e.g. a postal address). Other types of addresses than a physical address are given in `Organization.address` which is referenced by `Location.managingOrganization`. More documentation can be found here: https://github.com/Nictiz/Nictiz-R4-zib2020/issues/38
     Location.telecom:
       - cardinality: 0..*
         reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby still honoring the cardinality requirements of the zib.
