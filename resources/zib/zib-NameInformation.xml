@@ -89,7 +89,7 @@
         <key value="zib-NameInformation-3" />
         <severity value="warning" />
         <human value="If the name is specified as 'official' then the name is expected to contain only official parts" />
-        <expression value="use = 'official' implies given.extension('http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier').where(value = 'CL').exists().not()" />
+        <expression value="use.where(value = 'official').exists() implies given.extension('http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier').where(value = 'CL').exists().not()" />
         <source value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
       </constraint>
       <mapping>
