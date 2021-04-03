@@ -39,6 +39,11 @@ zib-Patient:
         reason: The zib ContactPerson _may_ be represented as Patient.contact. There is a different use case as well, where the ContactPerson is implemented using a RelatedPerson resource.
       - cardinality: 0..*
         reason: A patient may have multiple contacts. The expected cardinality of 0..1 stems from the root concept of zib ContactPerson, but this cardinality is essentially without meaning.
+    Patient.contact.extension:contactPerson.value[x]:
+      - datatype: Reference
+        reason: This is an additional reference to a separate zib-ContactPerson (RelatedPerson) instance, next to the information in Pateint.contact. Patient.contact and RelatedPerson can both be used to capture the information from zib-ContactPerson, but each are used within a different context. Information may therefore be duplicated; this is the recommended way.
+      - cardinality: 1..1
+        reason: The inclusion of the extension itself is optional. However, _when_ it is included, it should contain a value to make sense. 
     Patient.contact.name:
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
@@ -56,6 +61,8 @@ zib-Patient:
     Patient.contact.address:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
+      - cardinality: 0..1
+        reason: Patient.contact is a restricted representation of contact persons containing only information needed to contact a contact person. The full address information should be captured using an instance of the zib-ContactPerson profile on RelatedPerson, which can be linked using an extension. This is explained in the profile.  
     Patient.communication:
       - datatype: BackboneElement
         reason: The appropriate representation of zib LanguageProficiency in FHIR is Patient.communication, not a separate resource.

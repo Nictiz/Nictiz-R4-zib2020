@@ -54,6 +54,29 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AddressInformation" />
       </type>
     </element>
+    <element id="Patient.contact.extension">
+      <path value="Patient.contact.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Patient.contact.extension:contactPerson">
+      <path value="Patient.contact.extension" />
+      <sliceName value="contactPerson" />
+    </element>
+    <element id="Patient.contact.extension:contactPerson.value[x]">
+      <path value="Patient.contact.extension.value[x]" />
+      <definition value="Reference to an [nl-core-ContactPerson](http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson) instance containing the full details for the current contact." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson" />
+      </type>
+    </element>
     <element id="Patient.contact.name">
       <path value="Patient.contact.name" />
       <type>
@@ -79,6 +102,7 @@
     </element>
     <element id="Patient.contact.address">
       <path value="Patient.contact.address" />
+      <comment value="This element can and should not completely capture the AddressInformation concept from zib ContactPerson; it should just be used for the information that is needed for contacting the person in relation to care of the patient. The full address information should instead be captured using an instance of [nl-core-ContactPerson](http://nictiz.nl/fhir/StructureDefintion/nl-core-ContactPerson), which can then be referenced from this resource. See the comment on `Patient.contact` for more information." />
       <type>
         <code value="Address" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AddressInformation" />
