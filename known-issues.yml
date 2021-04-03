@@ -19,6 +19,8 @@ zib-HealthProfessional-Practitioner:
     Practitioner.address:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
+      - cardinality: 0..*
+        reason: The zib AddressInformation may be represented using multiple FHIR Address instances, hence the cardinality is wider.
         
 zib-HealthProfessional-PractitionerRole:
   zib deviations:
