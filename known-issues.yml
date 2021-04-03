@@ -10,6 +10,12 @@ zib-HealthProfessional-Practitioner:
         reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby still honoring the cardinality requirements of the zib.
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consits of two parts the rootconcept of the ContactInformation is mapped on .telecom.
+    Practitioner.telecom:telephoneNumbers:
+      - datatype: ContactPoint
+        reason: See Practitioner.telecom
+    Practitioner.telecom:emailAddresses:
+      - datatype: ContactPoint
+        reason: See Practitioner.telecom
     Practitioner.address:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
@@ -21,3 +27,10 @@ zib-HealthProfessional-PractitionerRole:
         reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby still honoring the cardinality requirements of the zib.
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consits of two parts the rootconcept of the ContactInformation is mapped on .telecom.
+    PractitionerRole.telecom:telephoneNumbers:
+      - datatype: ContactPoint
+        reason: See PractitionerRole.telecom
+    PractitionerRole.telecom:emailAddresses:
+      - datatype: ContactPoint
+        reason: See Practitioner.telecom
+ 
