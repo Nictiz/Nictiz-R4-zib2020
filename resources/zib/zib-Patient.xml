@@ -273,7 +273,7 @@
       </slicing>
     </element>
     <element id="Patient.deceased[x]:deceasedBoolean">
-      <path value="Patient.deceasedBoolean" />
+      <path value="Patient.deceased[x]" />
       <sliceName value="deceasedBoolean" />
       <short value="DeathIndicator" />
       <definition value="An indication stating whether the patient has died." />
@@ -288,7 +288,7 @@
       </mapping>
     </element>
     <element id="Patient.deceased[x]:deceasedDateTime">
-      <path value="Patient.deceasedDateTime" />
+      <path value="Patient.deceased[x]" />
       <sliceName value="deceasedDateTime" />
       <short value="DateOfDeath" />
       <definition value="The date on which the patient died. A ‘vague’ date, such as only the year, is permitted." />
@@ -368,8 +368,44 @@
     <element id="Patient.contact">
       <path value="Patient.contact" />
       <short value="Contact" />
-      <comment value="Whereas the zib ContactPerson includes all (non-healthcare professional) persons that are involved in the care for a patient, FHIR distinguishes two use cases for these persons:&#xD;&#xA;&#xD;&#xA;* The RelatedPerson resource is used to capture information about any person that is related to the patient, using the profile &lt;http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson&gt;.&#xD;&#xA;* Information about persons that should be _contacted_ regarding the care for the patient is captured using the `Patient.contact` resource.&#xD;&#xA;&#xD;&#xA;If a person is both a related person and a contact person, then some data duplication is inevitable." />
+      <comment value="Whereas the zib ContactPerson includes all (non-healthcare professional) persons that are involved in the care for a patient, FHIR distinguishes two use cases for these persons:&#xD;&#xA;&#xD;&#xA;* The RelatedPerson resource is used to capture information about any person that is related to the patient, using the profile &lt;http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson&gt;.&#xD;&#xA;* Information about persons that should be _contacted_ regarding the care for the patient is captured using the `Patient.contact` resource.&#xD;&#xA;&#xD;&#xA;If a person is both a related person and a contact person, then some data duplication is inevitable. The zib-ContactPerson can be referenced using the extension in `contact:contactPerson`." />
       <alias value="Contactpersoon" />
+      <mapping>
+        <identity value="zib-contactperson-v3.4-2020EN" />
+        <map value="NL-CM:3.1.1" />
+        <comment value="Contact" />
+      </mapping>
+    </element>
+    <element id="Patient.contact.extension">
+      <path value="Patient.contact.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Patient.contact.extension:contactPerson">
+      <path value="Patient.contact.extension" />
+      <sliceName value="contactPerson" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/patient-relatedPerson" />
+      </type>
+    </element>
+    <element id="Patient.contact.extension:contactPerson.value[x]">
+      <path value="Patient.contact.extension.value[x]" />
+      <short value="Contact" />
+      <definition value="Reference to a [zib-ContactPerson](http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson) instance containing the full details for the current contact." />
+      <alias value="Contactpersoon" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson" />
+      </type>
       <mapping>
         <identity value="zib-contactperson-v3.4-2020EN" />
         <map value="NL-CM:3.1.1" />
@@ -480,6 +516,7 @@
       <path value="Patient.contact.address" />
       <short value="AddressInformation" />
       <definition value="Contact’s address information." />
+      <comment value="This element can and should not completely capture the AddressInformation concept from zib ContactPerson; it should just be used for the information that is needed for contacting the person in relation to care of the patient. The full address information should instead be captured using an instance of [zib-ContactPerson](http://nictiz.nl/fhir/StructureDefintion/zib-ContactPerson), which can then be referenced from this resource. See the comment on `Patient.contact` for more information." />
       <alias value="Adresgegevens" />
       <type>
         <code value="Address" />
