@@ -215,4 +215,8 @@ zib-Patient:
       - datatype: Extension
         reason: The mapping is placed on the extension and not on the value[x] because of the nature of this extension. The extension itself contains a valueCoding that gets the zibs value. This datatype matches the zib CD type.
       - cardinality: 0..*
-        reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.        
+        reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
+
+unmapped zib concepts:
+  - NL-CM:17.2.10: HealthcareProvider.LocationNumber
+    reason: This zib concept is problematic to map cleanly to FHIR and it has been deemed too uncommon in practice to warrant an extension.
