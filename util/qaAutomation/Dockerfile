@@ -30,5 +30,6 @@ COPY getresources.sh /scripts/getresources.sh
 COPY mkprofilingig.sh /scripts/mkprofilingig.sh
 COPY generatezibsnapshots.sh /scripts/generatezibsnapshots.sh
 COPY entrypoint.sh entrypoint.sh
+RUN chmod +x entrypoint.sh
 RUN dos2unix /scripts/getresources.sh /scripts/mkprofilingig.sh /scripts/generatezibsnapshots.sh entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
