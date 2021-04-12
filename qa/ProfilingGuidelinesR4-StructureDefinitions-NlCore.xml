@@ -6,31 +6,6 @@
   <title value="nl-core StructureDefinition conformance to FHIR Profiling Guidelines for FHIR R4" />
   <status value="draft" />
   <fhirVersion value="4.0.1" />
-  <mapping>
-    <identity value="rim" />
-    <uri value="http://hl7.org/v3" />
-    <name value="RIM Mapping" />
-  </mapping>
-  <mapping>
-    <identity value="workflow" />
-    <uri value="http://hl7.org/fhir/workflow" />
-    <name value="Workflow Pattern" />
-  </mapping>
-  <mapping>
-    <identity value="w5" />
-    <uri value="http://hl7.org/fhir/fivews" />
-    <name value="FiveWs Pattern Mapping" />
-  </mapping>
-  <mapping>
-    <identity value="iso11179" />
-    <uri value="http://metadata-standards.org/11179/" />
-    <name value="ISO 11179" />
-  </mapping>
-  <mapping>
-    <identity value="objimpl" />
-    <uri value="http://hl7.org/fhir/object-implementation" />
-    <name value="Object Implementation Information" />
-  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="StructureDefinition" />
@@ -51,6 +26,13 @@
         <severity value="error" />
         <human value="StuctureDefinition.id should start 'ext-zib' if it defines an Extension" />
         <expression value="StructureDefinition.type = 'Extension' implies StructureDefinition.id.startsWith('ext-nl-core-')" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore" />
+      </constraint>
+      <constraint>
+        <key value="sd-zpg-03" />
+        <severity value="error" />
+        <human value="Root element should have the profile id as alias" />
+        <expression value="StructureDefinition.id in StructureDefinition.differential.element[0].alias" />
         <source value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore" />
       </constraint>
     </element>

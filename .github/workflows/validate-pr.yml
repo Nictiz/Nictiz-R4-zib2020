@@ -19,6 +19,7 @@ jobs:
           echo "::set-output name=nlcore_profiles::"$nlcore_profiles
           echo "::set-output name=other_profiles::"$other_profiles
           echo "::set-output name=conceptmaps::"$conceptmaps
+          echo "::set-output name=other_terminology::"$other_terminology
           echo "::set-output name=examples::"$examples
 
       - name: Restore validator cache
@@ -67,6 +68,15 @@ jobs:
           recurse: true
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-ConceptMaps
           source:  ${{ steps.get-resources.outputs.conceptmaps }}
+          fail-at: warning
+          ignored-issues: known-issues.yml
+      - name: Validate other terminology
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.14
+        with:
+          version: "4.0"
+          ig: ig/
+          recurse: true
+          source:  ${{ steps.get-resources.outputs.other_terminology }}
           fail-at: warning
           ignored-issues: known-issues.yml
       - name: Validate examples
