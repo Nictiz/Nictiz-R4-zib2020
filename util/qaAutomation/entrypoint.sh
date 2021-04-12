@@ -63,6 +63,7 @@ validate "zib profiles" "$zib_profiles" "http://nictiz.nl/fhir/StructureDefiniti
 validate "nl-core profiles" "$nlcore_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore"
 validate "other profiles" "$other_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions"
 validate "ConceptMaps" "$conceptmaps" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-ConceptMaps"
+validate "Other terminology" "$other_terminology"
 validate "examples" "$examples"
 
 echo
