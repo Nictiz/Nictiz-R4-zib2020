@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-LivingSituation" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-LivingSituation" />
+  <name value="ZibLivingSituation" />
+  <title value="zib LivingSituation" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The living situation is the physical environment in which the patient normally lives, sleeps, keeps their clothing, etc." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) LivingSituation v3.3 (2020)](https://zibs.nl/wiki/LivingSituation-v3.3(2020EN)))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-livingsituation-v3.3-2020EN" />
+    <uri value="https://zibs.nl/wiki/LivingSituation-v3.3(2020EN)" />
+    <name value="zib Livingsituation-v3.3(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+    </element>
+    <element id="Observation.note">
+      <path value="Observation.note" />
+      <short value="Comment" />
+      <definition value="Comments in free text on problems or details of the patient’s living situation that may be relevant." />
+      <alias value="Toelichting" />
+      <max value="1" />
+      <mapping>
+        <identity value="zib-livingsituation-v3.3-2020EN" />
+        <map value="NL-CM:7.8.2" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:homeApdation">
+      <path value="Observation.component" />
+      <sliceName value="homeApdation" />
+    </element>
+    <element id="Observation.component:livingCondition">
+      <path value="Observation.component" />
+      <sliceName value="livingCondition" />
+    </element>
+    <element id="Observation.component:livingCondition.value[x]">
+      <path value="Observation.component.value[x]" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
