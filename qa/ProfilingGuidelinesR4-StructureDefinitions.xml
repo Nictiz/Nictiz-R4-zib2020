@@ -212,6 +212,16 @@
                 <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
             </constraint>
         </element>
+        <element id="StructureDefinition.differential.element.sliceName">
+            <path value="StructureDefinition.differential.element.sliceName"/>
+            <constraint>
+                <key value="sd-pg-13"/>
+                <severity value="warning"/>
+                <human value="Slice names should be camelCased starting with a lowercase letter."/>
+                <expression value="$this.substring(0, 1).matches('[a-z]')"/>
+                <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
+            </constraint>
+        </element>
         <element id="StructureDefinition.differential.element.binding">
             <path value="StructureDefinition.differential.element.binding"/>
             <constraint>
