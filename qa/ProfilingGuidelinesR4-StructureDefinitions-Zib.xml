@@ -83,6 +83,16 @@
       <path value="StructureDefinition.abstract" />
       <fixedBoolean value="true" />
     </element>
+    <element id="StructureDefinition.differential.element">
+      <path value="StructureDefinition.differential.element"/>
+      <constraint>
+        <key value="sd-zpg-08"/>
+        <severity value="error"/>
+        <human value="If an alias exists, mapping.map needs to be present."/>
+        <expression value="alias.exists() implies mapping.map.exists()"/>
+        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
+      </constraint>
+    </element>
     <element id="StructureDefinition.differential.element.type">
       <path value="StructureDefinition.differential.element.type" />
       <constraint>
