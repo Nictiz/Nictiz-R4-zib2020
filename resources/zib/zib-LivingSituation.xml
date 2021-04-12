@@ -29,11 +29,26 @@
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
   <derivation value="constraint" />
   <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="LivingSituation" />
+      <alias value="Woonsituatie" />
+      <mapping>
+        <identity value="zib-livingsituation-v3.3-2020EN" />
+        <map value="NL-CM:7.8.1" />
+        <comment value="LivingSituation" />
+      </mapping>
+    </element>
     <element id="Observation.value[x]">
       <path value="Observation.value[x]" />
       <type>
         <code value="CodeableConcept" />
       </type>
+      <mapping>
+        <identity value="zib-livingsituation-v3.3-2020EN" />
+        <map value="NL-CM:7.8.3" />
+        <comment value="HouseType" />
+      </mapping>
     </element>
     <element id="Observation.note">
       <path value="Observation.note" />
@@ -61,15 +76,55 @@
       <path value="Observation.component" />
       <sliceName value="homeApdation" />
     </element>
+    <element id="Observation.component:homeApdation.code.coding.system">
+      <path value="Observation.component.code.coding.system" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="Observation.component:homeApdation.code.coding.code">
+      <path value="Observation.component.code.coding.code" />
+      <fixedCode value="118871000146108" />
+    </element>
+    <element id="Observation.component:homeApdation.code.coding.display">
+      <path value="Observation.component.code.coding.display" />
+      <defaultValueString value="Type of home adaptation" />
+    </element>
+    <element id="Observation.component:homeApdation.value[x]">
+      <path value="Observation.component.value[x]" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mapping>
+        <identity value="zib-livingsituation-v3.3-2020EN" />
+        <map value="NL-CM:7.8.5" />
+        <comment value="HomeAdaption" />
+      </mapping>
+    </element>
     <element id="Observation.component:livingCondition">
       <path value="Observation.component" />
       <sliceName value="livingCondition" />
+    </element>
+    <element id="Observation.component:livingCondition.code.coding.system">
+      <path value="Observation.component.code.coding.system" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="Observation.component:livingCondition.code.coding.code">
+      <path value="Observation.component.code.coding.code" />
+      <fixedCode value="224249004" />
+    </element>
+    <element id="Observation.component:livingCondition.code.coding.display">
+      <path value="Observation.component.code.coding.display" />
+      <defaultValueString value="Characteristics of home environment" />
     </element>
     <element id="Observation.component:livingCondition.value[x]">
       <path value="Observation.component.value[x]" />
       <type>
         <code value="CodeableConcept" />
       </type>
+      <mapping>
+        <identity value="zib-livingsituation-v3.3-2020EN" />
+        <map value="NL-CM:7.8.4" />
+        <comment value="LivingCondition" />
+      </mapping>
     </element>
   </differential>
 </StructureDefinition>
