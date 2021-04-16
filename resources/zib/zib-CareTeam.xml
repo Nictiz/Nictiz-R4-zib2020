@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-CareTeam" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-CareTeam" />
+  <name value="ZibCareTeam" />
+  <title value="zib CareTeam" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A care team is a group of health professionals and other people involved in caring for a patient for one or more problems." />
+  <purpose value="This CareTeam resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) CareTeam v1.0(2020)](https://zibs.nl/wiki/CareTeam-v1.0(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-careteam-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/CareTeam-v1.0(2020EN)" />
+    <name value="zib CareTeam-v1.0(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-healthprofessional-v3.5-2020EN" />
+    <uri value="https://zibs.nl/wiki/HealthProfessional-v3.5(2020EN)" />
+    <name value="zib HealthProfessional-v3.5(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="CareTeam" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/CareTeam" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="CareTeam">
+      <path value="CareTeam" />
+      <short value="CareTeam" />
+      <alias value="ZorgTeam" />
+      <mapping>
+        <identity value="zib-careteam-v1.0-2020EN" />
+        <map value="NL-CM:17.3.1" />
+        <comment value="CareTeam" />
+      </mapping>
+    </element>
+    <element id="CareTeam.name">
+      <path value="CareTeam.name" />
+      <short value="CareTeamName" />
+      <definition value="The name of the care team." />
+      <alias value="ZorgTeamNaam" />
+      <mapping>
+        <identity value="zib-careteam-v1.0-2020EN" />
+        <map value="NL-CM:17.3.12" />
+        <comment value="CareTeamNaam" />
+      </mapping>
+    </element>
+    <element id="CareTeam.participant">
+      <path value="CareTeam.participant" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="member.resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="CareTeam.participant:contactperson">
+      <path value="CareTeam.participant" />
+      <sliceName value="contactperson" />
+    </element>
+    <element id="CareTeam.participant:contactperson.member">
+      <path value="CareTeam.participant.member" />
+      <short value="CareTeamMember" />
+      <definition value="A contact person of the patient as member of the care team." />
+      <alias value="Contactpersoon" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson" />
+      </type>
+      <mapping>
+        <identity value="zib-careteam-v1.0-2020EN" />
+        <map value="NL-CM:17.3.8" />
+        <comment value="CareTeamMember" />
+      </mapping>
+    </element>
+    <element id="CareTeam.participant:patient">
+      <path value="CareTeam.participant" />
+      <sliceName value="patient" />
+    </element>
+    <element id="CareTeam.participant:patient.member">
+      <path value="CareTeam.participant.member" />
+      <short value="CareTeamMember" />
+      <definition value="The patient as member of the care_team." />
+      <alias value="Patient" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient" />
+      </type>
+      <mapping>
+        <identity value="zib-careteam-v1.0-2020EN" />
+        <map value="NL-CM:17.3.7" />
+        <comment value="CareTeamMember" />
+      </mapping>
+    </element>
+    <element id="CareTeam.participant:healthcareProfessional">
+      <path value="CareTeam.participant" />
+      <sliceName value="healthcareProfessional" />
+    </element>
+    <element id="CareTeam.participant:healthcareProfessional.role">
+      <path value="CareTeam.participant.role" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="CareTeam.participant:healthcareProfessional.role:healthProfessionalRole">
+      <path value="CareTeam.participant.role" />
+      <sliceName value="healthProfessionalRole" />
+      <short value="HealthProfessionalRole" />
+      <definition value="The role the health professional fulfils in the healthcare process. For health professionals, this could be for example attender, referrer or performer." />
+      <alias value="ZorgverlenerRol" />
+      <max value="1" />
+      <binding>
+        <strength value="required" />
+        <description value="The role the health professional fulfils in the healthcare process." />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.1.5--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-healthprofessional-v3.5-2020EN" />
+        <map value="NL-CM:17.1.5" />
+        <comment value="HealthProfessionalRole" />
+      </mapping>
+    </element>
+    <element id="CareTeam.participant:healthcareProfessional.member">
+      <path value="CareTeam.participant.member" />
+      <short value="CareTeamMember" />
+      <definition value="A health professional as a member of the care team involved in the care around the patient." />
+      <alias value="Zorgverlener" />
+      <type>
+        <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-ZibHealthProfessionalReference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
+      </type>
+      <mapping>
+        <identity value="zib-careteam-v1.0-2020EN" />
+        <map value="NL-CM:17.3.9" />
+        <comment value="CareTeamMember" />
+      </mapping>
+    </element>
+    <element id="CareTeam.reasonReference">
+      <path value="CareTeam.reasonReference" />
+      <short value="Problem" />
+      <definition value="The disease and/or the health status for which the patient receives treatment via members of the care team." />
+      <alias value="Probleem" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem" />
+      </type>
+      <mapping>
+        <identity value="zib-careteam-v1.0-2020EN" />
+        <map value="NL-CM:17.3.5" />
+        <comment value="Problem" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
