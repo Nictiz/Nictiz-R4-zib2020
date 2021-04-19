@@ -31,8 +31,8 @@
   <differential>
     <element id="Observation">
       <path value="Observation" />
-      <short value="AlcoholGebruik" />
-      <alias value="AlcoholUse" />
+      <short value="AlcoholUse" />
+      <alias value="AlcoholGebruik" />
       <mapping>
         <identity value="zib-alcoholuse-v3.2-2020EN" />
         <map value="NL-CM:7.3.1" />
@@ -46,10 +46,6 @@
     <element id="Observation.code.coding.code">
       <path value="Observation.code.coding.code" />
       <patternCode value="228273003" />
-    </element>
-    <element id="Observation.code.coding.display">
-      <path value="Observation.code.coding.display" />
-      <defaultValueString value="Finding relating to alcohol drinking behavior (finding)" />
     </element>
     <element id="Observation.effective[x]">
       <path value="Observation.effective[x]" />
@@ -81,17 +77,30 @@
     </element>
     <element id="Observation.value[x]">
       <path value="Observation.value[x]" />
+      <short value="AlcoholUseStatus" />
+      <alias value="AlcoholGebruikStatus" />
+      <min value="1" />
       <type>
         <code value="CodeableConcept" />
       </type>
-    </element>
-    <element id="Observation.value[x].coding">
-      <path value="Observation.value[x].coding" />
       <binding>
         <strength value="required" />
         <description value="AlcoholGebruikStatusCodelijst" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.3.2--20200901000000" />
       </binding>
+      <mapping>
+        <identity value="zib-alcoholuse-v3.2-2020EN" />
+        <map value="NL-CM:7.3.2" />
+        <comment value="AlcoholUseStatus" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x].coding.system">
+      <path value="Observation.value[x].coding.system" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="Observation.value[x].coding.code">
+      <path value="Observation.value[x].coding.code" />
+      <patternCode value="228273003" />
     </element>
     <element id="Observation.note">
       <path value="Observation.note" />
