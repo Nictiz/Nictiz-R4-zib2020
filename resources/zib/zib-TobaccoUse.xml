@@ -28,4 +28,150 @@
   <type value="Observation" />
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
   <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="TobaccoUse" />
+      <alias value="TabakGebruik" />
+      <mapping>
+        <identity value="zib-tobaccouse-v3.2-2020EN" />
+        <map value="NL-CM:7.2.1" />
+        <comment value="TobaccoUse" />
+      </mapping>
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <type>
+        <code value="Period" />
+      </type>
+    </element>
+    <element id="Observation.effective[x].start">
+      <path value="Observation.effective[x].start" />
+      <short value="StartDate" />
+      <definition value="The date on which the patient started smoking." />
+      <alias value="StartDatum" />
+      <mapping>
+        <identity value="zib-tobaccouse-v3.2-2020EN" />
+        <map value="NL-CM:7.2.4" />
+        <comment value="StartDate" />
+      </mapping>
+    </element>
+    <element id="Observation.effective[x].end">
+      <path value="Observation.effective[x].end" />
+      <short value="StopDate" />
+      <definition value="The date on which the patient quit smoking." />
+      <alias value="StopDatum" />
+      <mapping>
+        <identity value="zib-tobaccouse-v3.2-2020EN" />
+        <map value="NL-CM:7.2.5" />
+        <comment value="StopDate" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <short value="TobaccoUseStatus" />
+      <definition value="The status of the patient’s tobacco use." />
+      <alias value="TabakGebruikStatus" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mapping>
+        <identity value="zib-tobaccouse-v3.2-2020EN" />
+        <map value="NL-CM:7.2.10" />
+        <comment value="TobaccoUseStatus" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x].coding">
+      <path value="Observation.value[x].coding" />
+      <binding>
+        <strength value="extensible" />
+        <description value="TabakGebruikStatusCodelijst" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.2.2--20200901000000" />
+      </binding>
+    </element>
+    <element id="Observation.value[x].coding.system">
+      <path value="Observation.value[x].coding.system" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="Observation.value[x].coding.code">
+      <path value="Observation.value[x].coding.code" />
+      <fixedCode value="365980008" />
+    </element>
+    <element id="Observation.note">
+      <path value="Observation.note" />
+      <short value="Comment" />
+      <definition value="Relevant comments on the patient’s use of tobacco." />
+      <alias value="Toelichting" />
+      <max value="1" />
+      <mapping>
+        <identity value="zib-tobaccouse-v3.2-2020EN" />
+        <map value="NL-CM:7.2.3" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:amount">
+      <path value="Observation.component" />
+      <sliceName value="amount" />
+    </element>
+    <element id="Observation.component:amount.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Amount" />
+      <definition value="The number of cigarettes, cigars or grams of rolling tobacco consumed per day, week, month or year." />
+      <alias value="Hoeveelheid" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <mapping>
+        <identity value="zib-tobaccouse-v3.2-2020EN" />
+        <map value="NL-CM:7.2.6" />
+        <comment value="Amount" />
+      </mapping>
+    </element>
+    <element id="Observation.component:packYears">
+      <path value="Observation.component" />
+      <sliceName value="packYears" />
+    </element>
+    <element id="Observation.component:packYears.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="PackYears" />
+      <definition value="The unit indicating the smoker’s total exposure to tobacco smoke. For cigarettes, this is calculated using the number of smoked packs of cigarettes per day (one pack = 20 cigarettes) times the number of years of smoking. For other forms of tobacco, this is usually converted to an equivalent cigarette consumption. Often, only the number of pack years is estimated." />
+      <alias value="PakJaren (concept)" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <mapping>
+        <identity value="zib-tobaccouse-v3.2-2020EN" />
+        <map value="NL-CM:7.2.7" />
+        <comment value="PackYears" />
+      </mapping>
+    </element>
+    <element id="Observation.component:typeOfTobaccoUsed">
+      <path value="Observation.component" />
+      <sliceName value="typeOfTobaccoUsed" />
+    </element>
+    <element id="Observation.component:typeOfTobaccoUsed.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="TypeOfTobaccoUsed" />
+      <definition value="Type of tobacco the patient uses." />
+      <alias value="SoortTabakGebruik" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <mapping>
+        <identity value="zib-tobaccouse-v3.2-2020EN" />
+        <map value="NL-CM:7.2.9" />
+        <comment value="TypeOfTobaccoUsed" />
+      </mapping>
+    </element>
+  </differential>
 </StructureDefinition>
