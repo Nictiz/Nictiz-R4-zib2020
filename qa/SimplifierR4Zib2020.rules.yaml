@@ -1,0 +1,32 @@
+# Validate examples
+- action: validate
+  name: validate-examples
+  status: "Validatig all examples"
+  files: 
+    - /examples/*.xml
+
+# Validate zib conformance resources
+- action: validate
+  name: validate-zib-conformance-resources
+  status: "Validatig zib conformance resources"
+  files: 
+    - /resources/zib/*.xml
+
+# Validate nl-core conformance resources
+- action: validate
+  name: validate-nl-core-conformance-resources
+  status: "Validatig nl-core conformance resources"
+  files: 
+    - /resources/nl-core/*.xml
+
+# example predicate rule
+- name: id-mandatory
+  status: "Checking if all resources have an id"
+  predicate: id.exists()
+  error-message: "Resource {{filepath}} must have an id"
+
+# example unique rule
+- action: unique
+  name: unique-id
+  status: "Checking if all resources have a unique id"
+  unique: id
