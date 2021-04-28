@@ -17,11 +17,9 @@ changed_only=0
 output_redirect="> /dev/null 2> /dev/null"
 while [ "$1" != "" ]; do
     case $1 in
-        --changed-only) shift
-                        changed_only=1
+        --changed-only) changed_only=1
                         ;;
-        --debug)        shift
-                        output_redirect=""
+        --debug)        output_redirect=""
                         ;;
         *)              echo "Usage: $0 [--changed-only] [--debug]"
                         exit 1

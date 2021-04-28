@@ -12,8 +12,8 @@ if [[ $changed_only == 0 ]]; then
     done
   )
 else
-  profiles=$(git diff --name-only origin/main -- resources/zib/* resources/nl-core/*)
-  terminology=$(git diff --name-only origin/main -- resources/zib/terminology/conceptmap-* resources/nl-core/terminology/*)
+  profiles=$(git diff --name-only origin/main -- resources/zib/*.xml resources/nl-core/*.xml)
+  terminology=$(git diff --name-only origin/main -- resources/zib/terminology/*.xml resources/nl-core/terminology/*.xml)
   examples=$(git diff --name-only origin/main -- examples)
 fi
 
