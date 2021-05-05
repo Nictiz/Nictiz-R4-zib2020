@@ -16,6 +16,7 @@ jobs:
           changed_only=0
           source util/qaAutomation/getresources.sh
           echo "::set-output name=zib_profiles::"$zib_profiles
+          echo "::set-output name=zib_extensions::"$zib_extensions
           echo "::set-output name=nlcore_profiles::"$nlcore_profiles
           echo "::set-output name=other_profiles::"$other_profiles
           echo "::set-output name=conceptmaps::"$conceptmaps
@@ -36,11 +37,21 @@ jobs:
           version: "4.0"
           ig: ig/
           recurse: true
-          profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib
+          profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Profiles
           source:  ${{ steps.get-resources.outputs.zib_profiles }}
           fail-at: warning
           ignored-issues: known-issues.yml
-      - name: Validate zib profiles
+      - name: Validate zib extensions
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.14
+        with:
+          version: "4.0"
+          ig: ig/
+          recurse: true
+          profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Extensions
+          source:  ${{ steps.get-resources.outputs.zib_extensions }}
+          fail-at: warning
+          ignored-issues: known-issues.yml
+      - name: Validate nl-core profiles
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.14
         with:
           version: "4.0"
