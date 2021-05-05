@@ -227,8 +227,8 @@
             <constraint>
                 <key value="sd-pg-05"/>
                 <severity value="error"/>
-                <human value="If a ValueSet is bound, a description needs to be present."/>
-                <expression value="valueSet.exists()  implies description.exists()"/>
+                <human value="If a ConceptMap is defined for a binding, it should be mentioned in the description."/>
+                <expression value="valueSet.extension.where(url = 'http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap').exists() implies description.contains('ConceptMap')"/>
                 <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
             </constraint>
         </element>
