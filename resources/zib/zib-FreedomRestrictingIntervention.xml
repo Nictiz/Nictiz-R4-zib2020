@@ -31,6 +31,7 @@
   <differential>
     <element id="Procedure">
       <path value="Procedure" />
+      <short value="FreedomRestrictingIntervention" />
       <alias value="VrijheidsBeperkendeInterventie" />
       <mapping>
         <identity value="hcim-freedomrestrictingintervention-v1.0-2020EN" />
@@ -51,60 +52,17 @@
     <element id="Procedure.extension:legallyCapable">
       <path value="Procedure.extension" />
       <sliceName value="legallyCapable" />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.LegallyCapable" />
       </type>
     </element>
-    <element id="Procedure.extension:legallyCapable.extension">
-      <path value="Procedure.extension.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Procedure.extension:legallyCapable.extension:legallyCapable">
-      <path value="Procedure.extension.extension" />
-      <sliceName value="legallyCapable" />
-    </element>
-    <element id="Procedure.extension:legallyCapable.extension:legallyCapable.value[x]">
-      <path value="Procedure.extension.extension.value[x]" />
-      <slicing>
-        <discriminator>
-          <type value="type" />
-          <path value="$this" />
-        </discriminator>
-      </slicing>
-    </element>
-    <element id="Procedure.extension:legallyCapable.extension:legallyCapable.value[x]:valueBoolean">
-      <path value="Procedure.extension.extension.value[x]" />
-      <sliceName value="valueBoolean" />
-    </element>
-    <element id="Procedure.extension:legallyCapable.extension:legallyCapableComment">
-      <path value="Procedure.extension.extension" />
-      <sliceName value="legallyCapableComment" />
-    </element>
-    <element id="Procedure.extension:legallyCapable.extension:legallyCapableComment.value[x]">
-      <path value="Procedure.extension.extension.value[x]" />
-      <slicing>
-        <discriminator>
-          <type value="type" />
-          <path value="$this" />
-        </discriminator>
-      </slicing>
-    </element>
-    <element id="Procedure.extension:legallyCapable.extension:legallyCapableComment.value[x]:valueString">
-      <path value="Procedure.extension.extension.value[x]" />
-      <sliceName value="valueString" />
-    </element>
     <element id="Procedure.extension:assent">
       <path value="Procedure.extension" />
       <sliceName value="assent" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -114,24 +72,12 @@
     <element id="Procedure.category">
       <path value="Procedure.category" />
       <min value="1" />
-    </element>
-    <element id="Procedure.category.coding">
-      <path value="Procedure.category.coding" />
-      <min value="1" />
-    </element>
-    <element id="Procedure.category.coding.system">
-      <path value="Procedure.category.coding.system" />
-      <min value="1" />
-      <fixedUri value="http://snomed.info/sct" />
-    </element>
-    <element id="Procedure.category.coding.code">
-      <path value="Procedure.category.coding.code" />
-      <min value="1" />
-      <fixedCode value="225317005" />
-    </element>
-    <element id="Procedure.category.coding.display">
-      <path value="Procedure.category.coding.display" />
-      <defaultValueString value="Restriction of movement" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="225317005" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Procedure.code">
       <path value="Procedure.code" />
@@ -157,6 +103,7 @@
           <type value="type" />
           <path value="$this" />
         </discriminator>
+        <rules value="open" />
       </slicing>
     </element>
     <element id="Procedure.performed[x]:performedPeriod">
@@ -215,6 +162,11 @@
       <max value="1" />
       <type>
         <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Procedure" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DiagnosticReport" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-LegalSituation-LegalStatus" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-LegalSituation-Representation" />
       </type>
