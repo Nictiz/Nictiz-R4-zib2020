@@ -17,11 +17,9 @@ changed_only=0
 output_redirect="> /dev/null 2> /dev/null"
 while [ "$1" != "" ]; do
     case $1 in
-        --changed-only) shift
-                        changed_only=1
+        --changed-only) changed_only=1
                         ;;
-        --debug)        shift
-                        output_redirect=""
+        --debug)        output_redirect=""
                         ;;
         *)              echo "Usage: $0 [--changed-only] [--debug]"
                         exit 1
@@ -59,7 +57,8 @@ validate() {
   fi
 }
 
-validate "zib profiles" "$zib_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib"
+validate "zib profiles" "$zib_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Profiles"
+validate "zib extensions" "$zib_extensions" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Extensions"
 validate "nl-core profiles" "$nlcore_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore"
 validate "other profiles" "$other_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions"
 validate "ConceptMaps" "$conceptmaps" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-ConceptMaps"
