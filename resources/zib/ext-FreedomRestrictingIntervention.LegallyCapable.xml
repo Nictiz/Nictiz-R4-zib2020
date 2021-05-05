@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-FreedomRestrictingIntervention.LegallyCapable" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.LegallyCapable" />
+  <name value="ExtFreedomRestrictingInterventionLegallyCapable" />
+  <title value="ext FreedomRestrictingIntervention.LegallyCapable" />
+  <status value="active" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="An extension to add two concepts from FreedomRestrictingIntervention as defined by the Dutch Health and Care Information models (Dutch: Zorginformatiebouwsteen or ZIB) version 3.1, namely LegallyCapable and LeggallyCapableComment, to the Procedure resource. The extension can be seen as an indicator stating whether the patient is deemed capable of overseeing the consequences of a certain procedure, situation or decision." />
+  <purpose value="Freedom-restricting interventions (also called involuntary / compulsory care) are applied to prevent or limit serious harm to the person concerned or others or to stabilize or restore the mental health of the person concerned.&#xD;&#xA;Implementing freedom-restricting interventions is risky and can result in damage to the the person concerned if they are not carefully implemented. Health professionals fulfill an important role in identifying risks, observing the effect of the interventions and any changes to the policy in terms of involuntary/compulsory care. Recording all information on the interventions is of major importance for insight into decision-making, implementing, monitoring and evaluating the freedom-restricting interventions.&#xD;&#xA;The reporting of applied freedom-restricting interventions is also part of the set of quality indicators of the Healthcare and Youth Care Inspectorate" />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-freedomrestrictingintervention-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/FreedomRestrictingIntervention-v1.0(2020EN)" />
+    <name value="zib FreedomRestrictingIntervention-v1.0(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="Procedure" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension.extension">
+      <path value="Extension.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Extension.extension:legallyCapable">
+      <path value="Extension.extension" />
+      <sliceName value="legallyCapable" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Extension.extension:legallyCapable.url">
+      <path value="Extension.extension.url" />
+      <fixedUri value="legallyCapable" />
+    </element>
+    <element id="Extension.extension:legallyCapable.value[x]">
+      <path value="Extension.extension.value[x]" />
+      <short value="LegallyCapable" />
+      <definition value="Indicator stating whether the patient is deemed capable of overseeing the consequences of a certain procedure, situation or decision." />
+      <alias value="Wilsbekwaam" />
+      <min value="1" />
+      <type>
+        <code value="boolean" />
+      </type>
+      <mapping>
+        <identity value="zib-freedomrestrictingintervention-v1.0-2020EN" />
+        <map value="NL-CM:14.6.2" />
+        <comment value="LegallyCapable" />
+      </mapping>
+    </element>
+    <element id="Extension.extension:legallyCapableComment">
+      <path value="Extension.extension" />
+      <sliceName value="legallyCapableComment" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Extension.extension:legallyCapableComment.url">
+      <path value="Extension.extension.url" />
+      <fixedUri value="legallyCapableComment" />
+    </element>
+    <element id="Extension.extension:legallyCapableComment.value[x]">
+      <path value="Extension.extension.value[x]" />
+      <short value="LegallyCapableComment" />
+      <definition value="Comment on the decisions which the patient is legally capable of making." />
+      <alias value="WilsbekwaamToelichting" />
+      <min value="1" />
+      <type>
+        <code value="string" />
+      </type>
+      <mapping>
+        <identity value="zib-freedomrestrictingintervention-v1.0-2020EN" />
+        <map value="NL-CM:14.6.3" />
+        <comment value="LegallyCapableComment" />
+      </mapping>
+    </element>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.LegallyCapable" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <max value="0" />
+    </element>
+  </differential>
+</StructureDefinition>
