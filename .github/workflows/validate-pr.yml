@@ -90,7 +90,7 @@ jobs:
           ignored-issues: known-issues.yml
 
       - name: Install Firely Terminal
-        run: dotnet tool install -g firely.terminal
+        run: dotnet tool install -g --version 2.0.0 firely.terminal
       - name: Create snapshots in JSON format
         run: bash util/qaAutomation/generatezibsnapshots.sh ${{ steps.get-resources.outputs.zib_profiles }}
       - name: Check zib compliance
