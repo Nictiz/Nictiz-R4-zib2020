@@ -32,6 +32,7 @@
     <element id="Condition">
       <path value="Condition" />
       <short value="Problem" />
+      <definition value="A problem describes a situation with regard to an individual’s health and/or welfare. This situation can be described by the patient  himselve (in the form of a complaint) or by their healthprofessional (in the form of a diagnosis, for example)." />
       <alias value="Probleem" />
       <mapping>
         <identity value="zib-problem-v4.4-2020EN" />
@@ -61,6 +62,18 @@
       <short value="VerificationStatus" />
       <definition value="Clinical status of the problem or the diagnosis." />
       <alias value="VerificatieStatus" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="408729009" />
+          <display value="Finding context" />
+        </coding>
+      </patternCodeableConcept>
+      <binding>
+        <strength value="required" />
+        <description value="VerificatieStatusCodelijst" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.5.1.4--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-problem-v4.4-2020EN" />
         <map value="NL-CM:5.1.10" />
@@ -80,11 +93,20 @@
     <element id="Condition.category:problemType">
       <path value="Condition.category" />
       <sliceName value="problemType" />
+      <short value="ProblemType" />
+      <definition value="The type of problem; see the concept description." />
+      <alias value="ProbleemType" />
+      <max value="1" />
       <binding>
         <strength value="extensible" />
         <description value="ProbleemTypeCodelijst" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.5.1.1--20200901000000" />
       </binding>
+      <mapping>
+        <identity value="zib-problem-v4.4-2020EN" />
+        <map value="NL-CM:5.1.8" />
+        <comment value="ProblemType" />
+      </mapping>
     </element>
     <element id="Condition.code">
       <path value="Condition.code" />
@@ -102,6 +124,26 @@
         <comment value="ProblemName" />
       </mapping>
     </element>
+    <element id="Condition.code.extension">
+      <path value="Condition.code.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Condition.code.extension:furtherSpecificationProblemName">
+      <path value="Condition.code.extension" />
+      <sliceName value="furtherSpecificationProblemName" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Problem.FurtherSpecificationProblemName" />
+      </type>
+    </element>
     <element id="Condition.bodySite">
       <path value="Condition.bodySite" />
       <short value="ProblemAnatomicalLocation" />
@@ -111,6 +153,13 @@
         <code value="CodeableConcept" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
       </type>
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="405813007" />
+          <display value="Procedure site - Direct" />
+        </coding>
+      </patternCodeableConcept>
       <mapping>
         <identity value="zib-problem-v4.4-2020EN" />
         <map value="NL-CM:5.1.14" />
