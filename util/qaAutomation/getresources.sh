@@ -19,12 +19,15 @@ fi
 
 # Separate zib from non-zib profiles
 zib_profiles=""
+zib_extensions=""
 nlcore_profiles=""
 other_profiles=""
 for file in $profiles; do
   if [[ -f $file ]]; then
-    if [[ $(basename $file) =~ ^(zib-|ext-.*\.[A-Z]) ]]; then
+    if [[ $(basename $file) =~ ^zib- ]]; then
       zib_profiles="$zib_profiles $file"
+    elif [[ $(basename $file) =~ ^ext-.*\.[A-Z] ]]; then
+      zib_extensions="$zib_extensions $file"
     elif [[ $(basename $file) =~ ^nl-core- ]]; then
       nlcore_profiles="$nlcore_profiles $file"
     else
@@ -48,6 +51,7 @@ done
 
 # Export so we can use these variables in child processes as well
 export zib_profiles
+export zib_extensions
 export nlcore_profiles
 export other_profiles
 export conceptmaps
