@@ -3,7 +3,7 @@
   <id value="nl-core-Encounter" />
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Encounter" />
   <name value="NlCoreEncounter" />
-  <title value="nl core Problem" />
+  <title value="nl core Encounter" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -33,6 +33,9 @@
       <path value="Encounter.participant.individual" />
       <type>
         <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
       </type>
@@ -41,15 +44,12 @@
       <path value="Encounter.reasonReference" />
       <type>
         <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Procedure" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure" />
-      </type>
-    </element>
-    <element id="Encounter.location.location">
-      <path value="Encounter.location.location" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthCareProvider" />
       </type>
     </element>
   </differential>
