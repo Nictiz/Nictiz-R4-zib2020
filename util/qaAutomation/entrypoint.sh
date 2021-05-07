@@ -71,7 +71,7 @@ if [[ -z $zib_profiles ]]; then
   echo "No input, skipping"
 else
   echo "Generating snapshots"
-  eval /scripts/generatezibsnapshots.sh $zib_profiles $output_redirect
+  eval /scripts/generatezibsnapshots.sh $zib_profiles $zib_extensions $output_redirect
 
   if [ $? -eq 0 ]; then
     node $tools_dir/zib-compliance-fhir/index.js -m qa/zibs2020.max -z 2020 -r -l 2 -f text --fail-at warning --zib-overrides known-issues.yml snapshots/*json
