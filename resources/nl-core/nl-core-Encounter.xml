@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-Encounter" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Encounter" />
+  <name value="NlCoreEncounter" />
+  <title value="nl core Problem" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A contact is any interaction, regardless of the situation, between a patient and the healthcare provider, in which the healthcare provider has primary responsibility for diagnosing, evaluating and treating the patient’s condition and informing the patient. These can be visits, appointments or non face-to-face interactions.&#xD;&#xA;&#xD;&#xA;Contacts can be visits to the general practitioner or other practices, home visits, admissions (in hospitals, nursing homes or care homes, psychiatric institutions or convalescent homes) or other relevant contacts. This includes past and future contacts." />
+  <purpose value="A derived profile from [zib-Encounter](http://nictiz.nl/fhir/StructureDefinition/zib-Encounter) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-encounter-v4.0.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/Encounter-v4.0.1(2020EN)" />
+    <name value="zib Encounter-v4.0.1(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Encounter" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Encounter.participant.individual">
+      <path value="Encounter.participant.individual" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
+      </type>
+    </element>
+    <element id="Encounter.reasonReference">
+      <path value="Encounter.reasonReference" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure" />
+      </type>
+    </element>
+    <element id="Encounter.location.location">
+      <path value="Encounter.location.location" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthCareProvider" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
