@@ -62,10 +62,11 @@
       <alias value="ContactMet" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
       </type>
       <mapping>
         <identity value="zib-encounter-v4.0.1-2020EN" />
@@ -95,6 +96,17 @@
         <comment value="EndDateTime" />
       </mapping>
     </element>
+    <element id="Encounter.reasonCode.text">
+      <path value="Encounter.reasonCode.text" />
+      <short value="DeviatingResult" />
+      <definition value="A deviating result which serves as the reason for the contact." />
+      <alias value="AfwijkendeUitslag" />
+      <mapping>
+        <identity value="zib-encounter-v4.0.1-2020EN" />
+        <map value="NL-CM:15.1.12" />
+        <comment value="DeviatingResult" />
+      </mapping>
+    </element>
     <element id="Encounter.reasonReference">
       <path value="Encounter.reasonReference" />
       <short value="Problem, Procedure" />
@@ -102,10 +114,12 @@
       <alias value="Verrichting" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Procedure" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure" />
       </type>
       <mapping>
         <identity value="zib-encounter-v4.0.1-2020EN" />
@@ -157,8 +171,8 @@
       <alias value="Locatie" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider" />
       </type>
       <mapping>
         <identity value="zib-encounter-v4.0.1-2020EN" />
