@@ -95,10 +95,15 @@
     </element>
     <element id="Encounter.reasonReference">
       <path value="Encounter.reasonReference" />
+      <short value="Problem, Procedure" />
+      <alias value="Probleem" />
+      <alias value="Verrichting" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Procedure" />
       </type>
       <mapping>
         <identity value="zib-encounter-v4.0.1-2020EN" />
@@ -151,6 +156,7 @@
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
       </type>
       <mapping>
         <identity value="zib-encounter-v4.0.1-2020EN" />
