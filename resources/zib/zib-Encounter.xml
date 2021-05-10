@@ -15,13 +15,18 @@
     </telecom>
   </contact>
   <description value="A contact is any interaction, regardless of the situation, between a patient and the healthcare provider, in which the healthcare provider has primary responsibility for diagnosing, evaluating and treating the patient’s condition and informing the patient. These can be visits, appointments or non face-to-face interactions.&#xD;&#xA;&#xD;&#xA;Contacts can be visits to the general practitioner or other practices, home visits, admissions (in hospitals, nursing homes or care homes, psychiatric institutions or convalescent homes) or other relevant contacts. This includes past and future contacts." />
-  <purpose value="This Encounter resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Encounter v4.0.1(2020)](https://zibs.nl/wiki/Encounter-v4.0.1(2020EN))." />
+  <purpose value="This Encounter resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Encounter v4.0.1(2020)](https://zibs.nl/wiki/Encounter-v4.0.1(2020EN)) and [HealthProfessional v3.5 (2020)](https://zibs.nl/wiki/HealthProfessional-v3.5(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
     <identity value="zib-encounter-v4.0.1-2020EN" />
     <uri value="https://zibs.nl/wiki/Encounter-v4.0.1(2020EN)" />
     <name value="zib Encounter-v4.0.1(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-healthprofessional-v3.5-2020EN" />
+    <uri value="https://zibs.nl/wiki/HealthProfessional-v3.5(2020EN)" />
+    <name value="zib HealthProfessional-v3.5(2020EN)" />
   </mapping>
   <kind value="resource" />
   <abstract value="true" />
@@ -53,6 +58,17 @@
         <identity value="zib-encounter-v4.0.1-2020EN" />
         <map value="NL-CM:15.1.2" />
         <comment value="ContactType" />
+      </mapping>
+    </element>
+    <element id="Encounter.participant.type">
+      <path value="Encounter.participant.type" />
+      <short value="HealthProfessionalRole" />
+      <definition value="The role the health professional fulfils in the healthcare process. For health professionals, this could be for example attender, referrer or performer." />
+      <alias value="ZorgverlenerRol" />
+      <mapping>
+        <identity value="zib-healthprofessional-v3.5-2020EN" />
+        <map value="NL-CM:17.1.5" />
+        <comment value="HealthProfessionalRole" />
       </mapping>
     </element>
     <element id="Encounter.participant.individual">
@@ -107,6 +123,24 @@
         <comment value="DeviatingResult" />
       </mapping>
     </element>
+    <element id="Encounter.reasonCode.text.extension">
+      <path value="Encounter.reasonCode.text.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Encounter.reasonCode.text.extension:commentContactReason">
+      <path value="Encounter.reasonCode.text.extension" />
+      <sliceName value="commentContactReason" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Encounter.CommentContactReason" />
+      </type>
+    </element>
     <element id="Encounter.reasonReference">
       <path value="Encounter.reasonReference" />
       <short value="Problem, Procedure" />
@@ -131,6 +165,24 @@
         <map value="NL-CM:15.1.11" />
         <comment value="Procedure" />
       </mapping>
+    </element>
+    <element id="Encounter.reasonReference.extension">
+      <path value="Encounter.reasonReference.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Encounter.reasonReference.extension:commentContactReason">
+      <path value="Encounter.reasonReference.extension" />
+      <sliceName value="commentContactReason" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Encounter.CommentContactReason" />
+      </type>
     </element>
     <element id="Encounter.hospitalization.admitSource">
       <path value="Encounter.hospitalization.admitSource" />
