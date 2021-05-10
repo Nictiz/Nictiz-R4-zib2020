@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-Encounter.CommentContactReason" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-Encounter.CommentContactReason" />
+  <name value="ExtEncounterCommentContactReason" />
+  <title value="ext Encounter.CommentContactReason" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="An extension about the explanation of the reason for the contact." />
+  <purpose value="This extension represents the CommentContactReason concept of [zib Encounter v4.0.1(2020)](https://zibs.nl/wiki/Encounter-v4.0.1(2020EN))" />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-encounter-v4.0.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/Encounter-v4.0.1(2020EN)" />
+    <name value="zib Encounter-v4.0.1(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="true" />
+  <context>
+    <type value="element" />
+    <expression value="Encounter.reasonReference" />
+  </context>
+  <context>
+    <type value="element" />
+    <expression value="Encounter.reasonCode.text" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-Encounter.CommentContactReason" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="CommentContactReason" />
+      <definition value="Explanation of the reason for the contact." />
+      <alias value="ToelichtingRedenContact" />
+      <type>
+        <code value="string" />
+      </type>
+      <mapping>
+        <identity value="zib-encounter-v4.0.1-2020EN" />
+        <map value="NL-CM:15.1.17" />
+        <comment value="CommentContactReason" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
