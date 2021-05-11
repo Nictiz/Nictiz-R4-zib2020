@@ -15,6 +15,7 @@
     </telecom>
   </contact>
   <description value="A person’s body height." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) BodyHeight v3.1.1(2020)](https://zibs.nl/wiki/BodyHeight-v3.1.1(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -65,6 +66,10 @@
       <type>
         <code value="Quantity" />
       </type>
+      <patternQuantity>
+        <system value="http://loinc.org" />
+        <code value="8302-2" />
+      </patternQuantity>
       <mapping>
         <identity value="zib-bodyheight-v3.3.1-2020EN" />
         <map value="NL-CM:12.2.2" />
@@ -82,6 +87,47 @@
         <map value="NL-CM:12.2.3" />
         <comment value="Comment" />
       </mapping>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:position">
+      <path value="Observation.component" />
+      <sliceName value="position" />
+      <short value="Position" />
+      <definition value="The person's position during the measurement." />
+      <alias value="Positie" />
+      <max value="1" />
+      <mapping>
+        <identity value="zib-bodyheight-v3.3.1-2020EN" />
+        <map value="NL-CM:12.2.5" />
+        <comment value="Position" />
+      </mapping>
+    </element>
+    <element id="Observation.component:position.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="425260001" />
+          <display value="Body position for height measurement" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:position.code.coding">
+      <path value="Observation.component.code.coding" />
+      <binding>
+        <strength value="extensible" />
+        <description value="PositieCodelijst" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.2.1--20200901000000" />
+      </binding>
     </element>
   </differential>
 </StructureDefinition>
