@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-Procedure-ServiceRequest"/>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-ServiceRequest"/>
+  <name value="ZibProcedureServiceRequest"/>
+  <title value="zib Procedure ServiceRequest"/>
+  <status value="draft"/>
+  <publisher value="Nictiz"/>
+  <contact>
+    <name value="Nictiz"/>
+    <telecom>
+      <system value="email"/>
+      <value value="info@nictiz.nl"/>
+      <use value="work"/>
+    </telecom>
+  </contact>
+  <purpose value="This ServiceRequest resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) ]()."/>
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise."/>
+  <fhirVersion value="4.0.1"/>
+  <mapping>
+    <identity value="zib-Procedure-v5.2-2020EN"/>
+    <uri value="https://zibs.nl/wiki/Procedure-v5.2(2020EN)"/>
+    <name value="zib Procedure-v5.2(2020EN)"/>
+  </mapping>
+  <kind value="resource"/>
+  <abstract value="true"/>
+  <type value="ServiceRequest"/>
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/ServiceRequest"/>
+  <derivation value="constraint"/>
+  <differential>
+    <element id="ServiceRequest">
+      <path value="ServiceRequest"/>
+      <short value="Procedure"/>
+      <definition value="Root concept of the Procedure information model. This root concept contains all data elements of the Procedure information model."/>
+      <alias value="Verrichting"/>
+      <mapping>
+        <identity value="zib-Procedure-v5.2-2020EN"/>
+        <map value="NL-CM:14.1.1"/>
+        <comment value="Procedure"/>
+      </mapping>
+    </element>
+    <element id="ServiceRequest.code">
+      <path value="ServiceRequest.code"/>
+      <short value="ProcedureType"/>
+      <definition value="The name of the procedure.Choices are the DHD procedure thesaurus,  the procedures file (CBV), the Care activities file (NZa), the Dutch Mental Health and Addiction Care procedures list (GGZ) and the procedures list of the Dutch College of General Practitioners (NHG)."/>
+      <alias value="VerrichtingType"/>
+      <binding>
+        <strength value="required"/>
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.19--20200901000000"/>
+      </binding>
+      <mapping>
+        <identity value="zib-Procedure-v5.2-2020EN"/>
+        <map value="NL-CM:14.1.4"/>
+        <comment value="ProcedureType"/>
+      </mapping>
+    </element>
+    <element id="ServiceRequest.orderDetail">
+      <path value="ServiceRequest.orderDetail"/>
+      <short value="ProcedureMethod"/>
+      <definition value="the method or technique that was used to perform the procedure, e.g. approach, lavage, pressuring, ets"/>
+      <alias value="VerrichtingMethode"/>
+      <binding>
+        <strength value="required"/>
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.14.1.4--20200901000000"/>
+      </binding>
+      <mapping>
+        <identity value="zib-Procedure-v5.2-2020EN"/>
+        <map value="NL-CM:14.1.12"/>
+        <comment value="ProcedureMethod"/>
+      </mapping>
+    </element>
+    <element id="ServiceRequest.occurrence[x]">
+      <path value="ServiceRequest.occurrence[x]"/>
+      <short value="ProcedureStartDate / ProcedureEndDate"/>
+      <definition value="* The (desired) start date (and if possible start time) of the procedure. A ‘vague’ date, such as only the year, is permitted. &#xD;&#xA;* The element offers the option to indicate the start of the period of a series of related procedures. &#xD;&#xA;* The end date (and if possible end time) of the procedure. A ‘vague’ date, such as only the year, is permitted. &#xD;&#xA;* The element offers the option to indicate the end of the period of a series of related procedures. The end date element is only used for a procedures that takes some time and is then always applied. If the procedure still continues, the value is left empty. For instantaneous or very short lasting procedures the element is omitted."/>
+      <alias value="VerrichtingStartDatum"/>
+      <alias value="VerrichtingEindDatum"/>
+      <mapping>
+        <identity value="zib-Procedure-v5.2-2020EN"/>
+        <map value="NL-CM:14.1.2"/>
+        <comment value="ProcedureStartDate"/>
+      </mapping>
+      <mapping>
+        <identity value="zib-Procedure-v5.2-2020EN"/>
+        <map value="NL-CM:14.1.3"/>
+        <comment value="ProcedureEndDate"/>
+      </mapping>
+    </element>
+    <element id="ServiceRequest.requester">
+      <path value="ServiceRequest.requester"/>
+      <short value="Requester"/>
+      <definition value="The healthcare provider who requested the procedure."/>
+      <alias value="Aanvrager"/>
+      <mapping>
+        <identity value="zib-Procedure-v5.2-2020EN"/>
+        <map value="NL-CM:14.1.10"/>
+        <comment value="Requester"/>
+      </mapping>
+    </element>
+    <element id="ServiceRequest.performer">
+      <path value="ServiceRequest.performer"/>
+      <short value="Performer"/>
+      <definition value="The healthcare provider who carried out or will carry out the procedure. In most cases, only the medical specialty is entered, and not the name of the healthcare provider."/>
+      <alias value="Uitvoerder"/>
+      <mapping>
+        <identity value="zib-Procedure-v5.2-2020EN"/>
+        <map value="NL-CM:14.1.6"/>
+        <comment value="Performer"/>
+      </mapping>
+    </element>
+    <element id="ServiceRequest.locationReference">
+      <path value="ServiceRequest.locationReference"/>
+      <short value="Location"/>
+      <definition value="The healthcare center where the procedure was, is or or will be carried out."/>
+      <alias value="Locatie"/>
+      <max value="1"/>
+      <mapping>
+        <identity value="zib-Procedure-v5.2-2020EN"/>
+        <map value="NL-CM:14.1.5"/>
+        <comment value="Location"/>
+      </mapping>
+    </element>
+    <element id="ServiceRequest.reasonReference">
+      <path value="ServiceRequest.reasonReference"/>
+      <short value="Indication"/>
+      <definition value="The indication is the reason for the procedure."/>
+      <alias value="Indicatie"/>
+      <mapping>
+        <identity value="zib-Procedure-v5.2-2020EN"/>
+        <map value="NL-CM:14.1.9"/>
+        <comment value="Indication"/>
+      </mapping>
+    </element>
+    <element id="ServiceRequest.supportingInfo">
+      <path value="ServiceRequest.supportingInfo"/>
+      <short value="MedicalDevice"/>
+      <definition value="The product, the placing of which in or on the body is the purpose of the procedure, for example placing an implant."/>
+      <alias value="MedischHulpmiddel"/>
+      <mapping>
+        <identity value="zib-Procedure-v5.2-2020EN"/>
+        <map value="NL-CM:14.1.7"/>
+        <comment value="MedicalDevice"/>
+      </mapping>
+    </element>
+    <element id="ServiceRequest.bodySite">
+      <path value="ServiceRequest.bodySite"/>
+      <short value="ProcedureAnatomicalLocation"/>
+      <definition value="Anatomical location which is the focus of the procedure."/>
+      <alias value="VerrichtingAnatomischeLocatie"/>
+      <max value="1"/>
+      <type>
+        <code value="CodeableConcept"/>
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation"/>
+      </type>
+      <mapping>
+        <identity value="zib-Procedure-v5.2-2020EN"/>
+        <map value="NL-CM:14.1.13"/>
+        <comment value="ProcedureAnatomicalLocation"/>
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
