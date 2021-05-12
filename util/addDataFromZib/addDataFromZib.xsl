@@ -124,7 +124,18 @@
                 </xsl:otherwise>
             </xsl:choose>
             
-            <xsl:apply-templates select="f:keyword | f:fhirVersion | f:mapping | f:kind | f:abstract | f:context | f:contextInvariant | f:type | f:baseDefinition | f:derivation | f:snapshot | f:differential"/>
+            <xsl:apply-templates select="f:keyword | f:fhirVersion | f:mapping | f:kind | f:abstract"/>
+            
+            <xsl:choose>
+                <xsl:when test="f:abstract/@value = 'false' and starts-with($id, 'zib-')">
+                    <abstract value="true"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="f:abstract"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            
+            <xsl:apply-templates select="f:context | f:contextInvariant | f:type | f:baseDefinition | f:derivation | f:snapshot | f:differential"/>
         </xsl:copy>
     </xsl:template>
     
