@@ -8,7 +8,7 @@ This folders contains the pieces to run the automated QA tools. These tools are 
 
 ## addDataFromZib
 
-Metadata (`url`, `name`, `title`, `status`, `publisher`, `contact`, `purpose`, `copyright`) following the profiling guidelines is added if not present or when containing Forge's default values. An `id` and a `mapping` to a zib following the guidelines should be present for this to work. Notable exception is `definition` - this should still be added by hand.
+Metadata (`url`, `name`, `title`, `status`, `publisher`, `contact`, `purpose`, `copyright`) following the profiling guidelines is added if not present or when containing Forge's default values to both zib and nl-core profiles. An `id` (in both zib and nl-core profiles) and a `mapping` to a zib (only in zib profiles) following the guidelines should be present for this to work. Notable exception is `definition` - this should still be added by hand.
 
 All unused `mapping` elements that are added by default by Forge are removed.
 
