@@ -123,7 +123,7 @@
                 </xsl:otherwise>
             </xsl:choose>
             
-            <xsl:apply-templates select="f:keyword | f:fhirVersion | f:mapping | f:kind | f:abstract"/>
+            <xsl:apply-templates select="f:keyword | f:fhirVersion | f:mapping | f:kind"/>
             
             <xsl:choose>
                 <xsl:when test="f:abstract/@value = 'false' and starts-with($id, 'zib-')">
