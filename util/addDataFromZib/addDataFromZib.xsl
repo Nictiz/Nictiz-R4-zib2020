@@ -27,7 +27,7 @@
             
             <!-- Add or modify URL -->
             <xsl:choose>
-                <xsl:when test="(not(f:url) or starts-with(f:url/@value, 'http://example.org/')) and (starts-with($id, 'zib-') or starts-with($id, 'nl-core-'))">
+                <xsl:when test="(not(f:url) or starts-with(f:url/@value, 'http://example.org/')  or starts-with(f:url/@value, 'https://example.org/')) and (starts-with($id, 'zib-') or starts-with($id, 'nl-core-'))">
                     <url value="http://nictiz.nl/fhir/StructureDefinition/{$id}"/>
                 </xsl:when>
                 <xsl:otherwise>
