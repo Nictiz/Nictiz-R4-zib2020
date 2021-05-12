@@ -47,7 +47,7 @@
                 </xsl:otherwise>
             </xsl:choose>
             <xsl:choose>
-                <xsl:when test="not(f:title)">
+                <xsl:when test="not(f:title) and (starts-with($id, 'zib-') or starts-with($id, 'nl-core-'))">
                     <title value="{replace($id,'-',' ')}"/>
                 </xsl:when>
                 <xsl:otherwise>
