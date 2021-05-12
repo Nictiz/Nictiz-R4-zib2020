@@ -37,23 +37,6 @@
   <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions" />
   <derivation value="constraint" />
   <differential>
-    <element id="StructureDefinition">
-      <path value="StructureDefinition" />
-      <constraint>
-        <key value="sd-zpg-01" />
-        <severity value="error" />
-        <human value="StuctureDefinition.id should start with 'zib-' or 'ext-'" />
-        <expression value="StructureDefinition.id.startsWith('zib-') or StructureDefinition.id.startsWith('ext-')" />
-        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
-      </constraint>
-      <constraint>
-        <key value="sd-zpg-07"/>
-        <severity value="warning"/>
-        <human value="If the StructureDefinition is not an extension a mapping declaration should be present."/>
-        <expression value="context.exists().not() implies mapping.exists()"/>
-        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
-      </constraint>
-    </element>
     <element id="StructureDefinition.purpose">
       <path value="StructureDefinition.purpose" />
       <min value="1" />
@@ -65,32 +48,31 @@
         <severity value="error" />
         <human value="Zib mapping name and identity should follow the profiling guidelines" />
         <expression value="name.lower().startsWith('zib') implies (name.startsWith('zib ') and identity.startsWith('zib-'))" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib" />
       </constraint>
       <constraint>
         <key value="sd-zpg-05" />
         <severity value="error" />
         <human value="The URI for zib mappings should align with the mapping name" />
         <expression value="name.lower().startsWith('zib') implies uri = 'https://zibs.nl/wiki/' + name.replaceMatches('.* ', '')" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib" />
       </constraint>
       <constraint>
         <key value="sd-zpg-06" />
         <severity value="error" />
         <human value="The mapping identity and mapping name for zibs should align according to the profiling guidelines" />
         <expression value="identity.lower().startsWith('zib') implies identity = name.replaceMatches('\\(.*', '').replace(' ', '-').lower() + name.replaceMatches('.*\\((?&lt;suffix&gt;.*)\\)', '-${suffix}')" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib" />
       </constraint>
     </element>
-    <element id="StructureDefinition.abstract">
-      <path value="StructureDefinition.abstract" />
-      <fixedBoolean value="true" />
-    </element>
     <element id="StructureDefinition.differential.element">
-      <path value="StructureDefinition.differential.element"/>
+      <path value="StructureDefinition.differential.element" />
       <constraint>
-        <key value="sd-zpg-08"/>
-        <severity value="error"/>
-        <human value="If an alias exists, mapping.map needs to be present."/>
-        <expression value="alias.exists() implies mapping.map.exists()"/>
-        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
+        <key value="sd-zpg-08" />
+        <severity value="error" />
+        <human value="If an alias exists, mapping.map needs to be present." />
+        <expression value="alias.exists() implies mapping.map.exists()" />
+        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
       </constraint>
     </element>
     <element id="StructureDefinition.differential.element.type">

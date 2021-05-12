@@ -15,7 +15,7 @@
     
     <xsl:output omit-xml-declaration="yes"/>
     
-    <xsl:param name="inputdir">../../resources/</xsl:param>
+    <xsl:param name="inputdir">../../resources/zib/</xsl:param>
     <xsl:param name="outputdir">
         <xsl:choose>
             <xsl:when test="not(contains($inputdir, '/'))">
