@@ -108,7 +108,7 @@
                     <purpose value="This {f:type/@value} resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) {replace($mapping/f:name/@value, 'zib ','')}]({$mapping/f:uri/@value})."/>
                 </xsl:when>
                 <xsl:when test="not(f:purpose) and starts-with($id, 'nl-core-')">
-                    <purpose value="A derived profile from [{replace($id, 'nl-core-','zib-')}]({f:baseDefinition/@value}) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib."/>
+                    <purpose value="A derived profile from [{replace($id, 'nl-core-','zib-')}](http://nictiz.nl/fhir/StructureDefinition/{replace($id, 'nl-core-','zib-')}) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib."/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:apply-templates select="f:purpose"/>
@@ -134,7 +134,15 @@
                 </xsl:otherwise>
             </xsl:choose>
             
-            <xsl:apply-templates select="f:context | f:contextInvariant | f:type | f:baseDefinition | f:derivation | f:snapshot | f:differential"/>
+            <xsl:apply-templates select="f:context | f:contextInvariant | f:type"/>
+            
+            <xsl:choose>
+                <xsl:when test="starts-with($id, 'nl-core-') and starts-with(f:baseDefinition/@value, 'http://hl7,org')">
+                    <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/{replace($id, 'nl-core-','zib-')}"/>
+                </xsl:when>
+            </xsl:choose>
+            
+            <xsl:apply-templates select="f:derivation | f:snapshot | f:differential"/>
         </xsl:copy>
     </xsl:template>
     
