@@ -39,7 +39,7 @@
             
             <!-- Add or modify name, title, status -->
             <xsl:choose>
-                <xsl:when test="(not(f:url) or f:name/@value = concat('My', f:type/@value)) and (starts-with($id, 'zib-') or starts-with($id, 'nl-core-'))">
+                <xsl:when test="(not(f:url) or starts-with(f:name/@value, 'My')) and (starts-with($id, 'zib-') or starts-with($id, 'nl-core-'))">
                     <name value="{replace(concat(upper-case(substring($id,1,1)), substring($id, 2)),'-','')}"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -95,17 +95,20 @@
                     <publisher value="Nictiz"/>
                 </xsl:when>
                 <xsl:otherwise>-->
-                    <xsl:apply-templates select="f:description"/>
-                <!--</xsl:otherwise>
+            <xsl:apply-templates select="f:description"/>
+            <!--</xsl:otherwise>
             </xsl:choose>-->
             
             <xsl:apply-templates select="f:useContext | f:jurisdiction"/>
             
             <!-- Add purpose, copyright -->
             <xsl:choose>
-                <xsl:when test="not(f:purpose) and f:mapping[f:identity/starts-with(@value, 'zib-')]">
+                <xsl:when test="not(f:purpose) and starts-with($id, 'zib-')">
                     <xsl:variable name="mapping" select="f:mapping[f:identity/starts-with(@value, 'zib-')][1]"/>
                     <purpose value="This {f:type/@value} resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) {replace($mapping/f:name/@value, 'zib ','')}]({$mapping/f:uri/@value})."/>
+                </xsl:when>
+                <xsl:when test="not(f:purpose) and starts-with($id, 'nl-core-')">
+                    <purpose value="A derived profile from [{replace($id, 'nl-core-','zib-')}]({f:baseDefinition/@value}) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib."/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:apply-templates select="f:purpose"/>
@@ -128,6 +131,8 @@
     <xsl:template match="f:StructureDefinition/f:mapping">
         <xsl:choose>
             <xsl:when test="f:identity/@value = ('workflow','sct-concept','v2','rim','w5','sct-attr')"/>
+            <!-- Remove zib mapping element in nl-core profiles if it is not used -->
+            <xsl:when test="starts-with(parent::f:StructureDefinition/f:id/@value, 'nl-core-') and f:identity/@value[starts-with(., 'zib-')][not(. = parent::f:StructureDefinition//f:element/f:mapping/f:identity/@value)]"/>
             <xsl:otherwise>
                 <xsl:copy>
                     <xsl:apply-templates select="node()|@*"/>
