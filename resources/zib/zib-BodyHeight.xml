@@ -44,7 +44,6 @@
       <short value="HeightDateTime" />
       <definition value="Date and if possible time of body height measurement." />
       <alias value="LengteDatumTijd" />
-      <min value="1" />
       <type>
         <code value="dateTime" />
       </type>
@@ -62,19 +61,22 @@
       <short value="HeightValue" />
       <definition value="The element contains the value of the measured body height.  &#xD;&#xA;Body height is the height of the human body from heel to scalp, generally measured when standing. Body height is measured in a stretched, horizontal position for very small children or patients that are unable to stand." />
       <alias value="LengteWaarde" />
-      <min value="1" />
       <type>
         <code value="Quantity" />
       </type>
-      <patternQuantity>
-        <system value="http://loinc.org" />
-        <code value="8302-2" />
-      </patternQuantity>
       <mapping>
         <identity value="zib-bodyheight-v3.1.1-2020EN" />
         <map value="NL-CM:12.2.2" />
         <comment value="HeightValue" />
       </mapping>
+    </element>
+    <element id="Observation.value[x].system">
+      <path value="Observation.value[x].system" />
+      <fixedUri value="http://loinc.org" />
+    </element>
+    <element id="Observation.value[x].code">
+      <path value="Observation.value[x].code" />
+      <fixedCode value="8302-2" />
     </element>
     <element id="Observation.note">
       <path value="Observation.note" />
