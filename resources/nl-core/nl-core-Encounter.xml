@@ -29,14 +29,14 @@
   <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter" />
   <derivation value="constraint" />
   <differential>
+    <element id="Encounter">
+      <path value="Encounter" />
+      <alias value="nl-core-Encounter" />
+    </element>
     <element id="Encounter.participant.individual">
       <path value="Encounter.participant.individual" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
       </type>
     </element>
