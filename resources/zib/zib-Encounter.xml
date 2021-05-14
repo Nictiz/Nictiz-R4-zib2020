@@ -37,7 +37,6 @@
     <element id="Encounter">
       <path value="Encounter" />
       <short value="Encounter" />
-      <comment value="Start date and end date can be aligned if only one date is known." />
       <alias value="Contact" />
       <mapping>
         <identity value="zib-encounter-v4.0.1-2020EN" />
@@ -52,8 +51,12 @@
       <alias value="ContactType" />
       <binding>
         <strength value="extensible" />
-        <description value="ContactTypeCodelijst" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.15.1.1--20200901000000" />
+        <description value="Use ConceptMap 'ContactTypeCodeLijst-to-ActEncounterCode' to translate zib terminology to profile terminology in ValueSet 'ActEncounterCode'&quot;" />
+        <valueSet value="http://terminology.hl7.org/ValueSet/v3-ActEncounterCode">
+          <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
+            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/ContactTypeCodeLijst-to-ActEncounterCode" />
+          </extension>
+        </valueSet>
       </binding>
       <mapping>
         <identity value="zib-encounter-v4.0.1-2020EN" />
@@ -61,7 +64,21 @@
         <comment value="ContactType" />
       </mapping>
     </element>
-    <element id="Encounter.participant.type">
+    <element id="Encounter.participant">
+      <path value="Encounter.participant" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="individual.resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Encounter.participant:healthProfessional">
+      <path value="Encounter.participant" />
+      <sliceName value="healthProfessional" />
+    </element>
+    <element id="Encounter.participant:healthProfessional.type">
       <path value="Encounter.participant.type" />
       <short value="HealthProfessionalRole" />
       <definition value="The role the health professional fulfils in the healthcare process. For health professionals, this could be for example attender, referrer or performer." />
@@ -72,17 +89,18 @@
         <comment value="HealthProfessionalRole" />
       </mapping>
     </element>
-    <element id="Encounter.participant.individual">
+    <element id="Encounter.participant:healthProfessional.individual">
       <path value="Encounter.participant.individual" />
       <short value="ContactWith" />
       <definition value="The health professional with whom the contact took or will take place. The specialty and role of the health professional can be entered in the HealthProfessional information model." />
       <alias value="ContactMet" />
       <type>
         <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-HealthProfessionalReference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/pattern-HealthProfessionalReference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
       </type>
       <mapping>
         <identity value="zib-encounter-v4.0.1-2020EN" />
