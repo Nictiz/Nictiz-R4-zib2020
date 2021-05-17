@@ -130,6 +130,7 @@
             
             <xsl:apply-templates select="f:context | f:contextInvariant | f:type"/>
             
+            <!-- Edits the baseDefinition from core to zib if an nl-core profile was not created using the 'Derive' button in Forge -->
             <xsl:choose>
                 <xsl:when test="starts-with($id, 'nl-core-') and starts-with(f:baseDefinition/@value, 'http://hl7.org')">
                     <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/{replace($id, 'nl-core-','zib-')}"/>
