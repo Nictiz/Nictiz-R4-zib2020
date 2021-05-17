@@ -39,6 +39,14 @@
         <comment value="BodyWeight" />
       </mapping>
     </element>
+    <element id="Observation.code.coding.system">
+      <path value="Observation.code.coding.system" />
+      <fixedUri value="http://loinc.org" />
+    </element>
+    <element id="Observation.code.coding.code">
+      <path value="Observation.code.coding.code" />
+      <fixedCode value="29463-7" />
+    </element>
     <element id="Observation.effective[x]">
       <path value="Observation.effective[x]" />
       <short value="WeightDateTime" />
@@ -112,13 +120,32 @@
         </coding>
       </patternCodeableConcept>
     </element>
-    <element id="Observation.component:clothing.code.coding">
-      <path value="Observation.component.code.coding" />
+    <element id="Observation.component:clothing.code.coding.system">
+      <path value="Observation.component.code.coding.system" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="Observation.component:clothing.code.coding.code">
+      <path value="Observation.component.code.coding.code" />
+      <fixedCode value="248159006" />
+    </element>
+    <element id="Observation.component:clothing.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Clothing" />
+      <definition value="The clothes the patient was wearing at the time of the measurement." />
+      <alias value="Kleding" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
       <binding>
         <strength value="required" />
         <description value="KledingCodelijst" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.1.1--20200901000000" />
       </binding>
+      <mapping>
+        <identity value="zib-bodyweight-v3.2-2020EN" />
+        <map value="NL-CM:12.1.5" />
+        <comment value="Clothing" />
+      </mapping>
     </element>
   </differential>
 </StructureDefinition>
