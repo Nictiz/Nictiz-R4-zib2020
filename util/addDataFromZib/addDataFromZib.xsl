@@ -137,7 +137,22 @@
                 </xsl:when>
             </xsl:choose>
             
-            <xsl:apply-templates select="f:derivation | f:snapshot | f:differential"/>
+            <xsl:apply-templates select="f:derivation"/>
+            
+            <!-- Add id as alias to root of nl-core profile if no differential or snapshot is fount -->
+            <xsl:choose>
+                <xsl:when test="not(f:differential) and not(f:snapshot) and starts-with($id, 'nl-core-')">
+                    <differential>
+                        <element id="{f:type/@value}">
+                            <path value="{f:type/@value}" />
+                            <alias value="{$id}" />
+                        </element>
+                    </differential>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="f:differential | f:snapshot"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:copy>
     </xsl:template>
     
