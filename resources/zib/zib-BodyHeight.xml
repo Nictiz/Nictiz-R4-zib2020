@@ -100,15 +100,7 @@
     <element id="Observation.component:position">
       <path value="Observation.component" />
       <sliceName value="position" />
-      <short value="Position" />
-      <definition value="The person's position during the measurement." />
-      <alias value="Positie" />
       <max value="1" />
-      <mapping>
-        <identity value="zib-bodyheight-v3.1.1-2020EN" />
-        <map value="NL-CM:12.2.5" />
-        <comment value="Position" />
-      </mapping>
     </element>
     <element id="Observation.component:position.code">
       <path value="Observation.component.code" />
@@ -122,11 +114,17 @@
     </element>
     <element id="Observation.component:position.value[x]">
       <path value="Observation.component.value[x]" />
-      <binding>
-        <strength value="extensible" />
-        <description value="PositieCodelijst" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.2.1--20200901000000" />
-      </binding>
+      <short value="Position" />
+      <definition value="The person's position during the measurement." />
+      <alias value="Positie" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mapping>
+        <identity value="zib-bodyheight-v3.1.1-2020EN" />
+        <map value="NL-CM:12.2.5" />
+        <comment value="Position" />
+      </mapping>
     </element>
   </differential>
 </StructureDefinition>
