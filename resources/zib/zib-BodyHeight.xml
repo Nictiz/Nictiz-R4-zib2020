@@ -39,6 +39,14 @@
         <comment value="BodyHeight" />
       </mapping>
     </element>
+    <element id="Observation.code.coding.system">
+      <path value="Observation.code.coding.system" />
+      <fixedUri value="http://loinc.org" />
+    </element>
+    <element id="Observation.code.coding.code">
+      <path value="Observation.code.coding.code" />
+      <fixedCode value="8302-2" />
+    </element>
     <element id="Observation.effective[x]">
       <path value="Observation.effective[x]" />
       <short value="HeightDateTime" />
@@ -69,11 +77,15 @@
     </element>
     <element id="Observation.value[x].system">
       <path value="Observation.value[x].system" />
-      <fixedUri value="http://loinc.org" />
+      <fixedUri value="http://unitsofmeasure.org" />
     </element>
     <element id="Observation.value[x].code">
       <path value="Observation.value[x].code" />
-      <fixedCode value="8302-2" />
+      <binding>
+        <strength value="required" />
+        <description value="BodyLengthUnits" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/ucum-bodylength" />
+      </binding>
     </element>
     <element id="Observation.note">
       <path value="Observation.note" />
