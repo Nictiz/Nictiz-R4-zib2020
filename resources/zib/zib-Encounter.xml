@@ -167,6 +167,35 @@
         <comment value="Procedure" />
       </mapping>
     </element>
+    <element id="Encounter.reasonReference.extension">
+      <path value="Encounter.reasonReference.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Encounter.reasonReference.extension:comment">
+      <path value="Encounter.reasonReference.extension" />
+      <sliceName value="comment" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Comment" />
+      </type>
+    </element>
+    <element id="Encounter.reasonReference.extension:comment.value[x]">
+      <path value="Encounter.reasonReference.extension.value[x]" />
+      <short value="CommentContactReason" />
+      <definition value="Explanation of the reason for the contact" />
+      <alias value="ToelichtingRedenContact" />
+      <mapping>
+        <identity value="zib-encounter-v4.0.1-2020EN" />
+        <map value="NL-CM:15.1.17" />
+        <comment value="CommentContactReason" />
+      </mapping>
+    </element>
     <element id="Encounter.hospitalization.admitSource">
       <path value="Encounter.hospitalization.admitSource" />
       <short value="Origin" />
