@@ -142,24 +142,6 @@
         <comment value="DeviatingResult" />
       </mapping>
     </element>
-    <element id="Encounter.reasonCode.text.extension">
-      <path value="Encounter.reasonCode.text.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Encounter.reasonCode.text.extension:commentContactReason">
-      <path value="Encounter.reasonCode.text.extension" />
-      <sliceName value="commentContactReason" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Encounter.CommentContactReason" />
-      </type>
-    </element>
     <element id="Encounter.reasonReference">
       <path value="Encounter.reasonReference" />
       <short value="Problem / Procedure" />
@@ -184,24 +166,6 @@
         <map value="NL-CM:15.1.11" />
         <comment value="Procedure" />
       </mapping>
-    </element>
-    <element id="Encounter.reasonReference.extension">
-      <path value="Encounter.reasonReference.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Encounter.reasonReference.extension:commentContactReason">
-      <path value="Encounter.reasonReference.extension" />
-      <sliceName value="commentContactReason" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Encounter.CommentContactReason" />
-      </type>
     </element>
     <element id="Encounter.hospitalization.admitSource">
       <path value="Encounter.hospitalization.admitSource" />
