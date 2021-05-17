@@ -132,9 +132,12 @@
             
             <!-- Edits the baseDefinition from core to zib if an nl-core profile was not created using the 'Derive' button in Forge -->
             <xsl:choose>
-                <xsl:when test="starts-with($id, 'nl-core-') and starts-with(f:baseDefinition/@value, 'http://hl7.org')">
+                <xsl:when test="starts-with($id, 'nl-core-') and (not(f:baseDefinition) or starts-with(f:baseDefinition/@value, 'http://hl7.org'))">
                     <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/{replace($id, 'nl-core-','zib-')}"/>
                 </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="f:baseDefinition"/>
+                </xsl:otherwise>
             </xsl:choose>
             
             <xsl:apply-templates select="f:derivation"/>
