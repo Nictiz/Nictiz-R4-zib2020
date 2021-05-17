@@ -39,7 +39,7 @@
             
             <!-- Add or modify name, title, status -->
             <xsl:choose>
-                <xsl:when test="(not(f:url) or starts-with(f:name/@value, 'My')) and (starts-with($id, 'zib-') or starts-with($id, 'nl-core-'))">
+                <xsl:when test="not(f:url) or starts-with(f:name/@value, 'My')">
                     <name value="{replace(concat(upper-case(substring($id,1,1)), substring($id, 2)),'-','')}"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -47,7 +47,7 @@
                 </xsl:otherwise>
             </xsl:choose>
             <xsl:choose>
-                <xsl:when test="not(f:title) and (starts-with($id, 'zib-') or starts-with($id, 'nl-core-'))">
+                <xsl:when test="not(f:title)">
                     <title value="{replace($id,'-',' ')}"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -90,14 +90,7 @@
                 </xsl:otherwise>
             </xsl:choose>
             <!-- Automagical description takes too much time atm. -->
-            <!--<xsl:choose>
-                <xsl:when test="not(f:description)">
-                    <publisher value="Nictiz"/>
-                </xsl:when>
-                <xsl:otherwise>-->
             <xsl:apply-templates select="f:description"/>
-            <!--</xsl:otherwise>
-            </xsl:choose>-->
             
             <xsl:apply-templates select="f:useContext | f:jurisdiction"/>
             
@@ -125,6 +118,7 @@
             
             <xsl:apply-templates select="f:keyword | f:fhirVersion | f:mapping | f:kind"/>
             
+            <!-- Modify abstract -->
             <xsl:choose>
                 <xsl:when test="f:abstract/@value = 'false' and starts-with($id, 'zib-')">
                     <abstract value="true"/>
@@ -137,7 +131,7 @@
             <xsl:apply-templates select="f:context | f:contextInvariant | f:type"/>
             
             <xsl:choose>
-                <xsl:when test="starts-with($id, 'nl-core-') and starts-with(f:baseDefinition/@value, 'http://hl7,org')">
+                <xsl:when test="starts-with($id, 'nl-core-') and starts-with(f:baseDefinition/@value, 'http://hl7.org')">
                     <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/{replace($id, 'nl-core-','zib-')}"/>
                 </xsl:when>
             </xsl:choose>
