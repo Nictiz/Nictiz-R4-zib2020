@@ -6,3 +6,12 @@ zib-BloodPressure:
     StructureDefinition.differential.element[13].sliceName:
       - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
         reason: "sliceName 'DiastolicBP' starts with an uppercase letter to conform to HL7 Vital Signs profile"
+  zib deviations:
+    Observation.extension:position.value[x]:
+      - cardinality: 1..1
+        reason: The used extension has a cardinality of 1..1 on the value[x] element. However, the extension itself is added with a cardinality of 0..1.
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: The used element has a cardinality of 1..1 on the text element. However, the note parent element is added with a cardinality of 0..1.
+      - datatype: markdown
+        reason: Mapping zib datatype string to FHIR datatype markdown may lead to markdown syntax appearing in unexpected places when exporting or converting data, but no data will be modified or lost.
