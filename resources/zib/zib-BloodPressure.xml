@@ -50,15 +50,15 @@
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Observation.extension:myExtension">
+    <element id="Observation.extension:position">
       <path value="Observation.extension" />
-      <sliceName value="myExtension" />
+      <sliceName value="position" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/observation-bodyPosition" />
       </type>
     </element>
-    <element id="Observation.extension:myExtension.value[x]">
+    <element id="Observation.extension:position.value[x]">
       <path value="Observation.extension.value[x]" />
       <short value="Position" />
       <definition value="The position of the patient when the blood pressure was measured." />
@@ -84,6 +84,17 @@
     </element>
     <element id="Observation.effective[x]">
       <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effectiveDateTime" />
+      <sliceName value="effectiveDateTime" />
       <short value="BloodPressureDateTime" />
       <definition value="The date and time at which these blood pressure values were measured." />
       <alias value="BloeddrukDatumTijd" />
