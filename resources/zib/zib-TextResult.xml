@@ -1,109 +1,137 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-    <id value="zib-TextResult"/>
-    <url value="http://nictiz.nl/fhir/StructureDefinition/zib-TextResult"/>
-    <version value="0.0.1"/>
-    <name value="ZibTextResult"/>
-    <title value="zib TextResult"/>
-    <status value="draft"/>
-    <publisher value="Nictiz"/>
-    <contact>
-        <name value="Nictiz"/>
-        <telecom>
-            <system value="email"/>
-            <value value="info@nictiz.nl"/>
-            <use value="work"/>
-        </telecom>
-    </contact>
-    <purpose value="This DiagnosticReport resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) TextResult v4.4 (2020)](https://zibs.nl/wiki/TextResult-v4.4(2020EN))."/>
-    <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise."/>
-    <fhirVersion value="4.0.1"/>
-    <mapping>
-        <identity value="zib-textresult-v4.4-2020EN"/>
-        <uri value="https://zibs.nl/wiki/TextResult-v4.4(2020EN)"/>
-        <name value="zib TextResult-v4.4(2020EN)"/>
-    </mapping>
-    <kind value="resource"/>
-    <abstract value="false"/>
-    <type value="DiagnosticReport"/>
-    <baseDefinition value="http://hl7.org/fhir/StructureDefinition/DiagnosticReport"/>
-    <derivation value="constraint"/>
-    <differential>
-        <element id="DiagnosticReport.status.extension">
-            <path value="DiagnosticReport.status.extension"/>
-            <slicing>
-                <discriminator>
-                    <type value="value"/>
-                    <path value="url"/>
-                </discriminator>
-                <rules value="open"/>
-            </slicing>
-        </element>
-        <element id="DiagnosticReport.status.extension:textResultStatus">
-            <path value="DiagnosticReport.status.extension"/>
-            <sliceName value="textResultStatus"/>
-            <type>
-                <code value="Extension"/>
-                <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification"/>
-            </type>
-        </element>
-        <element id="DiagnosticReport.status.extension:textResultStatus.value[x]">
-            <path value="DiagnosticReport.status.extension.value[x]"/>
-            <short value="TextResultStatus"/>
-            <definition value="The status of the result."/>
-            <alias value="TekstUitslagStatus"/>
-            <binding>
-                <strength value="extensible"/>
-                <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.2.2--20200901000000"/>
-            </binding>
-            <mapping>
-                <identity value="zib-textresult-v4.4-2020EN"/>
-                <map value="NL-CM:13.2.6"/>
-                <comment value="TextResultStatus"/>
-            </mapping>
-        </element>
-        <element id="DiagnosticReport.code">
-            <path value="DiagnosticReport.code"/>
-            <binding>
-                <strength value="extensible"/>
-                <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.2.1--20200901000000"/>
-            </binding>
-        </element>
-        <element id="DiagnosticReport.effective[x]">
-            <path value="DiagnosticReport.effective[x]"/>
-            <slicing>
-                <discriminator>
-                    <type value="type"/>
-                    <path value="$this"/>
-                </discriminator>
-                <rules value="open"/>
-            </slicing>
-        </element>
-        <element id="DiagnosticReport.effective[x]:effectiveDateTime">
-            <path value="DiagnosticReport.effectiveDateTime"/>
-            <sliceName value="effectiveDateTime"/>
-            <short value="TextResultDateTime"/>
-            <definition value="Date and if possible time of the result report. "/>
-            <alias value="TekstUitslagDatumTijd"/>
-            <type>
-                <code value="dateTime"/>
-            </type>
-            <mapping>
-                <identity value="zib-textresult-v4.4-2020EN"/>
-                <map value="NL-CM:13.2.3"/>
-                <comment value="TextResultDateTime"/>
-            </mapping>
-        </element>
-        <element id="DiagnosticReport.conclusion">
-            <path value="DiagnosticReport.conclusion"/>
-            <short value="TextResultReport"/>
-            <definition value="The text report detailing the actual results of the test or procedure."/>
-            <alias value="TekstResultaat"/>
-            <mapping>
-                <identity value="zib-textresult-v4.4-2020EN"/>
-                <map value="NL-CM:13.2.2"/>
-                <comment value="TextResultReport"/>
-            </mapping>
-        </element>
-    </differential>
+  <id value="zib-TextResult" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-TextResult" />
+  <version value="0.0.1" />
+  <name value="ZibTextResult" />
+  <title value="zib TextResult" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Textual results describe the findings and interpretation of diagnostic or therapeutic procedures carried out on patients or on specimens from the patient." />
+  <purpose value="This DiagnosticReport resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) TextResult v4.4 (2020)](https://zibs.nl/wiki/TextResult-v4.4(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-textresult-v4.4-2020EN" />
+    <uri value="https://zibs.nl/wiki/TextResult-v4.4(2020EN)" />
+    <name value="zib TextResult-v4.4(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="DiagnosticReport" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/DiagnosticReport" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="DiagnosticReport">
+      <path value="DiagnosticReport" />
+            <short value="TextResult"/>
+            <definition value="Root concept of the TextResult information model. This root concept contains all data elements of the TextResult information model."/>
+            <alias value="TekstUitslag"/>
+      <mapping>
+        <identity value="zib-textresult-v4.4-2020EN" />
+        <map value="NL-CM:13.2.1" />
+                <comment value="TextResult"/>
+      </mapping>
+    </element>
+    <element id="DiagnosticReport.status.extension">
+      <path value="DiagnosticReport.status.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="DiagnosticReport.status.extension:textResultStatus">
+      <path value="DiagnosticReport.status.extension" />
+      <sliceName value="textResultStatus" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification" />
+      </type>
+    </element>
+    <element id="DiagnosticReport.status.extension:textResultStatus.value[x]">
+      <path value="DiagnosticReport.status.extension.value[x]" />
+      <short value="TextResultStatus" />
+      <definition value="The status of the result." />
+      <alias value="TekstUitslagStatus" />
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.2.2--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-textresult-v4.4-2020EN" />
+        <map value="NL-CM:13.2.6" />
+        <comment value="TextResultStatus" />
+      </mapping>
+    </element>
+    <element id="DiagnosticReport.code">
+      <path value="DiagnosticReport.code" />
+            <short value="TextResultType"/>
+            <definition value="The type of result."/>
+            <alias value="TekstUitslagType"/>
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.2.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-textresult-v4.4-2020EN" />
+        <map value="NL-CM:13.2.4" />
+                <comment value="TextResultType"/>
+      </mapping>
+    </element>
+    <element id="DiagnosticReport.effective[x]">
+      <path value="DiagnosticReport.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="DiagnosticReport.effective[x]:effectiveDateTime">
+      <path value="DiagnosticReport.effective[x]" />
+      <sliceName value="effectiveDateTime" />
+      <short value="TextResultDateTime" />
+      <definition value="Date and if possible time of the result report." />
+      <alias value="TekstUitslagDatumTijd" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-textresult-v4.4-2020EN" />
+        <map value="NL-CM:13.2.3" />
+        <comment value="TextResultDateTime" />
+      </mapping>
+    </element>
+    <element id="DiagnosticReport.media.link">
+      <path value="DiagnosticReport.media.link" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Media" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-TextResult-Media" />
+      </type>
+    </element>
+    <element id="DiagnosticReport.conclusion">
+      <path value="DiagnosticReport.conclusion" />
+      <short value="TextResultReport" />
+      <definition value="The text report detailing the actual results of the test or procedure." />
+      <alias value="TekstResultaat" />
+      <mapping>
+        <identity value="zib-textresult-v4.4-2020EN" />
+        <map value="NL-CM:13.2.2" />
+        <comment value="TextResultReport" />
+      </mapping>
+    </element>
+  </differential>
 </StructureDefinition>

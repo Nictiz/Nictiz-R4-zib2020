@@ -1,0 +1,11 @@
+zib-TextResult-Media:
+  zib deviations:
+    Media.content:
+      - datatype: Attachment
+        reason: There are several different ways to add Encoded Data to a FHIR message. By mapping the ED datatype to Attachment, implementers can choose the preferred way (by reference, url or inline data).
+      - cardinality: 1..1
+        reason: The use of the Media resource referenced in zib-TextResult DiagnosticReport.media.link is optional (0..*), but if the Media resource is used, Media.content should be present (1..1).
+
+unmapped zib concepts:
+  - NL-CM:13.2.5: TextResult.Procedure
+    reason: The reference to zib-Procedure can only be added as a reference to zib-TextResult from zib-Procedure. Thus the mapping is added there.
