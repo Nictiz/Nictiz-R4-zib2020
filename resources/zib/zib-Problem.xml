@@ -45,40 +45,71 @@
       <short value="ProblemStatus" />
       <definition value="The problem status describes the condition of the problem:&#xD;&#xA;1. Active problems are problems of which the patient experiences symptoms or for which evidence exists.&#xD;&#xA;&#xD;&#xA;2. Problems with the status 'Inactive' refer to problems that don't affect the patient anymore or that of which there is no evidence of existence anymore." />
       <alias value="ProbleemStatus" />
-      <min value="1" />
-      <binding>
-        <strength value="required" />
-        <description value="ProbleemStatusCodelijst" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.5.1.2--20200901000000" />
-      </binding>
       <mapping>
         <identity value="zib-problem-v4.4-2020EN" />
         <map value="NL-CM:5.1.4" />
         <comment value="ProblemStatus" />
       </mapping>
     </element>
+    <element id="Condition.clinicalStatus.coding">
+      <path value="Condition.clinicalStatus.coding" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Condition.clinicalStatus.coding:clinicalStatus">
+      <path value="Condition.clinicalStatus.coding" />
+      <sliceName value="clinicalStatus" />
+      <min value="1" />
+      <max value="1" />
+      <binding>
+        <strength value="required" />
+        <description value="The clinical status of the condition or diagnosis." />
+        <valueSet value="http://hl7.org/fhir/ValueSet/condition-clinical|4.0.1" />
+      </binding>
+    </element>
+    <element id="Condition.clinicalStatus.coding:problemStatusCodelist">
+      <path value="Condition.clinicalStatus.coding" />
+      <sliceName value="problemStatusCodelist" />
+      <max value="1" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.5.1.2--20200901000000" />
+      </binding>
+    </element>
     <element id="Condition.verificationStatus">
       <path value="Condition.verificationStatus" />
       <short value="VerificationStatus" />
       <definition value="Clinical status of the problem or the diagnosis." />
       <alias value="VerificatieStatus" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="408729009" />
-          <display value="Finding context" />
-        </coding>
-      </patternCodeableConcept>
-      <binding>
-        <strength value="required" />
-        <description value="VerificatieStatusCodelijst" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.5.1.4--20200901000000" />
-      </binding>
       <mapping>
         <identity value="zib-problem-v4.4-2020EN" />
         <map value="NL-CM:5.1.10" />
         <comment value="VerificationStatus" />
       </mapping>
+    </element>
+    <element id="Condition.verificationStatus.coding">
+      <path value="Condition.verificationStatus.coding" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Condition.verificationStatus.coding:verificationStatusCodelist">
+      <path value="Condition.verificationStatus.coding" />
+      <sliceName value="verificationStatusCodelist" />
+      <comment value="Possibly a comment to describe that a code from the zib codelijst is expected to be added when the mapping to the FHIR valueset is not equal." />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.5.1.4--20200901000000" />
+      </binding>
     </element>
     <element id="Condition.category">
       <path value="Condition.category" />
@@ -137,7 +168,6 @@
     <element id="Condition.code.extension:furtherSpecificationProblemName">
       <path value="Condition.code.extension" />
       <sliceName value="furtherSpecificationProblemName" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
