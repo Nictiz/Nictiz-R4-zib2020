@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-SOAPReport" />
-  <url value="http://nictiz.org/fhir/StructureDefinition/zib-SOAPReport" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-SOAPReport" />
   <name value="ZibSOAPReport" />
   <title value="zib SOAPReport" />
   <status value="draft" />
@@ -42,7 +42,7 @@
     <element id="Composition.date">
       <path value="Composition.date" />
       <short value="SOAPReportDateTime" />
-      <definition value="Date and time when the report was recorded." />
+      <definition value="Date and time when the report was recorded" />
       <alias value="SOEPVerslagDatumTijd" />
       <mapping>
         <identity value="zib-soapreport-v1.0-2020EN" />
@@ -53,17 +53,8 @@
     <element id="Composition.author">
       <path value="Composition.author" />
       <short value="Author" />
+      <definition value="The healthcare provider who prepared the report and who is responsible for its content." />
       <alias value="Auteur" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner" />
-      </type>
       <mapping>
         <identity value="zib-soapreport-v1.0-2020EN" />
         <map value="NL-CM:13.6.3" />
@@ -88,7 +79,6 @@
       <short value="SOAPLineHeader" />
       <definition value="The name of the SOAP line as an coded description. In a SOAP report this can be one of the following: subjective, objective, assessment or plan." />
       <alias value="SOEPRegelNaam" />
-      <min value="1" />
       <binding>
         <strength value="required" />
         <description value="SOEPRegelNaamCodelijst" />
@@ -105,7 +95,6 @@
       <short value="SOAPLineText" />
       <definition value="The actual content of the section as free formatted text." />
       <alias value="SOEPRegelTekst" />
-      <min value="1" />
       <mapping>
         <identity value="zib-soapreport-v1.0-2020EN" />
         <map value="NL-CM:13.6.7" />
