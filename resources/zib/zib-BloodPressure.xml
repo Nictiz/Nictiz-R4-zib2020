@@ -32,7 +32,6 @@
     <element id="Observation">
       <path value="Observation" />
       <short value="BloodPressure" />
-      <definition value="Root concept of the BloodPressure information model. This root concept contains all data elements of the BloodPressure information model." />
       <alias value="Bloeddruk" />
       <mapping>
         <identity value="zib-bloodpressure-v3.2.1-2020EN" />
@@ -93,7 +92,7 @@
       </slicing>
     </element>
     <element id="Observation.effective[x]:effectiveDateTime">
-      <path value="Observation.effectiveDateTime" />
+      <path value="Observation.effective[x]" />
       <sliceName value="effectiveDateTime" />
       <short value="BloodPressureDateTime" />
       <definition value="The date and time at which these blood pressure values were measured." />
@@ -140,6 +139,7 @@
       <alias value="Meetmethode" />
       <binding>
         <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.4.1--20200901000000" />
       </binding>
       <mapping>
         <identity value="zib-bloodpressure-v3.2.1-2020EN" />
