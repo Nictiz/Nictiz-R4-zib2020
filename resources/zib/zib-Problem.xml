@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-Problem" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem" />
+  <name value="ZibProblem" />
+  <title value="zib Problem" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A problem describes a situation with regard to an individual’s health and/or welfare. This situation can be described by the person involved (the patient) themselves (in the form of a complaint), or by their healthcare provider (in the form of a diagnosis, for example). The situation can form cause for diagnostic or therapeutic policy.&#xD;&#xA;&#xD;&#xA;A problem includes all kinds of medical or nursing information that represents a health problem. A problem can represent various types of health problems:&#xD;&#xA; &#xD;&#xA;A complaint, finding by patient: a subjective, negatively experienced observation of the patient’s health. Examples: stomach ache, amnesia&#xD;&#xA;&#xD;&#xA;A symptom: an observation by or about the patient which may indicate a certain disease. Examples: fever, blood in stool, white spots on the roof of the mouth;&#xD;&#xA;&#xD;&#xA;A diagnosis: medical interpretation of complaints and findings. Examples: Diabetes Mellitus type II, pneumonia, hemolytic-uremic syndrome.&#xD;&#xA;&#xD;&#xA;A functional limitation: a reduction of functional options. Examples: reduced mobility, help required for dressing.&#xD;&#xA;&#xD;&#xA;A complication: Every diagnosis seen by the healthcare provider as an unforeseen and undesired result of medical action. Examples: post-operative wound infections, loss of hearing through the use of antibiotics." />
+  <purpose value="This Condition resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Problem v4.4(2020)](https://zibs.nl/wiki/Problem-v4.4(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-problem-v4.4-2020EN" />
+    <uri value="https://zibs.nl/wiki/Problem-v4.4(2020EN)" />
+    <name value="zib Problem-v4.4(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Condition" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Condition" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Condition">
+      <path value="Condition" />
+      <short value="Problem" />
+      <definition value="A problem describes a situation with regard to an individual’s health and/or welfare. This situation can be described by the patient  himselve (in the form of a complaint) or by their healthprofessional (in the form of a diagnosis, for example)." />
+      <alias value="Probleem" />
+      <mapping>
+        <identity value="zib-problem-v4.4-2020EN" />
+        <map value="NL-CM:5.1.1" />
+        <comment value="Problem" />
+      </mapping>
+    </element>
+    <element id="Condition.clinicalStatus">
+      <path value="Condition.clinicalStatus" />
+      <short value="ProblemStatus" />
+      <definition value="The problem status describes the condition of the problem:&#xD;&#xA;1. Active problems are problems of which the patient experiences symptoms or for which evidence exists.&#xD;&#xA;&#xD;&#xA;2. Problems with the status 'Inactive' refer to problems that don't affect the patient anymore or that of which there is no evidence of existence anymore." />
+      <alias value="ProbleemStatus" />
+      <mapping>
+        <identity value="zib-problem-v4.4-2020EN" />
+        <map value="NL-CM:5.1.4" />
+        <comment value="ProblemStatus" />
+      </mapping>
+    </element>
+    <element id="Condition.clinicalStatus.coding">
+      <path value="Condition.clinicalStatus.coding" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Condition.clinicalStatus.coding:clinicalStatus">
+      <path value="Condition.clinicalStatus.coding" />
+      <sliceName value="clinicalStatus" />
+      <min value="1" />
+      <max value="1" />
+      <binding>
+        <strength value="required" />
+        <description value="The clinical status of the condition or diagnosis." />
+        <valueSet value="http://hl7.org/fhir/ValueSet/condition-clinical|4.0.1" />
+      </binding>
+    </element>
+    <element id="Condition.clinicalStatus.coding:zibProblemStatus">
+      <path value="Condition.clinicalStatus.coding" />
+      <sliceName value="zibProblemStatus" />
+      <max value="1" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.5.1.2--20200901000000" />
+      </binding>
+    </element>
+    <element id="Condition.verificationStatus">
+      <path value="Condition.verificationStatus" />
+      <short value="VerificationStatus" />
+      <definition value="Clinical status of the problem or the diagnosis." />
+      <alias value="VerificatieStatus" />
+      <mapping>
+        <identity value="zib-problem-v4.4-2020EN" />
+        <map value="NL-CM:5.1.10" />
+        <comment value="VerificationStatus" />
+      </mapping>
+    </element>
+    <element id="Condition.verificationStatus.coding">
+      <path value="Condition.verificationStatus.coding" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Condition.verificationStatus.coding:verificationStatus">
+      <path value="Condition.verificationStatus.coding" />
+      <sliceName value="verificationStatus" />
+      <min value="1" />
+      <max value="1" />
+      <binding>
+        <strength value="required" />
+        <description value="The verification status to support or decline the clinical status of the condition or diagnosis." />
+        <valueSet value="http://hl7.org/fhir/ValueSet/condition-ver-status|4.0.1" />
+      </binding>
+    </element>
+    <element id="Condition.verificationStatus.coding:zibVerificationStatus">
+      <path value="Condition.verificationStatus.coding" />
+      <sliceName value="zibVerificationStatus" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.5.1.4--20200901000000" />
+      </binding>
+    </element>
+    <element id="Condition.category">
+      <path value="Condition.category" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Condition.category:problemType">
+      <path value="Condition.category" />
+      <sliceName value="problemType" />
+      <short value="ProblemType" />
+      <definition value="The type of problem; see the concept description." />
+      <alias value="ProbleemType" />
+      <max value="1" />
+      <binding>
+        <strength value="extensible" />
+        <description value="ProbleemTypeCodelijst" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.5.1.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-problem-v4.4-2020EN" />
+        <map value="NL-CM:5.1.8" />
+        <comment value="ProblemType" />
+      </mapping>
+    </element>
+    <element id="Condition.code">
+      <path value="Condition.code" />
+      <short value="ProblemName" />
+      <definition value="The problem name defines the problem. Depending on the setting, different code systems can be used. The ProblemNameCodelist provides an overview of the possible code systems." />
+      <alias value="ProbleemNaam" />
+      <binding>
+        <strength value="required" />
+        <description value="ProbleemNaamCodelijst" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.5.1.3--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-problem-v4.4-2020EN" />
+        <map value="NL-CM:5.1.3" />
+        <comment value="ProblemName" />
+      </mapping>
+    </element>
+    <element id="Condition.code.extension">
+      <path value="Condition.code.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Condition.code.extension:furtherSpecificationProblemName">
+      <path value="Condition.code.extension" />
+      <sliceName value="furtherSpecificationProblemName" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Problem.FurtherSpecificationProblemName" />
+      </type>
+    </element>
+    <element id="Condition.bodySite">
+      <path value="Condition.bodySite" />
+      <short value="ProblemAnatomicalLocation" />
+      <definition value="Anatomical location which is the focus of the problem." />
+      <alias value="ProbleemAnatomischeLocatie" />
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
+      </type>
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="405813007" />
+          <display value="Procedure site - Direct" />
+        </coding>
+      </patternCodeableConcept>
+      <mapping>
+        <identity value="zib-problem-v4.4-2020EN" />
+        <map value="NL-CM:5.1.14" />
+        <comment value="ProblemAnatomicalLocation" />
+      </mapping>
+    </element>
+    <element id="Condition.onset[x]">
+      <path value="Condition.onset[x]" />
+      <short value="ProblemStartDate" />
+      <definition value="Onset of the symptom, complaint, functional limitation, complication or date of diagnosis. A ‘vague’ date, such as only the year or the month and the year, is permitted." />
+      <alias value="ProbleemBeginDatum" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-problem-v4.4-2020EN" />
+        <map value="NL-CM:5.1.6" />
+        <comment value="ProblemStartDate" />
+      </mapping>
+    </element>
+    <element id="Condition.abatement[x]">
+      <path value="Condition.abatement[x]" />
+      <short value="ProblemEndDate" />
+      <alias value="ProbleemEindDatum" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-problem-v4.4-2020EN" />
+        <map value="NL-CM:5.1.9" />
+        <comment value="ProblemEndDate" />
+      </mapping>
+    </element>
+    <element id="Condition.note">
+      <path value="Condition.note" />
+      <short value="Comment" />
+      <definition value="Comment by the one who determined or updated the Problem." />
+      <alias value="Toelichting" />
+      <max value="1" />
+      <mapping>
+        <identity value="zib-problem-v4.4-2020EN" />
+        <map value="NL-CM:5.1.5" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
