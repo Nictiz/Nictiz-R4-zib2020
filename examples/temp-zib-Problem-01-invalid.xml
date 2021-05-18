@@ -1,0 +1,49 @@
+<Condition xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/condition.xsd">
+    <id value="temp-zib-Problem-01-invalid"/>
+    <meta>
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+    </meta>
+    <clinicalStatus>
+        <!-- removed FHIR valueset
+        <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
+            <code value="active"/>
+            <display value="Active"/>
+        </coding>
+        -->
+        <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="55561003"/>
+            <display value="Active"/>
+        </coding>
+    </clinicalStatus>
+    <verificationStatus>
+        <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/condition-ver-status"/>
+            <code value="provisional"/>
+            <display value="Provisional"/>
+        </coding>
+        <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="415684004"/>
+            <display value="Suspected"/>
+        </coding>
+        <!-- Additional code in another codesystem (fictional code) -->
+        <coding>
+            <system value="http://loinc.org"/>
+            <code value="98522-2"/>
+            <display value="Likely"/>
+        </coding>
+    </verificationStatus>
+    <code>
+        <coding>
+            <system value="http://hl7.org/fhir/sid/icd-10-nl"/>
+            <code value="G12.2"/>
+            <display value="Amyotrofe laterale sclerose"/>
+        </coding>
+    </code>
+    <subject>
+        <reference value="Patient/nl-core-patient-01"/>
+        <display value="Johan XXX_Helleman"/>
+    </subject>
+</Condition>
