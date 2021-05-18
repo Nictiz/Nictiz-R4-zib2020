@@ -72,9 +72,9 @@
         <valueSet value="http://hl7.org/fhir/ValueSet/condition-clinical|4.0.1" />
       </binding>
     </element>
-    <element id="Condition.clinicalStatus.coding:zibProblemStatus">
+    <element id="Condition.clinicalStatus.coding:problemStatusCodelist">
       <path value="Condition.clinicalStatus.coding" />
-      <sliceName value="zibProblemStatus" />
+      <sliceName value="problemStatusCodelist" />
       <max value="1" />
       <binding>
         <strength value="required" />
@@ -102,20 +102,10 @@
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Condition.verificationStatus.coding:verificationStatus">
+    <element id="Condition.verificationStatus.coding:verificationStatusCodelist">
       <path value="Condition.verificationStatus.coding" />
-      <sliceName value="verificationStatus" />
-      <min value="1" />
-      <max value="1" />
-      <binding>
-        <strength value="required" />
-        <description value="The verification status to support or decline the clinical status of the condition or diagnosis." />
-        <valueSet value="http://hl7.org/fhir/ValueSet/condition-ver-status|4.0.1" />
-      </binding>
-    </element>
-    <element id="Condition.verificationStatus.coding:zibVerificationStatus">
-      <path value="Condition.verificationStatus.coding" />
-      <sliceName value="zibVerificationStatus" />
+      <sliceName value="verificationStatusCodelist" />
+      <comment value="Possibly a comment to describe that a code from the zib codelijst is expected to be added when the mapping to the FHIR valueset is not equal." />
       <binding>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.5.1.4--20200901000000" />
