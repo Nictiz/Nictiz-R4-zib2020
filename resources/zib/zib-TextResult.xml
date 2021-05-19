@@ -41,6 +41,23 @@
                 <comment value="TextResult"/>
       </mapping>
     </element>
+      <element id="DiagnosticReport.status">
+          <path value="DiagnosticReport.status" />
+          <binding>
+              <strength value="required" />
+              <description value="Use ConceptMap TekstStatusCodelijst_to_DiagnosticReportStatus to translate terminology from the functional model to profile terminology in ValueSet DiagnosticReportStatus" />
+              <valueSet value="http://hl7.org/fhir/ValueSet/diagnostic-report-status|4.0.1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
+                      <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/TekstStatusCodelijst-to-DiagnosticReportStatus" />
+                  </extension>
+              </valueSet>
+          </binding>
+          <mapping>
+              <identity value="zib-textresult-v4.4-2020EN" />
+              <map value="NL-CM:13.2.6" />
+              <comment value="TextResultStatus" />
+          </mapping>
+      </element>
     <element id="DiagnosticReport.status.extension">
       <path value="DiagnosticReport.status.extension" />
       <slicing>
