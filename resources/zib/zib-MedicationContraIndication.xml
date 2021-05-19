@@ -124,7 +124,7 @@
     <element id="Flag.period.start">
       <path value="Flag.period.start" />
       <short value="StartDate" />
-      <definition value="The date and possibly time when the contra-indication for medication was identified." />
+      <definition value="The date and possibly time when the contra-indication became relevant for medication safety monitoring.&#xD;&#xA;&#xD;&#xA;Note: the zib specifies the StartDate concept as &quot;The date and possibly time when the contra-indication for medication [monitoring] was identified&quot;. This sentence was chosen specifically to indicate that the zib is about safety monitoring, which can only start once the contra-indication has been identified. However, a date in the future is not prohibited, in which case the StartDate will not align with the identification date." />
       <alias value="BeginDatum" />
       <mapping>
         <identity value="zib-medicationcontraindication-v1.0-2020EN" />
@@ -150,12 +150,12 @@
       <alias value="Melder" />
       <type>
         <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-ZibHealthProfessionalReference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
       </type>
       <mapping>
