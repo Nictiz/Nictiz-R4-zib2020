@@ -20,6 +20,139 @@
         </xsl:copy>
     </xsl:template>
     
+    <xsl:template match="f:StructureDefinition">
+        <xsl:copy>
+            <xsl:variable name="id" select="f:id/@value"/>
+            <xsl:apply-templates select="f:id | f:meta | f:implicitRules | f:language | f:text | f:contained | f:extension | f:modifierExtension"/>
+            
+            <!-- Add or modify URL -->
+            <xsl:choose>
+                <xsl:when test="(not(f:url) or starts-with(f:url/@value, 'http://example.org/')) and (starts-with($id, 'zib-') or starts-with($id, 'nl-core-'))">
+                    <url value="http://nictiz.nl/fhir/StructureDefinition/{$id}"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="f:url"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            
+            <xsl:apply-templates select="f:identifier | f:version"/>
+            
+            <!-- Add or modify name, title, status -->
+            <xsl:choose>
+                <xsl:when test="(not(f:url) or starts-with(f:name/@value, 'My')) and (starts-with($id, 'zib-') or starts-with($id, 'nl-core-'))">
+                    <name value="{replace(concat(upper-case(substring($id,1,1)), substring($id, 2)),'-','')}"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="f:name"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="not(f:title) and (starts-with($id, 'zib-') or starts-with($id, 'nl-core-'))">
+                    <title value="{replace($id,'-',' ')}"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="f:title"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="not(f:status)">
+                    <status value="draft"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="f:status"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            
+            <xsl:apply-templates select="f:experimental | f:date"/>
+            
+            <!-- Add publisher, contact, description-->
+            <xsl:choose>
+                <xsl:when test="not(f:publisher)">
+                    <publisher value="Nictiz"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="f:publisher"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="not(f:contact)">
+                    <contact>
+                        <name value="Nictiz" />
+                        <telecom>
+                            <system value="email" />
+                            <value value="info@nictiz.nl" />
+                            <use value="work" />
+                        </telecom>
+                    </contact>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="f:contact"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            <!-- Automagical description takes too much time atm. -->
+            <!--<xsl:choose>
+                <xsl:when test="not(f:description)">
+                    <publisher value="Nictiz"/>
+                </xsl:when>
+                <xsl:otherwise>-->
+            <xsl:apply-templates select="f:description"/>
+            <!--</xsl:otherwise>
+            </xsl:choose>-->
+            
+            <xsl:apply-templates select="f:useContext | f:jurisdiction"/>
+            
+            <!-- Add purpose, copyright -->
+            <xsl:choose>
+                <xsl:when test="not(f:purpose) and starts-with($id, 'zib-')">
+                    <xsl:variable name="mapping" select="f:mapping[f:identity/starts-with(@value, 'zib-')][1]"/>
+                    <purpose value="This {f:type/@value} resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) {replace($mapping/f:name/@value, 'zib ','')}]({$mapping/f:uri/@value})."/>
+                </xsl:when>
+                <xsl:when test="not(f:purpose) and starts-with($id, 'nl-core-')">
+                    <!--<xsl:variable name="mapping" select="f:mapping[f:identity/starts-with(@value, 'zib-')][1]"/>-->
+                    <purpose value="A derived profile from [{replace($id, 'nl-core-','zib-')}]({f:baseDefinition/@value}) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib."/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="f:purpose"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="not(f:copyright)">
+                    <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise."/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="f:copyright"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            
+            <xsl:apply-templates select="f:keyword | f:fhirVersion | f:mapping | f:kind | f:abstract"/>
+            
+            <xsl:choose>
+                <xsl:when test="f:abstract/@value = 'false' and starts-with($id, 'zib-')">
+                    <abstract value="true"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="f:abstract"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            
+            <xsl:apply-templates select="f:context | f:contextInvariant | f:type | f:baseDefinition | f:derivation | f:snapshot | f:differential"/>
+        </xsl:copy>
+    </xsl:template>
+    
+    <!-- Remove unused mappings -->
+    <xsl:template match="f:StructureDefinition/f:mapping">
+        <xsl:choose>
+            <xsl:when test="f:identity/@value = ('workflow','sct-concept','v2','rim','w5','sct-attr')"/>
+            <!-- Remove zib mapping element in nl-core profiles if it is not used -->
+            <xsl:when test="starts-with(parent::f:StructureDefinition/f:id/@value, 'nl-core-') and f:identity/@value[starts-with(., 'zib-')][not(. = parent::f:StructureDefinition//f:element/f:mapping/f:identity/@value)]"/>
+            <xsl:otherwise>
+                <xsl:copy>
+                    <xsl:apply-templates select="node()|@*"/>
+                </xsl:copy>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
     <xsl:template match="f:element[f:mapping/f:map[starts-with(@value,'NL-CM:')]]">
         <xsl:variable name="maps" select="f:mapping/f:map[starts-with(@value,'NL-CM:')]" as="element()*"/>
         <xsl:variable name="valuesOid" as="element()*">
