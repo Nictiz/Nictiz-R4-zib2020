@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConceptMap xmlns="http://hl7.org/fhir">
+    <id value="TekstStatusCodelijst-to-ObservationStatus"/>
+    <extension url="http://hl7.org/fhir/StructureDefinition/concept-bidirectional">
+        <valueBoolean value="false"/>
+    </extension>
+    <url value="http://nictiz.nl/fhir/ConceptMap/TekstStatusCodelijst-to-ObservationStatus"/>
+    <version value="0.0.1"/>
+    <name value="TekstStatusCodelijst_to_ObservationStatus"/>
+    <title value="TekstStatusCodelijst to ObservationStatus"/>
+    <status value="draft"/>
+    <publisher value="Nictiz"/>
+    <contact>
+        <name value="Nictiz"/>
+        <telecom>
+            <system value="email"/>
+            <value value="info@nictiz.nl"/>
+            <use value="work"/>
+        </telecom>
+    </contact>
+    <description value="Maps TekstStatusCodelijst codes as found in the Dutch zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) [TextResult v4.4 (2020)](https://zibs.nl/wiki/TextResult-v4.4(2020EN)) to ObservationStatus codes as found in FHIR R4."/>
+    <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise."/>
+    <sourceCanonical value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.2.2--20200901000000"/>
+    <targetCanonical value="http://hl7.org/fhir/ValueSet/observation-status"/>
+    <group>
+        <!-- 2.16.840.1.113883.2.4.3.11.60.40.4.16.1 -->
+        <source value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+        <target value="http://hl7.org/fhir/observation-status"/>
+        <element>
+            <code value="pending"/>
+            <target>
+                <code value="registered"/>
+                <equivalence value="wider"/>
+            </target>
+            <comment value="Pending: waiting to be decided or approved (Cambridge dictionary). Registered: The existence of the observation is registered, but there is no result yet available."/>
+        </element>
+        <element>
+            <code value="preliminary"/>
+            <target>
+                <code value="preliminary"/>
+                <equivalence value="equal"/>
+            </target>
+        </element>
+        <element>
+            <code value="final"/>
+            <target>
+                <code value="final"/>
+                <equivalence value="equal"/>
+            </target>
+        </element>
+        <element>
+            <code value="appended"/>
+            <target>
+                <code value="amended"/>
+                <equivalence value="wider"/>
+            </target>
+            <comment value="Appended: to add something to a document (Cambridge dictionary). Amended: Subsequent to being Final, the observation has been modified subsequent, this includes updates/new information and corrections."/>
+        </element>
+        <element>
+            <code value="corrected"/>
+            <target>
+                <code value="corrected"/>
+                <equivalence value="equal"/>
+            </target>
+        </element>
+    </group>
+</ConceptMap>
