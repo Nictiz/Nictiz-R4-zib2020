@@ -231,6 +231,8 @@
                                 <xsl:message>Element with id '<xsl:value-of select="@id"/>' has definition '<xsl:value-of select="f:definition/@value"/>' which does not correspond with Zib2020 value '<xsl:value-of select="$calculatedDefinition"/>'.</xsl:message>
                             </xsl:if>
                         </xsl:when>
+                        <!-- Do not add definition of 'Root concept'. Because root concepts do not always have to be mapped to the root of a profile, we match on the definition text. -->
+                        <xsl:when test="starts-with($calculatedDefinition, concat('Root concept of the ', $calculatedShort, ' information model.'))"/>
                         <xsl:when test="$originalConcepts/desc[@language='en-US']/text()">
                             <definition value="{$calculatedDefinition}"/>
                         </xsl:when>
