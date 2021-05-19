@@ -49,6 +49,17 @@
     </element>
     <element id="Observation.effective[x]">
       <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effectiveDateTime" />
+      <sliceName value="effectiveDateTime" />
       <short value="HeightDateTime" />
       <definition value="Date and if possible time of body height measurement." />
       <alias value="LengteDatumTijd" />
@@ -120,7 +131,6 @@
         <coding>
           <system value="http://snomed.info/sct" />
           <code value="425260001" />
-          <display value="Body position for height measurement" />
         </coding>
       </patternCodeableConcept>
     </element>
