@@ -32,32 +32,31 @@
   <differential>
     <element id="DiagnosticReport">
       <path value="DiagnosticReport" />
-            <short value="TextResult"/>
-            <definition value="Root concept of the TextResult information model. This root concept contains all data elements of the TextResult information model."/>
-            <alias value="TekstUitslag"/>
+      <short value="TextResult" />
+      <alias value="TekstUitslag" />
       <mapping>
         <identity value="zib-textresult-v4.4-2020EN" />
         <map value="NL-CM:13.2.1" />
-                <comment value="TextResult"/>
+        <comment value="TextResult" />
       </mapping>
     </element>
-      <element id="DiagnosticReport.status">
-          <path value="DiagnosticReport.status" />
-          <binding>
-              <strength value="required" />
-              <description value="Use ConceptMap TekstStatusCodelijst_to_DiagnosticReportStatus to translate terminology from the functional model to profile terminology in ValueSet DiagnosticReportStatus" />
-              <valueSet value="http://hl7.org/fhir/ValueSet/diagnostic-report-status|4.0.1">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
-                      <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/TekstStatusCodelijst-to-DiagnosticReportStatus" />
-                  </extension>
-              </valueSet>
-          </binding>
-          <mapping>
-              <identity value="zib-textresult-v4.4-2020EN" />
-              <map value="NL-CM:13.2.6" />
-              <comment value="TextResultStatus" />
-          </mapping>
-      </element>
+    <element id="DiagnosticReport.status">
+      <path value="DiagnosticReport.status" />
+      <binding>
+        <strength value="required" />
+        <description value="Use ConceptMap TekstStatusCodelijst_to_DiagnosticReportStatus to translate terminology from the functional model to profile terminology in ValueSet DiagnosticReportStatus" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/diagnostic-report-status|4.0.1">
+          <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
+            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/TekstStatusCodelijst-to-DiagnosticReportStatus" />
+          </extension>
+        </valueSet>
+      </binding>
+      <mapping>
+        <identity value="zib-textresult-v4.4-2020EN" />
+        <map value="NL-CM:13.2.6" />
+        <comment value="TextResultStatus" />
+      </mapping>
+    </element>
     <element id="DiagnosticReport.status.extension">
       <path value="DiagnosticReport.status.extension" />
       <slicing>
@@ -93,9 +92,9 @@
     </element>
     <element id="DiagnosticReport.code">
       <path value="DiagnosticReport.code" />
-            <short value="TextResultType"/>
-            <definition value="The type of result."/>
-            <alias value="TekstUitslagType"/>
+      <short value="TextResultType" />
+      <definition value="The type of result." />
+      <alias value="TekstUitslagType" />
       <binding>
         <strength value="extensible" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.2.1--20200901000000" />
@@ -103,7 +102,7 @@
       <mapping>
         <identity value="zib-textresult-v4.4-2020EN" />
         <map value="NL-CM:13.2.4" />
-                <comment value="TextResultType"/>
+        <comment value="TextResultType" />
       </mapping>
     </element>
     <element id="DiagnosticReport.effective[x]">
