@@ -39,13 +39,14 @@
         <comment value="BodyHeight" />
       </mapping>
     </element>
-    <element id="Observation.code.coding.system">
-      <path value="Observation.code.coding.system" />
-      <fixedUri value="http://loinc.org" />
-    </element>
-    <element id="Observation.code.coding.code">
-      <path value="Observation.code.coding.code" />
-      <fixedCode value="8302-2" />
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://loinc.org" />
+          <code value="8302-2" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Observation.effective[x]">
       <path value="Observation.effective[x]" />
@@ -58,7 +59,7 @@
       </slicing>
     </element>
     <element id="Observation.effective[x]:effectiveDateTime">
-      <path value="Observation.effectiveDateTime" />
+      <path value="Observation.effective[x]" />
       <sliceName value="effectiveDateTime" />
       <short value="HeightDateTime" />
       <definition value="Date and if possible time of body height measurement." />
@@ -74,6 +75,17 @@
     </element>
     <element id="Observation.value[x]">
       <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueQuantity">
+      <path value="Observation.valueQuantity" />
+      <sliceName value="valueQuantity" />
       <short value="HeightValue" />
       <definition value="The element contains the value of the measured body height.  &#xD;&#xA;Body height is the height of the human body from heel to scalp, generally measured when standing. Body height is measured in a stretched, horizontal position for very small children or patients that are unable to stand." />
       <alias value="LengteWaarde" />
@@ -86,12 +98,12 @@
         <comment value="HeightValue" />
       </mapping>
     </element>
-    <element id="Observation.value[x].system">
-      <path value="Observation.value[x].system" />
-      <fixedUri value="http://unitsofmeasure.org" />
+    <element id="Observation.value[x]:valueQuantity.system">
+      <path value="Observation.valueQuantity.system" />
+      <patternUri value="http://unitsofmeasure.org" />
     </element>
-    <element id="Observation.value[x].code">
-      <path value="Observation.value[x].code" />
+    <element id="Observation.value[x]:valueQuantity.code">
+      <path value="Observation.valueQuantity.code" />
       <binding>
         <strength value="required" />
         <description value="BodyLengthUnits" />
