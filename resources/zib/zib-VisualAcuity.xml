@@ -72,14 +72,25 @@
         <comment value="VisualAcuityMeasurementDevice" />
       </mapping>
     </element>
-    <element id="Observation.code">
-      <path value="Observation.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="16830007" />
-        </coding>
-      </patternCodeableConcept>
+    <element id="Observation.code.coding">
+      <path value="Observation.code.coding" />
+      <slicing>
+        <discriminator>
+          <type value="pattern" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.code.coding:visualAcuityCode">
+      <path value="Observation.code.coding" />
+      <sliceName value="visualAcuityCode" />
+      <min value="1" />
+      <max value="1" />
+      <patternCoding>
+        <system value="http://snomed.info/sct" />
+        <code value="16830007" />
+      </patternCoding>
     </element>
     <element id="Observation.effective[x]">
       <path value="Observation.effective[x]" />
@@ -117,7 +128,7 @@
       </slicing>
     </element>
     <element id="Observation.value[x]:valueQuantity">
-      <path value="Observation.valueQuantity" />
+      <path value="Observation.value[x]" />
       <sliceName value="valueQuantity" />
       <short value="DecimalVisualAqcuity" />
       <definition value="The measured decimal visual acuity." />
