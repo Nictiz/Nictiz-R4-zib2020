@@ -1,326 +1,374 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="zib-BloodPressure" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-BloodPressure" />
-  <name value="ZibBloodPressure" />
-  <title value="zib BloodPressure" />
-  <status value="draft" />
-  <publisher value="Nictiz" />
-  <contact>
-    <name value="Nictiz" />
-    <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
-      <use value="work" />
-    </telecom>
-  </contact>
-  <description value="The blood pressure is a parameter for determining the condition of the blood circulation and is expressed in systolic and diastolic pressure in mmHg." />
-  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) BloodPressure-v3.2.1(2020EN)](https://zibs.nl/wiki/BloodPressure-v3.2.1(2020EN)).&#xD;&#xA;&#xD;&#xA;This profile tries to be compatible with, though is not derived from, the relevant [HL7 Vital Signs](https://www.hl7.org/fhir/observation-vitalsigns.html) profile." />
-  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
-  <fhirVersion value="4.0.1" />
-  <mapping>
-    <identity value="zib-bloodpressure-v3.2.1-2020EN" />
-    <uri value="https://zibs.nl/wiki/BloodPressure-v3.2.1(2020EN)" />
-    <name value="zib BloodPressure-v3.2.1(2020EN)" />
-  </mapping>
-  <kind value="resource" />
-  <abstract value="true" />
-  <type value="Observation" />
-  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
-  <derivation value="constraint" />
-  <differential>
-    <element id="Observation">
-      <path value="Observation" />
-      <short value="BloodPressure" />
-      <alias value="Bloeddruk" />
-      <mapping>
-        <identity value="zib-bloodpressure-v3.2.1-2020EN" />
-        <map value="NL-CM:12.4.1" />
-        <comment value="BloodPressure" />
-      </mapping>
-    </element>
-    <element id="Observation.extension">
-      <path value="Observation.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Observation.extension:position">
-      <path value="Observation.extension" />
-      <sliceName value="position" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://hl7.org/fhir/StructureDefinition/observation-bodyPosition" />
-      </type>
-    </element>
-    <element id="Observation.extension:position.value[x]">
-      <path value="Observation.extension.value[x]" />
-      <short value="Position" />
-      <definition value="The position of the patient when the blood pressure was measured." />
-      <alias value="Houding" />
-      <binding>
-        <strength value="extensible" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.4.5--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-bloodpressure-v3.2.1-2020EN" />
-        <map value="NL-CM:12.4.11" />
-        <comment value="Position" />
-      </mapping>
-    </element>
-    <element id="Observation.category">
-      <path value="Observation.category" />
-      <slicing>
-        <discriminator>
-          <type value="pattern" />
-          <path value="$this" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Observation.category:VSCat">
-      <path value="Observation.category" />
-      <sliceName value="VSCat" />
-      <min value="1" />
-      <max value="1" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://terminology.hl7.org/CodeSystem/observation-category" />
-          <code value="vital-signs" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.code">
-      <path value="Observation.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://loinc.org" />
-          <code value="85354-9" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.effective[x]">
-      <path value="Observation.effective[x]" />
-      <slicing>
-        <discriminator>
-          <type value="type" />
-          <path value="$this" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Observation.effective[x]:effectiveDateTime">
-      <path value="Observation.effective[x]" />
-      <sliceName value="effectiveDateTime" />
-      <short value="BloodPressureDateTime" />
-      <definition value="The date and time at which these blood pressure values were measured." />
-      <alias value="BloeddrukDatumTijd" />
-      <type>
-        <code value="dateTime" />
-      </type>
-      <mapping>
-        <identity value="zib-bloodpressure-v3.2.1-2020EN" />
-        <map value="NL-CM:12.4.5" />
-        <comment value="BloodPressureDateTime" />
-      </mapping>
-    </element>
-    <element id="Observation.note.text">
-      <path value="Observation.note.text" />
-      <short value="Comment" />
-      <definition value="Comments on the measured blood pressure. Here, an explanation could be given, for example, of circumstances that may have influenced the patient’s blood pressure, such as pain, stress, exertion and sleep/wake cycles." />
-      <alias value="Toelichting" />
-      <mapping>
-        <identity value="zib-bloodpressure-v3.2.1-2020EN" />
-        <map value="NL-CM:12.4.6" />
-        <comment value="Comment" />
-      </mapping>
-    </element>
-    <element id="Observation.bodySite">
-      <path value="Observation.bodySite" />
-      <short value="MeasuringLocation" />
-      <definition value="Anatomical location where the blood pressure was measured." />
-      <alias value="MeetLocatie" />
-      <binding>
-        <strength value="extensible" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.4.4--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-bloodpressure-v3.2.1-2020EN" />
-        <map value="NL-CM:12.4.10" />
-        <comment value="MeasuringLocation" />
-      </mapping>
-    </element>
-    <element id="Observation.method">
-      <path value="Observation.method" />
-      <short value="MeasuringMethod" />
-      <definition value="The type of method used to measure blood pressure." />
-      <alias value="Meetmethode" />
-      <binding>
-        <strength value="extensible" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.4.1--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-bloodpressure-v3.2.1-2020EN" />
-        <map value="NL-CM:12.4.7" />
-        <comment value="MeasuringMethod" />
-      </mapping>
-    </element>
-    <element id="Observation.component">
-      <path value="Observation.component" />
-      <slicing>
-        <discriminator>
-          <type value="pattern" />
-          <path value="code" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Observation.component:SystolicBP">
-      <path value="Observation.component" />
-      <sliceName value="SystolicBP" />
-    </element>
-    <element id="Observation.component:SystolicBP.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://loinc.org" />
-          <code value="8480-6" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:SystolicBP.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="SystolicBloodPressure" />
-      <definition value="The highest (peak) systematic arterial blood pressure - measured in the contraction stage or systole of the cardiac cycle." />
-      <alias value="SystolischeBloeddruk" />
-      <type>
-        <code value="Quantity" />
-      </type>
-      <mapping>
-        <identity value="zib-bloodpressure-v3.2.1-2020EN" />
-        <map value="NL-CM:12.4.2" />
-        <comment value="SystolicBloodPressure" />
-      </mapping>
-    </element>
-    <element id="Observation.component:DiastolicBP">
-      <path value="Observation.component" />
-      <sliceName value="DiastolicBP" />
-    </element>
-    <element id="Observation.component:DiastolicBP.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://loinc.org" />
-          <code value="8462-4" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:DiastolicBP.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="DiastolicBloodPressure" />
-      <definition value="The lowest systematic arterial blood pressure - measured in the relaxation stage or diastole of the cardiac cycle." />
-      <alias value="DiastolischeBloeddruk" />
-      <type>
-        <code value="Quantity" />
-      </type>
-      <mapping>
-        <identity value="zib-bloodpressure-v3.2.1-2020EN" />
-        <map value="NL-CM:12.4.3" />
-        <comment value="DiastolicBloodPressure" />
-      </mapping>
-    </element>
-    <element id="Observation.component:averageBloodPressure">
-      <path value="Observation.component" />
-      <sliceName value="averageBloodPressure" />
-    </element>
-    <element id="Observation.component:averageBloodPressure.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="6797001" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:averageBloodPressure.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="AverageBloodPressure" />
-      <definition value="Average blood pressure during one cycle of the heart contracting and relaxing. Estimated based on systolic and diastolic blood pressure. This estimate is unreliable in cases of circulatory disorders. This value can only be reliably determined when invasive blood pressure is measured." />
-      <alias value="GemiddeldeBloeddruk" />
-      <type>
-        <code value="Quantity" />
-      </type>
-      <mapping>
-        <identity value="zib-bloodpressure-v3.2.1-2020EN" />
-        <map value="NL-CM:12.4.4" />
-        <comment value="AverageBloodPressure" />
-      </mapping>
-    </element>
-    <element id="Observation.component:cuffType">
-      <path value="Observation.component" />
-      <sliceName value="cuffType" />
-    </element>
-    <element id="Observation.component:cuffType.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="70665002" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:cuffType.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="CuffType" />
-      <definition value="The size of the cuff used in the measurement." />
-      <alias value="ManchetType" />
-      <type>
-        <code value="CodeableConcept" />
-      </type>
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.4.3--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-bloodpressure-v3.2.1-2020EN" />
-        <map value="NL-CM:12.4.9" />
-        <comment value="CuffType" />
-      </mapping>
-    </element>
-    <element id="Observation.component:diastolicEndpoint">
-      <path value="Observation.component" />
-      <sliceName value="diastolicEndpoint" />
-    </element>
-    <element id="Observation.component:diastolicEndpoint.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="85549003" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:diastolicEndpoint.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="DiastolicEndpoint" />
-      <definition value="Registration of the Korotkoff sound used to measure diastolic pressure with the auscultatory method." />
-      <alias value="DiastolischEindpunt" />
-      <type>
-        <code value="CodeableConcept" />
-      </type>
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.4.2--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-bloodpressure-v3.2.1-2020EN" />
-        <map value="NL-CM:12.4.8" />
-        <comment value="DiastolicEndpoint" />
-      </mapping>
-    </element>
-  </differential>
+    <id value="zib-BloodPressure"/>
+    <url value="http://nictiz.nl/fhir/StructureDefinition/zib-BloodPressure"/>
+    <name value="ZibBloodPressure"/>
+    <title value="zib BloodPressure"/>
+    <status value="draft"/>
+    <publisher value="Nictiz"/>
+    <contact>
+        <name value="Nictiz"/>
+        <telecom>
+            <system value="email"/>
+            <value value="info@nictiz.nl"/>
+            <use value="work"/>
+        </telecom>
+    </contact>
+    <description value="The blood pressure is a parameter for determining the condition of the blood circulation and is expressed in systolic and diastolic pressure in mmHg."/>
+    <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) BloodPressure-v3.2.1(2020EN)](https://zibs.nl/wiki/BloodPressure-v3.2.1(2020EN)).&#xD;&#xA;&#xD;&#xA;This profile tries to be compatible with, though is not derived from, the relevant [HL7 Vital Signs](https://www.hl7.org/fhir/observation-vitalsigns.html) profile."/>
+    <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise."/>
+    <fhirVersion value="4.0.1"/>
+    <mapping>
+        <identity value="zib-bloodpressure-v3.2.1-2020EN"/>
+        <uri value="https://zibs.nl/wiki/BloodPressure-v3.2.1(2020EN)"/>
+        <name value="zib BloodPressure-v3.2.1(2020EN)"/>
+    </mapping>
+    <kind value="resource"/>
+    <abstract value="true"/>
+    <type value="Observation"/>
+    <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation"/>
+    <derivation value="constraint"/>
+    <differential>
+        <element id="Observation">
+            <path value="Observation"/>
+            <short value="BloodPressure"/>
+            <alias value="Bloeddruk"/>
+            <constraint>
+                <key value="vs-2"/>
+                <severity value="error"/>
+                <human value="If there is no component or hasMember element then either a value[x] or a data absent reason must be present."/>
+                <expression value="(component.empty() and hasMember.empty()) implies (dataAbsentReason.exists() or value.exists())"/>
+                <xpath value="f:component or f:memberOF or f:*[starts-with(local-name(.), 'value')] or f:dataAbsentReason"/>
+            </constraint>
+            <mapping>
+                <identity value="zib-bloodpressure-v3.2.1-2020EN"/>
+                <map value="NL-CM:12.4.1"/>
+                <comment value="BloodPressure"/>
+            </mapping>
+        </element>
+        <element id="Observation.extension">
+            <path value="Observation.extension"/>
+            <slicing>
+                <discriminator>
+                    <type value="value"/>
+                    <path value="url"/>
+                </discriminator>
+                <rules value="open"/>
+            </slicing>
+        </element>
+        <element id="Observation.extension:position">
+            <path value="Observation.extension"/>
+            <sliceName value="position"/>
+            <type>
+                <code value="Extension"/>
+                <profile value="http://hl7.org/fhir/StructureDefinition/observation-bodyPosition"/>
+            </type>
+        </element>
+        <element id="Observation.extension:position.value[x]">
+            <path value="Observation.extension.value[x]"/>
+            <short value="Position"/>
+            <definition value="The position of the patient when the blood pressure was measured."/>
+            <alias value="Houding"/>
+            <binding>
+                <strength value="extensible"/>
+                <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.4.5--20200901000000"/>
+            </binding>
+            <mapping>
+                <identity value="zib-bloodpressure-v3.2.1-2020EN"/>
+                <map value="NL-CM:12.4.11"/>
+                <comment value="Position"/>
+            </mapping>
+        </element>
+        <element id="Observation.category">
+            <path value="Observation.category"/>
+            <slicing>
+                <discriminator>
+                    <type value="pattern"/>
+                    <path value="$this"/>
+                </discriminator>
+                <rules value="open"/>
+            </slicing>
+        </element>
+        <element id="Observation.category:VSCat">
+            <path value="Observation.category"/>
+            <sliceName value="VSCat"/>
+            <min value="1"/>
+            <max value="1"/>
+            <patternCodeableConcept>
+                <coding>
+                    <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                    <code value="vital-signs"/>
+                </coding>
+            </patternCodeableConcept>
+        </element>
+        <element id="Observation.code">
+            <path value="Observation.code"/>
+            <patternCodeableConcept>
+                <coding>
+                    <system value="http://loinc.org"/>
+                    <code value="85354-9"/>
+                </coding>
+            </patternCodeableConcept>
+        </element>
+        <element id="Observation.effective[x]">
+            <path value="Observation.effective[x]"/>
+            <slicing>
+                <discriminator>
+                    <type value="type"/>
+                    <path value="$this"/>
+                </discriminator>
+                <rules value="open"/>
+            </slicing>
+            <condition value="vs-1"/>
+            <constraint>
+                <key value="vs-1"/>
+                <severity value="error"/>
+                <human value="if Observation.effective[x] is dateTime and has a value then that value shall be precise to the day"/>
+                <expression value="($this as dateTime).toString().length() &gt;= 8"/>
+                <xpath value="f:effectiveDateTime[matches(@value, '^\d{4}-\d{2}-\d{2}')]"/>
+            </constraint>
+        </element>
+        <element id="Observation.effective[x]:effectiveDateTime">
+            <path value="Observation.effective[x]"/>
+            <sliceName value="effectiveDateTime"/>
+            <short value="BloodPressureDateTime"/>
+            <definition value="The date and time at which these blood pressure values were measured."/>
+            <alias value="BloeddrukDatumTijd"/>
+            <type>
+                <code value="dateTime"/>
+            </type>
+            <mapping>
+                <identity value="zib-bloodpressure-v3.2.1-2020EN"/>
+                <map value="NL-CM:12.4.5"/>
+                <comment value="BloodPressureDateTime"/>
+            </mapping>
+        </element>
+        <element id="Observation.value[x]">
+            <path value="Observation.value[x]"/>
+            <binding>
+                <strength value="required"/>
+                <description value="Common UCUM units for recording Vital Signs."/>
+                <valueSet value="http://hl7.org/fhir/ValueSet/ucum-vitals-common|4.0.1"/>
+            </binding>
+            <condition value="vs-2"/>
+        </element>
+        <element id="Observation.dataAbsentReason">
+            <path value="Observation.dataAbsentReason"/>
+            <type>
+                <code value="CodeableConcept"/>
+            </type>
+            <condition value="vs-2"/>
+        </element>
+        <element id="Observation.note.text">
+            <path value="Observation.note.text"/>
+            <short value="Comment"/>
+            <definition value="Comments on the measured blood pressure. Here, an explanation could be given, for example, of circumstances that may have influenced the patient’s blood pressure, such as pain, stress, exertion and sleep/wake cycles."/>
+            <alias value="Toelichting"/>
+            <mapping>
+                <identity value="zib-bloodpressure-v3.2.1-2020EN"/>
+                <map value="NL-CM:12.4.6"/>
+                <comment value="Comment"/>
+            </mapping>
+        </element>
+        <element id="Observation.bodySite">
+            <path value="Observation.bodySite"/>
+            <short value="MeasuringLocation"/>
+            <definition value="Anatomical location where the blood pressure was measured."/>
+            <alias value="MeetLocatie"/>
+            <binding>
+                <strength value="extensible"/>
+                <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.4.4--20200901000000"/>
+            </binding>
+            <mapping>
+                <identity value="zib-bloodpressure-v3.2.1-2020EN"/>
+                <map value="NL-CM:12.4.10"/>
+                <comment value="MeasuringLocation"/>
+            </mapping>
+        </element>
+        <element id="Observation.method">
+            <path value="Observation.method"/>
+            <short value="MeasuringMethod"/>
+            <definition value="The type of method used to measure blood pressure."/>
+            <alias value="Meetmethode"/>
+            <binding>
+                <strength value="extensible"/>
+                <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.4.1--20200901000000"/>
+            </binding>
+            <mapping>
+                <identity value="zib-bloodpressure-v3.2.1-2020EN"/>
+                <map value="NL-CM:12.4.7"/>
+                <comment value="MeasuringMethod"/>
+            </mapping>
+        </element>
+        <element id="Observation.component">
+            <path value="Observation.component"/>
+            <slicing>
+                <discriminator>
+                    <type value="pattern"/>
+                    <path value="code"/>
+                </discriminator>
+                <rules value="open"/>
+            </slicing>
+            <constraint>
+                <key value="vs-3"/>
+                <severity value="error"/>
+                <human value="If there is no a value a data absent reason must be present"/>
+                <expression value="value.exists() or dataAbsentReason.exists()"/>
+                <xpath value="f:*[starts-with(local-name(.), 'value')] or f:dataAbsentReason"/>
+            </constraint>
+        </element>
+        <element id="Observation.component:SystolicBP">
+            <path value="Observation.component"/>
+            <sliceName value="SystolicBP"/>
+        </element>
+        <element id="Observation.component:SystolicBP.code">
+            <path value="Observation.component.code"/>
+            <patternCodeableConcept>
+                <coding>
+                    <system value="http://loinc.org"/>
+                    <code value="8480-6"/>
+                </coding>
+            </patternCodeableConcept>
+        </element>
+        <element id="Observation.component:SystolicBP.value[x]">
+            <path value="Observation.component.value[x]"/>
+            <short value="SystolicBloodPressure"/>
+            <definition value="The highest (peak) systematic arterial blood pressure - measured in the contraction stage or systole of the cardiac cycle."/>
+            <alias value="SystolischeBloeddruk"/>
+            <type>
+                <code value="Quantity"/>
+            </type>
+            <condition value="vs-3"/>
+            <mapping>
+                <identity value="zib-bloodpressure-v3.2.1-2020EN"/>
+                <map value="NL-CM:12.4.2"/>
+                <comment value="SystolicBloodPressure"/>
+            </mapping>
+        </element>
+        <element id="Observation.component:SystolicBP.dataAbsentReason">
+            <path value="Observation.component:SystolicBP.dataAbsentReason"/>
+            <condition value="vs-3"/>
+        </element>
+        <element id="Observation.component:DiastolicBP">
+            <path value="Observation.component"/>
+            <sliceName value="DiastolicBP"/>
+        </element>
+        <element id="Observation.component:DiastolicBP.code">
+            <path value="Observation.component.code"/>
+            <patternCodeableConcept>
+                <coding>
+                    <system value="http://loinc.org"/>
+                    <code value="8462-4"/>
+                </coding>
+            </patternCodeableConcept>
+        </element>
+        <element id="Observation.component:DiastolicBP.value[x]">
+            <path value="Observation.component.value[x]"/>
+            <short value="DiastolicBloodPressure"/>
+            <definition value="The lowest systematic arterial blood pressure - measured in the relaxation stage or diastole of the cardiac cycle."/>
+            <alias value="DiastolischeBloeddruk"/>
+            <type>
+                <code value="Quantity"/>
+            </type>
+            <condition value="vs-3"/>
+            <mapping>
+                <identity value="zib-bloodpressure-v3.2.1-2020EN"/>
+                <map value="NL-CM:12.4.3"/>
+                <comment value="DiastolicBloodPressure"/>
+            </mapping>
+        </element>
+        <element id="Observation.component:DiastolicBP.dataAbsentReason">
+            <path value="Observation.component:DiastolicBP.dataAbsentReason"/>
+            <condition value="vs-3"/>
+        </element>
+        <element id="Observation.component:averageBloodPressure">
+            <path value="Observation.component"/>
+            <sliceName value="averageBloodPressure"/>
+        </element>
+        <element id="Observation.component:averageBloodPressure.code">
+            <path value="Observation.component.code"/>
+            <patternCodeableConcept>
+                <coding>
+                    <system value="http://snomed.info/sct"/>
+                    <code value="6797001"/>
+                </coding>
+            </patternCodeableConcept>
+        </element>
+        <element id="Observation.component:averageBloodPressure.value[x]">
+            <path value="Observation.component.value[x]"/>
+            <short value="AverageBloodPressure"/>
+            <definition value="Average blood pressure during one cycle of the heart contracting and relaxing. Estimated based on systolic and diastolic blood pressure. This estimate is unreliable in cases of circulatory disorders. This value can only be reliably determined when invasive blood pressure is measured."/>
+            <alias value="GemiddeldeBloeddruk"/>
+            <type>
+                <code value="Quantity"/>
+            </type>
+            <mapping>
+                <identity value="zib-bloodpressure-v3.2.1-2020EN"/>
+                <map value="NL-CM:12.4.4"/>
+                <comment value="AverageBloodPressure"/>
+            </mapping>
+        </element>
+        <element id="Observation.component:cuffType">
+            <path value="Observation.component"/>
+            <sliceName value="cuffType"/>
+        </element>
+        <element id="Observation.component:cuffType.code">
+            <path value="Observation.component.code"/>
+            <patternCodeableConcept>
+                <coding>
+                    <system value="http://snomed.info/sct"/>
+                    <code value="70665002"/>
+                </coding>
+            </patternCodeableConcept>
+        </element>
+        <element id="Observation.component:cuffType.value[x]">
+            <path value="Observation.component.value[x]"/>
+            <short value="CuffType"/>
+            <definition value="The size of the cuff used in the measurement."/>
+            <alias value="ManchetType"/>
+            <type>
+                <code value="CodeableConcept"/>
+            </type>
+            <binding>
+                <strength value="required"/>
+                <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.4.3--20200901000000"/>
+            </binding>
+            <mapping>
+                <identity value="zib-bloodpressure-v3.2.1-2020EN"/>
+                <map value="NL-CM:12.4.9"/>
+                <comment value="CuffType"/>
+            </mapping>
+        </element>
+        <element id="Observation.component:diastolicEndpoint">
+            <path value="Observation.component"/>
+            <sliceName value="diastolicEndpoint"/>
+        </element>
+        <element id="Observation.component:diastolicEndpoint.code">
+            <path value="Observation.component.code"/>
+            <patternCodeableConcept>
+                <coding>
+                    <system value="http://snomed.info/sct"/>
+                    <code value="85549003"/>
+                </coding>
+            </patternCodeableConcept>
+        </element>
+        <element id="Observation.component:diastolicEndpoint.value[x]">
+            <path value="Observation.component.value[x]"/>
+            <short value="DiastolicEndpoint"/>
+            <definition value="Registration of the Korotkoff sound used to measure diastolic pressure with the auscultatory method."/>
+            <alias value="DiastolischEindpunt"/>
+            <type>
+                <code value="CodeableConcept"/>
+            </type>
+            <binding>
+                <strength value="required"/>
+                <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.4.2--20200901000000"/>
+            </binding>
+            <mapping>
+                <identity value="zib-bloodpressure-v3.2.1-2020EN"/>
+                <map value="NL-CM:12.4.8"/>
+                <comment value="DiastolicEndpoint"/>
+            </mapping>
+        </element>
+    </differential>
 </StructureDefinition>
