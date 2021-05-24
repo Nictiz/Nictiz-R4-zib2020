@@ -98,6 +98,12 @@ This document contains release notes per zib, indicating differences with their 
 * `Condition.note` now honours the max cardinality of zib Comment.
 * `Condition.verificationStatus` contains a mandatory `.coding` element to capture the zib terminology because of the required binding on the CodeableConcept level and the zib and FHIR ValueSet do not completely map.
 
+## Procedure
+* ProcedureStartDate and ProcedureEndDate have been mapped to `Procedure.performed[x]` instead of `Procedure.performedPeriod` to account for the use of `Procedure.performedDateTime` when the zib Procedure concerns a instantaneous procedure.
+* Aligned cardinality of ProcedureMethod by setting the 'procedure-method' to 0..* instead of 0..0.
+* The ProcedureAnatomicalLocation is used on `Procedure.bodySite`and the cadinality has been set to 0..1 instead of 0..*.
+* The `Procedure.location`, instead of `Procedure.performer`, element is now used to reference the zib HealthcareProvider to indicate where the Procedure takes place.
+
 ## zib-Range
 * There is no profile for this partial zib because the relevant parts can be modelled directly in the profiles where this zib is used.
 
