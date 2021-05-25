@@ -21,4 +21,7 @@ zib-Procedure-ServiceRequest:
     ServiceRequest.bodySite:
       - datatype: CodeableConcept
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+    ServiceRequest.requester:
+      - cardinality: 0..1
+        reason: Known issue - cardinality difference between FHIR (0..1) and zib (0..*), as documented here https://github.com/Nictiz/Nictiz-R4-zib2020/issues/69
         

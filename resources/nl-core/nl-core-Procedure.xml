@@ -14,6 +14,7 @@
       <use value="work" />
     </telecom>
   </contact>
+  <description value="This profile covers the recording of therapeutic or diagnostic procedure undergone by the patient. The ServiceRequest profile (http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-ServiceRequest) covers the procedure that the patient will undergo." />
   <purpose value="A derived profile from [zib-Procedure](http://nictiz.nl/fhir/StructureDefinition/zib-Procedure) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
@@ -23,6 +24,19 @@
   <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure" />
   <derivation value="constraint" />
   <differential>
+    <element id="Procedure">
+      <path value="Procedure" />
+      <alias value="nl-core-Procedure" />
+    </element>
+    <element id="Procedure.basedOn">
+      <path value="Procedure.basedOn" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/CarePlan" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ServiceRequest" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-ServiceRequest" />
+      </type>
+    </element>
     <element id="Procedure.performer.actor">
       <path value="Procedure.performer.actor" />
       <type>
@@ -55,6 +69,14 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/DiagnosticReport" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
+      </type>
+    </element>
+    <element id="Procedure.focalDevice.manipulated">
+      <path value="Procedure.focalDevice.manipulated" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice" />
       </type>
     </element>
   </differential>
