@@ -8,7 +8,11 @@ This folders contains the pieces to run the automated QA tools. These tools are 
 
 ## addDataFromZib
 
-When only an `element.mapping.map` is defined, addDataFromZib.xsl adds `element.short`, `.definition`, `.alias` and `.mapping.comment` from the zib2020bbr-decor.xml file based on the zib Concept ID. If one of these elements is already defined, the XSLT displays a message identifying the conflict, but does not touch the defined value, allowing for overruling the default value when profiling.
+Metadata (`url`, `name`, `title`, `status`, `publisher`, `contact`, `purpose`, `copyright`, `abstract`) following the profiling guidelines is added if not present or edited when containing Forge's default values for both zib and nl-core profiles. An `id` (in both zib and nl-core profiles) and a `mapping` to a zib (only in zib profiles) following the guidelines should be present for this to work. Notable exception is `definition` - this should still be added by hand.
+
+All unused `mapping` elements that are added by default by Forge are removed.
+
+When only a `mapping.map` is defined on an `element`, addDataFromZib.xsl adds `element.short`, `.definition`, `.alias` and `.mapping.comment` from the zib2020bbr-decor.xml file based on the zib Concept ID. If one of these elements is already defined, the XSLT displays a message identifying the conflict, but does not touch the defined value, allowing for overruling the default value when profiling.
 
 The XSLT allows for multiple mappings on one element (combining `.short` and `.definition`, adding multiple `.alias`, adding the right `.mapping.comment`), but testing has been limited.
 
