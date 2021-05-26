@@ -24,6 +24,12 @@
   <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-SOAPReport" />
   <derivation value="constraint" />
   <differential>
+    <element id="Composition.subject">
+      <path value="Composition.subject" />
+      <type>
+        <code value="Reference" />
+      </type>
+    </element>
     <element id="Composition.encounter">
       <path value="Composition.encounter" />
       <type>
@@ -44,6 +50,18 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
+      </type>
+    </element>
+    <element id="Composition.section:SOAPLine">
+      <path value="Composition.section" />
+      <sliceName value="SOAPLine" />
+    </element>
+    <element id="Composition.section:SOAPLine.entry">
+      <path value="Composition.section.entry" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-SOAPReport-SOAPLine" />
       </type>
     </element>
   </differential>
