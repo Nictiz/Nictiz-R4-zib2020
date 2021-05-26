@@ -4,6 +4,6 @@ This document contains release notes per zib, indicating differences with their 
 
 ## BodyHeight
 * baseDefinition changed from "http://nictiz.nl/fhir/StructureDefinition/bodyheight" to "http://hl7.org/fhir/StructureDefinition/Observation"
-* ValueQuantity has his own type slice on Observation.value[x].
-* Observation.comment has changed to Observation.note
-* EffectiveDateTime has his own type slice on Observation.effective[x]
+* `ValueQuantity` has his own type slice on `Observation.value[x]`
+* `Observation.comment` has changed to `Observation.note`
+* `EffectiveDateTime` has his own type slice on `Observation.effective[x]`
