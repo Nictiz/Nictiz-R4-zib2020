@@ -31,7 +31,7 @@
     </xsl:param>
     
     <xsl:variable name="resourceIds" select="collection(concat($inputdir, '?select=*.xml;recurse=yes'))//f:id/@value" as="attribute()*"/>
-    <xsl:variable name="valueSetURIs" select="collection(concat($inputdir, '?select=*.xml;recurse=yes'))/(f:StructureDefinition | f:ConceptMap)//@value[starts-with(., 'http://decor.nictiz.nl/fhir/')]" as="attribute()*"/>
+    <xsl:variable name="valueSetURIs" select="collection(concat($inputdir, '?select=*.xml;recurse=yes'))/(f:StructureDefinition | f:ConceptMap | f:ValueSet)//@value[starts-with(., 'http://decor.nictiz.nl/fhir/')]" as="attribute()*"/>
     
     <xd:doc>
         <xd:desc/>

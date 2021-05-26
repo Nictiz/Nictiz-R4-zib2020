@@ -16,7 +16,7 @@ RUN mkdir tools/validator
 RUN wget -nv https://github.com/hapifhir/org.hl7.fhir.core/releases/latest/download/validator_cli.jar -O tools/validator/validator.jar
 RUN java -jar /tools/validator/validator.jar -version 4.0 -fhirpath "'Seems like a failure, but we just created a package cache'" | cat
 
-RUN dotnet tool install -g firely.terminal
+RUN dotnet tool install -g --version 2.0.0 firely.terminal
 RUN ~/.dotnet/tools/fhir install hl7.fhir.r4.core 4.0.1
 
 RUN git clone -b action --depth 1 https://github.com/pieter-edelman-nictiz/zib-compliance-fhir.git /tools/zib-compliance-fhir
