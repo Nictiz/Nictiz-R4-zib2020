@@ -3,7 +3,7 @@
 # If changed_only is set to not null, then we only check the changed files, otherwise the full set.
 if [[ $changed_only == 0 ]]; then
   profiles=$(find resources/zib resources/nl-core -maxdepth 1 -name "*.xml")
-  terminology=$(find resources/zib/terminology resources/nl-core/terminology -maxdepth 1 -name "*.xml")
+  terminology=$(find . -regex "\./resources/.*/terminology/[^/]*\.xml")
   examples=$(
     for file in examples/*;do
       if [[ -f $file ]];then # Use an explicit check otherwise the process will return with exit code 1
