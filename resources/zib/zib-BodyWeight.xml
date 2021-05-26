@@ -39,14 +39,25 @@
         <comment value="BodyWeight" />
       </mapping>
     </element>
-    <element id="Observation.code">
-      <path value="Observation.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://loinc.org" />
-          <code value="29463-7" />
-        </coding>
-      </patternCodeableConcept>
+    <element id="Observation.code.coding">
+      <path value="Observation.code.coding" />
+      <slicing>
+        <discriminator>
+          <type value="pattern" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.code.coding:bodyWeightCode">
+      <path value="Observation.code.coding" />
+      <sliceName value="bodyWeightCode" />
+      <min value="1" />
+      <max value="1" />
+      <patternCoding>
+        <system value="http://loinc.org" />
+        <code value="29463-7" />
+      </patternCoding>
     </element>
     <element id="Observation.effective[x]">
       <path value="Observation.effective[x]" />
