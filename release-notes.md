@@ -62,7 +62,7 @@ This document contains release notes per zib, indicating differences with their 
 * The code on `Observation.component:amount.code` has changed to 363908000
 
 ## Encounter
-* HealthProfessional has his own profile slice on Encounter.participant
+* HealthProfessional has his own profile slice on `Encounter.participant`
 * Deleted descriptions for the ValueSets   
 
 ## zib-EpisodeOfCare
