@@ -28,10 +28,15 @@
       <path value="Encounter" />
       <alias value="nl-core-Encounter" />
     </element>
-    <element id="Encounter.participant.individual">
+    <element id="Encounter.participant:healthProfessional">
+      <path value="Encounter.participant" />
+      <sliceName value="healthProfessional" />
+    </element>
+    <element id="Encounter.participant:healthProfessional.individual">
       <path value="Encounter.participant.individual" />
       <type>
         <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
       </type>
     </element>

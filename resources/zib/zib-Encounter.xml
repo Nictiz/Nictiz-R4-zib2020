@@ -96,7 +96,7 @@
       <alias value="ContactMet" />
       <type>
         <code value="Reference" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-HealthProfessionalReference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-ZibHealthProfessionalReference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
@@ -112,7 +112,7 @@
       <path value="Encounter.period.start" />
       <short value="StartDateTime" />
       <definition value="The date and time at which the contact took or will take place." />
-      <comment value="Start date and end date can be aligned if only one date is known." />
+      <comment value="If only one DateTime is known the `period.start` and `period.end` hold equal values to avoid expressing an ongoing period." />
       <alias value="BeginDatumTijd" />
       <mapping>
         <identity value="zib-encounter-v4.0.1-2020EN" />
@@ -185,6 +185,10 @@
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Comment" />
       </type>
+    </element>
+    <element id="Encounter.reasonReference.extension:comment.url">
+      <path value="Encounter.reasonReference.extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-Comment" />
     </element>
     <element id="Encounter.reasonReference.extension:comment.value[x]">
       <path value="Encounter.reasonReference.extension.value[x]" />
