@@ -62,7 +62,6 @@
         </element>
     </group>
     <group>
-        <!--In R4 unkown has changed to unconfirmed is this the right mapping?-->
         <source value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
         <target value="http://hl7.org/fhir/ValueSet/condition-ver-status"/>
         <element>
@@ -71,7 +70,8 @@
             <target>
                 <code value="unconfirmed"/>
                 <display value="Unconfirmed"/>
-                <equivalence value="equal"/>
+                <equivalence value="narrower"/>
+                <comment value="Unknown doesn't specify any relevant clinical information and means that nothing is known of the verificationSatus while unconfrimed provides some clinical meaning, namely that the condition is not yet confirmed."/>
             </target>
         </element>
     </group>
