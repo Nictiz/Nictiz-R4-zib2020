@@ -51,7 +51,7 @@
       <alias value="ContactType" />
       <binding>
         <strength value="extensible" />
-        <description value="Use ConceptMap 'ContactTypeCodeLijst-to-ActEncounterCode' to translate zib terminology to profile terminology in ValueSet 'ActEncounterCode'&quot;" />
+        <description value="Use ConceptMap ContactTypeCodeLijst-to-ActEncounterCode to translate zib terminology to profile terminology in ValueSet ActEncounterCode." />
         <valueSet value="http://terminology.hl7.org/ValueSet/v3-ActEncounterCode">
           <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
             <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/ContactTypeCodeLijst-to-ActEncounterCode" />
@@ -83,6 +83,7 @@
       <short value="HealthProfessionalRole" />
       <definition value="The role the health professional fulfils in the healthcare process. For health professionals, this could be for example attender, referrer or performer." />
       <alias value="ZorgverlenerRol" />
+      <max value="1" />
       <mapping>
         <identity value="zib-healthprofessional-v3.5-2020EN" />
         <map value="NL-CM:17.1.5" />
@@ -191,6 +192,9 @@
       <short value="CommentContactReason" />
       <definition value="Explanation of the reason for the contact" />
       <alias value="ToelichtingRedenContact" />
+      <type>
+        <code value="string" />
+      </type>
       <mapping>
         <identity value="zib-encounter-v4.0.1-2020EN" />
         <map value="NL-CM:15.1.17" />
@@ -226,6 +230,10 @@
         <map value="NL-CM:15.1.16" />
         <comment value="Destination" />
       </mapping>
+    </element>
+    <element id="Encounter.location">
+      <path value="Encounter.location" />
+      <max value="1" />
     </element>
     <element id="Encounter.location.location">
       <path value="Encounter.location.location" />
