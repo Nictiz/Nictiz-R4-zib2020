@@ -90,6 +90,14 @@ This document contains release notes per zib, indicating differences with their 
 * Cardinality of `Patient.telecom` left at 0..* to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not.
 * Added a comment to `deceased[x]`: When exporting the data, if `deceasedDateTime` (DateOfDeath) is present and has a value, DeathIndicator may be set to 'true', since DeathIndicator and DateOfDeath cannot both be represented at the same time.
 
+## Problem
+* `ProblemStatusCodeList` modulated on the slice `.clinicalStatus.coding:problemStatusCodelist` instead of an extension
+* Added `clinicalStatus` valueSet binding on `.clinicalStatus.coding:clinicalStatus`
+* `VerificationStatusCodelist` modulated on the slice `.verificationStatus.coding:verificationStatusCodelist` instead of an extension
+* ProblemType mapping on the slice `.category:problemType`
+* `Condition.code` cardinality change to 0 .. 1
+* `Condition.bodySite` has a reference to http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation profile
+
 ## zib-Range
 * There is no profile for this partial zib because the relevant parts can be modelled directly in the profiles where this zib is used.
 
