@@ -83,11 +83,16 @@
     </element>
     <element id="ServiceRequest.occurrence[x]">
       <path value="ServiceRequest.occurrence[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
       <short value="ProcedureStartDate / ProcedureEndDate" />
       <definition value="* The (desired) start date (and if possible start time) of the procedure. A ‘vague’ date, such as only the year, is permitted. &#xD;&#xA;* The element offers the option to indicate the start of the period of a series of related procedures. &#xD;&#xA;* The end date (and if possible end time) of the procedure. A ‘vague’ date, such as only the year, is permitted. &#xD;&#xA;* The element offers the option to indicate the end of the period of a series of related procedures. The end date element is only used for a procedures that takes some time and is then always applied. If the procedure still continues, the value is left empty. For instantaneous or very short lasting procedures the element is omitted." />
       <comment value="The `.occurrencePeriod.start` and `.occurrencePeriod.end` are used for ProcedureStartDate and ProcedureEndDate if the zib Procedure concerns a period. For instantaneous or very short lasting procedures the `.occurrenceDateTime` is used." />
-      <alias value="VerrichtingStartDatum" />
-      <alias value="VerrichtingEindDatum" />
       <mapping>
         <identity value="zib-procedure-v5.2-2020EN" />
         <map value="NL-CM:14.1.2" />
@@ -97,6 +102,50 @@
         <identity value="zib-procedure-v5.2-2020EN" />
         <map value="NL-CM:14.1.3" />
         <comment value="ProcedureEndDate" />
+      </mapping>
+    </element>
+    <element id="ServiceRequest.occurrence[x]:occurrencePeriod">
+      <path value="ServiceRequest.occurrencePeriod" />
+      <sliceName value="occurrencePeriod" />
+      <type>
+        <code value="Period" />
+      </type>
+    </element>
+    <element id="ServiceRequest.occurrence[x]:occurrencePeriod.start">
+      <path value="ServiceRequest.occurrencePeriod.start" />
+      <short value="ProcedureStartDate" />
+      <definition value="The (desired) start date (and if possible start time) of the procedure. A ‘vague’ date, such as only the year, is permitted. The element offers the option to indicate the start of the period of a series of related procedures." />
+      <alias value="VerrichtingStartDatum" />
+      <mapping>
+        <identity value="zib-procedure-v5.2-2020EN" />
+        <map value="NL-CM:14.1.2" />
+        <comment value="ProcedureStartDate" />
+      </mapping>
+    </element>
+    <element id="ServiceRequest.occurrence[x]:occurrencePeriod.end">
+      <path value="ServiceRequest.occurrencePeriod.end" />
+      <short value="ProcedureEndDate" />
+      <definition value="The end date (and if possible end time) of the procedure. A ‘vague’ date, such as only the year, is permitted. The element offers the option to indicate the end of the period of a series of related procedures. The end date element is only used for a procedures that takes some time and is then always applied. If the procedure still continues, the value is left empty. For instantaneous or very short lasting procedures the `occurrenceDateTime` is used." />
+      <alias value="VerrichtingEindDatum" />
+      <mapping>
+        <identity value="zib-procedure-v5.2-2020EN" />
+        <map value="NL-CM:14.1.3" />
+        <comment value="ProcedureEndDate" />
+      </mapping>
+    </element>
+    <element id="ServiceRequest.occurrence[x]:occurrenceDateTime">
+      <path value="ServiceRequest.occurrenceDateTime" />
+      <sliceName value="occurrenceDateTime" />
+      <short value="ProcedureStartDate" />
+      <definition value="The (desired) start date (and if possible start time) of the procedure. A ‘vague’ date, such as only the year, is permitted. The element offers the option to indicate the start of the period of a series of related procedures." />
+      <alias value="VerrichtingStartDatum" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-procedure-v5.2-2020EN" />
+        <map value="NL-CM:14.1.2" />
+        <comment value="ProcedureStartDate" />
       </mapping>
     </element>
     <element id="ServiceRequest.requester">

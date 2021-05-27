@@ -104,20 +104,56 @@
     </element>
     <element id="Procedure.performed[x]">
       <path value="Procedure.performed[x]" />
-      <short value="ProcedureStartDate / ProcedureEndDate" />
-      <definition value="* The (desired) start date (and if possible start time) of the procedure. A ‘vague’ date, such as only the year, is permitted. &#xD;&#xA;* The element offers the option to indicate the start of the period of a series of related procedures. &#xD;&#xA;* The end date (and if possible end time) of the procedure. A ‘vague’ date, such as only the year, is permitted. &#xD;&#xA;* The element offers the option to indicate the end of the period of a series of related procedures. The end date element is only used for a procedures that takes some time and is then always applied. If the procedure still continues, the value is left empty. For instantaneous or very short lasting procedures the element is omitted." />
-      <comment value="The `.performedPeriod.start` and `.performedPeriod.end` are used for ProcedureStartDate and ProcedureEndDate if the zib Procedure concerns a period. For instantaneous or very short lasting procedures the `.performedDateTime` is used." />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Procedure.performed[x]:performedPeriod">
+      <path value="Procedure.performedPeriod" />
+      <sliceName value="performedPeriod" />
+      <type>
+        <code value="Period" />
+      </type>
+    </element>
+    <element id="Procedure.performed[x]:performedPeriod.start">
+      <path value="Procedure.performedPeriod.start" />
+      <short value="VerrichtingStartDatum" />
+      <definition value="The start date (and if possible start time) of the procedure. A ‘vague’ date, such as only the year, is permitted. The element offers the option to indicate the start of the period of a series of related procedures." />
       <alias value="VerrichtingStartDatum" />
-      <alias value="VerrichtingEindDatum" />
       <mapping>
         <identity value="zib-procedure-v5.2-2020EN" />
         <map value="NL-CM:14.1.2" />
         <comment value="ProcedureStartDate" />
       </mapping>
+    </element>
+    <element id="Procedure.performed[x]:performedPeriod.end">
+      <path value="Procedure.performedPeriod.end" />
+      <short value="ProcedureEndDate" />
+      <definition value="The end date (and if possible end time) of the procedure. A ‘vague’ date, such as only the year, is permitted. The element offers the option to indicate the end of the period of a series of related procedures. The end date element is only used for a procedures that takes some time and is then always applied. If the procedure still continues, the value is left empty. For instantaneous or very short lasting procedures the `performedDateTime` is used." />
+      <alias value="VerrichtingEindDatum" />
       <mapping>
         <identity value="zib-procedure-v5.2-2020EN" />
         <map value="NL-CM:14.1.3" />
         <comment value="ProcedureEndDate" />
+      </mapping>
+    </element>
+    <element id="Procedure.performed[x]:performedDateTime">
+      <path value="Procedure.performedDateTime" />
+      <sliceName value="performedDateTime" />
+      <short value="ProcedureStartDate" />
+      <definition value="The (desired) start date (and if possible start time) of the procedure. A ‘vague’ date, such as only the year, is permitted. `performedDateTime` is used for instantaneous or very short lasting procedures." />
+      <alias value="VerrichtingStartDatum" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-procedure-v5.2-2020EN" />
+        <map value="ProcedureStartDate" />
+        <comment value="NL-CM:14.1.2" />
       </mapping>
     </element>
     <element id="Procedure.performer.actor">
