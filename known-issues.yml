@@ -354,6 +354,11 @@ zib-Problem:
         reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.  
 
 zib-Procedure:
+ ignored issues:
+    Procedure.report:textResult:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restiction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+
   zib deviations:
     Procedure.code:
       - cardinality: 0..1
