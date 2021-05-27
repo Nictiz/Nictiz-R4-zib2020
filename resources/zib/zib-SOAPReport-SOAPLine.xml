@@ -30,6 +30,7 @@
         <severity value="error" />
         <human value="In a SOAP report an ICPC code may be assigned, but only to the S and E line." />
         <expression value="extension('http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode').exists() implies (code.coding.where(value = '255362007' and system = 'http://snomed.info/sct').exists() or code.coding.where(value = '129265001' and system = 'http://snomed.info/sct').exists())" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-SOAPReport-SOAPLine" />
       </constraint>
       <mapping>
         <identity value="zib-soapreport-v1.0-2020EN" />
@@ -70,17 +71,6 @@
         <comment value="SOAPLineHeader" />
       </mapping>
     </element>
-    <element id="Observation.subject">
-      <path value="Observation.subject" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient" />
-      </type>
-    </element>
     <element id="Observation.value[x]">
       <path value="Observation.value[x]" />
       <slicing>
@@ -92,7 +82,7 @@
       </slicing>
     </element>
     <element id="Observation.value[x]:valueString">
-      <path value="Observation.valueString" />
+      <path value="Observation.value[x]" />
       <sliceName value="valueString" />
       <short value="SOAPLineText" />
       <definition value="The actual content of the section as free formatted text." />
