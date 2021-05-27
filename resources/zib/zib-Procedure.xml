@@ -23,6 +23,11 @@
     <uri value="https://zibs.nl/wiki/Procedure-v5.2(2020EN)" />
     <name value="zib Procedure-v5.2(2020EN)" />
   </mapping>
+  <mapping>
+    <identity value="zib-textresult-v4.4-2020EN" />
+    <uri value="https://zibs.nl/wiki/TextResult-v4.4(2020EN)" />
+    <name value="zib TextResult-v4.4(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="true" />
   <type value="Procedure" />
@@ -187,6 +192,33 @@
         <identity value="zib-procedure-v5.2-2020EN" />
         <map value="NL-CM:14.1.13" />
         <comment value="ProcedureAnatomicalLocation" />
+      </mapping>
+    </element>
+    <element id="Procedure.report">
+      <path value="Procedure.report" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Procedure.report:textResult">
+      <path value="Procedure.report" />
+      <sliceName value="textResult" />
+      <short value="Procedure" />
+      <definition value="Reference from the Procedure information model including the date of the procedure, requesting and executive specialty to the TextResult information model." />
+      <alias value="Verrichting" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-TextResult" />
+      </type>
+      <mapping>
+        <identity value="zib-textresult-v4.4-2020EN" />
+        <map value="NL-CM:13.2.5" />
+        <comment value="Procedure" />
       </mapping>
     </element>
     <element id="Procedure.focalDevice.manipulated">
