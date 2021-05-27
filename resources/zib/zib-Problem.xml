@@ -32,8 +32,8 @@
     <element id="Condition">
       <path value="Condition" />
       <short value="Problem" />
-      <definition value="A problem describes a situation with regard to an individual’s health and/or welfare. This situation can be described by the patient  himselve (in the form of a complaint) or by their healthprofessional (in the form of a diagnosis, for example)." />
       <alias value="Probleem" />
+      <alias value="zib-Problem" />
       <mapping>
         <identity value="zib-problem-v4.4-2020EN" />
         <map value="NL-CM:5.1.1" />
@@ -45,47 +45,31 @@
       <short value="ProblemStatus" />
       <definition value="The problem status describes the condition of the problem:&#xD;&#xA;1. Active problems are problems of which the patient experiences symptoms or for which evidence exists.&#xD;&#xA;&#xD;&#xA;2. Problems with the status 'Inactive' refer to problems that don't affect the patient anymore or that of which there is no evidence of existence anymore." />
       <alias value="ProbleemStatus" />
+      <binding>
+        <strength value="required" />
+        <description value="Use ConceptMap ProbleemStatusCodelijst_to_ConditionClinicalStatusCodes to translate terminology from the functional model to profile terminology in ValueSet ConditionClinicalStatusCodes." />
+        <valueSet value="http://hl7.org/fhir/ValueSet/condition-clinical|4.0.1">
+          <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
+            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/ProbleemStatusCodelijst-to-ConditionClinicalStatusCodes" />
+          </extension>
+        </valueSet>
+      </binding>
       <mapping>
         <identity value="zib-problem-v4.4-2020EN" />
         <map value="NL-CM:5.1.4" />
         <comment value="ProblemStatus" />
       </mapping>
     </element>
-    <element id="Condition.clinicalStatus.coding">
-      <path value="Condition.clinicalStatus.coding" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="$this" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Condition.clinicalStatus.coding:clinicalStatus">
-      <path value="Condition.clinicalStatus.coding" />
-      <sliceName value="clinicalStatus" />
-      <min value="1" />
-      <max value="1" />
-      <binding>
-        <strength value="required" />
-        <description value="The clinical status of the condition or diagnosis." />
-        <valueSet value="http://hl7.org/fhir/ValueSet/condition-clinical|4.0.1" />
-      </binding>
-    </element>
-    <element id="Condition.clinicalStatus.coding:problemStatusCodelist">
-      <path value="Condition.clinicalStatus.coding" />
-      <sliceName value="problemStatusCodelist" />
-      <max value="1" />
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.5.1.2--20200901000000" />
-      </binding>
-    </element>
     <element id="Condition.verificationStatus">
       <path value="Condition.verificationStatus" />
       <short value="VerificationStatus" />
       <definition value="Clinical status of the problem or the diagnosis." />
       <alias value="VerificatieStatus" />
+      <binding>
+        <strength value="required" />
+        <description value="Use ConceptMap VerificatieStatusCodelijst_to_ConditionVerificationStatus to translate terminology from the functional model to profile terminology in ValueSet ConditionVerificationStatus." />
+        <valueSet value="http://hl7.org/fhir/ValueSet/condition-ver-status|4.0.2" />
+      </binding>
       <mapping>
         <identity value="zib-problem-v4.4-2020EN" />
         <map value="NL-CM:5.1.10" />
@@ -105,7 +89,9 @@
     <element id="Condition.verificationStatus.coding:verificationStatusCodelist">
       <path value="Condition.verificationStatus.coding" />
       <sliceName value="verificationStatusCodelist" />
-      <comment value="Possibly a comment to describe that a code from the zib codelijst is expected to be added when the mapping to the FHIR valueset is not equal." />
+      <comment value="In addition to a coding from this ValueSet, the corresponding coding from the FHIR base ValueSet SHALL be communicated. The ConceptMap &lt;http://nictiz.nl/fhir/ConceptMap/VerificatieStatusCodelijst-to-ConditionVerificationStatus&gt; can be used to relate these two ValueSets." />
+      <min value="1" />
+      <max value="1" />
       <binding>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.5.1.4--20200901000000" />
@@ -177,17 +163,11 @@
       <short value="ProblemAnatomicalLocation" />
       <definition value="Anatomical location which is the focus of the problem." />
       <alias value="ProbleemAnatomischeLocatie" />
+      <max value="1" />
       <type>
         <code value="CodeableConcept" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
       </type>
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="405813007" />
-          <display value="Procedure site - Direct" />
-        </coding>
-      </patternCodeableConcept>
       <mapping>
         <identity value="zib-problem-v4.4-2020EN" />
         <map value="NL-CM:5.1.14" />
@@ -196,6 +176,17 @@
     </element>
     <element id="Condition.onset[x]">
       <path value="Condition.onset[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Condition.onset[x]:onsetDateTime">
+      <path value="Condition.onset[x]" />
+      <sliceName value="onsetDateTime" />
       <short value="ProblemStartDate" />
       <definition value="Onset of the symptom, complaint, functional limitation, complication or date of diagnosis. A ‘vague’ date, such as only the year or the month and the year, is permitted." />
       <alias value="ProbleemBeginDatum" />
@@ -210,7 +201,19 @@
     </element>
     <element id="Condition.abatement[x]">
       <path value="Condition.abatement[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Condition.abatement[x]:abatementDateTime">
+      <path value="Condition.abatement[x]" />
+      <sliceName value="abatementDateTime" />
       <short value="ProblemEndDate" />
+      <definition value="Date on which the disorder to which the problem applies, is considered not to be present anymore.This datum needs not to be the same as the date of the change in problem status. A ‘vague’ date, such as only the year or the month and the year, is permitted." />
       <alias value="ProbleemEindDatum" />
       <type>
         <code value="dateTime" />
