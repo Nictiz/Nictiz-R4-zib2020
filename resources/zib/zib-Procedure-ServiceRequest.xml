@@ -32,7 +32,7 @@
     <element id="ServiceRequest">
       <path value="ServiceRequest" />
       <short value="Procedure" />
-      <definition value="The zib Procedure is mapped to this ServiceRequest profile and a profile on Procedure (http://nictiz.nl/fhir/StructureDefinition/zib-Procedure). &#xD;&#xA;&#xD;&#xA;Practically, the zib Procedure is split in two based on time to align with the intention of FHIR. All past procedures are covered in the Procedure resource. All future procedures, including the adviced procedures, are covered in the ServiceRequest resource. Both resources contain the zib mappings. The only exeption is the Requester concept which is only mapped in ServiceRequest." />
+      <definition value="The zib Procedure is mapped to this ServiceRequest profile and a profile on Procedure (http://nictiz.nl/fhir/StructureDefinition/zib-Procedure) which reference this profile using `Procedure.basedOn`. &#xD;&#xA;&#xD;&#xA;Practically, the zib Procedure is split in two based on time to align with the intention of FHIR. All past procedures are covered in the Procedure resource. All future procedures, including the adviced procedures, are covered in the ServiceRequest resource. Both resources contain the zib mappings. The only exeption is the Requester concept which is only mapped in ServiceRequest." />
       <alias value="Verrichting" />
       <mapping>
         <identity value="zib-procedure-v5.2-2020EN" />
