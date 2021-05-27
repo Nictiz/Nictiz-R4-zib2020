@@ -63,7 +63,9 @@ This document contains release notes per zib, indicating differences with their 
 
 ## Encounter
 * HealthProfessional has his own profile slice on `Encounter.participant`
-* Deleted descriptions for the ValueSets   
+* `Period.start` change to cardinality 0 .. 1 
+* Mapping `.reason.text` moved to `.reasonCode.text`
+* New concept `reasonReference` added in the encounter resource 
 
 ## zib-EpisodeOfCare
 * New zib in 2020. However, in the zib2017 package the nl-core-episodeofcare profile exists, which is not based on a zib but included some use case concepts. This zib profile supersedes this profile.
