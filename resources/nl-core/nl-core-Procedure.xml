@@ -37,6 +37,15 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-ServiceRequest" />
       </type>
     </element>
+    <element id="Procedure.subject">
+      <path value="Procedure.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
     <element id="Procedure.performer.actor">
       <path value="Procedure.performer.actor" />
       <type>
@@ -69,6 +78,21 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/DiagnosticReport" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
+      </type>
+    </element>
+    <element id="Procedure.bodySite">
+      <path value="Procedure.bodySite" />
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation" />
+      </type>
+    </element>
+    <element id="Procedure.report:textResult">
+      <path value="Procedure.report" />
+      <sliceName value="textResult" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TextResult" />
       </type>
     </element>
     <element id="Procedure.focalDevice.manipulated">
