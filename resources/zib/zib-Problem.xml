@@ -32,8 +32,8 @@
     <element id="Condition">
       <path value="Condition" />
       <short value="Problem" />
-      <definition value="A problem describes a situation with regard to an individual’s health and/or welfare. This situation can be described by the patient  himselve (in the form of a complaint) or by their healthprofessional (in the form of a diagnosis, for example)." />
       <alias value="Probleem" />
+      <alias value="zib-Problem" />
       <mapping>
         <identity value="zib-problem-v4.4-2020EN" />
         <map value="NL-CM:5.1.1" />
@@ -163,6 +163,7 @@
       <short value="ProblemAnatomicalLocation" />
       <definition value="Anatomical location which is the focus of the problem." />
       <alias value="ProbleemAnatomischeLocatie" />
+      <max value="1" />
       <type>
         <code value="CodeableConcept" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
@@ -209,7 +210,7 @@
       </slicing>
     </element>
     <element id="Condition.abatement[x]:abatementDateTime">
-      <path value="Condition.abatementDateTime" />
+      <path value="Condition.abatement[x]" />
       <sliceName value="abatementDateTime" />
       <short value="ProblemEndDate" />
       <definition value="Date on which the disorder to which the problem applies, is considered not to be present anymore.This datum needs not to be the same as the date of the change in problem status. A ‘vague’ date, such as only the year or the month and the year, is permitted." />
