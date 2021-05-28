@@ -113,14 +113,14 @@
       </slicing>
     </element>
     <element id="Procedure.performed[x]:performedPeriod">
-      <path value="Procedure.performedPeriod" />
+      <path value="Procedure.performed[x]" />
       <sliceName value="performedPeriod" />
       <type>
         <code value="Period" />
       </type>
     </element>
     <element id="Procedure.performed[x]:performedPeriod.start">
-      <path value="Procedure.performedPeriod.start" />
+      <path value="Procedure.performed[x].start" />
       <short value="VerrichtingStartDatum" />
       <definition value="The start date (and if possible start time) of the procedure. A ‘vague’ date, such as only the year, is permitted. The element offers the option to indicate the start of the period of a series of related procedures." />
       <alias value="VerrichtingStartDatum" />
@@ -131,7 +131,7 @@
       </mapping>
     </element>
     <element id="Procedure.performed[x]:performedPeriod.end">
-      <path value="Procedure.performedPeriod.end" />
+      <path value="Procedure.performed[x].end" />
       <short value="ProcedureEndDate" />
       <definition value="The end date (and if possible end time) of the procedure. A ‘vague’ date, such as only the year, is permitted. The element offers the option to indicate the end of the period of a series of related procedures. The end date element is only used for a procedures that takes some time and is then always applied. If the procedure still continues, the value is left empty. For instantaneous or very short lasting procedures the `performedDateTime` is used." />
       <alias value="VerrichtingEindDatum" />
@@ -142,7 +142,7 @@
       </mapping>
     </element>
     <element id="Procedure.performed[x]:performedDateTime">
-      <path value="Procedure.performedDateTime" />
+      <path value="Procedure.performed[x]" />
       <sliceName value="performedDateTime" />
       <short value="ProcedureStartDate" />
       <definition value="The (desired) start date (and if possible start time) of the procedure. A ‘vague’ date, such as only the year, is permitted. `performedDateTime` is used for instantaneous or very short lasting procedures." />

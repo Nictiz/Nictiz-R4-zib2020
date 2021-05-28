@@ -1,0 +1,73 @@
+<ServiceRequest xmlns="http://hl7.org/fhir">
+    <id value="nl-core-Procedure-ServiceRequest-01"/>
+    <meta>
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-ServiceRequest"/>
+    </meta>
+    <status value="active"/>
+    <intent value="plan"/>
+    <category>
+        <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="387713003"/>
+            <display value="Surgical procedure"/>
+        </coding>
+    </category>
+    <code>
+        <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="60159002"/>
+            <display value="Implantation of Swanson prosthesis of knee (procedure)"/>
+        </coding>
+    </code>
+    <orderDetail>
+        <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="257739009"/>
+            <display value="Open adjustment"/>
+        </coding>
+    </orderDetail>
+    <subject>
+        <reference value="Patient/nl-core-patient-01"/>
+        <display value="Johan XXX_Helleman"/>
+    </subject>
+    <occurrencePeriod>
+        <start value="2012-06-05T08:00:00+02:00"/>
+        <end value="2012-06-05T10:00:00+02:00"/>
+    </occurrencePeriod>
+    <requester>
+        <reference value="PractitionerRole/nl-core-PractitionerRole-01"/>
+        <display value="UMCG - Afdeling Orthopedie"/>
+    </requester>
+    <performer>
+        <reference value="PractitionerRole/nl-core-PractitionerRole-01"/>
+        <display value="UMCG - Afdeling Orthopedie"/>
+    </performer>
+    <locationReference>
+        <reference value="Location/nl-core-HealthcareProvider"/>
+        <display value="UMCG"/>
+    </locationReference>
+    <reasonReference>
+        <reference value="Condition/nl-core-problem-01"/>
+        <display value="Arthropathy (disorder)"/>
+    </reasonReference>
+    <supportingInfo>
+        <reference value="Device/zib-medicaldeviceproduct-01"/>
+        <display value="Knee joint prosthesis, device (physical object)"/>
+    </supportingInfo>
+    <bodySite>
+        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+            <valueCodeableConcept>
+                <coding>
+                    <system value="http://snomed.info/sct"/>
+                    <code value="7771000"/>
+                    <display value="Left"/>
+                </coding>
+            </valueCodeableConcept>
+        </extension>
+        <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="72696002"/>
+            <display value="Knee region structure (body structure)"/>
+        </coding>
+    </bodySite>
+</ServiceRequest>
