@@ -301,18 +301,29 @@ zib-FreedomRestrictingIntervention:
               reason: Although the concept TypeOfIntervention should be interpreted as conceptual and thus optional, Procedure.code is required by FHIR -- it doesn't make much sense to communicate a Procedure without communicating _which_ procedure, and the same applies to a FreedomRestrictingIntervention (procedure). 
 
 zib-SOAPReport:
+  ignored issues:
+    StructureDefinition.differential.element[6].sliceName:
+      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+        reason: "sliceName 'SOAPLine' starts with an uppercase letter because the SOAP abbreviation is commonly capitalized."
+    StructureDefinition.differential.element[8].sliceName:
+      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+        reason: "sliceName 'SOAPLine' starts with an uppercase letter because the SOAP abbreviation is commonly capitalized."
   zib deviations:
-    Observation.date:
+    Composition.date:
       - cardinality: 1..1
         reason: The cardinality of FHIR is 1..1, where the zib (SOAPReportDateTime) is 0..1. In case of absent data, the profiling guidelines provide guidance.
-    Observation.author:
+    Composition.author:
       - cardinality: 1..1
         reason: The cardinality of FHIR is 1..1, where the zib (Author) is 0..1. In case of absent data, the profiling guidelines provide guidance.
-    Observation.section:SOAPLine.code:
+    Composition.section:SOAPLine.code:
       - cardinality: 1..1
         reason: The cardinality of both zib (SOAPLineHeader) and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected. In case of absent data, the profiling guidelines provide guidance.
 
 zib-SOAPReport-Observation:
+  ignored issues:
+    StructureDefinition.differential.element[2].sliceName:
+      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+        reason: "sliceName 'SOAPLineCode' starts with an uppercase letter because the SOAP abbreviation is commonly capitalized."
   zib deviations:
     Observation.code:
       - cardinality: 1..1
@@ -330,3 +341,11 @@ zib-CareTeam:
       - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.' failed"
         reason: The restiction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
 
+=======
+        
+nl-core-SOAPReport:
+  ignored issues:
+    StructureDefinition.differential.element[4].sliceName:
+      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+        reason: "sliceName 'SOAPLine' starts with an uppercase letter because the SOAP abbreviation is commonly capitalized."
+>>>>>>> zib-SOAPReport
