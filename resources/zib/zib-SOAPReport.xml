@@ -32,7 +32,7 @@
     <element id="Composition">
       <path value="Composition" />
       <short value="SOAPReport" />
-      <comment value="Zib SOAPReport is implemented using two profiles: this profile implements the SOAPReport concept of the zib, while &amp;lt;http://nictiz.nl/fhir/StructureDefinition/zib-SOAPReport-Observation&amp;gt; represents the SOAPLine concept of the zib which is referenced by `.section.entry`. &#xD;&#xA;The Composition resource MAY hold similiar information found in the referenced zib-SOAPReport-Observation profile. Hence the mapping of these concepts in this profile." />
+      <comment value="Zib SOAPReport is implemented using two profiles: this profile implements the SOAPReport concept of the zib, while &amp;lt;http://nictiz.nl/fhir/StructureDefinition/zib-SOAPReport-Observation&amp;gt; represents the SOAPLine concept of the zib which is referenced by `.section.entry`. &#xD;&#xA;The Composition resource MAY hold a summary of the information found in the referenced zib-SOAPReport-Observation profile." />
       <alias value="SOEPVerslag" />
       <mapping>
         <identity value="zib-soapreport-v1.0-2020EN" />
@@ -154,14 +154,7 @@
     </element>
     <element id="Composition.section:SOAPLine.text">
       <path value="Composition.section.text" />
-      <short value="SOAPLineText" />
-      <definition value="The actual content of the section as free formatted text." />
-      <alias value="SOEPRegelTekst" />
-      <mapping>
-        <identity value="zib-soapreport-v1.0-2020EN" />
-        <map value="NL-CM:13.6.7" />
-        <comment value="SOAPLineText" />
-      </mapping>
+      <definition value="MAY hold a summary of the referenced zib-SOAPReport-Observation profile." />
     </element>
     <element id="Composition.section:SOAPLine.entry">
       <path value="Composition.section.entry" />
