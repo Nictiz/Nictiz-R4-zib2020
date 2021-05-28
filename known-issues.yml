@@ -272,3 +272,13 @@ zib-Problem:
       - datatype: CodeableConcept
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
         
+zib-VisualAcuity:
+  zib deviations:
+    Observation.extension:visualAcuityMeasurementDevice.value[x]:
+      - cardinality: 1..1
+        reason: The used extension uses a cardinality of 1..1 on the value[x] element. However, the extension itself is added with a cardinality of 0..1.
+    Observation.bodySite.extension:laterality.value[x]:
+      - short: AnatomicalLocation
+        reason: The zib implies a reference to AnatomicalLocation::Laterality, but actually references AnatomicalLocation. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442
+      - datatype: CodeableConcept
+        reason: The zib implies a reference to AnatomicalLocation::Laterality, but actually references AnatomicalLocation. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442

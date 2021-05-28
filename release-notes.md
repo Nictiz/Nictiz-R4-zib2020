@@ -17,3 +17,7 @@ This document contains release notes per zib, indicating differences with their 
 
 ## zib-Refraction
 * New zib, no STU3 version
+
+## zib-VisualAcuity
+* New zib
+
