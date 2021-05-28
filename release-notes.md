@@ -92,3 +92,20 @@ This is a newly added zib but had profiles that preceded the zib, namely gp-Enco
 * The extension zib-ContactInformation-TelecomType, which replaced the generic code-specification extensions from release 2.x of the zib2017 package onwards, has been deprecated again in favor of code-specication, as the mapping is now much more straightforward.
 * The element TelephoneNumbers/Comment was introduced. This is represented using the ext-Comment extension in the profile for TelephoneNumbers.
 
+## zib-NameInformation
+Style - profiling guidelines
+* Moved information and mappings from the extension level to the `value[x]` level. Note that the zib compliance test is complaining now about cardinality differences.
+* `HumanName.family.extensions` now have the zib conceptnames as slicenames instead of the exention names.
+* Usage of correct zib alias values
+* Removed copied FHIR definitions and comments as this orginated  from DSTU2 and is given in the base datatype. Moreover, this increases the focus on our added comments. 
+* Removed BRP mappings
+-----
+* Sliced HumanName.given for every zib concept that is mapped to this element. Slices are differentiated by a mandatory qualifier extension that contains a pattern. This makes the profile more explicit.
+* Added mappings for the newly added zib concept 'titels' on `prefix` and `suffix`. Added documentation/implementation guidance on prefix and the root.
+* Added a notion that `HumanName.use` is discouraged on the root and in the use element.
+* Added a notion on the root that explains that if HumanName.use is used, the full name will likely break up in multiple instances of the HumanName. Systems should expect this.
+* Added invariant to test for when `HumanName.use` is official that the name is truly official.
+* Removed use in the inline examples
+* Added a notion on the root that `HumanName.text` is encouraged to be given too.
+* Added a notion on the root that we have not profiled the zib constraint to mandate a LastName.
+
