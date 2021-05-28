@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-LegalSituation-LegalStatus" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-LegalSituation-LegalStatus" />
+  <name value="ZibLegalSituationLegalStatus" />
+  <title value="zib LegalSituation LegalStatus" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A legal situation can concern a legal status and/or representation.&#xD;&#xA;&#xD;&#xA;The legal status indicates the basis on which the patient is staying in a healthcare organization. This can be either voluntary or involuntary, however the legal status is always determined by a judge." />
+  <purpose value="This Condition resource represents the LegalStatus concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) LegalSituation v2.0 (2020)](https://zibs.nl/wiki/LegalSituation-v2.0(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-legalsituation-v2.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/LegalSituation-v2.0(2020EN)" />
+    <name value="zib LegalSituation-v2.0(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Condition" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Condition" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Condition">
+      <path value="Condition" />
+      <short value="LegalSituation" />
+      <comment value="Zib LegalSituation is implemented using two profiles: this profile implements the LegalStatus concept of the zib, while &lt;http://nictiz.nl/fhir/StructureDefinition/zib-LegalSituation-Representation&gt; represents the Representation concept of the zib." />
+      <alias value="JuridischeSituatie" />
+      <mapping>
+        <identity value="zib-legalsituation-v2.0-2020EN" />
+        <map value="NL-CM:7.17.1" />
+        <comment value="LegalSituation" />
+      </mapping>
+    </element>
+    <element id="Condition.category">
+      <path value="Condition.category" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="1" />
+    </element>
+    <element id="Condition.category:legalStatusCode">
+      <path value="Condition.category" />
+      <sliceName value="legalStatusCode" />
+      <min value="1" />
+      <max value="1" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="303186005" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Condition.code">
+      <path value="Condition.code" />
+      <short value="LegalStatus" />
+      <definition value="The legal status that applies to the patient. The legal status indicates the basis on which the patient is staying in a healthcare organization. This can be either voluntary or involuntary, however the legal status is always determined by a judge. A patient can also receive healthcare based on a forensic status." />
+      <alias value="JuridischeStatus" />
+      <min value="1" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.17.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-legalsituation-v2.0-2020EN" />
+        <map value="NL-CM:7.17.2" />
+        <comment value="LegalStatus" />
+      </mapping>
+    </element>
+    <element id="Condition.onset[x]">
+      <path value="Condition.onset[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Condition.onset[x]:onsetDateTime">
+      <path value="Condition.onset[x]" />
+      <sliceName value="onsetDateTime" />
+      <short value="DateStart" />
+      <definition value="The date on which the legal situation of the patient starts." />
+      <alias value="DatumAanvang" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-legalsituation-v2.0-2020EN" />
+        <map value="NL-CM:7.17.3" />
+        <comment value="DateStart" />
+      </mapping>
+    </element>
+    <element id="Condition.abatement[x]">
+      <path value="Condition.abatement[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Condition.abatement[x]:abatementDateTime">
+      <path value="Condition.abatement[x]" />
+      <sliceName value="abatementDateTime" />
+      <short value="DateStop" />
+      <definition value="The date on which the legal situation of the patient ends." />
+      <alias value="DatumEinde" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-legalsituation-v2.0-2020EN" />
+        <map value="NL-CM:7.17.4" />
+        <comment value="DateStop" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
