@@ -64,3 +64,10 @@ This is a newly added zib but had profiles that preceded the zib, namely gp-Enco
 * `PracitionRole.speciality` is not sliced anymore but has a combined ValueSet.
 * Explained cardinality mismatch of Practitioner.name on that element.
 
+## zib-HealthcareProvider
+* `Organization.identifier` is now sliced based on a pattern.
+* `Organization.type[DepartmentSpecialty]` and `Organization.type[OrganizationType]` from 0..* to 0..1
+* For `Organization.type` the slicing discriminator is changed from fixed system values to valueset binding.
+* Removed comments on `Organization.alias` because it has no basis in the zib
+* Added comments on the root to point out to the usage of Location resource and the `Organization.partOf`.
+* Major change: use of Location resource
