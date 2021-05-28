@@ -6,12 +6,17 @@
    </meta>
    <clinicalStatus>
       <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="73425007"/>
-         <display value="Inactief"/>
+         <system value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
+         <code value="inactive"/>
+         <display value="Inactive"/>
       </coding>
    </clinicalStatus>
    <verificationStatus>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/condition-ver-status"/>
+         <code value="confirmed"/>
+         <display value="Confirmed"/>
+      </coding>
       <coding>
          <system value="http://snomed.info/sct"/>
          <code value="410605003"/>
@@ -42,6 +47,10 @@
          <display value="Links"/>
       </coding>
    </bodySite>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <display value="Example patient"/>
+   </subject>
    <onsetDateTime value="2012-08-10"/>
    <abatementDateTime value="2021-01-01"/>
    <note>
