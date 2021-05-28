@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Encounter xmlns="http://hl7.org/fhir">
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Encounter"/>
+   </meta>
+   <participant>
+      <individual>
+         <reference value="Practitioner/nl-core-practitioner-01"/>
+         <display value="G.Z.M. de Wit"/>
+      </individual>
+   </participant>
+   <period>
+      <start value="2012-08-16"/>
+      <end value="2012-08-19"/>
+   </period>
+   <reasonReference>
+      <reference value="Condition/zib-problem-09"/>
+      <display value="Hier ook Probleem of Verrichting mogelijk"/>
+   </reasonReference>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+      <valueString value="Buikpijn"/>
+   </extension>
+   <admitSource>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="264362003"/>
+         <display value="Thuis"/>
+      </coding>
+      <text value=""/>
+   </admitSource>
+   <dischargeDisposition>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="22232009"/>
+         <display value="Ziekenhuis"/>
+      </coding>
+      <text value=""/>
+   </dischargeDisposition>
+   <location>
+      <reference value="Location/nl-core-location-01"/>
+      <display value="za1"/>
+   </location>
+</Encounter>
