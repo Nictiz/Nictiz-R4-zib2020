@@ -105,10 +105,6 @@
     <element id="Observation.bodySite.extension:laterality">
       <path value="Observation.bodySite.extension" />
       <sliceName value="laterality" />
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.20.2--20200901000000" />
-      </binding>
     </element>
     <element id="Observation.bodySite.extension:laterality.url">
       <path value="Observation.bodySite.extension.url" />
@@ -119,6 +115,13 @@
       <short value="Laterality" />
       <definition value="Laterality adds information about body site to the anatomic location, e.g. left." />
       <alias value="Lateraliteit" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.20.2--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-refraction-v1.0-2020EN" />
         <map value="NL-CM:12.20.15" />
