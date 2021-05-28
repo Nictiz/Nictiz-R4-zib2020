@@ -26,7 +26,19 @@
   <differential>
     <element id="ServiceRequest">
       <path value="ServiceRequest" />
+      <definition value="The zib Procedure is mapped to this ServiceRequest profile and a profile on Procedure (http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure) which reference this profile using `Procedure.basedOn`.&#xD;&#xA;&#xD;&#xA;Practically, the zib Procedure is split in two based on time to align with the intention of FHIR. All past procedures are covered in the Procedure resource. All future procedures, including the adviced procedures, are covered in the ServiceRequest resource. Both resources contain the zib mappings. The only exeption is the Requester concept which is only mapped in ServiceRequest." />
       <alias value="nl-core-Procedure-ServiceRequest" />
+    </element>
+    <element id="ServiceRequest.subject">
+      <path value="ServiceRequest.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
     </element>
     <element id="ServiceRequest.requester">
       <path value="ServiceRequest.requester" />
