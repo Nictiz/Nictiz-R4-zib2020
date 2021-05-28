@@ -97,9 +97,9 @@
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Composition.section:sOAPLine">
+    <element id="Composition.section:SOAPLine">
       <path value="Composition.section" />
-      <sliceName value="sOAPLine" />
+      <sliceName value="SOAPLine" />
       <short value="SOAPLine" />
       <definition value="Container of the SOAPLine concept.This container contains all data elements of the SOAPLine concept." />
       <alias value="SOEPRegel" />
@@ -117,7 +117,7 @@
         <comment value="SOAPLine" />
       </mapping>
     </element>
-    <element id="Composition.section:sOAPLine.extension">
+    <element id="Composition.section:SOAPLine.extension">
       <path value="Composition.section.extension" />
       <slicing>
         <discriminator>
@@ -127,16 +127,16 @@
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Composition.section:sOAPLine.extension:SOAPLineCode">
+    <element id="Composition.section:SOAPLine.extension:SOAPLineCode">
       <path value="Composition.section.extension" />
-      <sliceName value="sOAPLineCode" />
+      <sliceName value="SOAPLineCode" />
       <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode" />
       </type>
     </element>
-    <element id="Composition.section:sOAPLine.code">
+    <element id="Composition.section:SOAPLine.code">
       <path value="Composition.section.code" />
       <short value="SOAPLineHeader" />
       <definition value="The name of the SOAP line as an coded description. In a SOAP report this can be one of the following: subjective, objective, assessment or plan." />
@@ -152,11 +152,11 @@
         <comment value="SOAPLineHeader" />
       </mapping>
     </element>
-    <element id="Composition.section:sOAPLine.text">
+    <element id="Composition.section:SOAPLine.text">
       <path value="Composition.section.text" />
       <definition value="MAY hold a summary of the referenced zib-SOAPReport-Observation profile." />
     </element>
-    <element id="Composition.section:sOAPLine.entry">
+    <element id="Composition.section:SOAPLine.entry">
       <path value="Composition.section.entry" />
       <definition value="A reference to data that supports this section. At minimum, there should be an entry for the zib-SOAPReport-SOAPLine(Observation) that the section.entry.text was based on. Note that this Observation in turn will connect to the ICPC coding if relevant." />
       <type>
