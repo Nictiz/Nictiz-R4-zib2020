@@ -3,20 +3,34 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem"/>
    </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Problem.FurtherSpecificationProblemName">
+      <valueString value="Nog meer specificatie nodig"/>
+   </extension>
    <clinicalStatus>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="73425007"/>
-         <display value="Inactief"/>
-      </coding>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="73425007"/>
+            <display value="Inactief"/>
+         </coding>
+      </valueCodeableConcept>
    </clinicalStatus>
    <verificationStatus>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="410605003"/>
+            <display value="Aanwezigheid bevestigd"/>
+         </coding>
+      </valueCodeableConcept>
+   </verificationStatus>
+   <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="410605003"/>
-         <display value="Aanwezigheid bevestigd"/>
+         <code value="267038008"/>
+         <display value="Oedeem"/>
       </coding>
-   </verificationStatus>
+   </code>
    <category>
       <coding>
          <system value="http://snomed.info/sct"/>
@@ -26,16 +40,6 @@
    </category>
    <onsetDateTime value="2012-08-10"/>
    <abatementDateTime value="2021-01-01"/>
-   <code>
-      <coding>
-	     <system value="http://snomed.info/sct"/>
-         <code value="267038008"/>
-         <display value="Oedeem"/>
-      </coding>
-	   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Problem.FurtherSpecificationProblemName">
-      <valueString value="Nog meer specificatie nodig"/>
-   </extension>
-   </code>  
    <bodySite>
       <coding>
          <system value="http://snomed.info/sct"/>
