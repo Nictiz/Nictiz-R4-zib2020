@@ -46,3 +46,11 @@ This is a newly added zib but had profiles that preceded the zib, namely gp-Enco
 * In the SOAPLineCode extension the fixed value on `.valueCodeableConcept.coding.system` has been removed because it is now covered by a required binding.
 * Moved mapping of SOAPLineCode from `Observation.component`s to a custom extension because of lacking terminology codes to provide definiton ot the component.
 
+## zib-Encounter
+* ContactWith is mapped on a slice of `Encounter.participant`.
+* `Encounter.participant.type` now honours the maximum cardinality of HealthProfessionalRole. 
+* `Encounter.period.start` changed to cardinality 0 .. 1 due to the zibs conceptual cardinalities concept.
+* The mapping of concepts Problem, Procedure and DeviatingResult is moved to `Encounter.reasonReference`.
+* The mapping of Location is moved to `Encounter.location.location`.
+* Reference to other profiles not accounted for by the zib have been removed.
+
