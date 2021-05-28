@@ -282,3 +282,15 @@ zib-VisualAcuity:
         reason: The zib implies a reference to AnatomicalLocation::Laterality, but actually references AnatomicalLocation. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442
       - datatype: CodeableConcept
         reason: The zib implies a reference to AnatomicalLocation::Laterality, but actually references AnatomicalLocation. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442
+
+zib-TextResult:
+  zib deviations:
+    DiagnosticReport.code:
+      - cardinality: 1..1
+        reason: The cardinality of both zib and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected. In case of absent data, the profiling guidelines provide guidance.
+zib-TextResult-Media:
+  zib deviations:
+    Media.content:
+      - cardinality: 1..1
+        reason: The use of the Media resource referenced in zib-TextResult DiagnosticReport.media.link is optional (0..*), but if the Media resource is used, Media.content should be present (1..1).
+

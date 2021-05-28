@@ -21,3 +21,5 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-VisualAcuity
 * New zib
 
+## zib-TextResult
+* New concept VisualResult mapped in additional profile zib-TextResult-MediaMedia on Media.content. DiagnosticReport.image.link references this profile.
