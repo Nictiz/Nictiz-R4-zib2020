@@ -55,4 +55,12 @@ This is a newly added zib but had profiles that preceded the zib, namely gp-Enco
 * The mapping of Location is moved to `Encounter.location.location`.
 * Reference to other profiles not accounted for by the zib have been removed.
 
+## zib-HealthProfessional
+* `Practitioner.identifier` slices changed cardinality from 0..1 to 0..*.
+* Added HealthProfessionalIdentificationNumber mapping on `PracititionerRole.identifier`.
+* Added new mapping of Gender in Practitioner.
+* Added textual guidance on the root to clarify the use of Practitioner and PractitionerRole.
+* Added textual guidance on the root of the concept of HealthProfessionalRole.
+* `PracitionRole.speciality` is not sliced anymore but has a combined ValueSet.
+* Explained cardinality mismatch of Practitioner.name on that element.
 
