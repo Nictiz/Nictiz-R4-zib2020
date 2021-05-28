@@ -1,0 +1,17 @@
+zib-SOAPReport:
+  zib deviations:
+    Observation.date:
+      - cardinality: 1..1
+        reason: The cardinality of FHIR is 1..1, where the zib (SOAPReportDateTime) is 0..1. In case of absent data, the profiling guidelines provide guidance.
+    Observation.author:
+      - cardinality: 1..1
+        reason: The cardinality of FHIR is 1..1, where the zib (Author) is 0..1. In case of absent data, the profiling guidelines provide guidance.
+    Observation.section:SOAPLine.code:
+      - cardinality: 1..1
+        reason: The cardinality of both zib (SOAPLineHeader) and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected. In case of absent data, the profiling guidelines provide guidance.
+
+zib-SOAPReport-Observation:
+  zib deviations:
+    Observation.code:
+      - cardinality: 1..1
+        reason: The cardinality of both zib (SOAPLineHeader) and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected. In case of absent data, the profiling guidelines provide guidance.
