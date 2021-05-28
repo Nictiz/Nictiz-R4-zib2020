@@ -72,25 +72,14 @@
         <comment value="VisualAcuityMeasurementDevice" />
       </mapping>
     </element>
-    <element id="Observation.code.coding">
-      <path value="Observation.code.coding" />
-      <slicing>
-        <discriminator>
-          <type value="pattern" />
-          <path value="$this" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Observation.code.coding:visualAcuityCode">
-      <path value="Observation.code.coding" />
-      <sliceName value="visualAcuityCode" />
-      <min value="1" />
-      <max value="1" />
-      <patternCoding>
-        <system value="http://snomed.info/sct" />
-        <code value="16830007" />
-      </patternCoding>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="16830007" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Observation.effective[x]">
       <path value="Observation.effective[x]" />
@@ -202,37 +191,37 @@
         <rules value="open" />
       </slicing>
     </element>
-      <element id="Observation.component:visualAcuityType">
-          <path value="Observation.component" />
-          <sliceName value="visualAcuityType" />
-      </element>
-      <element id="Observation.component:visualAcuityType.code">
-          <path value="Observation.component.code" />
-          <patternCodeableConcept>
-              <coding>
-                  <system value="http://snomed.info/sct" />
-                  <code value="TODO-ZIB-1445" />
-              </coding>
-          </patternCodeableConcept>
-      </element>
-      <element id="Observation.component:visualAcuityType.value[x]">
-          <path value="Observation.component.value[x]" />
-          <short value="VisualAcuityType" />
-          <definition value="Type of visual acuity measurment." />
-          <alias value="VisusMetingType" />
-          <type>
-              <code value="CodeableConcept" />
-          </type>
-          <binding>
-              <strength value="extensible" />
-              <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.19.2--20200901000000" />
-          </binding>
-          <mapping>
-              <identity value="zib-visualacuity-v1.0-2020EN" />
-              <map value="NL-CM:12.19.2" />
-              <comment value="VisualAcuityType" />
-          </mapping>
-      </element>
+    <element id="Observation.component:visualAcuityType">
+      <path value="Observation.component" />
+      <sliceName value="visualAcuityType" />
+    </element>
+    <element id="Observation.component:visualAcuityType.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="TODO-ZIB-1445" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:visualAcuityType.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="VisualAcuityType" />
+      <definition value="Type of visual acuity measurment." />
+      <alias value="VisusMetingType" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.19.2--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-visualacuity-v1.0-2020EN" />
+        <map value="NL-CM:12.19.2" />
+        <comment value="VisualAcuityType" />
+      </mapping>
+    </element>
     <element id="Observation.component:visualAcuityMeasurementChart">
       <path value="Observation.component" />
       <sliceName value="visualAcuityMeasurementChart" />
