@@ -32,7 +32,6 @@
     <element id="Observation">
       <path value="Observation" />
       <short value="Refraction" />
-      <definition value="Root concept of the Refractie information model.This root concept contains all data elements of the Refraction information model." />
       <alias value="Refractie" />
       <mapping>
         <identity value="zib-refraction-v1.0-2020EN" />
@@ -40,25 +39,14 @@
         <comment value="Refraction" />
       </mapping>
     </element>
-    <element id="Observation.code.coding">
-      <path value="Observation.code.coding" />
-      <slicing>
-        <discriminator>
-          <type value="pattern" />
-          <path value="$this" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Observation.code.coding:refractionCode">
-      <path value="Observation.code.coding" />
-      <sliceName value="refractionCode" />
-      <min value="1" />
-      <max value="1" />
-      <patternCoding>
-        <system value="http://snomed.info/sct" />
-        <code value="251718005" />
-      </patternCoding>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="251718005" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Observation.effective[x]">
       <path value="Observation.effective[x]" />
@@ -117,9 +105,24 @@
     <element id="Observation.bodySite.extension:laterality">
       <path value="Observation.bodySite.extension" />
       <sliceName value="laterality" />
+      <max value="1" />
+    </element>
+    <element id="Observation.bodySite.extension:laterality.url">
+      <path value="Observation.bodySite.extension.url" />
+      <fixedUri value="laterality" />
     </element>
     <element id="Observation.bodySite.extension:laterality.value[x]">
       <path value="Observation.bodySite.extension.value[x]" />
+      <short value="Laterality" />
+      <definition value="Laterality adds information about body site to the anatomic location, e.g. left." />
+      <alias value="Lateraliteit" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.20.2--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-refraction-v1.0-2020EN" />
         <map value="NL-CM:12.20.15" />
@@ -145,7 +148,7 @@
       <path value="Observation.component" />
       <slicing>
         <discriminator>
-          <type value="pattern" />
+          <type value="value" />
           <path value="code" />
         </discriminator>
         <rules value="open" />
@@ -189,6 +192,7 @@
     <element id="Observation.component:cylindricalRefractionValue">
       <path value="Observation.component" />
       <sliceName value="cylindricalRefractionValue" />
+      <max value="1" />
       <condition value="zib-Refraction-1" />
       <condition value="zib-Refraction-2" />
     </element>
@@ -210,18 +214,14 @@
         <code value="Quantity" />
       </type>
       <patternQuantity>
-        <unit value="[diop]" />
         <system value="http://unitsofmeasure.org" />
+        <code value="[diop]" />
       </patternQuantity>
       <minValueQuantity>
         <value value="-10" />
-        <unit value="[diop]" />
-        <system value="http://unitsofmeasure.org" />
       </minValueQuantity>
       <maxValueQuantity>
         <value value="0" />
-        <unit value="[diop]" />
-        <system value="http://unitsofmeasure.org" />
       </maxValueQuantity>
       <mapping>
         <identity value="zib-refraction-v1.0-2020EN" />
@@ -232,6 +232,7 @@
     <element id="Observation.component:ciilindricRefractionAxis">
       <path value="Observation.component" />
       <sliceName value="ciilindricRefractionAxis" />
+      <max value="1" />
       <condition value="zib-Refraction-1" />
       <condition value="zib-Refraction-2" />
     </element>
@@ -253,18 +254,14 @@
         <code value="Quantity" />
       </type>
       <patternQuantity>
-        <unit value="deg" />
         <system value="http://unitsofmeasure.org" />
+        <code value="deg" />
       </patternQuantity>
       <minValueQuantity>
         <value value="0" />
-        <unit value="deg" />
-        <system value="http://unitsofmeasure.org" />
       </minValueQuantity>
       <maxValueQuantity>
         <value value="180" />
-        <unit value="deg" />
-        <system value="http://unitsofmeasure.org" />
       </maxValueQuantity>
       <mapping>
         <identity value="zib-refraction-v1.0-2020EN" />
@@ -275,6 +272,7 @@
     <element id="Observation.component:prismaValue">
       <path value="Observation.component" />
       <sliceName value="prismaValue" />
+      <max value="1" />
       <condition value="zib-Refraction-3" />
       <condition value="zib-Refraction-4" />
     </element>
@@ -296,18 +294,14 @@
         <code value="Quantity" />
       </type>
       <patternQuantity>
-        <unit value="[diop]" />
         <system value="http://unitsofmeasure.org" />
+        <code value="[diop]" />
       </patternQuantity>
       <minValueQuantity>
         <value value="0" />
-        <unit value="[diop]" />
-        <system value="http://unitsofmeasure.org" />
       </minValueQuantity>
       <maxValueQuantity>
         <value value="40" />
-        <unit value="[diop]" />
-        <system value="http://unitsofmeasure.org" />
       </maxValueQuantity>
       <mapping>
         <identity value="zib-refraction-v1.0-2020EN" />
@@ -318,6 +312,7 @@
     <element id="Observation.component:prismaBase">
       <path value="Observation.component" />
       <sliceName value="prismaBase" />
+      <max value="1" />
       <condition value="zib-Refraction-3" />
       <condition value="zib-Refraction-4" />
     </element>
@@ -339,18 +334,14 @@
         <code value="Quantity" />
       </type>
       <patternQuantity>
-        <unit value="deg" />
         <system value="http://unitsofmeasure.org" />
+        <code value="[diop]" />
       </patternQuantity>
       <minValueQuantity>
         <value value="0" />
-        <unit value="deg" />
-        <system value="http://unitsofmeasure.org" />
       </minValueQuantity>
       <maxValueQuantity>
         <value value="360" />
-        <unit value="deg" />
-        <system value="http://unitsofmeasure.org" />
       </maxValueQuantity>
       <mapping>
         <identity value="zib-refraction-v1.0-2020EN" />
@@ -361,6 +352,7 @@
     <element id="Observation.component:sfericRefractionValue">
       <path value="Observation.component" />
       <sliceName value="sfericRefractionValue" />
+      <max value="1" />
       <condition value="zib-Refraction-5" />
     </element>
     <element id="Observation.component:sfericRefractionValue.code">
@@ -381,18 +373,14 @@
         <code value="Quantity" />
       </type>
       <patternQuantity>
-        <unit value="[diop]" />
         <system value="http://unitsofmeasure.org" />
+        <code value="[diop]" />
       </patternQuantity>
       <minValueQuantity>
         <value value="-25" />
-        <unit value="[diop]" />
-        <system value="http://unitsofmeasure.org" />
       </minValueQuantity>
       <maxValueQuantity>
         <value value="25" />
-        <unit value="[diop]" />
-        <system value="http://unitsofmeasure.org" />
       </maxValueQuantity>
       <mapping>
         <identity value="zib-refraction-v1.0-2020EN" />
@@ -403,6 +391,7 @@
     <element id="Observation.component:sfericalEquivalent">
       <path value="Observation.component" />
       <sliceName value="sfericalEquivalent" />
+      <max value="1" />
       <condition value="zib-Refraction-5" />
     </element>
     <element id="Observation.component:sfericalEquivalent.code">
@@ -423,18 +412,14 @@
         <code value="Quantity" />
       </type>
       <patternQuantity>
-        <unit value="[diop]" />
         <system value="http://unitsofmeasure.org" />
+        <code value="[diop]" />
       </patternQuantity>
       <minValueQuantity>
         <value value="-25" />
-        <unit value="[diop]" />
-        <system value="http://unitsofmeasure.org" />
       </minValueQuantity>
       <maxValueQuantity>
         <value value="25" />
-        <unit value="[diop]" />
-        <system value="http://unitsofmeasure.org" />
       </maxValueQuantity>
       <mapping>
         <identity value="zib-refraction-v1.0-2020EN" />
@@ -445,13 +430,14 @@
     <element id="Observation.component:readAddition">
       <path value="Observation.component" />
       <sliceName value="readAddition" />
+      <max value="1" />
     </element>
     <element id="Observation.component:readAddition.code">
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
-          <code value="251718005" />
+          <code value="TODO-ZIB-1443" />
         </coding>
       </patternCodeableConcept>
     </element>
@@ -464,18 +450,14 @@
         <code value="Quantity" />
       </type>
       <patternQuantity>
-        <unit value="[diop]" />
         <system value="http://unitsofmeasure.org" />
+        <code value="[diop]" />
       </patternQuantity>
       <minValueQuantity>
         <value value="0" />
-        <unit value="[diop]" />
-        <system value="http://unitsofmeasure.org" />
       </minValueQuantity>
       <maxValueQuantity>
         <value value="5" />
-        <unit value="[diop]" />
-        <system value="http://unitsofmeasure.org" />
       </maxValueQuantity>
       <mapping>
         <identity value="zib-refraction-v1.0-2020EN" />

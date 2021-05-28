@@ -2,7 +2,6 @@
 
 This document contains release notes per zib, indicating differences with their [STU3 versions](https://simplifier.net/packages/nictiz.fhir.nl.stu3.zib2017/), deviations from the [profiling guidelines](https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4) and other points of interest.
 
-
 ## zib-Problem
 * ProbleemType has been added on a slice of `Condition.category` allowing the category element to be used for other purpose too.
 * The new concept FurtherSpecificationProblemName has been added in an extension within `Condition.code`.
@@ -16,3 +15,5 @@ This document contains release notes per zib, indicating differences with their 
 * Mapping `.reason.text` moved to `.reasonCode.text`
 * New concept `reasonReference` added in the encounter resource 
 
+## zib-Refraction
+* New zib, no STU3 version
