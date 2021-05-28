@@ -31,8 +31,8 @@
   <differential>
     <element id="Procedure">
       <path value="Procedure" />
-      <short value="FreedomRestrictingIntervention" />
-      <alias value="VrijheidsBeperkendeInterventie" />
+      <short value="FreedomrestrictingIntervention" />
+      <alias value="VrijheidsbeperkendeInterventie" />
       <mapping>
         <identity value="zib-freedomrestrictingintervention-v1.0-2020EN" />
         <map value="NL-CM:14.6.1" />
@@ -52,7 +52,6 @@
     <element id="Procedure.extension:legallyCapable">
       <path value="Procedure.extension" />
       <sliceName value="legallyCapable" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -62,12 +61,25 @@
     <element id="Procedure.extension:assent">
       <path value="Procedure.extension" />
       <sliceName value="assent" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.Assent" />
       </type>
+    </element>
+    <element id="Procedure.status">
+      <path value="Procedure.status" />
+      <comment value="This element is implictly mapped to the zib concepts NL-CM:14.6.9 (Start) and NL-CM:14.6.9 (End). Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When Start is in the future, `.status` will usually be set to _preparation_.&#xD;&#xA;* When Start is in the past and End is present and in the future, `.status` will usually be set to _in-progress_.&#xD;&#xA;* When End is present and in the past, `.status` will usually be set to _completed_.&#xD;&#xA;* When End is not present, this means it was a point-in-time procedure and `.status` will usually be set to _completed_.&#xD;&#xA;* When a system is unable to infer the status from the Start and End, `.status` will be set to _unknown_.&#xD;&#xA;&#xD;&#xA;The _unknown_ code is not to be used to convey other statuses.  The _unknown_ code should be used when one of the statuses applies, but the authoring system doesn't know the current state of the procedure.&#xA;&#xA;This element is labeled as a modifier because the status contains codes that mark the resource as not currently valid." />
+      <mapping>
+        <identity value="zib-freedomrestrictingintervention-v1.0-2020EN" />
+        <map value="NL-CM:14.6.8" />
+        <comment value="Start (implicit, main mapping is on `Procedure.performedPeriod`)" />
+      </mapping>
+      <mapping>
+        <identity value="zib-freedomrestrictingintervention-v1.0-2020EN" />
+        <map value="NL-CM:14.6.9" />
+        <comment value="End (implicit, main mapping is on `Procedure.performedPeriod`)" />
+      </mapping>
     </element>
     <element id="Procedure.category">
       <path value="Procedure.category" />
@@ -87,7 +99,6 @@
       <min value="1" />
       <binding>
         <strength value="extensible" />
-        <description value="SoortInterventieCodelijsten" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.20--20200901000000" />
       </binding>
       <mapping>
@@ -109,7 +120,6 @@
     <element id="Procedure.performed[x]:performedPeriod">
       <path value="Procedure.performed[x]" />
       <sliceName value="performedPeriod" />
-      <min value="1" />
       <type>
         <code value="Period" />
       </type>
@@ -117,9 +127,8 @@
     <element id="Procedure.performed[x]:performedPeriod.start">
       <path value="Procedure.performed[x].start" />
       <short value="Start" />
-      <definition value="The date and time on which the intervention was carried out for point in time registrations or the date and time on which the intervention was started for duration registrations." />
+      <definition value="The date and time on which the intervention was started for duration registrations." />
       <alias value="Begin" />
-      <min value="1" />
       <mapping>
         <identity value="zib-freedomrestrictingintervention-v1.0-2020EN" />
         <map value="NL-CM:14.6.8" />
@@ -137,6 +146,21 @@
         <comment value="End" />
       </mapping>
     </element>
+    <element id="Procedure.performed[x]:performedDateTime">
+      <path value="Procedure.performed[x]" />
+      <sliceName value="performedDateTime" />
+      <short value="Start" />
+      <definition value="The date and time on which the intervention was carried out for point in time registrations." />
+      <alias value="Begin" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-freedomrestrictingintervention-v1.0-2020EN" />
+        <map value="NL-CM:14.6.8" />
+        <comment value="Start" />
+      </mapping>
+    </element>
     <element id="Procedure.reasonCode">
       <path value="Procedure.reasonCode" />
       <short value="ReasonForUse" />
@@ -145,7 +169,6 @@
       <max value="1" />
       <binding>
         <strength value="extensible" />
-        <description value="RedenVanToepassenCodelijst" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.20.5.4--20200901000000" />
       </binding>
       <mapping>

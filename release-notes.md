@@ -33,3 +33,6 @@ This document contains release notes per zib, indicating differences with their 
 * The `Procedure.performer` only references the zib HealthProfessional represented in a PractitionerRole resource. Other references not dictated by the zib are removed.
 * `ServiceRequest.performer` contains a reference to the zib CareTeam because the FHIR definition deviates from the zib Performer concept when multiple references are provided. This is described in the element's comment.
 
+## zib-FreedomRistrictingIntervention
+* This concerns a newly added zib.
+

@@ -4,7 +4,7 @@
   <url value="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.LegallyCapable" />
   <name value="ExtFreedomRestrictingInterventionLegallyCapable" />
   <title value="ext FreedomRestrictingIntervention.LegallyCapable" />
-  <status value="active" />
+  <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
     <name value="Nictiz" />
@@ -33,6 +33,15 @@
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
   <derivation value="constraint" />
   <differential>
+    <element id="Extension">
+      <path value="Extension" />
+      <constraint>
+        <key value="zib-FreedomRestrictingIntervention-01" />
+        <severity value="warning" />
+        <human value="If the patient is not legally capable, an explanation must be provided" />
+        <expression value="extension.where(url='legallyCapable').value = false implies extension.where(url='legallyCapableComment').value.exists()" />
+      </constraint>
+    </element>
     <element id="Extension.extension">
       <path value="Extension.extension" />
       <slicing>
@@ -46,7 +55,6 @@
     <element id="Extension.extension:legallyCapable">
       <path value="Extension.extension" />
       <sliceName value="legallyCapable" />
-      <min value="1" />
       <max value="1" />
     </element>
     <element id="Extension.extension:legallyCapable.url">
@@ -58,7 +66,6 @@
       <short value="LegallyCapable" />
       <definition value="Indicator stating whether the patient is deemed capable of overseeing the consequences of a certain procedure, situation or decision." />
       <alias value="Wilsbekwaam" />
-      <min value="1" />
       <type>
         <code value="boolean" />
       </type>
@@ -71,7 +78,6 @@
     <element id="Extension.extension:legallyCapableComment">
       <path value="Extension.extension" />
       <sliceName value="legallyCapableComment" />
-      <min value="1" />
       <max value="1" />
     </element>
     <element id="Extension.extension:legallyCapableComment.url">
@@ -83,7 +89,6 @@
       <short value="LegallyCapableComment" />
       <definition value="Comment on the decisions which the patient is legally capable of making." />
       <alias value="WilsbekwaamToelichting" />
-      <min value="1" />
       <type>
         <code value="string" />
       </type>
