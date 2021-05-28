@@ -165,6 +165,7 @@
     <element id="Observation.bodySite.extension:laterality">
       <path value="Observation.bodySite.extension" />
       <sliceName value="laterality" />
+      <max value="1" />
     </element>
     <element id="Observation.bodySite.extension:laterality.url">
       <path value="Observation.bodySite.extension.url" />
@@ -175,6 +176,9 @@
       <short value="AnatomicalLocation" />
       <definition value="The laterality of the eye of which the visual acuity has been measured." />
       <alias value="AnatomischeLocatie" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
       <mapping>
         <identity value="zib-visualacuity-v1.0-2020EN" />
         <map value="NL-CM:12.19.5" />
@@ -185,7 +189,7 @@
       <path value="Observation.component" />
       <slicing>
         <discriminator>
-          <type value="pattern" />
+          <type value="value" />
           <path value="code" />
         </discriminator>
         <rules value="open" />
@@ -194,6 +198,7 @@
     <element id="Observation.component:visualAcuityType">
       <path value="Observation.component" />
       <sliceName value="visualAcuityType" />
+      <max value="1" />
     </element>
     <element id="Observation.component:visualAcuityType.code">
       <path value="Observation.component.code" />
@@ -225,6 +230,7 @@
     <element id="Observation.component:visualAcuityMeasurementChart">
       <path value="Observation.component" />
       <sliceName value="visualAcuityMeasurementChart" />
+      <max value="1" />
     </element>
     <element id="Observation.component:visualAcuityMeasurementChart.code">
       <path value="Observation.component.code" />
@@ -256,6 +262,7 @@
     <element id="Observation.component:distanceFromChart">
       <path value="Observation.component" />
       <sliceName value="distanceFromChart" />
+      <max value="1" />
     </element>
     <element id="Observation.component:distanceFromChart.code">
       <path value="Observation.component.code" />
