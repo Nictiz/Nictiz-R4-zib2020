@@ -36,8 +36,16 @@
   <kind value="complex-type" />
   <abstract value="false" />
   <context>
-    <type value="element" />
+    <type value="fhirpath" />
     <expression value="MedicationRequest" />
+  </context>
+  <context>
+    <type value="fhirpath" />
+    <expression value="MedicationDispense" />
+  </context>
+  <context>
+    <type value="fhirpath" />
+    <expression value="MediationStatement" />
   </context>
   <type value="Extension" />
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
@@ -45,6 +53,7 @@
   <differential>
     <element id="Extension">
       <path value="Extension" />
+      <max value="1" />
       <isModifier value="true" />
     </element>
     <element id="Extension.url">
@@ -53,9 +62,11 @@
     </element>
     <element id="Extension.value[x]">
       <path value="Extension.value[x]" />
-      <short value="MedicationAgreementAdditionalInformation" />
-      <definition value="Additional information includes details on the structure of the agreement made that are relevant for pharmacovigilance and fulfillment by the pharmacist. This can be used e.g. to indicate that there was a conscious decision to deviate from the norm or that the agreement is to be structured in a certain way." />
-      <alias value="MedicatieafspraakAanvullendeInformatie" />
+      <short value="StopType" />
+      <definition value="Stop type, the manner in which this medication is discontinued (temporary or definitive)." />
+      <alias value="MedicatieafspraakStopType" />
+      <alias value="MedicatieGebruikStopType" />
+      <alias value="ToedieningsafspraakStopType" />
       <type>
         <code value="CodeableConcept" />
       </type>
