@@ -6,7 +6,7 @@
     xmlns="http://hl7.org/fhir"
     exclude-result-prefixes="#all"
     version="2.0">
-    
+
     <xsl:output indent="yes"/>
     
     <!-- Show (optional) warnings to 'validate' content of profile -->
