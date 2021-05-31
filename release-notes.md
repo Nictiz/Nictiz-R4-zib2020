@@ -78,3 +78,6 @@ Style - profiling guidelines
 
 ## zib-Range
 * There is no profile for this partial zib because the relevant parts can be modelled directly in the profiles where this zib is used.
+
+## zib-TimeInterval
+* New profile.
