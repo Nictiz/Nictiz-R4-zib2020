@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-TimeInterval" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TimeInterval" />
+  <name value="NlcoreTimeInterval" />
+  <title value="nl core TimeInterval" />
+  <status value="draft" />
+  <description value="A time interval indicates the time between two moments in time. Interval can be defined by a start time and end time , start time and duration or duration and end time." />
+  <purpose value="A derived profile from [zib-TimeInterval](http://nictiz.nl/fhir/StructureDefinition/zib-TimeInterval) to provide a version better suited for implementation purposes." />
+  <fhirVersion value="4.0.1" />
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <type value="Period" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-TimeInterval" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Period">
+      <path value="Period" />
+      <alias value="nl-core-TimeInterval" />
+    </element>
+  </differential>
+</StructureDefinition>
