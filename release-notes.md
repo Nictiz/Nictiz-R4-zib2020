@@ -125,3 +125,8 @@ Style - profiling guidelines
 * Placed SubstanceCode on a CodeableConcept type slice instead of the .item[x] element adhering to the open world modeling principle.
 * Changed profile canoncial URL to align with the zib name.  
 
+## zib-MedicationAgreement
+* Removed references not accounted for by the zib.
+* Placed AgreedMedicine on a Reference type slice instead of the fixed `MedicationRequest.medicationReference` element adhering to the open world modeling principle.
+* The generic AdditionalInformation extension, that was reused over multiple profiles and specified in the profile, has been replaced by specific extensions that are profiled in the extension.
+
