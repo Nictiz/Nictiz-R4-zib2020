@@ -47,6 +47,14 @@
         <rules value="open" />
       </slicing>
     </element>
+    <element id="MedicationRequest.extension:stopType">
+      <path value="MedicationRequest.extension" />
+      <sliceName value="stopType" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-StopType" />
+      </type>
+    </element>
     <element id="MedicationRequest.extension:additionalInformation">
       <path value="MedicationRequest.extension" />
       <sliceName value="additionalInformation" />
@@ -66,7 +74,7 @@
       </slicing>
     </element>
     <element id="MedicationRequest.medication[x]:medicationReference">
-      <path value="MedicationRequest.medicationReference" />
+      <path value="MedicationRequest.medication[x]" />
       <sliceName value="medicationReference" />
       <short value="AgreedMedicine" />
       <definition value="The medicine agreed upon to be used." />
