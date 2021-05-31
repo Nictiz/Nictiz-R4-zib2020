@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-TimeInterval.Duration" />
+  <url value="http://nictiz.nl/fhir/StructureDefintion/ext-TimeInterval.Duration" />
+  <name value="ExtTimeIntervalDuration" />
+  <title value="ext TimeInterval Duration" />
+  <status value="draft" />
+  <publisher value="Nictiz"/>
+  <contact>
+    <name value="Nictiz"/>
+    <telecom>
+      <system value="email"/>
+      <value value="info@nictiz.nl"/>
+      <use value="work"/>
+    </telecom>
+  </contact>
+  <description value="The duration of the interval in appropriate units of time (e.g. days or hours, etc.)" />
+  <purpose value="This extension represents Duration of [TimeInterval](https://zibs.nl/wiki/TimeInterval-v1.0(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise."/>
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-timeinterval-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/TimeInterval-v1.0(2020EN)" />
+    <name value="zib TimeInterval-v1.0(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="Period" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefintion/ext-TimeInterval.Duration" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="Duration" />
+      <definition value="The duration of the interval in appropriate units of time (e.g. days or hours, etc." />
+      <alias value="tijdsDuur" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <mapping>
+        <identity value="zib-timeinterval-v1.0-2020EN" />
+        <map value="NL-CM:20.3.4" />
+        <comment value="Duration" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
