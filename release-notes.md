@@ -118,4 +118,10 @@ Style - profiling guidelines
 
 ## zib-MedicationContraIndication
 * MedicationContraIndication is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
->>>>>>> zib-MedicationContraIndication
+
+## zib-PharmaceuticalProduct
+* A combined valueset is now used for MedicationCode and IngredientCode instead of a slicing construct of `CodeableConceptcoding`.
+* Removed references not accounted for by the zib.
+* Placed SubstanceCode on a CodeableConcept type slice instead of the .item[x] element adhering to the open world modeling principle.
+* Changed profile canoncial URL to align with the zib name.  
+
