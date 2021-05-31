@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-MedicationAgreement" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement" />
+  <name value="ZibMedicationAgreement" />
+  <title value="zib MedicationAgreement" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <purpose value="This MedicationRequest resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) MedicationAgreement-v1.2(2020EN)](https://zibs.nl/wiki/MedicationAgreement-v1.2(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <mapping>
+    <identity value="zib-medicationagreement-v1.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/MedicationAgreement-v1.2(2020EN)" />
+    <name value="zib MedicationAgreement-v1.2(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="MedicationRequest" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/MedicationRequest" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="MedicationRequest">
+      <path value="MedicationRequest" />
+      <short value="MedicationAgreement" />
+      <alias value="Medicatieafspraak" />
+      <mapping>
+        <identity value="zib-medicationagreement-v1.2-2020EN" />
+        <map value="NL-CM:9.6.9580" />
+        <comment value="MedicationAgreement" />
+      </mapping>
+    </element>
+    <element id="MedicationRequest.extension">
+      <path value="MedicationRequest.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="MedicationRequest.extension:additionalInformation">
+      <path value="MedicationRequest.extension" />
+      <sliceName value="additionalInformation" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.AdditionalInformation" />
+      </type>
+    </element>
+    <element id="MedicationRequest.medication[x]">
+      <path value="MedicationRequest.medication[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="MedicationRequest.medication[x]:medicationReference">
+      <path value="MedicationRequest.medicationReference" />
+      <sliceName value="medicationReference" />
+      <short value="AgreedMedicine" />
+      <definition value="The medicine agreed upon to be used." />
+      <alias value="Afgesprokengeneesmiddel" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Medication" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-PharmaceuticalProduct" />
+      </type>
+      <mapping>
+        <identity value="zib-medicationagreement-v1.2-2020EN" />
+        <map value="NL-CM:9.6.19925" />
+        <comment value="AgreedMedicine" />
+      </mapping>
+    </element>
+    <element id="MedicationRequest.authoredOn">
+      <path value="MedicationRequest.authoredOn" />
+      <short value="MedicationAgreementDateTime" />
+      <definition value="The time at which the agreement was made. Appointment date + time are required (order of the appointments must be clear in cases with multiple appointments on one day)" />
+      <alias value="MedicatieafspraakDatumTijd" />
+      <mapping>
+        <identity value="zib-medicationagreement-v1.2-2020EN" />
+        <map value="NL-CM:9.6.19757" />
+        <comment value="MedicationAgreementDateTime" />
+      </mapping>
+    </element>
+    <element id="MedicationRequest.requester">
+      <path value="MedicationRequest.requester" />
+      <short value="Prescriber" />
+      <definition value="The health professional that entered the medication agreement with the patient." />
+      <alias value="Voorschrijver" />
+      <mapping>
+        <identity value="zib-medicationagreement-v1.2-2020EN" />
+        <map value="NL-CM:9.6.1030" />
+        <comment value="Prescriber" />
+      </mapping>
+    </element>
+    <element id="MedicationRequest.reasonCode">
+      <path value="MedicationRequest.reasonCode" />
+      <short value="ReasonMedicationAgreement" />
+      <definition value="Reason for this agreement. This can be the reason to start, change or stop the medication treatment." />
+      <alias value="RedenMedicatieafspraak" />
+      <max value="1" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.6.2--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-medicationagreement-v1.2-2020EN" />
+        <map value="NL-CM:9.6.22094" />
+        <comment value="ReasonMedicationAgreement" />
+      </mapping>
+    </element>
+    <element id="MedicationRequest.reasonReference">
+      <path value="MedicationRequest.reasonReference" />
+      <short value="PrescriptionReason" />
+      <definition value="The medical reason for the prescription or for use of the medication. This can be used to enter a medical indication which was the direct cause for prescription or for use of the medication in question. &#xA;                        It can concern every type of problem (or condition) of the patient, almost all diagnoses, complaints or symptoms. &#xA;                        Please note: The BST401T file of the G standard contains a “special reference” to indicate that “exchange of the reason for prescription is essential”." />
+      <alias value="RedenVanVoorschrijven" />
+      <mapping>
+        <identity value="zib-medicationagreement-v1.2-2020EN" />
+        <map value="NL-CM:9.6.23133" />
+        <comment value="PrescriptionReason" />
+      </mapping>
+    </element>
+    <element id="MedicationRequest.note">
+      <path value="MedicationRequest.note" />
+      <max value="1" />
+    </element>
+    <element id="MedicationRequest.note.text">
+      <path value="MedicationRequest.note.text" />
+      <short value="Comment" />
+      <definition value="Comments regarding to the medication agreement. For example: in consultation with the medical specialist." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-medicationagreement-v1.2-2020EN" />
+        <map value="NL-CM:9.6.22273" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="MedicationRequest.dosageInstruction">
+      <path value="MedicationRequest.dosageInstruction" />
+      <short value="InstructionsForUse" />
+      <definition value="Instructions for the use of the medication, e.g. dose and route of administration." />
+      <alias value="Gebruiksinstructie" />
+      <type>
+        <code value="Dosage" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-InstructionsForUse" />
+      </type>
+      <mapping>
+        <identity value="zib-medicationagreement-v1.2-2020EN" />
+        <map value="NL-CM:9.6.23240" />
+        <comment value="InstructionsForUse" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
