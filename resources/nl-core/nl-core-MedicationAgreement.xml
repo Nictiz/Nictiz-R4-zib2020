@@ -26,5 +26,25 @@
       <path value="MedicationRequest" />
       <alias value="nl-core-MedicationAgreement" />
     </element>
+    <element id="MedicationRequest.extension">
+      <path value="MedicationRequest.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="MedicationRequest.extension:periodOfUse">
+      <path value="MedicationRequest.extension" />
+      <sliceName value="periodOfUse" />
+    </element>
+    <element id="MedicationRequest.extension:periodOfUse.value[x]">
+      <path value="MedicationRequest.extension.value[x]" />
+      <type>
+        <code value="Period" />
+      </type>
+    </element>
   </differential>
 </StructureDefinition>

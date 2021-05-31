@@ -71,9 +71,17 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-PeriodOfUse" />
       </type>
     </element>
+    <element id="MedicationRequest.extension:periodOfUse.url">
+      <path value="MedicationRequest.extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-PeriodOfUse" />
+    </element>
     <element id="MedicationRequest.extension:periodOfUse.value[x]">
       <path value="MedicationRequest.extension.value[x]" />
       <definition value="**Start date**: This is the time at which the agreement was to take effect (or took effect or will take effect). This is the time at which the instructions for use in this agreement start. In the case of an agreement to discontinue use, this is the start date of the original medication agreement. The end date indicates from when the medication is to be discontinued.&#xD;&#xA;**Duration**: The intended duration of use. E.g. 5 days or 8 weeks. It is not allowed to indicate the duration in months, because different months have a variable duration in days.&#xD;&#xA;&#xD;&#xA;**End date**: The time at which the period of use ends (or ended or will end). In the case of an agreement to discontinue use, this is the time at which the medication is to be discontinued. To avoid confusion between 'to' and 'up to', the submission of time is always mandatory for the end date.&#xD;&#xA;&#xD;&#xA;With medication for an indefinite period only a start date is indicated." />
+      <type>
+        <code value="Period" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-TimeInterval" />
+      </type>
     </element>
     <element id="MedicationRequest.medication[x]">
       <path value="MedicationRequest.medication[x]" />
