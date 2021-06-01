@@ -58,6 +58,10 @@
       <type>
         <code value="CodeableConcept" />
       </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.8.1--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-livingsituation-v3.3-2020EN" />
         <map value="NL-CM:7.8.3" />
@@ -90,6 +94,15 @@
       <path value="Observation.component" />
       <sliceName value="homeAdaption" />
     </element>
+    <element id="Observation.component:homeAdaption.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="118871000146108" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
     <element id="Observation.component:homeAdaption.value[x]">
       <path value="Observation.component.value[x]" />
       <slicing>
@@ -109,6 +122,10 @@
       <type>
         <code value="CodeableConcept" />
       </type>
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.8.2--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-livingsituation-v3.3-2020EN" />
         <map value="NL-CM:7.8.4" />
@@ -126,6 +143,15 @@
         <map value="NL-CM:7.8.4" />
         <comment value="LivingCondition" />
       </mapping>
+    </element>
+    <element id="Observation.component:livingCondition.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="224249004" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Observation.component:livingCondition.value[x]">
       <path value="Observation.component.value[x]" />
@@ -146,6 +172,10 @@
       <type>
         <code value="CodeableConcept" />
       </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.8.3--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-livingsituation-v3.3-2020EN" />
         <map value="NL-CM:7.8.4" />
