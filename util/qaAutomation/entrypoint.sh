@@ -15,11 +15,14 @@ cd $work_dir
 
 changed_only=0
 output_redirect="> /dev/null 2> /dev/null"
+tx_opt=""
 while [ "$1" != "" ]; do
     case $1 in
         --changed-only) changed_only=1
                         ;;
         --debug)        output_redirect=""
+                        ;;
+        --no-tx)        tx_opt="-tx n/a"
                         ;;
         *)              echo "Usage: $0 [--changed-only] [--debug]"
                         exit 1
@@ -45,9 +48,12 @@ validate() {
     if [[ -n $3 ]]; then
       local profile_opt="-profile $3"
     fi
-    eval java -jar $tools_dir/validator/validator.jar -version 4.0 -ig ig/ -recurse $profile_opt $2 -output $output $output_redirect
+    eval java -jar $tools_dir/validator/validator.jar -version 4.0 -ig ig/ -recurse $profile_opt $tx_opt $2 -output $output $output_redirect
     if [ $? -eq 0 ]; then
       python3 $tools_dir/hl7-fhir-validator-action/analyze_results.py --colorize --fail-at warning --ignored-issues known-issues.yml $output
+      if [ "$tx_opt" != "" ]; then
+        echo -e "\033[0;33m(No terminology server was used)\033[0m"
+      fi
     else
       echo -e "\033[0;33mThere was an error running the validator. Re-run with the --debug option to see the output.\033[0m"
     fi
@@ -57,14 +63,24 @@ validate() {
   fi
 }
 
+# Perform all HL7 Validator actions
+if [ "$tx_opt" == "" ]; then
+  source /scripts/checktx.sh
+  if [ "$tx_opt" != "" ]; then
+    echo -e "\033[0;33mtx.fhir.org couldn't be reached. Disabling terminology server checking.\033[0m"
+  fi
+else
+  echo -e "\033[0;33mTerminology server manually disabled.\033[0m"
+fi
 validate "zib profiles" "$zib_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Profiles"
 validate "zib extensions" "$zib_extensions" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Extensions"
 validate "nl-core profiles" "$nlcore_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore"
 validate "other profiles" "$other_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions"
 validate "ConceptMaps" "$conceptmaps" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-ConceptMaps"
-validate "Other terminology" "$other_terminology"
+validate "other terminology" "$other_terminology"
 validate "examples" "$examples"
 
+# Run zib compliance tool
 echo
 echo -e "\033[1;37m+++ Checking zib compliance\033[0m"
 if [[ -z $zib_profiles ]]; then
