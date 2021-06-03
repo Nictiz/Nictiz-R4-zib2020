@@ -22,6 +22,15 @@ This document contains release notes per zib, indicating differences with their 
 * The extension zib-ContactInformation-TelecomType, which replaced the generic code-specification extensions from release 2.x of the zib2017 package onwards, has been deprecated again in favor of code-specication, as the mapping is now much more straightforward.
 * The element TelephoneNumbers/Comment was introduced. This is represented using the ext-Comment extension in the profile for TelephoneNumbers.
 
+## zib-HealthProfessional
+* `Practitioner.identifier` slices changed cardinality from 0..1 to 0..*.
+* Added HealthProfessionalIdentificationNumber mapping on `PracititionerRole.identifier`.
+* Added new mapping of Gender in Practitioner.
+* Added textual guidance on the root to clarify the use of Practitioner and PractitionerRole.
+* Added textual guidance on the root of the concept of HealthProfessionalRole.
+* `PracitionRole.speciality` is not sliced anymore but has a combined ValueSet.
+* Explained cardinality mismatch of Practitioner.name on that element.
+
 ## zib-Patient
 * Includes Nationality, MaritalStatus, LanguageProficiency
 * Cardinality of `Patient.extension:nationality` left at 0..* due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time)
