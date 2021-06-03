@@ -21,3 +21,10 @@ This document contains release notes per zib, indicating differences with their 
 * `ContactPoint.use` has a restricted ValueSet in both profiles to implement only the relevant zib parts.
 * The extension zib-ContactInformation-TelecomType, which replaced the generic code-specification extensions from release 2.x of the zib2017 package onwards, has been deprecated again in favor of code-specication, as the mapping is now much more straightforward.
 * The element TelephoneNumbers/Comment was introduced. This is represented using the ext-Comment extension in the profile for TelephoneNumbers.
+
+## zib-Patient
+* Includes Nationality, MaritalStatus, LanguageProficiency
+* Cardinality of `Patient.extension:nationality` left at 0..* due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time)
+* Cardinality of `Patient.name` left at 0..* to allow including several name elements with a different name.use each.
+* Cardinality of `Patient.telecom` left at 0..* to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not dot.
+* Added a comment to `deceased[x]`: When exporting the data, if `deceasedDateTim` (DateOfDeath) is present and has a value, DeathIndicator may be set to 'true', since DeathIndicator and DateOfDeath cannot both be represented at the same time.

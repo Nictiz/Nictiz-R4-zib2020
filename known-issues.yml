@@ -1,3 +1,9 @@
+ext-LanguageProficiency.CommunicationDetails:
+  zib deviations:
+    Extension.value[x]:
+      - cardinality: 0..1
+        reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension should be added 0..* in the hosting element.
+
 zib-AddressInformation:
   zib deviations:
     Address.line.extension:streetName.value[x]:
@@ -23,3 +29,79 @@ zib-ContactInformation-TelephoneNumbers:
     ContactPoint.system:
       - cardinality: 1..1
         reason: Although TelecomType and NumberType are optional in the zib, ContactPoint.system is used to identify the TelephoneNumbers concept itself when this datatype is added to a profile. If only a telephone number is given without TelecomType and NumberType, this will fall in the default slice of the profile.
+
+zib-Patient:
+  zib deviations:
+    Patient.extension:nationality.extension:code.value[x]:
+      - cardinality: 1..1
+        reason: The used extension uses a cardinality of 1..1 on the value[x] element. However, the extension itself is added with a cardinality of 0..1.
+    Patient.name:
+      - cardinality: 0..*
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use. Documented in the profile too.
+      - datatype: HumanName
+        reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
+    Patient.telecom:
+      - datatype: ContactPoint
+        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
+      - cardinality: 0..*
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
+    Patient.telecom:telephoneNumbers:
+      - datatype: ContactPoint
+        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
+    Patient.telecom:emailAddresses:
+      - datatype: ContactPoint
+        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
+    Patient.address:
+      - datatype: Address
+        reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
+      - cardinality: 0..*
+        reason: The zib AddressInformation may be represented using multiple FHIR Address instances, hence the cardinality is wider.
+    Patient.deceased[x]:deceasedDateTime:
+      - short: DateOfDeath
+        reason: This element is mapped to two zib concepts, DateOfDeath and DeathIndicator. However, the latter is implicit -- althougt the zib recognizes both concepts, FHIR supports populating just one of them, thus DeathIndicator is assumed to be true when DateOfDeath is populated. For clarity reasons, the metadata of deceasedDateTime is only mapped to DateOfDeath.
+      - datatype: dateTime
+        reason: The boolean expected by DeathIndicator is only assumed; see the explanation above.
+    Patient.contact:
+      - datatype: BackboneElement
+        reason: The zib ContactPerson _may_ be represented as Patient.contact. There is a different use case as well, where the ContactPerson is implemented using a RelatedPerson resource.
+      - cardinality: 0..*
+        reason: A patient may have multiple contacts. The expected cardinality of 0..1 stems from the root concept of zib ContactPerson, but this cardinality is essentially without meaning.
+    Patient.contact.extension:contactPerson.value[x]:
+      - datatype: Reference
+        reason: This is an additional reference to a separate zib-ContactPerson (RelatedPerson) instance, next to the information in Pateint.contact. Patient.contact and RelatedPerson can both be used to capture the information from zib-ContactPerson, but each are used within a different context. Information may therefore be duplicated; this is the recommended way.
+      - cardinality: 1..1
+        reason: The inclusion of the extension itself is optional. However, _when_ it is included, it should contain a value to make sense. 
+    Patient.contact.name:
+      - datatype: HumanName
+        reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
+    Patient.contact.telecom:
+      - datatype: ContactPoint
+        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
+      - cardinality: 0..*
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
+    Patient.contact.telecom:telephoneNumbers:
+      - datatype: ContactPoint
+        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
+    Patient.contact.telecom:emailAddresses:
+      - datatype: ContactPoint
+        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
+    Patient.contact.address:
+      - datatype: Address
+        reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
+      - cardinality: 0..1
+        reason: Patient.contact is a restricted representation of contact persons containing only information needed to contact a contact person. The full address information should be captured using an instance of the zib-ContactPerson profile on RelatedPerson, which can be linked using an extension. This is explained in the profile.  
+    Patient.communication:
+      - datatype: BackboneElement
+        reason: The appropriate representation of zib LanguageProficiency in FHIR is Patient.communication, not a separate resource.
+      - cardinality: 0..*
+        reason: A patient may be proficient in multiple languages. The expected cardinality of 0..1 stems from the root concept of zib LanguageProficiency, but this cardinality is essentially without meaning.
+    Patient.communication.language:
+      - cardinality: 1..1
+        reason: The FHIR profiles are expected to implement zib cardinalities as conceptual cardinalities, but FHIR requires the language element to be present. This aligns with the intention of the zib, as the Language concept is required for zib LanguageProficiency to make sense.
+    Patient.communication.extension:languageControl:
+      - short: LanguageControlListening / LanguageControlSpeaking / LanguageControlReading
+        reason: Three zib concepts are mapped to one extension in FHIR and are differentiated by their type value.
+      - datatype: Extension
+        reason: The mapping is placed on the extension and not on the value[x] because of the nature of this extension. The extension itself contains a valueCoding that gets the zibs value. This datatype matches the zib CD type.
+      - cardinality: 0..*
+        reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
