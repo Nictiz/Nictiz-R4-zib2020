@@ -44,6 +44,23 @@ This document contains release notes per zib, indicating differences with their 
 * `PracitionRole.speciality` is not sliced anymore but has a combined ValueSet.
 * Explained cardinality mismatch of Practitioner.name on that element.
 
+## zib-NameInformation
+Style - profiling guidelines
+* Moved information and mappings from the extension level to the `value[x]` level. Note that the zib compliance test is complaining now about cardinality differences.
+* `HumanName.family.extensions` now have the zib conceptnames as slicenames instead of the exention names.
+* Usage of correct zib alias values
+* Removed copied FHIR definitions and comments as this orginated  from DSTU2 and is given in the base datatype. Moreover, this increases the focus on our added comments. 
+* Removed BRP mappings
+-----
+* Sliced HumanName.given for every zib concept that is mapped to this element. Slices are differentiated by a mandatory qualifier extension that contains a pattern. This makes the profile more explicit.
+* Added mappings for the newly added zib concept 'titels' on `prefix` and `suffix`. Added documentation/implementation guidance on prefix and the root.
+* Added a notion that `HumanName.use` is discouraged on the root and in the use element.
+* Added a notion on the root that explains that if HumanName.use is used, the full name will likely break up in multiple instances of the HumanName. Systems should expect this.
+* Added invariant to test for when `HumanName.use` is official that the name is truly official.
+* Removed use in the inline examples
+* Added a notion on the root that `HumanName.text` is encouraged to be given too.
+* Added a notion on the root that we have not profiled the zib constraint to mandate a LastName.
+
 ## zib-Patient
 * Includes Nationality, MaritalStatus, LanguageProficiency
 * Cardinality of `Patient.extension:nationality` left at 0..* due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time)
