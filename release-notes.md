@@ -22,6 +22,14 @@ This document contains release notes per zib, indicating differences with their 
 * The extension zib-ContactInformation-TelecomType, which replaced the generic code-specification extensions from release 2.x of the zib2017 package onwards, has been deprecated again in favor of code-specication, as the mapping is now much more straightforward.
 * The element TelephoneNumbers/Comment was introduced. This is represented using the ext-Comment extension in the profile for TelephoneNumbers.
 
+## zib-HealthcareProvider
+* `Organization.identifier` is now sliced based on a pattern.
+* `Organization.type[DepartmentSpecialty]` and `Organization.type[OrganizationType]` from 0..* to 0..1
+* For `Organization.type` the slicing discriminator is changed from fixed system values to valueset binding.
+* Removed comments on `Organization.alias` because it has no basis in the zib
+* Added comments on the root to point out to the usage of Location resource and the `Organization.partOf`.
+* Major change: use of Location resource
+
 ## zib-HealthProfessional
 * `Practitioner.identifier` slices changed cardinality from 0..1 to 0..*.
 * Added HealthProfessionalIdentificationNumber mapping on `PracititionerRole.identifier`.

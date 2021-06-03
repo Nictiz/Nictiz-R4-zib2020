@@ -30,6 +30,29 @@ zib-ContactInformation-TelephoneNumbers:
       - cardinality: 1..1
         reason: Although TelecomType and NumberType are optional in the zib, ContactPoint.system is used to identify the TelephoneNumbers concept itself when this datatype is added to a profile. If only a telephone number is given without TelecomType and NumberType, this will fall in the default slice of the profile.
 
+zib-HealthcareProvider:
+  zib deviations:
+    Location.address:
+      - datatype: Address
+        reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
+      - cardinality: 0..1
+        reason: The cardinality mismatch with the zib (0..1 versus 0..*) is explained by the restriction of FHIR to limit the Location.address to a physical address while the zib allows for other types of addresses (e.g. a postal address). Other types of addresses than a physical address are given in Organization.address which is referenced by Location.managingOrganization. More documentation can be found at https://github.com/Nictiz/Nictiz-R4-zib2020/issues/38
+    Location.telecom:
+      - cardinality: 0..*
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby still honoring the cardinality requirements of the zib.
+      - datatype: ContactPoint
+        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consits of two parts the rootconcept of the ContactInformation is mapped on .telecom.
+    Location.telecom:telephoneNumbers:
+      - datatype: ContactPoint
+        reason: See Location.telecom
+    Location.telecom:emailAddresses:
+      - datatype: ContactPoint
+        reason: See Location.telecom
+
+unmapped zib concepts:
+  - NL-CM:17.2.10: HealthcareProvider.LocationNumber
+    reason: This zib concept is problematic to map cleanly to FHIR and it has been deemed too uncommon in practice to warrant an extension.
+
 zib-HealthProfessional-Practitioner:
   zib deviations:
     Practitioner.name:
