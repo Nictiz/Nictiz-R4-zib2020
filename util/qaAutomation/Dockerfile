@@ -27,10 +27,11 @@ RUN git clone -b v0.14 --depth 1 https://github.com/pieter-edelman-nictiz/hl7-fh
 RUN apt-get -y install dos2unix
 RUN mkdir /scripts
 COPY getresources.sh /scripts/getresources.sh
+COPY checktx.sh /scripts/checktx.sh
 COPY mkprofilingig.sh /scripts/mkprofilingig.sh
 COPY generatezibsnapshots.sh /scripts/generatezibsnapshots.sh
 COPY entrypoint.sh entrypoint.sh
 RUN chmod +x entrypoint.sh
 RUN chmod +x /scripts/*.sh
-RUN dos2unix /scripts/getresources.sh /scripts/mkprofilingig.sh /scripts/generatezibsnapshots.sh entrypoint.sh
+RUN dos2unix /scripts/getresources.sh /scripts/checktx.sh /scripts/mkprofilingig.sh /scripts/generatezibsnapshots.sh entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]

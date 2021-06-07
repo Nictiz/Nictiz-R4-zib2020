@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ValueSet xmlns="http://hl7.org/fhir">
+    <id value="ContactInformation-TelephoneNumbersSystem"/>
+    <url value="http://nictiz.nl/fhir/ValueSet/ContactInformation-TelephoneNumbersSystem"/>
+    <version value="4.0.1"/>
+    <name value="ContactInformationTelephoneNumbersSystem"/>
+    <title value="ContactPointSystem ValueSet for zib ContactInformation TelephoneNumbers"/>
+    <status value="active"/>
+    <experimental value="false"/>
+    <publisher value="Nictiz"/>
+    <description value="Telecommunications form for contact point, restricted to the use for the TelephoneNumbers concept of zib ContactInformation."/>
+    <immutable value="true"/>
+    <compose>
+        <include>
+            <system value="http://hl7.org/fhir/contact-point-system"/>
+            <concept>
+                <code value="phone"/>
+                <display value="Phone"/>
+            </concept>
+            <concept>
+                <code value="fax"/>
+                <display value="Fax"/>
+            </concept>
+            <concept>
+                <code value="pager"/>
+                <display value="Pager"/>
+            </concept>
+        </include>
+    </compose>
+</ValueSet>
