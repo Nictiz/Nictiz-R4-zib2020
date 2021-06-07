@@ -63,6 +63,10 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.AdditionalInformation" />
       </type>
     </element>
+    <element id="MedicationRequest.extension:additionalInformation.value[x]">
+      <path value="MedicationRequest.extension.value[x]" />
+      <comment value="When choosing a medicine, you can deviate from what is expected or from what the standard is. For example, when the hospital uses a different formulary than the community pharmacy. For reasons of efficiency, for example, one gastric acid inhibitor has been chosen in the hospital: pantoprazole.&#xD;&#xA;Upon admission, a patient with omeprazole is converted to pantoprazole for the duration of the stay. When discharged, the patient goes back to omeprazole.&#xD;&#xA;It is clear that something can go wrong here and that the patient takes both omeprazole and pantoprazole when there is no intervention. In the hospital's medication agreement for pantoprazole a remark can be made about the deviation so that it is clear that pantoprazole is the substitute for omeprazole or that it should be used in addition to omeprazole.&#xD;&#xA;Another example are the half strengths. The hospital sometimes stocks tablets with half the strength of the normal trade preparation (own production). Where the patient enters the hospital on 25 mg chlortalidone, half a tablet once a day, he receives 12.5 mg intramural chlortalidone, one tablet once a day. Then the nursing does not have to break tablets in this case. Here there is a risk that the patient will use the 25 mg again at home, but then a whole tablet at a time in stead of half a tablet. By means of an explanation in the medication agreement (Additional information) of the last chlortalidone 25 mg, it can be indicated whether this has been a intended increase." />
+    </element>
     <element id="MedicationRequest.extension:periodOfUse">
       <path value="MedicationRequest.extension" />
       <sliceName value="periodOfUse" />
@@ -126,6 +130,17 @@
       <short value="Prescriber" />
       <definition value="The health professional that entered the medication agreement with the patient." />
       <alias value="Voorschrijver" />
+      <type>
+        <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-ZibHealthProfessionalReference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
+      </type>
       <mapping>
         <identity value="zib-medicationagreement-v1.2-2020EN" />
         <map value="NL-CM:9.6.1030" />
@@ -151,8 +166,14 @@
     <element id="MedicationRequest.reasonReference">
       <path value="MedicationRequest.reasonReference" />
       <short value="PrescriptionReason" />
-      <definition value="The medical reason for the prescription or for use of the medication. This can be used to enter a medical indication which was the direct cause for prescription or for use of the medication in question. &#xA;                        It can concern every type of problem (or condition) of the patient, almost all diagnoses, complaints or symptoms. &#xA;                        Please note: The BST401T file of the G standard contains a “special reference” to indicate that “exchange of the reason for prescription is essential”." />
+      <definition value="The medical reason for the prescription or for use of the medication. This can be used to enter a medical indication which was the direct cause for prescription or for use of the medication in question. &#xD;&#xA;It can concern every type of problem (or condition) of the patient, almost all diagnoses, complaints or symptoms. Please note: The BST401T file of the G standard contains a “special reference” to indicate that “exchange of the reason for prescription is essential”." />
       <alias value="RedenVanVoorschrijven" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem" />
+      </type>
       <mapping>
         <identity value="zib-medicationagreement-v1.2-2020EN" />
         <map value="NL-CM:9.6.23133" />
