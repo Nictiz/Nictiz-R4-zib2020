@@ -2,6 +2,28 @@
 
 This document contains release notes per zib, indicating differences with their [STU3 versions](https://simplifier.net/packages/nictiz.fhir.nl.stu3.zib2017/), deviations from the [profiling guidelines](https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4) and other points of interest.
 
+## zib-ContactPerson
+* Added textual guidance on the root to guide usage of RelatedPerson versus Patient.
+* Removed the role extension (http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role) because RelatedPerson.relationship has changed from 0..1 to 0..1. The zib concept role is now mapped to a slice on relationship.
+* Updated to new zib-NameInformation and zib-AddressInformation and zib-ContactInformation profiles.
+
+## zib-HealthcareProvider
+* `Organization.identifier` is now sliced based on a pattern.
+* `Organization.type[DepartmentSpecialty]` and `Organization.type[OrganizationType]` from 0..* to 0..1
+* For `Organization.type` the slicing discriminator is changed from fixed system values to valueset binding.
+* Removed comments on `Organization.alias` because it has no basis in the zib
+* Added comments on the root to point out to the usage of Location resource and the `Organization.partOf`.
+* Major change: use of Location resource
+
+## zib-HealthProfessional
+* `Practitioner.identifier` slices changed cardinality from 0..1 to 0..*.
+* Added HealthProfessionalIdentificationNumber mapping on `PracititionerRole.identifier`.
+* Added new mapping of Gender in Practitioner.
+* Added textual guidance on the root to clarify the use of Practitioner and PractitionerRole.
+* Added textual guidance on the root of the concept of HealthProfessionalRole.
+* `PracitionRole.speciality` is not sliced anymore but has a combined ValueSet.
+* Explained cardinality mismatch of Practitioner.name on that element.
+
 ## zib-Problem
 * ProbleemType has been added on a slice of `Condition.category` allowing the category element to be used for other purpose too.
 * FurtherSpecificationProblemName has been added with an extension on `Condition.code`.
