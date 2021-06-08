@@ -39,6 +39,26 @@
         <comment value="TobaccoUse" />
       </mapping>
     </element>
+    <element id="Observation.code.coding">
+      <path value="Observation.code.coding" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.code.coding:tobaccoUseCode">
+      <path value="Observation.code.coding" />
+      <sliceName value="tobaccoUseCode" />
+      <min value="1" />
+      <max value="1" />
+      <patternCoding>
+        <system value="http://snomed.info/sct" />
+        <code value="365980008" />
+      </patternCoding>
+    </element>
     <element id="Observation.effective[x]">
       <path value="Observation.effective[x]" />
       <slicing>
@@ -123,8 +143,8 @@
       <path value="Observation.component" />
       <slicing>
         <discriminator>
-          <type value="value" />
-          <path value="$this" />
+          <type value="pattern" />
+          <path value="code" />
         </discriminator>
         <rules value="open" />
       </slicing>
