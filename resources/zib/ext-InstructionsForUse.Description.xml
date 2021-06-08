@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-InstructionsForUse.Description" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.Description" />
+  <name value="ExtInstructionsForUseRepeatPeriodDescription" />
+  <title value="ext InstructionsForUse Description" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Most of the [zib InstructionsForUse-v1.2.1(2020EN)](https://zibs.nl/wiki/InstructionsForUse-v1.2.1(2020EN)) will be mapped onto the `.dosageInstruction` element found in several medication resources. However, the concept Description cannot be placed in this element, hence a custom extension is used that extends the resource and not the Dosage datatype." />
+  <purpose value="This extension represents the Description concept of [zib zib InstructionsForUse-v1.2.1(2020EN)](https://zibs.nl/wiki/InstructionsForUse-v1.2.1(2020EN))" />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/InstructionsForUse-v1.2.1(2020EN)" />
+    <name value="zib InstructionsForUse-v1.2.1(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="MedicationRequest" />
+  </context>
+  <context>
+    <type value="element" />
+    <expression value="MedicationDispense" />
+  </context>
+  <context>
+    <type value="element" />
+    <expression value="MedicationAdministration" />
+  </context>
+  <context>
+    <type value="element" />
+    <expression value="MedicationUse" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension">
+      <path value="Extension" />
+      <max value="1" />
+    </element>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.Description" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="Description" />
+      <definition value="Textual description of the complete instructions for use including the period of use." />
+      <alias value="Omschrijving" />
+      <type>
+        <code value="string" />
+      </type>
+      <mapping>
+        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+        <map value="NL-CM:9.12.9581" />
+        <comment value="Description" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
