@@ -49,15 +49,6 @@
         <rules value="open" />
       </slicing>
     </element>
-    <element id="MedicationRequest.extension:stopType">
-      <path value="MedicationRequest.extension" />
-      <sliceName value="stopType" />
-      <max value="1" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-StopType" />
-      </type>
-    </element>
     <element id="MedicationRequest.extension:additionalInformation">
       <path value="MedicationRequest.extension" />
       <sliceName value="additionalInformation" />
@@ -66,6 +57,14 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.AdditionalInformation" />
       </type>
     </element>
+    <element id="MedicationRequest.extension:instructionsForUseDescription">
+      <path value="MedicationRequest.extension" />
+      <sliceName value="instructionsForUseDescription" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.Description" />
+      </type>
+    </element>   
     <element id="MedicationRequest.extension:periodOfUse">
       <path value="MedicationRequest.extension" />
       <sliceName value="periodOfUse" />
@@ -84,6 +83,34 @@
       <type>
         <code value="Period" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-TimeInterval" />
+      </type>
+    </element>
+    <element id="MedicationRequest.modifierExtension">
+      <path value="MedicationRequest.modifierExtension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="MedicationRequest.modifierExtension:stopType">
+      <path value="MedicationRequest.modifierExtension" />
+      <sliceName value="stopType" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-StopType" />
+      </type>
+    </element>
+    <element id="MedicationRequest.modifierExtension:repeatPeriodCyclicalSchedule">
+      <path value="MedicationRequest.modifierExtension" />
+      <sliceName value="repeatPeriodCyclicalSchedule" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule" />
       </type>
     </element>
     <element id="MedicationRequest.category">
