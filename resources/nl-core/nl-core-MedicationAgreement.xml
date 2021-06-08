@@ -28,6 +28,24 @@
       <path value="MedicationRequest" />
       <alias value="nl-core-MedicationAgreement" />
     </element>
+    <element id="MedicationRequest.extension">
+      <path value="MedicationRequest.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="MedicationRequest.extension:medicationTreatment">
+      <path value="MedicationRequest.extension" />
+      <sliceName value="medicationTreatment" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationTreatment" />
+      </type>
+    </element>
     <element id="MedicationRequest.medication[x]:medicationReference">
       <path value="MedicationRequest.medication[x]" />
       <sliceName value="medicationReference" />
