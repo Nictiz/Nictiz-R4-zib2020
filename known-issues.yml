@@ -1,11 +1,14 @@
 zib-BloodPressure:
   ignored issues:
-    StructureDefinition.differential.element[11].sliceName:
+    Observation.category:VSCat:
       - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
-        reason: "sliceName 'SystolicBP' starts with an uppercase letter to conform to HL7 Vital Signs profile"
-    StructureDefinition.differential.element[14].sliceName:
+        reason: "sliceName 'VSCat' starts with an uppercase letter to conform to the HL7 Vital Signs profile"
+    Observation.component:SystolicBP:
       - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
-        reason: "sliceName 'DiastolicBP' starts with an uppercase letter to conform to HL7 Vital Signs profile"
+        reason: "sliceName 'SystolicBP' starts with an uppercase letter to conform to the HL7 Vital Signs profile"
+    Observation.component:DiastolicBP:
+      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+        reason: "sliceName 'DiastolicBP' starts with an uppercase letter to conform to the HL7 Vital Signs profile"
   zib deviations:
     Observation.extension:position.value[x]:
       - cardinality: 1..1
