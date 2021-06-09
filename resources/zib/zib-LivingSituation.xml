@@ -70,7 +70,7 @@
       </slicing>
     </element>
     <element id="Observation.value[x]:valueCodeableConcept">
-      <path value="Observation.valueCodeableConcept" />
+      <path value="Observation.value[x]" />
       <sliceName value="valueCodeableConcept" />
       <short value="HouseType" />
       <definition value="Type of home the patient lives in." />
@@ -105,7 +105,7 @@
       <slicing>
         <discriminator>
           <type value="value" />
-          <path value="$this" />
+          <path value="code" />
         </discriminator>
         <rules value="open" />
       </slicing>
@@ -125,19 +125,8 @@
     </element>
     <element id="Observation.component:homeAdaption.value[x]">
       <path value="Observation.component.value[x]" />
-      <slicing>
-        <discriminator>
-          <type value="type" />
-          <path value="$this" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Observation.component:homeAdaption.value[x]:valueCodeableConcept">
-      <path value="Observation.component.valueCodeableConcept" />
-      <sliceName value="valueCodeableConcept" />
       <short value="HomeAdaption" />
-      <definition value="Conditions that affect the accessibility of the home or the stay in the home." />
+      <definition value="Adaptions present in the home that have been made in the context of the illness or disability to make the functioning of the patient safer and more comfortable and to enable independent living." />
       <alias value="WoningAanpassing" />
       <type>
         <code value="CodeableConcept" />
@@ -167,20 +156,9 @@
     </element>
     <element id="Observation.component:livingCondition.value[x]">
       <path value="Observation.component.value[x]" />
-      <slicing>
-        <discriminator>
-          <type value="type" />
-          <path value="$this" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Observation.component:livingCondition.value[x]:valueCodeableConcept">
-      <path value="Observation.component.valueCodeableConcept" />
-      <sliceName value="valueCodeableConcept" />
-      <short value="LivingCondition" />
+      <short value="WoonOmstandigheid" />
       <definition value="Conditions that affect the accessibility of the home or the stay in the home." />
-      <alias value="WoonOmstandigheid" />
+      <alias value="LivingCondition" />
       <type>
         <code value="CodeableConcept" />
       </type>
