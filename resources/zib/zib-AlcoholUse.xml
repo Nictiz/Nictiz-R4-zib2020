@@ -39,6 +39,24 @@
         <comment value="AlcoholUse" />
       </mapping>
     </element>
+    <element id="Observation.code.coding">
+      <path value="Observation.code.coding" />
+      <slicing>
+        <discriminator>
+          <type value="pattern" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.code.coding:alcoholUseCode">
+      <path value="Observation.code.coding" />
+      <sliceName value="alcoholUseCode" />
+      <patternCoding>
+        <system value="http://snomed.info/sct" />
+        <code value="228273003" />
+      </patternCoding>
+    </element>
     <element id="Observation.effective[x]">
       <path value="Observation.effective[x]" />
       <slicing>
