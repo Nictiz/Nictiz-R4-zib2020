@@ -16,21 +16,22 @@ RUN mkdir tools/validator
 RUN wget -nv https://github.com/hapifhir/org.hl7.fhir.core/releases/latest/download/validator_cli.jar -O tools/validator/validator.jar
 RUN java -jar /tools/validator/validator.jar -version 4.0 -fhirpath "'Seems like a failure, but we just created a package cache'" | cat
 
-RUN dotnet tool install -g firely.terminal
+RUN dotnet tool install -g --version 2.0.0 firely.terminal
 RUN ~/.dotnet/tools/fhir install hl7.fhir.r4.core 4.0.1
 
 RUN git clone -b action --depth 1 https://github.com/pieter-edelman-nictiz/zib-compliance-fhir.git /tools/zib-compliance-fhir
 RUN cd tools/zib-compliance-fhir && npm install && cd /
 
-RUN git clone -b v0.14 --depth 1 https://github.com/pieter-edelman-nictiz/hl7-fhir-validator-action /tools/hl7-fhir-validator-action
+RUN git clone -b v0.15 --depth 1 https://github.com/pieter-edelman-nictiz/hl7-fhir-validator-action /tools/hl7-fhir-validator-action
 
 RUN apt-get -y install dos2unix
 RUN mkdir /scripts
 COPY getresources.sh /scripts/getresources.sh
+COPY checktx.sh /scripts/checktx.sh
 COPY mkprofilingig.sh /scripts/mkprofilingig.sh
 COPY generatezibsnapshots.sh /scripts/generatezibsnapshots.sh
 COPY entrypoint.sh entrypoint.sh
 RUN chmod +x entrypoint.sh
 RUN chmod +x /scripts/*.sh
-RUN dos2unix /scripts/getresources.sh /scripts/mkprofilingig.sh /scripts/generatezibsnapshots.sh entrypoint.sh
+RUN dos2unix /scripts/getresources.sh /scripts/checktx.sh /scripts/mkprofilingig.sh /scripts/generatezibsnapshots.sh entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
