@@ -22,6 +22,12 @@ nl-core-BodyWeight:
       - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
         reason: The slice name "VSCat" aligns with the HL7 Vital Signs profile.
 
+nl-core-HeadCircumference:
+  ignored issues:
+    Observation.category:VSCat:
+      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+        reason: The slice name "VSCat" aligns with the HL7 Vital Signs profile.
+
 nl-core-HeartRate:
   ignored issues:
     Observation.category:VSCat:
@@ -104,6 +110,12 @@ zib-ContactPerson:
     RelatedPerson.telecom:emailAddresses:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
+
+zib-HeadCircumference:
+  ignored issues:
+    Observation.code.coding:HeadCircumCode:
+      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+        reason: The slice "HeadCircumCode" starts with an uppercase letter to align with the HL7 Vital Signs profile.
 
 zib-HealthcareProvider:
   zib deviations:
