@@ -4,6 +4,12 @@ ext-LanguageProficiency.CommunicationDetails:
       - cardinality: 0..1
         reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension should be added 0..* in the hosting element.
 
+nl-core-HeartRate:
+  ignored issues:
+    Observation.category:VSCat:
+      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+        reason: The slice name "VSCat" aligns with the HL7 Vital Signs profile.
+
 zib-AddressInformation:
   zib deviations:
     Address.line.extension:streetName.value[x]:
@@ -73,6 +79,12 @@ zib-HealthcareProvider:
       - datatype: ContactPoint
         reason: See Location.telecom
 
+zib-HeartRate:
+  ignored issues:
+    Observation.code.coding:HeartRateCode:
+      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+        reason: The slice "HeartRateCode" starts with an uppercase letter to align with the HL7 Vital Signs profile.
+        
 unmapped zib concepts:
   - NL-CM:17.2.10: HealthcareProvider.LocationNumber
     reason: This zib concept is problematic to map cleanly to FHIR and it has been deemed too uncommon in practice to warrant an extension.
