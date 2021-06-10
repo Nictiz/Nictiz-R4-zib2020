@@ -4,6 +4,12 @@ ext-LanguageProficiency.CommunicationDetails:
       - cardinality: 0..1
         reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension should be added 0..* in the hosting element.
 
+nl-core-BodyTemperature:
+  ignored issues:
+    Observation.category:VSCat:
+      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+        reason: The slice name "VSCat" aligns with the HL7 Vital Signs profile.
+
 nl-core-HeartRate:
   ignored issues:
     Observation.category:VSCat:
@@ -38,6 +44,12 @@ zib-AddressInformation:
     Address.line.extension:additionalInformation.value[x]:
       - cardinality: 1..1
         reason: The used extension makes the value required (1..1), but the use of the extension itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
+
+zib-BodyTemperature:
+  ignored issues:
+    Observation.code.coding:BodyTempCode:
+      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+        reason: The slice "BodyTempCode" starts with an uppercase letter to align with the HL7 Vital Signs profile.
 
 zib-ContactInformation-TelephoneNumbers:
   zib deviations:
