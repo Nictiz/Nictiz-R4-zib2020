@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-BodyHeight" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BodyHeight" />
+  <name value="NlcoreBodyHeight" />
+  <title value="nl core BodyHeight" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A person’s body height." />
+  <purpose value="A derived profile from [zib-BodyHeight](http://nictiz.nl/fhir/StructureDefinition/zib-BodyHeight) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Observation" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyHeight" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <alias value="nl-core-BodyHeight" />
+      <constraint>
+        <key value="vs-2" />
+        <severity value="error" />
+        <human value="If there is no component or hasMember element then either a value[x] or a data absent reason must be present." />
+        <expression value="(component.empty() and hasMember.empty()) implies (dataAbsentReason.exists() or value.exists())" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HeartRate" />
+      </constraint>
+    </element>
+    <element id="Observation.category">
+      <path value="Observation.category" />
+      <slicing>
+        <discriminator>
+          <type value="pattern" />
+          <path value="coding" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.category:VSCat">
+      <path value="Observation.category" />
+      <sliceName value="VSCat" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Observation.category:VSCat.coding">
+      <path value="Observation.category.coding" />
+      <patternCoding>
+        <system value="http://terminology.hl7.org/CodeSystem/observation-category" />
+        <code value="vital-signs" />
+      </patternCoding>
+    </element>
+    <element id="Observation.subject">
+      <path value="Observation.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <constraint>
+        <key value="vs-1" />
+        <severity value="error" />
+        <human value="if Observation.effective[x] is dateTime and has a value then that value shall be precise to the day" />
+        <expression value="($this as dateTime).toString().length() &gt;= 8" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HeartRate" />
+      </constraint>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <constraint>
+        <key value="vs-3" />
+        <severity value="error" />
+        <human value="If there is no a value a data absent reason must be present" />
+        <expression value="value.exists() or dataAbsentReason.exists()" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HeartRate" />
+      </constraint>
+    </element>
+  </differential>
+</StructureDefinition>
