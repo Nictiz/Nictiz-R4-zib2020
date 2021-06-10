@@ -27,36 +27,6 @@
     <element id="Observation">
       <path value="Observation" />
       <alias value="nl-core-O2Saturation" />
-      <constraint>
-        <key value="vs-2" />
-        <severity value="error" />
-        <human value="If there is no component or hasMember element then either a value[x] or a data absent reason must be present." />
-        <expression value="(component.empty() and hasMember.empty()) implies (dataAbsentReason.exists() or value.exists())" />
-        <source value="http://hl7.org/fhir/StructureDefinition/vitalsigns" />
-      </constraint>
-    </element>
-    <element id="Observation.category">
-      <path value="Observation.category" />
-      <slicing>
-        <discriminator>
-          <type value="pattern" />
-          <path value="coding" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Observation.category:VSCat">
-      <path value="Observation.category" />
-      <sliceName value="VSCat" />
-      <min value="1" />
-      <max value="1" />
-    </element>
-    <element id="Observation.category:VSCat.coding">
-      <path value="Observation.category.coding" />
-      <patternCoding>
-        <system value="http://terminology.hl7.org/CodeSystem/observation-category" />
-        <code value="vital-signs" />
-      </patternCoding>
     </element>
     <element id="Observation.code.coding:OxygenSatCode">
       <path value="Observation.code.coding" />
@@ -73,26 +43,6 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
       </type>
-    </element>
-    <element id="Observation.effective[x]">
-      <path value="Observation.effective[x]" />
-      <constraint>
-        <key value="vs-1" />
-        <severity value="error" />
-        <human value="if Observation.effective[x] is dateTime and has a value then that value shall be precise to the day" />
-        <expression value="($this as dateTime).toString().length() &gt;= 8" />
-        <source value="http://hl7.org/fhir/StructureDefinition/vitalsigns" />
-      </constraint>
-    </element>
-    <element id="Observation.component">
-      <path value="Observation.component" />
-      <constraint>
-        <key value="vs-3" />
-        <severity value="error" />
-        <human value="If there is no a value a data absent reason must be present" />
-        <expression value="value.exists() or dataAbsentReason.exists()" />
-        <source value="http://hl7.org/fhir/StructureDefinition/vitalsigns" />
-      </constraint>
     </element>
   </differential>
 </StructureDefinition>
