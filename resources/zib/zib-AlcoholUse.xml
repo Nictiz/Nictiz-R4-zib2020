@@ -15,7 +15,7 @@
     </telecom>
   </contact>
   <description value="In the context of this information model, alcohol is the collective term for alcoholic beverages consumed as a leisure product. This information model describes the information asked of the patient about their alcohol use." />
-  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) AlcoholUse v3.2 (2020)](https://zibs.nl/wiki/AlcoholUse-v3.2(2020EN)))." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) AlcoholUse v3.2 (2020)](https://zibs.nl/wiki/AlcoholUse-v3.2(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -39,25 +39,14 @@
         <comment value="AlcoholUse" />
       </mapping>
     </element>
-    <element id="Observation.code.coding">
-      <path value="Observation.code.coding" />
-      <slicing>
-        <discriminator>
-          <type value="pattern" />
-          <path value="$this" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Observation.code.coding:alcoholUseCode">
-      <path value="Observation.code.coding" />
-      <sliceName value="alcoholUseCode" />
-      <min value="1" />
-      <max value="1" />
-      <patternCoding>
-        <system value="http://snomed.info/sct" />
-        <code value="228273003" />
-      </patternCoding>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="228273003" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Observation.effective[x]">
       <path value="Observation.effective[x]" />
@@ -129,10 +118,13 @@
     </element>
     <element id="Observation.note">
       <path value="Observation.note" />
+      <max value="1" />
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
       <short value="Comment" />
       <definition value="Relevant comments on the alcohol consumption." />
       <alias value="Toelichting" />
-      <max value="1" />
       <mapping>
         <identity value="zib-alcoholuse-v3.2-2020EN" />
         <map value="NL-CM:7.3.7" />
@@ -143,7 +135,7 @@
       <path value="Observation.component" />
       <slicing>
         <discriminator>
-          <type value="pattern" />
+          <type value="value" />
           <path value="code" />
         </discriminator>
         <rules value="open" />
