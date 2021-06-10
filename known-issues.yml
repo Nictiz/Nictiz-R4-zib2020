@@ -16,6 +16,12 @@ nl-core-BodyTemperature:
       - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
         reason: The slice name "VSCat" aligns with the HL7 Vital Signs profile.
 
+nl-core-BodyWeight:
+  ignored issues:
+    Observation.category:VSCat:
+      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+        reason: The slice name "VSCat" aligns with the HL7 Vital Signs profile.
+
 nl-core-HeartRate:
   ignored issues:
     Observation.category:VSCat:
@@ -62,6 +68,12 @@ zib-BodyTemperature:
     Observation.code.coding:BodyTempCode:
       - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
         reason: The slice "BodyTempCode" starts with an uppercase letter to align with the HL7 Vital Signs profile.
+
+zib-BodyWeight:
+  ignored issues:
+    Observation.code.coding:BodyWeightCode:
+      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+        reason: The slice "BodyWeightCode" starts with an uppercase letter to align with the HL7 Vital Signs profile.
 
 zib-ContactInformation-TelephoneNumbers:
   zib deviations:

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-BodyWeight" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight" />
+  <name value="ZibBodyWeight" />
+  <title value="zib BodyWeight" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Body weight is the common name for (human) body mass." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) BodyWeight-v3.2(2020EN)](https://zibs.nl/wiki/BodyWeight-v3.2(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-bodyweight-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/BodyWeight-v3.2(2020EN)" />
+    <name value="zib BodyWeight-v3.2(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="BodyWeight" />
+      <alias value="Lichaamsgewicht" />
+      <mapping>
+        <identity value="zib-bodyweight-v3.2-2020EN" />
+        <map value="NL-CM:12.1.1" />
+        <comment value="BodyWeight" />
+      </mapping>
+    </element>
+    <element id="Observation.code.coding">
+      <path value="Observation.code.coding" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="1" />
+    </element>
+    <element id="Observation.code.coding:BodyWeightCode">
+      <path value="Observation.code.coding" />
+      <sliceName value="BodyWeightCode" />
+      <min value="1" />
+      <max value="1" />
+      <patternCoding>
+        <system value="http://loinc.org" />
+        <code value="29463-7" />
+      </patternCoding>
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effective[x]" />
+      <sliceName value="effectiveDateTime" />
+      <short value="WeightDateTime" />
+      <definition value="Date and (if possible) time that the weight was measured or estimated." />
+      <alias value="GewichtDatumTijd" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-bodyweight-v3.2-2020EN" />
+        <map value="NL-CM:12.1.4" />
+        <comment value="WeightDateTime" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueQuantity">
+      <path value="Observation.valueQuantity" />
+      <sliceName value="valueQuantity" />
+      <short value="WeightValue" />
+      <definition value="The patient’s body weight. Body weight is expressed in kilograms (kg). For infants under 3kg, body weight is often expressed in grams.&#xD;&#xA;&#xD;&#xA;This concept can also be used to determine an estimated body weight in the event that measuring the exact body weight is not possible - such as for example weighing a resistant child, or in the case of having to estimate the weight of an unborn child." />
+      <alias value="GewichtWaarde" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://nictiz.nl/fhir/ValueSet/zib-BodyWeight-units" />
+      </binding>
+      <mapping>
+        <identity value="zib-bodyweight-v3.2-2020EN" />
+        <map value="NL-CM:12.1.2" />
+        <comment value="WeightValue" />
+      </mapping>
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
+      <short value="Comment" />
+      <definition value="Comment on the weight measurement, such as any problems or factors that may influence body weight at that time, such as timing within the menstrual cycle, timing of recent bowel movement or a note on any amputations." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-bodyweight-v3.2-2020EN" />
+        <map value="NL-CM:12.1.3" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="pattern" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:clothing">
+      <path value="Observation.component" />
+      <sliceName value="clothing" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:clothing.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="248159006" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:clothing.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Clothing" />
+      <definition value="The clothes the patient was wearing at the time of the measurement." />
+      <alias value="Kleding" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.1.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-bodyweight-v3.2-2020EN" />
+        <map value="NL-CM:12.1.5" />
+        <comment value="Clothing" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
