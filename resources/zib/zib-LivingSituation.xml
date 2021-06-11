@@ -39,25 +39,14 @@
         <comment value="LivingSituation" />
       </mapping>
     </element>
-    <element id="Observation.code.coding">
-      <path value="Observation.code.coding" />
-      <slicing>
-        <discriminator>
-          <type value="pattern" />
-          <path value="$this" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Observation.code.coding:livingSituationCode">
-      <path value="Observation.code.coding" />
-      <sliceName value="livingSituationCode" />
-      <min value="1" />
-      <max value="1" />
-      <patternCoding>
-        <system value="http://snomed.info/sct" />
-        <code value="365508006" />
-      </patternCoding>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="365508006" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Observation.value[x]">
       <path value="Observation.value[x]" />
