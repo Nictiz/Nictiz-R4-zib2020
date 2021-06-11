@@ -64,6 +64,7 @@
       <path value="Extension.value[x]" />
       <short value="StopType" />
       <definition value="Stop type, the manner in which this medication is discontinued (temporary or definitive)." />
+      <comment value="MedicationAgreementStopType, AdministrationAgreementStopType and MedicationUseStopType all should have a ValueSetthat contain the same StopType values. Because of zib design choices, every concept gets its unique ValueSet. Due to an error in zib2020 release, where one of the ValueSets was not updated, it is chosen to bind the (correct) MedicationAgreementStopType ValueSetto this extension and reusing this extension for all three concepts." />
       <alias value="MedicatieafspraakStopType" />
       <alias value="MedicatieGebruikStopType" />
       <alias value="ToedieningsafspraakStopType" />
@@ -72,6 +73,7 @@
       </type>
       <binding>
         <strength value="required" />
+        <description value="StopType values, based on the valueset named MedicatieafspraakStopTypeCodelijst, which are are applicable for StopType in MedicationAgreement, AdministrationAgreement and MedicationUse." />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.6.1--20200901000000" />
       </binding>
       <mapping>
