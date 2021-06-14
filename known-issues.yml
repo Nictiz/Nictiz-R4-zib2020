@@ -216,9 +216,9 @@ zib-Patient:
         reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
 
 zib-Procedure:
- ignored issues:
-    StructureDefinition.differential.element[16].type[0]:
-      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.' failed"
+  ignored issues:
+    Procedure.report:textResult:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The restiction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
 
   zib deviations:
