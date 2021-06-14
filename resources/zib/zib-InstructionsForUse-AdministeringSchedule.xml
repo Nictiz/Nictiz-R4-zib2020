@@ -40,10 +40,53 @@
         <comment value="AdministeringSchedule" />
       </mapping>
     </element>
+    <element id="Timing.repeat.extension">
+      <path value="Timing.repeat.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Timing.repeat.extension:exact">
+      <path value="Timing.repeat.extension" />
+      <sliceName value="exact" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/timing-exact" />
+      </type>
+    </element>
+    <element id="Timing.repeat.bounds[x]">
+      <path value="Timing.repeat.bounds[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Timing.repeat.bounds[x]:boundsDuration">
+      <path value="Timing.repeat.boundsDuration" />
+      <sliceName value="boundsDuration" />
+      <short value="DoseDuration" />
+      <definition value="The intended time duration for these dosing instructions, e.g. 5 days or 8 weeks. &#xD;&#xA;In the case of medication for an indefinite period, the dosing duration is left empty in the last dosing instruction." />
+      <alias value="Doseerduur" />
+      <type>
+        <code value="Duration" />
+      </type>
+      <mapping>
+        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+        <map value="NL-CM:9.12.22506" />
+        <comment value="DoseDuration" />
+      </mapping>
+    </element>
     <element id="Timing.repeat.count">
       <path value="Timing.repeat.count" />
       <short value="Frequency" />
-      <definition value="The frequency indicates the number of dose moments per time unit, usually per day. If this frequency is included, then the Interval will not have been included. Usually, frequency comprises both amount and time unit (3 times a day), but it can occur without the time unit (single use).&#xD;&#xA;In that case, a reasonable distribution over the day is expected, but exact times are not given. This is left to the patient. It is the most common manner of extramural prescription. In the case of Baxter packs and intramural care, such a prescription is used to draw up a (location-specific) outline for distribution times (logistics).&#xD;&#xA;&#xD;&#xA;The time unit of the frequency must be the same as how it is indicated in the textual description of the dose.&#xD;&#xA;&#xD;&#xA;Example: for a '2x a day...' dose:&#xD;&#xA;* amount = 2&#xD;&#xA;* time unit = 'day'.&#xD;&#xA;&#xD;&#xA;for a '3x a week...' dose:&#xD;&#xA;* amount = 3&#xD;&#xA;* time unit = 'week'." />
+      <definition value="Usually, frequency comprises both amount and time unit (3 times a day), but it can occur without the time unit (single use). This is represented by this `count` element and `countMax` that acts as the highest limit of the range.&#xD;&#xA;&#xD;&#xA;If a frequency is given withouth a time unit, a reasonable distribution over the day is expected, but exact times are not given. This is left to the patient. It is the most common manner of extramural prescription. In the case of Baxter packs and intramural care, such a prescription is used to draw up a (location-specific) outline for distribution times (logistics)." />
       <alias value="Frequentie" />
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
@@ -54,7 +97,7 @@
     <element id="Timing.repeat.countMax">
       <path value="Timing.repeat.countMax" />
       <short value="Frequency" />
-      <definition value="The frequency indicates the number of dose moments per time unit, usually per day. If this frequency is included, then the Interval will not have been included. Usually, frequency comprises both amount and time unit (3 times a day), but it can occur without the time unit (single use).&#xD;&#xA;In that case, a reasonable distribution over the day is expected, but exact times are not given. This is left to the patient. It is the most common manner of extramural prescription. In the case of Baxter packs and intramural care, such a prescription is used to draw up a (location-specific) outline for distribution times (logistics).&#xD;&#xA;&#xD;&#xA;The time unit of the frequency must be the same as how it is indicated in the textual description of the dose.&#xD;&#xA;&#xD;&#xA;Example: for a '2x a day...' dose:&#xD;&#xA;* amount = 2&#xD;&#xA;* time unit = 'day'.&#xD;&#xA;&#xD;&#xA;for a '3x a week...' dose:&#xD;&#xA;* amount = 3&#xD;&#xA;* time unit = 'week'." />
+      <definition value="Usually, frequency comprises both amount and time unit (3 times a day), but it can occur without the time unit (single use). This is represented by `count` and this `countMax` element that indicates the The maximum value of the range. between `count` and `countMax`." />
       <alias value="Frequentie" />
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
@@ -65,7 +108,7 @@
     <element id="Timing.repeat.duration">
       <path value="Timing.repeat.duration" />
       <short value="DurationOfAdministration" />
-      <definition value="The duration of administration defines the length of time during which the drug is administered and is mainly used in the slow parenteral administration of fluids." />
+      <definition value="The duration of administration defines the length of time during which the drug is administered and is mainly used in the slow parenteral administration of fluids. The `durationUnit` defines the time unit." />
       <alias value="Toedieningsduur" />
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
@@ -75,8 +118,8 @@
     </element>
     <element id="Timing.repeat.durationUnit">
       <path value="Timing.repeat.durationUnit" />
-      <short value="DurationOfAdministration" />
-      <definition value="The duration of administration defines the length of time during which the drug is administered and is mainly used in the slow parenteral administration of fluids." />
+      <short value="DurationOfAdministration Unit" />
+      <definition value="The units of time , in UCUM units, for the duration of administration of time during which the drug is administered." />
       <alias value="Toedieningsduur" />
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
@@ -87,7 +130,7 @@
     <element id="Timing.repeat.frequency">
       <path value="Timing.repeat.frequency" />
       <short value="Frequency" />
-      <definition value="The frequency indicates the number of dose moments per time unit, usually per day. If this frequency is included, then the Interval will not have been included. Usually, frequency comprises both amount and time unit (3 times a day), but it can occur without the time unit (single use).&#xD;&#xA;In that case, a reasonable distribution over the day is expected, but exact times are not given. This is left to the patient. It is the most common manner of extramural prescription. In the case of Baxter packs and intramural care, such a prescription is used to draw up a (location-specific) outline for distribution times (logistics).&#xD;&#xA;&#xD;&#xA;The time unit of the frequency must be the same as how it is indicated in the textual description of the dose.&#xD;&#xA;&#xD;&#xA;Example: for a '2x a day...' dose:&#xD;&#xA;* amount = 2&#xD;&#xA;* time unit = 'day'.&#xD;&#xA;&#xD;&#xA;for a '3x a week...' dose:&#xD;&#xA;* amount = 3&#xD;&#xA;* time unit = 'week'." />
+      <definition value="The frequency indicates the number of dose moments per time unit, usually per day. If this frequency is included, then the Interval will not have been included. Usually, frequency comprises both amount and time unit (3 times a day), but it can occur without the time unit (single use). In that case, `count` and `countMax` are used.&#xD;&#xA;&#xD;&#xA;The time unit of the frequency must be the same as how it is indicated in the textual description of the dose.&#xD;&#xA;&#xD;&#xA;Example: for a '2x a day...' dose:&#xD;&#xA;* amount = 2&#xD;&#xA;* time unit = 'day'.&#xD;&#xA;&#xD;&#xA;for a '3x a week...' dose:&#xD;&#xA;* amount = 3&#xD;&#xA;* time unit = 'week'." />
       <alias value="Frequentie" />
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
@@ -98,13 +141,31 @@
     <element id="Timing.repeat.period">
       <path value="Timing.repeat.period" />
       <short value="Frequency / Interval" />
-      <definition value="The frequency indicates the number of dose moments per time unit, usually per day. If this frequency is included, then the Interval will not have been included. Usually, frequency comprises both amount and time unit (3 times a day), but it can occur without the time unit (single use).&#xD;&#xA;In that case, a reasonable distribution over the day is expected, but exact times are not given. This is left to the patient. It is the most common manner of extramural prescription. In the case of Baxter packs and intramural care, such a prescription is used to draw up a (location-specific) outline for distribution times (logistics).&#xD;&#xA;&#xD;&#xA;The time unit of the frequency must be the same as how it is indicated in the textual description of the dose.&#xD;&#xA;&#xD;&#xA;Example: for a '2x a day...' dose:&#xD;&#xA;* amount = 2&#xD;&#xA;* time unit = 'day'.&#xD;&#xA;&#xD;&#xA;for a '3x a week...' dose:&#xD;&#xA;* amount = 3&#xD;&#xA;* time unit = 'week'.&#xD;&#xA;&#xD;&#xA;Interval indicates the time between dose times. If this is included, then the Frequency will not have been included.&#xD;&#xA;Examples: every 4 hours, every 3 weeks.&#xD;&#xA;&#xD;&#xA;The times can now be chosen freely, but distribution throughout the day is more precise, and the interval between times is important (e.g. in the case of antibiotics) In the case of Baxter packs and intramural care, such a prescription is used to draw up a (location-specific) outline for distribution times (logistics)." />
+      <definition value="The time beloning to Frequency or Interval usually in days. The unit is given in `periodUnit`.&#xD;&#xA;&#xD;&#xA;Interval indicates the time between dose times. If this is included, then the Frequency will not have been included. Examples: every 4 hours, every 3 weeks.&#xD;&#xA;&#xD;&#xA;The times can now be chosen freely, but distribution throughout the day is more precise, and the interval between times is important (e.g. in the case of antibiotics) In the case of Baxter packs and intramural care, such a prescription is used to draw up a (location-specific) outline for distribution times (logistics)." />
+      <comment value="When Interval is used, set the exact extension (http://hl7.org/fhir/StructureDefinition/timing-exact) to true. Whe Frequency is used the value is set to false." />
       <alias value="Frequentie" />
       <alias value="Interval" />
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
         <map value="NL-CM:9.12.19949" />
-        <comment value="Frequency" />
+        <comment value="Frequency. When frequency is used, set `extenstion.exact` to false." />
+      </mapping>
+      <mapping>
+        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+        <map value="NL-CM:9.12.19950" />
+        <comment value="Interval. When interval is used, set `extenstion.exact` to true." />
+      </mapping>
+    </element>
+    <element id="Timing.repeat.periodUnit">
+      <path value="Timing.repeat.periodUnit" />
+      <short value="Frequency / Interval" />
+      <definition value="The units of time for the period in UCUM units for Frequency and Interval." />
+      <alias value="Frequentie" />
+      <alias value="Interval" />
+      <mapping>
+        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+        <map value="NL-CM:9.12.19949" />
+        <comment value="Frequency. When frequency is used, set `extenstion.exact` to false." />
       </mapping>
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
@@ -130,6 +191,15 @@
       <definition value="The time of administration is a specific time of day (on the clock). This time usually isn’t (intended to be) exact. There can be multiple administering times in one day. &#xD;&#xA;&#xD;&#xA;The ideal time of administration can also be entered as a time of day (morning, afternoon, evening, night-time). The administration time is then to be left empty, and the time of day can be entered in the TimeOfDay concept." />
       <comment value="If there's a timeOfDay, there cannot be a when, or vice versa." />
       <alias value="Toedientijd" />
+      <binding>
+        <strength value="required" />
+        <description value="Use ConceptMap 'DagdeelCodelijst_to_EventTiming' to translate zib terminology to profile terminology in ValueSet 'EventTiming'" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/event-timing">
+          <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
+            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/DagdeelCodelijst-to-EventTiming" />
+          </extension>
+        </valueSet>
+      </binding>
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
         <map value="NL-CM:9.12.19951" />
