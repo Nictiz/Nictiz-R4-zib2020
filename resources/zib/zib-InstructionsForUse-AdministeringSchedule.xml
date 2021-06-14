@@ -191,15 +191,6 @@
       <definition value="The time of administration is a specific time of day (on the clock). This time usually isn’t (intended to be) exact. There can be multiple administering times in one day. &#xD;&#xA;&#xD;&#xA;The ideal time of administration can also be entered as a time of day (morning, afternoon, evening, night-time). The administration time is then to be left empty, and the time of day can be entered in the TimeOfDay concept." />
       <comment value="If there's a timeOfDay, there cannot be a when, or vice versa." />
       <alias value="Toedientijd" />
-      <binding>
-        <strength value="required" />
-        <description value="Use ConceptMap 'DagdeelCodelijst_to_EventTiming' to translate zib terminology to profile terminology in ValueSet 'EventTiming'" />
-        <valueSet value="http://hl7.org/fhir/ValueSet/event-timing">
-          <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
-            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/DagdeelCodelijst-to-EventTiming" />
-          </extension>
-        </valueSet>
-      </binding>
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
         <map value="NL-CM:9.12.19951" />
@@ -211,6 +202,15 @@
       <short value="TimeOfDay" />
       <definition value="Time of day: morning, afternoon, evening, night." />
       <alias value="Dagdeel" />
+      <binding>
+        <strength value="required" />
+        <description value="Use ConceptMap 'DagdeelCodelijst_to_EventTiming' to translate zib terminology to profile terminology in ValueSet 'EventTiming'" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/event-timing">
+          <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
+            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/DagdeelCodelijst-to-EventTiming" />
+          </extension>
+        </valueSet>
+      </binding>
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
         <map value="NL-CM:9.12.19953" />
