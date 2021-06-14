@@ -2,7 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="ext-InstructionsForUse.Description" />
   <url value="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.Description" />
-  <name value="ExtInstructionsForUseRepeatPeriodDescription" />
+  <name value="ExtInstructionsForUseDescription" />
   <title value="ext InstructionsForUse Description" />
   <status value="draft" />
   <publisher value="Nictiz" />
@@ -14,8 +14,8 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="Most of the [zib InstructionsForUse-v1.2.1(2020EN)](https://zibs.nl/wiki/InstructionsForUse-v1.2.1(2020EN)) will be mapped onto the `.dosageInstruction` element found in several medication resources. However, the concept Description cannot be placed in this element, hence a custom extension is used that extends the resource and not the Dosage datatype." />
-  <purpose value="This extension represents the Description concept of [zib zib InstructionsForUse-v1.2.1(2020EN)](https://zibs.nl/wiki/InstructionsForUse-v1.2.1(2020EN))" />
+  <description value="An extension that holds the textual description of the complete medication instructions for use including the period of use." />
+  <purpose value="This extension represents the Description concept of [zib zib InstructionsForUse-v1.2.1(2020EN)](https://zibs.nl/wiki/InstructionsForUse-v1.2.1(2020EN)). The Dosage datatype and medication resources do not (yet) contain an element that holds a textual description of the complete instructions. In R5 this extension will likely become obsolete due to the addition of `.renderedDosageInstruction` in the medication resources." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
