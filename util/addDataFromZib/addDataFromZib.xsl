@@ -6,7 +6,7 @@
     xmlns="http://hl7.org/fhir"
     exclude-result-prefixes="#all"
     version="2.0">
-
+    
     <xsl:output indent="yes"/>
     
     <!-- Show (optional) warnings to 'validate' content of profile -->
@@ -30,7 +30,7 @@
             
             <!-- Add or modify URL -->
             <xsl:choose>
-                <xsl:when test="(not(f:url) or starts-with(f:url/@value, 'http://example.org/')) and (starts-with($id, 'zib-') or starts-with($id, 'nl-core-'))">
+                <xsl:when test="(not(f:url) or starts-with(f:url/@value, 'http://example.org/')  or starts-with(f:url/@value, 'https://example.org/')) and (starts-with($id, 'zib-') or starts-with($id, 'nl-core-'))">
                     <url value="http://nictiz.nl/fhir/StructureDefinition/{$id}"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -42,7 +42,7 @@
             
             <!-- Add or modify name, title, status -->
             <xsl:choose>
-                <xsl:when test="(not(f:url) or starts-with(f:name/@value, 'My')) and (starts-with($id, 'zib-') or starts-with($id, 'nl-core-'))">
+                <xsl:when test="not(f:url) or starts-with(f:name/@value, 'My')">
                     <name value="{replace(concat(upper-case(substring($id,1,1)), substring($id, 2)),'-','')}"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -50,7 +50,7 @@
                 </xsl:otherwise>
             </xsl:choose>
             <xsl:choose>
-                <xsl:when test="not(f:title) and (starts-with($id, 'zib-') or starts-with($id, 'nl-core-'))">
+                <xsl:when test="not(f:title)">
                     <title value="{replace($id,'-',' ')}"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -93,14 +93,7 @@
                 </xsl:otherwise>
             </xsl:choose>
             <!-- Automagical description takes too much time atm. -->
-            <!--<xsl:choose>
-                <xsl:when test="not(f:description)">
-                    <publisher value="Nictiz"/>
-                </xsl:when>
-                <xsl:otherwise>-->
             <xsl:apply-templates select="f:description"/>
-            <!--</xsl:otherwise>
-            </xsl:choose>-->
             
             <xsl:apply-templates select="f:useContext | f:jurisdiction"/>
             
@@ -111,8 +104,7 @@
                     <purpose value="This {f:type/@value} resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) {replace($mapping/f:name/@value, 'zib ','')}]({$mapping/f:uri/@value})."/>
                 </xsl:when>
                 <xsl:when test="not(f:purpose) and starts-with($id, 'nl-core-')">
-                    <!--<xsl:variable name="mapping" select="f:mapping[f:identity/starts-with(@value, 'zib-')][1]"/>-->
-                    <purpose value="A derived profile from [{replace($id, 'nl-core-','zib-')}]({f:baseDefinition/@value}) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib."/>
+                    <purpose value="A derived profile from [{replace($id, 'nl-core-','zib-')}](http://nictiz.nl/fhir/StructureDefinition/{replace($id, 'nl-core-','zib-')}) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib."/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:apply-templates select="f:purpose"/>
@@ -127,8 +119,9 @@
                 </xsl:otherwise>
             </xsl:choose>
             
-            <xsl:apply-templates select="f:keyword | f:fhirVersion | f:mapping | f:kind | f:abstract"/>
+            <xsl:apply-templates select="f:keyword | f:fhirVersion | f:mapping | f:kind"/>
             
+            <!-- Modify abstract -->
             <xsl:choose>
                 <xsl:when test="f:abstract/@value = 'false' and starts-with($id, 'zib-')">
                     <abstract value="true"/>
@@ -138,7 +131,34 @@
                 </xsl:otherwise>
             </xsl:choose>
             
-            <xsl:apply-templates select="f:context | f:contextInvariant | f:type | f:baseDefinition | f:derivation | f:snapshot | f:differential"/>
+            <xsl:apply-templates select="f:context | f:contextInvariant | f:type"/>
+            
+            <!-- Edits the baseDefinition from core to zib if an nl-core profile was not created using the 'Derive' button in Forge -->
+            <xsl:choose>
+                <xsl:when test="starts-with($id, 'nl-core-') and (not(f:baseDefinition) or starts-with(f:baseDefinition/@value, 'http://hl7.org'))">
+                    <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/{replace($id, 'nl-core-','zib-')}"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="f:baseDefinition"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            
+            <xsl:apply-templates select="f:derivation"/>
+            
+            <!-- Add id as alias to root of nl-core profile if no differential or snapshot is fount -->
+            <xsl:choose>
+                <xsl:when test="not(f:differential) and not(f:snapshot) and starts-with($id, 'nl-core-')">
+                    <differential>
+                        <element id="{f:type/@value}">
+                            <path value="{f:type/@value}" />
+                            <alias value="{$id}" />
+                        </element>
+                    </differential>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="f:differential | f:snapshot"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:copy>
     </xsl:template>
     
@@ -215,6 +235,8 @@
                                 <xsl:message>Element with id '<xsl:value-of select="@id"/>' has definition '<xsl:value-of select="f:definition/@value"/>' which does not correspond with Zib2020 value '<xsl:value-of select="$calculatedDefinition"/>'.</xsl:message>
                             </xsl:if>
                         </xsl:when>
+                        <!-- Do not add definition of 'Root concept'. Because root concepts do not always have to be mapped to the root of a profile, we match on the definition text. -->
+                        <xsl:when test="starts-with($calculatedDefinition, concat('Root concept of the ', $calculatedShort, ' information model.'))"/>
                         <xsl:when test="$originalConcepts/desc[@language='en-US']/text()">
                             <definition value="{$calculatedDefinition}"/>
                         </xsl:when>
