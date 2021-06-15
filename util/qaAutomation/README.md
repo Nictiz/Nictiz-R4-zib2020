@@ -19,6 +19,8 @@ This will run the QA tools on the entire repository. If you just need to run the
 
 Note that in order to make the output more readable, the raw output of the FHIR Validator and snapshot generation will be suppressed. If something goes wrong, you can re-run the container with the `--debug` option to show the full output.
 
+If no terminology server checking needs to be done, the `--no-tx` option can be used.
+
 If a tool gets updated (for example, the HL7 Validator), it might be needed to rebuild the image. This can be done with the command:
 
   > docker-compose build --no-cache
