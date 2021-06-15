@@ -132,6 +132,13 @@ zib-NameInformation:
     HumanName.family.extension:partnerLastName.value[x]:
       - cardinality: 1..1
         reason: The used extension makes the value required (1..1), but the use of the extension itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
+    HumanName.given:
+      - short: FirstName / Initial
+        reason: The zib defines both the complete list of first names and of initals as a single string. In FHIR this is done fundamentally different, by using separate names. Hence, the short has been changed to the singular form.
+      - alias: first name,middle name,Voornaam,Initiaal
+        reason: The first two initials are provided by FHIR. For the singular form of the latter two, see the remark above.
+      - cardinality: 0..*
+        reason: See the remark above
     HumanName.prefix:
       - cardinality: 0..*
         reason: prefix and suffix are mapped to the "titles" concept from the zib. There's a mismatch however in the way this information is represented in the zib and in FHIR. The mapping is documented in the profile.
@@ -139,6 +146,11 @@ zib-NameInformation:
       - cardinality: 0..*
         reason: prefix and suffix are mapped to the "titles" concept from the zib. There's a mismatch however in the way this information is represented in the zib and in FHIR. The mapping is documented in the profile.
 
+zib-NameInformation-GivenName:
+  zib deviations:
+    - cardinality: 1..*
+      reason: The GivenName is optional according to the zib, but when this datatype profile is used, a name should be provided. 
+      
 zib-Patient:
   zib deviations:
     Patient.extension:nationality.extension:code.value[x]:
