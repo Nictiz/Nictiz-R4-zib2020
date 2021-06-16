@@ -5,7 +5,7 @@
   <name value="PatternGstdQuantity" />
   <title value="Pattern for G-Standaard Quantity" />
   <status value="draft" />
-  <description value="A Quantity datatype profile to add a Quantity translation in G-standard units using the HL7 core iso21090-PQ-translation extension." />
+  <description value="A SimpleQuantity datatype profile to add a Quantity translation in G-standard units using the HL7 core iso21090-PQ-translation extension." />
   <purpose value="This profile provides a uniform way to include the PQ-translation extension to provide a Quantity based on G-standards units." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
@@ -22,7 +22,7 @@
   <kind value="complex-type" />
   <abstract value="false" />
   <type value="Quantity" />
-  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Quantity" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/SimpleQuantity" />
   <derivation value="constraint" />
   <differential>
     <element id="Quantity.extension">
@@ -38,7 +38,6 @@
     <element id="Quantity.extension:GstdQuantity">
       <path value="Quantity.extension" />
       <sliceName value="GstdQuantity" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
