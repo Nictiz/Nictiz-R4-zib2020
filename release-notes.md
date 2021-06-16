@@ -45,8 +45,10 @@ This document contains release notes per zib, indicating differences with their 
 * Explained cardinality mismatch of Practitioner.name on that element.
 
 ## zib-InstructionsForUse
+* Removed required GstdTabel902 bindings on Quantity datatypes for Dose and MaximumDose. Added pattern-GstdQuantity profile in nl-core profile that contains a PQ-translation extension that can hold the GstdTabel902 binding.
+* Moved mapping of Description from `Dosage.text` to an extension that is placed in the host resource. This was already fixed with MP9.1, however, it was forgotten in the zib2017 stable2.x branch.
 * Moved DoseDuration to a slice of `Timing.repeat.bounds[x]`of type Duration.
-* Moved Condition to a slice of `asNeeded[x]`, of type CodeableConcept, which was made polymorphic in R4.
+* Moved Condition to a slice of `asNeeded[x]`, of type CodeableConcept, which is made polymorphic in R4.
 * The zib Range has been mapped inline for AdministeringSpeed and Dose in `.doseAndRate.rate[x]` and `doseAndRate.dose[x]`. Also, in R4, these elements have been moved under the `.doseAndRate` element.
 
 ## zib-NameInformation
