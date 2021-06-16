@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="pattern-GstdQuantity" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdQuantity" />
+  <name value="PatternGstdQuantity" />
+  <status value="draft" />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="v2" />
+    <uri value="http://hl7.org/v2" />
+    <name value="HL7 v2 Mapping" />
+  </mapping>
+  <mapping>
+    <identity value="rim" />
+    <uri value="http://hl7.org/v3" />
+    <name value="RIM Mapping" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <type value="Quantity" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Quantity" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Quantity.extension">
+      <path value="Quantity.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Quantity.extension:GstdTabel902">
+      <path value="Quantity.extension" />
+      <sliceName value="GstdTabel902" />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation" />
+      </type>
+    </element>
+    <element id="Quantity.extension:GstdTabel902.value[x]">
+      <path value="Quantity.extension.value[x]" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.20.77.11.27--20160830202453" />
+      </binding>
+    </element>
+  </differential>
+</StructureDefinition>
