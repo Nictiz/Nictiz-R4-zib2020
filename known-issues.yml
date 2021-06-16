@@ -4,6 +4,18 @@ ext-LanguageProficiency.CommunicationDetails:
       - cardinality: 0..1
         reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension should be added 0..* in the hosting element.
 
+pattern-NlCoreHealthProfessionalReference:
+  ignored issues:
+    StructureDefinition:
+      - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
+        reason: The title is shown in the hosting profiles as the name of the datatype. "zib HealthProfessional Reference" is more descriptive than the title according to the profiling guidelines ("pattern NlCoreHealthProfessionalReference").
+
+pattern-ZibHealthProfessionalReference:
+  ignored issues:
+    StructureDefinition:
+      - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
+        reason: The title is shown in the hosting profiles as the name of the datatype. "zib HealthProfessional Reference" is more descriptive than the title according to the profiling guidelines ("pattern ZibHealthProfessionalReference").
+
 zib-AddressInformation:
   zib deviations:
     Address.line.extension:houseNumberIndication.value[x]:
