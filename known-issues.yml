@@ -24,6 +24,18 @@ zib-AddressInformation:
       - cardinality: 1..1
         reason: The used extension makes the value required (1..1), but the use of the extension itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
 
+zib-CareTeam:
+  ignored issues:
+    CareTeam.participant:contactperson.member:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restiction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+    CareTeam.participant:patient.member:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restiction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+    CareTeam.participant:healthcareProfessional.member:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restiction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+
 zib-ContactInformation-TelephoneNumbers:
   zib deviations:
     ContactPoint.system:
@@ -220,7 +232,6 @@ zib-Patient:
 unmapped zib concepts:
   - NL-CM:17.2.10: HealthcareProvider.LocationNumber
     reason: This zib concept is problematic to map cleanly to FHIR and it has been deemed too uncommon in practice to warrant an extension.
-unmapped zib concepts:
 
 zib-BloodPressure:
   ignored issues:
@@ -335,18 +346,6 @@ zib-SOAPReport-Observation:
       - cardinality: 1..1
         reason: The cardinality of both zib (SOAPLineHeader) and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected. In case of absent data, the profiling guidelines provide guidance.
 
-zib-CareTeam:
-  ignored issues:
-    StructureDefinition.differential.element[4].type[0]:
-      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.' failed"
-        reason: The restiction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
-    StructureDefinition.differential.element[6].type[0]:
-      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.' failed"
-        reason: The restiction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
-    StructureDefinition.differential.element[10].type[0]:
-      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.' failed"
-        reason: The restiction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
-        
 nl-core-SOAPReport:
   ignored issues:
     StructureDefinition.differential.element[4].sliceName:
