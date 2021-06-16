@@ -66,6 +66,23 @@ zib-ContactPerson:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
 
+zib-Encounter:
+  zib deviations:
+    Encounter.class:
+      - cardinality: 1..1
+        reason: Encounter.class is manadatory by FHIR. The cardinality matches the cardinality of the zib, however, it does not match with the conceptual cardinality concept. This should not be a major problem.
+    Encounter.participant:healthProfessional.individual:
+      - cardinality: 0..1
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent participant element that may exists 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+    Encounter.reasonReference:
+      - cardinality: 0..*
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing ContactReason container in FHIR. This container may exists 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+      - datatype: Reference
+        reason: The datatype mismatch between the zib (string) and FHIR (Reference) is explained by an error in the zib. DeviatingResult is captured with a reference to the zib-LaboratoryTestResult instead of a string value as the zib 2020 incorrectly states. This will be fixed in a future version of the zib (https://bits.nictiz.nl/browse/ZIB-1427).
+    Encounter.location.location:
+      - cardinality: 1..1
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (1..1) is explained by the parent location element that is constraint to 0..1 to honour the zib maximum cardinality.
+
 zib-HealthcareProvider:
   zib deviations:
     Location.address:
@@ -229,10 +246,6 @@ zib-Patient:
       - cardinality: 0..*
         reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
 
-unmapped zib concepts:
-  - NL-CM:17.2.10: HealthcareProvider.LocationNumber
-    reason: This zib concept is problematic to map cleanly to FHIR and it has been deemed too uncommon in practice to warrant an extension.
-
 zib-Procedure:
   ignored issues:
     Procedure.report:textResult:
@@ -339,3 +352,8 @@ zib-PharmaceuticalProduct:
     Medication.ingredient.item[x]:
       - cardinality: 1..1
         reason: There is a known cardinality mismatch between FHIR (1..1) and the zib (0..1) for the .ingredient.item element which is nested in the optional .ingredient container. This constraint was already in place for the STU3 profile. Moreover this does not seem to be a concern for the Medication Proces information standard will use this profile as they will make this element required in their dataset.
+
+unmapped zib concepts:
+  - NL-CM:17.2.10: HealthcareProvider.LocationNumber
+    reason: This zib concept is problematic to map cleanly to FHIR and it has been deemed too uncommon in practice to warrant an extension.
+
