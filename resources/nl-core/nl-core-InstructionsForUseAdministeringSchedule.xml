@@ -18,10 +18,6 @@
   <purpose value="A derived profile from [zib-InstructionsForUseAdministeringSchedule](http://nictiz.nl/fhir/StructureDefinition/zib-InstructionsForUseAdministeringSchedule) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
-  <mapping>
-    <identity value="medication-process-v9-2" />
-    <name value="Medication Process v9 2" />
-  </mapping>
   <kind value="complex-type" />
   <abstract value="false" />
   <type value="Timing" />
@@ -30,7 +26,7 @@
   <differential>
     <element id="Timing">
       <path value="Timing" />
-      <alias value="nl-core-InstructionsForUseAdministeringSchedule" />
+      <alias value="nl-core-InstructionsForUse-AdministeringSchedule" />
     </element>
     <element id="Timing.repeat.extension">
       <path value="Timing.repeat.extension" />
@@ -50,10 +46,6 @@
       <path value="Timing.repeat.extension.value[x]" />
       <comment value="In practice, this means that when you define a frequency (3x a day) this flag should false, but when you define an interval (every 8 hours) you set this flag to true." />
       <alias value="IsFlexibel" />
-      <mapping>
-        <identity value="medication-process-v9-2" />
-        <map value="mp-dataelement920-271" />
-      </mapping>
     </element>
     <element id="Timing.repeat.periodUnit">
       <path value="Timing.repeat.periodUnit" />
