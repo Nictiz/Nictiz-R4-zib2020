@@ -222,18 +222,12 @@ zib-Procedure:
         reason: The restiction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
 
   zib deviations:
-    Procedure.code:
-      - cardinality: 0..1
-        reason: The zib profiles should relax the minimum cardinality from the zibs because of the conceptual cardinality concept.
     Procedure.focalDevice.manipulated:
       - cardinality: 1..1
         reason: The cardinality mismatch between the zib (0..*) and FHIR (1..1) is explained by the parent container, Procedure.focalDevice, that has a cardinality of 0..*.
     Procedure.performer.actor:
-      - cardinality: 1..1
+      - cardinality: 0..1
         reason: The cardinality mismatch between the zib (0..*) and FHIR (1..1) is explained by a parent container, Procedure.performer, that has a cardinality of 0..*.
-    Procedure.extension:procedureMethod.value[x]:
-      - cardinality: 1..1
-        reason: The used extension makes the value required (1..1), but the use of the extension itself is optional (0..*), effectively resulting a cardinality of 0..* for this element.
     Procedure.bodySite:
       - datatype: CodeableConcept
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
