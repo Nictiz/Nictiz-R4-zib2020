@@ -33,6 +33,24 @@
       <path value="MedicationDispense" />
       <alias value="nl-core-MedicationDispense" />
     </element>
+    <element id="MedicationDispense.extension">
+      <path value="MedicationDispense.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="MedicationDispense.extension:medicationTreatment">
+      <path value="MedicationRequest.extension" />
+      <sliceName value="medicationTreatment" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationTreatment" />
+      </type>
+    </element>
     <element id="MedicationDispense.medication[x]:medicationReference">
       <path value="MedicationDispense.medicationReference" />
       <sliceName value="medicationReference" />
@@ -40,6 +58,15 @@
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Medication" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct" />
+      </type>
+    </element>
+    <element id="MedicationDispense.subject">
+      <path value="MedicationDispense.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
       </type>
     </element>
     <element id="MedicationDispense.performer.actor">
