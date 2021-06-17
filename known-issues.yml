@@ -24,12 +24,6 @@ zib-AddressInformation:
       - cardinality: 1..1
         reason: The used extension makes the value required (1..1), but the use of the extension itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
 
-zib-BodyTemperature:
-  ignored issues:
-    Observation.code.coding:BodyTempCode:
-      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
-        reason: The slice name "BodyTempCode" is chosen to align with the Vital Signs profile for BodyTemperature.
-
 zib-BloodPressure:
   ignored issues:
     Observation.component:SystolicBP:
@@ -38,6 +32,32 @@ zib-BloodPressure:
     Observation.component:DiastolicBP:
       - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
         reason: The slice "DiastolicBP" starts with an uppercase letter to align with the HL7 Vital Signs profile.
+  zib deviations:
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: Observation.note has a cardinality, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
+
+zib-BodyHeight:
+  zib deviations:
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: Observation.note has a cardinality, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
+
+zib-BodyTemperature:
+  ignored issues:
+    Observation.code.coding:BodyTempCode:
+      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+        reason: The slice name "BodyTempCode" is chosen to align with the Vital Signs profile for BodyTemperature.
+  zib deviations:
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: Observation.note has a cardinality, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
+
+zib-BodyWeight:
+  zib deviations:
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: Observation.note has a cardinality, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
 
 zib-ContactInformation-TelephoneNumbers:
   zib deviations:
@@ -68,6 +88,18 @@ zib-ContactPerson:
     RelatedPerson.telecom:emailAddresses:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
+
+zib-HeadCircumference:
+  zib deviations:
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: Observation.note has a cardinality, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
+
+zib-HeartRate:
+  zib deviations:
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: Observation.note has a cardinality, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
 
 zib-HealthcareProvider:
   zib deviations:
@@ -153,6 +185,12 @@ zib-NameInformation:
     HumanName.suffix:
       - cardinality: 0..*
         reason: prefix and suffix are mapped to the "titles" concept from the zib. There's a mismatch however in the way this information is represented in the zib and in FHIR. The mapping is documented in the profile.
+
+zib-O2Saturation:
+  zib deviations:
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: Observation.note has a cardinality, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
 
 zib-Patient:
   zib deviations:
