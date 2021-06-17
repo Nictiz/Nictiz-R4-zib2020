@@ -121,6 +121,7 @@
       <path value="Observation.bodySite" />
       <short value="MeasuringLocation" />
       <definition value="Anatomical location where the blood pressure was measured." />
+      <comment value="The HL7 Vital Signs IG suggests to use an additional observation coded with LOINC _41904-4_ (Blood pressure site) for this information. However, `Observation.bodySite` is deemed a more appropriate approach in this profile." />
       <alias value="MeetLocatie" />
       <binding>
         <strength value="extensible" />
@@ -136,6 +137,7 @@
       <path value="Observation.method" />
       <short value="MeasuringMethod" />
       <definition value="The type of method used to measure blood pressure." />
+      <comment value="The HL7 Vital Signs IG suggests to use an additional observation coded with LOINC _8357-6_ (Blood pressure method) for this information. However, `Observation.method` is deemed a more appropriate approach in this profile." />
       <alias value="Meetmethode" />
       <binding>
         <strength value="extensible" />
@@ -262,6 +264,7 @@
     </element>
     <element id="Observation.component:cuffType.code">
       <path value="Observation.component.code" />
+      <comment value="LOINC code _8358-4_ (Blood pressure device cuff size) may be used here as well, as suggested by the HL7 Vital Signs IG." />
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
@@ -294,6 +297,7 @@
     </element>
     <element id="Observation.component:averageBloodPressure.code">
       <path value="Observation.component.code" />
+      <comment value="LOINC code _8478-0_ (Mean blood pressure) may be used here as well, as suggested by the HL7 Vital Signs IG." />
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />

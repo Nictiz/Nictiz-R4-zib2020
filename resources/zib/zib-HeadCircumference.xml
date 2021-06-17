@@ -84,10 +84,11 @@
       </slicing>
     </element>
     <element id="Observation.value[x]:valueQuantity">
-      <path value="Observation.value[x]" />
+      <path value="Observation.valueQuantity" />
       <sliceName value="valueQuantity" />
       <short value="HeadCircumferenceMeasurement" />
-      <definition value="The value of the head circumference as measured in millimeters or centimeters." />
+      <definition value="The value of the head circumference as measured in centimeters." />
+      <comment value="The zib states that both cm and mm can be used as unit. However. the HL7 Vital Signs profile restricts the metric units to just cm. A value in mm SHALL therefore be communicated as a fractional cm." />
       <alias value="SchedelomvangWaarde" />
       <type>
         <code value="Quantity" />
@@ -99,12 +100,11 @@
       </mapping>
     </element>
     <element id="Observation.value[x]:valueQuantity.system">
-      <path value="Observation.value[x].system" />
+      <path value="Observation.valueQuantity.system" />
       <fixedUri value="http://unitsofmeasure.org" />
     </element>
     <element id="Observation.value[x]:valueQuantity.code">
-      <path value="Observation.value[x].code" />
-      <comment value="The zib states that both cm and mm can be used as unit. However. the HL7 Vital Signs profile restricts the metric units to just cm. A value in mm SHALL therefore be communicated as a fractional cm." />
+      <path value="Observation.valueQuantity.code" />
       <fixedCode value="cm" />
     </element>
     <element id="Observation.note.text">
