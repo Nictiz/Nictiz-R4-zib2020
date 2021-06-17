@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-HeadCircumference" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-HeadCircumference" />
+  <name value="ZibHeadCircumference" />
+  <title value="zib HeadCircumference" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The head circumference is the size of the head as measured around the head." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) HeadCircumference-v1.3(2020EN)](https://zibs.nl/wiki/HeadCircumference-v1.3(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-headcircumference-v1.3-2020EN" />
+    <uri value="https://zibs.nl/wiki/HeadCircumference-v1.3(2020EN)" />
+    <name value="zib HeadCircumference-v1.3(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/pattern-VitalSigns" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="HeadCircumference" />
+      <alias value="Schedelomvang" />
+      <mapping>
+        <identity value="zib-headcircumference-v1.3-2020EN" />
+        <map value="NL-CM:12.14.1" />
+        <comment value="HeadCircumference" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://loinc.org" />
+          <code value="9843-4" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effective[x]" />
+      <sliceName value="effectiveDateTime" />
+      <short value="HeadCircumferenceDate" />
+      <definition value="The date on which the head circumference was measured." />
+      <alias value="SchedelomvangDatumTijd" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-headcircumference-v1.3-2020EN" />
+        <map value="NL-CM:12.14.2" />
+        <comment value="HeadCircumferenceDate" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueQuantity">
+      <path value="Observation.valueQuantity" />
+      <sliceName value="valueQuantity" />
+      <short value="HeadCircumferenceMeasurement" />
+      <definition value="The value of the head circumference as measured in centimeters." />
+      <comment value="The zib states that both cm and mm can be used as unit. However. the HL7 Vital Signs profile restricts the metric units to just cm. A value in mm SHALL therefore be communicated as a fractional cm." />
+      <alias value="SchedelomvangWaarde" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <mapping>
+        <identity value="zib-headcircumference-v1.3-2020EN" />
+        <map value="NL-CM:12.14.3" />
+        <comment value="HeadCircumferenceMeasurement" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]:valueQuantity.system">
+      <path value="Observation.valueQuantity.system" />
+      <fixedUri value="http://unitsofmeasure.org" />
+    </element>
+    <element id="Observation.value[x]:valueQuantity.code">
+      <path value="Observation.valueQuantity.code" />
+      <fixedCode value="cm" />
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
+      <short value="Comment" />
+      <definition value="Comment on the head circumference." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-headcircumference-v1.3-2020EN" />
+        <map value="NL-CM:12.14.4" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Observation.method">
+      <path value="Observation.method" />
+      <short value="HeadCircumferenceMeasuringMethod" />
+      <definition value="There are different methods to measure the head circumference: prenatal measurement using ultrasound or postnatal measurement using a measuring tape by measuring from the backside of the head (occiput) to above the eyes (supraorbital)." />
+      <alias value="SchedelomvangMeetmethode" />
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.14.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-headcircumference-v1.3-2020EN" />
+        <map value="NL-CM:12.14.5" />
+        <comment value="HeadCircumferenceMeasuringMethod" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

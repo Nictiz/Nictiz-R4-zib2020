@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-BodyHeight" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyHeight" />
+  <name value="ZibBodyHeight" />
+  <title value="zib BodyHeight" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A person’s body height." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) BodyHeight-v3.1.1(2020EN)](https://zibs.nl/wiki/BodyHeight-v3.1.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-bodyheight-v3.1.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/BodyHeight-v3.1.1(2020EN)" />
+    <name value="zib BodyHeight-v3.1.1(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/pattern-VitalSigns" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="BodyHeight" />
+      <alias value="Lichaamslengte" />
+      <mapping>
+        <identity value="zib-bodyheight-v3.1.1-2020EN" />
+        <map value="NL-CM:12.2.1" />
+        <comment value="BodyHeight" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://loinc.org" />
+          <code value="8302-2" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effective[x]" />
+      <sliceName value="effectiveDateTime" />
+      <short value="HeightDateTime" />
+      <definition value="Date and if possible time of body height measurement." />
+      <alias value="LengteDatumTijd" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-bodyheight-v3.1.1-2020EN" />
+        <map value="NL-CM:12.2.4" />
+        <comment value="HeightDateTime" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueQuantity">
+      <path value="Observation.value[x]" />
+      <sliceName value="valueQuantity" />
+      <short value="HeightValue" />
+      <definition value="The element contains the value of the measured body height. Body height is the height of the human body from heel to scalp, generally measured when standing. Body height is measured in a stretched, horizontal position for very small children or patients that are unable to stand." />
+      <alias value="LengteWaarde" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <mapping>
+        <identity value="zib-bodyheight-v3.1.1-2020EN" />
+        <map value="NL-CM:12.2.2" />
+        <comment value="HeightValue" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]:valueQuantity.system">
+      <path value="Observation.value[x].system" />
+      <fixedUri value="http://unitsofmeasure.org" />
+    </element>
+    <element id="Observation.value[x]:valueQuantity.code">
+      <path value="Observation.value[x].code" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/ucum-bodylength" />
+      </binding>
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
+      <short value="Comment" />
+      <definition value="Comment on the body height measurement." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-bodyheight-v3.1.1-2020EN" />
+        <map value="NL-CM:12.2.3" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="pattern" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:position">
+      <path value="Observation.component" />
+      <sliceName value="position" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:position.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="425260001" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:position.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Position" />
+      <definition value="The person's position during the measurement." />
+      <comment value="The HL7 Vital Signs IG specifies that the lying position during body height measurement may be communicated using an additional `Observation.code.coding` using LOINC code _8306-3_ (Body height - lying). Implementers may choose to include this coding as well when selecting SNOMED code _102538003_ here. However, if the body position during measurement is communicated using an instance of this profile, this `Observation.component` slice SHALL be populated as well." />
+      <alias value="Positie" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.2.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-bodyheight-v3.1.1-2020EN" />
+        <map value="NL-CM:12.2.5" />
+        <comment value="Position" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

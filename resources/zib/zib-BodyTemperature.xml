@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-BodyTemperature" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyTemperature" />
+  <name value="ZibBodyTemperature" />
+  <title value="zib BodyTemperature" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Measuring and documenting the body temperature of a person as a surrogate for a person’s central body temperature (the highest temperature at the centre of the torso)" />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) BodyTemperature-v3.1(2020EN)](https://zibs.nl/wiki/BodyTemperature-v3.1.2(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-bodytemperature-v3.1.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/BodyTemperature-v3.1.2(2020EN)" />
+    <name value="zib BodyTemperature-v3.1.2(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/pattern-VitalSigns" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="BodyTemperature" />
+      <alias value="Lichaamstemperatuur" />
+      <mapping>
+        <identity value="zib-bodytemperature-v3.1.2-2020EN" />
+        <map value="NL-CM:12.6.1" />
+        <comment value="BodyTemperature" />
+      </mapping>
+    </element>
+    <element id="Observation.code.coding">
+      <path value="Observation.code.coding" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.code.coding:BodyTempCode">
+      <path value="Observation.code.coding" />
+      <sliceName value="BodyTempCode" />
+      <min value="1" />
+      <max value="1" />
+      <patternCoding>
+        <system value="http://loinc.org" />
+        <code value="8310-5" />
+      </patternCoding>
+    </element>
+    <element id="Observation.code.coding:temperatureType">
+      <path value="Observation.code.coding" />
+      <sliceName value="temperatureType" />
+      <short value="TemperatureType" />
+      <definition value="The TemperatureType indicates the way and place the measurement (temperature) has been performed." />
+      <comment value="The use of an additional Observation coding to further specify the body temperature measurement type differs from the recommendation by the HL7 Vital Signs IG to communicate this kind of information. The HL7 Vital Signs IG suggest that additional observations may be used for explicitly defining the temperature measurement site and the type of temperature device. Implementers can still use this mechanism if needed; however the HL7 Vital Signs IG doesn't specify ValueSets for these concepts so no mapping to the zib concept can be made." />
+      <alias value="TemperatuurType" />
+      <max value="1" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.6.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-bodytemperature-v3.1.2-2020EN" />
+        <map value="NL-CM:12.6.5" />
+        <comment value="TemperatureType" />
+      </mapping>
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effective[x]" />
+      <sliceName value="effectiveDateTime" />
+      <short value="TemperatureDateTime" />
+      <definition value="Date and time of measurement." />
+      <alias value="TemperatuurDatumTijd" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-bodytemperature-v3.1.2-2020EN" />
+        <map value="NL-CM:12.6.4" />
+        <comment value="TemperatureDateTime" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueQuantity">
+      <path value="Observation.value[x]" />
+      <sliceName value="valueQuantity" />
+      <short value="TemperatureValue" />
+      <definition value="Body temperature is the temperature inside the body, measured in °C (degrees Celsius). The measurement method must be specified for a correct interpretation of the measurement value." />
+      <alias value="TemperatuurWaarde" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <mapping>
+        <identity value="zib-bodytemperature-v3.1.2-2020EN" />
+        <map value="NL-CM:12.6.2" />
+        <comment value="TemperatureValue" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]:valueQuantity.system">
+      <path value="Observation.value[x].system" />
+      <fixedUri value="http://unitsofmeasure.org" />
+    </element>
+    <element id="Observation.value[x]:valueQuantity.code">
+      <path value="Observation.value[x].code" />
+      <fixedCode value="Cel" />
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
+      <short value="Comment" />
+      <definition value="Comments or details that may be of importance in interpreting the measurement value." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-bodytemperature-v3.1.2-2020EN" />
+        <map value="NL-CM:12.6.3" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

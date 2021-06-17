@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-HeartRate" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-HeartRate" />
+  <name value="ZibHeartRate" />
+  <title value="zib HeartRate" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The heart rate is the number of heartbeats per minute." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) HeartRate-v3.4(2020EN)](https://zibs.nl/wiki/HeartRate-v3.4(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-heartrate-v3.4-2020EN" />
+    <uri value="https://zibs.nl/wiki/HeartRate-v3.4(2020EN)" />
+    <name value="zib HeartRate-v3.4(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/pattern-VitalSigns" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="HeartRate" />
+      <alias value="Hartfrequentie" />
+      <mapping>
+        <identity value="zib-heartrate-v3.4-2020EN" />
+        <map value="NL-CM:12.3.1" />
+        <comment value="HeartRate" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://loinc.org" />
+          <code value="8867-4" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effective[x]" />
+      <sliceName value="effectiveDateTime" />
+      <short value="HeartRateDateTime" />
+      <definition value="Date and time of the heart rate measurement." />
+      <alias value="HartfrequentieDatumTijd" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-heartrate-v3.4-2020EN" />
+        <map value="NL-CM:12.3.4" />
+        <comment value="HeartRateDateTime" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueQuantity">
+      <path value="Observation.value[x]" />
+      <sliceName value="valueQuantity" />
+      <short value="HeartRateValue" />
+      <definition value="The heart rate measured as the number of heartbeats per minute." />
+      <alias value="HartfrequentieWaarde" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <mapping>
+        <identity value="zib-heartrate-v3.4-2020EN" />
+        <map value="NL-CM:12.3.2" />
+        <comment value="HeartRateValue" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]:valueQuantity.system">
+      <path value="Observation.value[x].system" />
+      <fixedUri value="http://unitsofmeasure.org" />
+    </element>
+    <element id="Observation.value[x]:valueQuantity.code">
+      <path value="Observation.value[x].code" />
+      <fixedCode value="/min" />
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
+      <short value="Comment" />
+      <definition value="Comment on any problems or factors that may influence the measurement." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-heartrate-v3.4-2020EN" />
+        <map value="NL-CM:12.3.3" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Observation.method">
+      <path value="Observation.method" />
+      <short value="HeartRateMeasurementMethod" />
+      <definition value="The method used to count and observe the heart rate." />
+      <alias value="HartslagMeetMethode" />
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.3.2--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-heartrate-v3.4-2020EN" />
+        <map value="NL-CM:12.3.6" />
+        <comment value="HeartRateMeasurementMethod" />
+      </mapping>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="pattern" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:heartbeatRegularity">
+      <path value="Observation.component" />
+      <sliceName value="heartbeatRegularity" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:heartbeatRegularity.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="301112006" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:heartbeatRegularity.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="HeartbeatRegularity" />
+      <definition value="Regularity of the heartbeat." />
+      <alias value="HartslagRegelmatigheid" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.3.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-heartrate-v3.4-2020EN" />
+        <map value="NL-CM:12.3.5" />
+        <comment value="HeartbeatRegularity" />
+      </mapping>
+    </element>
+    <element id="Observation.component:interpretationHeartRate">
+      <path value="Observation.component" />
+      <sliceName value="interpretationHeartRate" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:interpretationHeartRate.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="301113001" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:interpretationHeartRate.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="InterpretationHeartRate" />
+      <definition value="Interpretation heart rate" />
+      <alias value="InterpretatieFrequentie" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mapping>
+        <identity value="zib-heartrate-v3.4-2020EN" />
+        <map value="NL-CM:12.3.7" />
+        <comment value="InterpretationHeartRate" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

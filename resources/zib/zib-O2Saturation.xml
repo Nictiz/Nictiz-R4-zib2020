@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-O2Saturation" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-O2Saturation" />
+  <name value="ZibO2Saturation" />
+  <title value="zib O2Saturation" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Arterial oxygen saturation, also referred to as saturation, is an indicator for the amount of oxygen bound to the hemoglobin in the red blood cells of the arteries. The measurement is usually carried out as a transcutaneous measurement with a blood oxygen monitor or pulse oximeter. The saturation level is expressed as a percentage and should be over 95% in healthy people." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) O2Saturation-v3.1(2020EN)](https://zibs.nl/wiki/O2Saturation-v3.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-o2saturation-v3.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/O2Saturation-v3.1(2020EN)" />
+    <name value="zib O2Saturation-v3.1(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/pattern-VitalSigns" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="O2Saturation" />
+      <alias value="O2Saturatie" />
+      <mapping>
+        <identity value="zib-o2saturation-v3.1-2020EN" />
+        <map value="NL-CM:12.10.1" />
+        <comment value="O2Saturation" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://loinc.org" />
+          <code value="59408-5" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effective[x]" />
+      <sliceName value="effectiveDateTime" />
+      <short value="O2SaturationDateTime" />
+      <definition value="The moment (date and time) of the SpO2 measurement." />
+      <alias value="O2SaturatieDatumTijd" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-o2saturation-v3.1-2020EN" />
+        <map value="NL-CM:12.10.3" />
+        <comment value="O2SaturationDateTime" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueQuantity">
+      <path value="Observation.value[x]" />
+      <sliceName value="valueQuantity" />
+      <short value="SpO2Value" />
+      <definition value="The element contains the value of the indirect, peripheral measured O2 saturation. The O2 saturation gives a percentage expressing the extent to which the blood’s hemoglobin is saturated with oxygen, the ratio of oxygen-saturated hemoglobin to hemoglobin. The measurement is done in places where sufficient light can get through the skin, such as a finger, toe or earlobe." />
+      <alias value="SpO2Waarde" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <mapping>
+        <identity value="zib-o2saturation-v3.1-2020EN" />
+        <map value="NL-CM:12.10.2" />
+        <comment value="SpO2Value" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]:valueQuantity.system">
+      <path value="Observation.value[x].system" />
+      <fixedUri value="http://unitsofmeasure.org" />
+    </element>
+    <element id="Observation.value[x]:valueQuantity.code">
+      <path value="Observation.value[x].code" />
+      <fixedCode value="%" />
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
+      <short value="Comment" />
+      <definition value="Comment on the saturation measurement." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-o2saturation-v3.1-2020EN" />
+        <map value="NL-CM:12.10.4" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="pattern" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:extraOxygenAdministration">
+      <path value="Observation.component" />
+      <sliceName value="extraOxygenAdministration" />
+    </element>
+    <element id="Observation.component:extraOxygenAdministration.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://loinc.org" />
+          <code value="74206-4" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:extraOxygenAdministration.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="ExtraOxygenAdministration" />
+      <definition value="Indication stating whether the measurement was done in a situation in which extra oxygen was administered." />
+      <alias value="ExtraZuurstofToediening" />
+      <type>
+        <code value="boolean" />
+      </type>
+      <mapping>
+        <identity value="zib-o2saturation-v3.1-2020EN" />
+        <map value="NL-CM:12.10.5" />
+        <comment value="ExtraOxygenAdministration" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
