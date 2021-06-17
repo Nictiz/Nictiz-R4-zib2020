@@ -23,51 +23,36 @@
     </element>
     <element id="Observation.category">
       <path value="Observation.category" />
-      <slicing>
-        <discriminator>
-          <type value="pattern" />
-          <path value="coding" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Observation.category:VSCat">
-      <path value="Observation.category" />
-      <sliceName value="VSCat" />
       <min value="1" />
-      <max value="1" />
-    </element>
-    <element id="Observation.category:VSCat.coding">
-      <path value="Observation.category.coding" />
-      <patternCoding>
-        <system value="http://terminology.hl7.org/CodeSystem/observation-category" />
-        <code value="vital-signs" />
-      </patternCoding>
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://terminology.hl7.org/CodeSystem/observation-category" />
+          <code value="vital-signs" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Observation.code.coding">
       <path value="Observation.code.coding" />
       <min value="1" />
     </element>
     <element id="Observation.subject">
-      <path value="Observation.subject"/> 
-      <min value="1"/> 
-      <max value="1"/> 
-      <type> 
-        <code value="Reference"/> 
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient"/> 
-      </type> 
-    </element> 
+      <path value="Observation.subject" />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+      </type>
+    </element>
     <element id="Observation.effective[x]">
       <path value="Observation.effective[x]" />
-      <min value="1"/> 
-      <max value="1"/> 
-      <type> 
-        <code value="dateTime"/> 
-      </type> 
-      <type> 
-        <code value="Period"/> 
-      </type> 
-      <condition value="vs-1"/> 
+      <min value="1" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <type>
+        <code value="Period" />
+      </type>
+      <condition value="vs-1" />
       <constraint>
         <key value="vs-1" />
         <severity value="error" />
@@ -77,13 +62,13 @@
       </constraint>
     </element>
     <element id="Observation.value[x]">
-      <path value="Observation.value[x]"/> 
-      <condition value="vs-2"/> 
-    </element> 
+      <path value="Observation.value[x]" />
+      <condition value="vs-2" />
+    </element>
     <element id="Observation.dataAbsentReason">
-      <path value="Observation.dataAbsentReason"/> 
-      <condition value="vs-2"/> 
-    </element> 
+      <path value="Observation.dataAbsentReason" />
+      <condition value="vs-2" />
+    </element>
     <element id="Observation.component">
       <path value="Observation.component" />
       <constraint>
@@ -93,14 +78,14 @@
         <expression value="value.exists() or dataAbsentReason.exists()" />
         <source value="http://hl7.org/fhir/StructureDefinition/vitalsigns" />
       </constraint>
-    </element> 
+    </element>
     <element id="Observation.component.value[x]">
-      <path value="Observation.component.value[x]"/> 
-      <condition value="vs-3"/> 
-    </element> 
+      <path value="Observation.component.value[x]" />
+      <condition value="vs-3" />
+    </element>
     <element id="Observation.component.dataAbsentReason">
-      <path value="Observation.component.dataAbsentReason"/> 
-      <condition value="vs-3"/>  
-    </element> 
+      <path value="Observation.component.dataAbsentReason" />
+      <condition value="vs-3" />
+    </element>
   </differential>
 </StructureDefinition>

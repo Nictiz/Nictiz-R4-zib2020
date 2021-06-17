@@ -28,19 +28,20 @@
       <path value="Observation" />
       <alias value="nl-core-O2Saturation" />
     </element>
-    <element id="Observation.code.coding:OxygenSatCode">
-      <path value="Observation.code.coding" />
-      <sliceName value="OxygenSatCode" />
-      <min value="1" />
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://loinc.org" />
+          <code value="2708-6" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Observation.subject">
       <path value="Observation.subject" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
       </type>
     </element>

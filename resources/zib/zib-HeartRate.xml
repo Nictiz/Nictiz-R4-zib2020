@@ -39,26 +39,14 @@
         <comment value="HeartRate" />
       </mapping>
     </element>
-    <element id="Observation.code.coding">
-      <path value="Observation.code.coding" />
-      <slicing>
-        <discriminator>
-          <type value="pattern" />
-          <path value="$this" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="1" />
-    </element>
-    <element id="Observation.code.coding:HeartRateCode">
-      <path value="Observation.code.coding" />
-      <sliceName value="HeartRateCode" />
-      <min value="1" />
-      <max value="1" />
-      <patternCoding>
-        <system value="http://loinc.org" />
-        <code value="8867-4" />
-      </patternCoding>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://loinc.org" />
+          <code value="8867-4" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Observation.effective[x]">
       <path value="Observation.effective[x]" />
