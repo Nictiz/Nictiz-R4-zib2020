@@ -174,9 +174,17 @@
     </element>
     <element id="Observation.component:SystolicBP.value[x]">
       <path value="Observation.component.value[x]" />
+      <short value="SystolicBloodPressure" />
+      <definition value="The highest (peak) systematic arterial blood pressure - measured in the contraction stage or systole of the cardiac cycle." />
+      <alias value="SystolischeBloeddruk" />
       <type>
         <code value="Quantity" />
       </type>
+      <mapping>
+        <identity value="zib-bloodpressure-v3.2.1-2020EN" />
+        <map value="NL-CM:12.4.2" />
+        <comment value="SystolicBloodPressure" />
+      </mapping>
     </element>
     <element id="Observation.component:SystolicBP.value[x].system">
       <path value="Observation.component.value[x].system" />
@@ -298,6 +306,11 @@
       <type>
         <code value="Quantity" />
       </type>
+      <mapping>
+        <identity value="zib-bloodpressure-v3.2.1-2020EN" />
+        <map value="NL-CM:12.4.4" />
+        <comment value="AverageBloodPressure" />
+      </mapping>
     </element>
     <element id="Observation.component:averageBloodPressure.value[x].system">
       <path value="Observation.component.value[x].system" />
@@ -309,11 +322,6 @@
       <definition value="Average blood pressure during one cycle of the heart contracting and relaxing. Estimated based on systolic and diastolic blood pressure. This estimate is unreliable in cases of circulatory disorders. This value can only be reliably determined when invasive blood pressure is measured." />
       <alias value="GemiddeldeBloeddruk" />
       <fixedCode value="mm[Hg]" />
-      <mapping>
-        <identity value="zib-bloodpressure-v3.2.1-2020EN" />
-        <map value="NL-CM:12.4.4" />
-        <comment value="AverageBloodPressure" />
-      </mapping>
     </element>
   </differential>
 </StructureDefinition>
