@@ -104,10 +104,8 @@
     </element>
     <element id="Observation.value[x]:valueQuantity.code">
       <path value="Observation.value[x].code" />
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://nictiz.nl/fhir/ValueSet/zib-HeadCircumference-units" />
-      </binding>
+      <comment value="The zib states that both cm and mm can be used as unit. However. the HL7 Vital Signs profile restricts the metric units to just cm. A value in mm SHALL therefore be communicated as a fractional cm." />
+      <fixedCode value="cm" />
     </element>
     <element id="Observation.note.text">
       <path value="Observation.note.text" />
