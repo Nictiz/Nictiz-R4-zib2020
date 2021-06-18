@@ -87,10 +87,6 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.AsAgreedIndicator" />
       </type>
     </element>
-    <element id="MedicationStatement.extension:asAgreedIndicator.url">
-      <path value="MedicationStatement.extension.url" />
-      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.AsAgreedIndicator" />
-    </element>
     <element id="MedicationStatement.extension:asAgreedIndicator.value[x]">
       <path value="MedicationStatement.extension.value[x]" />
       <definition value="Duration: The intended duration of use. E.g. 5 days or 8 weeks. It is not allowed to indicate the duration in months, because different months have a variable duration in days." />
@@ -148,6 +144,10 @@
       <short value="ReasonForChangeOrDiscontinuationOfUse" />
       <definition value="Reason for changing or discontinuing use of medication." />
       <alias value="RedenWijzigenOfStoppenGebruik" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.11.2--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-medicationuse2-v1.1.1-2020EN" />
         <map value="NL-CM:9.11.22493" />
