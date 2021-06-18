@@ -81,7 +81,7 @@
         <key value="sd-zpg-03" />
         <severity value="error" />
         <human value="References to other resource profiles should be added next to the HL7  base references." />
-        <expression value="code = 'Reference' implies (targetProfile.where($this.startsWith('http://hl7.org/fhir/StructureDefinition/')).exists() or profile.exists())" />
+        <expression value="code = 'Reference' implies targetProfile.where($this.startsWith('http://hl7.org/fhir/StructureDefinition/')).exists()" />
         <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4#Constraining_references" />
       </constraint>
     </element>
