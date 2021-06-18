@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-MedicationUse.UseIndicator" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.UseIndicator" />
+  <name value="ExtMedicationUseUseIndicator" />
+  <title value="ext MedicationUse UseIndicator" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="An extension to indicate if the medicine is used or not" />
+  <purpose value="This extension represents UseIndicator of [MedicationUse](https://zibs.nl/wiki/MedicationUse2-v1.1.1(2020EN)). In R4 the `MedicationStatement.taken` element has been removed and replaced with a _not-taken_ code in `MedicationStatement.status`. This approach is however not suited because StopType has also been mapped to the `status` element. It therefore not possible to exchange the UseIndicator and StopType ath the same time." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-medicationuse2-v1.1.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/MedicationUse2-v1.1.1(2020EN)" />
+    <name value="zib MedicationUse2-v1.1.1(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="MedicationRequest" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension">
+      <path value="Extension" />
+      <isModifier value="true" />
+    </element>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.UseIndicator" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="UseIndicator" />
+      <definition value="Is this medicine used or not?" />
+      <alias value="GebruikIndicator" />
+      <type>
+        <code value="boolean" />
+      </type>
+      <mapping>
+        <identity value="zib-MedicationUse-v1.2-2020EN" />
+        <map value="NL-CM:9.11.22399" />
+        <comment value="UseIndicator" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
