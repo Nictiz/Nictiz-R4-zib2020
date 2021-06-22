@@ -27,6 +27,13 @@ This document contains release notes per zib, indicating differences with their 
 * Removed the role extension (http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role) because RelatedPerson.relationship has changed from 0..1 to 0..1. The zib concept role is now mapped to a slice on relationship.
 * Updated to new zib-NameInformation and zib-AddressInformation and zib-ContactInformation profiles.
 
+## zib-DispenseRequest
+* Placed the fixed zib definitioncode on slice of `MedicationDispense.category`, allowing the reuse of `category`.
+* Placed the mapping DispensedMedicine Reference type slice on `MedicationDispense.medicationReference`. Allowing the use of a CodeableConcept.
+* Removed references not accounted for by zibs or use case.
+* Moved AdditionalInformation to its own extension instead of reusing one extension and profiling it in the resource.
+
+
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.
 * `Organization.type[DepartmentSpecialty]` and `Organization.type[OrganizationType]` from 0..* to 0..1
