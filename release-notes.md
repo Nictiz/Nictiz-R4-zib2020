@@ -44,6 +44,9 @@ This document contains release notes per zib, indicating differences with their 
 * `PracitionRole.speciality` is not sliced anymore but has a combined ValueSet.
 * Explained cardinality mismatch of Practitioner.name on that element.
 
+## zib-MedicationUse
+* Changed fixed category code from 6#urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3 to 422979000#http://snomed.info/sct.
+
 ## zib-NameInformation
 Style - profiling guidelines
 * Moved information and mappings from the extension level to the `value[x]` level. Note that the zib compliance test is complaining now about cardinality differences.
