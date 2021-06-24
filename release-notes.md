@@ -44,6 +44,14 @@ This document contains release notes per zib, indicating differences with their 
 * `PracitionRole.speciality` is not sliced anymore but has a combined ValueSet.
 * Explained cardinality mismatch of Practitioner.name on that element.
 
+## zib-MedicationAgreement
+* Used a pattern to fix the zib definitioncode on `MedicationDispense.category` instead of a mandatory sliced `coding`.
+* Added an extension that mimics `MedicationDispense.category` so other implementation can use the category for the intented use.
+* Placed the mapping DispensedMedicine Reference type slice on `MedicationDispense.medicationReference`. Allowing the use of a CodeableConcept.
+* Removed references not accounted for by zibs or use case.
+* Moved AdditionalInformation to its own extension instead of reusing one extension and profiling it in the resource.
+* Relaxed cardinality of additionalInformation extension to 0..* to align with the zib.
+
 ## zib-NameInformation
 Style - profiling guidelines
 * Moved information and mappings from the extension level to the `value[x]` level. Note that the zib compliance test is complaining now about cardinality differences.
