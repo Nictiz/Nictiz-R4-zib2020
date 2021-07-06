@@ -85,10 +85,10 @@
       </slicing>
     </element>
     <element id="Dosage.asNeeded[x]:asNeededCodeableConcept">
-      <path value="Dosage.asNeeded[x]" />
+      <path value="Dosage.asNeededCodeableConcept" />
       <sliceName value="asNeededCodeableConcept" />
       <short value="Condition" />
-      <definition value="The condition for administering medication can be:&#xD;&#xA;* a physiological measurement value (plasma glucose concentration, body temperature, blood pressure);&#xD;&#xA;* a symptom or other circumstance (in the event of a headache, or itch).&#xD;&#xA;Supplemental information from G-standard bst362 make up the list of values for coded entering of this concept. Also always include the textual description of that code. Physiological measurement values or other conditions that do not occur in bst362 do not need to be coded. These can be expressed in free text in the Description concept." />
+      <definition value="The condition for administering medication can be:&#xD;&#xA;&#xD;&#xA;* a physiological measurement value (plasma glucose concentration, body temperature, blood pressure);&#xD;&#xA;* a symptom or other circumstance (in the event of a headache, or itch).&#xD;&#xA;&#xD;&#xA;Supplemental information from G-standard bst362 make up the list of values for coded entering of this concept. Also always include the textual description of that code. Physiological measurement values or other conditions that do not occur in bst362 do not need to be coded. These can be expressed in free text in the Description concept." />
       <alias value="Criterium" />
       <type>
         <code value="CodeableConcept" />
@@ -178,10 +178,11 @@
       </mapping>
     </element>
     <element id="Dosage.doseAndRate.dose[x]:doseQuantity">
-      <path value="Dosage.doseAndRate.dose[x]" />
+      <path value="Dosage.doseAndRate.doseQuantity" />
       <sliceName value="doseQuantity" />
       <short value="nominalValue" />
       <definition value="Amount of medication per dose. The nominal value of the quantity." />
+      <alias value="nominaleWaarde" />
       <type>
         <code value="Quantity" />
       </type>
@@ -201,7 +202,7 @@
         <rules value="open" />
       </slicing>
       <short value="AdministeringSpeed" />
-      <definition value="The administering speed is used in slow administration of liquid. In practice, the measuring unit is almost always ml/hour.&#xD;&#xA;Entering an interval (such as 0-10 ml/hour) is also a commonly used option.&#xD;&#xA;&#xD;&#xA;For example, with an administering speed of 10ml/hour:&#xD;&#xA;* amount = 10,&#xD;&#xA;* dose unit = ml,&#xD;&#xA;* time unit = hour" />
+      <definition value="The administering speed is used in slow administration of liquid. In practice, the measuring unit is almost always ml/hour.&#xD;&#xA;Entering an interval (such as 0-10 ml/hour) is also a commonly used option.&#xD;&#xA;&#xD;&#xA;For example, with an administering speed of 10ml/hour:&#xD;&#xA;&#xD;&#xA;* amount = 10,&#xD;&#xA;* dose unit = ml,&#xD;&#xA;* time unit = hour" />
       <alias value="Toedieningssnelheid" />
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
