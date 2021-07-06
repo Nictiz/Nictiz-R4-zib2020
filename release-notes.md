@@ -46,6 +46,11 @@ This document contains release notes per zib, indicating differences with their 
 * The code on `Observation.component:drugOrMedicationType.code` has changed to 105590001
 * The code on `Observation.component:amount.code` has changed to 363908000
 
+## zib-EpisodeOfCare
+* The extensions `EpisodeOfCare-DateFirstEncounter` and `EpisodeOfCare-DateLastEncounter` are included in the nl-core layer
+* The mapping on `EpisodeOfCare.identifier` has been removed 
+* Removed references not defined in the zib such as `.casemanager` and `.managingOrganization`
+
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.
 * `Organization.type[DepartmentSpecialty]` and `Organization.type[OrganizationType]` from 0..* to 0..1.

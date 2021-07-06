@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-EpisodeOfCare" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-EpisodeOfCare" />
+  <name value="ZibEpisodeOfCare" />
+  <title value="zib EpisodeOfCare" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The period in which a health problem, such as a complaint or illness, receives attention from a care provider. During this period the designation of this health problem can change due to evolving insight and/or the progress of the illness. An episode of care serves as a context for all data related to the health problem." />
+  <purpose value="This EpisodeOfCare resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) EpisodeOfCare v1.0 (2020)](https://zibs.nl/wiki/EpisodeOfCare-v1.0(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-episodeofcare-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/EpisodeOfCare-v1.0(2020EN)" />
+    <name value="zib EpisodeOfCare-v1.0(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="EpisodeOfCare" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/EpisodeOfCare" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="EpisodeOfCare">
+      <path value="EpisodeOfCare" />
+      <short value="EpisodeOfCare" />
+      <alias value="ZorgEpisode" />
+      <mapping>
+        <identity value="zib-episodeofcare-v1.0-2020EN" />
+        <map value="NL-CM:16.6.1" />
+        <comment value="EpisodeOfCare" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.extension">
+      <path value="EpisodeOfCare.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="EpisodeOfCare.extension:comment">
+      <path value="EpisodeOfCare.extension" />
+      <sliceName value="comment" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Comment" />
+      </type>
+    </element>
+    <element id="EpisodeOfCare.extension:comment.value[x]">
+      <path value="EpisodeOfCare.extension.value[x]" />
+      <short value="Comment" />
+      <definition value="Additional information about the episode of care that the care provider wishes to see at first glance." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-episodeofcare-v1.0-2020EN" />
+        <map value="NL-CM:16.6.6" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.extension:episodeOfCareName">
+      <path value="EpisodeOfCare.extension" />
+      <sliceName value="episodeOfCareName" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-EpisodeOfCare.EpisodeOfCareName" />
+      </type>
+    </element>
+    <element id="EpisodeOfCare.diagnosis">
+      <path value="EpisodeOfCare.diagnosis" />
+      <max value="1" />
+    </element>
+    <element id="EpisodeOfCare.diagnosis.condition">
+      <path value="EpisodeOfCare.diagnosis.condition" />
+      <short value="FocusEpisodeOfCare" />
+      <definition value="The health problem on which the episode of care focuses." />
+      <alias value="FocusZorgEpisode" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem" />
+      </type>
+      <mapping>
+        <identity value="zib-episodeofcare-v1.0-2020EN" />
+        <map value="NL-CM:16.6.4" />
+        <comment value="FocusEpisodeOfCare" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.period.start">
+      <path value="EpisodeOfCare.period.start" />
+      <short value="StartDate" />
+      <definition value="The date that marks the beginning of the episode of care. Usually this is the date of the first contact of the patient with the care provider in the context of the health problem." />
+      <alias value="BeginDatum" />
+      <mapping>
+        <identity value="zib-episodeofcare-v1.0-2020EN" />
+        <map value="NL-CM:16.6.2" />
+        <comment value="StartDate" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.period.end">
+      <path value="EpisodeOfCare.period.end" />
+      <short value="EndDate" />
+      <definition value="The date that marks the end of the episode of care. This can be the date of the last contact of the patient with the care provider in the context of the health problem, but also thereafter on the basis of hindsight" />
+      <alias value="EindDatum" />
+      <mapping>
+        <identity value="zib-episodeofcare-v1.0-2020EN" />
+        <map value="NL-CM:16.6.3" />
+        <comment value="EndDate" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
