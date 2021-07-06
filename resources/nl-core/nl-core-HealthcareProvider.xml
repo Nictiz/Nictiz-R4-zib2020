@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-HealthcareProvider" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider" />
+  <name value="NlcoreHealthcareProvider" />
+  <title value="nl core HealthcareProvider" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A healthcare provider is an organization that offers and provides medical, paramedic and/or nursing care to patients/clients. Examples include: hospitals, nursing homes, doctor’s offices." />
+  <purpose value="A derived profile from [zib-HealthcareProvider](http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Location" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Location">
+      <path value="Location" />
+      <alias value="nl-core-HealthcareProvider" />
+    </element>
+    <element id="Location.telecom:telephoneNumbers">
+      <path value="Location.telecom" />
+      <sliceName value="telephoneNumbers" />
+      <type>
+        <code value="ContactPoint" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactInformation-TelephoneNumbers" />
+      </type>
+    </element>
+    <element id="Location.telecom:emailAddresses">
+      <path value="Location.telecom" />
+      <sliceName value="emailAddresses" />
+      <type>
+        <code value="ContactPoint" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactInformation-EmailAddresses" />
+      </type>
+    </element>
+    <element id="Location.address">
+      <path value="Location.address" />
+      <type>
+        <code value="Address" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AddressInformation" />
+      </type>
+    </element>
+    <element id="Location.managingOrganization">
+      <path value="Location.managingOrganization" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization" />
+      </type>
+    </element>
+    <element id="Location.partOf">
+      <path value="Location.partOf" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>

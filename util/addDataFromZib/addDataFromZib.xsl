@@ -14,6 +14,9 @@
     <!-- Zib2020 decor project file -->
     <xsl:param name="allDatasets" select="document('../zib2020bbr-decor.xml')/decor/datasets"/>
     
+    <!-- Unique identification string for when mappings are implicit, as described in the profiling guidelines -->
+    <xsl:param name="implicitIdentifier" select="' (implicit, main mapping is on '"/>
+    
     <xsl:template match="node()|@*">
         <xsl:copy>
             <xsl:apply-templates select="node()|@*"/>
@@ -174,7 +177,7 @@
     </xsl:template>
     
     <xsl:template match="f:element[f:mapping/f:map[starts-with(@value,'NL-CM:')]]">
-        <xsl:variable name="maps" select="f:mapping/f:map[starts-with(@value,'NL-CM:')]" as="element()*"/>
+        <xsl:variable name="maps" select="f:mapping/f:map[starts-with(@value,'NL-CM:') and not(contains(../f:comment/@value, $implicitIdentifier))]" as="element()*"/>
         <xsl:variable name="valuesOid" as="element()*">
             <xsl:for-each select="$maps">
                 <map value="{replace(@value,'NL-CM:','2.16.840.1.113883.2.4.3.11.60.40.1.')}"/>
@@ -187,6 +190,7 @@
             </xsl:for-each>
         </xsl:variable>
         <xsl:choose>
+            <xsl:when test="count($maps) = 0"/> <!-- When all maps turn out to be implicit, $maps is empty and we shouldn't do anything -->
             <xsl:when test="not($concepts)">
                 <xsl:message>Could not find a concept with map '<xsl:value-of select="$maps[1]/@value"/>'</xsl:message>
                 <xsl:copy>
@@ -258,7 +262,7 @@
         </xsl:choose>
     </xsl:template>
     
-    <xsl:template match="f:mapping[f:map[starts-with(@value,'NL-CM:')]]">
+    <xsl:template match="f:mapping[f:map[starts-with(@value,'NL-CM:')] and not(contains(f:comment/@value, $implicitIdentifier))]">
         <xsl:variable name="map" select="f:map[starts-with(@value,'NL-CM:')]" as="element()"/>
         <xsl:variable name="valueOid" as="element()">
             <map value="{replace($map/@value,'NL-CM:','2.16.840.1.113883.2.4.3.11.60.40.1.')}"/>
