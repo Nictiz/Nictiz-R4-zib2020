@@ -1,0 +1,7 @@
+- Major change: the addition of the Location resource. Mapped HealthcareProvider onto two FHIR resources whereas the Location resource acts as the focal resource.
+- Mapping for LocationName, ContactInformation, AddressInformation moved from Organization resource to Location resource.
+- Organization.identifier is now sliced based on a pattern.
+- Organization.type[DepartmentSpecialty] and Organization.type[OrganizationType] from 0..* to 0..1.
+- For Organization.type the slicing discriminator is changed from fixed system values to valueset binding.
+- Removed comments on Organization.alias because it has no basis in the zib.
+- Added comments on the root to point out to the usage of Location resource and the Organization.partOf.

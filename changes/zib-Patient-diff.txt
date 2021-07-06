@@ -1,0 +1,13 @@
+- To do: add zib ContactPerson mapping to Patient.contact.
+- To do: zib Payer (probably) partially overlaps with zib Patient.
+- To do: check if the cardinality comments for .name and .telecom correspond with the comments used in ContactPerson.
+- Includes Nationality, MaritalStatus, LanguageProficiency.
+- Added communicationDetails extension (http://nictiz.nl/fhir/StructureDefinition/ext-zib-LanguageProficiency-CommunicationDetails) 
+- Cardinality of Patient.extension:nationality left at 0..* due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time).
+- Cardinality of Patient.name left at 0..* to allow including several name elements with a different name.use each.
+- Cardinality of Patient.telecom left at 0..* to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not dot.
+- Added a comment to deceased[x]: When exporting the data, if deceasedDateTime (DateOfDeath) is present and has a value, DeathIndicator may be set to 'true', since DeathIndicator and DateOfDeath cannot both be represented at the same time.
+- Sliced deceased[x] and multipleBirth[x] based on type and mapped the relevant zib concepts to their specific types.
+- Removed reference to zib-HealthcareProvide on generalPractitioner because this has no basis in the zib model. Will be added in the nl-core- profile.
+- Removed legalStatus extension (http://nictiz.nl/fhir/StructureDefinition/zib-patient-legalstatus) that had a mapping to concept in the now deprecated FreedomRestrictingMeasures.
+- Removed preferredPharmacy extension (http://fhir.nl/fhir/StructureDefinition/nl-core-preferred-pharmacy) because this has no basis in the zib model. This is a candidate for the nl-core- profile.
