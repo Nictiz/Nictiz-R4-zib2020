@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-BloodPressure-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BloodPressure"/>
+   </meta>
+   <extension url="http://hl7.org/fhir/StructureDefinition/observation-bodyPosition">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="33586001"/>
+            <display value="Zittende positie"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+         <code value="vital-signs"/>
+         <display value="Vital Signs"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="85354-9"/>
+         <display value="Blood pressure panel with all children optional"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-patient-03"/>
+      <display value="I. Jongeneel-de Haas"/>
+   </subject>
+   <effectiveDateTime value="2013-02-07"/>
+   <note>
+      <text value="Mw. is zwanger"/>
+   </note>
+   <bodySite>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.15.1"/>
+         <code value="L"/>
+         <display value="Groot"/>
+      </coding>
+   </bodySite>
+   <component>   
+      <code>
+         <coding>
+            <system value="http://loinc.org"/>
+            <code value="8480-6"/>
+            <display value="Systolic blood pressure"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="108"/>
+         <unit value="mmHg"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mm[Hg]"/>
+      </valueQuantity>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="70665002"/>
+            <display value="Blood pressure cuff"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="371911009"/>
+            <display value="Bloeddrukmeting met gebruikmaking van manchet"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://loinc.org"/>
+            <code value="8462-4"/>
+            <display value="Diastolic blood pressure"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="56"/>
+         <unit value="mmHg"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mm[Hg]"/>
+      </valueQuantity>
+   </component>
+</Observation>
