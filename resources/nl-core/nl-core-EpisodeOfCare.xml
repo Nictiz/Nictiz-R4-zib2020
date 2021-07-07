@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-EpisodeOfCare" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-EpisodeOfCare" />
+  <name value="NlcoreEpisodeOfCare" />
+  <title value="nl core EpisodeOfCare" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The period in which a health problem, such as a complaint or illness, receives attention from a care provider. During this period the designation of this health problem can change due to evolving insight and/or the progress of the illness. An episode of care serves as a context for all data related to the health problem." />
+  <purpose value="A derived profile from [zib-EpisodeOfCare](http://nictiz.nl/fhir/StructureDefinition/zib-EpisodeOfCare) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="EpisodeOfCare" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-EpisodeOfCare" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="EpisodeOfCare">
+      <path value="EpisodeOfCare" />
+      <alias value="nl-core-EpisodeOfCare" />
+    </element>
+    <element id="EpisodeOfCare.diagnosis.condition">
+      <path value="EpisodeOfCare.diagnosis.condition" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
