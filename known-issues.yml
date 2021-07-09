@@ -151,6 +151,34 @@ zib-NameInformation:
       - cardinality: 0..*
         reason: prefix and suffix are mapped to the "titles" concept from the zib. There's a mismatch however in the way this information is represented in the zib and in FHIR. The mapping is documented in the profile.
 
+zib-NursingIntervention:
+  zib deviations:
+    CarePlan.activity.detail.scheduled[x]:scheduledTiming.repeat.frequency:
+      - datatype: positiveInt
+        reason: zib concepts Interval and Frequency are represented by a combination of .frequency, .period and .periodUnit, not by a single element of Quantity datatype.
+    CarePlan.activity.detail.scheduled[x]:scheduledTiming.repeat.period:
+      - datatype: decimal
+        reason: zib concepts Interval and Frequency are represented by a combination of .frequency, .period and .periodUnit, not by a single element of Quantity datatype.
+    CarePlan.activity.detail.scheduled[x]:scheduledTiming.repeat.periodUnit:
+      - datatype: code
+        reason: zib concepts Interval and Frequency are represented by a combination of .frequency, .period and .periodUnit, not by a single element of Quantity datatype.
+    CarePlan.note.text:
+      - cardinality: 1..1
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
+  ignored issues:
+    CarePlan.contributor:requester:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice.
+    CarePlan.activity.detail.performer:healthcareProvider:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice. 
+    CarePlan.activity.detail.performer:caregiver:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice. 
+    CarePlan.activity.detail.performer:patient:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice. 
+
 zib-Patient:
   zib deviations:
     Patient.extension:nationality.extension:code.value[x]:
