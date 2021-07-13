@@ -32,7 +32,7 @@
     <element id="Medication">
       <path value="Medication" />
       <short value="PharmaceuticalProduct" />
-      <definition value="The prescribed product is usually a medicine. However, medical aids and bandages can also be prescribed and supplied via the pharmacy. Strictly speaking, food and blood products do not belong in the medication category, but can be prescribed and supplied by a pharmacy as well. &#xD;&#xA;&#xD;&#xA;A type of medication can be indicated with a **single code**. That code can be chosen from several possible coding systems (concretely: GPK, PRK, HPK or article numbers). Correct use of these codes in the software systems will sufficiently record the composition of the product used, making a complete product specification unnecessary. &#xD;&#xA;&#xD;&#xA;In addition to a primary code, **alternative codes** from other coding systems can also be entered (so that the GPK can be sent along in the event that the patient was registered based on PRK, for example). &#xD;&#xA;&#xD;&#xA;Entering multiple ingredients will enable you to display a compound product. In that case, the **composition of the medication** can be specified implicitly (with the use of a medication code) or explicitly, for example by listing the (active) substance(s) of the medication. &#xD;&#xA;&#xD;&#xA;**Prescriptions to be prepared by the pharmacy** can be entered as well. This can be done by means of the option listed above to enter coded ingredients and/or by entering the composition and preparation method as free text." />
+      <definition value="The prescribed product is usually a medicine. However, medical aids and bandages can also be prescribed and supplied via the pharmacy. Strictly speaking, food and blood products do not belong in the medication category, but can be prescribed and supplied by a pharmacy as well. &#xD;&#xA;&#xD;&#xA;A type of medication can be indicated with **a single code**. That code can be chosen from several possible coding systems (concretely: GPK, PRK, HPK or article numbers). Correct use of these codes in the software systems will sufficiently record the composition of the product used, making a complete product specification unnecessary. &#xD;&#xA;&#xD;&#xA;In addition to a primary code, **alternative codes** from other coding systems can also be entered (so that the GPK can be sent along in the event that the patient was registered based on PRK, for example). &#xD;&#xA;&#xD;&#xA;Entering multiple ingredients will enable you to display a compound product. In that case, the **composition of the medication** can be specified implicitly (with the use of a medication code) or explicitly, for example by listing the (active) substance(s) of the medication. &#xD;&#xA;&#xD;&#xA;**Prescriptions to be prepared by the pharmacy** can be entered as well. This can be done by means of the option listed above to enter coded ingredients and/or by entering the composition and preparation method as free text." />
       <alias value="FarmaceutischProduct" />
       <mapping>
         <identity value="zib-pharmaceuticalproduct-v2.1.2-2020EN" />
@@ -90,7 +90,7 @@
       <definition value="The pharmaceutical form indicates the form of the medication. Examples include: tablet, suppository, infusion liquid, ointment. If the product has a GPK code in the G standard, the form will be known in the G standard. For products without a code (free text, preparation by the pharmacy), the means of administration can be entered." />
       <alias value="FarmaceutischeVorm" />
       <binding>
-        <strength value="example" />
+        <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.7.8--20200901000000" />
       </binding>
       <mapping>
@@ -121,7 +121,7 @@
       </slicing>
     </element>
     <element id="Medication.ingredient.item[x]:itemCodeableConcept">
-      <path value="Medication.ingredient.itemCodeableConcept" />
+      <path value="Medication.ingredient.item[x]" />
       <sliceName value="itemCodeableConcept" />
       <short value="SubstanceCode" />
       <definition value="Active substance or excipient. Here, the same codes can be used as for the ProductCode (for dilutions and compounds in particular), but now, the ATC, SSK and SNK codes can also be used to indicate a substance (to list ingredients of local products prepared by the pharmacy). &#xD;&#xA;&#xD;&#xA;* GTIN International Article Number &#xA;* KNMP article number &#xA;* Trade product code (HPK) &#xA;* Prescription code (PRK) &#xA;* Generic product code (GPK) &#xA;* ATC (anatomic therapeutic classification) &#xA;* SSK (substance name code with route of administration) &#xA;* SNK (substance name code)&#xD;&#xA;&#xD;&#xA;For further explanation about ATC see &lt;https://www.whocc.no/atc/structure_and_principles/&gt;" />
