@@ -32,7 +32,7 @@ This document contains release notes per zib, indicating differences with their 
 * Placed the mapping DispensedMedicine Reference type slice on `MedicationDispense.medicationReference`. Allowing the use of a CodeableConcept.
 * Removed references not accounted for by zibs or use case.
 * Moved AdditionalInformation to its own extension instead of reusing one extension and profiling it in the resource.
-
+* Added iso21090-PQ-translation extension to `MedicationDispense.dispenseRequest.quantity` to allow adding quantity translations using other code systems (e.g. G-Standard and NHG).
 
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.

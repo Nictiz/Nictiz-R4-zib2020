@@ -234,8 +234,12 @@
     <element id="MedicationRequest.dispenseRequest.quantity">
       <path value="MedicationRequest.dispenseRequest.quantity" />
       <short value="Amount" />
-      <definition value="This is the number of units of the ordered product per dispense. The number of refills indicates how often this amount is allowed to be dispensed. Optionally a translation to NHG table Gebruiksvoorschriften (Table 25) is also allowed." />
+      <definition value="This is the number of units of the ordered product per dispense. The number of refills indicates how often this amount is allowed to be dispensed. Optionally a translation to NHG table Gebruiksvoorschriften (Table 25) is also allowed which can be captured in the iso21090-PQ-translation extension." />
       <alias value="TeVerstrekkenHoeveelheid" />
+      <type>
+        <code value="Quantity" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdSimpleQuantity" />
+      </type>
       <mapping>
         <identity value="zib-DispenseRequest-v1.0.3-2020EN" />
         <map value="NL-CM:9.10.19964" />
