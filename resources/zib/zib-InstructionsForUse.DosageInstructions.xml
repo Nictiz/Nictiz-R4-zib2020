@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="zib-InstructionsForUse" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-InstructionsForUse" />
-  <name value="ZibInstructionsForUse" />
-  <title value="zib InstructionsForUse" />
+  <id value="zib-InstructionsForUse.DosageInstructions" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-InstructionsForUse.DosageInstructions" />
+  <name value="ZibInstructionsForUseDosageInstructions" />
+  <title value="zib InstructionsForUse.DosageInstructions" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -36,9 +36,15 @@
   <differential>
     <element id="Dosage">
       <path value="Dosage" />
-      <short value="InstructionsForUse" />
-      <comment value="This part zib InstructionsForUse is mapped primarily to this Dosage datatype profile. The zib model differs from the FHIR model with regards to the container concepts and their cardinalities: the zibs make a 0..1 reference to InstructionsForUse while in FHIR resources have Dosage inline with a 0..* cardinality. Therefore, the four root elements are mapped differently for better alignment with the zib. Description and RepeatPeriodCyclicalSchedule are provided in extension in the resource. Dosage contains native elements for AdditionalInstructions and RouteOfAdministration hence for these concepts the mapping is placed in the Dosage resulting in duplication of this information when multiple Dosage elements are used. Per InstructionsForUse in the resource, only one route can be captured. Different routes will result in multiple resources that include the spefic InstructionsForUse per route." />
+      <short value="DosingInstructions / InstructionsForUse" />
+      <comment value="This part zib InstructionsForUse is mapped primarily to this Dosage datatype profile. The zib model differs from the FHIR model with regards to the container concepts and their cardinalities: the zibs make a 0..1 reference to InstructionsForUse while in FHIR resources have Dosage inline with a 0..* cardinality. Therefore, the four root elements are mapped differently for better alignment with the zib. Description and RepeatPeriodCyclicalSchedule are provided in an extension in the host resource. Dosage contains native elements for AdditionalInstructions and RouteOfAdministration hence for these concepts the mapping is placed in the Dosage resulting in **duplication** of this information when multiple Dosage elements are used. Per InstructionsForUse in the resource, only one route can be captured. Different routes will result in multiple resources that include spefic instructions for use per route." />
+      <alias value="Doseerinstructie" />
       <alias value="GebruiksInstructie" />
+      <mapping>
+        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+        <map value="NL-CM:9.12.22095" />
+        <comment value="DosingInstructions" />
+      </mapping>
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
         <map value="NL-CM:9.12.22504" />
