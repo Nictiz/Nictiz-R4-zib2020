@@ -59,7 +59,7 @@
     <element id="Dosage.additionalInstruction">
       <path value="Dosage.additionalInstruction" />
       <short value="AdditionalInstructions" />
-      <definition value="The additional instructions contain extra information on the use of the current prescription. &#xD;&#xA;&#xD;&#xA;This includes all instructions for use. The text can come from the original “paper&quot; medication prescription, but can also be generated from the coded information. &#xD;&#xA;&#xD;&#xA;This concept may contain more information than what is structurally coded in the information below, but may not conflict with it. The instructions may not conflict with other components of the request for administration. The instructions can also refer to an existing protocol. The texts in the G-standard that can support this attribute are included in table 362 where the texts from the general practitioner' standard 'NHG-tabel Gebruiksvoorschrift' are included. These texts can be used to structure this concept." />
+      <definition value="The additional instructions contain extra information on the use of the current prescription. &#xD;&#xA;&#xD;&#xA;This includes all instructions for use. The text can come from the original “paper&quot; medication prescription, but can also be generated from the coded information. &#xD;&#xA;&#xD;&#xA;The instructions may not conflict with other components of the request for administration. The instructions can also refer to an existing protocol. The texts in the G-standard that can support this attribute are included in table 362 where the texts from the general practitioner' standard 'NHG-tabel Gebruiksvoorschrift' are included. These texts can be used to structure this concept." />
       <alias value="AanvullendeInstructie" />
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
@@ -85,7 +85,7 @@
       </slicing>
     </element>
     <element id="Dosage.asNeeded[x]:asNeededCodeableConcept">
-      <path value="Dosage.asNeededCodeableConcept" />
+      <path value="Dosage.asNeeded[x]" />
       <sliceName value="asNeededCodeableConcept" />
       <short value="Condition" />
       <definition value="The condition for administering medication can be:&#xD;&#xA;&#xD;&#xA;* a physiological measurement value (plasma glucose concentration, body temperature, blood pressure);&#xD;&#xA;* a symptom or other circumstance (in the event of a headache, or itch).&#xD;&#xA;&#xD;&#xA;Supplemental information from G-standard bst362 make up the list of values for coded entering of this concept. Also always include the textual description of that code. Physiological measurement values or other conditions that do not occur in bst362 do not need to be coded. These can be expressed in free text in the Description concept." />
@@ -178,7 +178,7 @@
       </mapping>
     </element>
     <element id="Dosage.doseAndRate.dose[x]:doseQuantity">
-      <path value="Dosage.doseAndRate.doseQuantity" />
+      <path value="Dosage.doseAndRate.dose[x]" />
       <sliceName value="doseQuantity" />
       <short value="nominalValue" />
       <definition value="Amount of medication per dose. The nominal value of the quantity." />
