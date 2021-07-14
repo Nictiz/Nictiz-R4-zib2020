@@ -35,12 +35,28 @@
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.20.77.11.9--20160407000000" />
       </binding>
     </element>
-    <element id="Dosage.timing">
-      <path value="Dosage.timing" />
-      <type>
-        <code value="Timing" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-InstructionsForUse-AdministeringSchedule" />
-      </type>
+    <element id="Dosage.timing.repeat.extension">
+      <path value="Dosage.timing.repeat.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Dosage.timing.repeat.extension:exact">
+      <path value="Dosage.timing.repeat.extension" />
+      <sliceName value="exact" />
+    </element>
+    <element id="Dosage.timing.repeat.extension:exact.value[x]">
+      <path value="Dosage.timing.repeat.extension.value[x]" />
+      <comment value="In practice, this means that when you define a frequency (3x a day) this flag should false, but when you define an interval (every 8 hours) you set this flag to true." />
+      <alias value="IsFlexibel" />
+    </element>
+    <element id="Dosage.timing.repeat.periodUnit">
+      <path value="Dosage.timing.repeat.periodUnit" />
+      <comment value="If `periodUnit` is used for Interval, only minutes (_min_) and hours (_h_) are allowed." />
     </element>
     <element id="Dosage.doseAndRate.dose[x]:doseRange">
       <path value="Dosage.doseAndRate.dose[x]" />

@@ -75,10 +75,200 @@
     </element>
     <element id="Dosage.timing">
       <path value="Dosage.timing" />
+      <short value="AdministeringSchedule" />
+      <definition value="Specifications of the times at which the medication is to be administered. This is indicated as follows:&#xD;&#xA;* Time(s) (16:00) or indications (“before meals”) at which the medication is to be taken each day.&#xD;&#xA;* A specific number of times the medication is to be taken each day (&quot;3x a day&quot;), indicated with the frequency.&#xD;&#xA;* A time interval between consecutive doses (“Every 2 hours”, “every 3 days”), indicated with the word Interval.&#xD;&#xA;* Combined periods with an interval and duration (“1 daily for three out of four weeks: the pill schedule”)&#xD;&#xA;&#xD;&#xA;If a certain medication is not to be taken daily, the aforementioned can be combined with daily indications:&#xD;&#xA;&#xD;&#xA;* One or more week days on which the medication is to be administered (e.g. “Monday, Wednesday, Friday”)&#xD;&#xA;* ”3x a week”, “2x a month”.&#xD;&#xA;&#xD;&#xA;The specified administration “infinite” is automatically to be repeated until:&#xD;&#xA;* The end date and time has been reached&#xD;&#xA;* The total administration duration has been reached (14 days)&#xD;&#xA;* A specific amount of administrations has been reached (“20 doses”), to be entered in the Frequency concept." />
+      <alias value="Toedieningsschema" />
+      <mapping>
+        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+        <map value="NL-CM:9.12.19948" />
+        <comment value="AdministeringSchedule" />
+      </mapping>
+    </element>
+    <element id="Dosage.timing.repeat.extension">
+      <path value="Dosage.timing.repeat.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Dosage.timing.repeat.extension:exact">
+      <path value="Dosage.timing.repeat.extension" />
+      <sliceName value="exact" />
       <type>
-        <code value="Timing" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-InstructionsForUse-AdministeringSchedule" />
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/timing-exact" />
       </type>
+    </element>
+    <element id="Dosage.timing.repeat.bounds[x]">
+      <path value="Dosage.timing.repeat.bounds[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Dosage.timing.repeat.bounds[x]:boundsDuration">
+      <path value="Dosage.timing.repeat.bounds[x]" />
+      <sliceName value="boundsDuration" />
+      <short value="DoseDuration" />
+      <definition value="The intended time duration for these dosing instructions, e.g. 5 days or 8 weeks. &#xD;&#xA;In the case of medication for an indefinite period, the dosing duration is left empty in the last dosing instruction." />
+      <alias value="Doseerduur" />
+      <type>
+        <code value="Duration" />
+      </type>
+      <mapping>
+        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+        <map value="NL-CM:9.12.22506" />
+        <comment value="DoseDuration" />
+      </mapping>
+    </element>
+    <element id="Dosage.timing.repeat.count">
+      <path value="Dosage.timing.repeat.count" />
+      <short value="Frequency" />
+      <definition value="Usually, frequency comprises both amount and time unit (3 times a day), but it can occur without the time unit (single use). This is represented by this `count` element and `countMax` that acts as the highest limit of the range.&#xD;&#xA;&#xD;&#xA;If a frequency is given withouth a time unit, a reasonable distribution over the day is expected, but exact times are not given. This is left to the patient. It is the most common manner of extramural prescription. In the case of Baxter packs and intramural care, such a prescription is used to draw up a (location-specific) outline for distribution times (logistics)." />
+      <alias value="Frequentie" />
+      <mapping>
+        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+        <map value="NL-CM:9.12.19949" />
+        <comment value="Frequency" />
+      </mapping>
+    </element>
+    <element id="Dosage.timing.repeat.countMax">
+      <path value="Dosage.timing.repeat.countMax" />
+      <short value="Frequency" />
+      <definition value="Usually, frequency comprises both amount and time unit (3 times a day), but it can occur without the time unit (single use). This is represented by `count` and this `countMax` element that indicates the The maximum value of the range. between `count` and `countMax`." />
+      <alias value="Frequentie" />
+      <mapping>
+        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+        <map value="NL-CM:9.12.19949" />
+        <comment value="Frequency" />
+      </mapping>
+    </element>
+    <element id="Dosage.timing.repeat.duration">
+      <path value="Dosage.timing.repeat.duration" />
+      <short value="DurationOfAdministration" />
+      <definition value="The duration of administration defines the length of time during which the drug is administered and is mainly used in the slow parenteral administration of fluids. The `durationUnit` defines the time unit." />
+      <alias value="Toedieningsduur" />
+      <mapping>
+        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+        <map value="NL-CM:9.12.23141" />
+        <comment value="DurationOfAdministration" />
+      </mapping>
+    </element>
+    <element id="Dosage.timing.repeat.durationUnit">
+      <path value="Dosage.timing.repeat.durationUnit" />
+      <short value="DurationOfAdministration Unit" />
+      <definition value="The units of time , in UCUM units, for the duration of administration of time during which the drug is administered." />
+      <alias value="Toedieningsduur" />
+      <mapping>
+        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+        <map value="NL-CM:9.12.23141" />
+        <comment value="DurationOfAdministration" />
+      </mapping>
+    </element>
+    <element id="Dosage.timing.repeat.frequency">
+      <path value="Dosage.timing.repeat.frequency" />
+      <short value="Frequency" />
+      <definition value="The frequency indicates the number of dose moments per time unit, usually per day. If this frequency is included, then the Interval will not have been included. Usually, frequency comprises both amount and time unit (3 times a day), but it can occur without the time unit (single use). In that case, `count` and `countMax` are used.&#xD;&#xA;&#xD;&#xA;The time unit of the frequency must be the same as how it is indicated in the textual description of the dose.&#xD;&#xA;&#xD;&#xA;Example: for a '2x a day...' dose:&#xD;&#xA;* amount = 2&#xD;&#xA;* time unit = 'day'.&#xD;&#xA;&#xD;&#xA;for a '3x a week...' dose:&#xD;&#xA;* amount = 3&#xD;&#xA;* time unit = 'week'." />
+      <alias value="Frequentie" />
+      <mapping>
+        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+        <map value="NL-CM:9.12.19949" />
+        <comment value="Frequency" />
+      </mapping>
+    </element>
+    <element id="Dosage.timing.repeat.period">
+      <path value="Dosage.timing.repeat.period" />
+      <short value="Frequency / Interval" />
+      <definition value="The time beloning to Frequency or Interval usually in days. The unit is given in `periodUnit`.&#xD;&#xA;&#xD;&#xA;Interval indicates the time between dose times. If this is included, then the Frequency will not have been included. Examples: every 4 hours, every 3 weeks.&#xD;&#xA;&#xD;&#xA;The times can now be chosen freely, but distribution throughout the day is more precise, and the interval between times is important (e.g. in the case of antibiotics) In the case of Baxter packs and intramural care, such a prescription is used to draw up a (location-specific) outline for distribution times (logistics)." />
+      <comment value="When Interval is used, set the exact extension (http://hl7.org/fhir/StructureDefinition/timing-exact) to true. Whe Frequency is used the value is set to false." />
+      <alias value="Frequentie" />
+      <alias value="Interval" />
+      <mapping>
+        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+        <map value="NL-CM:9.12.19949" />
+        <comment value="Frequency. When frequency is used, set `extenstion.exact` to false." />
+      </mapping>
+      <mapping>
+        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+        <map value="NL-CM:9.12.19950" />
+        <comment value="Interval. When interval is used, set `extenstion.exact` to true." />
+      </mapping>
+    </element>
+    <element id="Dosage.timing.repeat.periodUnit">
+      <path value="Dosage.timing.repeat.periodUnit" />
+      <short value="Frequency / Interval" />
+      <definition value="The units of time for the period in UCUM units for Frequency and Interval." />
+      <alias value="Frequentie" />
+      <alias value="Interval" />
+      <mapping>
+        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+        <map value="NL-CM:9.12.19949" />
+        <comment value="Frequency. When frequency is used, set `extenstion.exact` to false." />
+      </mapping>
+      <mapping>
+        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+        <map value="NL-CM:9.12.19950" />
+        <comment value="Interval" />
+      </mapping>
+    </element>
+    <element id="Dosage.timing.repeat.dayOfWeek">
+      <path value="Dosage.timing.repeat.dayOfWeek" />
+      <short value="Weekday" />
+      <definition value="WeekDay indicates a pattern of doses on fixed week days." />
+      <comment value="If no days are specified, the action is assumed to happen every day as otherwise specified." />
+      <alias value="Weekdag" />
+      <binding>
+        <strength value="required" />
+        <description value="Use ConceptMap 'WeekdagCodelijst_to_DaysOfWeek' to translate zib terminology to profile terminology in ValueSet 'DaysOfWeek'" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/days-of-week|4.0.1">
+          <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
+            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/WeekdagCodelijst-to-DaysOfWeek" />
+          </extension>
+        </valueSet>
+      </binding>
+      <mapping>
+        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+        <map value="NL-CM:9.12.19952" />
+        <comment value="WeekDay" />
+      </mapping>
+    </element>
+    <element id="Dosage.timing.repeat.timeOfDay">
+      <path value="Dosage.timing.repeat.timeOfDay" />
+      <short value="AdministrationTime" />
+      <definition value="The time of administration is a specific time of day (on the clock). This time usually isn’t (intended to be) exact. There can be multiple administering times in one day. &#xD;&#xA;&#xD;&#xA;The ideal time of administration can also be entered as a time of day (morning, afternoon, evening, night-time). The administration time is then to be left empty, and the time of day can be entered in the TimeOfDay concept." />
+      <comment value="If there's a timeOfDay, there cannot be a when, or vice versa." />
+      <alias value="Toedientijd" />
+      <mapping>
+        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+        <map value="NL-CM:9.12.19951" />
+        <comment value="AdministrationTime" />
+      </mapping>
+    </element>
+    <element id="Dosage.timing.repeat.when">
+      <path value="Dosage.timing.repeat.when" />
+      <short value="TimeOfDay" />
+      <definition value="Time of day: morning, afternoon, evening, night." />
+      <alias value="Dagdeel" />
+      <binding>
+        <strength value="required" />
+        <description value="Use ConceptMap 'DagdeelCodelijst_to_EventTiming' to translate zib terminology to profile terminology in ValueSet 'EventTiming'" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/event-timing">
+          <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
+            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/DagdeelCodelijst-to-EventTiming" />
+          </extension>
+        </valueSet>
+      </binding>
+      <mapping>
+        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+        <map value="NL-CM:9.12.19953" />
+        <comment value="TimeOfDay" />
+      </mapping>
     </element>
     <element id="Dosage.asNeeded[x]">
       <path value="Dosage.asNeeded[x]" />
