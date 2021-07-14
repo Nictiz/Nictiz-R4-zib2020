@@ -209,7 +209,7 @@
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
         <map value="NL-CM:9.12.19950" />
-        <comment value="Interval implicit, main mapping is on period and periodUnit" />
+        <comment value="Interval implicit, main mapping is on period and periodUnit." />
       </mapping>
     </element>
     <element id="Dosage.timing.repeat.frequencyMax">
@@ -402,6 +402,10 @@
       <short value="minimumValue" />
       <definition value="The minimal value of the range. The boundary is inclusive." />
       <alias value="minimumWaarde" />
+      <type>
+        <code value="Quantity" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdSimpleQuantity" />
+      </type>
       <mapping>
         <identity value="zib-range-v1.0.1-2020EN" />
         <map value="NL-CM:20.1.2" />
@@ -413,6 +417,10 @@
       <short value="maximumValue" />
       <definition value="The maximum value of the range. The boundary is inclusive." />
       <alias value="maximumWaarde" />
+      <type>
+        <code value="Quantity" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdSimpleQuantity" />
+      </type>
       <mapping>
         <identity value="zib-range-v1.0.1-2020EN" />
         <map value="NL-CM:20.1.3" />
@@ -420,13 +428,14 @@
       </mapping>
     </element>
     <element id="Dosage.doseAndRate.dose[x]:doseQuantity">
-      <path value="Dosage.doseAndRate.dose[x]" />
+      <path value="Dosage.doseAndRate.doseQuantity" />
       <sliceName value="doseQuantity" />
       <short value="nominalValue" />
       <definition value="Amount of medication per dose. The nominal value of the quantity." />
       <alias value="nominaleWaarde" />
       <type>
         <code value="Quantity" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdSimpleQuantity" />
       </type>
       <mapping>
         <identity value="zib-range-v1.0.1-2020EN" />
@@ -464,6 +473,10 @@
       <short value="minimumValue" />
       <definition value="The minimal value of the range. The boundary is inclusive." />
       <alias value="minimumWaarde" />
+      <type>
+        <code value="Quantity" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdSimpleQuantity" />
+      </type>
       <mapping>
         <identity value="zib-range-v1.0.1-2020EN" />
         <map value="NL-CM:20.1.2" />
@@ -475,6 +488,10 @@
       <short value="maximumValue" />
       <definition value="The maximum value of the range. The boundary is inclusive." />
       <alias value="maximumWaarde" />
+      <type>
+        <code value="Quantity" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdSimpleQuantity" />
+      </type>
       <mapping>
         <identity value="zib-range-v1.0.1-2020EN" />
         <map value="NL-CM:20.1.3" />
@@ -482,13 +499,14 @@
       </mapping>
     </element>
     <element id="Dosage.doseAndRate.rate[x]:rateQuantity">
-      <path value="Dosage.doseAndRate.rate[x]" />
+      <path value="Dosage.doseAndRate.rateQuantity" />
       <sliceName value="rateQuantity" />
       <short value="nominalValue" />
       <definition value="The nominal value of the quantity." />
       <alias value="nominaleWaarde" />
       <type>
         <code value="Quantity" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdSimpleQuantity" />
       </type>
       <mapping>
         <identity value="zib-range-v1.0.1-2020EN" />
@@ -506,6 +524,20 @@
         <map value="NL-CM:9.12.19946" />
         <comment value="MaximumDose" />
       </mapping>
+    </element>
+    <element id="Dosage.maxDosePerPeriod.numerator">
+      <path value="Dosage.maxDosePerPeriod.numerator" />
+      <type>
+        <code value="Quantity" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdSimpleQuantity" />
+      </type>
+    </element>
+    <element id="Dosage.maxDosePerPeriod.denominator">
+      <path value="Dosage.maxDosePerPeriod.denominator" />
+      <type>
+        <code value="Quantity" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdSimpleQuantity" />
+      </type>
     </element>
   </differential>
 </StructureDefinition>
