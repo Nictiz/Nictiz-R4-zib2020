@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="ext-InstructionsForUse.Description" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.Description" />
-  <name value="ExtInstructionsForUseDescription" />
-  <title value="ext InstructionsForUse Description" />
+  <id value="ext-RenderedDosageInstruction" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction" />
+  <name value="ExtRenderedDosageInstruction" />
+  <title value="ext RenderedDosageInstruction" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -14,7 +14,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="An extension that holds the textual description of the complete medication instructions for use including the period of use." />
+  <description value="An extension that holds the full representation of the dose of the medication included in all dosage instructions including the period of use." />
   <purpose value="This extension represents the Description concept of [zib zib InstructionsForUse-v1.2.1(2020EN)](https://zibs.nl/wiki/InstructionsForUse-v1.2.1(2020EN)). The Dosage datatype and medication resources do not (yet) contain an element that holds a textual description of the complete instructions. In R5 this extension will likely become obsolete due to the addition of `.renderedDosageInstruction` in the medication resources." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
@@ -51,12 +51,13 @@
     </element>
     <element id="Extension.url">
       <path value="Extension.url" />
-      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.Description" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction" />
     </element>
     <element id="Extension.value[x]">
       <path value="Extension.value[x]" />
       <short value="Description" />
       <definition value="Textual description of the complete instructions for use including the period of use." />
+      <comment value="This textual description must not contain more or less than the structured information represented in the Dosage dataype." />
       <alias value="Omschrijving" />
       <type>
         <code value="string" />
