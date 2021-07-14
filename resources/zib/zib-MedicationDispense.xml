@@ -52,8 +52,6 @@
     <element id="MedicationDispense.extension:medicationDispenseAdditionalInformation">
       <path value="MedicationDispense.extension" />
       <sliceName value="medicationDispenseAdditionalInformation" />
-      <min value="0" />
-      <max value="*" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.AdditionalInformation" />
@@ -62,7 +60,6 @@
     <element id="MedicationDispense.extension:requestDate">
       <path value="MedicationDispense.extension" />
       <sliceName value="requestDate" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -72,7 +69,6 @@
     <element id="MedicationDispense.extension:category">
       <path value="MedicationDispense.extension" />
       <sliceName value="category" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -100,7 +96,7 @@
       </slicing>
     </element>
     <element id="MedicationDispense.medication[x]:medicationReference">
-      <path value="MedicationDispense.medicationReference" />
+      <path value="MedicationDispense.medication[x]" />
       <sliceName value="medicationReference" />
       <short value="DispensedMedicine" />
       <definition value="The dispensed medicine." />
@@ -161,8 +157,12 @@
     <element id="MedicationDispense.quantity">
       <path value="MedicationDispense.quantity" />
       <short value="DispensedAmount" />
-      <definition value="Number of units of the product (measured based on the relevant product code) supplied. Optionally a translation to NHG table Gebruiksvoorschriften(Table 25) is also allowed." />
+      <definition value="Number of units of the product (measured based on the relevant product code) supplied. Optionally a translation to NHG table Gebruiksvoorschriften(Table 25) is also allowed which is captured using the iso21090-PQ-translation extension." />
       <alias value="VerstrekteHoeveelheid" />
+      <type>
+        <code value="Quantity" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdSimpleQuantity" />
+      </type>
       <mapping>
         <identity value="zib-medicationdispense-v2.0.2-2020EN" />
         <map value="NL-CM:9.9.20923" />
