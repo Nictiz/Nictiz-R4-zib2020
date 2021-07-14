@@ -69,7 +69,8 @@ Style - profiling guidelines
 * Added a comment to `deceased[x]`: When exporting the data, if `deceasedDateTim` (DateOfDeath) is present and has a value, DeathIndicator may be set to 'true', since DeathIndicator and DateOfDeath cannot both be represented at the same time.
 
 ## zib-PharmaceuticalProduct
+* Aligned profile canoncial URL to align with the zib name.
 * A combined valueset is now used for MedicationCode and IngredientCode instead of a slicing construct of `CodeableConceptcoding`.
 * Removed references not accounted for by the zib.
 * Placed SubstanceCode on a CodeableConcept type slice instead of the .item[x] element adhering to the open world modeling principle.
-* Changed profile canoncial URL to align with the zib name.  
+* Added iso21090-PQ-translation extension to `ingredient.strength.numerator` and `ingredient.strength.denominator` to allow adding quantity translation using other code systems (e.g. G-Standard and NHG).
