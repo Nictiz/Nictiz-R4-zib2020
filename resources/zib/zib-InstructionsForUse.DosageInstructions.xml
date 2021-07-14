@@ -129,13 +129,25 @@
     </element>
     <element id="Dosage.timing.repeat.count">
       <path value="Dosage.timing.repeat.count" />
-      <short value="Frequency" />
+      <short value="Frequency / nominaleWaarde / minimumWaarde" />
       <definition value="Usually, frequency comprises both amount and time unit (3 times a day), but it can occur without the time unit (single use). This is represented by this `count` element and `countMax` that acts as the highest limit of the range.&#xD;&#xA;&#xD;&#xA;If a frequency is given withouth a time unit, a reasonable distribution over the day is expected, but exact times are not given. This is left to the patient. It is the most common manner of extramural prescription. In the case of Baxter packs and intramural care, such a prescription is used to draw up a (location-specific) outline for distribution times (logistics)." />
       <alias value="Frequentie" />
+      <alias value="nominaleWaarde" />
+      <alias value="minimumWaarde" />
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
         <map value="NL-CM:9.12.19949" />
         <comment value="Frequency" />
+      </mapping>
+      <mapping>
+        <identity value="zib-range-v1.0.1-2020EN" />
+        <map value="NL-CM:20.1.2" />
+        <comment value="minimumValue" />
+      </mapping>
+      <mapping>
+        <identity value="zib-range-v1.0.1-2020EN" />
+        <map value="NL-CM:20.1.4" />
+        <comment value="nominalValue" />
       </mapping>
     </element>
     <element id="Dosage.timing.repeat.countMax">
@@ -173,13 +185,47 @@
     </element>
     <element id="Dosage.timing.repeat.frequency">
       <path value="Dosage.timing.repeat.frequency" />
-      <short value="Frequency" />
+      <short value="Frequency / nominaleWaarde / minimumWaarde / Interval" />
       <definition value="The frequency indicates the number of dose moments per time unit, usually per day. If this frequency is included, then the Interval will not have been included. Usually, frequency comprises both amount and time unit (3 times a day), but it can occur without the time unit (single use). In that case, `count` and `countMax` are used.&#xD;&#xA;&#xD;&#xA;The time unit of the frequency must be the same as how it is indicated in the textual description of the dose.&#xD;&#xA;&#xD;&#xA;Example: for a '2x a day...' dose:&#xD;&#xA;* amount = 2&#xD;&#xA;* time unit = 'day'.&#xD;&#xA;&#xD;&#xA;for a '3x a week...' dose:&#xD;&#xA;* amount = 3&#xD;&#xA;* time unit = 'week'." />
+      <alias value="Frequentie" />
+      <alias value="minimumWaarde" />
+      <alias value="nominaleWaarde" />
+      <alias value="Interval" />
+      <mapping>
+        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+        <map value="NL-CM:9.12.19949" />
+        <comment value="Frequency" />
+      </mapping>
+      <mapping>
+        <identity value="zib-range-v1.0.1-2020EN" />
+        <map value="NL-CM:20.1.2" />
+        <comment value="minimumValue" />
+      </mapping>
+      <mapping>
+        <identity value="zib-range-v1.0.1-2020EN" />
+        <map value="NL-CM:20.1.4" />
+        <comment value="nominalValue" />
+      </mapping>
+      <mapping>
+        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+        <map value="NL-CM:9.12.19950" />
+        <comment value="Interval implicit, main mapping is on period and periodUnit" />
+      </mapping>
+    </element>
+    <element id="Dosage.timing.repeat.frequencyMax">
+      <path value="Dosage.timing.repeat.frequencyMax" />
+      <short value="Frequency" />
+      <alias value="maximumWaarde" />
       <alias value="Frequentie" />
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
         <map value="NL-CM:9.12.19949" />
         <comment value="Frequency" />
+      </mapping>
+      <mapping>
+        <identity value="zib-range-v1.0.1-2020EN" />
+        <map value="NL-CM:20.1.3" />
+        <comment value="maximumValue" />
       </mapping>
     </element>
     <element id="Dosage.timing.repeat.period">
