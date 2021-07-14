@@ -20,10 +20,11 @@
     </contact>
     <description value="Maps ContactType codes as found in the [zib Encounter v4.0.1 (2020)](https://zibs.nl/wiki/Encounter-v4.0.1(2020EN)) to ActEncounterCode codes as found in FHIR R4."/>
     <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise."/>
+    <sourceCanonical value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.15.1.1--20200901000000"/>
     <targetCanonical value="http://terminology.hl7.org/ValueSet/v3-ActEncounterCode"/>
     <group>
         <source value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
-        <target value="http://terminology.hl7.org/ValueSet/v3-ActEncounterCode"/>
+        <target value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
         <element>
             <code value="AMB"/>
             <display value="Ambulatory"/>
@@ -90,14 +91,13 @@
     </group>
     <group>
         <source value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
-        <target value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+        <target value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
         <element>
             <code value="OTH"/>
             <display value="Other"/>
             <target>
-                <code value="OTH"/>
-                <display value="Other"/>
-                <equivalence value="equal"/>
+                <equivalence value="unmatched"/>
+                <comment value="Unmatched code in ValueSet, but is allowed to be used in Encounter.class or Encounter.classHistory.class because it has a binding of 'extensible'."/>
             </target>
         </element>
     </group>
