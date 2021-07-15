@@ -76,6 +76,8 @@
     <element id="MedicationRequest.category:dispenseRequestCode">
       <path value="MedicationRequest.category" />
       <sliceName value="dispenseRequestCode" />
+      <min value="1" />
+      <max value="1" />
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
@@ -143,6 +145,10 @@
         <comment value="IntendedSupplier" />
       </mapping>
     </element>
+    <element id="MedicationRequest.note">
+      <path value="MedicationRequest.note" />
+      <max value="1" />
+    </element>
     <element id="MedicationRequest.note.text">
       <path value="MedicationRequest.note.text" />
       <short value="Comment" />
@@ -176,6 +182,7 @@
     <element id="MedicationRequest.dispenseRequest.extension:validityPeriodDuration">
       <path value="MedicationRequest.dispenseRequest.extension" />
       <sliceName value="validityPeriodDuration" />
+      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-PeriodOfUse-Duration" />
