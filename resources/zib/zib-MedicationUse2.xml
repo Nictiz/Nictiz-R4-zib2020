@@ -37,6 +37,7 @@
     <element id="MedicationStatement">
       <path value="MedicationStatement" />
       <short value="MedicationUse" />
+      <comment value="" />
       <alias value="MedicatieGebruik" />
       <mapping>
         <identity value="zib-medicationuse2-v1.1.1-2020EN" />
@@ -66,6 +67,7 @@
     <element id="MedicationStatement.extension:periodOfUseDuration">
       <path value="MedicationStatement.extension" />
       <sliceName value="periodOfUseDuration" />
+      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-PeriodOfUse-Duration" />
@@ -74,6 +76,7 @@
     <element id="MedicationStatement.extension:prescriber">
       <path value="MedicationStatement.extension" />
       <sliceName value="prescriber" />
+      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.Prescriber" />
@@ -82,6 +85,7 @@
     <element id="MedicationStatement.extension:asAgreedIndicator">
       <path value="MedicationStatement.extension" />
       <sliceName value="asAgreedIndicator" />
+      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.AsAgreedIndicator" />
@@ -228,9 +232,20 @@
     </element>
     <element id="MedicationStatement.reasonCode">
       <path value="MedicationStatement.reasonCode" />
+      <slicing>
+        <discriminator>
+          <type value="exists" />
+          <path value="text" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="MedicationStatement.reasonCode:reasonForUse">
+      <path value="MedicationStatement.reasonCode" />
+      <sliceName value="reasonForUse" />
       <max value="1" />
     </element>
-    <element id="MedicationStatement.reasonCode.text">
+    <element id="MedicationStatement.reasonCode:reasonForUse.text">
       <path value="MedicationStatement.reasonCode.text" />
       <short value="ReasonForUse" />
       <definition value="The reason for using the medication, particularly in self-care medicine purchased by the patient themselves." />
