@@ -49,6 +49,15 @@
         <rules value="open" />
       </slicing>
     </element>
+    <element id="MedicationDispense.extension:category">
+      <path value="MedicationDispense.extension" />
+      <sliceName value="category" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.Category" />
+      </type>
+    </element>
     <element id="MedicationDispense.extension:medicationDispenseAdditionalInformation">
       <path value="MedicationDispense.extension" />
       <sliceName value="medicationDispenseAdditionalInformation" />
@@ -66,13 +75,14 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.RequestDate" />
       </type>
     </element>
-    <element id="MedicationDispense.extension:category">
+    <element id="MedicationDispense.extension:distributionForm">
       <path value="MedicationDispense.extension" />
-      <sliceName value="category" />
+      <sliceName value="distributionForm" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.Category" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.DistributionForm" />
       </type>
     </element>
     <element id="MedicationDispense.category">
