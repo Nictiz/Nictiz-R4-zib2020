@@ -63,21 +63,27 @@
   <differential>
     <element id="Extension">
       <path value="Extension" />
-      <max value="1" />
-    </element>
-    <element id="Extension.url">
-      <path value="Extension.url" />
-      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-PeriodOfUse" />
-    </element>
-    <element id="Extension.value[x]">
-      <path value="Extension.value[x]" />
       <short value="PeriodOfUse" />
       <definition value="The period in which the medication is/was taken or approved to be dispensed." />
+      <comment value="In order to use the PeriodOfUse for search purposes information need to be deducted when possible. If Duration is known and either a Period.start or Period.end the missing &#xD;&#xA;start or end date need to be calculated." />
       <alias value="Gebruiksperiode" />
       <alias value="Verbruiksperiode" />
+      <max value="1" />
       <type>
         <code value="Period" />
       </type>
+      <constraint>
+        <key value="ext-PeriodOfUse-1" />
+        <severity value="error" />
+        <human value="If Period.start and Duration are specified, the Period.end is expected as well." />
+        <expression value="(extension.where(url = 'period').start.exists() and extension.where(url = 'duration').exists()) implies extension.where(url = 'period').end.exists()" />
+      </constraint>
+      <constraint>
+        <key value="ext-PeriodOfUse-2" />
+        <severity value="error" />
+        <human value="If Period.end and Duration are specified, the Period.start is expected as well." />
+        <expression value="(extension.where(url = 'period').end.exists() and extension.where(url = 'duration').exists()) implies extension.where(url = 'period').start.exists()" />
+      </constraint>
       <mapping>
         <identity value="zib-medicationagreement-v1.2-2020EN" />
         <map value="NL-CM:9.6.19936" />
@@ -99,8 +105,33 @@
         <comment value="PeriodOfUse" />
       </mapping>
     </element>
-    <element id="Extension.value[x].start">
-      <path value="Extension.value[x].start" />
+    <element id="Extension.extension">
+      <path value="Extension.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Extension.extension:period">
+      <path value="Extension.extension" />
+      <sliceName value="period" />
+      <max value="1" />
+    </element>
+    <element id="Extension.extension:period.url">
+      <path value="Extension.extension.url" />
+      <fixedUri value="period" />
+    </element>
+    <element id="Extension.extension:period.value[x]">
+      <path value="Extension.extension.value[x]" />
+      <type>
+        <code value="Period" />
+      </type>
+    </element>
+    <element id="Extension.extension:period.value[x].start">
+      <path value="Extension.extension.value[x].start" />
       <mapping>
         <identity value="zib-timeinterval-v1.0-2020EN" />
         <map value="NL-CM:20.3.2" />
@@ -109,11 +140,11 @@
       <mapping>
         <identity value="zib-timeinterval-v1.0-2020EN" />
         <map value="NL-CM:20.3.4" />
-        <comment value="Duration implicit, can be calculated if startDateTime and endDateTime are known." />
+        <comment value="Duration (implicit, can be calculated if startDateTime and endDateTime are known.)" />
       </mapping>
     </element>
-    <element id="Extension.value[x].end">
-      <path value="Extension.value[x].end" />
+    <element id="Extension.extension:period.value[x].end">
+      <path value="Extension.extension.value[x].end" />
       <mapping>
         <identity value="zib-timeinterval-v1.0-2020EN" />
         <map value="endDateTime" />
@@ -122,8 +153,49 @@
       <mapping>
         <identity value="zib-timeinterval-v1.0-2020EN" />
         <map value="NL-CM:20.3.4" />
-        <comment value="Duration implicit, can be calculated if startDateTime and endDateTime are known." />
+        <comment value="Duration (implicit, can be calculated if startDateTime and endDateTime are known.)" />
       </mapping>
+    </element>
+    <element id="Extension.extension:duration">
+      <path value="Extension.extension" />
+      <sliceName value="duration" />
+      <max value="1" />
+    </element>
+    <element id="Extension.extension:duration.url">
+      <path value="Extension.extension.url" />
+      <fixedUri value="duration" />
+    </element>
+    <element id="Extension.extension:duration.value[x]">
+      <path value="Extension.extension.value[x]" />
+      <short value="Duration" />
+      <definition value="The duration in which the medication is/was taken or approved to be dispensed." />
+      <alias value="tijdsDuur" />
+      <type>
+        <code value="Duration" />
+      </type>
+      <mapping>
+        <identity value="zib-medicationuse2-v1.1.1-2020EN" />
+        <map value="NL-CM:20.3.4" />
+        <comment value="Duration" />
+      </mapping>
+      <mapping>
+        <identity value="zib-timeinterval-v1.0-2020EN" />
+        <map value="NL-CM:20.3.2" />
+        <comment value="startDateTime (implicit, can be calculated if Duration and endDateTime are known.)" />
+      </mapping>
+      <mapping>
+        <identity value="zib-timeinterval-v1.0-2020EN" />
+        <map value="NL-CM:20.3.3" />
+        <comment value="endDateTime (implicit, can be calculated if Duration and startDateTime are known.)" />
+      </mapping>
+    </element>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-PeriodOfUse" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <max value="0" />
     </element>
   </differential>
 </StructureDefinition>
