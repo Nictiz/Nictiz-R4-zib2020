@@ -36,19 +36,13 @@
   <differential>
     <element id="Dosage">
       <path value="Dosage" />
-      <short value="DosingInstructions / InstructionsForUse" />
+      <short value="DosingInstructions" />
       <comment value="This part zib InstructionsForUse is mapped primarily to this Dosage datatype profile. The zib model differs from the FHIR model with regards to the container concepts and their cardinalities: the zibs make a 0..1 reference to InstructionsForUse while in FHIR resources have Dosage inline with a 0..* cardinality. Therefore, the four root elements are mapped differently for better alignment with the zib. Description and RepeatPeriodCyclicalSchedule are provided in an extension in the host resource. Dosage contains native elements for AdditionalInstructions and RouteOfAdministration hence for these concepts the mapping is placed in the Dosage resulting in **duplication** of this information when multiple Dosage elements are used. Per InstructionsForUse in the resource, only one route can be captured. Different routes will result in multiple resources that include spefic instructions for use per route." />
       <alias value="Doseerinstructie" />
-      <alias value="GebruiksInstructie" />
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
         <map value="NL-CM:9.12.22095" />
         <comment value="DosingInstructions" />
-      </mapping>
-      <mapping>
-        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
-        <map value="NL-CM:9.12.22504" />
-        <comment value="InstructionsForUse" />
       </mapping>
     </element>
     <element id="Dosage.sequence">
@@ -83,24 +77,6 @@
         <map value="NL-CM:9.12.19948" />
         <comment value="AdministeringSchedule" />
       </mapping>
-    </element>
-    <element id="Dosage.timing.repeat.extension">
-      <path value="Dosage.timing.repeat.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Dosage.timing.repeat.extension:exact">
-      <path value="Dosage.timing.repeat.extension" />
-      <sliceName value="exact" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://hl7.org/fhir/StructureDefinition/timing-exact" />
-      </type>
     </element>
     <element id="Dosage.timing.repeat.bounds[x]">
       <path value="Dosage.timing.repeat.bounds[x]" />
@@ -160,6 +136,11 @@
         <map value="NL-CM:9.12.19949" />
         <comment value="Frequency" />
       </mapping>
+      <mapping>
+        <identity value="zib-range-v1.0.1-2020EN" />
+        <map value="NL-CM:20.1.3" />
+        <comment value="maximumValue" />
+      </mapping>
     </element>
     <element id="Dosage.timing.repeat.duration">
       <path value="Dosage.timing.repeat.duration" />
@@ -175,7 +156,7 @@
     <element id="Dosage.timing.repeat.durationUnit">
       <path value="Dosage.timing.repeat.durationUnit" />
       <short value="DurationOfAdministration Unit" />
-      <definition value="The units of time , in UCUM units, for the duration of administration of time during which the drug is administered." />
+      <definition value="The units of time, in UCUM units, for the duration of administration of time during which the drug is administered." />
       <alias value="Toedieningsduur" />
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
@@ -186,7 +167,7 @@
     <element id="Dosage.timing.repeat.frequency">
       <path value="Dosage.timing.repeat.frequency" />
       <short value="Frequency / nominaleWaarde / minimumWaarde / Interval" />
-      <definition value="The frequency indicates the number of dose moments per time unit, usually per day. If this frequency is included, then the Interval will not have been included. Usually, frequency comprises both amount and time unit (3 times a day), but it can occur without the time unit (single use). In that case, `count` and `countMax` are used.&#xD;&#xA;&#xD;&#xA;The time unit of the frequency must be the same as how it is indicated in the textual description of the dose.&#xD;&#xA;&#xD;&#xA;Example: for a '2x a day...' dose:&#xD;&#xA;* amount = 2&#xD;&#xA;* time unit = 'day'.&#xD;&#xA;&#xD;&#xA;for a '3x a week...' dose:&#xD;&#xA;* amount = 3&#xD;&#xA;* time unit = 'week'." />
+      <definition value="The frequency indicates the number of dose moments per time unit, usually per day. Usually, frequency comprises both amount and time unit (3 times a day), but it can occur without the time unit (single use). In that case, `count` and `countMax` are used.&#xD;&#xA;&#xD;&#xA;The time unit of the frequency must be the same as how it is indicated in the textual description of the dose.&#xD;&#xA;&#xD;&#xA;Example: for a '2x a day...' dose:&#xD;&#xA;* amount = 2&#xD;&#xA;* time unit = 'day'.&#xD;&#xA;&#xD;&#xA;for a '3x a week...' dose:&#xD;&#xA;* amount = 3&#xD;&#xA;* time unit = 'week'.&#xD;&#xA;&#xD;&#xA;If an Interval is included `frequency` is expected to be 1." />
       <alias value="Frequentie" />
       <alias value="minimumWaarde" />
       <alias value="nominaleWaarde" />
@@ -209,7 +190,7 @@
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
         <map value="NL-CM:9.12.19950" />
-        <comment value="Interval (implicit, main mapping is on period and periodUnit.)" />
+        <comment value="Interval" />
       </mapping>
     </element>
     <element id="Dosage.timing.repeat.frequencyMax">
@@ -238,12 +219,12 @@
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
         <map value="NL-CM:9.12.19949" />
-        <comment value="Frequency. When frequency is used, set `extenstion.exact` to false." />
+        <comment value="Frequency" />
       </mapping>
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
         <map value="NL-CM:9.12.19950" />
-        <comment value="Interval. When interval is used, set `extenstion.exact` to true." />
+        <comment value="Interval" />
       </mapping>
     </element>
     <element id="Dosage.timing.repeat.periodUnit">
@@ -428,7 +409,7 @@
       </mapping>
     </element>
     <element id="Dosage.doseAndRate.dose[x]:doseQuantity">
-      <path value="Dosage.doseAndRate.doseQuantity" />
+      <path value="Dosage.doseAndRate.dose[x]" />
       <sliceName value="doseQuantity" />
       <short value="nominalValue" />
       <definition value="Amount of medication per dose. The nominal value of the quantity." />
@@ -499,7 +480,7 @@
       </mapping>
     </element>
     <element id="Dosage.doseAndRate.rate[x]:rateQuantity">
-      <path value="Dosage.doseAndRate.rateQuantity" />
+      <path value="Dosage.doseAndRate.rate[x]" />
       <sliceName value="rateQuantity" />
       <short value="nominalValue" />
       <definition value="The nominal value of the quantity." />
@@ -517,7 +498,7 @@
     <element id="Dosage.maxDosePerPeriod">
       <path value="Dosage.maxDosePerPeriod" />
       <short value="MaximumDose" />
-      <definition value="A maximum dose indicates the maximum duration a product can be used with an ‘as needed’ prescription." />
+      <definition value="A maximum dose maximizes (in time) the usage of a drug in an 'as needed' prescription" />
       <alias value="MaximaleDosering" />
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />

@@ -60,12 +60,16 @@
     <element id="Dosage.timing.repeat.extension:exact">
       <path value="Dosage.timing.repeat.extension" />
       <sliceName value="exact" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/timing-exact" />
+      </type>
     </element>
     <element id="Dosage.timing.repeat.extension:exact.value[x]">
       <path value="Dosage.timing.repeat.extension.value[x]" />
       <short value="IsFlexible" />
       <definition value="If true, indicates that the specified times, frequencies, periods are expected to be adhered to as precisely as possible. If false, indicates that a typical degree of variability based on institutional and/or patient convenience is acceptable." />
-      <comment value="In practice, this means that when you define a frequency (3x a day) this flag should false, but when you define an interval (every 8 hours) you set this flag to true." />
+      <comment value="In practice, this means that when you define a Frequency (e.g. 3x a day) this flag should false, but when you define an Interval (e.g. every 8 hours) you set this flag to true." />
       <alias value="IsFlexibel" />
       <mapping>
         <identity value="Medication-Process-v9-2-0-0" />
