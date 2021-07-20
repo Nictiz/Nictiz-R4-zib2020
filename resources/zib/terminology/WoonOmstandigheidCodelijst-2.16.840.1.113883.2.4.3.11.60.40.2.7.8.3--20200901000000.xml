@@ -1,5 +1,5 @@
 <ValueSet xmlns="http://hl7.org/fhir">
-   <id value="2.16.840.1.113883.2.4.3.11.60.40.2.3.1.2--20200901000000"/>
+   <id value="2.16.840.1.113883.2.4.3.11.60.40.2.7.8.3--20200901000000"/>
    <meta>
       <profile value="http://hl7.org/fhir/StructureDefinition/shareablevalueset"/>
       <!--<profile value="http://hl7.org/fhir/4.0/StructureDefinition/ValueSet"/>-->
@@ -9,15 +9,15 @@
          <start value="2020-09-01T00:00:00+02:00"/>
       </valuePeriod>
    </extension>
-   <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.3.1.2--20200901000000"/>
+   <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.8.3--20200901000000"/>
    <identifier>
       <use value="official"/>
       <system value="http://art-decor.org/ns/oids/vs"/>
-      <value value="2.16.840.1.113883.2.4.3.11.60.40.2.3.1.2"/>
+      <value value="2.16.840.1.113883.2.4.3.11.60.40.2.7.8.3"/>
    </identifier>
    <version value="2020-09-01T00:00:00"/>
-   <name value="RolCodelijst"/>
-   <title value="RolCodelijst"/>
+   <name value="WoonOmstandigheidCodelijst"/>
+   <title value="WoonOmstandigheidCodelijst"/>
    <status value="active"/>
    <experimental value="false"/>
    <publisher value="Registratie aan de bron"/>
@@ -32,228 +32,27 @@
          <value value="https://www.zibs.nl"/>
       </telecom>
    </contact>
-   <description value="[ZIB-1378 Erratum](https://bits.nictiz.nl/browse/ZIB-1378) 2021-06-21 codes 1-9 were not conformant to [Vektis source](https://www.vektis.nl/standaardisatie/codelijsten/COD821-VEKT). These have been changed to codes 01-09 hence with a leading zero"/>
+   <description value="WoonOmstandigheidCodelijst"/>
    <immutable value="false"/>
+   <copyright value="This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these artefacts must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/getsnomed-ct or info@snomed.org."/>
    <compose>
       <include>
-         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
-         <concept>
-            <code value="01"/>
-            <display value="Eerste relatie/contactpersoon"/>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Eerste relatie/contactpersoon"/>
-            </designation>
-         </concept>
-         <concept>
-            <code value="02"/>
-            <display value="Tweede relatie/contactpersoon"/>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Tweede relatie/contactpersoon"/>
-            </designation>
-         </concept>
-         <concept>
-            <code value="03"/>
-            <display value="Curator (juridisch)"/>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Curator (juridisch)"/>
-            </designation>
-         </concept>
-         <concept>
-            <code value="04"/>
-            <display value="Financieel (gemachtigd)"/>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Financieel (gemachtigd)"/>
-            </designation>
-         </concept>
-         <concept>
-            <code value="05"/>
-            <display value="Financieel (toetsing)"/>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Financieel (toetsing)"/>
-            </designation>
-         </concept>
-         <concept>
-            <code value="06"/>
-            <display value="Leefeenheid"/>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Leefeenheid"/>
-            </designation>
-         </concept>
-         <concept>
-            <code value="07"/>
-            <display value="Hulpverlener"/>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Hulpverlener"/>
-            </designation>
-         </concept>
-         <concept>
-            <code value="09"/>
-            <display value="Anders"/>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Anders"/>
-            </designation>
-         </concept>
-         <concept>
-            <code value="11"/>
-            <display value="Voogd"/>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Voogd"/>
-            </designation>
-         </concept>
-         <concept>
-            <code value="14"/>
-            <display value="Bewindvoerder"/>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Bewindvoerder"/>
-            </designation>
-         </concept>
-         <concept>
-            <code value="15"/>
-            <display value="Mentor"/>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Mentor"/>
-            </designation>
-         </concept>
-         <concept>
-            <code value="19"/>
-            <display value="Buur"/>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Buur"/>
-            </designation>
-         </concept>
-         <concept>
-            <code value="20"/>
-            <display value="Vriend(in)/kennis"/>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Vriend(in)/kennis"/>
-            </designation>
-         </concept>
-         <concept>
-            <code value="21"/>
-            <display value="Cliëntondersteuner"/>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Cliëntondersteuner"/>
-            </designation>
-         </concept>
-         <concept>
-            <code value="23"/>
-            <display value="Contactpersoon"/>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Contactpersoon"/>
-            </designation>
-         </concept>
-         <concept>
-            <code value="24"/>
-            <display value="Wettelijke vertegenwoordiger"/>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Wettelijke vertegenwoordiger"/>
-            </designation>
-         </concept>
-      </include>
-      <include>
-         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.23.1"/>
+         <system value="http://snomed.info/sct"/>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Mantelzorger"/>
+               <valueString value="Trap in woning"/>
             </extension>
-            <code value="100001"/>
-            <display value="Mantelzorger"/>
+            <code value="160708008"/>
+            <display value="huis bevat trap"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Stairs in house"/>
+            </designation>
             <designation>
                <language value="nl-NL"/>
                <use>
@@ -261,15 +60,24 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Mantelzorger"/>
+               <value value="huis bevat trap"/>
             </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Geestelijk verzorger"/>
+               <valueString value="Woning bereikbaar met lift"/>
             </extension>
-            <code value="100002"/>
-            <display value="Geestelijk verzorger"/>
+            <code value="609241003"/>
+            <display value="woont in appartement met lift"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Lives in apartment with elevator access"/>
+            </designation>
             <designation>
                <language value="nl-NL"/>
                <use>
@@ -277,15 +85,24 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Geestelijk verzorger"/>
+               <value value="woont in appartement met lift"/>
             </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Tolk"/>
+               <valueString value="Woning bereikbaar met trap"/>
             </extension>
-            <code value="100003"/>
-            <display value="Tolk"/>
+            <code value="715758005"/>
+            <display value="toegang tot woning via trap"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Access to residence by stairs"/>
+            </designation>
             <designation>
                <language value="nl-NL"/>
                <use>
@@ -293,15 +110,24 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Tolk"/>
+               <value value="toegang tot woning via trap"/>
             </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Advocaat"/>
+               <valueString value="Woning moeilijk toegankelijk"/>
             </extension>
-            <code value="100004"/>
-            <display value="Advocaat"/>
+            <code value="424948003"/>
+            <display value="ingang van woning geblokkeerd"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Obstructed means of residential entrance"/>
+            </designation>
             <designation>
                <language value="nl-NL"/>
                <use>
@@ -309,7 +135,132 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Advocaat"/>
+               <value value="ingang van woning geblokkeerd"/>
+            </designation>
+         </concept>
+         <concept>
+            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
+               <valueString value="Woning moeilijk doorgankelijk"/>
+            </extension>
+            <code value="423155007"/>
+            <display value="huis bevat structurele belemmering voor verplaatsing"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Housing contains structural barriers to movement"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="huis bevat structurele belemmering voor verplaatsing"/>
+            </designation>
+         </concept>
+         <concept>
+            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
+               <valueString value="Overvolle leefruimte"/>
+            </extension>
+            <code value="424661000"/>
+            <display value="rommelige leefruimte"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Cluttered living space"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="rommelige leefruimte"/>
+            </designation>
+         </concept>
+         <concept>
+            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
+               <valueString value="Vervuilde leefomstandigheden"/>
+            </extension>
+            <code value="424415008"/>
+            <display value="vieze leefomstandigheden"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Dirty living conditions"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="vieze leefomstandigheden"/>
+            </designation>
+         </concept>
+         <concept>
+            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
+               <valueString value="Huisdieren aanwezig"/>
+            </extension>
+            <code value="224152001"/>
+            <display value="houdt huisdieren"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Keeps pets"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="houdt huisdieren"/>
+            </designation>
+         </concept>
+         <concept>
+            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
+               <valueString value="Onveilige vloerbedekking"/>
+            </extension>
+            <code value="423527000"/>
+            <display value="vloerbedekking onveilig"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Unsafe floor covering"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="vloerbedekking onveilig"/>
             </designation>
          </concept>
       </include>
