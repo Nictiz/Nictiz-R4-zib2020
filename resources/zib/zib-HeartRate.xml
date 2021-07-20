@@ -85,7 +85,7 @@
       </slicing>
     </element>
     <element id="Observation.value[x]:valueQuantity">
-      <path value="Observation.value[x]" />
+      <path value="Observation.valueQuantity" />
       <sliceName value="valueQuantity" />
       <short value="HeartRateValue" />
       <definition value="The heart rate measured as the number of heartbeats per minute." />
@@ -93,19 +93,15 @@
       <type>
         <code value="Quantity" />
       </type>
+      <patternQuantity>
+        <system value="http://unitsofmeasure.org" />
+        <code value="/min" />
+      </patternQuantity>
       <mapping>
         <identity value="zib-heartrate-v3.4-2020EN" />
         <map value="NL-CM:12.3.2" />
         <comment value="HeartRateValue" />
       </mapping>
-    </element>
-    <element id="Observation.value[x]:valueQuantity.system">
-      <path value="Observation.value[x].system" />
-      <fixedUri value="http://unitsofmeasure.org" />
-    </element>
-    <element id="Observation.value[x]:valueQuantity.code">
-      <path value="Observation.value[x].code" />
-      <fixedCode value="/min" />
     </element>
     <element id="Observation.note.text">
       <path value="Observation.note.text" />
