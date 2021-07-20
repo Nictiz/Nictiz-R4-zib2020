@@ -138,6 +138,15 @@
       <short value="MedicationUseStopType" />
       <definition value="Stop type, the manner in which this medication is discontinued (temporary or definitive)." />
       <alias value="MedicatieGebruikStopType" />
+      <binding>
+        <strength value="required" />
+        <description value="Use ConceptMap 'MedicationUseStopTypeCodeLijst-to-MedicationStatementStatus' to translate zib terminology to profile terminology in ValueSet 'Medication Status Codes'" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/medication-statement-status|4.0.1">
+          <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
+            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/MedicationUseStopTypeCodeLijst-to-MedicationStatementStatus" />
+          </extension>
+        </valueSet>
+      </binding>
       <mapping>
         <identity value="zib-medicationuse2-v1.1.1-2020EN" />
         <map value="NL-CM:9.11.23132" />
