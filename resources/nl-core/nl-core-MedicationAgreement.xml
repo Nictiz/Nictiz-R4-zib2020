@@ -18,6 +18,11 @@
   <purpose value="A derived profile from [zib-MedicationAgreement](http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="Medication-Process-v9-2-0-0" />
+    <uri value="https://decor.nictiz.nl/art-decor/decor-datasets--mp-?id=&amp;amp;effectiveDate=&amp;amp;conceptId=&amp;amp;conceptEffectiveDate=" />
+    <name value="Medication Process 9 v2.0.0" />
+  </mapping>
   <kind value="resource" />
   <abstract value="true" />
   <type value="MedicationRequest" />
@@ -46,6 +51,47 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationTreatment" />
       </type>
     </element>
+    <element id="MedicationRequest.extension:copyIndicator">
+      <path value="MedicationRequest.extension" />
+      <sliceName value="copyIndicator" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator" />
+      </type>
+    </element>
+    <element id="MedicationRequest.extension:copyIndicator.value[x]">
+      <path value="MedicationRequest.extension.value[x]" />
+      <mapping>
+        <identity value="Medication-Process-v9-2-0-0" />
+        <map value="mp-dataelement920-273" />
+        <comment value="KopieIndicator" />
+      </mapping>
+    </element>
+    <element id="MedicationRequest.extension:relatedAdministrationAgreement">
+      <path value="MedicationRequest.extension" />
+      <sliceName value="relatedAdministrationAgreement" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelatedAdministrationAgreement" />
+      </type>
+    </element>
+    <element id="MedicationRequest.extension:relatedMedicationUse">
+      <path value="MedicationRequest.extension" />
+      <sliceName value="relatedMedicationUse" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelatedMedicationUse" />
+      </type>
+    </element>
+    <element id="MedicationRequest.identifier">
+      <path value="MedicationRequest.identifier" />
+      <mapping>
+        <identity value="Medication-Process-v9-2-0-0" />
+        <map value="mp-dataelement920-194" />
+        <comment value="Identificatie" />
+      </mapping>
+    </element>
     <element id="MedicationRequest.medication[x]:medicationReference">
       <path value="MedicationRequest.medication[x]" />
       <sliceName value="medicationReference" />
@@ -63,6 +109,26 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
       </type>
+    </element>
+    <element id="MedicationRequest.encounter">
+      <path value="MedicationRequest.encounter" />
+      <short value="RelatedEncounter" />
+      <alias value="RelatieContact" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Encounter" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Encounter" />
+      </type>
+      <mapping>
+        <identity value="Medication-Process-v9-2-0-0" />
+        <map value="mp-dataelement920-199" />
+        <comment value="RelatieContact" />
+      </mapping>
+      <mapping>
+        <identity value="Medication-Process-v9-2-0-0" />
+        <map value="mp-dataelement920-843" />
+        <comment value="RelatieZorgepisode (implicit, main mapping is on Encounter.episodeOfCare" />
+      </mapping>
     </element>
     <element id="MedicationRequest.requester">
       <path value="MedicationRequest.requester" />
@@ -86,6 +152,22 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
       </type>
+    </element>
+    <element id="MedicationRequest.priorPrescription">
+      <path value="MedicationRequest.priorPrescription" />
+      <short value="RelationMedicationAgreement" />
+      <definition value="A link to a medication agreement that is altered or canceled." />
+      <alias value="RelatieMedicatieafspraak" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationRequest" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement" />
+      </type>
+      <mapping>
+        <identity value="Medication-Process-v9-2-0-0" />
+        <map value="mp-dataelement920-195" />
+        <comment value="RelatieMedicatieafspraak" />
+      </mapping>
     </element>
   </differential>
 </StructureDefinition>
