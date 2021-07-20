@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-TimeInterval-Period" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period" />
+  <name value="ExtTimeIntervalPeriod" />
+  <title value="ext TimeInterval Period" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="An extension to provide the StartDateTime and EndDateTime of zib TimeInterval." />
+  <purpose value="This extension represents the startDateTime and endDateTime of Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) TimeInterval v1.0 (2020)](https://zibs.nl/wiki/TimeInterval-v1.0(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-timeinterval-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/TimeInterval-v1.0(2020EN)" />
+    <name value="zib TimeInterval-v1.0(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="fhirpath" />
+    <expression value="MedicationRequest" />
+  </context>
+  <context>
+    <type value="fhirpath" />
+    <expression value="MedicationDispense" />
+  </context>
+  <context>
+    <type value="fhirpath" />
+    <expression value="MediationStatement" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension">
+      <path value="Extension" />
+      <definition value="The zib TimeInteval is mapped to this extension profile that holds a Period and another extension profile that holds a Duration (&amp;amp;lt;http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration&amp;amp;gt;). Two simple extensions, rather than one complex extension, are used because some resources have native support of the Period datatype. In those cases, only the Duration extension can be added to the resource." />
+    </element>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <type>
+        <code value="Period" />
+      </type>
+    </element>
+    <element id="Extension.value[x].start">
+      <path value="Extension.value[x].start" />
+      <short value="startDateTime" />
+      <definition value="The start date and time of the interval. The boundary is inclusive." />
+      <alias value="startDatumTijd" />
+      <mapping>
+        <identity value="zib-timeinterval-v1.0-2020EN" />
+        <map value="NL-CM:20.3.2" />
+        <comment value="startDateTime" />
+      </mapping>
+    </element>
+    <element id="Extension.value[x].end">
+      <path value="Extension.value[x].end" />
+      <short value="endDateTime" />
+      <definition value="The end date and time of the interval. If the end of the period is missing, it means no end was known or planned at the time the instance was created. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time." />
+      <alias value="eindDatumTijd" />
+      <mapping>
+        <identity value="zib-timeinterval-v1.0-2020EN" />
+        <map value="NL-CM:20.3.3" />
+        <comment value="endDateTime" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
