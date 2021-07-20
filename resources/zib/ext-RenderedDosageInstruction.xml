@@ -14,8 +14,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="An extension that holds the full representation of the dose of the medication included in all dosage instructions including the period of use." />
-  <purpose value="This extension represents the Description concept of [zib zib InstructionsForUse-v1.2.1(2020EN)](https://zibs.nl/wiki/InstructionsForUse-v1.2.1(2020EN)). The Dosage datatype and medication resources do not (yet) contain an element that holds a textual description of the complete instructions. In R5 this extension will likely become obsolete due to the addition of `.renderedDosageInstruction` in the medication resources." />
+  <description value="Pre-adopt of the `.renderedDosageInstructions` concept from the FHIR R5 medication resources. It provides a full representation of the dose of the medication included in all dosage instructions. To be used when multiple dosage instructions are included to represent complex dosing such as increasing or tapering doses." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -55,18 +54,11 @@
     </element>
     <element id="Extension.value[x]">
       <path value="Extension.value[x]" />
-      <short value="Description" />
-      <definition value="Textual description of the complete instructions for use including the period of use." />
-      <comment value="This textual description must not contain more or less than the structured information represented in the Dosage dataype." />
-      <alias value="Omschrijving" />
+      <definition value="The full representation of the dose of the medication included in all dosage instructions. To be used when multiple dosage instructions are included to represent complex dosing such as increasing or tapering doses." />
+      <comment value="The content of the renderedDosageInstructions must not be different than the dose represented in the dosageInstruction content." />
       <type>
         <code value="string" />
       </type>
-      <mapping>
-        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
-        <map value="NL-CM:9.12.9581" />
-        <comment value="Description" />
-      </mapping>
     </element>
   </differential>
 </StructureDefinition>

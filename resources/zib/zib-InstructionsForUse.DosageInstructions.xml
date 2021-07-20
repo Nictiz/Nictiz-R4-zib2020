@@ -15,7 +15,7 @@
     </telecom>
   </contact>
   <description value="Instructions for the use or administration of the medication, e.g. dose and route of administration. In the event of medication use, this is the pattern of use established by the patient or which the patient followed." />
-  <purpose value="This Dosage resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) InstructionsForUse-v1.2.1(2020EN](https://zibs.nl/wiki/InstructionsForUse-v1.2.1(2020EN))." />
+  <purpose value="This Dosage resource _mainly_ represents the DosingInstructions concept for the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) InstructionsForUse-v1.2.1(2020EN](https://zibs.nl/wiki/InstructionsForUse-v1.2.1(2020EN)), but also includes the concepts AdditionalInstructions and RouteOfAdministration from this zib. These concepts are in the zib placed on the same level as DosingInstructions, but are in FHIR part of the Dosage datatype. As a consequence, these zib concepts may be duplicated if this Dosage profile is instantiated multiple times.&#xA;&#xA;This profile should be used in medication related resources that define dosage instructions and supplemented by the extensions [ext-RenderedDosageInstruction](http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction) and [ext-InstructionsForUse.RepeatPeriodCyclicalSchedule](http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule) to implement the remaining zib concepts Description and RepeatPeriodCyclicalSchedule." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -37,7 +37,7 @@
     <element id="Dosage">
       <path value="Dosage" />
       <short value="DosingInstructions" />
-      <comment value="This part zib InstructionsForUse is mapped primarily to this Dosage datatype profile. The zib model differs from the FHIR model with regards to the container concepts and their cardinalities: the zibs make a 0..1 reference to InstructionsForUse while in FHIR resources have Dosage inline with a 0..* cardinality. Therefore, the four root elements are mapped differently for better alignment with the zib. Description and RepeatPeriodCyclicalSchedule are provided in an extension in the host resource. Dosage contains native elements for AdditionalInstructions and RouteOfAdministration hence for these concepts the mapping is placed in the Dosage resulting in **duplication** of this information when multiple Dosage elements are used. Per InstructionsForUse in the resource, only one route can be captured. Different routes will result in multiple resources that include spefic instructions for use per route." />
+      <comment value="This element _mostly_ represents the DosingInstructions container from zib InstructionsForUse, but also includes the AdditionalInstructions and RouteOfAdministration concepts, which are normally placed on the same level as this container. As a result, these concepts are **duplicated** in every repetition of this element, even though these concepts should be present just once according to the zib." />
       <alias value="Doseerinstructie" />
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
@@ -60,6 +60,7 @@
       <path value="Dosage.additionalInstruction" />
       <short value="AdditionalInstructions" />
       <definition value="The additional instructions contain extra information on the use of the current prescription. &#xD;&#xA;&#xD;&#xA;This includes all instructions for use. The text can come from the original “paper&quot; medication prescription, but can also be generated from the coded information. &#xD;&#xA;&#xD;&#xA;The instructions may not conflict with other components of the request for administration. The instructions can also refer to an existing protocol. The texts in the G-standard that can support this attribute are included in table 362 where the texts from the general practitioner' standard 'NHG-tabel Gebruiksvoorschrift' are included. These texts can be used to structure this concept." />
+      <comment value="Please note that in contrast to the zib, this AdditionalInstructions concept is grouped under the DosingInstructions concept. This zib concept should thus be duplicated when there are multiple DosingInstructions." />
       <alias value="AanvullendeInstructie" />
       <mapping>
         <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
@@ -330,6 +331,7 @@
       <path value="Dosage.route" />
       <short value="RouteOfAdministration" />
       <definition value="The route through which the medication is administered (oral, nasal, intravenous, etc.)." />
+      <comment value="Please note that in contrast to the zib, this RouteOfAdministration concept is grouped under the DosingInstructions concept. This zib concept should thus be duplicated when there are multiple DosingInstructions." />
       <alias value="Toedieningsweg" />
       <binding>
         <strength value="required" />
