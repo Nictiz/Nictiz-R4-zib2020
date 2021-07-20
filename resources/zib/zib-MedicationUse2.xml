@@ -37,7 +37,6 @@
     <element id="MedicationStatement">
       <path value="MedicationStatement" />
       <short value="MedicationUse" />
-      <comment value="" />
       <alias value="MedicatieGebruik" />
       <mapping>
         <identity value="zib-medicationuse2-v1.1.1-2020EN" />
@@ -70,8 +69,19 @@
       <max value="1" />
       <type>
         <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-PeriodOfUse-Duration" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration" />
       </type>
+    </element>
+    <element id="MedicationStatement.extension:periodOfUseDuration.value[x]">
+      <path value="MedicationStatement.extension.value[x]" />
+      <short value="PeriodOfUse / Duration" />
+      <definition value="Medication use can be recorded for a certain moment or over a certain period. Thus, medication use can be recorded multiple times during the use of medication. The usage period is the period or moment over which the data is recorded. &#xD;&#xA;**Duration**: The intended duration of use. E.g. 5 days or 8 weeks. It is not allowed to indicate the duration in months, because different months have a variable duration in days.&#xD;&#xA;&#xD;&#xA;The duration of the interval in appropriate units of time (e.g. days or hours, etc." />
+      <alias value="Gebruiksperiode" />
+      <mapping>
+        <identity value="zib-medicationuse2-v1.1.1-2020EN" />
+        <map value="NL-CM:9.11.22663" />
+        <comment value="PeriodOfUse" />
+      </mapping>
     </element>
     <element id="MedicationStatement.extension:prescriber">
       <path value="MedicationStatement.extension" />
@@ -208,6 +218,28 @@
         <identity value="zib-medicationuse2-v1.1.1-2020EN" />
         <map value="NL-CM:9.11.22663" />
         <comment value="PeriodOfUse" />
+      </mapping>
+    </element>
+    <element id="MedicationStatement.effective[x]:effectivePeriod.start">
+      <path value="MedicationStatement.effective[x].start" />
+      <short value="startDateTime" />
+      <definition value="The start date and time of the interval. The boundary is inclusive." />
+      <alias value="startDatumTijd" />
+      <mapping>
+        <identity value="zib-timeinterval-v1.0-2020EN" />
+        <map value="NL-CM:20.3.2" />
+        <comment value="startDateTime" />
+      </mapping>
+    </element>
+    <element id="MedicationStatement.effective[x]:effectivePeriod.end">
+      <path value="MedicationStatement.effective[x].end" />
+      <short value="endDateTime" />
+      <definition value="The end date and time of the interval. If the end of the period is missing, it means no end was known or planned at the time the instance was created. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time." />
+      <alias value="eindDatumTijd" />
+      <mapping>
+        <identity value="zib-medicationuse2-v1.1.1-2020EN" />
+        <map value="NL-CM:20.3.3" />
+        <comment value="endDateTime" />
       </mapping>
     </element>
     <element id="MedicationStatement.dateAsserted">
