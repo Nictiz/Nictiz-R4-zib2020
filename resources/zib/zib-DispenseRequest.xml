@@ -179,14 +179,25 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.DispenseLocation" />
       </type>
     </element>
-    <element id="MedicationRequest.dispenseRequest.extension:validityPeriodDuration">
+    <element id="MedicationRequest.dispenseRequest.extension:periodOfUseDuration">
       <path value="MedicationRequest.dispenseRequest.extension" />
-      <sliceName value="validityPeriodDuration" />
+      <sliceName value="periodOfUseDuration" />
       <max value="1" />
       <type>
         <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-PeriodOfUse-Duration" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration" />
       </type>
+    </element>
+    <element id="MedicationRequest.dispenseRequest.extension:periodOfUseDuration.value[x]">
+      <path value="MedicationRequest.dispenseRequest.extension.value[x]" />
+      <short value="PeriodOfUse/ Duration" />
+      <definition value="During the approved period of use, the pharmacist has permission to dispense medicine so that the patient has a sufficient amount of medication. In many cases, the approved period of use can be described by only an end date: the approved end date of use in `.dispenseRequest.validityPeriod.end`.&#xD;&#xA;&#xD;&#xA;The duration of the interval in appropriate units of time (e.g. days or hours, etc." />
+      <alias value="Verbruiksperiode" />
+      <mapping>
+        <identity value="zib-DispenseRequest-v1.0.3-2020EN" />
+        <map value="NL-CM:9.10.20062" />
+        <comment value="PeriodOfUse" />
+      </mapping>
     </element>
     <element id="MedicationRequest.dispenseRequest.validityPeriod">
       <path value="MedicationRequest.dispenseRequest.validityPeriod" />
@@ -202,28 +213,24 @@
     </element>
     <element id="MedicationRequest.dispenseRequest.validityPeriod.start">
       <path value="MedicationRequest.dispenseRequest.validityPeriod.start" />
+      <short value="startDateTime" />
+      <definition value="The start date and time of the interval. The boundary is inclusive." />
+      <alias value="startDatumTijd" />
       <mapping>
         <identity value="zib-timeinterval-v1.0-2020EN" />
         <map value="NL-CM:20.3.2" />
         <comment value="startDateTime" />
       </mapping>
-      <mapping>
-        <identity value="zib-timeinterval-v1.0-2020EN" />
-        <map value="NL-CM:20.3.4" />
-        <comment value="Duration implicit, can be calculated if startDateTime and endDateTime are known." />
-      </mapping>
     </element>
     <element id="MedicationRequest.dispenseRequest.validityPeriod.end">
       <path value="MedicationRequest.dispenseRequest.validityPeriod.end" />
+      <short value="endDateTime" />
+      <definition value="The end date and time of the interval. If the end of the period is missing, it means no end was known or planned at the time the instance was created. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time." />
+      <alias value="eindDatumTijd" />
       <mapping>
         <identity value="zib-timeinterval-v1.0-2020EN" />
         <map value="endDateTime" />
         <comment value="NL-CM:20.3.3" />
-      </mapping>
-      <mapping>
-        <identity value="zib-timeinterval-v1.0-2020EN" />
-        <map value="NL-CM:20.3.4" />
-        <comment value="Duration implicit, can be calculated if startDateTime and endDateTime are known." />
       </mapping>
     </element>
     <element id="MedicationRequest.dispenseRequest.numberOfRepeatsAllowed">
