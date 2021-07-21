@@ -15,8 +15,8 @@ This document contains release notes per zib, indicating differences with their 
  
 ## zib-AlcoholUse
 * Moved alcoholUseCode to Observation.code based on a pattern
-* Added `effectivePeriod` slice on `Effective[x]`
-* Added `valueCodeableConcept` slice on `value[x]`
+* Added `effectivePeriod` slice on `Effective[x]` mapped on element StartDate and EndDate 
+* Added `valueCodeableConcept` slice on `value[x]` mapped on element AlcoholUseStatus
 * The comment element has been moved to `Observation.note.text`
 
 ## zib-ContactInformation
