@@ -135,9 +135,11 @@
     </element>
     <element id="MedicationStatement.status">
       <path value="MedicationStatement.status" />
-      <short value="MedicationUseStopType" />
-      <definition value="Stop type, the manner in which this medication is discontinued (temporary or definitive)." />
+      <short value="MedicationUseStopType / UseIndicator" />
+      <definition value="Status that contain information on the stop type, the manner in which this medication is discontinued (temporary or definitive) and if the medicine is used or not." />
+      <comment value="Both StopType and UseIndicator are mapped to `status`. The value for UseIndicator can derived based on this mapping:&#xD;&#xA;&#xD;&#xA;|                       |                 UseIndicator = _false_                | UseIndicator = _true_ |&#xD;&#xA;|:---------------------:|:---------------------------------------------------:|:-------------------:|&#xD;&#xA;| No StopType              | _not-taken_ / _completed_ / _intended_ / _entered-in-error_ | _active_              |&#xD;&#xA;| StopType = _Tijdelijk_  | _on-hold_                                             |                    |&#xD;&#xA;| StopType = _Definitief_ | _stopped_                                             |                    |" />
       <alias value="MedicatieGebruikStopType" />
+      <alias value="GebruikIndicator" />
       <binding>
         <strength value="required" />
         <description value="Use ConceptMap 'MedicationUseStopTypeCodeLijst-to-MedicationStatementStatus' to translate zib terminology to profile terminology in ValueSet 'Medication Status Codes'" />
@@ -151,6 +153,11 @@
         <identity value="zib-medicationuse2-v1.1.1-2020EN" />
         <map value="NL-CM:9.11.23132" />
         <comment value="MedicationUseStopType" />
+      </mapping>
+      <mapping>
+        <identity value="zib-medicationuse2-v1.1.1-2020EN" />
+        <map value="NL-CM:9.11.22399" />
+        <comment value="UseIndicator" />
       </mapping>
     </element>
     <element id="MedicationStatement.statusReason">
