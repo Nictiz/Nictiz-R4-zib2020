@@ -63,7 +63,7 @@ Style - profiling guidelines
 
 ## zib-NursingIntervention
 * The resource to represent this zib has been changed from Procedure to CarePlan. This aligns better with the meaning of the zib: a statement of a plan (which may or not may have been completed) rather than the record of a procedure that has been carried out. The profile for the current version is created from scratch.
-* Because there's a better match with CarePlan, the five custom extensions are removed. One custom extension is added to mark a `CarePlan.contributor` as the zib Requester.
+* Because there's a better match with CarePlan, the five custom extensions are removed. One custom extension is added to mark a `CarePlan.contributor` as the zib Requester, and another one to define the materials used.
 * Note: although the zib has changed quite dramatically since release 2017, the previous version of the profile was based on a pre-adopt of zib pre-release 2018, which is the same as release 2020.
 
 ## zib-Patient

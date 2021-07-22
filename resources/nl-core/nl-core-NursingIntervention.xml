@@ -54,6 +54,28 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-OutcomeOfCare" />
       </type>
     </element>
+    <element id="CarePlan.activity.detail.extension">
+      <path value="CarePlan.activity.detail.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="CarePlan.activity.detail.extension:medicalDevice">
+      <path value="CarePlan.activity.detail.extension" />
+      <sliceName value="medicalDevice" />
+    </element>
+    <element id="CarePlan.activity.detail.extension:medicalDevice.value[x]">
+      <path value="CarePlan.activity.detail.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice" />
+      </type>
+    </element>
     <element id="CarePlan.activity.detail.performer:healthcareProvider">
       <path value="CarePlan.activity.detail.performer" />
       <sliceName value="healthcareProvider" />
