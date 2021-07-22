@@ -32,7 +32,7 @@ jobs:
       - name: Create ig with the ProfileGuidelines resource
         run: bash util/qaAutomation/mkprofilingig.sh
       - name: Validate zib profiles
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.14
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
         with:
           version: "4.0"
           ig: ig/
@@ -42,7 +42,7 @@ jobs:
           fail-at: warning
           ignored-issues: known-issues.yml
       - name: Validate zib extensions
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.14
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
         with:
           version: "4.0"
           ig: ig/
@@ -52,7 +52,7 @@ jobs:
           fail-at: warning
           ignored-issues: known-issues.yml
       - name: Validate nl-core profiles
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.14
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
         with:
           version: "4.0"
           ig: ig/
@@ -62,7 +62,7 @@ jobs:
           fail-at: warning
           ignored-issues: known-issues.yml
       - name: Validate other profiles
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.14
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
         with:
           version: "4.0"
           ig: ig/
@@ -72,7 +72,7 @@ jobs:
           fail-at: warning
           ignored-issues: known-issues.yml
       - name: Validate ConceptMaps
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.14
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
         with:
           version: "4.0"
           ig: ig/
@@ -82,7 +82,7 @@ jobs:
           fail-at: warning
           ignored-issues: known-issues.yml
       - name: Validate other terminology
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.14
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
         with:
           version: "4.0"
           ig: ig/
@@ -91,7 +91,7 @@ jobs:
           fail-at: warning
           ignored-issues: known-issues.yml
       - name: Validate examples
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.14
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
         with:
           version: "4.0"
           ig: resources/

@@ -12,9 +12,12 @@ if [[ $changed_only == 0 ]]; then
     done
   )
 else
-  profiles=$(git diff --name-only -diff-filter=ACM origin/main -- resources/zib/*.xml resources/nl-core/*.xml)
-  terminology=$(git diff --name-only -diff-filter=ACM origin/main -- resources/zib/terminology/*.xml resources/nl-core/terminology/*.xml)
-  examples=$(git diff --name-only -diff-filter=ACM origin/main -- examples)
+  profiles=$(git diff --name-only --diff-filter=ACM origin/main -- resources/zib/*.xml resources/nl-core/*.xml)
+  profiles="$profiles "$(git ls-files --others -- resources/zib/*.xml resources/nl-core/*.xml)
+  terminology=$(git diff --name-only --diff-filter=ACM origin/main -- resources/zib/terminology/*.xml resources/nl-core/terminology/*.xml)
+  terminology="$terminology "$(git ls-files --others -- resources/zib/terminology/*.xml resources/nl-core/terminology/*.xml)
+  examples=$(git diff --name-only --diff-filter=ACM origin/main -- examples)
+  examples="$examples "$(git ls-files --others -- examples)
 fi
 
 # Separate zib from non-zib profiles
