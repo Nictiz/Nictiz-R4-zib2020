@@ -54,6 +54,9 @@ This document contains release notes per zib, indicating differences with their 
 * Mapped MP concept RelatieMedicatieafspraak  to `periorPrescription` instead of an extension in the nl-core profile. 
 * Instead of one extension, the concepts MP RelatieToedieningsafspraak and RelatieMedicatiegebruik are placed in specific extensions in the nl-core profile.
 
+## zib-MedicationUse2
+* Changed fixed category code from 6#urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3 to 422979000#http://snomed.info/sct.
+
 ## zib-NameInformation
 Style - profiling guidelines
 * Moved information and mappings from the extension level to the `value[x]` level. Note that the zib compliance test is complaining now about cardinality differences.
@@ -87,4 +90,3 @@ Style - profiling guidelines
 
 ## zib-TimeInterval
 *  zib-TimeInterval has no previous profile(s) and therefore no diff.
-
