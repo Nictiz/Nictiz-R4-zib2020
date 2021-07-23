@@ -84,3 +84,7 @@ Style - profiling guidelines
 * Removed references not accounted for by the zib.
 * Placed SubstanceCode on a CodeableConcept type slice instead of the .item[x] element adhering to the open world modeling principle.
 * Added iso21090-PQ-translation extension to `ingredient.strength.numerator` and `ingredient.strength.denominator` to allow adding quantity translation using other code systems (e.g. G-Standard and NHG).
+
+## zib-TimeInterval
+*  zib-TimeInterval has no previous profile(s) and therefore no diff.
+
