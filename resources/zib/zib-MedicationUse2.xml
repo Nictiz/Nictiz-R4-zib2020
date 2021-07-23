@@ -136,7 +136,7 @@
     <element id="MedicationStatement.status">
       <path value="MedicationStatement.status" />
       <short value="MedicationUseStopType / UseIndicator" />
-      <definition value="Status that contain information on the stop type, the manner in which this medication is discontinued (temporary or definitive) and if the medicine is used or not." />
+      <definition value="Status may contain information on the stop type, the manner in which this medication is discontinued (temporary or definitive) and if the medicine is used or not." />
       <comment value="Both StopType and UseIndicator are mapped to `status`. The value for UseIndicator can derived based on this mapping:&#xD;&#xA;&#xD;&#xA;|                       |                 UseIndicator = _false_                | UseIndicator = _true_ |&#xD;&#xA;|:---------------------:|:---------------------------------------------------:|:-------------------:|&#xD;&#xA;| No StopType              | _not-taken_ / _completed_ / _intended_ / _entered-in-error_ | _active_              |&#xD;&#xA;| StopType = _Tijdelijk_  | _on-hold_                                             |                    |&#xD;&#xA;| StopType = _Definitief_ | _stopped_                                             |                    |" />
       <alias value="MedicatieGebruikStopType" />
       <alias value="GebruikIndicator" />
@@ -222,7 +222,7 @@
       </slicing>
     </element>
     <element id="MedicationStatement.effective[x]:effectivePeriod">
-      <path value="MedicationStatement.effectivePeriod" />
+      <path value="MedicationStatement.effective[x]" />
       <sliceName value="effectivePeriod" />
       <short value="PeriodOfUse" />
       <definition value="Medication use can be recorded for a certain moment or over a certain period. Thus, medication use can be recorded multiple times during the use of medication. The usage period is the period or moment over which the data is recorded.&#xA;**Start date:** This is the time at which the agreement was to take effect (or took effect or will take effect). &#xA;**End date:** The time at which the period of use ends (or ended or will end). To avoid confusion between 'to' and 'up to', the submission of time is always mandatory for the end date." />
