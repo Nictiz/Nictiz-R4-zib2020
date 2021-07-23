@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-PharmaceuticalTreatment.Identifier" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier" />
+  <name value="ExtPharmaceuticalTreatmentIdentifier" />
+  <title value="ext PharmaceuticalTreatment.Identifier" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="This extension provides an identifier unambiguously identify the set of interdependent medication building blocks that belong to one pharmaceutical treatment." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="Medication-Process-v9-2-0-0" />
+    <uri value="https://decor.nictiz.nl/art-decor/decor-datasets--mp-?id=&amp;effectiveDate=&amp;conceptId=&amp;conceptEffectiveDate=" />
+    <name value="Medication Process 9 v2.0.0" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="MedicationStatement" />
+  </context>
+  <context>
+    <type value="element" />
+    <expression value="MedicationAdministration" />
+  </context>
+  <context>
+    <type value="element" />
+    <expression value="MedicationDispense" />
+  </context>
+  <context>
+    <type value="element" />
+    <expression value="MedicationRequest" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension">
+      <path value="Extension" />
+      <max value="1" />
+    </element>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="Pharmaceutical Treatment Identifier" />
+      <definition value="The identifier of the pharmaceutical treatment that this resource belongs to. This identifier is used to group the disparate resources that belong to a single pharmaceutical treatment." />
+      <alias value="Medicamenteuze behandeling identificatie" />
+      <type>
+        <code value="Identifier" />
+      </type>
+      <mapping>
+        <identity value="Medication-Process-v9-2-0-0" />
+        <map value="mp-dataelement920-42" />
+        <comment value="Identificatie" />
+      </mapping>
+    </element>
+    <element id="Extension.value[x].system">
+      <path value="Extension.value[x].system" />
+      <min value="1" />
+    </element>
+    <element id="Extension.value[x].value">
+      <path value="Extension.value[x].value" />
+      <min value="1" />
+    </element>
+  </differential>
+</StructureDefinition>
