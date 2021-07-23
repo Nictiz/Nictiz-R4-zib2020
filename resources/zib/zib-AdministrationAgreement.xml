@@ -91,9 +91,13 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period" />
       </type>
     </element>
+    <element id="MedicationDispense.extension:periodOfUsePeriod.url">
+      <path value="MedicationDispense.extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period" />
+    </element>
     <element id="MedicationDispense.extension:periodOfUsePeriod.value[x]">
       <path value="MedicationDispense.extension.value[x]" />
-      <short value="PeriodOfUse" />
+      <short value="PeriodOfUse / Period" />
       <definition value="**Start date**: This is the time at which the agreement was to take effect (or took effect or will take effect). This is the time at which the instructions for use in this agreement start. In the case of an agreement to discontinue use, this is the start date of the original administration agreement. The end date indicates from when the medication is to be discontinued.&#xD;&#xA;**End date**: The time at which the period of use ends (or ended or will end). In the case of an agreement to discontinue use, this is the time at which the medication is to be discontinued. To avoid confusion between 'to' and 'up to', the submission of time is always mandatory for the end date.&#xD;&#xA;&#xD;&#xA;With medication for an indefinite period only a start date is indicated." />
       <alias value="Gebruiksperiode" />
       <mapping>
@@ -110,6 +114,10 @@
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration" />
       </type>
+    </element>
+    <element id="MedicationDispense.extension:periodOfUseDuration.url">
+      <path value="MedicationDispense.extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration" />
     </element>
     <element id="MedicationDispense.extension:periodOfUseDuration.value[x]">
       <path value="MedicationDispense.extension.value[x]" />
@@ -165,11 +173,12 @@
       <path value="MedicationDispense.status" />
       <short value="CanceledIndicator" />
       <definition value="A code specifying the state of the set of dispense events. In the event of an error correction, the value of this element shall be 'entered-in-error'." />
+      <comment value="When `status` = _entered-in-error_ CanceledIndicator is _true_." />
       <alias value="GeannuleerdIndicator" />
       <mapping>
         <identity value="zib-administrationagreement-v1.0.3-2020EN" />
         <map value="NL-CM:9.8.23034" />
-        <comment value="CanceledIndicator (if status = 'entered-in-error' then CanceledIndicator = true)" />
+        <comment value="CanceledIndicator" />
       </mapping>
     </element>
     <element id="MedicationDispense.category">
@@ -193,13 +202,21 @@
       </slicing>
     </element>
     <element id="MedicationDispense.medication[x]:medicationReference">
-      <path value="MedicationDispense.medication[x]" />
+      <path value="MedicationDispense.medicationReference" />
       <sliceName value="medicationReference" />
+      <short value="MedicineForAdministrationAgreement" />
+      <definition value="Medicine in the AdministrationAgreement." />
+      <alias value="GeneesmiddelBijToedieningsAfspraak" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Medication" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-PharmaceuticalProduct" />
       </type>
+      <mapping>
+        <identity value="zib-administrationagreement-v1.0.3-2020EN" />
+        <map value="NL-CM:9.8.20237" />
+        <comment value="MedicineForAdministrationAgreement" />
+      </mapping>
     </element>
     <element id="MedicationDispense.performer">
       <path value="MedicationDispense.performer" />
