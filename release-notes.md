@@ -51,6 +51,16 @@ This document contains release notes per zib, indicating differences with their 
 * `PracitionRole.speciality` is not sliced anymore but has a combined ValueSet.
 * Explained cardinality mismatch of Practitioner.name on that element.
 
+## zib-InstructionsForUse
+* Removed required GstdTabel902 bindings on Quantity datatypes for Dose and MaximumDose. Added pattern-GstdQuantity profile in nl-core profile that contains a PQ-translation extension that can hold the GstdTabel902 binding.
+* Moved mapping of Description from `Dosage.text` to an extension that is placed in the host resource. This was already fixed with MP9.1, however, it was forgotten in the zib2017 stable2.x branch.
+* Moved DoseDuration to a slice of `Timing.repeat.bounds[x]`of type Duration.
+* Moved Condition to a slice of `asNeeded[x]`, of type CodeableConcept, which is made polymorphic in R4.
+* The zib Range has been mapped inline for AdministeringSpeed and Dose in `.doseAndRate.rate[x]` and `doseAndRate.dose[x]`. Also, in R4, these elements have been moved under the `.doseAndRate` element.
+* Added ext-RenderedDosageInstruction extension, that mimics the R5 `.renderdDosageInstruction` element in the medication resources, that captures the full instruction for use description.
+* Renamed profile name to zib-InstructionsForUse.DosageInstructions to indicate that the profile conceptually better represents the DosageInstructions container than the whole zib.
+* Removed AdministeringSchedule profile on Timing and placed the constraints inline in the zib-InstructionsForUse.DosageInstructions profile because the AdministeringSchedule profile was not reused in other places.  
+
 ## zib-MedicationAgreement
 * Removed references not accounted for by the zib.
 * Placed fixed MedicationAgreementCode on a `MedicationRequest.category` slice so `category` can be used for other purposes too.
