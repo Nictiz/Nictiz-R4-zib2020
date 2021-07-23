@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="ext-MedicationTreatment" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationTreatment" />
-  <name value="ExtMedicationTreatment" />
-  <title value="ext MedicationTreatment" />
+  <id value="ext-PharmaceuticalTreatment.Identifier" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier" />
+  <name value="ExtPharmaceuticalTreatmentIdentifier" />
+  <title value="ext PharmaceuticalTreatment.Identifier" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -14,14 +14,13 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="This extension provides an identifier that is used for all medication resources that belong to one medication treatment." />
+  <description value="This extension provides an identifier unambiguously identify the set of interdependent medication building blocks that belong to one pharmaceutical treatment." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
     <identity value="Medication-Process-v9-2-0-0" />
     <uri value="https://decor.nictiz.nl/art-decor/decor-datasets--mp-?id=&amp;effectiveDate=&amp;conceptId=&amp;conceptEffectiveDate=" />
     <name value="Medication Process 9 v2.0.0" />
-    <comment value="URI resolves to development version, needs to be updated to a static publication link!" />
   </mapping>
   <kind value="complex-type" />
   <abstract value="false" />
@@ -51,11 +50,13 @@
     </element>
     <element id="Extension.url">
       <path value="Extension.url" />
-      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationTreatment" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier" />
     </element>
     <element id="Extension.value[x]">
       <path value="Extension.value[x]" />
-      <alias value="Medicamenteuze behandeling" />
+      <short value="Pharmaceutical Treatment Identifier" />
+      <definition value="The identifier of the pharmaceutical treatment that this resource belongs to. This identifier is used to group the disparate resources that belong to a single pharmaceutical treatment." />
+      <alias value="Medicamenteuze behandeling identificatie" />
       <type>
         <code value="Identifier" />
       </type>
