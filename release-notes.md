@@ -48,7 +48,7 @@ This document contains release notes per zib, indicating differences with their 
 * Used a pattern to fix the zib definitioncode on `MedicationDispense.category` instead of a mandatory sliced `coding`.
 * Added an extension that mimics `MedicationDispense.category` so the category can be used for the intented use by the FHIR core definition.
 * Placed the mapping DispensedMedicine Reference type slice on `MedicationDispense.medicationReference` allowing the use of a CodeableConcept.
-* Removed references not accounted for by zibs or a use case.
+* Removed references in `.context`, `.partOf` and `.receiver` not accounted for by zibs.
 * Moved AdditionalInformation to its own extension instead of reusing one extension and profiling it in the resource.
 * Relaxed cardinality of additionalInformation extension to 0..* to align with the zib.
 * Added iso21090-PQ-translation extension to MedicationDispense.dispenseRequest.quantity to allow adding quantity translations using other code systems (e.g. G-Standard and NHG).

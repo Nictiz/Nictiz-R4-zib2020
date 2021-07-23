@@ -51,15 +51,6 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationTreatment" />
       </type>
     </element>
-    <element id="MedicationDispense.extension:category">
-      <path value="MedicationDispense.extension" />
-      <sliceName value="category" />
-      <max value="1" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.Category" />
-      </type>
-    </element>
     <element id="MedicationDispense.identifier">
       <path value="MedicationDispense.identifier" />
       <mapping>
@@ -71,6 +62,25 @@
     <element id="MedicationDispense.category">
       <path value="MedicationDispense.category" />
       <comment value="The zib profile fixes a zib definition code to `category` thereby denying the use for other purposes because of its 0..1 cardinality. A future version of FHIR will allign this element with other category elements by relaxing the cardinality to 0...* and the binding to an _example_ strenght. The 'ext-MedicationDispense.Category' extension can be used to capture category information as intented by the base specification." />
+    </element>
+    <element id="MedicationDispense.category.extension">
+      <path value="MedicationDispense.category.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="MedicationDispense.category.extension:category">
+      <path value="MedicationDispense.category.extension" />
+      <sliceName value="category" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.Category" />
+      </type>
     </element>
     <element id="MedicationDispense.medication[x]:medicationReference">
       <path value="MedicationDispense.medication[x]" />
