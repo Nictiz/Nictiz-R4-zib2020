@@ -33,6 +33,41 @@
       <path value="Observation" />
       <short value="Refraction" />
       <alias value="Refractie" />
+        <constraint>
+            <key value="zib-Refraction-1" />
+            <severity value="error" />
+            <human value="When component:cylindricalRefractionValue is present, component:cilindricRefractionAxis should also be present." />
+            <expression value="$this.component.code.coding.where(system = 'http://snomed.info/sct' and code = '251797004').exists() implies $this.component.code.coding.where(system = 'http://snomed.info/sct' and code = '251799001').exists()" />
+            <source value="http://nictiz.nl/fhir/StructureDefinition/zib-Refraction" />
+        </constraint>
+        <constraint>
+            <key value="zib-Refraction-2" />
+            <severity value="error" />
+            <human value="When component:cilindricRefractionAxis is present, component:cylindricalRefractionValue should also be present." />
+            <expression value="$this.component.code.coding.where(system = 'http://snomed.info/sct' and code = '251799001').exists() implies $this.component.code.coding.where(system = 'http://snomed.info/sct' and code = '251797004').exists()" />
+            <source value="http://nictiz.nl/fhir/StructureDefinition/zib-Refraction" />
+        </constraint>
+        <constraint>
+            <key value="zib-Refraction-3" />
+            <severity value="error" />
+            <human value="When component:prismaValue is present, component:prismaBase should also be present." />
+            <expression value="$this.component.code.coding.where(system = 'http://snomed.info/sct' and code = '251762001').exists() implies $this.component.code.coding.where(system = 'http://snomed.info/sct' and code = '246223004').exists()" />
+            <source value="http://nictiz.nl/fhir/StructureDefinition/zib-Refraction" />
+        </constraint>
+        <constraint>
+            <key value="zib-Refraction-4" />
+            <severity value="error" />
+            <human value="When component:prismaBase is present, component:prismaValue should also be present." />
+            <expression value="$this.component.code.coding.where(system = 'http://snomed.info/sct' and code = '251799001').exists() implies $this.component.code.coding.where(system = 'http://snomed.info/sct' and code = '246223004').exists()" />
+            <source value="http://nictiz.nl/fhir/StructureDefinition/zib-Refraction" />
+        </constraint>
+        <constraint>
+            <key value="zib-Refraction-5" />
+            <severity value="error" />
+            <human value="When component:sfericalEquivalent is present, component:sfericRefractionValue should also be present." />
+            <expression value="$this.component.code.coding.where(system = 'http://snomed.info/sct' and code = '112881000146107').exists() implies $this.component.code.coding.where(system = 'http://snomed.info/sct' and code = '251795007').exists()" />
+            <source value="http://nictiz.nl/fhir/StructureDefinition/zib-Refraction" />
+        </constraint>
       <mapping>
         <identity value="zib-refraction-v1.0-2020EN" />
         <map value="NL-CM:12.20.1" />
@@ -82,10 +117,12 @@
         <code value="CodeableConcept" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
       </type>
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000" />
-      </binding>
+        <patternCodeableConcept>
+            <coding>
+                <system value="http://snomed.info/sct" />
+                <code value="81745001" />
+            </coding>
+        </patternCodeableConcept>
       <mapping>
         <identity value="zib-refraction-v1.0-2020EN" />
         <map value="NL-CM:12.20.2" />
@@ -153,41 +190,6 @@
         </discriminator>
         <rules value="open" />
       </slicing>
-      <constraint>
-        <key value="zib-Refraction-1" />
-        <severity value="error" />
-        <human value="When component:cylindricalRefractionValue is present, component:cilindricRefractionAxis should also be present." />
-        <expression value="$this.code.coding.where($this.system = 'http://snomed.info/sct' and $this.code = '251797004').exists() implies this.code.coding.where($this.system = 'http://snomed.info/sct' and $this.code = '251799001').exists()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-Refraction" />
-      </constraint>
-      <constraint>
-        <key value="zib-Refraction-2" />
-        <severity value="error" />
-        <human value="When component:cilindricRefractionAxis is present, component:cylindricalRefractionValue should also be present." />
-        <expression value="$this.code.coding.where($this.system = 'http://snomed.info/sct' and $this.code = '251799001').exists() implies $this.code.coding.where($this.system = 'http://snomed.info/sct' and $this.code = '251797004').exists()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-Refraction" />
-      </constraint>
-      <constraint>
-        <key value="zib-Refraction-3" />
-        <severity value="error" />
-        <human value="When component:prismaValue is present, component:prismaBase should also be present." />
-        <expression value="$this.code.coding.where($this.system = 'http://snomed.info/sct' and $this.code = '251762001').exists() implies $this.code.coding.where($this.system = 'http://snomed.info/sct' and $this.code = '246223004').exists()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-Refraction" />
-      </constraint>
-      <constraint>
-        <key value="zib-Refraction-4" />
-        <severity value="error" />
-        <human value="When component:prismaBase is present, component:prismaValue should also be present." />
-        <expression value="$this.code.coding.where($this.system = 'http://snomed.info/sct' and $this.code = '251799001').exists() implies $this.code.coding.where($this.system = 'http://snomed.info/sct' and $this.code = '246223004').exists()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-Refraction" />
-      </constraint>
-      <constraint>
-        <key value="zib-Refraction-5" />
-        <severity value="error" />
-        <human value="When component:sfericalEquivalent is present, component:sfericRefractionValue should also be present." />
-        <expression value="$this.code.coding.where($this.system = 'http://snomed.info/sct' and $this.code = '112881000146107').exists() implies $this.code.coding.where($this.system = 'http://snomed.info/sct' and $this.code = '251795007').exists()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-Refraction" />
-      </constraint>
     </element>
     <element id="Observation.component:cylindricalRefractionValue">
       <path value="Observation.component" />
@@ -219,9 +221,13 @@
       </patternQuantity>
       <minValueQuantity>
         <value value="-10" />
+          <system value="http://unitsofmeasure.org" />
+          <code value="[diop]" />
       </minValueQuantity>
       <maxValueQuantity>
         <value value="0" />
+          <system value="http://unitsofmeasure.org" />
+          <code value="[diop]" />
       </maxValueQuantity>
       <mapping>
         <identity value="zib-refraction-v1.0-2020EN" />
@@ -229,14 +235,14 @@
         <comment value="CylindricalRefractionValue" />
       </mapping>
     </element>
-    <element id="Observation.component:ciilindricRefractionAxis">
+    <element id="Observation.component:cilindricRefractionAxis">
       <path value="Observation.component" />
       <sliceName value="ciilindricRefractionAxis" />
       <max value="1" />
       <condition value="zib-Refraction-1" />
       <condition value="zib-Refraction-2" />
     </element>
-    <element id="Observation.component:ciilindricRefractionAxis.code">
+    <element id="Observation.component:cilindricRefractionAxis.code">
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
@@ -245,7 +251,7 @@
         </coding>
       </patternCodeableConcept>
     </element>
-    <element id="Observation.component:ciilindricRefractionAxis.value[x]">
+    <element id="Observation.component:cilindricRefractionAxis.value[x]">
       <path value="Observation.component.value[x]" />
       <short value="CilindricRefractionAxis" />
       <definition value="The axis direction of the cylindrical refraction value expressed in degrees." />
@@ -259,9 +265,13 @@
       </patternQuantity>
       <minValueQuantity>
         <value value="0" />
+          <system value="http://unitsofmeasure.org" />
+          <code value="deg" />
       </minValueQuantity>
       <maxValueQuantity>
         <value value="180" />
+          <system value="http://unitsofmeasure.org" />
+          <code value="deg" />
       </maxValueQuantity>
       <mapping>
         <identity value="zib-refraction-v1.0-2020EN" />
@@ -299,9 +309,13 @@
       </patternQuantity>
       <minValueQuantity>
         <value value="0" />
+          <system value="http://unitsofmeasure.org" />
+          <code value="[diop]" />
       </minValueQuantity>
       <maxValueQuantity>
         <value value="40" />
+          <system value="http://unitsofmeasure.org" />
+          <code value="[diop]" />
       </maxValueQuantity>
       <mapping>
         <identity value="zib-refraction-v1.0-2020EN" />
@@ -339,9 +353,13 @@
       </patternQuantity>
       <minValueQuantity>
         <value value="0" />
+          <system value="http://unitsofmeasure.org" />
+          <code value="deg" />
       </minValueQuantity>
       <maxValueQuantity>
         <value value="360" />
+          <system value="http://unitsofmeasure.org" />
+          <code value="deg" />
       </maxValueQuantity>
       <mapping>
         <identity value="zib-refraction-v1.0-2020EN" />
@@ -378,9 +396,13 @@
       </patternQuantity>
       <minValueQuantity>
         <value value="-25" />
+          <system value="http://unitsofmeasure.org" />
+          <code value="[diop]" />
       </minValueQuantity>
       <maxValueQuantity>
         <value value="25" />
+          <system value="http://unitsofmeasure.org" />
+          <code value="[diop]" />
       </maxValueQuantity>
       <mapping>
         <identity value="zib-refraction-v1.0-2020EN" />
@@ -417,9 +439,13 @@
       </patternQuantity>
       <minValueQuantity>
         <value value="-25" />
+          <system value="http://unitsofmeasure.org" />
+          <code value="[diop]" />
       </minValueQuantity>
       <maxValueQuantity>
         <value value="25" />
+          <system value="http://unitsofmeasure.org" />
+          <code value="[diop]" />
       </maxValueQuantity>
       <mapping>
         <identity value="zib-refraction-v1.0-2020EN" />
@@ -437,7 +463,7 @@
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
-          <code value="TODO-ZIB-1443" />
+            <code value="251796008" />
         </coding>
       </patternCodeableConcept>
     </element>
@@ -455,9 +481,13 @@
       </patternQuantity>
       <minValueQuantity>
         <value value="0" />
+          <system value="http://unitsofmeasure.org" />
+          <code value="[diop]" />
       </minValueQuantity>
       <maxValueQuantity>
         <value value="5" />
+          <system value="http://unitsofmeasure.org" />
+          <code value="[diop]" />
       </maxValueQuantity>
       <mapping>
         <identity value="zib-refraction-v1.0-2020EN" />
