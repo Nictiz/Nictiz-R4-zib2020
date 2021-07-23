@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-CopyIndicator" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator" />
+  <name value="ExtCopyIndicator" />
+  <title value="ext CopyIndicator" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="This extension provides an indication whether the resource is an original (false) or a copy from a different source (true)." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="MedicationStatement" />
+  </context>
+  <context>
+    <type value="element" />
+    <expression value="MedicationDispense" />
+  </context>
+  <context>
+    <type value="element" />
+    <expression value="MedicationRequest" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension">
+      <path value="Extension" />
+      <max value="1" />
+    </element>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationTreatment" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="CopyIndicator" />
+      <definition value="An indication whether the resource is an original (false) or a copy from a different source (true)." />
+      <alias value="Kopie-indicator" />
+      <type>
+        <code value="boolean" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
