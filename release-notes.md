@@ -44,6 +44,16 @@ This document contains release notes per zib, indicating differences with their 
 * `PracitionRole.speciality` is not sliced anymore but has a combined ValueSet.
 * Explained cardinality mismatch of Practitioner.name on that element.
 
+## zib-MedicationAgreement
+* Removed references not accounted for by the zib.
+* Placed fixed MedicationAgreementCode on a `MedicationRequest.category` slice so `category` can be used for other purposes too.
+* Placed AgreedMedicine on a Reference type slice instead of the fixed `MedicationRequest.medicationReference` element adhering to the open world modeling principle.
+* The generic AdditionalInformation extension, that was reused over multiple profiles and specified in the profile, has been replaced by specific extensions that are profiled in the extension.
+* MedicationTreatment extension has a new canonical URL and is moved to the nl-core-profile as this is not part of the zib. The extension is better documented and contains a mapping to the MP dataset.
+* Added MP CopyIndicator extension to nl-core profile.
+* Mapped MP concept RelatieMedicatieafspraak  to `periorPrescription` instead of an extension in the nl-core profile. 
+* Instead of one extension, the concepts MP RelatieToedieningsafspraak and RelatieMedicatiegebruik are placed in specific extensions in the nl-core profile.
+
 ## zib-NameInformation
 Style - profiling guidelines
 * Moved information and mappings from the extension level to the `value[x]` level. Note that the zib compliance test is complaining now about cardinality differences.
