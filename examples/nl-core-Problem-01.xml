@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Condition>
+<Condition xmlns="http://hl7.org/fhir">
    <id value="nl-core-Problem-01"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem"/>
@@ -32,7 +32,7 @@
    </category>
    <code>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Problem.FurtherSpecificationProblemName">
-         <valueString value="Oedeem 2.0"/>
+         <valueString value="Nog meer specificatie nodig"/>
       </extension>
       <coding>
          <system value="http://snomed.info/sct"/>
@@ -43,13 +43,22 @@
    <bodySite>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="7771000"/>
-         <display value="Links"/>
+         <code value="344001"/>
       </coding>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
    </bodySite>
    <subject>
       <reference value="Patient/nl-core-Patient-01"/>
-      <display value="Example patient"/>
+      <type value="Patient"/>
+      <display value="Johanna Petronella Maria J.P.M. Jo van Putten van der Giessen"/>
    </subject>
    <onsetDateTime value="2012-08-10"/>
    <abatementDateTime value="2021-01-01"/>
