@@ -68,7 +68,7 @@
       <binding>
         <strength value="required" />
         <description value="Use ConceptMap VerificatieStatusCodelijst_to_ConditionVerificationStatus to translate terminology from the functional model to profile terminology in ValueSet ConditionVerificationStatus." />
-        <valueSet value="http://hl7.org/fhir/ValueSet/condition-ver-status|4.0.2" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/condition-ver-status|4.0.1" />
       </binding>
       <mapping>
         <identity value="zib-problem-v4.4-2020EN" />
@@ -115,7 +115,7 @@
       <alias value="ProbleemType" />
       <max value="1" />
       <binding>
-        <strength value="extensible" />
+        <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.5.1.1--20200901000000" />
       </binding>
       <mapping>
@@ -226,10 +226,13 @@
     </element>
     <element id="Condition.note">
       <path value="Condition.note" />
+      <max value="1" />
+    </element>
+    <element id="Condition.note.text">
+      <path value="Condition.note.text" />
       <short value="Comment" />
       <definition value="Comment by the one who determined or updated the Problem." />
       <alias value="Toelichting" />
-      <max value="1" />
       <mapping>
         <identity value="zib-problem-v4.4-2020EN" />
         <map value="NL-CM:5.1.5" />
