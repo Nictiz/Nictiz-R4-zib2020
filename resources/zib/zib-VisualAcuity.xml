@@ -131,9 +131,13 @@
       </patternQuantity>
       <minValueQuantity>
         <value value="0" />
+          <system value="http://unitsofmeasure.org" />
+          <code value="{decimal}" />
       </minValueQuantity>
       <maxValueQuantity>
         <value value="2" />
+          <system value="http://unitsofmeasure.org" />
+          <code value="{decimal}" />
       </maxValueQuantity>
       <mapping>
         <identity value="zib-visualacuity-v1.0-2020EN" />
@@ -147,10 +151,12 @@
         <code value="CodeableConcept" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
       </type>
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000" />
-      </binding>
+        <patternCodeableConcept>
+            <coding>
+                <system value="http://snomed.info/sct" />
+                <code value="81745001" />
+            </coding>
+        </patternCodeableConcept>
     </element>
     <element id="Observation.bodySite.extension">
       <path value="Observation.bodySite.extension" />
@@ -205,7 +211,7 @@
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
-          <code value="TODO-ZIB-1445" />
+            <code value="16830007" />
         </coding>
       </patternCodeableConcept>
     </element>
@@ -269,7 +275,7 @@
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
-          <code value="TODO-ZIB-1441" />
+            <code value="152731000146106" />
         </coding>
       </patternCodeableConcept>
     </element>
