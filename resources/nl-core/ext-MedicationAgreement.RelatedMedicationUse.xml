@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="ext-AdministrationAgreement.AdministrationAgreementDateTime" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime" />
-  <name value="ExtAdministrationAgreementAdministrationAgreementDateTime" />
-  <title value="ext AdministrationAgreement.AdministrationAgreementDateTime" />
+  <id value="ext-MedicationAgreement.RelatedMedicationUse" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelatedMedicationUse" />
+  <name value="ExtMedicationAgreementRelatedMedicationUse" />
+  <title value="ext MedicationAgreement.RelatedMedicationUse" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -14,14 +14,13 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="An extension to provide the time at which the agreement was made." />
-  <purpose value="This extension represents AdministrationAgreementDateTime of zib [AdministrationAgreement v1.0.3 (2020)](https://zibs.nl/wiki/AdministrationAgreement-v1.2(2020EN))" />
+  <description value="An extension to provide a relation to a MedicationUse2 on which the MedicationAgreement is based." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
-    <identity value="zib-administrationagreement-v1.0.3-2020EN" />
-    <uri value="https://zibs.nl/wiki/AdministrationAgreement-v1.0.3(2020EN)" />
-    <comment value="zib AdministrationAgreement-v1.0.3(2020EN)" />
+    <identity value="Medication-Process-v9-2-0-0" />
+    <uri value="https://decor.nictiz.nl/art-decor/decor-datasets--mp-?id=&amp;amp;effectiveDate=&amp;amp;conceptId=&amp;amp;conceptEffectiveDate=" />
+    <name value="Medication Process 9 v2.0.0" />
   </mapping>
   <kind value="complex-type" />
   <abstract value="false" />
@@ -39,20 +38,21 @@
     </element>
     <element id="Extension.url">
       <path value="Extension.url" />
-      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelatedAdministrationAgreement" />
     </element>
     <element id="Extension.value[x]">
       <path value="Extension.value[x]" />
-      <short value="AdministrationAgreementDateTime" />
-      <definition value="The time at which the agreement was made." />
-      <alias value="ToedieningsafspraakDatumTijd" />
+      <short value="RelatedAdministrationAgreement" />
+      <definition value="A reference to a MedicationUse2 on which the MedicationAgreement is based." />
+      <alias value="RelatieMedicatiegebruik" />
       <type>
-        <code value="date" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationUse2" />
       </type>
       <mapping>
-        <identity value="zib-administrationagreement-v1.0.3-2020EN" />
-        <map value="NL-CM:9.8.20133" />
-        <comment value="AdministrationAgreementDateTime" />
+        <identity value="Medication-Process-v9-2-0-0" />
+        <map value="mp-dataelement920-1327" />
+        <comment value="RelatieMedicatiegebruik" />
       </mapping>
     </element>
   </differential>

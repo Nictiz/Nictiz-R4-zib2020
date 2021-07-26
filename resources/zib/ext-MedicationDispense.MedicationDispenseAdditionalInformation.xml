@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-MedicationDispense.MedicationDispenseAdditionalInformation" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.MedicationDispenseAdditionalInformation" />
+  <name value="ExtMedicationDispenseMedicationDispenseAdditionalInformation" />
+  <title value="ext MedicationDispense.MedicationDispenseAdditionalInformation" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="An extension to provide additional information that includes details on the structure of the medical dispense. This can be e.g. a reason for deviating from the dispense request." />
+  <purpose value="This extension represents the MedicationDispenseAdditionalInformation concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) MedicationDispense v2.0.2 (2020)](https://zibs.nl/wiki/MedicationDispense-v2.0.2(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-medicationdispense-v2.0.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/MedicationDispense-v2.0.2(2020EN)" />
+    <name value="zib MedicationDispense-v2.0.2(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="MedicationDispense" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.MedicationDispenseAdditionalInformation" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="MedicationDispenseAdditionalInformation" />
+      <definition value="Additional information includes details on the structure of the medical dispense. This can be e.g. a reason for deviating from the dispense request. For now, this list is used. This list will be replaced by a thesaurus in the G standard at a later stage." />
+      <alias value="MedicatieverstrekkingAanvullendeInformatie" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.9.2--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-medicationdispense-v2.0.2-2020EN" />
+        <map value="NL-CM:9.9.23285" />
+        <comment value="MedicationDispenseAdditionalInformation" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

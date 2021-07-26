@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="pattern-GstdSimpleQuantity" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdSimpleQuantity" />
+  <name value="PatternGstdSimpleQuantity" />
+  <title value="G-Standaard SimpleQuantity" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A SimpleQuantity datatype profile to add a SimpleQuantity translation in G-standard units using the HL7 core iso21090-PQ-translation extension. The extension MAY be used to additionally add translations expressed in a different unit from a different unit code system (e.g. NHG table Gebruiksvoorschriften (Table 25)." />
+  <purpose value="This profile provides a uniform way to include the PQ-translation extension to provide a SimpleQuantity based on G-standards units." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <type value="Quantity" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/SimpleQuantity" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Quantity.extension">
+      <path value="Quantity.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Quantity.extension:GstdSimpleQuantity">
+      <path value="Quantity.extension" />
+      <sliceName value="GstdSimpleQuantity" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation" />
+      </type>
+    </element>
+    <element id="Quantity.extension:GstdSimpleQuantity.value[x]">
+      <path value="Quantity.extension.value[x]" />
+      <definition value="A SimpleQuantity translation in G-standard units using. The extension MAY be used to additionally add translations expressed in a different unit from a different unit code system (e.g. NHG table Gebruiksvoorschriften (Table 25)." />
+      <min value="1" />
+      <type>
+        <code value="Quantity" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/SimpleQuantity" />
+      </type>
+      <binding>
+        <strength value="extensible" />
+        <description value="GstdTabel902" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.20.77.11.27--20160830202453" />
+      </binding>
+    </element>
+  </differential>
+</StructureDefinition>

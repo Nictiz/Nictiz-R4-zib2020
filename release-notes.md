@@ -33,12 +33,6 @@ This document contains release notes per zib, indicating differences with their 
 * Removed the role extension (http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role) because RelatedPerson.relationship has changed from 0..1 to 0..1. The zib concept role is now mapped to a slice on relationship.
 * Updated to new zib-NameInformation and zib-AddressInformation and zib-ContactInformation profiles.
 
-## Encounter
-* HealthProfessional has his own profile slice on `Encounter.participant`
-* `Period.start` change to cardinality 0 .. 1 
-* Mapping `.reason.text` moved to `.reasonCode.text`
-* New concept `reasonReference` added in the encounter resource 
-
 ## zib-Encounter
 * ContactWith is mapped on a slice of `Encounter.participant`.
 * `Encounter.participant.type` now honours the maximum cardinality of HealthProfessionalRole. 
@@ -49,6 +43,13 @@ This document contains release notes per zib, indicating differences with their 
 
 ## zib-FreedomRistrictingIntervention
 * This concerns a newly added zib.
+
+## zib-DispenseRequest
+* Placed the fixed zib definitioncode on slice of `MedicationDispense.category`, allowing the reuse of `category`.
+* Placed the mapping DispensedMedicine Reference type slice on `MedicationDispense.medicationReference`. Allowing the use of a CodeableConcept.
+* Removed references not accounted for by zibs or use case.
+* Moved AdditionalInformation to its own extension instead of reusing one extension and profiling it in the resource.
+* Added iso21090-PQ-translation extension to `MedicationDispense.dispenseRequest.quantity` to allow adding quantity translations using other code systems (e.g. G-Standard and NHG).
 
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.
@@ -91,6 +92,27 @@ This document contains release notes per zib, indicating differences with their 
 * Renamed profile name to zib-InstructionsForUse.DosageInstructions to indicate that the profile conceptually better represents the DosageInstructions container than the whole zib.
 * Removed AdministeringSchedule profile on Timing and placed the constraints inline in the zib-InstructionsForUse.DosageInstructions profile because the AdministeringSchedule profile was not reused in other places.  
 
+## zib-MedicationAgreement
+* Removed references not accounted for by the zib.
+* Placed fixed MedicationAgreementCode on a `MedicationRequest.category` slice so `category` can be used for other purposes too.
+* Placed AgreedMedicine on a Reference type slice instead of the fixed `MedicationRequest.medicationReference` element adhering to the open world modeling principle.
+* The generic AdditionalInformation extension, that was reused over multiple profiles and specified in the profile, has been replaced by specific extensions that are profiled in the extension.
+* MedicationTreatment extension has a new canonical URL and is moved to the nl-core-profile as this is not part of the zib. The extension is better documented and contains a mapping to the MP dataset.
+* Added MP CopyIndicator extension to nl-core profile.
+* Mapped MP concept RelatieMedicatieafspraak  to `periorPrescription` instead of an extension in the nl-core profile. 
+* Instead of one extension, the concepts MP RelatieToedieningsafspraak and RelatieMedicatiegebruik are placed in specific extensions in the nl-core profile.
+
+## zib-MedicationDispense
+* Used a pattern to fix the zib definitioncode on `MedicationDispense.category` instead of a mandatory sliced `coding`.
+* Added an extension that mimics `MedicationDispense.category` so the category can be used for the intented use by the FHIR core definition.
+* Placed the mapping DispensedMedicine Reference type slice on `MedicationDispense.medicationReference` allowing the use of a CodeableConcept.
+* Removed references in `.context`, `.partOf` and `.receiver` not accounted for by zibs.
+* Moved AdditionalInformation to its own extension instead of reusing one extension and profiling it in the resource.
+* Relaxed cardinality of additionalInformation extension to 0..* to align with the zib.
+* Added iso21090-PQ-translation extension to MedicationDispense.dispenseRequest.quantity to allow adding quantity translations using other code systems (e.g. G-Standard and NHG).
+
+## zib-MedicationUse2
+* Changed fixed category code from 6#urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3 to 422979000#http://snomed.info/sct.
 
 ## zib-NameInformation
 Style - profiling guidelines
@@ -159,3 +181,13 @@ This is a newly added zib but had profiles that preceded the zib, namely gp-Enco
 
 ## zib-VisualAcuity
 * New zib
+
+## zib-PharmaceuticalProduct
+* Aligned profile canoncial URL to align with the zib name.
+* A combined valueset is now used for MedicationCode and IngredientCode instead of a slicing construct of `CodeableConceptcoding`.
+* Removed references not accounted for by the zib.
+* Placed SubstanceCode on a CodeableConcept type slice instead of the .item[x] element adhering to the open world modeling principle.
+* Added iso21090-PQ-translation extension to `ingredient.strength.numerator` and `ingredient.strength.denominator` to allow adding quantity translation using other code systems (e.g. G-Standard and NHG).
+
+## zib-TimeInterval
+*  zib-TimeInterval has no previous profile(s) and therefore no diff.

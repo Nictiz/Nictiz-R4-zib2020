@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="pattern-ZibTimeIntervalPeriod" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/pattern-ZibTimeIntervalPeriod" />
+  <name value="PatternZibTimeIntervalPeriod" />
+  <title value="pattern ZibTimeIntervalPeriod" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A Period datatype profile to implement the Period half of zib TimeInterval. This datatype profile is used in various resource profiles and is never instantiated directly." />
+  <purpose value="To fully implement the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) TimeInterval v1.0 (2020)](https://zibs.nl/wiki/TimeInterval-v1.0(2020EN)) within a hosting profile, it needs to have an element of type _Period_ and an element of type _Duration_. This datatype profile can be used to add the guidance and mapping for this zib to the _Period_ element.&#xD;&#xA;&#xD;&#xA;When no native _Period_ element exists, the &lt;http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period&gt; extension can be added to the profile. The _Duration_ element can be added using the &lt;http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration&gt; extension.&#xD;&#xA;&#xD;&#xA;Note: this profile should not be used in resources that natively supports both a _Period_ and a _Duration_ element, as the guidance in this profile refers to the Duration extension profile, which is the most common pattern." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-timeinterval-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/TimeInterval-v1.0(2020EN)" />
+    <name value="zib TimeInterval-v1.0(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <type value="Period" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Period" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Period">
+      <path value="Period" />
+      <comment value="When the Duration of zib TimeInterval is known in conjunction with either the startDateTime or endDateTime, it SHALL be converted to a Period and represented using this element. When only the Duration is known, it can be communicated using the &lt;http://nictiz.nl/fhir/StructureDefinition/ext-PeriodOfUse-Duration&gt; extension." />
+    </element>
+    <element id="Period.start">
+      <path value="Period.start" />
+      <short value="startDateTime" />
+      <definition value="The start date and time of the interval. The boundary is inclusive." />
+      <alias value="startDatumTijd" />
+      <mapping>
+        <identity value="zib-timeinterval-v1.0-2020EN" />
+        <map value="NL-CM:20.3.2" />
+        <comment value="startDateTime" />
+      </mapping>
+    </element>
+    <element id="Period.end">
+      <path value="Period.end" />
+      <short value="endDateTime" />
+      <definition value="The end date and time of the interval. If the end of the period is missing, it means no end was known or planned at the time the instance was created. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time." />
+      <alias value="eindDatumTijd" />
+      <mapping>
+        <identity value="zib-timeinterval-v1.0-2020EN" />
+        <map value="NL-CM:20.3.3" />
+        <comment value="endDateTime" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
