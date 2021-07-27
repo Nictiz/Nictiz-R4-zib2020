@@ -33,9 +33,6 @@
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
   <derivation value="constraint" />
   <differential>
-    <element id="Extension">
-      <path value="Extension" />
-    </element>
     <element id="Extension.url">
       <path value="Extension.url" />
       <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.Prescriber" />
@@ -49,11 +46,12 @@
       <min value="1" />
       <type>
         <code value="Reference" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-ZibHealthProfessionalReference" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
       </type>
       <mapping>
-        <identity value="zib-MedicationUse-v1.2-2020EN" />
+        <identity value="zib-medicationuse2-v1.1.1-2020EN" />
         <map value="NL-CM:9.11.23290" />
         <comment value="Prescriber" />
       </mapping>
