@@ -59,6 +59,24 @@
         <comment value="Identificatie" />
       </mapping>
     </element>
+    <element id="MedicationAdministration.category.extension">
+      <path value="MedicationAdministration.category.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="MedicationAdministration.category.extension:category">
+      <path value="MedicationAdministration.category.extension" />
+      <sliceName value="category" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.Category" />
+      </type>
+    </element>
     <element id="MedicationAdministration.medication[x]:medicationReference">
       <path value="MedicationAdministration.medication[x]" />
       <sliceName value="medicationReference" />
