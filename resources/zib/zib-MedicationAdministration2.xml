@@ -14,6 +14,7 @@
       <use value="work" />
     </telecom>
   </contact>
+  <description value="Medication administration is the registration of the individual administrations of the medicine on the patient by the administrator (e.g. a nurse or patient themselves), in relation to the entered agreements." />
   <purpose value="This MedicationAdministration resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) MedicationAdministration2-v1.1.1(2020EN)](https://zibs.nl/wiki/MedicationAdministration2-v1.1.1(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
@@ -33,7 +34,7 @@
       <short value="MedicationAdministration" />
       <alias value="MedicatieToediening" />
       <mapping>
-        <identity value="MedicationAdministration2-v1.1.1-2020EN" />
+        <identity value="zib-medicationadministration2-v1.1.1-2020EN" />
         <map value="NL-CM:9.13.20928" />
         <comment value="MedicationAdministration" />
       </mapping>
@@ -56,20 +57,20 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.AgreedDateTime" />
       </type>
     </element>
-    <element id="MedicationAdministration.extension:deviatingAdministration">
-      <path value="MedicationAdministration.extension" />
-      <sliceName value="deviatingAdministration" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.DeviatingAdministration" />
-      </type>
-    </element>
     <element id="MedicationAdministration.extension:doubleCheckPerformed">
       <path value="MedicationAdministration.extension" />
       <sliceName value="doubleCheckPerformed" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.DoubleCheckPerformed" />
+      </type>
+    </element>
+    <element id="MedicationAdministration.extension:deviatingAdministration">
+      <path value="MedicationAdministration.extension" />
+      <sliceName value="deviatingAdministration" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.DeviatingAdministration" />
       </type>
     </element>
     <element id="MedicationAdministration.extension:medicationAdministrationReasonForDeviation">
@@ -104,6 +105,16 @@
         <comment value="MedicationAdministrationStatus" />
       </mapping>
     </element>
+    <element id="MedicationAdministration.category">
+      <path value="MedicationAdministration.category" />
+      <min value="1" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="18629005" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
     <element id="MedicationAdministration.medication[x]">
       <path value="MedicationAdministration.medication[x]" />
       <slicing>
@@ -115,7 +126,7 @@
       </slicing>
     </element>
     <element id="MedicationAdministration.medication[x]:medicationReference">
-      <path value="MedicationAdministration.medicationReference" />
+      <path value="MedicationAdministration.medication[x]" />
       <sliceName value="medicationReference" />
       <short value="AdministrationProduct" />
       <definition value="The product taken or administered. This is usually medication. Food, blood products, aids and bandages do not strictly fall under the category of medication, but can be reported as well. &#xD;&#xA;&#xD;&#xA;In principle, this will be the prescribed product, but the administrator may substitute it by replacing the product with an equivalent product. For example: two 50mg tablets can be administered instead of one 100mg tablet." />
@@ -126,7 +137,7 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-PharmaceuticalProduct" />
       </type>
       <mapping>
-        <identity value="MedicationAdministration2-v1.1.1-2020EN" />
+        <identity value="zib-medicationadministration2-v1.1.1-2020EN" />
         <map value="NL-CM:9.13.20929" />
         <comment value="AdministrationProduct" />
       </mapping>
@@ -153,7 +164,7 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement" />
       </type>
       <mapping>
-        <identity value="MedicationAdministration2-v1.1.1-2020EN" />
+        <identity value="zib-medicationadministration2-v1.1.1-2020EN" />
         <map value="NL-CM:9.13.23237" />
         <comment value="AdministrationAgreement" />
       </mapping>
@@ -161,7 +172,7 @@
     <element id="MedicationAdministration.supportingInformation:administrationAgreement.type">
       <path value="MedicationAdministration.supportingInformation.type" />
       <min value="1" />
-      <fixedUri value="MedicationDispense" />
+      <patternUri value="MedicationDispense" />
     </element>
     <element id="MedicationAdministration.effective[x]">
       <path value="MedicationAdministration.effective[x]" />
@@ -183,7 +194,7 @@
         <code value="dateTime" />
       </type>
       <mapping>
-        <identity value="MedicationAdministration2-v1.1.1-2020EN" />
+        <identity value="zib-medicationadministration2-v1.1.1-2020EN" />
         <map value="NL-CM:9.13.21193" />
         <comment value="AdministrationDateTime" />
       </mapping>
@@ -195,7 +206,7 @@
       <alias value="Toediener" />
       <max value="1" />
       <mapping>
-        <identity value="MedicationAdministration2-v1.1.1-2020EN" />
+        <identity value="zib-medicationadministration2-v1.1.1-2020EN" />
         <map value="NL-CM:9.13.21196" />
         <comment value="Administrator" />
       </mapping>
@@ -220,17 +231,17 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-RelatedPerson" />
       </type>
       <mapping>
-        <identity value="MedicationAdministration2-v1.1.1-2020EN" />
+        <identity value="zib-medicationadministration2-v1.1.1-2020EN" />
         <map value="NL-CM:9.13.23380" />
         <comment value="Patient" />
       </mapping>
       <mapping>
-        <identity value="MedicationAdministration2-v1.1.1-2020EN" />
+        <identity value="zib-medicationadministration2-v1.1.1-2020EN" />
         <map value="NL-CM:9.13.23172" />
         <comment value="HealthProfessional" />
       </mapping>
       <mapping>
-        <identity value="MedicationAdministration2-v1.1.1-2020EN" />
+        <identity value="zib-medicationadministration2-v1.1.1-2020EN" />
         <map value="NL-CM:9.13.23355" />
         <comment value="Caregiver" />
       </mapping>
@@ -245,7 +256,7 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement" />
       </type>
       <mapping>
-        <identity value="MedicationAdministration2-v1.1.1-2020EN" />
+        <identity value="zib-medicationadministration2-v1.1.1-2020EN" />
         <map value="NL-CM:9.13.23170" />
         <comment value="MedicationAgreement" />
       </mapping>
@@ -260,7 +271,7 @@
       <definition value="Comments on administering the medication." />
       <alias value="Toelichting" />
       <mapping>
-        <identity value="zib-medicationadministration2-v1.1.1-2020EN" />
+        <identity value="zib-zib-medicationadministration2-v1.1.1-2020EN" />
         <map value="NL-CM:9.13.21337" />
         <comment value="Comment" />
       </mapping>
@@ -272,11 +283,10 @@
       <alias value="Toedieningsweg" />
       <binding>
         <strength value="required" />
-        <description value="MedicatieToedieningToedieningswegCodelijst" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.13.2--20200901000000" />
       </binding>
       <mapping>
-        <identity value="MedicationAdministration2-v1.1.1-2020EN" />
+        <identity value="zib-medicationadministration2-v1.1.1-2020EN" />
         <map value="NL-CM:9.13.21195" />
         <comment value="RouteOfAdministration" />
       </mapping>
@@ -291,7 +301,7 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdSimpleQuantity" />
       </type>
       <mapping>
-        <identity value="MedicationAdministration2-v1.1.1-2020EN" />
+        <identity value="zib-medicationadministration2-v1.1.1-2020EN" />
         <map value="NL-CM:9.13.21194" />
         <comment value="AdministeredAmount" />
       </mapping>
@@ -309,7 +319,7 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdSimpleQuantity" />
       </type>
       <mapping>
-        <identity value="MedicationAdministration2-v1.1.1-2020EN" />
+        <identity value="zib-medicationadministration2-v1.1.1-2020EN" />
         <map value="NL-CM:9.13.23159" />
         <comment value="AdministeringSpeed" />
       </mapping>
