@@ -69,10 +69,30 @@
       <path value="StructureDefinition.differential.element" />
       <constraint>
         <key value="sd-zpg-08" />
-        <severity value="error" />
+        <severity value="error"/>
         <human value="If an alias exists, mapping.map needs to be present." />
         <expression value="alias.exists() implies mapping.map.exists()" />
-        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
+        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
+      </constraint>
+      <constraint>
+        <key value="sd-pg-02"/>
+        <human value="If mapping.map exists and the mapping is not implicit, short should exist"/>
+        <expression value="mapping.select(map.exists() and comment.contains(' (implicit, main mapping is on ').not()).anyTrue() implies short.exists()"/>
+        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
+      </constraint>
+      <constraint>
+        <key value="sd-pg-03"/>
+        <severity value="error"/>
+        <human value="If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist."/>
+        <expression value="(mapping.select(map.exists() and comment.contains(' (implicit, main mapping is on ').not()).anyTrue() and $this.indexOf('.') != -1) implies definition.exists()"/>
+        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
+      </constraint>
+      <constraint>
+        <key value="sd-pg-04"/>
+        <severity value="error"/>
+        <human value="If mapping.map exists and the mapping is not implicit, alias should exist."/>
+        <expression value="mapping.select(map.exists() and comment.contains(' (implicit, main mapping is on ').not()).anyTrue() implies alias.exists()"/>
+        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
       </constraint>
     </element>
     <element id="StructureDefinition.differential.element.type">
