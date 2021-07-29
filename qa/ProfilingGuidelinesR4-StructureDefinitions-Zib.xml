@@ -94,14 +94,11 @@
         <expression value="mapping.select(map.exists() and comment.contains(' (implicit, main mapping is on ').not()).anyTrue() implies alias.exists()"/>
         <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4"/>
       </constraint>
-    </element>
-    <element id="StructureDefinition.differential.element.type">
-      <path value="StructureDefinition.differential.element.type" />
       <constraint>
         <key value="sd-zpg-03" />
         <severity value="error" />
-        <human value="References to other resource profiles should be added next to the HL7  base references." />
-        <expression value="code = 'Reference' implies targetProfile.where($this.startsWith('http://hl7.org/fhir/StructureDefinition/')).exists()" />
+        <human value="References to other resource profiles should be added next to the HL7  base references. This does not apply for extensions." />
+        <expression value="$this.where(type.code = 'Reference' and path.contains('Extension').not()).exists() implies $this.type.targetProfile.where($this.startsWith('http://hl7.org/fhir/StructureDefinition/')).exists()" />
         <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4#Constraining_references" />
       </constraint>
     </element>
