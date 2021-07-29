@@ -35,10 +35,16 @@
         <expression value="StructureDefinition.id in StructureDefinition.differential.element[0].alias" />
         <source value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore" />
       </constraint>
+      <constraint>
+        <key value="sd-zpg-04" />
+        <severity value="error" />
+        <human value="Purpose element should be present for nl-core profiles while this is not required for extensions" />
+        <expression value="StructureDefinition.id.startsWith('nl-core-') implies StructureDefinition.purpose.exists()" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore" />
+      </constraint>
     </element>
     <element id="StructureDefinition.purpose">
       <path value="StructureDefinition.purpose" />
-      <min value="1" />
       <constraint>
         <key value="sd-pgnc-01" />
         <severity value="error" />
