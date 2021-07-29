@@ -17,11 +17,6 @@
   <description value="Pre-adopt of the `.renderedDosageInstructions` concept from the FHIR R5 medication resources. It provides a full representation of the dose of the medication included in all dosage instructions. To be used when multiple dosage instructions are included to represent complex dosing such as increasing or tapering doses." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
-  <mapping>
-    <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
-    <uri value="https://zibs.nl/wiki/InstructionsForUse-v1.2.1(2020EN)" />
-    <name value="zib InstructionsForUse-v1.2.1(2020EN)" />
-  </mapping>
   <kind value="complex-type" />
   <abstract value="false" />
   <context>
@@ -39,6 +34,10 @@
   <context>
     <type value="element" />
     <expression value="MedicationUse" />
+  </context>
+  <context>
+    <type value="element" />
+    <expression value="MedicationStatement" />
   </context>
   <type value="Extension" />
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />

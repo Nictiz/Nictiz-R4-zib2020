@@ -19,14 +19,9 @@
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
-    <identity value="zib-DispenseRequest-v1.0.3-2020EN" />
+    <identity value="zib-dispenserequest-v1.0.3-2020EN" />
     <uri value="https://zibs.nl/wiki/DispenseRequest-v1.0.3(2020EN)" />
     <name value="zib DispenseRequest-v1.0.3(2020EN)" />
-  </mapping>
-  <mapping>
-    <identity value="zib-timeinterval-v1.0-2020EN" />
-    <uri value="https://zibs.nl/wiki/TimeInterval-v1.0(2020EN)" />
-    <name value="zib TimeInterval-v1.0(2020EN)" />
   </mapping>
   <kind value="resource" />
   <abstract value="true" />
@@ -39,7 +34,7 @@
       <short value="DispenseRequest" />
       <alias value="Verstrekkingsverzoek" />
       <mapping>
-        <identity value="zib-DispenseRequest-v1.0.3-2020EN" />
+        <identity value="zib-dispenserequest-v1.0.3-2020EN" />
         <map value="NL-CM:9.10.19963" />
         <comment value="DispenseRequest" />
       </mapping>
@@ -107,7 +102,7 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-PharmaceuticalProduct" />
       </type>
       <mapping>
-        <identity value="zib-DispenseRequest-v1.0.3-2020EN" />
+        <identity value="zib-dispenserequest-v1.0.3-2020EN" />
         <map value="NL-CM:9.10.22249" />
         <comment value="MedicineToBeDispensed" />
       </mapping>
@@ -118,7 +113,7 @@
       <definition value="Time at which the dispense request is entered." />
       <alias value="VerstrekkingsverzoekDatum" />
       <mapping>
-        <identity value="zib-DispenseRequest-v1.0.3-2020EN" />
+        <identity value="zib-dispenserequest-v1.0.3-2020EN" />
         <map value="NL-CM:9.10.20060" />
         <comment value="DispenseRequestDate" />
       </mapping>
@@ -137,10 +132,10 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/CareTeam" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvicer-Organization" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider-Organization" />
       </type>
       <mapping>
-        <identity value="zib-DispenseRequest-v1.0.3-2020EN" />
+        <identity value="zib-dispenserequest-v1.0.3-2020EN" />
         <map value="NL-CM:9.10.19966" />
         <comment value="IntendedSupplier" />
       </mapping>
@@ -155,7 +150,7 @@
       <definition value="Explanation for the dispense request. This explanation can contain e.g. information on why a prescriber submits a dispense request that deviates from the norm, e.g. an extra dispense request needed because the patient has lost the medication." />
       <alias value="Toelichting" />
       <mapping>
-        <identity value="zib-DispenseRequest-v1.0.3-2020EN" />
+        <identity value="zib-dispenserequest-v1.0.3-2020EN" />
         <map value="NL-CM:9.10.22274" />
         <comment value="Comment" />
       </mapping>
@@ -179,22 +174,22 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.DispenseLocation" />
       </type>
     </element>
-    <element id="MedicationRequest.dispenseRequest.extension:periodOfUseDuration">
+    <element id="MedicationRequest.dispenseRequest.extension:periodOfUse-Duration">
       <path value="MedicationRequest.dispenseRequest.extension" />
-      <sliceName value="periodOfUseDuration" />
+      <sliceName value="periodOfUse-Duration" />
       <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration" />
       </type>
     </element>
-    <element id="MedicationRequest.dispenseRequest.extension:periodOfUseDuration.value[x]">
+    <element id="MedicationRequest.dispenseRequest.extension:periodOfUse-Duration.value[x]">
       <path value="MedicationRequest.dispenseRequest.extension.value[x]" />
       <short value="PeriodOfUse/ Duration" />
       <definition value="During the approved period of use, the pharmacist has permission to dispense medicine so that the patient has a sufficient amount of medication. In many cases, the approved period of use can be described by only an end date: the approved end date of use in `.dispenseRequest.validityPeriod.end`.&#xD;&#xA;&#xD;&#xA;The duration of the interval in appropriate units of time (e.g. days or hours, etc." />
       <alias value="Verbruiksperiode" />
       <mapping>
-        <identity value="zib-DispenseRequest-v1.0.3-2020EN" />
+        <identity value="zib-dispenserequest-v1.0.3-2020EN" />
         <map value="NL-CM:9.10.20062" />
         <comment value="PeriodOfUse" />
       </mapping>
@@ -205,32 +200,14 @@
       <definition value="During the approved period of use, the pharmacist has permission to dispense medicine so that the patient has a sufficient amount of medication. In many cases, the approved period of use can be described by only an end date: the approved end date of use." />
       <comment value="The duration of the PeriodOfUse is captured using the http://nictiz.nl/fhir/StructureDefinition/ext-PeriodOfUse-Duration extension." />
       <alias value="Verbruiksperiode" />
+      <type>
+        <code value="Period" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-ZibTimeIntervalPeriod" />
+      </type>
       <mapping>
-        <identity value="zib-DispenseRequest-v1.0.3-2020EN" />
+        <identity value="zib-dispenserequest-v1.0.3-2020EN" />
         <map value="NL-CM:9.10.20062" />
         <comment value="PeriodOfUse" />
-      </mapping>
-    </element>
-    <element id="MedicationRequest.dispenseRequest.validityPeriod.start">
-      <path value="MedicationRequest.dispenseRequest.validityPeriod.start" />
-      <short value="startDateTime" />
-      <definition value="The start date and time of the interval. The boundary is inclusive." />
-      <alias value="startDatumTijd" />
-      <mapping>
-        <identity value="zib-timeinterval-v1.0-2020EN" />
-        <map value="NL-CM:20.3.2" />
-        <comment value="startDateTime" />
-      </mapping>
-    </element>
-    <element id="MedicationRequest.dispenseRequest.validityPeriod.end">
-      <path value="MedicationRequest.dispenseRequest.validityPeriod.end" />
-      <short value="endDateTime" />
-      <definition value="The end date and time of the interval. If the end of the period is missing, it means no end was known or planned at the time the instance was created. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time." />
-      <alias value="eindDatumTijd" />
-      <mapping>
-        <identity value="zib-timeinterval-v1.0-2020EN" />
-        <map value="endDateTime" />
-        <comment value="NL-CM:20.3.3" />
       </mapping>
     </element>
     <element id="MedicationRequest.dispenseRequest.numberOfRepeatsAllowed">
@@ -239,7 +216,7 @@
       <definition value="The number of additional times the medication may be dispensed after the first time. In the case of Amount: The total amount that may be dispensed is: (Number of refills + 1) x amount to be dispensed.In the case of Period of Use:The total period of use is: (Number of refills + 1) x period of use" />
       <alias value="AantalHerhalingen" />
       <mapping>
-        <identity value="zib-DispenseRequest-v1.0.3-2020EN" />
+        <identity value="zib-dispenserequest-v1.0.3-2020EN" />
         <map value="NL-CM:9.10.22120" />
         <comment value="NumberOfRefills" />
       </mapping>
@@ -254,7 +231,7 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdSimpleQuantity" />
       </type>
       <mapping>
-        <identity value="zib-DispenseRequest-v1.0.3-2020EN" />
+        <identity value="zib-dispenserequest-v1.0.3-2020EN" />
         <map value="NL-CM:9.10.19964" />
         <comment value="Amount" />
       </mapping>

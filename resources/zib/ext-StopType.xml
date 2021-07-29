@@ -3,7 +3,7 @@
   <id value="ext-StopType" />
   <url value="http://nictiz.nl/fhir/StructureDefinition/ext-StopType" />
   <name value="ExtStopType" />
-  <title value="extStopType" />
+  <title value="ext StopType" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -41,6 +41,7 @@
       <definition value="The MedicationAgreementStopType, AdministrationAgreementStopType and MedicationUseStopType concepts are mapped to this ModifierExtension and not the `.status` element of the respective resources because it has different meaning and function. The `.status` element represents the status of the resource at the moment of requesting the resource. That – in itself – makes mapping the StopType (which may never change in an instance) to status not suitable. For example: a medication agreement which has a StopType, should in itself be superseded by a new medication agreement instance to resume the medication treatment rather then updating the `.status`. There are no specifications for status at the moment, and it is not forbidden to fill the status of the resource." />
       <max value="1" />
       <isModifier value="true" />
+      <isModifierReason value="This element is labeled as a modifier because the stoptype contain codes that mark the resource as no longer active." />
     </element>
     <element id="Extension.url">
       <path value="Extension.url" />

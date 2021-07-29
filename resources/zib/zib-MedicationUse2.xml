@@ -23,11 +23,6 @@
     <uri value="https://zibs.nl/wiki/MedicationUse2-v1.1.1(2020EN)" />
     <name value="zib MedicationUse2-v1.1.1(2020EN)" />
   </mapping>
-  <mapping>
-    <identity value="zib-timeinterval-v1.0-2020EN" />
-    <uri value="https://zibs.nl/wiki/TimeInterval-v1.0(2020EN)" />
-    <name value="zib TimeInterval-v1.0(2020EN)" />
-  </mapping>
   <kind value="resource" />
   <abstract value="true" />
   <type value="MedicationStatement" />
@@ -57,7 +52,6 @@
     <element id="MedicationStatement.extension:renderedDosageInstruction">
       <path value="MedicationStatement.extension" />
       <sliceName value="renderedDosageInstruction" />
-      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction" />
@@ -115,19 +109,9 @@
         <rules value="open" />
       </slicing>
     </element>
-    <element id="MedicationStatement.modifierExtension:useIndicator">
-      <path value="MedicationStatement.modifierExtension" />
-      <sliceName value="useIndicator" />
-      <max value="1" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.UseIndicator" />
-      </type>
-    </element>
     <element id="MedicationStatement.modifierExtension:repeatPeriodCyclicalSchedule">
       <path value="MedicationStatement.modifierExtension" />
       <sliceName value="repeatPeriodCyclicalSchedule" />
-      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule" />
@@ -268,6 +252,7 @@
       <short value="ReasonForUse" />
       <definition value="The reason for using the medication, particularly in self-care medicine purchased by the patient themselves." />
       <alias value="RedenGebruik" />
+      <min value="1" />
       <mapping>
         <identity value="zib-medicationuse2-v1.1.1-2020EN" />
         <map value="NL-CM:9.11.22491" />

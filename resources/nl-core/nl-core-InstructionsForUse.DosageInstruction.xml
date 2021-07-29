@@ -32,7 +32,7 @@
   <differential>
     <element id="Dosage">
       <path value="Dosage" />
-      <alias value="nl-core-InstructionsForUse" />
+      <alias value="nl-core-InstructionsForUse.DosageInstructions" />
     </element>
     <element id="Dosage.additionalInstruction">
       <path value="Dosage.additionalInstruction" />
@@ -45,35 +45,6 @@
         <identity value="Medication-Process-v9-2-0-0" />
         <map value="mp-dataelement920-51" />
         <comment value="AanvullendeInstructie" />
-      </mapping>
-    </element>
-    <element id="Dosage.timing.repeat.extension">
-      <path value="Dosage.timing.repeat.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Dosage.timing.repeat.extension:exact">
-      <path value="Dosage.timing.repeat.extension" />
-      <sliceName value="exact" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://hl7.org/fhir/StructureDefinition/timing-exact" />
-      </type>
-    </element>
-    <element id="Dosage.timing.repeat.extension:exact.value[x]">
-      <path value="Dosage.timing.repeat.extension.value[x]" />
-      <short value="IsFlexible" />
-      <definition value="If true, indicates that the specified times, frequencies, periods are expected to be adhered to as precisely as possible. If false, indicates that a typical degree of variability based on institutional and/or patient convenience is acceptable." />
-      <alias value="IsFlexibel" />
-      <mapping>
-        <identity value="Medication-Process-v9-2-0-0" />
-        <map value="mp-dataelement920-271" />
-        <comment value="IsFlexibel" />
       </mapping>
     </element>
     <element id="Dosage.timing.repeat.periodUnit">
