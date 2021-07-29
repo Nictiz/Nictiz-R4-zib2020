@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-NutritionAdvice" />
+  <url value="https://nictiz.nl/fhir/StructureDefinition/zib-NutritionAdvice" />
+  <name value="ZibNutritionAdvice" />
+  <title value="zib NutritionAdvice" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A nutritional advice is a description of nourishment for the patient, which must meet specific requirements in view of the health condition of the patient. Allergies and food intolerances or chewing and swallowing problems may be a reason for special nutrition." />
+  <purpose value="This Goal resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) NutritionAdvice v3.2 (2020)](https://zibs.nl/wiki/NutritionAdvice-v3.2(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-nutritionadvice-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/NutritionAdvice-v3.2(2020EN)" />
+    <name value="zib NutritionAdvice-v3.2(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="NutritionOrder" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/NutritionOrder" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="NutritionOrder">
+      <path value="NutritionOrder" />
+      <short value="NutritionAdvice" />
+      <alias value="Voedingsadvies" />
+      <mapping>
+        <identity value="zib-nutritionadvice-v3.2-2020EN" />
+        <map value="NL-CM:7.11.1" />
+        <comment value="NutritionAdvice" />
+      </mapping>
+    </element>
+    <element id="NutritionOrder.oralDiet.type.text">
+      <path value="NutritionOrder.oralDiet.type.text" />
+      <short value="DietType" />
+      <definition value="Description of the type of diet." />
+      <alias value="DieetType" />
+      <mapping>
+        <identity value="zib-nutritionadvice-v3.2-2020EN" />
+        <map value="NL-CM:7.11.2" />
+        <comment value="DietType" />
+      </mapping>
+    </element>
+    <element id="NutritionOrder.note">
+      <path value="NutritionOrder.note" />
+      <max value="1" />
+    </element>
+    <element id="NutritionOrder.note.text">
+      <path value="NutritionOrder.note.text" />
+      <short value="Comment" />
+      <definition value="A comment on the nutrition advice." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-nutritionadvice-v3.2-2020EN" />
+        <map value="NL-CM:7.11.4" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
