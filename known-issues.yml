@@ -247,11 +247,7 @@ zib-InstructionsForUse.DosageInstructions:
         reason: The mapping is placed to this polymorphic element that also contains the option to give a Ratio datatype. This Ratio datatype is not used by the zib mapping. It is however not removed as option because of the open world modelling principle.
     Dosage.maxDosePerPeriod:
       - dataype: Ratio
-        reason: The zib Range is not represented as a resource rather it is mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Ratio as would have been the case within the zib Range.
-    
-    
-    
-    
+        reason: The zib Range is not represented as a resource rather it is mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Ratio as would have been the case within the zib Range. 
     
 zib-MedicationAdministration2:
   zib deviations:
@@ -317,7 +313,7 @@ zib-MedicationUse2:
       - datatype: Dosage
         reason: DosageInstructions in FHIR is represented using the Dosage datatype, not as a separate resource.
     MedicationStatement.reasonCode:reasonForUse.text:
-     - cardinality:  1..1
+      - cardinality:  1..1
         reason: The reasonCode.text has been made mandatory because it is placed within a slice (reasonForUse) and the element is used as a discriminator for the validator. Because the concept is placed within a slice on a 0..* element it is possible to not populate this zib concept, which matches the zib definition.
     
 zib-NameInformation:
