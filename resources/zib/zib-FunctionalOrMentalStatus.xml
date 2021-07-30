@@ -29,6 +29,27 @@
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
   <derivation value="constraint" />
   <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="FunctionalOrMentalStatus" />
+      <alias value="FunctioneleOfMentaleStatus" />
+      <mapping>
+        <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
+        <map value="NL-CM:4.26.1" />
+        <comment value="FunctionalOrMentalStatus" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <short value="StatusName" />
+      <definition value="Coded description of the functional or mental status or limitation. &#xD;&#xA;Code systems used include: &#xD;&#xA;-  SNOMED CT&#xD;&#xA;-  ICF (International Classification of Functioning, Disability and Health) &#xD;&#xA;-  NOC (Nursing Outcomes Classification)&#xD;&#xA;-  OMAHA" />
+      <alias value="StatusNaam" />
+      <mapping>
+        <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
+        <map value="NL-CM:4.26.2" />
+        <comment value="StatusName" />
+      </mapping>
+    </element>
     <element id="Observation.effective[x]">
       <path value="Observation.effective[x]" />
       <slicing>
@@ -40,7 +61,7 @@
       </slicing>
     </element>
     <element id="Observation.effective[x]:effectiveDateTime">
-      <path value="Observation.effectiveDateTime" />
+      <path value="Observation.effective[x]" />
       <sliceName value="effectiveDateTime" />
       <short value="StatusDate" />
       <definition value="Date on which the status was determined. A ‘vague’ date, such as only the year, is permitted." />
@@ -67,9 +88,17 @@
     <element id="Observation.value[x]:valueCodeableConcept">
       <path value="Observation.valueCodeableConcept" />
       <sliceName value="valueCodeableConcept" />
+      <short value="StatusValue" />
+      <definition value="The extent to which the patient is limited by the functional or mental condition. &#xD;&#xA;If both the status name and the status value are recorded in code, then both values must come from the same code system.  &#xD;&#xA;If the patient uses a medical device, the evaluation of the extent of the limitation will take place without this aid.&#xD;&#xA;The answer codes must be selected from the subselection of the code system corresponding with the request in accordance with the rules applicable to that system." />
+      <alias value="StatusWaarde" />
       <type>
         <code value="CodeableConcept" />
       </type>
+      <mapping>
+        <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
+        <map value="NL-CM:4.26.3" />
+        <comment value="StatusValue" />
+      </mapping>
     </element>
     <element id="Observation.note">
       <path value="Observation.note" />
