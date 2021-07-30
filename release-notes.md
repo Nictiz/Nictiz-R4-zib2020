@@ -14,9 +14,8 @@ This document contains release notes per zib, indicating differences with their 
  * The addition of `extension:official` seemed based on the rationale: "if implementers do not support the custom `extension:addressType`, you should be able to determine the AddressType by looking at `.use`, `.type` and custom `extension:official`". However, in this use case extension:official would probably also be not supported. By mapping 'HP' to .type 'both', all AddressType codes can be mapped to a combination of .type and .use.
 
 ## zib-AdministrationAgreement
-* Placed the mapping DispensedMedicine Reference type slice on MedicationDispense.medicationReference allowing the use of a CodeableConcept.
-* Removed references not accounted for by zibs or a use case.
-* Moved AdditionalInformation to its own extension instead of reusing one extension and profiling it in the resource.
+* Placed mapping of MedicineForAdministrationAgreement on a type slice of `MedicationDispense.medicationReference` allowing the use of a CodeableConcept and thereby adhering to the open world modeling principle.
+* Moved AdministrationAgreementAdditionalInformation to its own extension.
 
 ## zib-ContactInformation
 * zib ContactInformation is mapped onto two profiles: one for the concept TelephoneNumbers and one for the concept E-mailAddresses. Both are added to the hosting profile.
@@ -33,10 +32,9 @@ This document contains release notes per zib, indicating differences with their 
 * Updated to new zib-NameInformation and zib-AddressInformation and zib-ContactInformation profiles.
 
 ## zib-DispenseRequest
-* Placed the fixed zib definitioncode on slice of `MedicationDispense.category`, allowing the reuse of `category`.
-* Placed the mapping DispensedMedicine Reference type slice on `MedicationDispense.medicationReference`. Allowing the use of a CodeableConcept.
-* Removed references not accounted for by zibs or use case.
-* Moved AdditionalInformation to its own extension instead of reusing one extension and profiling it in the resource.
+* Moved the fixed zib definitioncode on slice of `MedicationDispense.category`, allowing reuse of `category`.
+* Placed mapping of DispensedMedicine on a type slice of `MedicationDispense.medicationReference` allowing the use of a CodeableConcept and thereby adhering to the open world modeling principle.
+* Moved AdditionalWishes to its own extension.
 * Added iso21090-PQ-translation extension to `MedicationDispense.dispenseRequest.quantity` to allow adding quantity translations using other code systems (e.g. G-Standard and NHG).
 
 ## zib-HealthcareProvider
@@ -71,10 +69,10 @@ This document contains release notes per zib, indicating differences with their 
 
 ## zib-MedicationAgreement
 * Removed references not accounted for by the zib.
-* Moved fixed MedicationAgreementCode on a `MedicationRequest.category` slice so `category` can be used for other purposes too.
+* Moved fixed MedicationAgreementCode on a `MedicationRequest.category`, allowing reuse of `category`.
 * Moved mapping of AgreedMedicine on a Reference type slice instead of a fixed `MedicationRequest.medicationReference` element adhering to the open world modeling principle.
-* The generic AdditionalInformation extension, that was reused over multiple profiles and specified in the profile, has been replaced by specific extensions that are profiled in the extension.
-* MedicationTreatment extension has a new canonical URL and is moved to the nl-core-profile as this is not part of the zib. The extension is better documented and contains a mapping to the MP dataset.
+* The AdditionalInformation to its own extension.
+* Ranamed MedicationTreatment extension to has a new canonical URL and is moved to the nl-core-profile beacuse it is not part of the zib. The extension is better documented and contains a mapping to the MP dataset.
 * Added MP CopyIndicator extension to nl-core profile.
 * Mapped MP concept RelatieMedicatieafspraak  to `periorPrescription` instead of an extension in the nl-core profile. 
 * Instead of one extension, the concepts MP RelatieToedieningsafspraak and RelatieMedicatiegebruik are placed in specific extensions in the nl-core profile.
