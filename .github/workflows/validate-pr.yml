@@ -18,6 +18,7 @@ jobs:
           echo "::set-output name=zib_profiles::"$zib_profiles
           echo "::set-output name=zib_extensions::"$zib_extensions
           echo "::set-output name=nlcore_profiles::"$nlcore_profiles
+          echo "::set-output name=nlcore_extensions::"$nlcore_extensions
           echo "::set-output name=other_profiles::"$other_profiles
           echo "::set-output name=conceptmaps::"$conceptmaps
           echo "::set-output name=other_terminology::"$other_terminology
@@ -57,8 +58,18 @@ jobs:
           version: "4.0"
           ig: ig/
           recurse: true
-          profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore
+          profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore-Profiles
           source:  ${{ steps.get-resources.outputs.nlcore_profiles }}
+          fail-at: warning
+          ignored-issues: known-issues.yml
+      - name: Validate nl-core extensions
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
+        with:
+          version: "4.0"
+          ig: ig/
+          recurse: true
+          profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore-Extensions
+          source:  ${{ steps.get-resources.outputs.nlcore_extensions }}
           fail-at: warning
           ignored-issues: known-issues.yml
       - name: Validate other profiles

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ProfilingGuidelinesR4-StructureDefinitions-NlCore-Profiles" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore-Profiles" />
+  <name value="ProfilingGuidelinesR4StructureDefinitionsNlCore-Profiles" />
+  <title value="nl-core StructureDefinition conformance to FHIR Profiling Guidelines for FHIR R4" />
+  <status value="draft" />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="StructureDefinition" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="StructureDefinition">
+      <path value="StructureDefinition" />
+      <constraint>
+        <key value="sd-zpg-01" />
+        <severity value="error" />
+        <human value="StuctureDefinition.id should start with 'nl-core-'" />
+        <expression value="StructureDefinition.id.startsWith('nl-core-')" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore" />
+      </constraint>
+      <constraint>
+        <key value="sd-zpg-03" />
+        <severity value="error" />
+        <human value="Root element should have the profile id as alias" />
+        <expression value="StructureDefinition.id in StructureDefinition.differential.element[0].alias" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore" />
+      </constraint>
+    </element>
+    <element id="StructureDefinition.purpose">
+      <path value="StructureDefinition.purpose" />
+      <min value="1" />
+      <constraint>
+        <key value="sd-pgnc-01" />
+        <severity value="error" />
+        <human value="The purpose field should conform to the profiling guidelines." />
+        <expression value="$this.matches('A derived profile from \\[.*\\]\\(http:\\/\\/nictiz\\.nl\\/fhir\\/StructureDefinition\\/.*\\) to provide a version better suited for implementation purposes\\. This profile augments the base profile with elements found in the various use cases that have adopted the zib\\.((\\r?\\n){2}.+)?')" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore" />
+      </constraint>
+    </element>
+  </differential>
+</StructureDefinition>
