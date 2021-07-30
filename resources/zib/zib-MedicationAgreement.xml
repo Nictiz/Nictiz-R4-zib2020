@@ -112,7 +112,7 @@
     </element>
     <element id="MedicationRequest.extension:periodOfUse-Duration.value[x]">
       <path value="MedicationRequest.extension.value[x]" />
-      <short value="PeriodOfUse / Duration" />
+      <short value="Duration / PeriodOfUse" />
       <definition value="**Duration**: The intended duration of use. E.g. 5 days or 8 weeks. It is not allowed to indicate the duration in months, because different months have a variable duration in days." />
       <comment value="Please note that when the zib concept Duration is known together with the zib concept startDateTime or a endDateTime, it should be communicated using a calculated Period in `extension:periodOfUse-Period`. This element SHALL only be used if a Duration is known when neither startDateTime and endDateTime are known." />
       <alias value="Gebruiksperiode" />
@@ -171,6 +171,10 @@
         <map value="NL-CM:9.6.19954" />
         <comment value="MedicationAgreementStopType (implicit, main mapping is on StopType extension)" />
       </mapping>
+    </element>
+    <element id="MedicationRequest.intent">
+      <path value="MedicationRequest.intent" />
+      <definition value="Whether the request is a proposal, plan, or an original order. Unless a more accurate code is known, _order_ should be used." />
     </element>
     <element id="MedicationRequest.category">
       <path value="MedicationRequest.category" />
