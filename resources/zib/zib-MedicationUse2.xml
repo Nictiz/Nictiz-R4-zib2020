@@ -68,7 +68,7 @@
     </element>
     <element id="MedicationStatement.extension:periodOfUse-Duration.value[x]">
       <path value="MedicationStatement.extension.value[x]" />
-      <short value="PeriodOfUse / Duration" />
+      <short value="Duration / PeriodOfUse" />
       <definition value="Medication use can be recorded for a certain moment or over a certain period. Thus, medication use can be recorded multiple times during the use of medication. The usage period is the period or moment over which the data is recorded.&#xD;&#xA;&#xD;&#xA;**Duration**: The intended duration of use. E.g. 5 days or 8 weeks. It is not allowed to indicate the duration in months, because different months have a variable duration in days.&#xD;&#xA;&#xD;&#xA;The duration of the interval in appropriate units of time (e.g. days or hours, etc.)" />
       <alias value="Gebruiksperiode" />
       <mapping>
@@ -180,10 +180,11 @@
       </slicing>
     </element>
     <element id="MedicationStatement.medication[x]:medicationReference">
-      <path value="MedicationStatement.medication[x]" />
+      <path value="MedicationStatement.medicationReference" />
       <sliceName value="medicationReference" />
-      <short value="MedicationUse" />
-      <alias value="MedicatieGebruik" />
+      <short value="ProductUsed" />
+      <definition value="The product used. This is usually medication. Food, blood products, aids and bandages do not strictly fall under the category of medication, but can be recorded as well.&#xD;&#xA;In principle, this will be the prescribed product, but the product used may differ from the prescribed product." />
+      <alias value="Gebruiksproduct" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Medication" />
@@ -191,8 +192,8 @@
       </type>
       <mapping>
         <identity value="zib-medicationuse2-v1.1.1-2020EN" />
-        <map value="NL-CM:9.11.21338" />
-        <comment value="MedicationUse" />
+        <map value="NL-CM:9.11.21339" />
+        <comment value="ProductUsed" />
       </mapping>
     </element>
     <element id="MedicationStatement.effective[x]">
@@ -276,7 +277,7 @@
     </element>
     <element id="MedicationStatement.dosage">
       <path value="MedicationStatement.dosage" />
-      <short value="InstructionsForUse" />
+      <short value="DosingInstructions / InstructionsForUse" />
       <definition value="Instructions for the use of the medication, e.g. dose and route of administration. In the event of medication use, this is the pattern of use established by the patient or which the patient followed." />
       <alias value="Gebruiksinstructie" />
       <type>
