@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="ext-MedicationAdministration.ReasonForDeviation" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.ReasonForDeviation" />
-  <name value="ExtMedicationAdministrationReasonForDeviation" />
-  <title value="ext MedicationAdministration.ReasonForDeviation" />
+  <id value="ext-MedicationAdministration2.AgreedDateTime" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedDateTime" />
+  <name value="ExtMedicationAdministration2AgreedDateTime" />
+  <title value="ext MedicationAdministration2.AgreedDateTime" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -14,8 +14,8 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="An extension to provide the reason why the medication was not taken or administered or was taken or administered differently." />
-  <purpose value="This extension represents MedicationAdministrationReasonForDeviation of zib [MedicationAdministration2 v1.1.1 (2020EN)](https://zibs.nl/wiki/MedicationAdministration2-v1.1.1(2020EN))" />
+  <description value="An extension to provide the date and time at which the medication was administered." />
+  <purpose value="This extension represents AgreedDateTime of zib [MedicationAdministration2 v1.1.1 (2020EN)](https://zibs.nl/wiki/MedicationAdministration2-v1.1.1(2020EN))" />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -39,24 +39,20 @@
     </element>
     <element id="Extension.url">
       <path value="Extension.url" />
-      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.ReasonForDeviation" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedDateTime" />
     </element>
     <element id="Extension.value[x]">
       <path value="Extension.value[x]" />
-      <short value="MedicationAdministrationReasonForDeviation" />
-      <definition value="Reason why the medication was not taken or administered or was taken or administered differently. Here, you can choose to enter text or one of the codes." />
-      <alias value="MedicatieToedieningRedenVanAfwijken" />
+      <short value="AgreedDateTime" />
+      <definition value="The date and time at which the medication was administered." />
+      <alias value="AfgesprokenDatumTijd" />
       <type>
-        <code value="CodeableConcept" />
+        <code value="dateTime" />
       </type>
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.13.3--20200901000000" />
-      </binding>
       <mapping>
         <identity value="zib-medicationadministration2-v1.1.1-2020EN" />
-        <map value="NL-CM:9.13.23166" />
-        <comment value="MedicationAdministrationReasonForDeviation" />
+        <map value="NL-CM:9.13.23171" />
+        <comment value="AgreedDateTime" />
       </mapping>
     </element>
   </differential>
