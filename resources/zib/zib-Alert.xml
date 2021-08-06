@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-Alert" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Alert" />
+  <name value="ZibAlert" />
+  <title value="zib Alert" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <purpose value="This Flag resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Alert-v4.1(2020EN)](https://zibs.nl/wiki/Alert-v4.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-alert-v4.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/Alert-v4.1(2020EN)" />
+    <name value="zib Alert-v4.1(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Flag" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Flag" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Flag">
+      <path value="Flag" />
+      <constraint>
+        <key value="zib-Alert-1" />
+        <severity value="error" />
+        <human value="One concept from Condition::Concern and AlertName must be selected. If Flag.code contains a code from AlertNaamCodelijst, Flag.extension:concern SHALL not exist." />
+        <expression value="$this.code.memberOf('http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.8.3.2--20200901000000') implies $this.extension.where(url = 'http://hl7.org/fhir/StructureDefinition/flag-detail').exists().not()" />
+      </constraint>
+      <constraint>
+        <key value="zib-Alert-2" />
+        <severity value="error" />
+        <human value="One concept from Condition::Concern and AlertName must be selected. If Flag.extension:concern is filled, Flag.code SHALL contain code 'not-applicable' from system 'http://hl7.org/fhir/ValueSet/data-absent-reason'." />
+        <expression value="$this.extension.where(url = 'http://hl7.org/fhir/StructureDefinition/flag-detail').exists() implies $this.code.coding.where($this.system = 'http://hl7.org/fhir/StructureDefinition/data-absent-reason' and $this.code = 'not-applicable')" />
+      </constraint>
+    </element>
+    <element id="Flag.extension">
+      <path value="Flag.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Flag.extension:concern">
+      <path value="Flag.extension" />
+      <sliceName value="concern" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/flag-detail" />
+      </type>
+      <condition value="zib-Alert-1" />
+      <condition value="zib-Alert-2" />
+    </element>
+    <element id="Flag.extension:concern.value[x]">
+      <path value="Flag.extension.value[x]" />
+      <short value="Condition" />
+      <definition value="The patient’s health problem or condition that is the subject of the alert. This could involve a patient’s problem, condition or diagnosis that is seen as a contraindication in prescribing medication or which has to be taken into account when shaping diagnostic and therapeutic policy. This can be in the patient’s own interest, or it can involve a problem or disorder that can make the patient a risk to their surroundings, such as an infection hazard. These are references to conditions included on the patient’s problem list." />
+      <alias value="Conditie" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem" />
+      </type>
+      <mapping>
+        <identity value="zib-alert-v4.1-2020EN" />
+        <map value="NL-CM:8.3.3" />
+        <comment value="Condition" />
+      </mapping>
+    </element>
+    <element id="Flag.extension:comment">
+      <path value="Flag.extension" />
+      <sliceName value="comment" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Comment" />
+      </type>
+    </element>
+    <element id="Flag.extension:comment.value[x]">
+      <path value="Flag.extension.value[x]" />
+      <short value="Comment" />
+      <definition value="Explanatory comments to the alert that can not be expressed in any of the other elements." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-alert-v4.1-2020EN" />
+        <map value="NL-CM:8.3.7" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Flag.status">
+      <path value="Flag.status" />
+      <comment value="Sending systems that don't record an explicit status can use the following guidance to infer a value from the zib:&#xD;&#xA;&#xD;&#xA;* EndDateTime present and in the past: __inactive_&#xD;&#xA;* EndDateTime absent: _active_&#xD;&#xA;* EndDateTime present and in the future - goes against both FHIR and zib definitions, but in a case where this might occur: _active_" />
+      <mapping>
+        <identity value="zib-alert-v4.1-2020EN" />
+        <map value="NL-CM:8.3.5" />
+      </mapping>
+      <mapping>
+        <identity value="zib-alert-v4.1-2020EN" />
+        <map value="NL-CM:8.3.8" />
+      </mapping>
+    </element>
+    <element id="Flag.category">
+      <path value="Flag.category" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Flag.category:alertName">
+      <path value="Flag.category" />
+      <sliceName value="alertName" />
+      <short value="AlertType" />
+      <definition value="Indicates the type of alert, meaning a rough description of the cause or origin of the warning." />
+      <alias value="AlertType" />
+      <max value="1" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.8.3.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-alert-v4.1-2020EN" />
+        <map value="NL-CM:8.3.6" />
+        <comment value="AlertType" />
+      </mapping>
+    </element>
+    <element id="Flag.code">
+      <path value="Flag.code" />
+      <short value="AlertName" />
+      <definition value="A warning, other than a condition or problem. For example, a patient can be given an ‘Aggressive patient' alert. The warning can be entered in code (there are codes for frequently used alerts), but seeing the dynamic nature of the warnings cf. SARS and Ebola, these alerts will often be entered as free text." />
+      <comment value="One concept from Condition::Concern and AlertName must be selected. If Flag.code contains a code from AlertNaamCodelijst, Flag.extension:concern SHALL not exist. If Flag.extension:concern is filled, Flag.code SHALL contain code 'not-applicable' from system 'http://hl7.org/fhir/ValueSet/data-absent-reason'." />
+      <alias value="AlertNaam" />
+      <condition value="zib-Alert-1" />
+      <condition value="zib-Alert-2" />
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.8.3.2--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-alert-v4.1-2020EN" />
+        <map value="NL-CM:8.3.4" />
+        <comment value="AlertName" />
+      </mapping>
+    </element>
+    <element id="Flag.subject">
+      <path value="Flag.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PlanDefinition" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Medication" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Procedure" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient" />
+      </type>
+    </element>
+    <element id="Flag.period.start">
+      <path value="Flag.period.start" />
+      <short value="StartDateTime" />
+      <definition value="The date and time at which the described condition was entered as a warning. This can be an exact date and time, or a rough indication of the date (such as only the year, or the month and the year)." />
+      <alias value="BeginDatumTijd" />
+      <mapping>
+        <identity value="zib-alert-v4.1-2020EN" />
+        <map value="NL-CM:8.3.5" />
+        <comment value="StartDateTime" />
+      </mapping>
+    </element>
+    <element id="Flag.period.end">
+      <path value="Flag.period.end" />
+      <short value="EndDateTime" />
+      <definition value="The date and time at which the described condition was retracted as a warning. This can be an exact date and time, or a rough indication of the date (such as only the year, or the month and the year)." />
+      <alias value="EindDatumTijd" />
+      <mapping>
+        <identity value="zib-alert-v4.1-2020EN" />
+        <map value="NL-CM:8.3.8" />
+        <comment value="EndDateTime" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
