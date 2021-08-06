@@ -75,6 +75,15 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.DistributionForm" />
       </type>
     </element>
+    <element id="MedicationDispense.status">
+      <path value="MedicationDispense.status" />
+      <comment value="Sending systems that don't record an explicit status can use the following guidance to infer a value from the zib:&#xD;&#xA;&#xD;&#xA;* MedicationDispenseDateTime present and in the past: _completed_" />
+      <mapping>
+        <identity value="zib-medicationdispense-v2.0.2-2020EN" />
+        <map value="NL-CM:9.9.20272" />
+        <comment value="MedicationDispenseDateTime (implicit, main mapping is on MedicationDispense.whenHandedOver)" />
+      </mapping>
+    </element>
     <element id="MedicationDispense.category">
       <path value="MedicationDispense.category" />
       <min value="1" />
