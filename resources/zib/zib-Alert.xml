@@ -40,7 +40,7 @@
         <key value="zib-Alert-2" />
         <severity value="error" />
         <human value="One concept from Condition::Concern and AlertName must be selected. If Flag.extension:concern is filled, Flag.code SHALL contain code 'not-applicable' from system 'http://hl7.org/fhir/ValueSet/data-absent-reason'." />
-        <expression value="$this.extension.where(url = 'http://hl7.org/fhir/StructureDefinition/flag-detail').exists() implies $this.code.coding.where($this.system = 'http://hl7.org/fhir/StructureDefinition/data-absent-reason' and $this.code = 'not-applicable')" />
+          <expression value="$this.extension.where(url = 'http://hl7.org/fhir/StructureDefinition/flag-detail').exists() implies $this.code.coding.where($this.system = 'http://terminology.hl7.org/CodeSystem/data-absent-reason' and $this.code = 'not-applicable')" />
       </constraint>
     </element>
     <element id="Flag.extension">
@@ -100,7 +100,7 @@
     </element>
     <element id="Flag.status">
       <path value="Flag.status" />
-      <comment value="Sending systems that don't record an explicit status can use the following guidance to infer a value from the zib:&#xD;&#xA;&#xD;&#xA;* EndDateTime present and in the past: __inactive_&#xD;&#xA;* EndDateTime absent: _active_&#xD;&#xA;* EndDateTime present and in the future - goes against both FHIR and zib definitions, but in a case where this might occur: _active_" />
+      <comment value="Sending systems that don't record an explicit status can use the following guidance to infer a value from the zib:&#xD;&#xA;&#xD;&#xA;* EndDateTime present and in the past: _inactive_&#xD;&#xA;* EndDateTime absent: _active_&#xD;&#xA;* EndDateTime present and in the future - goes against both FHIR and zib definitions, but in a case where this might occur: _active_" />
       <mapping>
         <identity value="zib-alert-v4.1-2020EN" />
         <map value="NL-CM:8.3.5" />
