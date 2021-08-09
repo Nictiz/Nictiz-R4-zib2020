@@ -228,4 +228,3 @@ This is a newly added zib but had profiles that preceded the zib, namely gp-Enco
 * ValueCodeableConcept is now modulated on its own slice
 * The comment element is modulated on `Observation.note.text` instead of `Observation.comment`
 * The PackYears element has been changed from Quantity to integer as datatype
-
