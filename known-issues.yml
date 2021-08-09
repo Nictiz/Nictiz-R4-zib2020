@@ -221,7 +221,13 @@ zib-DispenseRequest:
     MedicationRequest.dispenseRequest.numberOfRepeatsAllowed:
       - datatype: unsignedInt
         reason: unsignedInt is a restriction on the zib INT concept (only non-negative INT) which matches with the definition of the NumberOfRefills. A negative NumberOfRefills don't make sense. 
-    
+
+zib-FreedomRestrictingIntervention:
+    zib overrides:
+        Procedure.code:
+            - cardinality: 1..1
+              reason: Although the concept TypeOfIntervention should be interpreted as conceptual and thus optional, Procedure.code is required by FHIR -- it doesn't make much sense to communicate a Procedure without communicating _which_ procedure, and the same applies to a FreedomRestrictingIntervention (procedure). 
+
 zib-HealthcareProvider:
   zib deviations:
     Location.address:
@@ -529,6 +535,18 @@ zib-Patient:
       - cardinality: 0..*
         reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
 
+zib-PharmaceuticalProduct:
+  zib deviations:
+    Medication.ingredient:
+      - datatype: BackboneElement
+        reason: The appropriate representation of ingredient in FHIR is Medication.ingredient. The container can be properly mapped to this BackboneElement.
+    Medication.ingredient.strength:
+      - datatype: Ratio
+        reason: The `ingredient.strenght` acts as a container for the two child elements and can the be correclty mapped to the zib Concentration container. 
+    Medication.ingredient.item[x]:
+      - cardinality: 1..1
+        reason: There is a known cardinality mismatch between FHIR (1..1) and the zib (0..1) for the .ingredient.item element which is nested in the optional .ingredient container. This constraint was already in place for the STU3 profile. Moreover this does not seem to be a concern for the Medication Proces information standard will use this profile as they will make this element required in their dataset.
+
 zib-Procedure:
   ignored issues:
     Procedure.report:textResult:
@@ -563,34 +581,6 @@ zib-Problem:
     Condition.note.text:
       - cardinality: 1..1
         reason: The mapped element has a cardinality of 1..1. However, the parent element .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
-        
-zib-VisualAcuity:
-  zib deviations:
-    Observation.extension:visualAcuityMeasurementDevice.value[x]:
-      - cardinality: 1..1
-        reason: The used extension uses a cardinality of 1..1 on the value[x] element. However, the extension itself is added with a cardinality of 0..1.
-    Observation.bodySite.extension:laterality.value[x]:
-      - short: AnatomicalLocation
-        reason: The zib implies a reference to AnatomicalLocation::Laterality, but actually references AnatomicalLocation. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442
-      - datatype: CodeableConcept
-        reason: The zib implies a reference to AnatomicalLocation::Laterality, but actually references AnatomicalLocation. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442
-
-zib-TextResult:
-  zib deviations:
-    DiagnosticReport.code:
-      - cardinality: 1..1
-        reason: The cardinality of both zib and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected. In case of absent data, the profiling guidelines provide guidance.
-zib-TextResult-Media:
-  zib deviations:
-    Media.content:
-      - cardinality: 1..1
-        reason: The use of the Media resource referenced in zib-TextResult DiagnosticReport.media.link is optional (0..*), but if the Media resource is used, Media.content should be present (1..1).
-
-zib-FreedomRestrictingIntervention:
-    zib overrides:
-        Procedure.code:
-            - cardinality: 1..1
-              reason: Although the concept TypeOfIntervention should be interpreted as conceptual and thus optional, Procedure.code is required by FHIR -- it doesn't make much sense to communicate a Procedure without communicating _which_ procedure, and the same applies to a FreedomRestrictingIntervention (procedure). 
 
 zib-SOAPReport:
   ignored issues:
@@ -627,17 +617,34 @@ nl-core-SOAPReport:
       - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
         reason: "sliceName 'SOAPLine' starts with an uppercase letter because the SOAP abbreviation is commonly capitalized."
 
-zib-PharmaceuticalProduct:
+zib-TextResult:
   zib deviations:
-    Medication.ingredient:
-      - datatype: BackboneElement
-        reason: The appropriate representation of ingredient in FHIR is Medication.ingredient. The container can be properly mapped to this BackboneElement.
-    Medication.ingredient.strength:
-      - datatype: Ratio
-        reason: The `ingredient.strenght` acts as a container for the two child elements and can the be correclty mapped to the zib Concentration container. 
-    Medication.ingredient.item[x]:
+    DiagnosticReport.code:
       - cardinality: 1..1
-        reason: There is a known cardinality mismatch between FHIR (1..1) and the zib (0..1) for the .ingredient.item element which is nested in the optional .ingredient container. This constraint was already in place for the STU3 profile. Moreover this does not seem to be a concern for the Medication Proces information standard will use this profile as they will make this element required in their dataset.
+        reason: The cardinality of both zib and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected. In case of absent data, the profiling guidelines provide guidance.
+zib-TextResult-Media:
+  zib deviations:
+    Media.content:
+      - cardinality: 1..1
+        reason: The use of the Media resource referenced in zib-TextResult DiagnosticReport.media.link is optional (0..*), but if the Media resource is used, Media.content should be present (1..1).
+
+zib-TobaccoUse:
+  zib deviations:
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
+        
+zib-VisualAcuity:
+  zib deviations:
+    Observation.extension:visualAcuityMeasurementDevice.value[x]:
+      - cardinality: 1..1
+        reason: The used extension uses a cardinality of 1..1 on the value[x] element. However, the extension itself is added with a cardinality of 0..1.
+    Observation.bodySite.extension:laterality.value[x]:
+      - short: AnatomicalLocation
+        reason: The zib implies a reference to AnatomicalLocation::Laterality, but actually references AnatomicalLocation. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442
+      - datatype: CodeableConcept
+        reason: The zib implies a reference to AnatomicalLocation::Laterality, but actually references AnatomicalLocation. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442
+
 
 unmapped zib concepts:
   - NL-CM:17.2.10: HealthcareProvider.LocationNumber
