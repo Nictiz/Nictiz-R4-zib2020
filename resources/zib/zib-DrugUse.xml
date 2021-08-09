@@ -98,7 +98,7 @@
       </slicing>
     </element>
     <element id="Observation.value[x]:valueCodeableConcept">
-      <path value="Observation.valueCodeableConcept" />
+      <path value="Observation.value[x]" />
       <sliceName value="valueCodeableConcept" />
       <short value="DrugUseStatus" />
       <definition value="Indication stating whether there was any drug use in the past or present." />
@@ -115,6 +115,10 @@
         <map value="NL-CM:7.4.3" />
         <comment value="DrugUseStatus" />
       </mapping>
+    </element>
+    <element id="Observation.note">
+      <path value="Observation.note" />
+      <max value="1" />
     </element>
     <element id="Observation.note.text">
       <path value="Observation.note.text" />
@@ -140,6 +144,7 @@
     <element id="Observation.component:amount">
       <path value="Observation.component" />
       <sliceName value="amount" />
+      <max value="1" />
     </element>
     <element id="Observation.component:amount.code">
       <path value="Observation.component.code" />
@@ -167,6 +172,7 @@
     <element id="Observation.component:drugOrMedicationType">
       <path value="Observation.component" />
       <sliceName value="drugOrMedicationType" />
+      <max value="1" />
     </element>
     <element id="Observation.component:drugOrMedicationType.code">
       <path value="Observation.component.code" />
