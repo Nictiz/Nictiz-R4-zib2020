@@ -177,6 +177,15 @@ zib-ContactPerson:
     RelatedPerson.telecom:emailAddresses:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
+        
+zib-DrugUse:
+  zib deviations:
+   Observation.note.text:
+      - cardinality: 1..1
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
+   Observation.component:routeOfAdministration.value[x]:
+      - cardinality: 0..1
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent .component element that may exists 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
 
 zib-Encounter:
   zib deviations:
