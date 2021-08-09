@@ -43,9 +43,6 @@ This document contains release notes per zib, indicating differences with their 
 * The mapping of Location is moved to `Encounter.location.location`.
 * Reference to other profiles not accounted for by the zib have been removed.
 
-## zib-FreedomRistrictingIntervention
-* This concerns a newly added zib.
-
 ## zib-DispenseRequest
 * Moved the fixed zib definitioncode on slice of `MedicationDispense.category`, allowing reuse of `category`.
 * Placed mapping of DispensedMedicine on a type slice of `MedicationDispense.medication[x]` allowing the use of a CodeableConcept and thereby adhering to the open world modeling principle.
@@ -57,6 +54,17 @@ This document contains release notes per zib, indicating differences with their 
 * Removed reference on `MedicationRequest.recorder` because this is not accounted for by the zib or a use case.
 * PeriodOfUse has been remodeld using new extensions based on the zib TimerInterval. This should make the mapping more clear.
 * Moved mapping of PeriodOfUse Duration from `MedicationRequest.dispenseRequest.expectedSupplyDuration` to `MedicationRequest.dispenseRequest.extension:periodOfUse-Duration` because of semantic diferences in concept definitions.
+
+## zib-DrugUse
+* The drugUseCode is mapped to `Observation.code` and based on a pattern
+* EffectivePeriod is now modulated on its own slice
+* ValueCodeableConcept is now modulated on its own slice
+* The comment element is modulated on `Observation.note.text` instead of `Observation.comment`
+* The code on `Observation.component:drugOrMedicationType.code` has changed to 105590001
+* The code on `Observation.component:amount.code` has changed to 363908000
+
+## zib-FreedomRistrictingIntervention
+* This concerns a newly added zib.
 
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.
