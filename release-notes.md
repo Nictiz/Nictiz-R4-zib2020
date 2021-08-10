@@ -13,6 +13,11 @@ This document contains release notes per zib, indicating differences with their 
  * The notion to mark an address as 'official' seems to have its origin in the BRP, but is absent in the zib model.
  * The addition of `extension:official` seemed based on the rationale: "if implementers do not support the custom `extension:addressType`, you should be able to determine the AddressType by looking at `.use`, `.type` and custom `extension:official`". However, in this use case extension:official would probably also be not supported. By mapping 'HP' to .type 'both', all AddressType codes can be mapped to a combination of .type and .use.
 
+# zib-AllergyIntolerance
+* Applied 'combined ValueSets' to `code` and `reaction.substance` instead of slicing per ValueSet.
+* Applied the profiling guidelines when handling conflicts between FHIR core bindings and zib bindings. As a result code-specification extensions have been removed at `clinicalStatus` and `reaction.severity`.
+* Because AlleryStatus maps to both `clinicalStatus` and `verificationStatus`, but `verificationStatus` now has cardinality 0..1 compared to 1..1 in STU3, guidance on how to interpret the mapping has been added to the root, but has been simplified.
+
 ## zib-ContactInformation
 * zib ContactInformation is mapped onto two profiles: one for the concept TelephoneNumbers and one for the concept E-mailAddresses. Both are added to the hosting profile.
 * Removed mapping guidance on the root comment of zib-ContactInformation-E-mailAddresses, as this is now straightforward.
