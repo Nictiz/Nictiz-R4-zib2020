@@ -59,6 +59,9 @@ zib-FunctionalOrMentalStatus:
     Observation.note.text:
       - cardinality: 1..1
         reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
+    Observation.code:
+      - cardinality: 1..1
+        reason: The cardinality of both zib (FunctionalOrMentalStatus) and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected. In case of absent data, the profiling guidelines provide guidance.
 
 zib-HealthcareProvider:
   zib deviations:
