@@ -59,6 +59,12 @@ zib-Alert:
       - cardinality: 1..1
         reason: The cardinality of FHIR is 1..1, where the zib (AlertName) is 0..1. Because of a constraint in the zib (a choice should be made between AlertName and Condition::Concern), the profile provides guidance on a code that should be used in case of absent data.
 
+zib-AllergyIntolerance:
+  zib deviations:
+    AllergyIntolerance.reaction.manifestation:
+      - cardinality: 1..*
+        reason: The FHIR profiles are expected to implement zib cardinalities as conceptual cardinalities, but FHIR requires the manifestation element to be present. This aligns with the intention of the zib, as the Symptom concept is required for the container Reaction to make sense.
+
 zib-BloodPressure:
   ignored issues:
     Observation.component:*BP:
