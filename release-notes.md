@@ -34,6 +34,7 @@ This document contains release notes per zib, indicating differences with their 
 * `EffectiveDateTime` is modulated on its own slice
 * The comment element is modulated on `Observation.note.text` instead of `Observation.comment`
 * MedicalDevice extension have been removed see comment on root element for the explanation
+* The patient reference has been moved to the nl-core layer
 
 
 ## zib-HealthcareProvider
