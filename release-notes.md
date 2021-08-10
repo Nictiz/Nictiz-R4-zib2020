@@ -66,6 +66,12 @@ This document contains release notes per zib, indicating differences with their 
 * The extension EpisodOfCare-Title has been replaced by ext-EpisodeOfCare.EpisodeOfCareName because this zib concept is functionally equivalent.
 * The extensions EpisodeOfCare-DateFirstEncounter and EpisodeOfCare-DateLastEncounter from the previous profile are not inherited because no functional backing exists.
 
+## zib-FunctionalOrMentalStatus
+* SNOMED codes functionalCode and mentalCode on `Observation.category` have been removed
+* `EffectiveDateTime` is mapped on its own slice
+* The comment element is mapped on `Observation.note.text` instead of `Observation.comment`
+* MedicalDevice extension have been removed see comment on root element for the explanation
+
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.
 * `Organization.type[DepartmentSpecialty]` and `Organization.type[OrganizationType]` from 0..* to 0..1.
