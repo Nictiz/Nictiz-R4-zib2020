@@ -44,6 +44,10 @@
       <short value="StatusName" />
       <definition value="Coded description of the functional or mental status or limitation. &#xD;&#xA;Code systems used include: &#xD;&#xA;-  SNOMED CT&#xD;&#xA;-  ICF (International Classification of Functioning, Disability and Health) &#xD;&#xA;-  NOC (Nursing Outcomes Classification)&#xD;&#xA;-  OMAHA" />
       <alias value="StatusNaam" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.4--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
         <map value="NL-CM:4.26.2" />
@@ -61,11 +65,11 @@
       </slicing>
     </element>
     <element id="Observation.effective[x]:effectiveDateTime">
-      <path value="Observation.effective[x]" />
+      <path value="Observation.effectiveDateTime" />
       <sliceName value="effectiveDateTime" />
       <short value="StatusDate" />
       <definition value="Date on which the status was determined. A ‘vague’ date, such as only the year, is permitted." />
-      <alias value="StatusWaarde" />
+      <alias value="StatusDatum" />
       <type>
         <code value="dateTime" />
       </type>
@@ -94,6 +98,10 @@
       <type>
         <code value="CodeableConcept" />
       </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.3--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
         <map value="NL-CM:4.26.3" />
