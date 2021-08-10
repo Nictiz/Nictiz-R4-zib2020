@@ -21,6 +21,11 @@ This document contains release notes per zib, indicating differences with their 
 * Aligned cardinality of `MedicationDispense.note` with the zib Comment cardinality (0..1).
 * Ranamed MedicationTreatment extension to PharmaceuticalTreatment.Identifier and moved to the nl-core-profile. The extension is now also better documented.
 
+# zib-AllergyIntolerance
+* Applied 'combined ValueSets' to `code` and `reaction.substance` instead of slicing per ValueSet.
+* Applied the profiling guidelines when handling conflicts between FHIR core bindings and zib bindings. As a result code-specification extensions have been removed at `clinicalStatus` and `reaction.severity`.
+* Because AlleryStatus maps to both `clinicalStatus` and `verificationStatus`, but `verificationStatus` now has cardinality 0..1 compared to 1..1 in STU3, guidance on how to interpret the mapping has been added to the root, but has been simplified.
+
 ## zib-ContactInformation
 * zib ContactInformation is mapped onto two profiles: one for the concept TelephoneNumbers and one for the concept E-mailAddresses. Both are added to the hosting profile.
 * Removed mapping guidance on the root comment of zib-ContactInformation-E-mailAddresses, as this is now straightforward.
