@@ -23,6 +23,11 @@
     <uri value="https://zibs.nl/wiki/TreatmentObjective-v3.2(2020EN)" />
     <name value="zib TreatmentObjective-v3.2(2020EN)" />
   </mapping>
+  <mapping>
+    <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/FunctionalOrMentalStatus-v3.2(2020EN)" />
+    <name value="zib FunctionalOrMentalStatus-v3.2(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="true" />
   <type value="Goal" />
@@ -50,6 +55,37 @@
         <comment value="DesiredHealthcareResult" />
       </mapping>
     </element>
+    <element id="Goal.target.extension">
+      <path value="Goal.target.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Goal.target.extension:medicalDevice">
+      <path value="Goal.target.extension" />
+      <sliceName value="medicalDevice" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-FunctionalMentalStatus.MedicalDevice" />
+      </type>
+    </element>
+    <element id="Goal.target.measure">
+      <path value="Goal.target.measure" />
+      <short value="StatusName" />
+      <definition value="Coded description of the functional or mental status or limitation.&#xD;&#xA;Code systems used include:&#xD;&#xA;&#xD;&#xA;SNOMED CT&#xD;&#xA;ICF (International Classification of Functioning, Disability and Health)&#xD;&#xA;NOC (Nursing Outcomes Classification)&#xD;&#xA;OMAHA" />
+      <alias value="StatusNaam" />
+      <mapping>
+        <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
+        <map value="NL-CM:4.26.2" />
+        <comment value="StatusName" />
+      </mapping>
+    </element>
     <element id="Goal.addresses">
       <path value="Goal.addresses" />
       <short value="Problem" />
@@ -70,6 +106,21 @@
         <identity value="zib-treatmentobjective-v3.2-2020EN" />
         <map value="NL-CM:13.5.4" />
         <comment value="Problem" />
+      </mapping>
+    </element>
+    <element id="Goal.note">
+      <path value="Goal.note" />
+      <max value="1" />
+    </element>
+    <element id="Goal.note.text">
+      <path value="Goal.note.text" />
+      <short value="Comment" />
+      <definition value="Explanatory comments as a description of the functional or mental status." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
+        <map value="NL-CM:4.26.4" />
+        <comment value="Comment" />
       </mapping>
     </element>
   </differential>
