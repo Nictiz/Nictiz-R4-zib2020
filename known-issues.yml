@@ -170,6 +170,8 @@ zib-ContactPerson:
         reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use. Documented in the profile too.
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
+      - short: NameInformation
+        reason: The concept PayerName from zib-Payer is also mapped on Patient.name. However, because this mapping is secondary to NameInformation, we exclude it from appearing in short.
     RelatedPerson.address:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
@@ -489,6 +491,8 @@ zib-Patient:
         reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use. Documented in the profile too.
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
+      - short: NameInformation
+        reason: The concept PayerName from zib-Payer is also mapped on Patient.name. However, because this mapping is secondary to NameInformation, we exclude it from appearing in short.
     Patient.telecom:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
@@ -552,6 +556,32 @@ zib-Patient:
         reason: The mapping is placed on the extension and not on the value[x] because of the nature of this extension. The extension itself contains a valueCoding that gets the zibs value. This datatype matches the zib CD type.
       - cardinality: 0..*
         reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
+
+zib-Payer:
+  zib deviations:
+    Coverage.identifier:insurantNumber:
+      - datatype: Identifier
+        reason: The value of an Identifier has datatype string, which correspons with the string datatype of zib concept InsurantNumber.
+    Coverage.payor:payerPerson.extension:bankInformation:
+      - datatype: Extension
+        reason: The (complex) extension acts as a container for three sub-extensions that each contain a zib sub-concept.
+
+zib-Payer-Organization:
+  zib deviations:
+    Organization.telecom:
+      - datatype: ContactPoint
+        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consits of two parts the rootconcept of the ContactInformation is mapped on .telecom.
+    Organization.telecom:telephoneNumbers:
+      - datatype: ContactPoint
+        reason: See Organization.telecom
+    Organization.telecom:emailAddresses:
+      - datatype: ContactPoint
+        reason: See Organization.telecom
+    Organization.address:
+      - datatype: Address
+        reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
+      - cardinality: 0..*
+        reason: The zib AddressInformation may be represented using multiple FHIR Address instances, hence the cardinality is wider.
 
 zib-PharmaceuticalProduct:
   zib deviations:

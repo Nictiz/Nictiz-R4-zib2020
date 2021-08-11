@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-Payer" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Payer" />
+  <name value="NlcorePayer" />
+  <title value="nl core Payer" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Payers are organizations or individuals that pay for the healthcare supplied to the patient. These organizations or individuals can be: facilities or people who financially guarantee or who are responsible for the patient (such as parents or guardians of minors), organizations with direct financial responsibility, combinations of these or the patient themselves." />
+  <purpose value="A derived profile from [zib-Payer](http://nictiz.nl/fhir/StructureDefinition/zib-Payer) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Coverage" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-Payer" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Coverage">
+      <path value="Coverage" />
+      <alias value="nl-core-Payer" />
+    </element>
+    <element id="Coverage.beneficiary">
+      <path value="Coverage.beneficiary" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Coverage.payor:payerPerson">
+      <path value="Coverage.payor" />
+      <sliceName value="payerPerson" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson" />
+      </type>
+    </element>
+    <element id="Coverage.payor:insuranceCompany">
+      <path value="Coverage.payor" />
+      <sliceName value="insuranceCompany" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Payer-Organization" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
