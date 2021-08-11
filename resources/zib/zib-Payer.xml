@@ -33,6 +33,7 @@
             <path value="Coverage"/>
             <short value="Payer / Insurance"/>
             <definition value="* Root concept of the Payer information model. This root concept contains all data elements of the Payer information model.&#xD;&#xA;* Container of the Insurance concept. This container contains all data elements of the Insurance concept."/>
+            <comment value="The zib Payer is mapped to this Coverage profile and a profile on Organization (&amp;lt;http://nictiz.nl/fhir/StructureDefinition/zib-Payer-Organization&amp;gt;). This Coverage profile acts as the focal resource of Payer, although Coverage is more associated with the Insurance container of the zib then with Payer as a whole. Nevertheless, the Coverage resource acts as an overarching resource that references the various resources that represent PayerPerson or InsuranceCompany and adds details like BankInformation. For the InsuranceCompany concept, the profile on Organization is used which is referenced using the `payor` element."/>
             <alias value="Betaler"/>
             <alias value="Verzekering"/>
             <mapping>
