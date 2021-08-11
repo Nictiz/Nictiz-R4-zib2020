@@ -1,167 +1,188 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-    <id value="zib-Payer"/>
-    <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Payer"/>
-    <name value="ZibPayer"/>
-    <title value="zib Payer"/>
-    <status value="draft"/>
-    <publisher value="Nictiz"/>
-    <contact>
-        <name value="Nictiz"/>
-        <telecom>
-            <system value="email"/>
-            <value value="info@nictiz.nl"/>
-            <use value="work"/>
-        </telecom>
-    </contact>
-    <description value="Payers are organizations or individuals that pay for the healthcare supplied to the patient. These organizations or individuals can be: facilities or people who financially guarantee or who are responsible for the patient (such as parents or guardians of minors), organizations with direct financial responsibility, combinations of these or the patient themselves."/>
-    <purpose value="This Coverage resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Payer-v3.1.1(2020EN)](https://zibs.nl/wiki/Payer-v3.1.1(2020EN))."/>
-    <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise."/>
-    <fhirVersion value="4.0.1"/>
-    <mapping>
-        <identity value="zib-payer-v3.1.1-2020EN"/>
-        <uri value="https://zibs.nl/wiki/Payer-v3.1.1(2020EN)"/>
-        <name value="zib Payer-v3.1.1(2020EN)"/>
-    </mapping>
-    <kind value="resource"/>
-    <abstract value="true"/>
-    <type value="Coverage"/>
-    <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Coverage"/>
-    <derivation value="constraint"/>
-    <differential>
-        <element id="Coverage">
-            <path value="Coverage"/>
-            <short value="Payer / Insurance"/>
-            <definition value="* Root concept of the Payer information model. This root concept contains all data elements of the Payer information model.&#xD;&#xA;* Container of the Insurance concept. This container contains all data elements of the Insurance concept."/>
-            <comment value="The zib Payer is mapped to this Coverage profile and a profile on Organization (&amp;lt;http://nictiz.nl/fhir/StructureDefinition/zib-Payer-Organization&amp;gt;). This Coverage profile acts as the focal resource of Payer, although Coverage is more associated with the Insurance container of the zib then with Payer as a whole. Nevertheless, the Coverage resource acts as an overarching resource that references the various resources that represent PayerPerson or InsuranceCompany and adds details like BankInformation. For the InsuranceCompany concept, the profile on Organization is used which is referenced using the `payor` element."/>
-            <alias value="Betaler"/>
-            <alias value="Verzekering"/>
-            <mapping>
-                <identity value="zib-payer-v3.1.1-2020EN"/>
-                <map value="NL-CM:1.1.1"/>
-                <comment value="Payer"/>
-            </mapping>
-            <mapping>
-                <identity value="zib-payer-v3.1.1-2020EN"/>
-                <map value="NL-CM:1.1.8"/>
-                <comment value="Insurance"/>
-            </mapping>
-        </element>
-        <element id="Coverage.identifier">
-            <path value="Coverage.identifier"/>
-            <short value="InsurantNumber"/>
-            <definition value="Number under which the insured person is registered at the insurance company This item maps the ‘Identification number of the card’ on EHIC field 8"/>
-            <alias value="VerzekerdeNummer"/>
-            <mapping>
-                <identity value="zib-payer-v3.1.1-2020EN"/>
-                <map value="NL-CM:1.1.6"/>
-                <comment value="InsurantNumber"/>
-            </mapping>
-        </element>
-        <element id="Coverage.type">
-            <path value="Coverage.type"/>
-            <short value="InsuranceType"/>
-            <definition value="Type of insurance policy. Codes as returned in the Check for Right to Insurance"/>
-            <alias value="Verzekeringssoort"/>
-            <binding>
-                <strength value="required"/>
-                <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.1.1.1--20200901000000"/>
-            </binding>
-            <mapping>
-                <identity value="zib-payer-v3.1.1-2020EN"/>
-                <map value="NL-CM:1.1.15"/>
-                <comment value="InsuranceType"/>
-            </mapping>
-        </element>
-        <element id="Coverage.period.start">
-            <path value="Coverage.period.start"/>
-            <short value="StartDateTime"/>
-            <definition value="Date from which the insurance policy coverage applies."/>
-            <alias value="BeginDatumTijd"/>
-            <mapping>
-                <identity value="zib-payer-v3.1.1-2020EN"/>
-                <map value="NL-CM:1.1.13"/>
-                <comment value="StartDateTime"/>
-            </mapping>
-        </element>
-        <element id="Coverage.period.end">
-            <path value="Coverage.period.end"/>
-            <short value="EndDateTime"/>
-            <definition value="Date until which the insurance policy coverage applies. This item maps the ‘Expiry date’ on EHIC field 9."/>
-            <alias value="EindDatumTijd"/>
-            <mapping>
-                <identity value="zib-payer-v3.1.1-2020EN"/>
-                <map value="NL-CM:1.1.14"/>
-                <comment value="EndDateTime"/>
-            </mapping>
-        </element>
-        <element id="Coverage.payor">
-            <path value="Coverage.payor"/>
-            <slicing>
-                <discriminator>
-                    <type value="profile"/>
-                    <path value="resolve()"/>
-                </discriminator>
-                <rules value="open"/>
-            </slicing>
-            <max value="1"/>
-        </element>
-        <element id="Coverage.payor:payerPerson">
-            <path value="Coverage.payor"/>
-            <sliceName value="payerPerson"/>
-            <short value="PayerPerson"/>
-            <definition value="Container of the PayerPerson concept. This container contains all data elements of the PayerPerson concept.In this a person is a natural person or a juridical person, such as an organization, municipality, etc."/>
-            <comment value="If the resource referenced is conformant to one of the target zib profiles, these profiles provide a mapping to the relevant zib Payer concepts. If it is not of conformant to one of these zib profiles, it SHALL have at least the following FHIR elements filled to be compliant with the subsequent zib Payer concepts:&#xD;&#xA;* `name.text` - PayerPerson::PayerName (NL-CM:1.1.5)&#xD;&#xA;* `address` - AddressInformation (NL-CM:1.1.17)&#xD;&#xA;* `telecom` - ContactInformation (NL-CM:1.1.12)"/>
-            <alias value="BetalerPersoon"/>
-            <max value="1"/>
-            <type>
-                <code value="Reference"/>
-                <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization"/>
-                <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient"/>
-                <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson"/>
-                <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient"/>
-                <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson"/>
-            </type>
-            <mapping>
-                <identity value="zib-payer-v3.1.1-2020EN"/>
-                <map value="NL-CM:1.1.2"/>
-                <comment value="PayerPerson"/>
-            </mapping>
-        </element>
-        <element id="Coverage.payor:payerPerson.extension">
-            <path value="Coverage.payor.extension"/>
-            <slicing>
-                <discriminator>
-                    <type value="value"/>
-                    <path value="url"/>
-                </discriminator>
-                <rules value="open"/>
-            </slicing>
-        </element>
-        <element id="Coverage.payor:payerPerson.extension:bankInformation">
-            <path value="Coverage.payor.extension"/>
-            <sliceName value="bankInformation"/>
-            <type>
-                <code value="Extension"/>
-                <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Payer.BankInformation"/>
-            </type>
-        </element>
-        <element id="Coverage.payor:insuranceCompany">
-            <path value="Coverage.payor"/>
-            <sliceName value="insuranceCompany"/>
-            <short value="InsuranceCompany"/>
-            <definition value="Container of the InsuranceCompany concept. This container contains all data elements of the InsuranceCompany concept."/>
-            <alias value="Verzekeraar"/>
-            <max value="1"/>
-            <type>
-                <code value="Reference"/>
-                <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Payer-Organization"/>
-            </type>
-            <mapping>
-                <identity value="zib-payer-v3.1.1-2020EN"/>
-                <map value="NL-CM:1.1.3"/>
-                <comment value="InsuranceCompany"/>
-            </mapping>
-        </element>
-    </differential>
+  <id value="zib-Payer" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Payer" />
+  <name value="ZibPayer" />
+  <title value="zib Payer" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Payers are organizations or individuals that pay for the healthcare supplied to the patient. These organizations or individuals can be: facilities or people who financially guarantee or who are responsible for the patient (such as parents or guardians of minors), organizations with direct financial responsibility, combinations of these or the patient themselves." />
+  <purpose value="This Coverage resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Payer-v3.1.1(2020EN)](https://zibs.nl/wiki/Payer-v3.1.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-payer-v3.1.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/Payer-v3.1.1(2020EN)" />
+    <name value="zib Payer-v3.1.1(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Coverage" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Coverage" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Coverage">
+      <path value="Coverage" />
+      <short value="Payer / Insurance" />
+      <definition value="* Root concept of the Payer information model. This root concept contains all data elements of the Payer information model.&#xD;&#xA;* Container of the Insurance concept. This container contains all data elements of the Insurance concept." />
+      <comment value="The zib Payer is mapped to this Coverage profile and a profile on Organization (&amp;lt;http://nictiz.nl/fhir/StructureDefinition/zib-Payer-Organization&amp;gt;). This Coverage profile acts as the focal resource of Payer, although Coverage is more associated with the Insurance container of the zib then with Payer as a whole. Nevertheless, the Coverage resource acts as an overarching resource that references the various resources that represent PayerPerson or InsuranceCompany and adds details like BankInformation. For the InsuranceCompany concept, the profile on Organization is used which is referenced using the `payor` element." />
+      <alias value="Betaler" />
+      <alias value="Verzekering" />
+      <mapping>
+        <identity value="zib-payer-v3.1.1-2020EN" />
+        <map value="NL-CM:1.1.1" />
+        <comment value="Payer" />
+      </mapping>
+      <mapping>
+        <identity value="zib-payer-v3.1.1-2020EN" />
+        <map value="NL-CM:1.1.8" />
+        <comment value="Insurance" />
+      </mapping>
+    </element>
+    <element id="Coverage.identifier">
+      <path value="Coverage.identifier" />
+      <slicing>
+        <discriminator>
+          <type value="pattern" />
+          <path value="type" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Coverage.identifier:insurantNumber">
+      <path value="Coverage.identifier" />
+      <sliceName value="insurantNumber" />
+      <short value="InsurantNumber" />
+      <definition value="Number under which the insured person is registered at the insurance company. This item maps the ‘Identification number of the card’ on EHIC field 8" />
+      <comment value="The zib defines InsurantNumber as mapping &quot;the ‘Identification number of the card’ on EHIC field 8&quot;. Some developments on mapping EHIC to FHIR are ongoing, but no Identifier.system has been defined yet. For this reason, only a mapping on `type` code 'SN' has been made." />
+      <alias value="VerzekerdeNummer" />
+      <max value="1" />
+      <patternIdentifier>
+        <type>
+          <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+            <code value="SN" />
+          </coding>
+        </type>
+      </patternIdentifier>
+      <mapping>
+        <identity value="zib-payer-v3.1.1-2020EN" />
+        <map value="NL-CM:1.1.6" />
+        <comment value="InsurantNumber" />
+      </mapping>
+    </element>
+    <element id="Coverage.type">
+      <path value="Coverage.type" />
+      <short value="InsuranceType" />
+      <definition value="Type of insurance policy. Codes as returned in the Check for Right to Insurance" />
+      <alias value="Verzekeringssoort" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.1.1.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-payer-v3.1.1-2020EN" />
+        <map value="NL-CM:1.1.15" />
+        <comment value="InsuranceType" />
+      </mapping>
+    </element>
+    <element id="Coverage.period.start">
+      <path value="Coverage.period.start" />
+      <short value="StartDateTime" />
+      <definition value="Date from which the insurance policy coverage applies." />
+      <alias value="BeginDatumTijd" />
+      <mapping>
+        <identity value="zib-payer-v3.1.1-2020EN" />
+        <map value="NL-CM:1.1.13" />
+        <comment value="StartDateTime" />
+      </mapping>
+    </element>
+    <element id="Coverage.period.end">
+      <path value="Coverage.period.end" />
+      <short value="EndDateTime" />
+      <definition value="Date until which the insurance policy coverage applies. This item maps the ‘Expiry date’ on EHIC field 9." />
+      <alias value="EindDatumTijd" />
+      <mapping>
+        <identity value="zib-payer-v3.1.1-2020EN" />
+        <map value="NL-CM:1.1.14" />
+        <comment value="EndDateTime" />
+      </mapping>
+    </element>
+    <element id="Coverage.payor">
+      <path value="Coverage.payor" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <max value="1" />
+    </element>
+    <element id="Coverage.payor:payerPerson">
+      <path value="Coverage.payor" />
+      <sliceName value="payerPerson" />
+      <short value="PayerPerson" />
+      <definition value="Container of the PayerPerson concept. This container contains all data elements of the PayerPerson concept.In this a person is a natural person or a juridical person, such as an organization, municipality, etc." />
+      <comment value="If the resource referenced is conformant to one of the target zib profiles, these profiles provide a mapping to the relevant zib Payer concepts. If it is not of conformant to one of these zib profiles, it SHALL have at least the following FHIR elements filled to be compliant with the subsequent zib Payer concepts:&#xD;&#xA;* `name.text` - PayerPerson::PayerName (NL-CM:1.1.5)&#xD;&#xA;* `address` - AddressInformation (NL-CM:1.1.17)&#xD;&#xA;* `telecom` - ContactInformation (NL-CM:1.1.12)" />
+      <alias value="BetalerPersoon" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson" />
+      </type>
+      <mapping>
+        <identity value="zib-payer-v3.1.1-2020EN" />
+        <map value="NL-CM:1.1.2" />
+        <comment value="PayerPerson" />
+      </mapping>
+    </element>
+    <element id="Coverage.payor:payerPerson.extension">
+      <path value="Coverage.payor.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Coverage.payor:payerPerson.extension:bankInformation">
+      <path value="Coverage.payor.extension" />
+      <sliceName value="bankInformation" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Payer.BankInformation" />
+      </type>
+    </element>
+    <element id="Coverage.payor:insuranceCompany">
+      <path value="Coverage.payor" />
+      <sliceName value="insuranceCompany" />
+      <short value="InsuranceCompany" />
+      <definition value="Container of the InsuranceCompany concept. This container contains all data elements of the InsuranceCompany concept." />
+      <alias value="Verzekeraar" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Payer-Organization" />
+      </type>
+      <mapping>
+        <identity value="zib-payer-v3.1.1-2020EN" />
+        <map value="NL-CM:1.1.3" />
+        <comment value="InsuranceCompany" />
+      </mapping>
+    </element>
+  </differential>
 </StructureDefinition>

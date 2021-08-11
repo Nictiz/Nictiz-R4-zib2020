@@ -1,134 +1,135 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-    <id value="ext-Payer.BankInformation"/>
-    <url value="http://nictiz.nl/fhir/StructureDefinition/ext-Payer.BankInformation"/>
-    <name value="ExtPayerBankInformation"/>
-    <title value="ext Payer.BankInformation"/>
-    <status value="draft"/>
-    <publisher value="Nictiz"/>
-    <contact>
-        <name value="Nictiz"/>
-        <telecom>
-            <system value="email"/>
-            <value value="info@nictiz.nl"/>
-            <use value="work"/>
-        </telecom>
-    </contact>
-    <purpose value="This extension represents the BankInformation concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Payer v3.1.1(2020EN)](https://zibs.nl/wiki/Payer-v3.1.1(2020EN))."/>
-    <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise."/>
-    <fhirVersion value="4.0.1"/>
-    <mapping>
-        <identity value="zib-payer-v3.1.1-2020EN"/>
-        <uri value="https://zibs.nl/wiki/Payer-v3.1.1(2020EN)"/>
-        <name value="zib Payer-v3.1.1(2020EN)"/>
-    </mapping>
-    <kind value="complex-type"/>
-    <abstract value="false"/>
-    <context>
-        <type value="element"/>
-        <expression value="Coverage.payor"/>
-    </context>
-    <type value="Extension"/>
-    <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension"/>
-    <derivation value="constraint"/>
-    <differential>
-        <element id="Extension">
-            <path value="Extension"/>
+  <id value="ext-Payer.BankInformation" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-Payer.BankInformation" />
+  <name value="ExtPayerBankInformation" />
+  <title value="ext Payer.BankInformation" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="This extension adds the concept BankInformation from the [zib Payer v3.1.1(2020)](https://zibs.nl/wiki/Payer-v3.1.1(2020EN)) to the payor element of the Consent resource. The extention contains contains all data elements of the BankInformation concept." />
+  <purpose value="This extension represents the BankInformation concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Payer v3.1.1(2020EN)](https://zibs.nl/wiki/Payer-v3.1.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-payer-v3.1.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/Payer-v3.1.1(2020EN)" />
+    <name value="zib Payer-v3.1.1(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="Coverage.payor" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension">
+      <path value="Extension" />
             <short value="BankInformation"/>
             <definition value="Container of the BankInformation concept. This container contains all data elements of the BankInformation concept."/>
             <alias value="Bankgegevens"/>
-            <mapping>
-                <identity value="zib-payer-v3.1.1-2020EN"/>
-                <map value="NL-CM:1.1.4"/>
+      <mapping>
+        <identity value="zib-payer-v3.1.1-2020EN" />
+        <map value="NL-CM:1.1.4" />
                 <comment value="BankInformation"/>
-            </mapping>
-        </element>
-        <element id="Extension.extension">
-            <path value="Extension.extension"/>
-            <slicing>
-                <discriminator>
-                    <type value="value"/>
-                    <path value="url"/>
-                </discriminator>
-                <rules value="open"/>
-            </slicing>
-        </element>
-        <element id="Extension.extension:bankName">
-            <path value="Extension.extension"/>
-            <sliceName value="bankName"/>
-            <max value="1"/>
-        </element>
-        <element id="Extension.extension:bankName.url">
-            <path value="Extension.extension.url"/>
-            <fixedUri value="bankName"/>
-        </element>
-        <element id="Extension.extension:bankName.value[x]">
-            <path value="Extension.extension.value[x]"/>
+      </mapping>
+    </element>
+    <element id="Extension.extension">
+      <path value="Extension.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Extension.extension:bankName">
+      <path value="Extension.extension" />
+      <sliceName value="bankName" />
+      <max value="1" />
+    </element>
+    <element id="Extension.extension:bankName.url">
+      <path value="Extension.extension.url" />
+      <fixedUri value="bankName" />
+    </element>
+    <element id="Extension.extension:bankName.value[x]">
+      <path value="Extension.extension.value[x]" />
             <short value="BankName"/>
             <definition value="Name of the financial organization."/>
             <alias value="BankNaam"/>
-            <type>
-                <code value="string"/>
-            </type>
-            <mapping>
-                <identity value="zib-payer-v3.1.1-2020EN"/>
-                <map value="NL-CM:1.1.9"/>
+      <type>
+        <code value="string" />
+      </type>
+      <mapping>
+        <identity value="zib-payer-v3.1.1-2020EN" />
+        <map value="NL-CM:1.1.9" />
                 <comment value="BankName"/>
-            </mapping>
-        </element>
-        <element id="Extension.extension:bankCode">
-            <path value="Extension.extension"/>
-            <sliceName value="bankCode"/>
-            <max value="1"/>
-        </element>
-        <element id="Extension.extension:bankCode.url">
-            <path value="Extension.extension.url"/>
-            <fixedUri value="bankCode"/>
-        </element>
-        <element id="Extension.extension:bankCode.value[x]">
-            <path value="Extension.extension.value[x]"/>
+      </mapping>
+    </element>
+    <element id="Extension.extension:bankCode">
+      <path value="Extension.extension" />
+      <sliceName value="bankCode" />
+      <max value="1" />
+    </element>
+    <element id="Extension.extension:bankCode.url">
+      <path value="Extension.extension.url" />
+      <fixedUri value="bankCode" />
+    </element>
+    <element id="Extension.extension:bankCode.value[x]">
+      <path value="Extension.extension.value[x]" />
             <short value="BankCode"/>
             <definition value="Code indicating the bank and branch. For European countries, this is the organization’s BIC or SWIFT code."/>
             <alias value="Bankcode"/>
-            <type>
-                <code value="string"/>
-            </type>
-            <mapping>
-                <identity value="zib-payer-v3.1.1-2020EN"/>
-                <map value="NL-CM:1.1.10"/>
+      <type>
+        <code value="string" />
+      </type>
+      <mapping>
+        <identity value="zib-payer-v3.1.1-2020EN" />
+        <map value="NL-CM:1.1.10" />
                 <comment value="BankCode"/>
-            </mapping>
-        </element>
-        <element id="Extension.extension:accountNumber">
-            <path value="Extension.extension"/>
-            <sliceName value="accountNumber"/>
-            <max value="1"/>
-        </element>
-        <element id="Extension.extension:accountNumber.url">
-            <path value="Extension.extension.url"/>
-            <fixedUri value="accountNumber"/>
-        </element>
-        <element id="Extension.extension:accountNumber.value[x]">
-            <path value="Extension.extension.value[x]"/>
+      </mapping>
+    </element>
+    <element id="Extension.extension:accountNumber">
+      <path value="Extension.extension" />
+      <sliceName value="accountNumber" />
+      <max value="1" />
+    </element>
+    <element id="Extension.extension:accountNumber.url">
+      <path value="Extension.extension.url" />
+      <fixedUri value="accountNumber" />
+    </element>
+    <element id="Extension.extension:accountNumber.value[x]">
+      <path value="Extension.extension.value[x]" />
             <short value="AccountNumber"/>
             <definition value="The payer’s bank account number at the listed organization. For European countries, this is the IBAN."/>
             <alias value="Rekeningnummer"/>
-            <type>
-                <code value="string"/>
-            </type>
-            <mapping>
-                <identity value="zib-payer-v3.1.1-2020EN"/>
-                <map value="NL-CM:1.1.11"/>
+      <type>
+        <code value="string" />
+      </type>
+      <mapping>
+        <identity value="zib-payer-v3.1.1-2020EN" />
+        <map value="NL-CM:1.1.11" />
                 <comment value="AccountNumber"/>
-            </mapping>
-        </element>
-        <element id="Extension.url">
-            <path value="Extension.url"/>
-            <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-Payer.BankInformation"/>
-        </element>
-        <element id="Extension.value[x]">
-            <path value="Extension.value[x]"/>
-            <max value="0"/>
-        </element>
-    </differential>
+      </mapping>
+    </element>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-Payer.BankInformation" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <max value="0" />
+    </element>
+  </differential>
 </StructureDefinition>
