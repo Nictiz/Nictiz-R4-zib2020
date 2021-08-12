@@ -28,6 +28,36 @@
       <path value="EpisodeOfCare" />
       <alias value="nl-core-EpisodeOfCare" />
     </element>
+    <element id="EpisodeOfCare.extension">
+      <path value="EpisodeOfCare.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="EpisodeOfCare.extension:dateFirstEncounter">
+      <path value="EpisodeOfCare.extension" />
+      <sliceName value="dateFirstEncounter" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-EpisodeOfCare.DateFirstEncounter" />
+      </type>
+    </element>
+    <element id="EpisodeOfCare.extension:dateFirstEncounter">
+      <path value="EpisodeOfCare.extension" />
+      <sliceName value="dateFirstEncounter" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-EpisodeOfCare.DateLastEncounter" />
+      </type>
+    </element>
     <element id="EpisodeOfCare.diagnosis.condition">
       <path value="EpisodeOfCare.diagnosis.condition" />
       <type>
