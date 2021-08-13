@@ -46,6 +46,7 @@ This document contains release notes per zib, indicating differences with their 
 * Removed reference on `MedicationRequest.recorder` because this is not accounted for by the zib or a use case.
 * PeriodOfUse has been remodeld using new extensions based on the zib TimerInterval. This should make the mapping more clear.
 * Moved mapping of PeriodOfUse Duration from `MedicationRequest.dispenseRequest.expectedSupplyDuration` to `MedicationRequest.dispenseRequest.extension:periodOfUse-Duration` because of semantic diferences in concept definitions.
+* Replaced fixed _order_ code on `MedicationRequest.intent` with guidance and documentation on which code to use to adhere to open world modeling principle. 
 
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.
@@ -91,6 +92,7 @@ This document contains release notes per zib, indicating differences with their 
 * Mapped MP concept RelatieMedicatieafspraak  to `periorPrescription` instead of an extension in the nl-core profile. 
 * Instead of one extension, the concepts MP RelatieToedieningsafspraak and RelatieMedicatiegebruik are placed in specific extensions in the nl-core profile.
 * Aligned cardinality of `MedicationRequest.note` with the zib Comment cardinality (0..1).
+* Replaced fixed _order_ code on `MedicationRequest.intent` with guidance and documentation on which code to use to adhere to open world modeling principle. 
 
 ## zib-MedicationDispense
 * Added an extension in the nl-core profile that mimics `MedicationDispense.category` so the category can be used as intented by the FHIR core definition.
