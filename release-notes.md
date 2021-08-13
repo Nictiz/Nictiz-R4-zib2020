@@ -97,12 +97,13 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-MedicationDispense
 * Added an extension in the nl-core profile that mimics `MedicationDispense.category` so the category can be used as intented by the FHIR core definition.
 * Placed the mapping DispensedMedicine Reference type slice on `MedicationDispense.medication[x]` allowing the use of a CodeableConcept.
-* Removed references in `.context`, `.partOf` and `.receiver` not accounted for by zibs.
+* Removed references in `MedicationDispense.context`, `MedicationDispense.partOf` and `MedicationDispense.receiver` not accounted for by zibs.
 * Moved AdditionalInformation to its own extension to align more with the profiling guidelines.
 * Relaxed cardinality of additionalInformation extension to 0..* to align with the zib.
 * Added iso21090-PQ-translation extension to MedicationDispense.dispenseRequest.quantity to allow adding quantity translations using with code systems (e.g. G-Standard and NHG).
 * Ranamed MedicationTreatment extension to PharmaceuticalTreatment.Identifier and moved to the nl-core-profile. The extension is now also better documented.
 * Aligned cardinality of `MedicationDispense.note` with the zib Comment cardinality (0..1).
+* `MedicationDispense.status` has become mandatory in R4, therefore, guidance is added on how to populate this field.
 
 ## zib-MedicationUse2
 * Changed fixed category code from 6#urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3 to 422979000#http://snomed.info/sct.
