@@ -20,6 +20,7 @@ This document contains release notes per zib, indicating differences with their 
 * Added an extension in the nl-core profile that mimics `MedicationDispense.category` so the category can be used as intented by the FHIR core definition.
 * Aligned cardinality of `MedicationDispense.note` with the zib Comment cardinality (0..1).
 * Ranamed MedicationTreatment extension to PharmaceuticalTreatment.Identifier and moved to the nl-core-profile. The extension is now also better documented.
+* `MedicationDispense.status` has become mandatory in R4, therefore, guidance is added on how to populate this field.
 
 ## zib-ContactInformation
 * zib ContactInformation is mapped onto two profiles: one for the concept TelephoneNumbers and one for the concept E-mailAddresses. Both are added to the hosting profile.
