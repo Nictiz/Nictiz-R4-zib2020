@@ -78,10 +78,43 @@
       <short value="StatusName" />
       <definition value="Coded description of the functional or mental status or limitation.&#xD;&#xA;Code systems used include:&#xD;&#xA;&#xD;&#xA;SNOMED CT&#xD;&#xA;ICF (International Classification of Functioning, Disability and Health)&#xD;&#xA;NOC (Nursing Outcomes Classification)&#xD;&#xA;OMAHA" />
       <alias value="StatusNaam" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.4--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
         <map value="NL-CM:4.26.2" />
         <comment value="StatusName" />
+      </mapping>
+    </element>
+    <element id="Goal.target.detail[x]">
+      <path value="Goal.target.detail[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Goal.target.detail[x]:detailCodeableConcept">
+      <path value="Goal.target.detailCodeableConcept" />
+      <sliceName value="detailCodeableConcept" />
+      <short value="StatusValue" />
+      <definition value="The extent to which the patient is limited by the functional or mental condition.&#xD;&#xA;If both the status name and the status value are recorded in code, then both values must come from the same code system. If the patient uses a medical device, the evaluation of the extent of the limitation will take place without this aid. The answer codes must be selected from the subselection of the code system corresponding with the request in accordance with the rules applicable to that system." />
+      <alias value="StatusWaarde" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.3--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
+        <map value="NL-CM:4.26.3" />
+        <comment value="StatusValue" />
       </mapping>
     </element>
     <element id="Goal.addresses">
