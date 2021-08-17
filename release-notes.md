@@ -74,4 +74,5 @@ Style - profiling guidelines
 * The patient reference has been moved to the nl-core layer
 * Removed the mapping on `Goal.expressedBy` and the reference to practitionerRole
 * The reference FunctionalOrMentalStatus is modulated inline on the goal resource elements (see comment on the root element for the explanation)
+* Added nl-core-Problem reference in the nl-core layer and this is mapped on `Goal.addresses`
 
