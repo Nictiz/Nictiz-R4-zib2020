@@ -50,6 +50,12 @@
       <short value="DesiredHealthcareResult" />
       <definition value="The textual account of the treatment objective. This concept provides the option to define a treatment objective which cannot be described as a measurement value or functional/mental status." />
       <alias value="GewenstZorgresultaat" />
+      <constraint>
+        <key value="zib-TreatmentObjective-1" />
+        <severity value="error" />
+        <human value="One concept from DesiredHealthCondition::FunctionalOrMentalStatus and DesiredHealthcareResult must be selected." />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentObjective" />
+      </constraint>
       <mapping>
         <identity value="zib-treatmentobjective-v3.2-2020EN" />
         <map value="NL-CM:13.5.5" />
