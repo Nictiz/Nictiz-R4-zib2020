@@ -70,7 +70,7 @@
         <description value="Use ConceptMap AllergieStatusCodelijst_to_AllergyIntoleranceVerificationStatusCodes to translate terminology from the functional model to profile terminology in ValueSet AllergyIntoleranceVerificationStatusCodes" />
         <valueSet value="http://hl7.org/fhir/ValueSet/allergyintolerance-verification|4.0.1">
           <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
-              <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/AllergieStatusCodelijst-to-AllergyIntoleranceVerificationStatusCodes" />
+            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/AllergieStatusCodelijst-to-AllergyIntoleranceVerificationStatusCodes" />
           </extension>
         </valueSet>
       </binding>
@@ -88,10 +88,10 @@
       <max value="1" />
       <binding>
         <strength value="required" />
-          <description value="Use ConceptMap AllergieCategorieCodelijst_to_AllergyIntoleranceCategory to translate terminology from the functional model to profile terminology in ValueSet AllergyIntoleranceCategory" />
+        <description value="Use ConceptMap AllergieCategorieCodelijst_to_AllergyIntoleranceCategory to translate terminology from the functional model to profile terminology in ValueSet AllergyIntoleranceCategory" />
         <valueSet value="http://hl7.org/fhir/ValueSet/allergy-intolerance-category|4.0.1">
           <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
-              <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/AllergieCategorieCodelijst-to-AllergyIntoleranceCategory" />
+            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/AllergieCategorieCodelijst-to-AllergyIntoleranceCategory" />
           </extension>
         </valueSet>
       </binding>
@@ -142,10 +142,10 @@
       <alias value="MateVanKritiekZijn" />
       <binding>
         <strength value="required" />
-          <description value="Use ConceptMap MateVanKritiekZijnCodelijst_to_AllergyIntoleranceCriticality to translate terminology from the functional model to profile terminology in ValueSet AllergyIntoleranceCriticality" />
+        <description value="Use ConceptMap MateVanKritiekZijnCodelijst_to_AllergyIntoleranceCriticality to translate terminology from the functional model to profile terminology in ValueSet AllergyIntoleranceCriticality" />
         <valueSet value="http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality|4.0.1">
           <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
-              <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/MateVanKritiekZijnCodelijst-to-AllergyIntoleranceCriticality" />
+            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/MateVanKritiekZijnCodelijst-to-AllergyIntoleranceCriticality" />
           </extension>
         </valueSet>
       </binding>
@@ -240,6 +240,10 @@
         <comment value="LastReactionDateTime" />
       </mapping>
     </element>
+    <element id="AllergyIntolerance.note">
+      <path value="AllergyIntolerance.note" />
+      <max value="1" />
+    </element>
     <element id="AllergyIntolerance.note.text">
       <path value="AllergyIntolerance.note.text" />
       <short value="Comment" />
@@ -254,7 +258,6 @@
     <element id="AllergyIntolerance.reaction">
       <path value="AllergyIntolerance.reaction" />
       <short value="Reaction" />
-      <definition value="Container of the Reaction concept. This container contains all data elements of the Reaction concept." />
       <alias value="Reactie" />
       <mapping>
         <identity value="zib-allergyintolerance-v3.3-2020EN" />
@@ -324,7 +327,7 @@
         <description value="Use ConceptMap ErnstCodelijst_to_AllergyIntoleranceSeverity to translate terminology from the functional model to profile terminology in ValueSet AllergyIntoleranceSeverity" />
         <valueSet value="http://hl7.org/fhir/ValueSet/reaction-event-severity|4.0.1">
           <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
-              <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/ErnstCodelijst-to-AllergyIntoleranceSeverity" />
+            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/ErnstCodelijst-to-AllergyIntoleranceSeverity" />
           </extension>
         </valueSet>
       </binding>
