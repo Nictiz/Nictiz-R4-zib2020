@@ -73,5 +73,5 @@ Style - profiling guidelines
 * DesiredHealthcareResult element moved to `Goal.description.text`
 * The patient reference has been moved to the nl-core layer
 * Removed the mapping on `Goal.expressedBy` and the reference to practitionerRole
-* The reference FunctionalOrMentalStatus is modulated inline on the goal resource elements
+* The reference FunctionalOrMentalStatus is modulated inline on the goal resource elements (see comment on the root element for the explanation)
 
