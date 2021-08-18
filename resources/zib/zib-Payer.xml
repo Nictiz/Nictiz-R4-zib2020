@@ -32,7 +32,6 @@
         <element id="Coverage">
             <path value="Coverage"/>
             <short value="Payer / Insurance"/>
-            <definition value="* Root concept of the Payer information model. This root concept contains all data elements of the Payer information model.&#xD;&#xA;* Container of the Insurance concept. This container contains all data elements of the Insurance concept."/>
             <comment value="The zib Payer is mapped to this Coverage profile and a profile on Organization (&amp;lt;http://nictiz.nl/fhir/StructureDefinition/zib-Payer-Organization&amp;gt;). This Coverage profile acts as the focal resource of Payer, although Coverage is more associated with the Insurance container of the zib then with Payer as a whole. Nevertheless, the Coverage resource acts as an overarching resource that references the various resources that represent PayerPerson or InsuranceCompany and adds details like BankInformation. For the InsuranceCompany concept, the profile on Organization is used which is referenced using the `payor` element."/>
             <alias value="Betaler"/>
             <alias value="Verzekering"/>
@@ -79,7 +78,7 @@
         <element id="Coverage.subscriberId">
             <path value="Coverage.subscriberId"/>
             <short value="InsurantNumber"/>
-            <definition value="Number under which the insured person is registered at the insurance company This item maps the ‘Identification number of the card’ on EHIC field 8&#xA;                        "/>
+            <definition value="Number under which the insured person is registered at the insurance company This item maps the ‘Identification number of the card’ on EHIC field 8"/>
             <alias value="VerzekerdeNummer"/>
             <mapping>
                 <identity value="zib-payer-v3.1.1-2020EN"/>
@@ -132,7 +131,7 @@
             <path value="Coverage.payor"/>
             <sliceName value="payerPerson"/>
             <short value="PayerPerson"/>
-            <definition value="Container of the PayerPerson concept. This container contains all data elements of the PayerPerson concept.In this a person is a natural person or a juridical person, such as an organization, municipality, etc."/>
+            <definition value="This container contains all data elements of the PayerPerson concept. In this a person is a natural person or a juridical person, such as an organization, municipality, etc."/>
             <comment value="If the resource referenced is conformant to one of the target zib profiles, these profiles provide a mapping to the relevant zib Payer concepts. If it is not of conformant to one of these zib profiles, it SHALL have at least the following FHIR elements filled to be compliant with the subsequent zib Payer concepts:&#xD;&#xA;* `name.text` - PayerPerson::PayerName (NL-CM:1.1.5)&#xD;&#xA;* `address` - AddressInformation (NL-CM:1.1.17)&#xD;&#xA;* `telecom` - ContactInformation (NL-CM:1.1.12)"/>
             <alias value="BetalerPersoon"/>
             <max value="1"/>
