@@ -60,6 +60,12 @@ This document contains release notes per zib, indicating differences with their 
 * The extension EpisodOfCare-Title has been replaced by ext-EpisodeOfCare.EpisodeOfCareName because this zib concept is functionally equivalent.
 * The extensions EpisodeOfCare-DateFirstEncounter and EpisodeOfCare-DateLastEncounter from the previous profile are not inherited because no functional backing exists.
 
+## zib-MedicalDevice
+* Indication no longer requires a custom extension because the concept can be mapped to a native FHIR element, namely `.reasonReference`. 
+* Provided more documenation on how to exchange ProductID in FHIR.
+* Removed references on `.source` because those are not accounted for by the zib.
+* Provided documentation on how to populate mandatory `.status` element.
+
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.
 * `Organization.type[DepartmentSpecialty]` and `Organization.type[OrganizationType]` from 0..* to 0..1.

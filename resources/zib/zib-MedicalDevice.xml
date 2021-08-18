@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-MedicalDevice" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice" />
+  <name value="ZibMedicalDevice" />
+  <title value="zib MedicalDevice" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Medical devices are any internally implanted and external devices and/or aids used by the patient (in the past) to reduce the effects of functional limitations in organ systems or to facilitate the treatment of a disease." />
+  <purpose value="This DeviceUseStatement resource represents the Dutch [zib MedicalDevice v3.3.1 ('Zorginformatiebouwsteen', i.e. Health and Care Information Model)](https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-medicaldevice-v3.3.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN)" />
+    <name value="zib MedicalDevice-v3.3.1(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="DeviceUseStatement" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/DeviceUseStatement" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="DeviceUseStatement">
+      <path value="DeviceUseStatement" />
+      <short value="MedicalDevice" />
+      <alias value="MedischHulpmiddel" />
+      <mapping>
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
+        <map value="NL-CM:10.1.1" />
+        <comment value="MedicalDevice" />
+      </mapping>
+    </element>
+    <element id="DeviceUseStatement.extension">
+      <path value="DeviceUseStatement.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="DeviceUseStatement.extension:healthProfessional">
+      <path value="DeviceUseStatement.extension" />
+      <sliceName value="healthProfessional" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicalDevice.HealthProfessional" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.extension:location">
+      <path value="DeviceUseStatement.extension" />
+      <sliceName value="location" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicalDevice.Location" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.status">
+      <path value="DeviceUseStatement.status" />
+      <comment value="This element is implictly mapped to the zib concepts NL-CM:10.1.11 (StartDate) and NL-CM:10.1.14 (EndDate). Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When StartDate is in the future, `.status` will usually be set to _intended_.&#xD;&#xA;* When StartDate is in the past and EndDate has a value and in the future or EndDate has no value, `.status` will usually be set to _active_.&#xD;&#xA;* When EndDate has a value and is in the past, `.status` will usually be set to _completed_." />
+      <mapping>
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
+        <map value="NL-CM:10.1.11" />
+        <comment value="StartDate (implicit, main mapping is on DeviceUseStatement.timingPeriod.start)" />
+      </mapping>
+      <mapping>
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
+        <map value="NL-CM:10.1.14" />
+        <comment value="EndDate (implicit, main mapping is on DeviceUseStatement.timingPeriod.end)" />
+      </mapping>
+    </element>
+    <element id="DeviceUseStatement.timing[x]">
+      <path value="DeviceUseStatement.timing[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="DeviceUseStatement.timing[x]:timingPeriod">
+      <path value="DeviceUseStatement.timing[x]" />
+      <sliceName value="timingPeriod" />
+      <type>
+        <code value="Period" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.timing[x]:timingPeriod.start">
+      <path value="DeviceUseStatement.timing[x].start" />
+      <short value="StartDate" />
+      <definition value="The start date of the first use or implant of the medical device. A ‘vague’ date, such as only the year, is permitted." />
+      <alias value="BeginDatum" />
+      <mapping>
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
+        <map value="NL-CM:10.1.11" />
+        <comment value="StartDate" />
+      </mapping>
+    </element>
+    <element id="DeviceUseStatement.timing[x]:timingPeriod.end">
+      <path value="DeviceUseStatement.timing[x].end" />
+      <short value="EndDate" />
+      <definition value="The end date of the last use or explant of the medical device. A ‘vague’ date, such as only the year, is permitted." />
+      <alias value="EindDatum" />
+      <mapping>
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
+        <map value="NL-CM:10.1.14" />
+        <comment value="EndDate" />
+      </mapping>
+    </element>
+    <element id="DeviceUseStatement.device">
+      <path value="DeviceUseStatement.device" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Device" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.reasonReference">
+      <path value="DeviceUseStatement.reasonReference" />
+      <short value="Indication" />
+      <definition value="The medical reason for use of the medical device." />
+      <alias value="Indicatie" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DiagnosticReport" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Media" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem" />
+      </type>
+      <mapping>
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
+        <map value="NL-CM:10.1.7" />
+        <comment value="Indication" />
+      </mapping>
+    </element>
+    <element id="DeviceUseStatement.bodySite">
+      <path value="DeviceUseStatement.bodySite" />
+      <short value="AnatomicalLocation" />
+      <definition value="Patient’s anatomical location of the medical device used." />
+      <alias value="AnatomischeLocatie" />
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
+      </type>
+      <mapping>
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
+        <map value="NL-CM:10.1.15" />
+        <comment value="AnatomicalLocation" />
+      </mapping>
+    </element>
+    <element id="DeviceUseStatement.note">
+      <path value="DeviceUseStatement.note" />
+      <max value="1" />
+    </element>
+    <element id="DeviceUseStatement.note.text">
+      <path value="DeviceUseStatement.note.text" />
+      <short value="Comment" />
+      <definition value="Comment about use or information on the medical device used." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
+        <map value="NL-CM:10.1.10" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
