@@ -29,10 +29,10 @@ This document contains release notes per zib, indicating differences with their 
 
 ## zib-FunctionalOrMentalStatus
 * SNOMED codes functionalCode and mentalCode on `Observation.category` have been removed
-* The value lists StatusNameICFCodelist, StatusNameNOCCodelist, StatusNameOMAHACodelist, StatusNameSnomedCodelist are combined into one list and modulated on `Observation.code`
-* The value lists StatusValueICFCodelist, StatusValueNOCCodelist, StatusValueOMAHACodelist, StatusValueSnomedCodelist are combined into on list and modulated on `Observation.value[x]:valueCodeableConcept`
-* `EffectiveDateTime` is modulated on its own slice
-* The comment element is modulated on `Observation.note.text` instead of `Observation.comment`
+* The value lists StatusNameICFCodelist, StatusNameNOCCodelist, StatusNameOMAHACodelist, StatusNameSnomedCodelist are combined into one list and mapped on `Observation.code`
+* The value lists StatusValueICFCodelist, StatusValueNOCCodelist, StatusValueOMAHACodelist, StatusValueSnomedCodelist are combined into on list and mapped on `Observation.value[x]:valueCodeableConcept`
+* `EffectiveDateTime` is mapped on its own slice
+* The comment element is mapped on `Observation.note.text` instead of `Observation.comment`
 * MedicalDevice extension have been removed see comment on root element for the explanation
 * The patient reference has been moved to the nl-core layer
 
