@@ -27,6 +27,9 @@ This document contains release notes per zib, indicating differences with their 
 * Removed the role extension (http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role) because RelatedPerson.relationship has changed from 0..1 to 0..1. The zib concept role is now mapped to a slice on relationship.
 * Updated to new zib-NameInformation and zib-AddressInformation and zib-ContactInformation profiles.
 
+## zib-MedicalDevice
+* Indication no longer requires a custom extension because reasonReference has become a native element in R4, namely `.reasonReference`. 
+
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.
 * `Organization.type[DepartmentSpecialty]` and `Organization.type[OrganizationType]` from 0..* to 0..1
