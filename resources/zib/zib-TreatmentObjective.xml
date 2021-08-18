@@ -54,6 +54,7 @@
         <key value="zib-TreatmentObjective-1" />
         <severity value="error" />
         <human value="One concept from DesiredHealthCondition::FunctionalOrMentalStatus and DesiredHealthcareResult must be selected." />
+        <expression value="description.text.empty() or reference.empty()" />
         <source value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentObjective" />
       </constraint>
       <mapping>
@@ -75,8 +76,6 @@
     <element id="Goal.target.extension:medicalDevice">
       <path value="Goal.target.extension" />
       <sliceName value="medicalDevice" />
-      <min value="0" />
-      <max value="*" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-FunctionalOrMentalStatus.MedicalDevice" />
