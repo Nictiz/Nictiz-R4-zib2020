@@ -15,7 +15,7 @@
     </telecom>
   </contact>
   <description value="A nutritional advice is a description of nourishment for the patient, which must meet specific requirements in view of the health condition of the patient. Allergies and food intolerances or chewing and swallowing problems may be a reason for special nutrition." />
-  <purpose value="This Goal resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) NutritionAdvice v3.2 (2020)](https://zibs.nl/wiki/NutritionAdvice-v3.2(2020EN))." />
+  <purpose value="This NutritionOrder resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) NutritionAdvice v3.2 (2020)](https://zibs.nl/wiki/NutritionAdvice-v3.2(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -38,6 +38,36 @@
         <map value="NL-CM:7.11.1" />
         <comment value="NutritionAdvice" />
       </mapping>
+    </element>
+    <element id="NutritionOrder.extension">
+      <path value="NutritionOrder.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="NutritionOrder.extension:problem">
+      <path value="NutritionOrder.extension" />
+      <sliceName value="problem" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/workflow-reasonReference" />
+      </type>
+    </element>
+    <element id="NutritionOrder.extension:problem.value[x]">
+      <path value="NutritionOrder.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DiagnosticReport" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Media" />
+        <targetProfile value="https://nictiz.nl/fhir/StructureDefinition/zib-Problem" />
+      </type>
     </element>
     <element id="NutritionOrder.oralDiet.type.text">
       <path value="NutritionOrder.oralDiet.type.text" />
