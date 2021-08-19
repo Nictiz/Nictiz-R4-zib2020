@@ -28,6 +28,40 @@
       <path value="DeviceUseStatement" />
       <alias value="nl-core-MedicalDevice" />
     </element>
+    <element id="DeviceUseStatement.extension">
+      <path value="DeviceUseStatement.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="DeviceUseStatement.extension:healthProfessional">
+      <path value="DeviceUseStatement.extension" />
+      <sliceName value="healthProfessional" />
+    </element>
+    <element id="DeviceUseStatement.extension:healthProfessional.value[x]">
+      <path value="DeviceUseStatement.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.extension:location">
+      <path value="DeviceUseStatement.extension" />
+      <sliceName value="location" />
+    </element>
+    <element id="DeviceUseStatement.extension:location.value[x]">
+      <path value="DeviceUseStatement.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider" />
+      </type>
+    </element>
     <element id="DeviceUseStatement.subject">
       <path value="DeviceUseStatement.subject" />
       <type>

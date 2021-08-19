@@ -19,7 +19,7 @@
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
-    <identity value="MedicalDevice-v3.3.1-2020EN" />
+    <identity value="zib-medicaldevice-v3.3.1-2020EN" />
     <uri value="https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN)" />
     <name value="zib MedicalDevice-v3.3.1(2020EN)" />
   </mapping>
@@ -34,10 +34,40 @@
       <short value="MedicalDevice" />
       <alias value="MedischHulpmiddel" />
       <mapping>
-        <identity value="MedicalDevice-v3.3.1-2020EN" />
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
         <map value="NL-CM:10.1.1" />
         <comment value="MedicalDevice" />
       </mapping>
+    </element>
+    <element id="DeviceUseStatement.extension">
+      <path value="DeviceUseStatement.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="DeviceUseStatement.extension:healthProfessional">
+      <path value="DeviceUseStatement.extension" />
+      <sliceName value="healthProfessional" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicalDevice.HealthProfessional" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.extension:location">
+      <path value="DeviceUseStatement.extension" />
+      <sliceName value="location" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicalDevice.Location" />
+      </type>
     </element>
     <element id="DeviceUseStatement.timing[x]">
       <path value="DeviceUseStatement.timing[x]" />
@@ -62,7 +92,7 @@
       <definition value="The start date of the first use or implant of the medical device. A ‘vague’ date, such as only the year, is permitted." />
       <alias value="BeginDatum" />
       <mapping>
-        <identity value="MedicalDevice-v3.3.1-2020EN" />
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
         <map value="NL-CM:10.1.11" />
         <comment value="StartDate" />
       </mapping>
@@ -72,7 +102,7 @@
       <definition value="The end date of the last use or explant of the medical device. A ‘vague’ date, such as only the year, is permitted." />
       <alias value="EindDatum" />
       <mapping>
-        <identity value="MedicalDevice-v3.3.1-2020EN" />
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
         <map value="NL-CM:10.1.14" />
       </mapping>
     </element>
@@ -99,7 +129,7 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem" />
       </type>
       <mapping>
-        <identity value="MedicalDevice-v3.3.1-2020EN" />
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
         <map value="NL-CM:10.1.7" />
         <comment value="Indication" />
       </mapping>
@@ -114,7 +144,7 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
       </type>
       <mapping>
-        <identity value="MedicalDevice-v3.3.1-2020EN" />
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
         <map value="NL-CM:10.1.15" />
         <comment value="AnatomicalLocation" />
       </mapping>
@@ -129,7 +159,7 @@
       <definition value="Comment about use or information on the medical device used." />
       <alias value="Toelichting" />
       <mapping>
-        <identity value="MedicalDevice-v3.3.1-2020EN" />
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
         <map value="NL-CM:10.1.10" />
         <comment value="Comment" />
       </mapping>
