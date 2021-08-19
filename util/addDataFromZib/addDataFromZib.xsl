@@ -30,7 +30,7 @@
             
             <!-- Add or modify URL -->
             <xsl:choose>
-                <xsl:when test="(not(f:url) or starts-with(f:url/@value, 'http://example.org/')  or starts-with(f:url/@value, 'https://example.org/')) and (starts-with($id, 'zib-') or starts-with($id, 'nl-core-'))">
+                <xsl:when test="(not(f:url) or starts-with(f:url/@value, 'http://example.org/')  or starts-with(f:url/@value, 'https://example.org/')) and (starts-with($id, 'zib-') or starts-with($id, 'nl-core-') or starts-with($id, 'ext-'))">
                     <url value="http://nictiz.nl/fhir/StructureDefinition/{$id}"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -43,7 +43,7 @@
             <!-- Add or modify name, title, status -->
             <xsl:choose>
                 <xsl:when test="not(f:url) or starts-with(f:name/@value, 'My')">
-                    <name value="{replace(concat(upper-case(substring($id,1,1)), substring($id, 2)),'-','')}"/>
+                    <name value="{translate(concat(upper-case(substring($id,1,1)), substring($id, 2)),'-.','')}"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:apply-templates select="f:name"/>
