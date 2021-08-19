@@ -36,7 +36,6 @@ This document contains release notes per zib, indicating differences with their 
 * MedicalDevice extension have been removed see comment on root element for the explanation
 * The patient reference has been moved to the nl-core layer
 
-
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.
 * `Organization.type[DepartmentSpecialty]` and `Organization.type[OrganizationType]` from 0..* to 0..1
