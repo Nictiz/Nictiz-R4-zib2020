@@ -113,6 +113,27 @@ zib-HealthProfessional-PractitionerRole:
       - datatype: ContactPoint
         reason: See PractitionerRole.telecom
 
+zib-HearingFunction-MedicalDevice:
+  zib deviations:
+    DeviceUseStatement:
+      - datatype: undefined
+        reason: In FHIR, the reference to the MedicalDevice points in the other direction (so the MedicalDevice refers to HearingFunction). The MedicalDevice reference is however mapped on the root element that represents this zib rather than on the DeviceUseStatement.reasonReference resulting in an unmatched datatype. 
+    DeviceUseStatement.bodySite:
+      - datatype: CodeableConcept
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.  
+    DeviceUseStatement.note.text:
+      - cardinality: 1..1
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
+    DeviceUseStatement.timing[x]:timingPeriod.end:
+      - short: EndDate
+        reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
+
+zib-HearingFunction-MedicalDevice-Device:
+  zib deviations:
+    Device.note.text:
+      - cardinality: 1..1
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
+
 zib-MedicalDevice:
   zib deviations:
     DeviceUseStatement.bodySite:
@@ -241,3 +262,24 @@ zib-Patient:
         reason: The mapping is placed on the extension and not on the value[x] because of the nature of this extension. The extension itself contains a valueCoding that gets the zibs value. This datatype matches the zib CD type.
       - cardinality: 0..*
         reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
+
+zib-VisualFunction-MedicalDevice:
+  zib deviations:
+    DeviceUseStatement:
+      - datatype: undefined
+        reason: In FHIR, the reference to the MedicalDevice points in the other direction (so the MedicalDevice refers to VisualFunction). The MedicalDevice reference is however mapped on the root element that represents this zib rather than on the DeviceUseStatement.reasonReference resulting in an unmatched datatype. 
+    DeviceUseStatement.bodySite:
+      - datatype: CodeableConcept
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.  
+    DeviceUseStatement.note.text:
+      - cardinality: 1..1
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
+    DeviceUseStatement.timing[x]:timingPeriod.end:
+      - short: EndDate
+        reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
+
+zib-VisualFunction-MedicalDevice-Device:
+  zib deviations:
+    Device.note.text:
+      - cardinality: 1..1
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
