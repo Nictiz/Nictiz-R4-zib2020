@@ -83,6 +83,10 @@ This document contains release notes per zib, indicating differences with their 
 * `PractitionerRole.specialty` is not sliced anymore but has a combined ValueSet.
 * Explained cardinality mismatch of `Practitioner.name` on that element.
 
+## zib-HearingFunction
+* Changed fixed slice on `.code.coding` to a pattern on `.code`.
+* Relaxed cardinality of `value[x]` to 0..1 of the conceptual cardinalities of the zib.
+
 ## zib-LivingSituation
 * Added two new concepts and modelled them on `Observation.component:homeAdaption` and `Observation.component:livingCondition`.
 * Concept 'HouseType' has been moved to its own valueCodeableConcept slice.
@@ -156,3 +160,7 @@ This document contains release notes per zib, indicating differences with their 
 * Removed orderStatus extension because PlannedCareActivityForTransfer zib does not exist anymore.
 * Aligned cardinalities of ImmunizationRecommendation with the zib by constraining them and documentend this on the root element.
 * Removed mapping of DesiredDateForRevaccination because it has been removed by the zib as well. The DesiredDateForRevaccination concept has been replaced by mapping to VaccinationDate which is placed on `ImmunizationRecommendation.recommendation.dateCriterion.value`. The mapping to PlannedCareActivityForTransfer start and end dates have been removed from this element.
+
+## zib-VisualFunction
+* Changed fixed slice on `.code.coding` to a pattern on `.code`.
+* Relaxed cardinality of `value[x]` to 0..1 of the conceptual cardinalities of the zib.

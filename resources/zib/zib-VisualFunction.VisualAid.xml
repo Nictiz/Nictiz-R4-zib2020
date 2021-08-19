@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-VisualFunction-MedicalDevice" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-VisualFunction.VisualAid" />
+  <name value="ZibVisualFunctionMedicalDevice" />
+  <title value="zib VisualFunction MedicalDevice" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Sight is the ability to observe lit objects, with the goal of orienting yourself on objects and people in a lit environment. This pertains to observing the light stimuli, and not processing them in the brain.&#xD;&#xA;A sight disorder can lead to things including orientation problems." />
+  <purpose value="This DeviceUseStatement resource represents the adaptations of zib [zib VisualFunction v3.1('Zorginformatiebouwsteen', i.e. Health and Care Information Model)](https://zibs.nl/wiki/VisualFunction-v3.1(2020EN)) on [zib MedicalDevice v3.3.1](https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-visualfunction-v3.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/VisualFunction-v3.1(2020EN)" />
+    <name value="zib VisualFunction-v3.1(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="DeviceUseStatement" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="DeviceUseStatement">
+      <path value="DeviceUseStatement" />
+      <short value="MedicalDevice / VisualAid" />
+      <definition value="The medical aids used to support the visual function." />
+      <alias value="ZienHulpmiddel" />
+      <mapping>
+        <identity value="zib-visualfunction-v3.1-2020EN" />
+        <map value="NL-CM:4.16.4" />
+        <comment value="VisualAid" />
+      </mapping>
+    </element>
+    <element id="DeviceUseStatement.device">
+      <path value="DeviceUseStatement.device" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-VisualFunction.VisualAid.Product" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.reasonReference">
+      <path value="DeviceUseStatement.reasonReference" />
+      <definition value="The zib HearingFunction Observation resource whose existence justifies this DeviceUseStatement. This element is also used to refer to the medical reason for use of the medical device." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DiagnosticReport" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Media" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-VisualFunction" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
