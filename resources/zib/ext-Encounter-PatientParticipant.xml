@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-Encounter-PatientParticipant" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-Encounter-PatientParticipant" />
+  <name value="ExtEncounterPatientParticipant" />
+  <status value="draft" />
+  <description value="This extension adds zib-Patient as a target profile to `Encounter.participant.individual`. Our zib profiles based on Encounter pre-adopt the notion that the subject of the Encounter does not have to be present at the encounter (https://jira.hl7.org/browse/FHIR-20479). This creates the need to reference the subject in `Encounter.participant.individual` if the subject is present, where the current FHIR R5 build has already added this option to the renamed `participant.actor`." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="rim" />
+    <uri value="http://hl7.org/v3" />
+    <name value="RIM Mapping" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="Encounter.participant.individual" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-Encounter-PatientParticipant" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>

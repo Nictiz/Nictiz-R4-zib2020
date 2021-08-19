@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-MultidisciplinaryTeamMeeting-CarePlan" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-MultidisciplinaryTeamMeeting-CarePlan" />
+  <name value="ZibMultidisciplinaryTeamMeetingCarePlan" />
+  <title value="zib MultidisciplinaryTeamMeeting CarePlan" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A multidisciplinary team meeting is a meeting of health care providers in which the results of examinations and treatment are discussed with the aim of formulating joint advice for the treatment of the patient. A patient can also be present. When healthcare professionals from various disciplines participate, and this is structurally organized (local, regional, sub regional or through a partnership), this is often referred to as a multi-disciplinary consultation ." />
+  <purpose value="This CarePlan resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) MultidisciplinaryTeamMeeting-v1.0(2020EN)](https://zibs.nl/wiki/MultidisciplinaryTeamMeeting-v1.0(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/MultidisciplinaryTeamMeeting-v1.0(2020EN)" />
+    <name value="zib MultidisciplinaryTeamMeeting-v1.0(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="CarePlan" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/CarePlan" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="CarePlan">
+      <path value="CarePlan" />
+      <comment value="Zib MultidisciplinaryTeamMeeting is mapped to this CarePlan profile and a profile on Encounter (&amp;amp;amp;lt;http://nictiz.nl/fhir/StructureDefinition/zib-MultidisciplinaryTeamMeeting&amp;amp;amp;gt;), which acts as the focal resource of MultidisciplinaryTeamMeeting. &#xD;&#xA;&#xD;&#xA;This profile references the Encounter resource through `.encounter`." />
+    </element>
+    <element id="CarePlan.extension">
+      <path value="CarePlan.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="CarePlan.extension:intentTreatment">
+      <path value="CarePlan.extension" />
+      <sliceName value="intentTreatment" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://example.org/fhir/StructureDefinition/MyExtension" />
+      </type>
+    </element>
+    <element id="CarePlan.encounter">
+      <path value="CarePlan.encounter" />
+      <short value="Plan" />
+      <definition value="Container of the Plan concept.This container contains all data elements of the Plan concept." />
+      <alias value="Beleid" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Encounter" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-MultidisciplinaryTeamMeeting" />
+      </type>
+      <mapping>
+        <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
+        <map value="NL-CM:15.2.10" />
+        <comment value="Plan" />
+      </mapping>
+    </element>
+    <element id="CarePlan.activity.reference">
+      <path value="CarePlan.activity.reference" />
+      <short value="ProposedTreatment" />
+      <definition value="Proposed treatment." />
+      <alias value="VoorgesteldeBehandeling" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Appointment" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/CommunicationRequest" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DeviceRequest" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationRequest" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/NutritionOrder" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Task" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ServiceRequest" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/VisionPrescription" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RequestGroup" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-ServiceRequest" />
+      </type>
+      <mapping>
+        <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
+        <map value="NL-CM:15.2.12" />
+        <comment value="ProposedTreatment" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
