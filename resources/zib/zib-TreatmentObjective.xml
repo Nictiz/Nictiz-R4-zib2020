@@ -54,7 +54,7 @@
         <key value="zib-TreatmentObjective-1" />
         <severity value="error" />
         <human value="One concept from DesiredHealthCondition::FunctionalOrMentalStatus and DesiredHealthcareResult must be selected." />
-        <expression value="description.text.empty() or reference.empty()" />
+        <expression value="description.text.empty() or target.detail[x].empty()" />
         <source value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentObjective" />
       </constraint>
       <mapping>
