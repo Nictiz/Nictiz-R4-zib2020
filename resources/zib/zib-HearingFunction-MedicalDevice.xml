@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-HearingFunction-MedicalDevice" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-HearingFunction-MedicalDevice" />
+  <name value="ZibHearingFunctionMedicalDevice" />
+  <title value="zib HearingFunction MedicalDevice" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <purpose value="This DeviceUseStatement resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) HearingFunction-v3.2(2020EN)](https://zibs.nl/wiki/HearingFunction-v3.2(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-hearingfunction-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/HearingFunction-v3.2(2020EN)" />
+    <name value="zib HearingFunction-v3.2(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="DeviceUseStatement" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="DeviceUseStatement">
+      <path value="DeviceUseStatement" />
+      <short value="HearingAid" />
+      <definition value="The medical aid used to help the patient hear." />
+      <alias value="HorenHulpmiddel" />
+      <mapping>
+        <identity value="zib-hearingfunction-v3.2-2020EN" />
+        <map value="NL-CM:4.17.4" />
+        <comment value="HearingAid" />
+      </mapping>
+    </element>
+    <element id="DeviceUseStatement.device">
+      <path value="DeviceUseStatement.device" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HearingFunction-MedicalDevice-Device" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.reasonReference">
+      <path value="DeviceUseStatement.reasonReference" />
+      <definition value="The zib HearingFunction Observation resource whose existence justifies this DeviceUseStatement. This element is also used to refer to the medical reason for use of the medical device." />
+      <requirements value="The zib HearingFunction Observation resource whose existence justifies this DeviceUseStatement." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DiagnosticReport" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Media" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HearingFunction" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.bodySite">
+      <path value="DeviceUseStatement.bodySite" />
+      <short value="DeviceAnatomicalLocation" />
+      <definition value="The anatomical location of the hearing aid, such as: ‘left ear’." />
+      <alias value="HulpmiddelAnatomischeLocatie" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.17.3--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-hearingfunction-v3.2-2020EN" />
+        <map value="NL-CM:10.1.6" />
+        <comment value="DeviceAnatomicalLocation" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

@@ -50,6 +50,11 @@ This document contains release notes per zib, indicating differences with their 
 * `PracitionRole.speciality` is not sliced anymore but has a combined ValueSet.
 * Explained cardinality mismatch of Practitioner.name on that element.
 
+## zib-HearingFunction
+* Changed fixed slice on `.code.coding` to a pattern on `.code`.
+* Relaxed cardinality of `value[x]` to 0..1 of the conceptual cardinalities of the zib.
+
+
 ## zib-NameInformation
 Style - profiling guidelines
 * Moved information and mappings from the extension level to the `value[x]` level. Note that the zib compliance test is complaining now about cardinality differences.
@@ -78,3 +83,7 @@ Style - profiling guidelines
 * Cardinality of `Patient.name` left at 0..* to allow including several name elements with a different name.use each.
 * Cardinality of `Patient.telecom` left at 0..* to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not dot.
 * Added a comment to `deceased[x]`: When exporting the data, if `deceasedDateTim` (DateOfDeath) is present and has a value, DeathIndicator may be set to 'true', since DeathIndicator and DateOfDeath cannot both be represented at the same time.
+
+## zib-VisualFunction
+* Changed fixed slice on `.code.coding` to a pattern on `.code`.
+* Relaxed cardinality of `value[x]` to 0..1 of the conceptual cardinalities of the zib.
