@@ -52,8 +52,6 @@
     <element id="DeviceUseStatement.extension:healthProfessional">
       <path value="DeviceUseStatement.extension" />
       <sliceName value="healthProfessional" />
-      <min value="0" />
-      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicalDevice.HealthProfessional" />
@@ -62,12 +60,24 @@
     <element id="DeviceUseStatement.extension:location">
       <path value="DeviceUseStatement.extension" />
       <sliceName value="location" />
-      <min value="0" />
-      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicalDevice.Location" />
       </type>
+    </element>
+    <element id="DeviceUseStatement.status">
+      <path value="DeviceUseStatement.status" />
+      <comment value="This element is implictly mapped to the zib concepts NL-CM:10.1.11 (StartDate) and NL-CM:10.1.14(EndDate). Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When StartDate is in the future, `.status` will usually be set to _intended_.&#xD;&#xA;* When StartDate is in the past and EndDate has a value and in the future or EndDate has no value, `.status` will usually be set to _active_.&#xD;&#xA;* When EndDate has a value and is in the past, `.status` will usually be set to _completed_." />
+      <mapping>
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
+        <map value="NL-CM:10.1.11" />
+        <comment value="StartDate (implicit, main mapping is on `DeviceUseStatement.timingPeriod.start`)" />
+      </mapping>
+      <mapping>
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
+        <map value="NL-CM:10.1.14" />
+        <comment value="EndDate (implicit, main mapping is on `DeviceUseStatement.timingPeriod.end`)" />
+      </mapping>
     </element>
     <element id="DeviceUseStatement.timing[x]">
       <path value="DeviceUseStatement.timing[x]" />
@@ -99,11 +109,13 @@
     </element>
     <element id="DeviceUseStatement.timing[x]:timingPeriod.end">
       <path value="DeviceUseStatement.timing[x].end" />
+      <short value="EndDate" />
       <definition value="The end date of the last use or explant of the medical device. A ‘vague’ date, such as only the year, is permitted." />
       <alias value="EindDatum" />
       <mapping>
         <identity value="zib-medicaldevice-v3.3.1-2020EN" />
         <map value="NL-CM:10.1.14" />
+        <comment value="EndDate" />
       </mapping>
     </element>
     <element id="DeviceUseStatement.device">

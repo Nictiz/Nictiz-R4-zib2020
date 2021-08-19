@@ -28,7 +28,10 @@ This document contains release notes per zib, indicating differences with their 
 * Updated to new zib-NameInformation and zib-AddressInformation and zib-ContactInformation profiles.
 
 ## zib-MedicalDevice
-* Indication no longer requires a custom extension because reasonReference has become a native element in R4, namely `.reasonReference`. 
+* Indication no longer requires a custom extension because the concept can be mapped to a native FHIR element, namely `.reasonReference`. 
+* Provided more documenation on how to exchange ProductID in FHIR.
+* Removed references on `.source` because those are not accounted for by the zib.
+* Provided documentation on how to populate mandatory `.status` element.
 
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.
