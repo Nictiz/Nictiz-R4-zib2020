@@ -32,6 +32,7 @@
     <element id="Encounter">
       <path value="Encounter" />
       <short value="MultidisciplinaryTeamMeeting" />
+      <comment value="Zib MultidisciplinaryTeamMeeting is mapped to this Encounter profile and a profile on CarePlan (&amp;amp;amp;lt;http://nictiz.nl/fhir/StructureDefinition/zib-MultidisciplinaryTeamMeeting-CarePlanMedia&amp;amp;amp;gt;). This Encounter profile acts as the focal resource of MultidisciplinaryTeamMeeting. This profile is referenced by the CarePlan resource, which holds the 'Plan' concept (NL-CM:15.2.10), through `CarePlan.encounter`." />
       <alias value="Patientbespreking" />
       <mapping>
         <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
@@ -60,7 +61,6 @@
       <short value="Participant" />
       <definition value="Container of the Participant concept.This container contains all data elements of the Participant concept." />
       <alias value="Deelnemer" />
-      <min value="2" />
       <mapping>
         <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
         <map value="NL-CM:15.2.13" />
@@ -84,58 +84,31 @@
     </element>
     <element id="Encounter.participant.individual">
       <path value="Encounter.participant.individual" />
-      <slicing>
-        <discriminator>
-          <type value="exists" />
-          <path value="extension.url" />
-        </discriminator>
-        <discriminator>
-          <type value="profile" />
-          <path value="resolve()" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Encounter.participant.individual:healthProfessional">
-      <path value="Encounter.participant.individual" />
-      <sliceName value="healthProfessional" />
-      <short value="HealthProfessional" />
-      <definition value="Health professional as participant of the patient consultation." />
+      <short value="HealthProfessional / Contactperson" />
+      <definition value="* Health professional as participant of the patient consultation.&#xD;&#xA;* Contactperson as participant of the patient consultation." />
       <alias value="Zorgverlener" />
+      <alias value="Contactpersoon" />
       <type>
         <code value="Reference" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-ZibHealthProfessionalReference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson" />
       </type>
       <mapping>
         <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
         <map value="NL-CM:15.2.3" />
         <comment value="HealthProfessional" />
       </mapping>
-    </element>
-    <element id="Encounter.participant.individual:contactPerson">
-      <path value="Encounter.participant.individual" />
-      <sliceName value="contactPerson" />
-      <short value="Contactperson" />
-      <definition value="Contactperson as participant of the patient consultation." />
-      <alias value="Contactpersoon" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson" />
-      </type>
       <mapping>
         <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
         <map value="NL-CM:15.2.15" />
         <comment value="Contactperson" />
       </mapping>
     </element>
-    <element id="Encounter.participant.individual:patient">
-      <path value="Encounter.participant.individual" />
-      <sliceName value="patient" />
-    </element>
-    <element id="Encounter.participant.individual:patient.extension">
+    <element id="Encounter.participant.individual.extension">
       <path value="Encounter.participant.individual.extension" />
       <slicing>
         <discriminator>
@@ -145,15 +118,16 @@
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Encounter.participant.individual:patient.extension:patient">
+    <element id="Encounter.participant.individual.extension:patient">
       <path value="Encounter.participant.individual.extension" />
       <sliceName value="patient" />
+      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Encounter-PatientParticipant" />
       </type>
     </element>
-    <element id="Encounter.participant.individual:patient.extension:patient.value[x]">
+    <element id="Encounter.participant.individual.extension:patient.value[x]">
       <path value="Encounter.participant.individual.extension.value[x]" />
       <short value="Patient" />
       <definition value="The patient as participant of the patient consultation." />

@@ -1,57 +1,59 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-    <id value="ext-MultidisciplinaryTeamMeeting.IntentTreatment"/>
-    <url value="http://nictiz.nl/fhir/StructureDefinition/ext-MultidisciplinaryTeamMeeting.IntentTreatment"/>
-    <name value="ExtMultidisciplinaryTeamMeetingIntentTreatment"/>
-    <title value="ext MultidisciplinaryTeamMeeting.IntentTreatment"/>
-    <status value="draft"/>
-    <publisher value="Nictiz"/>
-    <contact>
-        <name value="Nictiz"/>
-        <telecom>
-            <system value="email"/>
-            <value value="info@nictiz.nl"/>
-            <use value="work"/>
-        </telecom>
-    </contact>
-    <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise."/>
-    <fhirVersion value="4.0.1"/>
-    <mapping>
-        <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN"/>
-        <uri value="https://zibs.nl/wiki/MultidisciplinaryTeamMeeting-v1.0(2020EN)"/>
-        <name value="zib MultidisciplinaryTeamMeeting-v1.0(2020EN)"/>
-    </mapping>
-    <kind value="complex-type"/>
-    <abstract value="false"/>
-    <context>
-        <type value="element"/>
-        <expression value="CarePlan"/>
-    </context>
-    <type value="Extension"/>
-    <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension"/>
-    <derivation value="constraint"/>
-    <differential>
-        <element id="Extension.url">
-            <path value="Extension.url"/>
-            <fixedUri value="https://example.org/fhir/StructureDefinition/MyExtension"/>
-        </element>
-        <element id="Extension.value[x]">
-            <path value="Extension.value[x]"/>
-            <short value="IntentTreatment"/>
-            <definition value="Intend of treatement. For instance conform protocol, curative or pain management, trial etc."/>
-            <alias value="IntentieBehandeling"/>
-            <type>
-                <code value="CodeableConcept"/>
-            </type>
-            <binding>
-                <strength value="extensible"/>
-                <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.15.2.1--20200901000000"/>
-            </binding>
-            <mapping>
-                <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN"/>
-                <map value="NL-CM:15.2.11"/>
-                <comment value="IntentTreatment"/>
-            </mapping>
-        </element>
-    </differential>
+  <id value="ext-MultidisciplinaryTeamMeeting.IntentTreatment" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-MultidisciplinaryTeamMeeting.IntentTreatment" />
+  <name value="ExtMultidisciplinaryTeamMeetingIntentTreatment" />
+  <title value="ext MultidisciplinaryTeamMeeting.IntentTreatment" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The concept IntentTreatment [zib MultidisciplinaryTeamMeeting v1.0(2020EN)](https://zibs.nl/wiki/MultidisciplinaryTeamMeeting-v1.0(2020EN)) cannot be properly mapped in the CarePlan resource, hence a custom extension is used." />
+  <purpose value="This extension represents the IntentTreatment concept of [zib MultidisciplinaryTeamMeeting v1.0(2020EN)](https://zibs.nl/wiki/MultidisciplinaryTeamMeeting-v1.0(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/MultidisciplinaryTeamMeeting-v1.0(2020EN)" />
+    <name value="zib MultidisciplinaryTeamMeeting-v1.0(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="CarePlan" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-MultidisciplinaryTeamMeeting.IntentTreatment" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="IntentTreatment" />
+      <definition value="Intend of treatement. For instance conform protocol, curative or pain management, trial etc." />
+      <alias value="IntentieBehandeling" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.15.2.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
+        <map value="NL-CM:15.2.11" />
+        <comment value="IntentTreatment" />
+      </mapping>
+    </element>
+  </differential>
 </StructureDefinition>
