@@ -1,17 +1,17 @@
+#ext-FunctionalOrMentalStatus.MedicalDevice:
+#   zib deviations:
+#    Extension.value[x]:
+#    - short: MedicalDevice:MedicalDevice
+#      reason: We only use the part before the double colons according to the profile guidelines.
+#    - cardinality: 0..1
+#       reason: The extension allows the value to occure only once (0..1), but the use of the extension itself (in a resource)is allowed to be repeated (0..*), effectively resulting a cardinality of 0..* for this element.
+
 ext-LanguageProficiency.CommunicationDetails:
   zib deviations:
     Extension.value[x]:
       - cardinality: 0..1
         reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension should be added 0..* in the hosting element.
         
-ext-FunctionalMentalStatus.MedicalDevice:
-   zib deviations:
-    Extension.value[x]:
-    - short: MedicalDevice
-      reason: We only use the part before the double colons according to the profile guidelines.
-    - cardinality: 0..1
-        reason: The extension allows the value to occure only once (0..1), but the use of the extension itself (in a resource)is allowed to be repeated (0..*), effectively resulting a cardinality of 0..* for this element.
-
 pattern-NlCoreHealthProfessionalReference:
   ignored issues:
     StructureDefinition:
