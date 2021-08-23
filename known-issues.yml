@@ -294,6 +294,18 @@ zib-TextResult.VisualResult:
       - cardinality: 1..1
         reason: The use of the Media resource referenced in zib-TextResult DiagnosticReport.media.link is optional (0..*), but if the Media resource is used, Media.content should be present (1..1).
 
+zib-Vaccination-event:
+  zib deviations:
+    Immunization.vaccineCode:
+      - cardinality: 1..1
+        reason: This is a known difference between the zib (0..*) and FHIR (1..1). The mandatory element by FHIR seems legit. If an immunization event has taken place the vaccine code should be known. Otherwise, the value of the whole Immunization resource will be strongly diminished.
+
+zib-Vaccination-request:
+  zib deviations:
+    ImmunizationRecommendation.recommendation.dateCriterion.value:
+      - cardinality: 1..1
+        reason: ImmunizationRecommendation.recommendation.dateCriterion has cardinality 0..1, making the cardinality of ImmunizationRecommendation.recommendation.dateCriterion.value effectively 0..1 as required by the zib.
+
 unmapped zib concepts:
   - NL-CM:17.2.10: HealthcareProvider.LocationNumber
     reason: This zib concept is problematic to map cleanly to FHIR and it has been deemed too uncommon in practice to warrant an extension.
