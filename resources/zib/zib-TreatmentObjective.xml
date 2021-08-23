@@ -39,6 +39,13 @@
       <short value="TreatmentObjective" />
       <comment value="The concepts of FunctionalOrMentalStatus are individually mapped on the elements of Goal's FHIR resource. A direct reference was not possible on the .target element." />
       <alias value="Behandeldoel" />
+      <constraint>
+        <key value="zib-TreatmentObjective-1" />
+        <severity value="error" />
+        <human value="One concept from DesiredHealthCondition::FunctionalOrMentalStatus and DesiredHealthcareResult must be selected." />
+        <expression value="description.text.empty() or target.detail[x].empty()" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentObjective" />
+      </constraint>
       <mapping>
         <identity value="zib-treatmentobjective-v3.2-2020EN" />
         <map value="NL-CM:13.5.1" />
@@ -50,13 +57,6 @@
       <short value="DesiredHealthcareResult" />
       <definition value="The textual account of the treatment objective. This concept provides the option to define a treatment objective which cannot be described as a measurement value or functional/mental status." />
       <alias value="GewenstZorgresultaat" />
-      <constraint>
-        <key value="zib-TreatmentObjective-1" />
-        <severity value="error" />
-        <human value="One concept from DesiredHealthCondition::FunctionalOrMentalStatus and DesiredHealthcareResult must be selected." />
-        <expression value="description.text.empty() or target.detail[x].empty()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentObjective" />
-      </constraint>
       <mapping>
         <identity value="zib-treatmentobjective-v3.2-2020EN" />
         <map value="NL-CM:13.5.5" />
