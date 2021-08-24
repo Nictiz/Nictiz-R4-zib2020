@@ -38,17 +38,15 @@ jobs:
           recurse: true
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Profiles
           source:  ${{ steps.get-resources.outputs.zib_profiles }}
-          fail-at: warning
           ignored-issues: known-issues.yml
       - name: Validate zib extensions
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@master
         with:
           version: "4.0"
           ig: resources/ qa/
           recurse: true
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Extensions
           source:  ${{ steps.get-resources.outputs.zib_extensions }}
-          fail-at: warning
           ignored-issues: known-issues.yml
       - name: Validate nl-core profiles
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
@@ -58,7 +56,6 @@ jobs:
           recurse: true
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore-Profiles
           source:  ${{ steps.get-resources.outputs.nlcore_profiles }}
-          fail-at: warning
           ignored-issues: known-issues.yml
       - name: Validate nl-core extensions
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
@@ -68,7 +65,6 @@ jobs:
           recurse: true
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore-Extensions
           source:  ${{ steps.get-resources.outputs.nlcore_extensions }}
-          fail-at: warning
           ignored-issues: known-issues.yml
       - name: Validate other profiles
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
@@ -78,7 +74,6 @@ jobs:
           recurse: true
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions
           source:  ${{ steps.get-resources.outputs.other_profiles }}
-          fail-at: warning
           ignored-issues: known-issues.yml
       - name: Validate ConceptMaps
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
@@ -88,7 +83,6 @@ jobs:
           recurse: true
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-ConceptMaps
           source:  ${{ steps.get-resources.outputs.conceptmaps }}
-          fail-at: warning
           ignored-issues: known-issues.yml
       - name: Validate other terminology
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
@@ -97,7 +91,6 @@ jobs:
           ig: resources/ qa/
           recurse: true
           source:  ${{ steps.get-resources.outputs.other_terminology }}
-          fail-at: warning
           ignored-issues: known-issues.yml
       - name: Validate examples
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
@@ -106,7 +99,6 @@ jobs:
           ig: resources/
           recurse: true
           source:  ${{ steps.get-resources.outputs.examples }}
-          fail-at: warning
           ignored-issues: known-issues.yml
 
       - name: Install Firely Terminal
