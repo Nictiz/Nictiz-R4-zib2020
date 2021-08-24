@@ -29,13 +29,11 @@ jobs:
           path: ~/.fhir/packages
           key: fhir-cache
 
-      - name: Create ig with the ProfileGuidelines resources
-        run: bash util/qaAutomation/mkprofilingig.sh
       - name: Validate zib profiles
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
         with:
           version: "4.0"
-          ig: ig/
+          ig: resources/ qa/
           recurse: true
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Profiles
           source:  ${{ steps.get-resources.outputs.zib_profiles }}
@@ -45,7 +43,7 @@ jobs:
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
         with:
           version: "4.0"
-          ig: ig/
+          ig: resources/ qa/
           recurse: true
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Extensions
           source:  ${{ steps.get-resources.outputs.zib_extensions }}
@@ -55,7 +53,7 @@ jobs:
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
         with:
           version: "4.0"
-          ig: ig/
+          ig: resources/ qa/
           recurse: true
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore
           source:  ${{ steps.get-resources.outputs.nlcore_profiles }}
@@ -65,7 +63,7 @@ jobs:
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
         with:
           version: "4.0"
-          ig: ig/
+          ig: resources/ qa/
           recurse: true
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions
           source:  ${{ steps.get-resources.outputs.other_profiles }}
@@ -75,7 +73,7 @@ jobs:
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
         with:
           version: "4.0"
-          ig: ig/
+          ig: resources/ qa/
           recurse: true
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-ConceptMaps
           source:  ${{ steps.get-resources.outputs.conceptmaps }}
@@ -85,7 +83,7 @@ jobs:
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
         with:
           version: "4.0"
-          ig: ig/
+          ig: resources/ qa/
           recurse: true
           source:  ${{ steps.get-resources.outputs.other_terminology }}
           fail-at: warning
