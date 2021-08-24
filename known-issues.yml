@@ -1,10 +1,10 @@
-#ext-FunctionalOrMentalStatus.MedicalDevice:
-#   zib deviations:
-#    Extension.value[x]:
-#    - short: MedicalDevice:MedicalDevice
-#      reason: We only use the part before the double colons according to the profile guidelines.
-#    - cardinality: 0..1
-#       reason: The extension allows the value to occure only once (0..1), but the use of the extension itself (in a resource)is allowed to be repeated (0..*), effectively resulting a cardinality of 0..* for this element.
+ext-FunctionalOrMentalStatus.MedicalDevice:
+  zib deviations:
+   Extension.value[x]:
+   - short: MedicalDevice
+     reason: We only use the part before the double colons according to the profile guidelines.
+   - cardinality: 0..1
+     reason: The extension allows the value to occure only once (0..1), but the use of the extension itself (in a resource)is allowed to be repeated (0..*), effectively resulting a cardinality of 0..* for this element.
 
 ext-LanguageProficiency.CommunicationDetails:
   zib deviations:
@@ -82,6 +82,8 @@ zib-HealthcareProvider:
 unmapped zib concepts:
   - NL-CM:17.2.10: HealthcareProvider.LocationNumber
     reason: This zib concept is problematic to map cleanly to FHIR and it has been deemed too uncommon in practice to warrant an extension.
+#  - NL-CM:17.1.5: FunctionalOrMentalStatus.StatusDate
+#    reason: test.
 
 zib-HealthProfessional-Practitioner:
   zib deviations:
