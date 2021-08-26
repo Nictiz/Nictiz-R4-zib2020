@@ -61,6 +61,14 @@ Style - profiling guidelines
 * Added a notion on the root that `HumanName.text` is encouraged to be given too.
 * Added a notion on the root that we have not profiled the zib constraint to mandate a LastName.
 
+## zib-NutritionAdvice
+* Mapping on `.identifier` has been removed
+* PracititionerRole reference extension has been removed on `NutritionOrder.orderer`
+* AllergyIntolerance reference mapping has been removed on `NutritionOrder.allergyIntolerance`
+* Mapping on `NutritionOrder.oralDiet.texture.foodType.text` has been removed 
+* Added a new zib element Indication::Problem with ID NL-CM:7.11.5 this is mapped on `NutritionOrder.extension:problem`
+* The comment element has been moved to `NutritionOrder.note.text`
+
 ## zib-Patient
 * Includes Nationality, MaritalStatus, LanguageProficiency
 * Cardinality of `Patient.extension:nationality` left at 0..* due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time)
