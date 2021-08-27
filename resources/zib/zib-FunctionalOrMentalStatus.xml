@@ -32,7 +32,7 @@
     <element id="Observation">
       <path value="Observation" />
       <short value="FunctionalOrMentalStatus" />
-      <comment value="The reference to zib-MedicalDevice in concept 'MedicalDevice' (NL-CM:4.26.5), is reversed in FHIR. The relation is mapped in zib-MedicalDevice on DeviceUseStatement.reasonReference." />
+      <comment value="The reference to MedicalDevice (NL-CM:4.26.5) is reversed in FHIR. `DeviceUseStatement.reasonReference` in the nl-core-MedicalDevice profile refers to this profile." />
       <alias value="FunctioneleOfMentaleStatus" />
       <mapping>
         <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
@@ -66,7 +66,7 @@
       </slicing>
     </element>
     <element id="Observation.effective[x]:effectiveDateTime">
-      <path value="Observation.effectiveDateTime" />
+      <path value="Observation.effective[x]" />
       <sliceName value="effectiveDateTime" />
       <short value="StatusDate" />
       <definition value="Date on which the status was determined. A ‘vague’ date, such as only the year, is permitted." />
@@ -91,7 +91,7 @@
       </slicing>
     </element>
     <element id="Observation.value[x]:valueCodeableConcept">
-      <path value="Observation.valueCodeableConcept" />
+      <path value="Observation.value[x]" />
       <sliceName value="valueCodeableConcept" />
       <short value="StatusValue" />
       <definition value="The extent to which the patient is limited by the functional or mental condition. &#xD;&#xA;If both the status name and the status value are recorded in code, then both values must come from the same code system.  &#xD;&#xA;If the patient uses a medical device, the evaluation of the extent of the limitation will take place without this aid.&#xD;&#xA;The answer codes must be selected from the subselection of the code system corresponding with the request in accordance with the rules applicable to that system." />
