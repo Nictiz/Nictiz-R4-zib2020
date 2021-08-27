@@ -33,7 +33,7 @@
       <path value="Device" />
       <short value="Product" />
       <definition value="The medical device (internally or externally)." />
-      <comment value="The zib requires the coding systems Health Industry Bar Code (HIBC) or the GS1's Global Trade Item Number (GTIN) to indentify devices. The device identification happens on the basis of an UDI. This resources contains a mapping on all UDI related elements. These elements, which are also relavant and populated when GTIN is used, contain a mapping to the zib concept ProductID.&#xD;&#xA;&#xD;&#xA;In short, the full indentifier will be populated in `udiCarrier.carrierHRF` and it is broken down into structural parts. These are the `.identifier`, `.udiCarrier.deviceIdentifier`, `.manufactureDate`, `.expirationDate`, `.lotNumber` and `.serialNumber`.&#xD;&#xA;&#xD;&#xA;The element `udiCarrier.issuer` can be used to indicate witch 'coding system' is used." />
+      <comment value="The zib requires the coding systems Health Industry Bar Code (HIBC) or the GS1's Global Trade Item Number (GTIN) to indentify devices. The device identification happens on the basis of an UDI. This resources contains a mapping on all UDI related elements. These elements, which are also relavant and populated when GTIN is used, contain a mapping to the zib concept ProductID.&#xD;&#xA;&#xD;&#xA;In short, the full indentifier will be populated in `udiCarrier.carrierHRF` and may be broken down into structural parts. These parts are the `.identifier`, `.udiCarrier.deviceIdentifier`, `.manufactureDate`, `.expirationDate`, `.lotNumber` and `.serialNumber`.&#xD;&#xA;&#xD;&#xA;The element `udiCarrier.issuer` is used to indicate which 'coding system' is used." />
       <alias value="Product" />
       <mapping>
         <identity value="zib-medicaldevice-v3.3.1-2020EN" />
@@ -56,7 +56,6 @@
       <sliceName value="productID" />
       <short value="ProductID" />
       <definition value="Unique identification of the product, such as the serial number. The `identifier` may only be used if it also identifies the resource. For this the serial number needs to be unique to one device.&#xD;&#xA;&#xD;&#xA;The serial number which is a component of the production identifier (PI), a conditional, variable portion of a UDI. The identifier.type code should be set to “SNO”(Serial Number) and the system left empty." />
-      <comment value="The barcode string from a barcode present on a device label or package may identify the instance, include names given to the device in local usage, or may identify the type of device. If the identifier identifies the type of device, Device.type element should be used." />
       <alias value="ProductID" />
       <max value="1" />
       <patternIdentifier>
