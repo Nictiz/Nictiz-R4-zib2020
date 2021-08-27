@@ -123,8 +123,11 @@ zib-FunctionalOrMentalStatus:
   zib deviations:
     Observation.code:
       - cardinality: 1..1
-        reason: The cardinality of both zib (FunctionalOrMentalStatus) and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected. In case of absent data, the profiling guidelines provide guidance.
-
+        reason: The FHIR profiles are expected to implement zib cardinalities as conceptual cardinalities, but FHIR requires the Observation.code element to be present. This aligns with the intention of the zib, as the StatusName concept is required for zib FunctionalOrMentalStatus to make sense. 
+    Observation.value[x]:valueCodeableConcept:
+      - datatype: CodeableConcept
+        reason: The CodeableConcept datatype would be the best datatype match in FHIR and can hold the information present in the Coded Ordinal datatype of the zib. Depending on the outcome of GitHub issue number 140 this known-issue may be removed or improved.
+        
 zib-HealthcareProvider:
   zib deviations:
     Location.address:
