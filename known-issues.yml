@@ -83,11 +83,11 @@ unmapped zib concepts:
   - NL-CM:17.2.10: HealthcareProvider.LocationNumber
     reason: This zib concept is problematic to map cleanly to FHIR and it has been deemed too uncommon in practice to warrant an extension.
   - NL-CM:4.26.6: FunctionalOrMentalStatus.StatusDate
-    reason: test.
+    reason: This zib concept does not match the definition of the FHIR element and therefore it is not mapped see https://github.com/Nictiz/Nictiz-R4-zib2020/issues/111
   - NL-CM:17.1.5: HealthProfessional.PractitionerRole
-    reason: test.
+    reason: This zib concept is not relevant for the TreatmentObjective profile.
   - NL-CM:13.5.3: TreatmentObjective.DesiredHealthCondition::FunctionalOrMentalStatus
-    reason: test.
+    reason: This zib concept is a reference to FunctionalOrMentalStatus a direct reference was not possible, so each element of the zib is mapped separately. 
 
 zib-HealthProfessional-Practitioner:
   zib deviations:

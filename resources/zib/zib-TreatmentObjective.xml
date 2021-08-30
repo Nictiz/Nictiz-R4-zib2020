@@ -52,11 +52,19 @@
         <comment value="TreatmentObjective" />
       </mapping>
     </element>
+    <element id="Goal.lifecycleStatus">
+      <path value="Goal.lifecycleStatus" />
+      <comment value="This element is combined with Goal.description.text. Based on the DesiredHealthcareResult, the lifecycleStatus gets a value if the goal is still being targeted." />
+      <mapping>
+        <identity value="zib-treatmentobjective-v3.2-2020EN" />
+        <map value="NL-CM:13.5.5" />
+        <comment value="DesiredHealthcareResult (implicit, main mapping is on Goal.description.text)" />
+      </mapping>
+    </element>
     <element id="Goal.description.text">
       <path value="Goal.description.text" />
       <short value="DesiredHealthcareResult" />
       <definition value="The textual account of the treatment objective. This concept provides the option to define a treatment objective which cannot be described as a measurement value or functional/mental status." />
-      <comment value="This element is combined with Goal.lifecycleStatus. Based on the DesiredHealthcareResult, the lifecycleStatus gets a value if the goal is still being targeted." />
       <alias value="GewenstZorgresultaat" />
       <mapping>
         <identity value="zib-treatmentobjective-v3.2-2020EN" />
