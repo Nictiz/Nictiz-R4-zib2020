@@ -3,3 +3,4 @@
 - Added guidance and implicit mappings on MedicationDispense.status on how to deal with the mandatory status element (#122).
 - Added guidance on how to deal with MedicationDispense.inten (#127).
 - Added extension for FinancialIndicationCode concept in nl-core-DispenseRequest (#106). 
+- Added SearchParameters to nl-core folder, created based on new Profiling Guidelines (#139).

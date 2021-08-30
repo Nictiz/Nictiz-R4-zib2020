@@ -1,0 +1,29 @@
+<SearchParameter xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/searchparameter.xsd">
+  <id value="period-of-use"/>
+  <url value="http://nictiz.nl/fhir/SearchParameter/period-of-use" />
+  <name value="PeriodOfUse" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Search based on the PeriodOfUse concept captured in the TimeInterval-Period extension ('http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period') in the MedicationRequest and MedicationDispense resources.      
+    As also mandated by the respective profiles: when the the Duration of zib TimeInterval is known in conjunction with either the startDateTime or endDateTime, it SHALL be converted to a Period in the TimeInterval-Period extension, and thereby also applicable for searches. When only Duration is known, it can be communicated using the PeriodOfUse-Duration extension ('http://nictiz.nl/fhir/StructureDefinition/ext-PeriodOfUse-Duration'). This falls outside the scope of this SearchParameter." />
+  <purpose value="To search MedicationRequest and MedicationDispense resources on the value of the ext-TimeInterval-Period extension (http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period)."/>
+  <code value="period-of-use"/>
+  <base value="MedicationRequest"/>
+  <base value="MedicationDispense"/>
+  <type value="date"/>
+  <expression value="MedicationRequest.extension('http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period') | MedicationDispense.extension('http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period')"/>
+  <comparator value="eq"/>
+  <comparator value="le"/>
+  <comparator value="lt"/>
+  <comparator value="ge"/>
+  <comparator value="gt"/>
+</SearchParameter>
+
