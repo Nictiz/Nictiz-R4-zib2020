@@ -54,7 +54,7 @@
         <key value="zib-FunctionalOrMentalStatus-1" />
         <severity value="error" />
         <human value="Either a category for funtional status finding or mental status finding is present." />
-        <expression value="category.where(coding.code = '118228005').exists() or category.where(coding.code = '384821006').exists()" />
+        <expression value="category.where(coding.system = 'http://snomed.info/sct' and coding.code = '118228005').exists() or category.where(coding.system = 'http://snomed.info/sct' and coding.code = '384821006').exists()" />
       </constraint>
     </element>
     <element id="Observation.category:functionalStatusFinding">
