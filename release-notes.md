@@ -67,9 +67,9 @@ This document contains release notes per zib, indicating differences with their 
 * The extensions EpisodeOfCare-DateFirstEncounter and EpisodeOfCare-DateLastEncounter from the previous profile are not inherited because no functional backing exists.
 
 ## zib-FunctionalOrMentalStatus
-* `EffectiveDateTime` is mapped on its own slice
-* The comment element is mapped on `Observation.note.text` instead of `Observation.comment`
-* MedicalDevice extension have been removed see comment on root element for the explanation
+* MedicalDevice extension has been removed because the reference is reversed in FHIR. The MedicalDevice profile refers to this profile.
+* Moved the fixed functional status finding and mental status finding to slices on `Observation.category` instead of `.category.coding`, discriminated by a pattern, and strengthened by an invariant to check if one of the fixed terminology codes is present.
+* The comment element is mapped on `Observation.note.text` instead of `Observation.comment`.
 
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.
