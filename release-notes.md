@@ -67,7 +67,6 @@ This document contains release notes per zib, indicating differences with their 
 * The extensions EpisodeOfCare-DateFirstEncounter and EpisodeOfCare-DateLastEncounter from the previous profile are not inherited because no functional backing exists.
 
 ## zib-FunctionalOrMentalStatus
-* SNOMED codes functionalCode and mentalCode on `Observation.category` have been removed
 * `EffectiveDateTime` is mapped on its own slice
 * The comment element is mapped on `Observation.note.text` instead of `Observation.comment`
 * MedicalDevice extension have been removed see comment on root element for the explanation
