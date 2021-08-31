@@ -40,6 +40,46 @@
         <comment value="FunctionalOrMentalStatus" />
       </mapping>
     </element>
+    <element id="Observation.category.coding">
+      <path value="Observation.category.coding" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.category.coding:functionalCode">
+      <path value="Observation.category.coding" />
+      <sliceName value="functionalCode" />
+      <short value="Functional Finding" />
+      <definition value="Category snomed code used for indexing/retrieval of observerd functional status." />
+      <max value="1" />
+    </element>
+    <element id="Observation.category.coding:functionalCode.system">
+      <path value="Observation.category.coding.system" />
+      <patternUri value="http://snomed.info/sct" />
+    </element>
+    <element id="Observation.category.coding:functionalCode.code">
+      <path value="Observation.category.coding.code" />
+      <patternCode value="118228005" />
+    </element>
+    <element id="Observation.category.coding:mentalCode">
+      <path value="Observation.category.coding" />
+      <sliceName value="mentalCode" />
+      <short value="Mental state, behavior and/or psychosocial function finding" />
+      <definition value="Category snomed code used for indexing/retrieval of observerd mental status." />
+      <max value="1" />
+    </element>
+    <element id="Observation.category.coding:mentalCode.system">
+      <path value="Observation.category.coding.system" />
+      <patternUri value="http://snomed.info/sct" />
+    </element>
+    <element id="Observation.category.coding:mentalCode.code">
+      <path value="Observation.category.coding.code" />
+      <patternCode value="384821006" />
+    </element>
     <element id="Observation.code">
       <path value="Observation.code" />
       <short value="StatusName" />
