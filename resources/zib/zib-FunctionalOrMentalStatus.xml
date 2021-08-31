@@ -40,45 +40,44 @@
         <comment value="FunctionalOrMentalStatus" />
       </mapping>
     </element>
-    <element id="Observation.category.coding">
-      <path value="Observation.category.coding" />
+    <element id="Observation.category">
+      <path value="Observation.category" />
       <slicing>
         <discriminator>
-          <type value="pattern" />
-          <path value="code" />
+          <type value="value" />
+          <path value="$this" />
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="1" />
+      <constraint>
+        <key value="zib-FunctionalOrMentalStatus-1" />
+        <severity value="error" />
+        <human value="Either a category for funtional status finding or mental status finding is present." />
+        <expression value="category.where(coding.code = '118228005').exists() or category.where(coding.code = '384821006').exists()" />
+      </constraint>
     </element>
-    <element id="Observation.category.coding:functionalCode">
-      <path value="Observation.category.coding" />
-      <sliceName value="functionalCode" />
-      <short value="Functional Finding" />
-      <definition value="Category snomed code used for indexing/retrieval of observerd functional status." />
+    <element id="Observation.category:functionalStatusFinding">
+      <path value="Observation.category" />
+      <sliceName value="functionalStatusFinding" />
       <max value="1" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="118228005" />
+        </coding>
+      </patternCodeableConcept>
     </element>
-    <element id="Observation.category.coding:functionalCode.system">
-      <path value="Observation.category.coding.system" />
-      <patternUri value="http://snomed.info/sct" />
-    </element>
-    <element id="Observation.category.coding:functionalCode.code">
-      <path value="Observation.category.coding.code" />
-      <patternCode value="118228005" />
-    </element>
-    <element id="Observation.category.coding:mentalCode">
-      <path value="Observation.category.coding" />
-      <sliceName value="mentalCode" />
-      <short value="Mental state, behavior and/or psychosocial function finding" />
-      <definition value="Category snomed code used for indexing/retrieval of observerd mental status." />
+    <element id="Observation.category:mentalStatusFinding">
+      <path value="Observation.category" />
+      <sliceName value="mentalStatusFinding" />
       <max value="1" />
-    </element>
-    <element id="Observation.category.coding:mentalCode.system">
-      <path value="Observation.category.coding.system" />
-      <patternUri value="http://snomed.info/sct" />
-    </element>
-    <element id="Observation.category.coding:mentalCode.code">
-      <path value="Observation.category.coding.code" />
-      <patternCode value="384821006" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="384821006" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Observation.code">
       <path value="Observation.code" />
