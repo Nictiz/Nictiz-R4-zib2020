@@ -112,6 +112,12 @@ zib-HealthProfessional-PractitionerRole:
     PractitionerRole.telecom:emailAddresses:
       - datatype: ContactPoint
         reason: See PractitionerRole.telecom
+        
+zib-Mobility:
+    zib deviations:
+      Observation.note.text:
+      - cardinality: 1..1
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
 
 zib-NameInformation:
   zib deviations:
