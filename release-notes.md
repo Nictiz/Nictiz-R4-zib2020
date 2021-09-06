@@ -28,7 +28,10 @@ This document contains release notes per zib, indicating differences with their 
 * Updated to new zib-NameInformation and zib-AddressInformation and zib-ContactInformation profiles.
 
 ## zib-EpisodeOfCare
-* The extensions `EpisodeOfCare-DateFirstEncounter` and `EpisodeOfCare-DateLastEncounter` have been removed because there is no defined functional base for these concepts. Currently, a dataset is under construction within the GP informationstandard. Once this is finshed and these concepts are included as well the extensions can be added to the nl-core profiles. 
+* Removed extensions EpisodeOfCare-DateFirstEncounter and EpisodeOfCare-DateLastEncounter because they have no  functional definiton exists for these concepts. Currently, a dataset is under construction within the GP informationstandard. Once this is finshed and these concepts are included as well the extensions can be added to the nl-core profiles. 
+* The extension EpisodOfCare-Title has been replaced by ext-EpisodeOfCare.EpisodeOfCareName because the zib contains a native concept for title, namely EpisodeOfCareName. 
+* Added an extension to capture additional information about the episode (a comment or note).
+* Removed mapping of zib 2015 concept ConcernLabel on `.type.text` because it is no longer applicable. 
 * Removed references not defined in the zib such as `.casemanager` and `.managingOrganization`
 
 ## zib-HealthcareProvider
