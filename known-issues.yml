@@ -248,6 +248,12 @@ zib-FreedomRestrictingIntervention:
             - cardinality: 1..1
               reason: Although the concept TypeOfIntervention should be interpreted as conceptual and thus optional, Procedure.code is required by FHIR -- it doesn't make much sense to communicate a Procedure without communicating _which_ procedure, and the same applies to a FreedomRestrictingIntervention (procedure). 
 
+zib-EpisodeOfCare:
+  zib deviations:
+    EpisodeOfCare.diagnosis.condition:
+      - cardinality: 1..1
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .diagnosis, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.  
+
 zib-HealthcareProvider:
   zib deviations:
     Location.address:

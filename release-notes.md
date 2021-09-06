@@ -49,6 +49,10 @@ This document contains release notes per zib, indicating differences with their 
 * The mapping of Location is moved to `Encounter.location.location`.
 * Reference to other profiles not accounted for by the zib have been removed.
 
+## zib-EpisodeOfCare
+* The extensions `EpisodeOfCare-DateFirstEncounter` and `EpisodeOfCare-DateLastEncounter` have been removed because there is no defined functional base for these concepts. Currently, a dataset is under construction within the GP informationstandard. Once this is finshed and these concepts are included as well the extensions can be added to the nl-core profiles. 
+* Removed references not defined in the zib such as `.casemanager` and `.managingOrganization`
+
 ## zib-DispenseRequest
 * Moved the fixed zib definitioncode on slice of `MedicationDispense.category`, allowing reuse of `category`.
 * Placed mapping of DispensedMedicine on a type slice of `MedicationDispense.medication[x]` allowing the use of a CodeableConcept and thereby adhering to the open world modeling principle.
