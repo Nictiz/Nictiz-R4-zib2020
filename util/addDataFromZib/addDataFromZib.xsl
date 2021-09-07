@@ -190,7 +190,12 @@
             </xsl:for-each>
         </xsl:variable>
         <xsl:choose>
-            <xsl:when test="count($maps) = 0"/> <!-- When all maps turn out to be implicit, $maps is empty and we shouldn't do anything -->
+            <xsl:when test="count($maps) = 0">
+                <!-- When all maps turn out to be implicit, $maps is empty and we shouldn't do anything, just copy -->
+                <xsl:copy>
+                    <xsl:apply-templates select="node()|@*"/>
+                </xsl:copy>
+            </xsl:when> 
             <xsl:when test="not($concepts)">
                 <xsl:message>Could not find a concept with map '<xsl:value-of select="$maps[1]/@value"/>'</xsl:message>
                 <xsl:copy>
