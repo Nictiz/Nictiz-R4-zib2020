@@ -226,7 +226,7 @@ jobs:
               markdown_report += (f"- :heavy_minus_sign: _{out_str}_%0A")
             else:
               stats = json.load(sf)
-              out_str = f'Zib compliance check {"succeeded" if success else "failed"} with {stats["error"]} errors and {stats["warning"]} warnings.'
+              out_str = f'Zib compliance check {"succeeded" if success else "failed"} with {stats["issueStats"]["error"]} errors and {stats["issueStats"]["warning"]} warnings.'
 
             if not success:
               github_report   += f"::error::{out_str}%0A"
