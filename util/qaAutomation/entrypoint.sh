@@ -49,7 +49,7 @@ validate() {
     fi
     eval java -jar $tools_dir/validator/validator.jar -version 4.0 -ig qa/ -ig resources/ -recurse $profile_opt $tx_opt $2 -output $output $output_redirect
     if [ $? -eq 0 ]; then
-      python3 $tools_dir/hl7-fhir-validator-action/analyze_results.py --colorize --fail-at warning --ignored-issues known-issues.yml $output
+      python3 $tools_dir/hl7-fhir-validator-action/analyze_results.py --colorize --fail-at error --ignored-issues known-issues.yml $output
       if [ "$tx_opt" != "" ]; then
         echo -e "\033[0;33m(No terminology server was used)\033[0m"
       fi
