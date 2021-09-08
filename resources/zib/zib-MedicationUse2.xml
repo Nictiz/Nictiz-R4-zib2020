@@ -48,10 +48,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="MedicationStatement.extension:renderedDosageInstruction">
       <path value="MedicationStatement.extension" />
       <sliceName value="renderedDosageInstruction" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction" />
@@ -60,6 +62,7 @@
     <element id="MedicationStatement.extension:periodOfUse-Duration">
       <path value="MedicationStatement.extension" />
       <sliceName value="periodOfUse-Duration" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -80,6 +83,7 @@
     <element id="MedicationStatement.extension:prescriber">
       <path value="MedicationStatement.extension" />
       <sliceName value="prescriber" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -89,6 +93,7 @@
     <element id="MedicationStatement.extension:asAgreedIndicator">
       <path value="MedicationStatement.extension" />
       <sliceName value="asAgreedIndicator" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -108,10 +113,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="MedicationStatement.modifierExtension:repeatPeriodCyclicalSchedule">
       <path value="MedicationStatement.modifierExtension" />
       <sliceName value="repeatPeriodCyclicalSchedule" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule" />
@@ -126,7 +133,7 @@
       <alias value="GebruikIndicator" />
       <binding>
         <strength value="required" />
-        <description value="Use ConceptMap 'MedicationUseStopTypeCodeLijst-to-MedicationStatementStatus' to translate zib terminology to profile terminology in ValueSet 'Medication Status Codes'" />
+        <description value="Use ConceptMap 'MedicationUseStopTypeCodeLijst-to-MedicationStatementStatus' to translate zib terminology to profile terminology in ValueSet 'Medication Status Codes'." />
         <valueSet value="http://hl7.org/fhir/ValueSet/medication-statement-status|4.0.1">
           <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
             <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/MedicationUseStopTypeCodeLijst-to-MedicationStatementStatus" />

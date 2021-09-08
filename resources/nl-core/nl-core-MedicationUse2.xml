@@ -43,10 +43,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="MedicationStatement.extension:prescriber">
       <path value="MedicationStatement.extension" />
       <sliceName value="prescriber" />
+      <min value="0" />
     </element>
     <element id="MedicationStatement.extension:prescriber.value[x]">
       <path value="MedicationStatement.extension.value[x]" />
@@ -59,6 +61,7 @@
     <element id="MedicationStatement.extension:pharmaceuticalTreatmentIdentifier">
       <path value="MedicationStatement.extension" />
       <sliceName value="pharmaceuticalTreatmentIdentifier" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier" />
@@ -67,14 +70,11 @@
     <element id="MedicationStatement.extension:copyIndicator">
       <path value="MedicationStatement.extension" />
       <sliceName value="copyIndicator" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator" />
       </type>
-    </element>
-    <element id="MedicationStatement.extension:copyIndicator.url">
-      <path value="MedicationStatement.extension.url" />
-      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator" />
     </element>
     <element id="MedicationStatement.extension:copyIndicator.value[x]">
       <path value="MedicationStatement.extension.value[x]" />
@@ -87,6 +87,7 @@
     <element id="MedicationStatement.extension:author">
       <path value="MedicationStatement.extension" />
       <sliceName value="author" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.Author" />
@@ -121,6 +122,7 @@
     <element id="MedicationStatement.context">
       <path value="MedicationStatement.context" />
       <short value="RelatedEncounter / RelatedEpisodeOfCare" />
+      <comment value="The 'ExtContextEpisodeOfCare' extension is used to capture a reference to a related EpisodeOfCare if both a reference to an Encounter and EpisodeOfCare need to be exchanged. This this `context` element will then contain the reference to the Encounter resource." />
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Encounter" />
@@ -133,6 +135,37 @@
         <map value="mp-dataelement920-1349" />
         <comment value="RelatieContact" />
       </mapping>
+      <mapping>
+        <identity value="Medication-Process-v9-2-0-0" />
+        <map value="mp-dataelement920-1351" />
+        <comment value="RelatieZorgepisode" />
+      </mapping>
+    </element>
+    <element id="MedicationStatement.context.extension">
+      <path value="MedicationStatement.context.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="MedicationStatement.context.extension:relatedEpisodeOfCare">
+      <path value="MedicationStatement.context.extension" />
+      <sliceName value="relatedEpisodeOfCare" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Context-EpisodeOfCare" />
+      </type>
+    </element>
+    <element id="MedicationStatement.context.extension:relatedEpisodeOfCare.value[x]">
+      <path value="MedicationStatement.context.extension.value[x]" />
+      <short value="RelatedEpisodeOfCare" />
+      <alias value="RelatieZorgepisode" />
       <mapping>
         <identity value="Medication-Process-v9-2-0-0" />
         <map value="mp-dataelement920-1351" />
