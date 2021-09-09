@@ -76,12 +76,13 @@ This document contains release notes per zib, indicating differences with their 
 * Renamed profile name to zib-InstructionsForUse.DosageInstructions to indicate that the profile conceptually better represents the DosageInstructions container than the whole zib.
 * Removed AdministeringSchedule profile on Timing and placed the constraints inline in the zib-InstructionsForUse.DosageInstructions profile because the AdministeringSchedule profile was not reused in other places.
 
-## zib-MedicationAdministration
+## zib-MedicationAdministration2
 * Added an extension in the nl-core profile that mimics `MedicationAdministration.category` so the category can be used as intented by the FHIR core definition.
 * Ranamed MedicationTreatment extension to PharmaceuticalTreatment.Identifier and moved to the nl-core-profile. The extension is now also better documented.
 * Aligned cardinality of `MedicationAdministration.note` with the zib Comment cardinality (0..1).
 * Moved mapping of AdministrationProduct on a Reference type slice of `MedicationAdministration.medication[x]` element adhering to the open world modeling principle.
 * Moved the mapping of AdministrationDateTime to a type slice on `MedicationStatement.effective[x]` so the `MedicationStatement.effectivePeriod` can be used too.
+* Extended `MedicationAdministration.rate[x]` with a Range datatype to allow the population of minimumValue and maximumValue of the AdministreringSpeed. 
 
 ## zib-MedicationAgreement
 * Removed references not accounted for by the zib.
