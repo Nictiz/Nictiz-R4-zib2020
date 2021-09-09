@@ -39,7 +39,7 @@ source /scripts/getresources.sh
 # $3: optional profile canonical to validate the resources against
 validate() {
   echo
-  if [[ -z $2 ]]; then
+  if [[ $2 =~ ^[^\s]*$ ]]; then
     echo -e "\033[1;37m+++ No $1 to check\033[0m"
   else
     echo -e "\033[1;37m+++ Validating $1\033[0m"
