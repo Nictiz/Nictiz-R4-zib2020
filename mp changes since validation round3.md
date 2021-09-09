@@ -4,5 +4,5 @@
 - Added guidance on how to deal with MedicationDispense.inten (#127).
 - Added extension for FinancialIndicationCode concept in nl-core-DispenseRequest (#106). 
 - Added SearchParameters to nl-core folder, created based on new Profiling Guidelines (#139).
-- Improved guidance on StopType (#114).
+- Improved guidance on StopType and mapped StopType to ModifierExtension in MedicationUse too (#114).
 - Added extensions with mapping of 'RelatieZorgepisode' in MedicationAgreement and DispenseRequest (#105) and removed previously made implicit mappings for EpisodeOfCare.

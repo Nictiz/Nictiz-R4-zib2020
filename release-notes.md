@@ -114,6 +114,7 @@ This document contains release notes per zib, indicating differences with their 
 * Moved the mapping of PeriodOfUse to a type slice on `MedicationStatement.effective[x]` so the `MedicationStatement.effectiveDateTime` can be used too.
 * PeriodOfUse has been remodeld using new extensions and a profile on Period based on the zib TimerInterval. This should make the mapping more clear.
 * Moved mapping of UseIndicator from an extension to `MedicationStatement.status`.
+* Moved mapping of MedicationUseStopType from `MedicationStatement.status` to modifier extension StopType because this was actually incorrectly mapped in STU3 and this aligns with AdministrationAgreement and MedicationAgreement. 
 
 ## zib-NameInformation
 Style - profiling guidelines
