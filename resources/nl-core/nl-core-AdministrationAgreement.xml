@@ -42,10 +42,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="MedicationDispense.extension:category">
       <path value="MedicationDispense.extension" />
       <sliceName value="category" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.Category" />
@@ -54,6 +56,7 @@
     <element id="MedicationDispense.extension:copyIndicator">
       <path value="MedicationDispense.extension" />
       <sliceName value="copyIndicator" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator" />
@@ -70,6 +73,7 @@
     <element id="MedicationDispense.extension:pharmaceuticalTreatmentIdentifier">
       <path value="MedicationDispense.extension" />
       <sliceName value="pharmaceuticalTreatmentIdentifier" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier" />
@@ -77,6 +81,8 @@
     </element>
     <element id="MedicationDispense.identifier">
       <path value="MedicationDispense.identifier" />
+      <short value="Identification" />
+      <alias value="Identificatie" />
       <mapping>
         <identity value="Medication-Process-v9-2-0-0" />
         <map value="mp-dataelement920-344" />

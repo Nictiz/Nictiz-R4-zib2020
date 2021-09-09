@@ -48,10 +48,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="MedicationStatement.extension:renderedDosageInstruction">
       <path value="MedicationStatement.extension" />
       <sliceName value="renderedDosageInstruction" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction" />
@@ -60,6 +62,7 @@
     <element id="MedicationStatement.extension:periodOfUse-Duration">
       <path value="MedicationStatement.extension" />
       <sliceName value="periodOfUse-Duration" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -80,19 +83,21 @@
     <element id="MedicationStatement.extension:prescriber">
       <path value="MedicationStatement.extension" />
       <sliceName value="prescriber" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.Prescriber" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber" />
       </type>
     </element>
     <element id="MedicationStatement.extension:asAgreedIndicator">
       <path value="MedicationStatement.extension" />
       <sliceName value="asAgreedIndicator" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse.AsAgreedIndicator" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.AsAgreedIndicator" />
       </type>
     </element>
     <element id="MedicationStatement.extension:asAgreedIndicator.value[x]">
@@ -108,25 +113,46 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="MedicationStatement.modifierExtension:repeatPeriodCyclicalSchedule">
       <path value="MedicationStatement.modifierExtension" />
       <sliceName value="repeatPeriodCyclicalSchedule" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule" />
       </type>
     </element>
+    <element id="MedicationStatement.modifierExtension:stopType">
+      <path value="MedicationStatement.modifierExtension" />
+      <sliceName value="stopType" />
+      <min value="0" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-StopType" />
+      </type>
+    </element>
+    <element id="MedicationStatement.modifierExtension:stopType.value[x]">
+      <path value="MedicationStatement.modifierExtension.value[x]" />
+      <short value="MedicationUseStopType" />
+      <alias value="MedicatieGebruikStopType" />
+      <mapping>
+        <identity value="zib-medicationuse2-v1.1.1-2020EN" />
+        <map value="NL-CM:9.11.23132" />
+        <comment value="MedicationUseStopType" />
+      </mapping>
+    </element>
     <element id="MedicationStatement.status">
       <path value="MedicationStatement.status" />
-      <short value="MedicationUseStopType / UseIndicator" />
+      <short value="UseIndicator" />
       <definition value="Status may contain information on the stop type, the manner in which this medication is discontinued (temporary or definitive) and if the medicine is used or not." />
-      <comment value="Both StopType and UseIndicator are mapped to `status`. The value for UseIndicator can derived based on this mapping:&#xD;&#xA;&#xD;&#xA;|                       |                 UseIndicator = _false_                | UseIndicator = _true_ |&#xD;&#xA;|:---------------------:|:---------------------------------------------------:|:-------------------:|&#xD;&#xA;| No StopType              | _not-taken_ / _completed_ / _intended_ / _entered-in-error_ | _active_              |&#xD;&#xA;| StopType = _Tijdelijk_  | _on-hold_                                             |                    |&#xD;&#xA;| StopType = _Definitief_ | _stopped_                                             |                    |" />
+      <comment value="This element is mapped to the zib concept UseIndicator and implicitly to MedicationUseStopType and PeriodOfUse. Unless a more appropriate status is recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When MedicationUseStopType has no value and UseIndicator is _true_, `.status` will usually be set to _active_.&#xD;&#xA;* When UseIndicator is _false_, `.status` will be set to _not-taken_.&#xD;&#xA;* When MedicationUseStopType is _112171000146100_, `.status` will usually be set to _on-hold_.&#xD;&#xA;* When MedicationUseStopType is _112161000146106_, `.status` will usually be set to _stopped_.&#xD;&#xA;* When PeriodOfUse start date is in the past and PeriodOfUse end date is present and in the future, `.status` will usually be set to _active_.&#xD;&#xA;* When PeriodOfUse end date has a value and in the past, `.status` will usually be set to _completed_.&#xD;&#xA;* When PeriodOfUse duration and start date are known, the end date can be deducted and the previous rules apply. &#xD;&#xA;* When a system is unable to infer the status, `.status` will be set to _unknown_. The _unknown_ code is not to be used to convey other statuses. The _unknown_ code should be used when one of the statuses applies, but the authoring system doesn't know the current state of the MedicationStatement." />
       <alias value="MedicatieGebruikStopType" />
       <alias value="GebruikIndicator" />
       <binding>
         <strength value="required" />
-        <description value="Use ConceptMap 'MedicationUseStopTypeCodeLijst-to-MedicationStatementStatus' to translate zib terminology to profile terminology in ValueSet 'Medication Status Codes'" />
+        <description value="Use ConceptMap 'MedicationUseStopTypeCodeLijst-to-MedicationStatementStatus' to translate zib terminology to profile terminology in ValueSet 'Medication Status Codes'." />
         <valueSet value="http://hl7.org/fhir/ValueSet/medication-statement-status|4.0.1">
           <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
             <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/MedicationUseStopTypeCodeLijst-to-MedicationStatementStatus" />
@@ -135,13 +161,18 @@
       </binding>
       <mapping>
         <identity value="zib-medicationuse2-v1.1.1-2020EN" />
-        <map value="NL-CM:9.11.23132" />
-        <comment value="MedicationUseStopType" />
+        <map value="NL-CM:9.11.22399" />
+        <comment value="UseIndicator" />
       </mapping>
       <mapping>
         <identity value="zib-medicationuse2-v1.1.1-2020EN" />
-        <map value="NL-CM:9.11.22399" />
-        <comment value="UseIndicator" />
+        <map value="NL-CM:9.11.23132" />
+        <comment value="MedicationUseStopType (implicit, main mapping is on the modifier extension ext-StopType)" />
+      </mapping>
+      <mapping>
+        <identity value="zib-medicationuse2-v1.1.1-2020EN" />
+        <map value="NL-CM:9.11.22663" />
+        <comment value="PeriodOfUse (implicit, main mapping is on `.effective[x]:effectivePeriod` and extension ext-TimeInterval-Duration)" />
       </mapping>
     </element>
     <element id="MedicationStatement.statusReason">
@@ -180,7 +211,7 @@
       </slicing>
     </element>
     <element id="MedicationStatement.medication[x]:medicationReference">
-      <path value="MedicationStatement.medicationReference" />
+      <path value="MedicationStatement.medication[x]" />
       <sliceName value="medicationReference" />
       <short value="ProductUsed" />
       <definition value="The product used. This is usually medication. Food, blood products, aids and bandages do not strictly fall under the category of medication, but can be recorded as well.&#xD;&#xA;In principle, this will be the prescribed product, but the product used may differ from the prescribed product." />
