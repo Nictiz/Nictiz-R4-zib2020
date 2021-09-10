@@ -15,6 +15,12 @@ pattern-ZibHealthProfessionalReference:
     StructureDefinition:
       - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
         reason: The title is shown in the hosting profiles as the name of the datatype. "zib HealthProfessional Reference" is more descriptive than the title according to the profiling guidelines ("pattern ZibHealthProfessionalReference").
+        
+zib-AbilityToEat:
+  zib deviations:
+   Observation.component:eatingLimitations.value[x]:
+      - cardinality: 0..1
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent .component element that may exists 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
 
 zib-AddressInformation:
   zib deviations:
