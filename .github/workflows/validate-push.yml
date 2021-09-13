@@ -18,6 +18,7 @@ jobs:
           echo "::set-output name=zib_profiles::"$zib_profiles
           echo "::set-output name=zib_extensions::"$zib_extensions
           echo "::set-output name=nlcore_profiles::"$nlcore_profiles
+          echo "::set-output name=nlcore_extensions::"$nlcore_extensions
           echo "::set-output name=other_profiles::"$other_profiles
           echo "::set-output name=conceptmaps::"$conceptmaps
           echo "::set-output name=other_terminology::"$other_terminology
@@ -29,86 +30,198 @@ jobs:
           path: ~/.fhir/packages
           key: fhir-cache
 
-      - name: Create ig with the ProfileGuidelines resources
-        run: bash util/qaAutomation/mkprofilingig.sh
       - name: Validate zib profiles
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
+        id: validate-zib-profiles
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.16
         with:
           version: "4.0"
-          ig: ig/
+          ig: resources/ qa/
           recurse: true
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Profiles
           source:  ${{ steps.get-resources.outputs.zib_profiles }}
-          fail-at: warning
           ignored-issues: known-issues.yml
+        continue-on-error: true
       - name: Validate zib extensions
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
+        id: validate-zib-extensions
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.16
         with:
           version: "4.0"
-          ig: ig/
+          ig: resources/ qa/
           recurse: true
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Extensions
           source:  ${{ steps.get-resources.outputs.zib_extensions }}
-          fail-at: warning
           ignored-issues: known-issues.yml
+        continue-on-error: true
       - name: Validate nl-core profiles
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
+        id: validate-nl-core-profiles
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.16
+        with:
+          version: "4.0"
+          ig: resources/ qa/
+          recurse: true
+          profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore-Profiles
+          source:  ${{ steps.get-resources.outputs.nlcore_profiles }}
+          ignored-issues: known-issues.yml
+        continue-on-error: true
+      - name: Validate nl-core extensions
+        id: validate-nl-core-extensions
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.16
         with:
           version: "4.0"
           ig: ig/
           recurse: true
-          profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore
-          source:  ${{ steps.get-resources.outputs.nlcore_profiles }}
-          fail-at: warning
+          profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore-Extensions
+          source:  ${{ steps.get-resources.outputs.nlcore_extensions }}
           ignored-issues: known-issues.yml
+        continue-on-error: true
       - name: Validate other profiles
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
+        id: validate-other-profiles
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.16
         with:
           version: "4.0"
-          ig: ig/
+          ig: resources/ qa/
           recurse: true
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions
           source:  ${{ steps.get-resources.outputs.other_profiles }}
-          fail-at: warning
           ignored-issues: known-issues.yml
+        continue-on-error: true
       - name: Validate ConceptMaps
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
+        id: validate-conceptmaps
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.16
         with:
           version: "4.0"
-          ig: ig/
+          ig: resources/ qa/
           recurse: true
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-ConceptMaps
           source:  ${{ steps.get-resources.outputs.conceptmaps }}
-          fail-at: warning
           ignored-issues: known-issues.yml
+        continue-on-error: true
       - name: Validate other terminology
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
+        id: validate-other-terminology
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.16
         with:
           version: "4.0"
-          ig: ig/
+          ig: resources/ qa/
           recurse: true
           source:  ${{ steps.get-resources.outputs.other_terminology }}
-          fail-at: warning
           ignored-issues: known-issues.yml
+        continue-on-error: true
       - name: Validate examples
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.15
+        id: validate-examples
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.16
         with:
           version: "4.0"
           ig: resources/
           recurse: true
           source:  ${{ steps.get-resources.outputs.examples }}
-          fail-at: warning
           ignored-issues: known-issues.yml
+        continue-on-error: true
+      - name: Collect results
+        id: collect-statistics
+        shell: python
+        run: |
+          import json, sys
 
+          success = True
+          github_report   = ""
+
+          def printStatistics(name, key):
+            global success, github_report, markdown_report
+
+            global steps_data
+            step_data = steps_data[key]
+
+            if step_data["outputs"]["was-skipped"] == 'true':
+              out_str = f'Test "{name}" was skipped'
+              return
+
+            step_success = (step_data["outcome"] == "success")
+            success = success and step_success
+
+            with open(step_data["outputs"]["stats-file"], 'r') as sf:
+              stats = json.load(sf)
+              
+              out_str = f'"{name}" {"succeeded" if step_success else "failed"} with {stats["fatal"]} fatal messages, {stats["error"]} errors, {stats["warning"]} warnings and {stats["information"]} information messages.'
+
+              if not step_success:
+                github_report   += f"::error::{out_str}%0A"
+              elif stats["warning"] > 0:
+                github_report   += f"::warning::{out_str}%0A"
+              else:
+                github_report   += f"\033[1;32mOk:\033[0m {out_str}%0A"
+
+          steps_data = json.loads("""${{ toJSON(steps) }}""")
+
+          printStatistics("Validate zib profiles", "validate-zib-profiles")
+          printStatistics("Validate zib extensions", "validate-zib-extensions")
+          printStatistics("Validate nl-core profiles", "validate-nl-core-profiles")
+          printStatistics("Validate nl-core extensions", "validate-nl-core-extensions")
+          printStatistics("Validate other profiles", "validate-other-profiles")
+          printStatistics("Validate ConceptMaps", "validate-conceptmaps")
+          printStatistics("Validate other terminology", "validate-other-terminology")
+          printStatistics("Validate examples", "validate-examples")
+
+          print(f'::set-output name=result_status::{0 if success else 1}')
+          print(f'::set-output name=github_report::{github_report}')
+      - name: Print results
+        run: |
+          echo "${{ steps.collect-statistics.outputs.github_report }}"
+          exit ${{ steps.collect-statistics.outputs.result_status }}
+
+  zib-compliance-changed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Get profiles and extensions
+        id: get-resources
+        run: |
+          changed_only=1
+          source util/qaAutomation/getresources.sh
+          echo "::set-output name=zib_profiles::"$zib_profiles
+          echo "::set-output name=zib_extensions::"$zib_extensions
       - name: Install Firely Terminal
+        id: install-firely-terminal
         run: dotnet tool install -g --version 2.0.0 firely.terminal
       - name: Create snapshots in JSON format
+        id: create-snapshots
         run: bash util/qaAutomation/generatezibsnapshots.sh ${{ steps.get-resources.outputs.zib_profiles }} ${{ steps.get-resources.outputs.zib_extensions }}
       - name: Check zib compliance
+        id: check-zib-compliance
         uses: pieter-edelman-nictiz/zib-compliance-fhir@action
+        continue-on-error: true
         with:
           max-file: qa/zibs2020.max
           structuredefinitions: snapshots/*
           zib-release: 2020
           fail-at: warning
           zib-deviations: known-issues.yml
+      - name: Collect results
+        id: collect-statistics
+        shell: python
+        run: |
+          import json, sys
+
+          github_report   = ""
+
+          success = ("${{ steps.check-zib-compliance.outcome }}" == "success")
+          with open("${{ steps.check-zib-compliance.outputs.stats-file }}", 'r') as sf:
+            if "${{ steps.check-zib-compliance.outputs.was-skipped }}" == 'true':
+              out_str = f'Zib compliance check was skipped'
+            else:
+              stats = json.load(sf)
+              out_str = f'Zib compliance check {"succeeded" if success else "failed"} with {stats["issueStats"]["error"]} errors and {stats["issueStats"]["warning"]} warnings.'
+
+            if not success:
+              github_report   += f"::error::{out_str}%0A"
+            else:
+              github_report   += f"\033[1;32mOk:\033[0m {out_str}%0A"
+
+          print(f'::set-output name=result_status::{0 if success else 1}')
+          print(f'::set-output name=github_report::{github_report}')
+      - name: Print results
+        run: |
+          echo "${{ steps.collect-statistics.outputs.github_report }}"
+          exit ${{ steps.collect-statistics.outputs.result_status }}
