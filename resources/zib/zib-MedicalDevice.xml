@@ -15,7 +15,7 @@
     </telecom>
   </contact>
   <description value="Medical devices are any internally implanted and external devices and/or aids used by the patient (in the past) to reduce the effects of functional limitations in organ systems or to facilitate the treatment of a disease." />
-  <purpose value="This DeviceUseStatement resource represents the Dutch [zib MedicalDevice v3.3.1 ('Zorginformatiebouwsteen', i.e. Health and Care Information Model)](https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN))." />
+  <purpose value="This DeviceUseStatement resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) MedicalDevice v3.3.1 (2020)](https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -48,10 +48,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="DeviceUseStatement.extension:healthProfessional">
       <path value="DeviceUseStatement.extension" />
       <sliceName value="healthProfessional" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicalDevice.HealthProfessional" />
@@ -60,6 +62,7 @@
     <element id="DeviceUseStatement.extension:location">
       <path value="DeviceUseStatement.extension" />
       <sliceName value="location" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicalDevice.Location" />
@@ -148,13 +151,17 @@
     </element>
     <element id="DeviceUseStatement.bodySite">
       <path value="DeviceUseStatement.bodySite" />
-      <short value="AnatomicalLocation" />
+      <short value="Location / AnatomicalLocation" />
       <definition value="Patient’s anatomical location of the medical device used." />
       <alias value="AnatomischeLocatie" />
       <type>
         <code value="CodeableConcept" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
       </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-medicaldevice-v3.3.1-2020EN" />
         <map value="NL-CM:10.1.15" />
