@@ -20,11 +20,13 @@ This document contains release notes per zib, indicating differences with their 
 * Added an extension in the nl-core profile that mimics `MedicationDispense.category` so the category can be used as intented by the FHIR core definition.
 * Aligned cardinality of `MedicationDispense.note` with the zib Comment cardinality (0..1).
 * Ranamed MedicationTreatment extension to PharmaceuticalTreatment.Identifier and moved to the nl-core-profile. The extension is now also better documented.
+* `MedicationDispense.status` has become mandatory in R4, therefore, guidance is added on how to populate this field.
 
 # zib-AllergyIntolerance
 * Applied 'combined ValueSets' to `code` and `reaction.substance` instead of slicing per ValueSet.
 * Applied the profiling guidelines when handling conflicts between FHIR core bindings and zib bindings. As a result code-specification extensions have been removed at `clinicalStatus` and `reaction.severity`.
 * Because AlleryStatus maps to both `clinicalStatus` and `verificationStatus`, but `verificationStatus` now has cardinality 0..1 compared to 1..1 in STU3, guidance on how to interpret the mapping has been added to the root, but has been simplified.
+* Changed cardinality of `note` from 0..* to 0..1 to align with the zib.
 
 ## zib-ContactInformation
 * zib ContactInformation is mapped onto two profiles: one for the concept TelephoneNumbers and one for the concept E-mailAddresses. Both are added to the hosting profile.
@@ -48,6 +50,10 @@ This document contains release notes per zib, indicating differences with their 
 * The mapping of Location is moved to `Encounter.location.location`.
 * Reference to other profiles not accounted for by the zib have been removed.
 
+## zib-EpisodeOfCare
+* The extensions `EpisodeOfCare-DateFirstEncounter` and `EpisodeOfCare-DateLastEncounter` have been removed because there is no defined functional base for these concepts. Currently, a dataset is under construction within the GP informationstandard. Once this is finshed and these concepts are included as well the extensions can be added to the nl-core profiles. 
+* Removed references not defined in the zib such as `.casemanager` and `.managingOrganization`
+
 ## zib-DispenseRequest
 * Moved the fixed zib definitioncode on slice of `MedicationDispense.category`, allowing reuse of `category`.
 * Placed mapping of DispensedMedicine on a type slice of `MedicationDispense.medication[x]` allowing the use of a CodeableConcept and thereby adhering to the open world modeling principle.
@@ -59,6 +65,7 @@ This document contains release notes per zib, indicating differences with their 
 * Removed reference on `MedicationRequest.recorder` because this is not accounted for by the zib or a use case.
 * PeriodOfUse has been remodeld using new extensions based on the zib TimerInterval. This should make the mapping more clear.
 * Moved mapping of PeriodOfUse Duration from `MedicationRequest.dispenseRequest.expectedSupplyDuration` to `MedicationRequest.dispenseRequest.extension:periodOfUse-Duration` because of semantic diferences in concept definitions.
+* Replaced fixed _order_ code on `MedicationRequest.intent` with guidance and documentation on which code to use to adhere to open world modeling principle. 
 
 ## zib-DrugUse
 * The drugUseCode is mapped to `Observation.code` and based on a pattern
@@ -112,12 +119,13 @@ This document contains release notes per zib, indicating differences with their 
 * Renamed profile name to zib-InstructionsForUse.DosageInstructions to indicate that the profile conceptually better represents the DosageInstructions container than the whole zib.
 * Removed AdministeringSchedule profile on Timing and placed the constraints inline in the zib-InstructionsForUse.DosageInstructions profile because the AdministeringSchedule profile was not reused in other places.
 
-## zib-MedicationAdministration
+## zib-MedicationAdministration2
 * Added an extension in the nl-core profile that mimics `MedicationAdministration.category` so the category can be used as intented by the FHIR core definition.
 * Ranamed MedicationTreatment extension to PharmaceuticalTreatment.Identifier and moved to the nl-core-profile. The extension is now also better documented.
 * Aligned cardinality of `MedicationAdministration.note` with the zib Comment cardinality (0..1).
 * Moved mapping of AdministrationProduct on a Reference type slice of `MedicationAdministration.medication[x]` element adhering to the open world modeling principle.
 * Moved the mapping of AdministrationDateTime to a type slice on `MedicationStatement.effective[x]` so the `MedicationStatement.effectivePeriod` can be used too.
+* Extended `MedicationAdministration.rate[x]` with a Range datatype to allow the population of minimumValue and maximumValue of the AdministreringSpeed. 
 
 ## zib-MedicationAgreement
 * Removed references not accounted for by the zib.
@@ -129,16 +137,18 @@ This document contains release notes per zib, indicating differences with their 
 * Mapped MP concept RelatieMedicatieafspraak  to `periorPrescription` instead of an extension in the nl-core profile. 
 * Instead of one extension, the concepts MP RelatieToedieningsafspraak and RelatieMedicatiegebruik are placed in specific extensions in the nl-core profile.
 * Aligned cardinality of `MedicationRequest.note` with the zib Comment cardinality (0..1).
+* Replaced fixed _order_ code on `MedicationRequest.intent` with guidance and documentation on which code to use to adhere to open world modeling principle. 
 
 ## zib-MedicationDispense
 * Added an extension in the nl-core profile that mimics `MedicationDispense.category` so the category can be used as intented by the FHIR core definition.
 * Placed the mapping DispensedMedicine Reference type slice on `MedicationDispense.medication[x]` allowing the use of a CodeableConcept.
-* Removed references in `.context`, `.partOf` and `.receiver` not accounted for by zibs.
+* Removed references in `MedicationDispense.context`, `MedicationDispense.partOf` and `MedicationDispense.receiver` not accounted for by zibs.
 * Moved AdditionalInformation to its own extension to align more with the profiling guidelines.
 * Relaxed cardinality of additionalInformation extension to 0..* to align with the zib.
 * Added iso21090-PQ-translation extension to MedicationDispense.dispenseRequest.quantity to allow adding quantity translations using with code systems (e.g. G-Standard and NHG).
 * Ranamed MedicationTreatment extension to PharmaceuticalTreatment.Identifier and moved to the nl-core-profile. The extension is now also better documented.
 * Aligned cardinality of `MedicationDispense.note` with the zib Comment cardinality (0..1).
+* `MedicationDispense.status` has become mandatory in R4, therefore, guidance is added on how to populate this field.
 
 ## zib-MedicationUse2
 * Changed fixed category code from 6#urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3 to 422979000#http://snomed.info/sct.
@@ -148,6 +158,7 @@ This document contains release notes per zib, indicating differences with their 
 * Moved the mapping of PeriodOfUse to a type slice on `MedicationStatement.effective[x]` so the `MedicationStatement.effectiveDateTime` can be used too.
 * PeriodOfUse has been remodeld using new extensions and a profile on Period based on the zib TimerInterval. This should make the mapping more clear.
 * Moved mapping of UseIndicator from an extension to `MedicationStatement.status`.
+* Moved mapping of MedicationUseStopType from `MedicationStatement.status` to modifier extension StopType because this was actually incorrectly mapped in STU3 and this aligns with AdministrationAgreement and MedicationAgreement. 
 
 ## zib-NameInformation
 Style - profiling guidelines
@@ -170,6 +181,13 @@ Style - profiling guidelines
 * The resource to represent this zib has been changed from Procedure to CarePlan. This aligns better with the meaning of the zib: a statement of a plan (which may or not may have been completed) rather than the record of a procedure that has been carried out. The profile for the current version is created from scratch.
 * Because there's a better match with CarePlan, the five custom extensions are removed. One custom extension is added to mark a `CarePlan.contributor` as the zib Requester, and another one to define the materials used.
 * Note: although the zib has changed quite dramatically since release 2017, the previous version of the profile was based on a pre-adopt of zib pre-release 2018, which is the same as release 2020.
+
+## zib-NutritionAdvice
+* PracititionerRole reference extension has been removed on `NutritionOrder.orderer`
+* AllergyIntolerance reference mapping has been removed on `NutritionOrder.allergyIntolerance`
+* Mapping on `NutritionOrder.oralDiet.texture.foodType.text` has been removed 
+* Added a new zib element Indication::Problem with ID NL-CM:7.11.5 this is mapped on `NutritionOrder.extension:problem`
+* The comment element has been moved to `NutritionOrder.note.text`
 
 ## zib-Patient
 * Includes Nationality, MaritalStatus, LanguageProficiency

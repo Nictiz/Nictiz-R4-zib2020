@@ -48,10 +48,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="MedicationDispense.extension:additionalInformation">
       <path value="MedicationDispense.extension" />
       <sliceName value="additionalInformation" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdditionalInformation" />
@@ -60,6 +62,7 @@
     <element id="MedicationDispense.extension:agreementReason">
       <path value="MedicationDispense.extension" />
       <sliceName value="agreementReason" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AgreementReason" />
@@ -68,6 +71,7 @@
     <element id="MedicationDispense.extension:administrationAgreementDateTime">
       <path value="MedicationDispense.extension" />
       <sliceName value="administrationAgreementDateTime" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime" />
@@ -76,6 +80,7 @@
     <element id="MedicationDispense.extension:renderedDosageInstruction">
       <path value="MedicationDispense.extension" />
       <sliceName value="renderedDosageInstruction" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction" />
@@ -84,6 +89,7 @@
     <element id="MedicationDispense.extension:periodOfUse-Period">
       <path value="MedicationDispense.extension" />
       <sliceName value="periodOfUse-Period" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -104,6 +110,7 @@
     <element id="MedicationDispense.extension:periodOfUse-Duration">
       <path value="MedicationDispense.extension" />
       <sliceName value="periodOfUse-Duration" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -130,10 +137,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="MedicationDispense.modifierExtension:stopType">
       <path value="MedicationDispense.modifierExtension" />
       <sliceName value="stopType" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-StopType" />
@@ -152,6 +161,7 @@
     <element id="MedicationDispense.modifierExtension:repeatPeriodCyclicalSchedule">
       <path value="MedicationDispense.modifierExtension" />
       <sliceName value="repeatPeriodCyclicalSchedule" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule" />
@@ -160,12 +170,18 @@
     <element id="MedicationDispense.status">
       <path value="MedicationDispense.status" />
       <short value="CanceledIndicator" />
-      <definition value="In the event of an error correction, CanceledIndicator is _true_, the code shall be _entered-in-error_. If CanceledIndicator is _false_ or absent an appropriate code should be picked that specify the state of the set of dispense events." />
+      <definition value="A code specifying the state of the set of dispense events. In the event of an error correction, the value is set to _entered-in-error_." />
+      <comment value="This element is mapped to the zib concept NL-CM:9.8.23034 (CanceledIndicator) and implicitly to zib concept NL-CM:9.8.22660 (PeriodOfUse). Unless a more appropriate status is recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When CanceledIndicator is _true_, `.status` will be set to _entered-in-error_.&#xD;&#xA;* When PeriodOfUse start date is in the past and PeriodOfUse end date has a value and is in the future, `.status` will usually be set to _active_.&#xD;&#xA;* When PeriodOfUse end date is present and in the past, `.status` will usually be set to _completed_.&#xD;&#xA;* When PeriodOfUse duration and start date are known, the end date can be deducted and the previous rules apply. &#xD;&#xA;* When a system is unable to infer the status from the Start and End, `.status` will be set to _unknown_. The _unknown_ code is not to be used to convey other statuses. The _unknown_ code should be used when one of the statuses applies, but the authoring system doesn't know the current state of the AdministrationAgreement." />
       <alias value="GeannuleerdIndicator" />
       <mapping>
         <identity value="zib-administrationagreement-v1.0.3-2020EN" />
         <map value="NL-CM:9.8.23034" />
         <comment value="CanceledIndicator" />
+      </mapping>
+      <mapping>
+        <identity value="zib-administrationagreement-v1.0.3-2020EN" />
+        <map value="NL-CM:9.8.22660" />
+        <comment value="PeriodOfUse (implicit, main mapping is on the extensions ext-TimeInterval-Period and ext-TimeInterval-Duration)" />
       </mapping>
     </element>
     <element id="MedicationDispense.category">

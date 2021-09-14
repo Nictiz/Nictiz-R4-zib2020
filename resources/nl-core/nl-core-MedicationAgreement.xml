@@ -42,10 +42,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="MedicationRequest.extension:pharmaceuticalTreatmentIdentifier">
       <path value="MedicationRequest.extension" />
       <sliceName value="pharmaceuticalTreatmentIdentifier" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier" />
@@ -54,6 +56,7 @@
     <element id="MedicationRequest.extension:copyIndicator">
       <path value="MedicationRequest.extension" />
       <sliceName value="copyIndicator" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator" />
@@ -61,6 +64,8 @@
     </element>
     <element id="MedicationRequest.extension:copyIndicator.value[x]">
       <path value="MedicationRequest.extension.value[x]" />
+      <short value="Copy Indicator" />
+      <alias value="KopieIndicator" />
       <mapping>
         <identity value="Medication-Process-v9-2-0-0" />
         <map value="mp-dataelement920-273" />
@@ -70,7 +75,7 @@
     <element id="MedicationRequest.extension:relatedAdministrationAgreement">
       <path value="MedicationRequest.extension" />
       <sliceName value="relatedAdministrationAgreement" />
-      <max value="1" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelatedAdministrationAgreement" />
@@ -79,13 +84,36 @@
     <element id="MedicationRequest.extension:relatedMedicationUse">
       <path value="MedicationRequest.extension" />
       <sliceName value="relatedMedicationUse" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelatedMedicationUse" />
       </type>
     </element>
+    <element id="MedicationRequest.extension:relatedEpisodeOfCare">
+      <path value="MedicationRequest.extension" />
+      <sliceName value="relatedEpisodeOfCare" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Context-EpisodeOfCare" />
+      </type>
+    </element>
+    <element id="MedicationRequest.extension:relatedEpisodeOfCare.value[x]">
+      <path value="MedicationRequest.extension.value[x]" />
+      <short value="RelatedEpisodeOfCare" />
+      <alias value="RelatieZorgepisode" />
+      <mapping>
+        <identity value="Medication-Process-v9-2-0-0" />
+        <map value="mp-dataelement920-843" />
+        <comment value="RelatieZorgepisode" />
+      </mapping>
+    </element>
     <element id="MedicationRequest.identifier">
       <path value="MedicationRequest.identifier" />
+      <short value="Identification" />
+      <alias value="Identificatie" />
       <mapping>
         <identity value="Medication-Process-v9-2-0-0" />
         <map value="mp-dataelement920-194" />
@@ -123,11 +151,6 @@
         <identity value="Medication-Process-v9-2-0-0" />
         <map value="mp-dataelement920-199" />
         <comment value="RelatieContact" />
-      </mapping>
-      <mapping>
-        <identity value="Medication-Process-v9-2-0-0" />
-        <map value="mp-dataelement920-843" />
-        <comment value="RelatieZorgepisode (implicit, main mapping is on Encounter.episodeOfCare" />
       </mapping>
     </element>
     <element id="MedicationRequest.requester">
