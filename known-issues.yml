@@ -113,7 +113,13 @@ zib-HealthProfessional-PractitionerRole:
       - datatype: ContactPoint
         reason: See PractitionerRole.telecom
 
-zib-HearingFunction-MedicalDevice:
+zib-HearingFunction:
+  zib deviations:
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
+        
+zib-HearingFunction.HearingAid:
   zib deviations:
     DeviceUseStatement:
       - datatype: undefined
@@ -128,11 +134,36 @@ zib-HearingFunction-MedicalDevice:
       - short: EndDate
         reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
 
-zib-HearingFunction-MedicalDevice-Device:
+zib-HearingFunction.HearingAid.Product:
   zib deviations:
     Device.note.text:
       - cardinality: 1..1
         reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
+    Device.identifier:productID:
+      - datatype: Identifier
+        reason: The mapping of ProductId is not straightforward and relates to multiple elements in FHIR (.identifier, .udiCarrier.deviceIdentifier, .udiCarrier.issuer, .udiCarrier.carrierHRF, .expirationDate, .lotNumber and .serialNumber). In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.udiCarrier.deviceIdentifier:
+      - datatype: string
+        reason: The mapping of ProductId is not straightforward and relates to multiple elements in FHIR (.identifier, .udiCarrier.deviceIdentifier, .udiCarrier.issuer, .udiCarrier.carrierHRF, .expirationDate, .lotNumber and .serialNumber). In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.udiCarrier.issuer:
+      - datatype: uri
+        reason: The mapping of ProductId is not straightforward and relates to multiple elements in FHIR (.identifier, .udiCarrier.deviceIdentifier, .udiCarrier.issuer, .udiCarrier.carrierHRF, .expirationDate, .lotNumber and .serialNumber). In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.udiCarrier.carrierHRF:
+      - datatype: string
+        reason: The mapping of ProductId is not straightforward and relates to multiple elements in FHIR (.identifier, .udiCarrier.deviceIdentifier, .udiCarrier.issuer, .udiCarrier.carrierHRF, .expirationDate, .lotNumber and .serialNumber). In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.expirationDate:
+      - datatype: dateTime
+        reason: The mapping of ProductId is not straightforward and relates to multiple elements in FHIR (.identifier, .udiCarrier.deviceIdentifier, .udiCarrier.issuer, .udiCarrier.carrierHRF, .expirationDate, .lotNumber and .serialNumber). In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.lotNumber:
+      - datatype: string
+        reason: The mapping of ProductId is not straightforward and relates to multiple elements in FHIR (.identifier, .udiCarrier.deviceIdentifier, .udiCarrier.issuer, .udiCarrier.carrierHRF, .expirationDate, .lotNumber and .serialNumber). In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.serialNumber:
+      - datatype: string
+        reason: The mapping of ProductId is not straightforward and relates to multiple elements in FHIR (.identifier, .udiCarrier.deviceIdentifier, .udiCarrier.issuer, .udiCarrier.carrierHRF, .expirationDate, .lotNumber and .serialNumber). In result, the mapping of the concept to FHIR will not match on a datatype level. 
+  ignored issues:
+    StructureDefinition.differential.element[0]:
+      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias for ProductType is already present in the base profile where this profile is derived from. It should not be added twice to silence this issue.
 
 zib-MedicalDevice:
   zib deviations:
@@ -146,11 +177,32 @@ zib-MedicalDevice:
       - short: EndDate
         reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
 
-zib-MedicalDevice-Device:
+zib-MedicalDevice.Product:
   zib deviations:
     Device.note.text:
       - cardinality: 1..1
         reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
+    Device.identifier:productID:
+      - datatype: Identifier
+        reason: The mapping of ProductId is not straightforward and relates to multiple elements in FHIR (.identifier, .udiCarrier.deviceIdentifier, .udiCarrier.issuer, .udiCarrier.carrierHRF, .expirationDate, .lotNumber and .serialNumber). In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.udiCarrier.deviceIdentifier:
+      - datatype: string
+        reason: The mapping of ProductId is not straightforward and relates to multiple elements in FHIR (.identifier, .udiCarrier.deviceIdentifier, .udiCarrier.issuer, .udiCarrier.carrierHRF, .expirationDate, .lotNumber and .serialNumber). In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.udiCarrier.issuer:
+      - datatype: uri
+        reason: The mapping of ProductId is not straightforward and relates to multiple elements in FHIR (.identifier, .udiCarrier.deviceIdentifier, .udiCarrier.issuer, .udiCarrier.carrierHRF, .expirationDate, .lotNumber and .serialNumber). In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.udiCarrier.carrierHRF:
+      - datatype: string
+        reason: The mapping of ProductId is not straightforward and relates to multiple elements in FHIR (.identifier, .udiCarrier.deviceIdentifier, .udiCarrier.issuer, .udiCarrier.carrierHRF, .expirationDate, .lotNumber and .serialNumber). In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.expirationDate:
+      - datatype: dateTime
+        reason: The mapping of ProductId is not straightforward and relates to multiple elements in FHIR (.identifier, .udiCarrier.deviceIdentifier, .udiCarrier.issuer, .udiCarrier.carrierHRF, .expirationDate, .lotNumber and .serialNumber). In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.lotNumber:
+      - datatype: string
+        reason: The mapping of ProductId is not straightforward and relates to multiple elements in FHIR (.identifier, .udiCarrier.deviceIdentifier, .udiCarrier.issuer, .udiCarrier.carrierHRF, .expirationDate, .lotNumber and .serialNumber). In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.serialNumber:
+      - datatype: string
+        reason: The mapping of ProductId is not straightforward and relates to multiple elements in FHIR (.identifier, .udiCarrier.deviceIdentifier, .udiCarrier.issuer, .udiCarrier.carrierHRF, .expirationDate, .lotNumber and .serialNumber). In result, the mapping of the concept to FHIR will not match on a datatype level. 
         
 zib-NameInformation:
   zib deviations:
@@ -263,7 +315,7 @@ zib-Patient:
       - cardinality: 0..*
         reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
 
-zib-VisualFunction-MedicalDevice:
+zib-VisualFunction.VisualAid:
   zib deviations:
     DeviceUseStatement:
       - datatype: undefined
@@ -278,8 +330,33 @@ zib-VisualFunction-MedicalDevice:
       - short: EndDate
         reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
 
-zib-VisualFunction-MedicalDevice-Device:
+zib-VisualFunction.VisualAid.Product:
   zib deviations:
     Device.note.text:
       - cardinality: 1..1
         reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
+    Device.identifier:productID:
+      - datatype: Identifier
+        reason: The mapping of ProductId is not straightforward and relates to multiple elements in FHIR (.identifier, .udiCarrier.deviceIdentifier, .udiCarrier.issuer, .udiCarrier.carrierHRF, .expirationDate, .lotNumber and .serialNumber). In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.udiCarrier.deviceIdentifier:
+      - datatype: string
+        reason: The mapping of ProductId is not straightforward and relates to multiple elements in FHIR (.identifier, .udiCarrier.deviceIdentifier, .udiCarrier.issuer, .udiCarrier.carrierHRF, .expirationDate, .lotNumber and .serialNumber). In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.udiCarrier.issuer:
+      - datatype: uri
+        reason: The mapping of ProductId is not straightforward and relates to multiple elements in FHIR (.identifier, .udiCarrier.deviceIdentifier, .udiCarrier.issuer, .udiCarrier.carrierHRF, .expirationDate, .lotNumber and .serialNumber). In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.udiCarrier.carrierHRF:
+      - datatype: string
+        reason: The mapping of ProductId is not straightforward and relates to multiple elements in FHIR (.identifier, .udiCarrier.deviceIdentifier, .udiCarrier.issuer, .udiCarrier.carrierHRF, .expirationDate, .lotNumber and .serialNumber). In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.expirationDate:
+      - datatype: dateTime
+        reason: The mapping of ProductId is not straightforward and relates to multiple elements in FHIR (.identifier, .udiCarrier.deviceIdentifier, .udiCarrier.issuer, .udiCarrier.carrierHRF, .expirationDate, .lotNumber and .serialNumber). In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.lotNumber:
+      - datatype: string
+        reason: The mapping of ProductId is not straightforward and relates to multiple elements in FHIR (.identifier, .udiCarrier.deviceIdentifier, .udiCarrier.issuer, .udiCarrier.carrierHRF, .expirationDate, .lotNumber and .serialNumber). In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.serialNumber:
+      - datatype: string
+        reason: The mapping of ProductId is not straightforward and relates to multiple elements in FHIR (.identifier, .udiCarrier.deviceIdentifier, .udiCarrier.issuer, .udiCarrier.carrierHRF, .expirationDate, .lotNumber and .serialNumber). In result, the mapping of the concept to FHIR will not match on a datatype level.         
+  ignored issues:
+    StructureDefinition.differential.element[0]:
+      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias for ProductType is already present in the base profile where this profile is derived from. It should not be added twice to silence this issue.
