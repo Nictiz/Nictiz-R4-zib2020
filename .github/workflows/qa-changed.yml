@@ -244,7 +244,7 @@ jobs:
   attach-report:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
-    needs: [validate-all, zib-compliance-all]
+    needs: [validate-changed, zib-compliance-changed]
     steps:
       - name: Attach report to pull request
         uses: mshick/add-pr-comment@v1
@@ -253,9 +253,9 @@ jobs:
             # Validation report for changed materials
 
             ## Validation
-            ${{ needs.validate-all.outputs.markdown_report }}
+            ${{ needs.validate-changed.outputs.markdown_report }}
 
             ## Zib compliance
-            ${{ needs.zib-compliance-all.outputs.markdown_report }}
+            ${{ needs.zib-compliance-changed.outputs.markdown_report }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           repo-token-user-login: 'github-actions[bot]'
