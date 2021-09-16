@@ -32,7 +32,6 @@ while [ "$1" != "" ]; do
 done
 
 source /scripts/getresources.sh
-source /scripts/mkprofilingig.sh
 
 # Run the HL7 Validator and analyze the output. Parameters:
 # $1: textual description of the resources being analyzed
@@ -48,9 +47,9 @@ validate() {
     if [[ -n $3 ]]; then
       local profile_opt="-profile $3"
     fi
-    eval java -jar $tools_dir/validator/validator.jar -version 4.0 -ig ig/ -recurse $profile_opt $tx_opt $2 -output $output $output_redirect
+    eval java -jar $tools_dir/validator/validator.jar -version 4.0 -ig qa/ -ig resources/ -recurse $profile_opt $tx_opt $2 -output $output $output_redirect
     if [ $? -eq 0 ]; then
-      python3 $tools_dir/hl7-fhir-validator-action/analyze_results.py --colorize --fail-at warning --ignored-issues known-issues.yml $output
+      python3 $tools_dir/hl7-fhir-validator-action/analyze_results.py --colorize --fail-at error --ignored-issues known-issues.yml $output
       if [ "$tx_opt" != "" ]; then
         echo -e "\033[0;33m(No terminology server was used)\033[0m"
       fi
@@ -74,7 +73,8 @@ else
 fi
 validate "zib profiles" "$zib_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Profiles"
 validate "zib extensions" "$zib_extensions" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Extensions"
-validate "nl-core profiles" "$nlcore_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore"
+validate "nl-core profiles" "$nlcore_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore-Profiles"
+validate "nl-core extensions" "$nlcore_extensions" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore-Extensions"
 validate "other profiles" "$other_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions"
 validate "ConceptMaps" "$conceptmaps" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-ConceptMaps"
 validate "other terminology" "$other_terminology"
