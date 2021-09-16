@@ -119,6 +119,8 @@ jobs:
           source:  ${{ steps.get-resources.outputs.examples }}
           ignored-issues: known-issues.yml
         continue-on-error: true
+      - name: Test
+        run: echo ${{ toJSON(github.event) }}
       - name: Collect results
         id: collect-statistics
         shell: python
