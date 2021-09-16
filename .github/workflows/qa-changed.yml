@@ -127,7 +127,7 @@ jobs:
 
           success = True
           github_report   = ""
-          markdown_report = ""
+          markdown_report = "## [Validation](https://github.com/Nictiz/Nictiz-R4-zib2020/pull/${{ github.event.number }}/checks?check_run_id=${{ github.run_id }})"
 
           def printStatistics(name, key):
             global success, github_report, markdown_report
@@ -218,7 +218,7 @@ jobs:
           import json, sys
 
           github_report   = ""
-          markdown_report = ""
+          markdown_report = "## [Zib compliance](https://github.com/Nictiz/Nictiz-R4-zib2020/pull/${{ github.event.number }}/checks?check_run_id=${{ github.run_id }})"
 
           success = ("${{ steps.check-zib-compliance.outcome }}" == "success")
           with open("${{ steps.check-zib-compliance.outputs.stats-file }}", 'r') as sf:
@@ -256,10 +256,8 @@ jobs:
           message: |
             # Validation report for changed materials
 
-            ## [Validation](https://github.com/Nictiz/Nictiz-R4-zib2020/pull/${{ github.event.number }}/checks?check_run_id=${{ github.run_id }})
             ${{ needs.validate-changed.outputs.markdown_report }}
 
-            ## Zib compliance
             ${{ needs.zib-compliance-changed.outputs.markdown_report }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           repo-token-user-login: 'github-actions[bot]'
