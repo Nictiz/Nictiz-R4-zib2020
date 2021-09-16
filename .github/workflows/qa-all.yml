@@ -206,23 +206,19 @@ jobs:
           import json, sys
 
           github_report   = ""
-          markdown_report = ""
 
           success = ("${{ steps.check-zib-compliance.outcome }}" == "success")
           with open("${{ steps.check-zib-compliance.outputs.stats-file }}", 'r') as sf:
             if "${{ steps.check-zib-compliance.outputs.was-skipped }}" == 'true':
               out_str = f'Zib compliance check was skipped'
-              markdown_report += (f"- :heavy_minus_sign: _{out_str}_%0A")
             else:
               stats = json.load(sf)
               out_str = f'Zib compliance check {"succeeded" if success else "failed"} with {stats["issueStats"]["error"]} errors and {stats["issueStats"]["warning"]} warnings.'
 
             if not success:
               github_report   += f"::error::{out_str}%0A"
-              markdown_report += (f"- :x: {out_str}%0A")
             else:
               github_report   += f"\033[1;32mOk:\033[0m {out_str}%0A"
-              markdown_report += (f"- :heavy_check_mark: {out_str}%0A")
 
           print(f'::set-output name=result_status::{0 if success else 1}')
           print(f'::set-output name=github_report::{github_report}')
