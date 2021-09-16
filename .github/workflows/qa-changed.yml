@@ -119,8 +119,6 @@ jobs:
           source:  ${{ steps.get-resources.outputs.examples }}
           ignored-issues: known-issues.yml
         continue-on-error: true
-      - name: Test
-        run: echo ${{ toJSON(github.event) }}
       - name: Collect results
         id: collect-statistics
         shell: python
@@ -129,7 +127,7 @@ jobs:
 
           success = True
           github_report   = ""
-          markdown_report = "## [Validation](https://github.com/Nictiz/Nictiz-R4-zib2020/pull/${{ github.event.number }}/checks?check_run_id=${{ job.container.id }})%0A"
+          markdown_report = ""
 
           def printStatistics(name, key):
             global success, github_report, markdown_report
@@ -220,7 +218,7 @@ jobs:
           import json, sys
 
           github_report   = ""
-          markdown_report = "## [Zib compliance](https://github.com/Nictiz/Nictiz-R4-zib2020/pull/${{ github.event.number }}/checks?check_run_id=${{ job.container.id }})%0A"
+          markdown_report = ""
 
           success = ("${{ steps.check-zib-compliance.outcome }}" == "success")
           with open("${{ steps.check-zib-compliance.outputs.stats-file }}", 'r') as sf:
@@ -256,10 +254,12 @@ jobs:
         uses: mshick/add-pr-comment@v1
         with:
           message: |
-            # Validation report for changed materials
+            # Validation report for [changed materials](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
 
+            ## Validation
             ${{ needs.validate-changed.outputs.markdown_report }}
 
+            ## Zib compliance
             ${{ needs.zib-compliance-changed.outputs.markdown_report }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           repo-token-user-login: 'github-actions[bot]'
