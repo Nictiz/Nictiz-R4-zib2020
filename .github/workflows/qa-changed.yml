@@ -1,9 +1,12 @@
 name: Profile QA - changed files
-on: push
+on: [push, pull_request]
 
 jobs:
   validate-changed:
     runs-on: ubuntu-latest
+    continue-on-error: true
+    outputs:
+      markdown_report: ${{ steps.collect-statistics.outputs.markdown_report }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -124,6 +127,7 @@ jobs:
 
           success = True
           github_report   = ""
+          markdown_report = ""
 
           def printStatistics(name, key):
             global success, github_report, markdown_report
@@ -133,6 +137,7 @@ jobs:
 
             if step_data["outputs"]["was-skipped"] == 'true':
               out_str = f'Test "{name}" was skipped'
+              markdown_report += (f"- :heavy_minus_sign: _{out_str}_%0A")
               return
 
             step_success = (step_data["outcome"] == "success")
@@ -145,10 +150,13 @@ jobs:
 
               if not step_success:
                 github_report   += f"::error::{out_str}%0A"
+                markdown_report += (f"- :x: {out_str}%0A")
               elif stats["warning"] > 0:
                 github_report   += f"::warning::{out_str}%0A"
+                markdown_report += (f"- :warning: {out_str}%0A")
               else:
                 github_report   += f"\033[1;32mOk:\033[0m {out_str}%0A"
+                markdown_report += (f"- :heavy_check_mark: {out_str}%0A")
 
           steps_data = json.loads("""${{ toJSON(steps) }}""")
 
@@ -163,6 +171,7 @@ jobs:
 
           print(f'::set-output name=result_status::{0 if success else 1}')
           print(f'::set-output name=github_report::{github_report}')
+          print(f'::set-output name=markdown_report::{markdown_report}')
       - name: Print results
         run: |
           echo "${{ steps.collect-statistics.outputs.github_report }}"
@@ -170,6 +179,9 @@ jobs:
 
   zib-compliance-changed:
     runs-on: ubuntu-latest
+    continue-on-error: true
+    outputs:
+      markdown_report: ${{ steps.collect-statistics.outputs.markdown_report }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -222,7 +234,28 @@ jobs:
 
           print(f'::set-output name=result_status::{0 if success else 1}')
           print(f'::set-output name=github_report::{github_report}')
+          print(f'::set-output name=markdown_report::{markdown_report}')
       - name: Print results
         run: |
           echo "${{ steps.collect-statistics.outputs.github_report }}"
           exit ${{ steps.collect-statistics.outputs.result_status }}
+
+
+  attach-report:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
+    needs: [validate-all, zib-compliance-all]
+    steps:
+      - name: Attach report to pull request
+        uses: mshick/add-pr-comment@v1
+        with:
+          message: |
+            # Validation report for changed materials
+
+            ## Validation
+            ${{ needs.validate-all.outputs.markdown_report }}
+
+            ## Zib compliance
+            ${{ needs.zib-compliance-all.outputs.markdown_report }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token-user-login: 'github-actions[bot]'
