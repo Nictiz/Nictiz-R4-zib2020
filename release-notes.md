@@ -62,8 +62,7 @@ Style - profiling guidelines
 * Added a notion on the root that we have not profiled the zib constraint to mandate a LastName.
 
 ## zib-NutritionAdvice
-* PracititionerRole reference extension has been removed on `NutritionOrder.orderer`
-* AllergyIntolerance reference mapping has been removed on `NutritionOrder.allergyIntolerance`
+* AllergyIntolerance reference mapping has been removed on `NutritionOrder.allergyIntolerance`, because the ZIB does not support this concept
 * Mapping on `NutritionOrder.oralDiet.texture.foodType.text` has been removed 
 * Added a new zib element Indication::Problem with ID NL-CM:7.11.5 this is mapped on `NutritionOrder.extension:problem`
 * The comment element has been moved to `NutritionOrder.note.text`
