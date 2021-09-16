@@ -63,7 +63,7 @@ Style - profiling guidelines
 
 ## zib-NutritionAdvice
 * AllergyIntolerance reference mapping has been removed on `NutritionOrder.allergyIntolerance`, because the ZIB does not support this concept
-* Mapping on `NutritionOrder.oralDiet.texture.foodType.text` has been removed 
+* Mapping on `NutritionOrder.oralDiet.texture.foodType.text` has been removed, because the .modifier FHIR concept can exist on its own  
 * Added a new zib element Indication::Problem with ID NL-CM:7.11.5 this is mapped on `NutritionOrder.extension:problem`
 * The comment element has been moved to `NutritionOrder.note.text`
 
