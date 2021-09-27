@@ -12,8 +12,8 @@
    <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.4.1--20200901000000"/>
    <identifier>
       <use value="official"/>
-      <system value="http://art-decor.org/ns/oids/vs"/>
-      <value value="2.16.840.1.113883.2.4.3.11.60.40.2.7.4.1"/>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.7.4.1"/>
    </identifier>
    <version value="2020-09-01T00:00:00"/>
    <name value="DrugsOfGeneesmiddelSoortCodelijst"/>
@@ -37,13 +37,38 @@
    <copyright value="This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these artefacts must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/getsnomed-ct or info@snomed.org."/>
    <compose>
       <include>
+         <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+         <concept>
+            <code value="OTH"/>
+            <display value="Other"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Other"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Anders"/>
+            </designation>
+         </concept>
+      </include>
+      <include>
          <system value="http://snomed.info/sct"/>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
                <valueString value="Heroïne"/>
             </extension>
             <code value="387341002"/>
-            <display value="Heroin (substance)"/>
+            <display value="heroïne"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -60,7 +85,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Heroïne"/>
+               <value value="heroïne"/>
             </designation>
          </concept>
          <concept>
@@ -68,7 +93,7 @@
                <valueString value="Benzodiazepine"/>
             </extension>
             <code value="372664007"/>
-            <display value="Benzodiazepine (substance)"/>
+            <display value="benzodiazepine"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -85,7 +110,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Benzodiazepine"/>
+               <value value="benzodiazepine"/>
             </designation>
          </concept>
          <concept>
@@ -93,7 +118,7 @@
                <valueString value="Methadon"/>
             </extension>
             <code value="387286002"/>
-            <display value="Methadone (substance)"/>
+            <display value="methadon"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -110,7 +135,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Methadon"/>
+               <value value="methadon"/>
             </designation>
          </concept>
          <concept>
@@ -118,7 +143,7 @@
                <valueString value="GHB"/>
             </extension>
             <code value="62821004"/>
-            <display value="Hydroxybutyric acid (substance)"/>
+            <display value="gammahydroxyboterzuur"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -135,7 +160,16 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Gammahydroxyboterzuur"/>
+               <value value="gammahydroxyboterzuur"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="GHB"/>
             </designation>
          </concept>
          <concept>
@@ -143,7 +177,7 @@
                <valueString value="Cocaïne"/>
             </extension>
             <code value="387085005"/>
-            <display value="Cocaine (substance)"/>
+            <display value="cocaïne"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -160,7 +194,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Cocaïne"/>
+               <value value="cocaïne"/>
             </designation>
          </concept>
          <concept>
@@ -168,7 +202,7 @@
                <valueString value="Crack, base coke"/>
             </extension>
             <code value="229003004"/>
-            <display value="Cocaine freebase (substance)"/>
+            <display value="crack"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -185,7 +219,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Crack"/>
+               <value value="crack"/>
             </designation>
          </concept>
          <concept>
@@ -193,7 +227,7 @@
                <valueString value="MDMA"/>
             </extension>
             <code value="288459003"/>
-            <display value="Methylenedioxymethamphetamine (substance)"/>
+            <display value="methyleendioxymethamfetamine"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -210,7 +244,16 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Methyleendioxymethamfetamine"/>
+               <value value="methyleendioxymethamfetamine"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="xtc"/>
             </designation>
          </concept>
          <concept>
@@ -218,7 +261,16 @@
                <valueString value="Amfetamine, speed"/>
             </extension>
             <code value="703842006"/>
-            <display value="Amphetamine (substance)"/>
+            <display value="amfetamine"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Amfetamine"/>
+            </designation>
             <designation>
                <language value="en-US"/>
                <use>
@@ -235,7 +287,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Amfetamine"/>
+               <value value="amfetamine"/>
             </designation>
          </concept>
          <concept>
@@ -243,7 +295,7 @@
                <valueString value="Cannabis, wiet marihuana, hasj"/>
             </extension>
             <code value="398705004"/>
-            <display value="Cannabis (substance)"/>
+            <display value="cannabis"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -260,7 +312,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Cannabis"/>
+               <value value="cannabis"/>
             </designation>
          </concept>
          <concept>
@@ -268,7 +320,7 @@
                <valueString value="Paddo''s"/>
             </extension>
             <code value="229006007"/>
-            <display value="Hallucinogenic mushrooms (substance)"/>
+            <display value="paddo"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -285,7 +337,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Paddo"/>
+               <value value="paddo"/>
             </designation>
          </concept>
          <concept>
@@ -293,7 +345,7 @@
                <valueString value="LSD"/>
             </extension>
             <code value="15698006"/>
-            <display value="Lysergic acid diethylamide (substance)"/>
+            <display value="lyserginezuurdi-ethylamide"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -310,7 +362,16 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Lyserginezuurdi-ethylamide"/>
+               <value value="lsd"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="lyserginezuurdi-ethylamide"/>
             </designation>
          </concept>
          <concept>
@@ -318,7 +379,7 @@
                <valueString value="Ketamine"/>
             </extension>
             <code value="373464007"/>
-            <display value="Ketamine (substance)"/>
+            <display value="ketamine"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -335,7 +396,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Ketamine"/>
+               <value value="ketamine"/>
             </designation>
          </concept>
          <concept>
@@ -343,7 +404,7 @@
                <valueString value="PCP"/>
             </extension>
             <code value="9721008"/>
-            <display value="Phencyclidine (substance)"/>
+            <display value="fencyclidine"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -360,7 +421,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Fencyclidine"/>
+               <value value="fencyclidine"/>
             </designation>
          </concept>
          <concept>
@@ -368,7 +429,7 @@
                <valueString value="Crystal meth, methamfetamine"/>
             </extension>
             <code value="387499002"/>
-            <display value="Methamphetamine (substance)"/>
+            <display value="methamfetamine"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -379,13 +440,22 @@
                <value value="Methamphetamine"/>
             </designation>
             <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Metamfetamine"/>
+            </designation>
+            <designation>
                <language value="nl-NL"/>
                <use>
                   <system value="http://snomed.info/sct"/>
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Methamfetamine"/>
+               <value value="methamfetamine"/>
             </designation>
          </concept>
          <concept>
@@ -393,7 +463,7 @@
                <valueString value="Anabole steroïde"/>
             </extension>
             <code value="111151007"/>
-            <display value="Anabolic steroid (substance)"/>
+            <display value="anabool steroïd"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -401,7 +471,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Anabolic steroid"/>
+               <value value="Anabolic androgenic steroid"/>
             </designation>
             <designation>
                <language value="nl-NL"/>
@@ -410,7 +480,16 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Anabool steroïd"/>
+               <value value="anabool steroïd"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="anabolicum"/>
             </designation>
          </concept>
          <concept>
@@ -418,7 +497,7 @@
                <valueString value="Laxans"/>
             </extension>
             <code value="372800002"/>
-            <display value="Laxative (substance)"/>
+            <display value="laxans"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -435,7 +514,16 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Laxans"/>
+               <value value="laxeermiddel"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="laxans"/>
             </designation>
          </concept>
          <concept>
@@ -443,7 +531,7 @@
                <valueString value="Buprenorfine"/>
             </extension>
             <code value="387173000"/>
-            <display value="Buprenorphine (substance)"/>
+            <display value="buprenorfine"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -460,7 +548,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Buprenorfine"/>
+               <value value="buprenorfine"/>
             </designation>
          </concept>
          <concept>
@@ -468,7 +556,7 @@
                <valueString value="Fentanyl"/>
             </extension>
             <code value="373492002"/>
-            <display value="Fentanyl (substance)"/>
+            <display value="fentanyl"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -485,7 +573,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Fentanyl"/>
+               <value value="fentanyl"/>
             </designation>
          </concept>
          <concept>
@@ -493,7 +581,7 @@
                <valueString value="Barbituraat"/>
             </extension>
             <code value="372798009"/>
-            <display value="Barbiturate (substance)"/>
+            <display value="barbituraat"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -510,18 +598,8 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Barbituraat"/>
+               <value value="barbituraat"/>
             </designation>
-         </concept>
-      </include>
-      <include>
-         <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Anders"/>
-            </extension>
-            <code value="OTH"/>
-            <display value="Other"/>
          </concept>
       </include>
    </compose>
