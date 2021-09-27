@@ -10,6 +10,12 @@ pattern-NlCoreHealthProfessionalReference:
       - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
         reason: The title is shown in the hosting profiles as the name of the datatype. "zib HealthProfessional Reference" is more descriptive than the title according to the profiling guidelines ("pattern NlCoreHealthProfessionalReference").
 
+pattern-VitalSigns:
+  ignored issues:
+    Observation.category:VSCat:
+      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+        reason: This slice name is adopted from the Vital Signs profile.
+        
 pattern-ZibHealthProfessionalReference:
   ignored issues:
     StructureDefinition:
