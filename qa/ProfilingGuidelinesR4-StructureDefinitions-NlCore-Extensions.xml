@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ProfilingGuidelinesR4-StructureDefinitions-NlCore-Extensions" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore-Extensions" />
+  <name value="ProfilingGuidelinesR4StructureDefinitionsNlCoreExtensions" />
+  <title value="nl-core extension conformance to FHIR Profiling Guidelines for FHIR R4" />
+  <status value="draft" />
+  <description value="Conformance profile to check extensions that implement a specific funcrtional concept at the nl-core layer for conformance to the [Nictiz profiling guidelines for FHIR R4](https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4). Such extensions are recognized by the name, consisting of &quot;ext-[FunctionalModelName].[ConceptName]&quot;." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="StructureDefinition" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="StructureDefinition">
+      <path value="StructureDefinition" />
+      <constraint>
+        <key value="sd-zpg-e-01" />
+        <severity value="error" />
+        <human value="StuctureDefinition.id should start with 'ext-'" />
+        <expression value="StructureDefinition.id.startsWith('ext-')" />
+        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
+      </constraint>
+    </element>
+  </differential>
+</StructureDefinition>
