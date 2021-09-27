@@ -27,6 +27,12 @@ zib-ContactInformation-TelephoneNumbers:
     ContactPoint.system:
       - cardinality: 1..1
         reason: Although TelecomType and NumberType are optional in the zib, ContactPoint.system is used to identify the TelephoneNumbers concept itself when this datatype is added to a profile. If only a telephone number is given without TelecomType and NumberType, this will fall in the default slice of the profile.
+        
+zib-AbilityToUseToilet:
+  zib deviations:
+      Observation:
+      - short: AbilityToUseToilet
+        reason: The root concept name is an mistake in the zib and will be fixed at the next pre-publication
 
 zib-ContactPerson:
   zib deviations:
