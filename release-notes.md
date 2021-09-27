@@ -18,6 +18,9 @@ This document contains release notes per zib, indicating differences with their 
 * Added EndDateTime and Comment concepts
 * Added constraints in the profile on the choice that the zib provides between Concern and AlertName. Add guidance on which code to add to Flag.code if a reference to Concern is added.
 
+## zib-AnatomicalLocation
+* New partial zib. The anatomical location in FHIR is usually mapped on `.bodySite` (CodeableConcept with example binding). This zib has therefore been mapped onto a datatype profile that can be used for `.bodySite`.
+
 ## zib-ContactInformation
 * zib ContactInformation is mapped onto two profiles: one for the concept TelephoneNumbers and one for the concept E-mailAddresses. Both are added to the hosting profile.
 * Removed mapping guidance on the root comment of zib-ContactInformation-E-mailAddresses, as this is now straightforward.
