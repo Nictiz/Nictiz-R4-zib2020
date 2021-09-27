@@ -62,10 +62,10 @@ Style - profiling guidelines
 * Added a notion on the root that we have not profiled the zib constraint to mandate a LastName.
 
 ## zib-NutritionAdvice
-* AllergyIntolerance reference mapping has been removed on `NutritionOrder.allergyIntolerance`, because the ZIB does not support this concept
-* Mapping on `NutritionOrder.oralDiet.texture.foodType.text` has been removed, because the .modifier FHIR concept can exist on its own  
-* Added a new zib element Indication::Problem with ID NL-CM:7.11.5 this is mapped on `NutritionOrder.extension:problem`
-* The comment element has been moved to `NutritionOrder.note.text`
+* References not accounted for by the zib have been removed on `NutritionOrder.allergyIntolerance`, `NutritionOrder.encounter` and `NutritionOrder.orderer`.
+* The incorrect mapping of Consistency to `NutritionOrder.oralDiet.texture.foodType.text` has been removed. This concept is not used to provide information on the consistency of nutrition.
+* Added a new zib element Indication::Problem (id: NL-CM:7.11.5) on the extension `NutritionOrder.extension:problem`
+* The comment extension has been replaced by a mapping to `NutritionOrder.note.text`.
 
 ## zib-Patient
 * Includes Nationality, MaritalStatus, LanguageProficiency
