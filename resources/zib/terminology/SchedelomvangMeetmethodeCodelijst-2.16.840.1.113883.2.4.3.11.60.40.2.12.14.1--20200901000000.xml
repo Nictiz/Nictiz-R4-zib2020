@@ -12,8 +12,8 @@
    <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.14.1--20200901000000"/>
    <identifier>
       <use value="official"/>
-      <system value="http://art-decor.org/ns/oids/vs"/>
-      <value value="2.16.840.1.113883.2.4.3.11.60.40.2.12.14.1"/>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.12.14.1"/>
    </identifier>
    <version value="2020-09-01T00:00:00"/>
    <name value="SchedelomvangMeetmethodeCodelijst"/>
@@ -43,7 +43,7 @@
                <valueString value="Meten van schedelomvang m.b.v. meetlint"/>
             </extension>
             <code value="31551000146109"/>
-            <display value="Measurement of skull circumference with measuring tape"/>
+            <display value="bepalen van schedelomtrek met meetlint"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -53,13 +53,22 @@
                </use>
                <value value="Measurement of skull circumference with measuring tape"/>
             </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="bepalen van schedelomtrek met meetlint"/>
+            </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
                <valueString value="Meten van schedelomvang m.b.v. echografisch onderzoek"/>
             </extension>
             <code value="31561000146107"/>
-            <display value="Ultrasound measurement of skull circumference"/>
+            <display value="bepalen van schedelomtrek met echografie"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -68,6 +77,15 @@
                   <display value="Synonym"/>
                </use>
                <value value="Ultrasound measurement of skull circumference"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="bepalen van schedelomtrek met echografie"/>
             </designation>
          </concept>
       </include>
