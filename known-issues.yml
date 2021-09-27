@@ -248,8 +248,6 @@ zib-Patient:
     Patient.contact.extension:contactPerson.value[x]:
       - datatype: Reference
         reason: This is an additional reference to a separate zib-ContactPerson (RelatedPerson) instance, next to the information in Pateint.contact. Patient.contact and RelatedPerson can both be used to capture the information from zib-ContactPerson, but each are used within a different context. Information may therefore be duplicated; this is the recommended way.
-      - cardinality: 1..1
-        reason: The inclusion of the extension itself is optional. However, _when_ it is included, it should contain a value to make sense. 
     Patient.contact.name:
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
