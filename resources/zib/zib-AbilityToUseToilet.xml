@@ -28,4 +28,99 @@
   <type value="Observation" />
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
   <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="AbilityToUseToilet" />
+      <alias value="VermogenTotToiletgang" />
+      <mapping>
+        <identity value="zib-abilitytousetoilet-v3.1.1-2020EN" />
+        <map value="NL-CM:4.22.1" />
+        <comment value="AbilityToUseToilet" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="284779002" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:toiletUse">
+      <path value="Observation.component" />
+      <sliceName value="toiletUse" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:toiletUse.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="284899001" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:toiletUse.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="ToiletUse" />
+      <definition value="Coordinating and realizing urination or defecation, such as indicating the need, getting into the right position, finding and reaching a suitable spot, manipulating clothing before and after urination, and cleaning up (the body) afterwards." />
+      <alias value="Toiletgebruik" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.22.4--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-abilitytousetoilet-v3.1.1-2020EN" />
+        <map value="NL-CM:4.22.6" />
+        <comment value="ToiletUse" />
+      </mapping>
+    </element>
+    <element id="Observation.component:menstrualCare">
+      <path value="Observation.component" />
+      <sliceName value="menstrualCare" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:menstrualCare.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="284955009" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:menstrualCare.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="MenstrualCare" />
+      <definition value="Coordinating, planning and hygiene in the event of menstruation, such as anticipating the menstruation and using sanitary napkins and tampons." />
+      <alias value="ZorgBijMenstruatie" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.22.3--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-abilitytousetoilet-v3.1.1-2020EN" />
+        <map value="NL-CM:4.22.4" />
+        <comment value="MenstrualCare" />
+      </mapping>
+    </element>
+  </differential>
 </StructureDefinition>
