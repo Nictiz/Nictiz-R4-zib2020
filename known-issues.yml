@@ -15,6 +15,12 @@ pattern-ZibHealthProfessionalReference:
     StructureDefinition:
       - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
         reason: The title is shown in the hosting profiles as the name of the datatype. "zib HealthProfessional Reference" is more descriptive than the title according to the profiling guidelines ("pattern ZibHealthProfessionalReference").
+        
+zib-AbilityToUseToilet:
+  zib deviations:
+      Observation:
+      - short: AbilityToUseToilet
+        reason: The root concept name is an mistake in the zib and will be fixed at the next pre-publication
 
 zib-AddressInformation:
   zib deviations:
@@ -26,13 +32,7 @@ zib-ContactInformation-TelephoneNumbers:
   zib deviations:
     ContactPoint.system:
       - cardinality: 1..1
-        reason: Although TelecomType and NumberType are optional in the zib, ContactPoint.system is used to identify the TelephoneNumbers concept itself when this datatype is added to a profile. If only a telephone number is given without TelecomType and NumberType, this will fall in the default slice of the profile.
-        
-zib-AbilityToUseToilet:
-  zib deviations:
-      Observation:
-      - short: AbilityToUseToilet
-        reason: The root concept name is an mistake in the zib and will be fixed at the next pre-publication
+        reason: Although TelecomType and NumberType are optional in the zib, ContactPoint.system is used to identify the TelephoneNumbers concept itself when this datatype is added to a profile. If only a telephone number is given without TelecomType and NumberType, this will fall in the default slice of the profile.7
 
 zib-ContactPerson:
   zib deviations:
