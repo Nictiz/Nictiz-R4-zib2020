@@ -325,10 +325,6 @@
           <type value="type" />
           <path value="$this" />
         </discriminator>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
         <rules value="open" />
       </slicing>
     </element>
@@ -345,7 +341,7 @@
     </element>
     <element id="MedicationAdministration.dosage.rate[x].extension:range">
       <path value="MedicationAdministration.dosage.rate[x].extension" />
-      <sliceName value="range" />
+      <sliceName value="administeringSpeedRange" />
       <min value="0" />
       <max value="1" />
       <type>
@@ -353,7 +349,7 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AdministreringSpeedRange" />
       </type>
     </element>
-    <element id="MedicationAdministration.dosage.rate[x].extension:range.value[x].low">
+    <element id="MedicationAdministration.dosage.rate[x]:rateRange.extension:range.value[x].low">
       <path value="MedicationAdministration.dosage.rate[x].extension.value[x].low" />
       <short value="minimumValue" />
       <definition value="The minimal value of the range. The boundary is inclusive." />
@@ -364,7 +360,7 @@
         <comment value="minimumValue" />
       </mapping>
     </element>
-    <element id="MedicationAdministration.dosage.rate[x].extension:range.value[x].high">
+    <element id="MedicationAdministration.dosage.rate[x]:rateRange.extension:range.value[x].high">
       <path value="MedicationAdministration.dosage.rate[x].extension.value[x].high" />
       <short value="maximumValue" />
       <definition value="The maximum value of the range. The boundary is inclusive." />
@@ -376,7 +372,7 @@
       </mapping>
     </element>
     <element id="MedicationAdministration.dosage.rate[x]:rateQuantity">
-      <path value="MedicationAdministration.dosage.rateQuantity" />
+      <path value="MedicationAdministration.dosage.rate[x]" />
       <sliceName value="rateQuantity" />
       <short value="AdministeringSpeed / nominalValue" />
       <definition value="The administering speed is used in slow administration of liquid. In practice, the measuring unit is almost always ml/hour. Entering an interval (such as 0-10 ml/hour) is also a commonly used option. &#xA;For example, with an administering speed of 10ml/hour: &#xD;&#xA;- amount = 10,&#xD;&#xA;- dose unit = ml          &#xD;&#xA;- time unit = hour&#xD;&#xA;&#xD;&#xA;Optionally a translation to NHG table Gebruiksvoorschriften(Table 25) is also allowed." />
