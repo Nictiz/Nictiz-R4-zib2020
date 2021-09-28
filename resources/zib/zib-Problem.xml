@@ -68,7 +68,6 @@
       <binding>
         <strength value="required" />
         <description value="Use ConceptMap VerificatieStatusCodelijst_to_ConditionVerificationStatus to translate terminology from the functional model to profile terminology in ValueSet ConditionVerificationStatus." />
-        <valueSet value="http://hl7.org/fhir/ValueSet/condition-ver-status|4.0.1" />
       </binding>
       <mapping>
         <identity value="zib-problem-v4.4-2020EN" />
@@ -148,10 +147,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="Condition.code.extension:furtherSpecificationProblemName">
       <path value="Condition.code.extension" />
       <sliceName value="furtherSpecificationProblemName" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -160,7 +161,7 @@
     </element>
     <element id="Condition.bodySite">
       <path value="Condition.bodySite" />
-      <short value="ProblemAnatomicalLocation" />
+      <short value="Location / ProblemAnatomicalLocation" />
       <definition value="Anatomical location which is the focus of the problem." />
       <alias value="ProbleemAnatomischeLocatie" />
       <max value="1" />
