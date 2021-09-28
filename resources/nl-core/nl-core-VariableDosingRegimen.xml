@@ -273,7 +273,25 @@
     </element>
     <element id="MedicationRequest.medication[x]">
       <path value="MedicationRequest.medication[x]" />
-      <comment value="It is not expected for the VariableDosingRegimen to have a relationship with a Medication resource. An Data Absent Reason extension holding an _unkonwn_ code may be used to meet the the cardinality requirements of FHIR." />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="MedicationRequest.medication[x]:medicationReference">
+      <path value="MedicationRequest.medication[x]" />
+      <sliceName value="medicationReference" />
+      <short value="AgreedMedicine" />
+      <definition value="The medicine agreed upon to be used." />
+      <alias value="Afgesprokengeneesmiddel" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Medication" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct" />
+      </type>
     </element>
     <element id="MedicationRequest.encounter">
       <path value="MedicationRequest.encounter" />
