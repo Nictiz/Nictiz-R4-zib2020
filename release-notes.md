@@ -75,3 +75,6 @@ Style - profiling guidelines
 * Cardinality of `Patient.name` left at 0..* to allow including several name elements with a different name.use each.
 * Cardinality of `Patient.telecom` left at 0..* to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not dot.
 * Added a comment to `deceased[x]`: When exporting the data, if `deceasedDateTim` (DateOfDeath) is present and has a value, DeathIndicator may be set to 'true', since DeathIndicator and DateOfDeath cannot both be represented at the same time.
+
+## zib-Range
+* There is no profile for this partial zib because the relevant parts can be modelled directly in the profiles where this zib is used.
