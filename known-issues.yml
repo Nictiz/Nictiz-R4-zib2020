@@ -113,6 +113,18 @@ zib-HealthProfessional-PractitionerRole:
       - datatype: ContactPoint
         reason: See PractitionerRole.telecom
 
+zib-LegalSituation-LegalStatus:
+  zib deviations:
+    Condition.code:
+      - cardinality: 1..1
+        reason: The zib requires either a LegalStatus or a Representation to be present. This profile represents the former concept, so the LegalStatus (in Condition.code) is required.
+
+zib-LegalSituation-Representation:
+  zib deviations:
+    Condition.code:
+      - cardinality: 1..1
+        reason: The zib requires either a LegalStatus or a Representation to be present. This profile represents the latter concept, so the Representation (in Condition.code) is required.
+
 zib-NameInformation:
   zib deviations:
     HumanName.prefix:
