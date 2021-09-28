@@ -1,3 +1,13 @@
+conceptmap-MedicatieToedieningStatusCodelijst-to-MedicationAdministrationStatusCodes: 
+  ignored issues:
+    ConceptMap:
+      - message: "cm-pg-02: 'The canonical URL should conform to the profiling guidelines'"
+        reason: The canonical URL, name and title are shortened to meet the max 64 char constraint of the fhir spec for ids and the id is used to construct the aformentioned elements. 
+      - message: "cm-pg-03: 'The name of the ConceptMap should conform to the profiling guidelines'"
+        reason:  The canonical URL, name and title are shortened to meet the max 64 char constraint of the fhir spec for ids and the id is used to construct the aformentioned elements. 
+      - message: "cm-pg-04: 'The title of the ConceptMap should conform to the profiling guidelines'"
+        reason: The canonical URL, name and title are shortened to meet the max 64 char constraint of the fhir spec for ids and the id is used to construct the aformentioned elements. 
+
 ext-AdministrationAgreement.AdditionalInformation:
   zib deviations:
     Extension.value[x]:
@@ -21,6 +31,13 @@ ext-LanguageProficiency.CommunicationDetails:
     Extension.value[x]:
       - cardinality: 0..1
         reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension should be added 0..* in the hosting element.
+
+
+ext-ext-MedicationAdministration2.AdministeringSpeedRange:
+  zib deviations:
+    Extension.value[x]:
+      - dataype: Range
+        reason: The zib Range is not represented as a resource rather it is mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Range as would have been the case within the zib Range.
 
 ext-MedicationAgreement.MedicationAgreementAdditionalInformation:
   zib deviations:
@@ -315,6 +332,11 @@ zib-MedicationUse2:
     MedicationStatement.reasonCode:reasonForUse.text:
       - cardinality:  1..1
         reason: The reasonCode.text has been made mandatory because it is placed within a slice (reasonForUse) and the element is used as a discriminator for the validator. Because the concept is placed within a slice on a 0..* element it is possible to not populate this zib concept, which matches the zib definition.
+    MedicationStatement.status:
+      - cardinality:  1..1
+        reason: UseIndicator is mapped to the status element of MedicationStatement which is 1..1. This should not be problematic because the status element is used for more than holding UseIndicator information. If UseIndicator is absent because it is 0..1 another status code is chosen to fullfil the 1..1 requirement by FHIR. 
+      - datatype: code
+        reason: UseIndicator is mapped to the status element of MedicationStatement, thereby not represented by a boolean but by a code. Mapping guidance is provided in the profile to transform between the boolean and code datatypes.
     
 zib-NameInformation:
   zib deviations:
