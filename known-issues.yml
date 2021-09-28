@@ -1,13 +1,3 @@
-conceptmap-MedicatieToedieningStatusCodelijst-to-MedicationAdministrationStatusCodes: 
-  ignored issues:
-    ConceptMap:
-      - message: "cm-pg-02: 'The canonical URL should conform to the profiling guidelines'"
-        reason: The canonical URL, name and title are shortened to meet the max 64 char constraint of the fhir spec for ids and the id is used to construct the aformentioned elements. 
-      - message: "cm-pg-03: 'The name of the ConceptMap should conform to the profiling guidelines'"
-        reason:  The canonical URL, name and title are shortened to meet the max 64 char constraint of the fhir spec for ids and the id is used to construct the aformentioned elements. 
-      - message: "cm-pg-04: 'The title of the ConceptMap should conform to the profiling guidelines'"
-        reason: The canonical URL, name and title are shortened to meet the max 64 char constraint of the fhir spec for ids and the id is used to construct the aformentioned elements. 
-
 ext-AdministrationAgreement.AdditionalInformation:
   zib deviations:
     Extension.value[x]:
@@ -55,6 +45,16 @@ ext-MedicationUse.AsAgreedIndicator:
     Extension.value[x]:
       - cardinality:  0..1
         reason: The extension allows the value to occure only once (0..1), but the use of the extension itself (in a resource)is allowed to be repeated (0..*), effectively resulting a cardinality of 0..* for this element.
+
+MedicatieToedieningStatus-to-MedicationAdministrationStatus: 
+  ignored issues:
+    ConceptMap:
+      - message: "cm-pg-02: 'The canonical URL should conform to the profiling guidelines'"
+        reason: The canonical URL, name and title are shortened to meet the max 64 char constraint of the fhir spec for ids and the id is used to construct the aformentioned elements. 
+      - message: "cm-pg-03: 'The name of the ConceptMap should conform to the profiling guidelines'"
+        reason:  The canonical URL, name and title are shortened to meet the max 64 char constraint of the fhir spec for ids and the id is used to construct the aformentioned elements. 
+      - message: "cm-pg-04: 'The title of the ConceptMap should conform to the profiling guidelines'"
+        reason: The canonical URL, name and title are shortened to meet the max 64 char constraint of the fhir spec for ids and the id is used to construct the aformentioned elements. 
 
 pattern-NlCoreHealthProfessionalReference:
   ignored issues:
