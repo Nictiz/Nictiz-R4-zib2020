@@ -71,7 +71,7 @@ jobs:
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.16
         with:
           version: "4.0"
-          ig: ig/
+          ig: resources/ qa/
           recurse: true
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore-Extensions
           source:  ${{ steps.get-resources.outputs.nlcore_extensions }}
