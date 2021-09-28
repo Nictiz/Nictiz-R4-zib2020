@@ -22,6 +22,9 @@ This document contains release notes per zib, indicating differences with their 
 * Ranamed MedicationTreatment extension to PharmaceuticalTreatment.Identifier and moved to the nl-core-profile. The extension is now also better documented.
 * `MedicationDispense.status` has become mandatory in R4, therefore, guidance is added on how to populate this field.
 
+## zib-AnatomicalLocation
+* New partial zib. The anatomical location in FHIR is usually mapped on `.bodySite` (CodeableConcept with example binding). This zib has therefore been mapped onto a datatype profile that can be used for `.bodySite`.
+
 ## zib-ContactInformation
 * zib ContactInformation is mapped onto two profiles: one for the concept TelephoneNumbers and one for the concept E-mailAddresses. Both are added to the hosting profile.
 * Removed mapping guidance on the root comment of zib-ContactInformation-E-mailAddresses, as this is now straightforward.
@@ -145,13 +148,3 @@ Style - profiling guidelines
 * Cardinality of `Patient.name` left at 0..* to allow including several name elements with a different name.use each.
 * Cardinality of `Patient.telecom` left at 0..* to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not dot.
 * Added a comment to `deceased[x]`: When exporting the data, if `deceasedDateTim` (DateOfDeath) is present and has a value, DeathIndicator may be set to 'true', since DeathIndicator and DateOfDeath cannot both be represented at the same time.
-
-## zib-PharmaceuticalProduct
-* Aligned profile canoncial URL to align with the zib name.
-* A combined valueset is now used for MedicationCode and IngredientCode instead of a slicing construct of `CodeableConceptcoding`.
-* Removed references not accounted for by the zib.
-* Placed SubstanceCode on a CodeableConcept type slice instead of the .item[x] element adhering to the open world modeling principle.
-* Added iso21090-PQ-translation extension to `ingredient.strength.numerator` and `ingredient.strength.denominator` to allow adding quantity translation using other code systems (e.g. G-Standard and NHG).
-
-## zib-TimeInterval
-*  zib-TimeInterval has no previous profile(s) and therefore no diff.
