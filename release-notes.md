@@ -83,3 +83,9 @@ Style - profiling guidelines
 * ProblemStartDate and ProblemEndDate are placed on a DateTime type slice of `Condition.onset[x]` and `Condition.abatement[x]` allowing the option to use other types.
 * `Condition.note`now honours the max cardinality of zib Comment.
 * `Condition.verificationStatus` contains a mandatory `.coding` element to capture the zib terminology because of the required binding on the CodeableConcept level and the zib and FHIR valueset do not completely map.
+
+## zib-Range
+* There is no profile for this partial zib because the relevant parts can be modelled directly in the profiles where this zib is used.
+
+## zib-TimeInterval
+* In the previous release, the concepts of this partial zib were mapped directly in the profiles where they are used. In this release the usage of this partial zib has been expanded and profiles have been created to aid the usage in profiles in the various situations that might occur. 
