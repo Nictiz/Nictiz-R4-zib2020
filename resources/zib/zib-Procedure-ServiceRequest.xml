@@ -40,6 +40,24 @@
         <comment value="Procedure" />
       </mapping>
     </element>
+    <element id="ServiceRequest.status">
+      <path value="ServiceRequest.status" />
+      <definition value="This element is implictly mapped to the zib concepts ProcedureStartDate (NL-CM:14.1.2) and ProcedureEndDate  (NL-CM:14.1.3). Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When the ProcedureStartDate is in the future, `.status` will usually be set to _active_.&#xD;&#xA;* When the ProcedureStartDate is in the past, `.status` will usually be set to _completed_.&#xD;&#xA;* When ProcedureEndDate is in the past, `.status` will usually be set to _completed_.&#xD;&#xA;* When a system is unable to infer the status from the ProcedureStartDate and ProcedureEndDate , `.status` will be set to _unknown_. The _unknown_ code is not to be used to convey other statuses. The _unknown_ code should be used when one of the statuses applies, but the authoring system doesn't know the current state of the ProcedureRequest." />
+      <mapping>
+        <identity value="zib-procedure-v5.2-2020EN" />
+        <map value="NL-CM:14.1.2" />
+        <comment value="ProcedureStartDate (implicit, main mapping is on ServiceRequest.occurencePeriod.start and ServiceRequest.occurenceDateTime)" />
+      </mapping>
+      <mapping>
+        <identity value="zib-procedure-v5.2-2020EN" />
+        <map value="NL-CM:14.1.3" />
+        <comment value="ProcedureEndDate (implicit, main mapping is on ServiceRequest.occurencePeriod.end)" />
+      </mapping>
+    </element>
+    <element id="ServiceRequest.intent">
+      <path value="ServiceRequest.intent" />
+      <definition value="Unless intent is explicitly recorded and a more appropriate code is known, the value can be set to _order_ because a Procedure should authorize an action for a patient, pharmacist, professional administrator et cetera." />
+    </element>
     <element id="ServiceRequest.code">
       <path value="ServiceRequest.code" />
       <short value="ProcedureType" />
