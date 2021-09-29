@@ -276,9 +276,9 @@ zib-MedicationAdministration2:
     MedicationAdministration.performer:
       - datatype: BackboneElement
         reason: The appropriate representation of Administrator of a MedicationAdministration in FHIR is the performer. The container can be properly mapped to this BackboneElement.
-    MedicationAdministration.dosage.rate[x]:
-      - datatype: Ratio
-        reason: There is no profile for a reference to the partial zib Range because the relevant parts will be modelled directly in the profile.
+    MedicationAdministration.dosage.rate[x]:rateQuantity:
+      - datatype: Quantity
+        reason: There is no profile for a reference to the partial zib Range, rather it is given in the profile itself. However, only the nominalValue is currently supported by the FHIR spec, hence the mapping on a rateQuantity.
 
 zib-MedicationAgreement:
   zib deviations:
