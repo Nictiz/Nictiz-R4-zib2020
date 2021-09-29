@@ -12,8 +12,8 @@
    <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.3.3--20200901000000"/>
    <identifier>
       <use value="official"/>
-      <system value="http://art-decor.org/ns/oids/vs"/>
-      <value value="2.16.840.1.113883.2.4.3.11.60.40.2.12.3.3"/>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.12.3.3"/>
    </identifier>
    <version value="2020-09-01T00:00:00"/>
    <name value="InterpretatieFrequentieCodelijst"/>
@@ -43,7 +43,7 @@
                <valueString value="Bradycardie"/>
             </extension>
             <code value="48867003"/>
-            <display value="Bradycardia"/>
+            <display value="bradycardie"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -60,7 +60,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Bradycardie"/>
+               <value value="bradycardie"/>
             </designation>
          </concept>
          <concept>
@@ -68,7 +68,7 @@
                <valueString value="Normale hartfrequentie"/>
             </extension>
             <code value="76863003"/>
-            <display value="Normal heart rate"/>
+            <display value="normale hartfrequentie"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -78,13 +78,22 @@
                </use>
                <value value="Normal heart rate"/>
             </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="normale hartfrequentie"/>
+            </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
                <valueString value="Tachycardie"/>
             </extension>
             <code value="3424008"/>
-            <display value="Tachycardia"/>
+            <display value="tachycardie"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -101,7 +110,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Tachycardie"/>
+               <value value="tachycardie"/>
             </designation>
          </concept>
       </include>

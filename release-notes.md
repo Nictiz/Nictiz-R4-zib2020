@@ -10,8 +10,8 @@ This document contains release notes per zib, indicating differences with their 
 * Added a comment to `line.extension:houseNumberLetter-houseNumberAddition` on the possibility of a leading space not being parsed
 * Added a constraint to `line.extension:houseNumberIndication` to restrict it to the values 'by' or 'to'
 * Mapped AddressType to `extension:addressType` and added ConceptMaps to map AddressType to `.use` and `.type` to adhere to international use. However, `extension:official` was removed. AddressType code 'HP' is now mapped to `.use` 'home' and `.type` 'both'. This was done because of two reasons:
- * The notion to mark an address as 'official' seems to have its origin in the BRP, but is absent in the zib model.
- * The addition of `extension:official` seemed based on the rationale: "if implementers do not support the custom `extension:addressType`, you should be able to determine the AddressType by looking at `.use`, `.type` and custom `extension:official`". However, in this use case extension:official would probably also be not supported. By mapping 'HP' to .type 'both', all AddressType codes can be mapped to a combination of .type and .use.
+* The notion to mark an address as 'official' seems to have its origin in the BRP, but is absent in the zib model.
+* The addition of `extension:official` seemed based on the rationale: "if implementers do not support the custom `extension:addressType`, you should be able to determine the AddressType by looking at `.use`, `.type` and custom `extension:official`". However, in this use case extension:official would probably also be not supported. By mapping 'HP' to .type 'both', all AddressType codes can be mapped to a combination of .type and .use.
 
 ## zib-AdministrationAgreement
 * Placed mapping of MedicineForAdministrationAgreement on a type slice of `MedicationDispense.medicationReference` allowing the use of a CodeableConcept and thereby adhering to the open world modeling principle.
@@ -27,6 +27,9 @@ This document contains release notes per zib, indicating differences with their 
 * Applied the profiling guidelines when handling conflicts between FHIR core bindings and zib bindings. As a result code-specification extensions have been removed at `clinicalStatus` and `reaction.severity`.
 * Because AlleryStatus maps to both `clinicalStatus` and `verificationStatus`, but `verificationStatus` now has cardinality 0..1 compared to 1..1 in STU3, guidance on how to interpret the mapping has been added to the root, but has been simplified.
 * Changed cardinality of `note` from 0..* to 0..1 to align with the zib.
+
+## zib-AnatomicalLocation
+* New partial zib. The anatomical location in FHIR is usually mapped on `.bodySite` (CodeableConcept with example binding). This zib has therefore been mapped onto a datatype profile that can be used for `.bodySite`.
 
 ## zib-ContactInformation
 * zib ContactInformation is mapped onto two profiles: one for the concept TelephoneNumbers and one for the concept E-mailAddresses. Both are added to the hosting profile.

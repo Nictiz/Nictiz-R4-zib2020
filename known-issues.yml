@@ -46,6 +46,7 @@ pattern-NlCoreHealthProfessionalReference:
       - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
         reason: The title is shown in the hosting profiles as the name of the datatype. "zib HealthProfessional Reference" is more descriptive than the title according to the profiling guidelines ("pattern NlCoreHealthProfessionalReference").
 
+<<<<<<< HEAD
 pattern-GstdSimpleQuantity:
   ignored issues:
     StructureDefinition:
@@ -58,6 +59,12 @@ pattern-GstdQuantity:
       - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
         reason: The title is shown in the hosting profiles as the name of the datatype. "G-Standaard Quantity" is more descriptive than the title according to the profiling guidelines ("pattern GstdQuantity").
 
+pattern-VitalSigns:
+  ignored issues:
+    Observation.category:VSCat:
+      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+        reason: This slice name is adopted from the Vital Signs profile.
+        
 pattern-ZibHealthProfessionalReference:
   ignored issues:
     StructureDefinition:
@@ -452,7 +459,7 @@ zib-NameInformation:
     HumanName.suffix:
       - cardinality: 0..*
         reason: prefix and suffix are mapped to the "titles" concept from the zib. There's a mismatch however in the way this information is represented in the zib and in FHIR. The mapping is documented in the profile.
-        
+
 zib-NursingIntervention:
   zib deviations:
     CarePlan.activity.detail.scheduled[x]:scheduledTiming.repeat.frequency:
@@ -480,6 +487,12 @@ zib-NursingIntervention:
     CarePlan.activity.detail.performer:patient:
       - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice.
+
+zib-O2Saturation:
+  zib deviations:
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: Observation.note has a cardinality, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
 
 zib-NutritionAdvice:
      zib deviations:
