@@ -76,17 +76,6 @@
     </element>
     <element id="Observation.value[x]">
       <path value="Observation.value[x]" />
-      <slicing>
-        <discriminator>
-          <type value="type" />
-          <path value="$this" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Observation.value[x]:valueQuantity">
-      <path value="Observation.value[x]" />
-      <sliceName value="valueQuantity" />
       <short value="HeadCircumferenceMeasurement" />
       <definition value="The value of the head circumference as measured in centimeters." />
       <comment value="The zib states that both cm and mm can be used as unit. However, the HL7 Vital Signs profile restricts the metric units to just cm. A value in mm SHALL therefore be communicated as a fractional cm." />
