@@ -32,7 +32,6 @@ while [ "$1" != "" ]; do
 done
 
 source /scripts/getresources.sh
-source /scripts/mkprofilingig.sh
 
 # Run the HL7 Validator and analyze the output. Parameters:
 # $1: textual description of the resources being analyzed
@@ -40,7 +39,7 @@ source /scripts/mkprofilingig.sh
 # $3: optional profile canonical to validate the resources against
 validate() {
   echo
-  if [[ -z $2 ]]; then
+  if [[ $2 =~ ^[^\s]*$ ]]; then
     echo -e "\033[1;37m+++ No $1 to check\033[0m"
   else
     echo -e "\033[1;37m+++ Validating $1\033[0m"
@@ -48,9 +47,9 @@ validate() {
     if [[ -n $3 ]]; then
       local profile_opt="-profile $3"
     fi
-    eval java -jar $tools_dir/validator/validator.jar -version 4.0 -ig ig/ -recurse $profile_opt $tx_opt $2 -output $output $output_redirect
+    eval java -jar $tools_dir/validator/validator.jar -version 4.0 -ig qa/ -ig resources/ -recurse $profile_opt $tx_opt $2 -output $output $output_redirect
     if [ $? -eq 0 ]; then
-      python3 $tools_dir/hl7-fhir-validator-action/analyze_results.py --colorize --fail-at warning --ignored-issues known-issues.yml $output
+      python3 $tools_dir/hl7-fhir-validator-action/analyze_results.py --colorize --fail-at error --ignored-issues known-issues.yml $output
       if [ "$tx_opt" != "" ]; then
         echo -e "\033[0;33m(No terminology server was used)\033[0m"
       fi
@@ -74,7 +73,8 @@ else
 fi
 validate "zib profiles" "$zib_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Profiles"
 validate "zib extensions" "$zib_extensions" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Extensions"
-validate "nl-core profiles" "$nlcore_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore"
+validate "nl-core profiles" "$nlcore_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore-Profiles"
+validate "nl-core extensions" "$nlcore_extensions" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore-Extensions"
 validate "other profiles" "$other_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions"
 validate "ConceptMaps" "$conceptmaps" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-ConceptMaps"
 validate "other terminology" "$other_terminology"
@@ -90,7 +90,12 @@ else
   eval /scripts/generatezibsnapshots.sh $zib_profiles $zib_extensions $output_redirect
 
   if [ $? -eq 0 ]; then
-    node $tools_dir/zib-compliance-fhir/index.js -m qa/zibs2020.max -z 2020 -r -l 2 -f text --fail-at warning --zib-overrides known-issues.yml snapshots/*json
+    if [[ $changed_only == 0 ]]; then
+      check_missing="mapped-only"
+    else
+      check_missing="none"
+    fi
+    node $tools_dir/zib-compliance-fhir/index.js -m qa/zibs2020.max -z 2020 -l 2 --check-missing=$check_missing -f text --fail-at warning --zib-overrides known-issues.yml snapshots/*json
   else
     echo -e "\033[0;33mThere was an error during snapshot generation. Re-run with the --debug option to see the output.\033[0m"
     echo "Skipping zib compliance check."
