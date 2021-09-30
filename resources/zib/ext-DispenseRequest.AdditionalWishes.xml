@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-DispenseRequest.AdditionalWishes" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.AdditionalWishes" />
+  <name value="ExtDispenseRequestAdditionalWishes" />
+  <title value="ext DispenseRequest.AdditionalWishes" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="An extension to provide additional wishes that includes logistics and other instructions such as: do not enter in GDS, urgent, purposeful deviation, etc." />
+  <purpose value="This extension represents the AdditionalWishes concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) DispenseRequest v1.0.3(2020EN)](https://zibs.nl/wiki/DispenseRequest-v1.0.3(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-dispenserequest-v1.0.3-2020EN" />
+    <uri value="https://zibs.nl/wiki/DispenseRequest-v1.0.3(2020EN)" />
+    <name value="zib DispenseRequest-v1.0.3(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="MedicationRequest" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.AdditionalWishes" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="AdditionalWishes" />
+      <definition value="Logistics and other instructions such as: do not enter in GDS, urgent, purposeful deviation, etc." />
+      <alias value="AanvullendeWensen" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.10.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-dispenserequest-v1.0.3-2020EN" />
+        <map value="NL-CM:9.10.22759" />
+        <comment value="AdditionalWishes" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

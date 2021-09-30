@@ -1,0 +1,26 @@
+<SearchParameter xmlns="http://hl7.org/fhir">
+  <id value="category" />
+  <url value="http://nictiz.nl/fhir/SearchParameter/category" />
+  <version value="1.0.0"/>
+  <name value="Category" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The classification or categorization of the resource. Works on multiple resources:
+    * [MedicationDispense](http://hl7.org/fhir/medicationdispense.html): Return dispenses based on the value of category.
+    * [MedicationAdministration](http://hl7.org/fhir/medicationadministration.html): Return administrations based on the value of category."/>
+  <purpose value="To select instances based the value of the `category` element for resources that do not have a SearchParameter defined by the base FHIR spec for this element."/>
+  <code value="category"/>
+  <base value="MedicationDispense"/>
+  <base value="MedicationAdministration"/>
+  <type value="token"/>
+  <expression value="MedicationDispense.category | MedicationAdministration.category"/>
+</SearchParameter>
+

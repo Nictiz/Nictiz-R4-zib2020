@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-InstructionsForUse.DosageInstructions" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-InstructionsForUse.DosageInstructions" />
+  <name value="NlcoreInstructionsForUseDosageInstructions" />
+  <title value="nl core InstructionsForUse.DosageInstructions" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Instructions for the use or administration of the medication, e.g. dose and route of administration. In the event of medication use, this is the pattern of use established by the patient or which the patient followed." />
+  <purpose value="A derived profile from [zib-InstructionsForUse](http://nictiz.nl/fhir/StructureDefinition/zib-InstructionsForUse) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="Medication-Process-v9-2-0-0" />
+    <uri value="https://decor.nictiz.nl/pub/medicatieproces/mp-html-20210921T194523/ds-2.16.840.1.113883.2.4.3.11.60.20.77.1.4-2021-01-01T000000.html" />
+    <name value="Medication Process 9 v2.0.0-beta" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <type value="Dosage" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-InstructionsForUse.DosageInstructions" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Dosage">
+      <path value="Dosage" />
+      <alias value="nl-core-InstructionsForUse.DosageInstructions" />
+    </element>
+    <element id="Dosage.additionalInstruction">
+      <path value="Dosage.additionalInstruction" />
+      <binding>
+        <strength value="extensible" />
+        <description value="WCIAv3 Tabel 25 B-codes subset voor aanvullende gebruiksinstructies" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.20.77.11.9--20160407000000" />
+      </binding>
+      <mapping>
+        <identity value="Medication-Process-v9-2-0-0" />
+        <map value="mp-dataelement920-51" />
+        <comment value="AdditionalInstruction" />
+      </mapping>
+    </element>
+    <element id="Dosage.timing.repeat.periodUnit">
+      <path value="Dosage.timing.repeat.periodUnit" />
+      <comment value="If `periodUnit` is used for Interval, only minutes (_min_) and hours (_h_) are allowed." />
+    </element>
+  </differential>
+</StructureDefinition>

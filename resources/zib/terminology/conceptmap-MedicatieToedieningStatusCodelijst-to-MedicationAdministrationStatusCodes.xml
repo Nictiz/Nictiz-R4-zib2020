@@ -1,0 +1,73 @@
+<ConceptMap xmlns="http://hl7.org/fhir">
+      <id value="MedicatieToedieningStatus-to-MedicationAdministrationStatus"/>
+      <extension url="http://hl7.org/fhir/StructureDefinition/concept-bidirectional">
+            <valueBoolean value="true"/>
+      </extension>
+      <url value="http://nictiz.nl/fhir/ConceptMap/MedicatieToedieningStatusCodelijst-to-MedicationAdministrationStatusCodes"/>
+      <name value="MedicatieToedieningStatusCodelijst_to_MedicationAdministrationStatusCodes"/>
+      <title value="MedicatieToedieningStatusCodelijst to MedicationAdministrationStatusCodes"/>
+      <status value="draft"/>
+      <publisher value="Nictiz"/>
+      <contact>
+            <name value="Nictiz"/>
+            <telecom>
+                  <system value="email"/>
+                  <value value="info@nictiz.nl"/>
+                  <use value="work"/>
+            </telecom>
+      </contact>
+      <description value="Maps MedicatieToedieningStatus codes as found in Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) MedicationAdministration2 v1.1.1](https://zibs.nl/wiki/MedicationAdministration2-v1.1.1(2020EN)) to `MedicationAdministration.status` codes as found in FHIR R4."/> 
+      <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise."/>
+      <sourceCanonical value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.13.1--20200901000000"/>
+      <targetCanonical value="http://hl7.org/fhir/ValueSet/medication-admin-status"/>
+      <group>
+            <source value="http://terminology.hl7.org/CodeSystem/v3-ActStatus"/>
+            <target value="http://terminology.hl7.org/CodeSystem/medication-admin-status"/>
+            <targetVersion value="4.0.1"/>
+            <element>
+                  <code value="active"/>
+                  <display value="Active"/>
+                  <target>
+                        <code value="in-progress"/>
+                        <display value="In Progress"/>
+                        <equivalence value="equal"/>
+                  </target>
+            </element>
+            <element>
+                  <code value="suspended"/>
+                  <display value="Suspended"/>
+                  <target>
+                        <code value="on-hold"/>
+                        <display value="On Hold"/>
+                        <equivalence value="equal"/>
+                  </target>
+            </element>
+            <element>
+                  <code value="aborted"/>
+                  <display value="Aborted"/>
+                  <target>
+                        <code value="stopped"/>
+                        <display value="Stopped"/>
+                        <equivalence value="equal"/>
+                  </target>
+            </element>
+            <element>
+                  <code value="completed"/>
+                  <display value="Completed"/>
+                  <target>
+                        <code value="completed"/>
+                        <display value="Completed"/>
+                        <equivalence value="equal"/>
+                  </target>
+            </element>
+            <element>
+                  <code value="cancelled"/>
+                  <display value="Cancelled"/>
+                  <target>
+                        <code value="not-done"/>
+                        <display value="Not Done"/>
+                        <equivalence value="equal"/>
+                  </target>
+            </element>
+      </group>
+</ConceptMap>
