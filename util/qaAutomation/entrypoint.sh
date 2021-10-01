@@ -15,21 +15,45 @@ cd $work_dir
 
 changed_only=0
 output_redirect="> /dev/null 2> /dev/null"
-tx_opt=""
+disable_tx=0
+keep_mitm_running=0
 while [ "$1" != "" ]; do
     case $1 in
         --changed-only) changed_only=1
                         ;;
         --debug)        output_redirect=""
                         ;;
-        --no-tx)        tx_opt="-tx n/a"
+        --no-tx)        disable_tx=1
                         ;;
-        *)              echo "Usage: $0 [--changed-only] [--debug]"
+        --inspect-tx)   keep_mitm_running=1
+                        ;;
+        *)              echo "Usage: $0 [--changed-only] [--debug] [--no-tx] [--inspect-tx]"
                         exit 1
                         ;;
     esac
     shift
 done
+
+if [[ $disable_tx == 0 ]]; then
+  source /scripts/checktx.sh
+  if [[ $disable_tx == 1 ]]; then
+    echo -e "\033[0;33mtx.fhir.org couldn't be reached. Disabling terminology server checking.\033[0m"
+  fi
+fi
+
+if [[ $disable_tx == 1 ]]; then
+  if [[ $keep_mitm_running == 1 ]]; then
+    echo "You requested to inspect the terminology server, but terminology checking is disabled, so I'll just refuse."
+  fi
+  tx_opt="-tx n/a"
+else
+  tx_opt="-proxy 127.0.0.1:8080 -tx http://v4.combined.tx"
+
+  # Start the proxy server to intelligently handle terminology requests
+  set -m
+  mitmweb --web-host "0.0.0.0" -s /tools/CombinedTX/CombinedTX.py -q &
+  echo "You can spy on the terminology server log at http://localhost:8081"
+fi
 
 source /scripts/getresources.sh
 
@@ -50,7 +74,7 @@ validate() {
     eval java -jar $tools_dir/validator/validator.jar -version 4.0 -ig qa/ -ig resources/ -recurse $profile_opt $tx_opt $2 -output $output $output_redirect
     if [ $? -eq 0 ]; then
       python3 $tools_dir/hl7-fhir-validator-action/analyze_results.py --colorize --fail-at error --ignored-issues known-issues.yml $output
-      if [ "$tx_opt" != "" ]; then
+      if [[ $disable_tx == 1 ]]; then
         echo -e "\033[0;33m(No terminology server was used)\033[0m"
       fi
     else
@@ -63,14 +87,6 @@ validate() {
 }
 
 # Perform all HL7 Validator actions
-if [ "$tx_opt" == "" ]; then
-  source /scripts/checktx.sh
-  if [ "$tx_opt" != "" ]; then
-    echo -e "\033[0;33mtx.fhir.org couldn't be reached. Disabling terminology server checking.\033[0m"
-  fi
-else
-  echo -e "\033[0;33mTerminology server manually disabled.\033[0m"
-fi
 validate "zib profiles" "$zib_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Profiles"
 validate "zib extensions" "$zib_extensions" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Extensions"
 validate "nl-core profiles" "$nlcore_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore-Profiles"
@@ -103,6 +119,12 @@ else
   if [ $? -ne 0 ]; then
     exit_code=1
   fi
+fi
+
+if [[ $keep_mitm_running == 1 ]]; then
+  echo
+  echo "Bringing proxxy server to foreground. Press Ctrl+C to finish."
+  fg > /dev/null
 fi
 
 exit $exit_code
