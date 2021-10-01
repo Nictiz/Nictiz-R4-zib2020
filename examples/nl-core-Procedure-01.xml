@@ -1,82 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <Procedure xmlns="http://hl7.org/fhir">
-    <id value="nl-core-procedure-01"/>
-    <meta>
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure"/>
-    </meta>
-    <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
-        <valueCodeableConcept>
+   <id value="nl-core-Procedure-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure"/>
+   </meta>
+   <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="129284003"/>
+            <display value="chirurgische handeling"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <basedOn>
+      <reference value="Procedure/nl-core-Procedure-01"/>
+      <type value="Procedure"/>
+      <display value="Procedure, type: implantatie van totale knieprothese, method: chirurgische handeling"/>
+   </basedOn>
+   <status value="completed"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="609588000"/>
+         <display value="implantatie van totale knieprothese"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria J.P.M. Jo van Putten van der Giessen"/>
+   </subject>
+   <performedPeriod>
+      <start value="2012-06-05"/>
+      <end value="2012-06-06"/>
+   </performedPeriod>
+   <performer>
+      <actor>
+         <reference value="PractitionerRole/nl-core-Procedure-01-PractitionerRole-01"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), Orthoptisten"/>
+      </actor>
+   </performer>
+   <location>
+      <reference value="Location/nl-core-Procedure-01-Location-01"/>
+      <type value="Location"/>
+      <display value="Healthcare provider (location), UMCG"/>
+   </location>
+   <reasonReference>
+      <reference value="Condition/nl-core-Procedure-01-Condition-01"/>
+      <type value="Condition"/>
+      <display value="Problem"/>
+   </reasonReference>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+         <valueCodeableConcept>
             <coding>
-                <system value="http://snomed.info/sct"/>
-                <code value="257739009"/>
-                <display value="Open adjustment"/>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Links"/>
             </coding>
-        </valueCodeableConcept>
-    </extension>
-    <basedOn>
-        <reference value="ServiceRequest/nl-core-Procedure-ServiceRequest-01"/>
-        <display value="Planned Implantation of Swanson prosthesis of knee (procedure)"/>
-    </basedOn>
-    <status value="completed"/>
-    <category>
-        <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="387713003"/>
-            <display value="Surgical procedure"/>
-        </coding>
-    </category>
-    <code>
-        <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="60159002"/>
-            <display value="Implantation of Swanson prosthesis of knee (procedure)"/>
-        </coding>
-    </code>
-    <subject>
-        <reference value="Patient/nl-core-patient-01"/>
-        <display value="Johan XXX_Helleman"/>
-    </subject>
-    <performedPeriod>
-        <start value="2012-06-05T09:43:00+02:00"/>
-        <end value="2012-06-05T10:40:00+02:00"/>
-    </performedPeriod>
-    <performer>
-        <actor>
-            <reference value="PractitionerRole/nl-core-PractitionerRole-01"/>
-            <display value="UMCG - Afdeling Orthopedie"/>
-        </actor>
-    </performer>
-    <location>
-        <reference value="Location/nl-core-HealthcareProvider"/>
-        <display value="UMCG"/>
-    </location>
-    <reasonReference>
-        <reference value="Condition/nl-core-problem-01"/>
-        <display value="Arthropathy (disorder)"/>
-    </reasonReference>
-    <bodySite>
-        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
-            <valueCodeableConcept>
-                <coding>
-                    <system value="http://snomed.info/sct"/>
-                    <code value="7771000"/>
-                    <display value="Left"/>
-                </coding>
-            </valueCodeableConcept>
-        </extension>
-        <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="72696002"/>
-            <display value="Knee region structure (body structure)"/>
-        </coding>
-    </bodySite>
-    <report>
-        <reference value="DiagnosticReport/nl-core-TextResult-01"/>
-        <display value="Surgical result report"/>
-    </report>
-    <focalDevice>
-        <manipulated>
-            <reference value="Device/zib-medicaldeviceproduct-01"/>
-            <display value="Knee joint prosthesis, device (physical object)"/>
-        </manipulated>
-    </focalDevice>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="72696002"/>
+      </coding>
+   </bodySite>
 </Procedure>
