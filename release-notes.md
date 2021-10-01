@@ -13,6 +13,9 @@ This document contains release notes per zib, indicating differences with their 
  * The notion to mark an address as 'official' seems to have its origin in the BRP, but is absent in the zib model.
  * The addition of `extension:official` seemed based on the rationale: "if implementers do not support the custom `extension:addressType`, you should be able to determine the AddressType by looking at `.use`, `.type` and custom `extension:official`". However, in this use case extension:official would probably also be not supported. By mapping 'HP' to .type 'both', all AddressType codes can be mapped to a combination of .type and .use.
 
+## zib-AnatomicalLocation
+* New partial zib. The anatomical location in FHIR is usually mapped on `.bodySite` (CodeableConcept with example binding). This zib has therefore been mapped onto a datatype profile that can be used for `.bodySite`.
+
 ## zib-ContactInformation
 * zib ContactInformation is mapped onto two profiles: one for the concept TelephoneNumbers and one for the concept E-mailAddresses. Both are added to the hosting profile.
 * Removed mapping guidance on the root comment of zib-ContactInformation-E-mailAddresses, as this is now straightforward.
@@ -73,10 +76,15 @@ Style - profiling guidelines
 * Cardinality of `Patient.telecom` left at 0..* to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not dot.
 * Added a comment to `deceased[x]`: When exporting the data, if `deceasedDateTim` (DateOfDeath) is present and has a value, DeathIndicator may be set to 'true', since DeathIndicator and DateOfDeath cannot both be represented at the same time.
 
+## zib-Range
+* There is no profile for this partial zib because the relevant parts can be modelled directly in the profiles where this zib is used.
+
+## zib-TimeInterval
+* In the previous release, the concepts of this partial zib were mapped directly in the profiles where they are used. In this release the usage of this partial zib has been expanded and profiles have been created to aid the usage in profiles in the various situations that might occur.
+
 ## zib-TreatmentObjective
 * Removed identifier mapping on `Goal.identifier`
 * DesiredHealthcareResult element moved to `Goal.description.text`
 * Removed the mapping on `Goal.expressedBy` and the reference to practitionerRole
 * The reference FunctionalOrMentalStatus is mapped inline on the goal resource elements (see comment on the root element for the explanation)
 * The medicalDevice extension is mapped on `.target` element
-
