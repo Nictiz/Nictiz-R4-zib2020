@@ -32,7 +32,7 @@ A quite difficult part of validation is to pass all terminology checks, as this 
 
 The [Nationale Terminologieserver](https://terminologieserver.nl/fhir) is a partial solution to this problem, although it too misses some information that the default FHIR terminology server has, also resulting in false errors. To alleviate this problem, the Docker image contains a script that will use both the Nationale Terminologieserver _and_ the default FHIR terminology server as a fallback.
 
-Note: the FHIR Validator will report this as using `combined.tx` as the terminology server.
+Note: the FHIR Validator will report this as using `v4.combined.tx` as the terminology server.
 
 To use this service, the user needs to have a valid login to the Nationale Terminologieserver. These credentials should be stored in the file "nts-credentials.env" in the format:
 
@@ -45,7 +45,7 @@ NTS_PASS=yyy
 
 Which can then be added to the docker-compose command:
 
-  > docker-compose run [-f path/to/docker-compose.yml] --env-file path/to/nts-credentials.env --rm validate
+  > docker-compose [-f path/to/docker-compose.yml] --env-file path/to/nts-credentials.env run --rm validate
 
 Note: instead of using this file, the environment variables `NTS_USER` and `NTS_PASS` may be set to the proper credentials.
 
@@ -53,7 +53,9 @@ If this file is absent or empty or the credentials are invalid, only the fallbac
 
 ### Spying on the terminology server
 
-The dual check is implemented using a proxy server that relays requests to the actual terminology server(s). A bonus feature of this proxy is that it can be used to inspect all calls from the FHIR Validator. To do so, add the `-inspect-tx` flag afther the docker-compose command and point your web browser at `http://localhost:8081`.
+The dual check is implemented using a proxy server that relays requests to the actual terminology server(s). A bonus feature of this proxy is that it can be used to inspect all calls from the FHIR Validator. To do so, add the option `-p 8081:8081` and the `-inspect-tx` flag to the docker-compose command and point your web browser at `http://localhost:8081`:
+
+  > docker-compose [-f path/to/docker-compose.yml] --env-file path/to/nts-credentials.env run --rm -p 8081:8081 validate --inspect-tx
 
 Note that, when using this flag, the workflow execution doesn't end automatically so that the proxy web interface can still be used after all tools have finished. The workflow should be manually stopped using Ctrl+C. (And yes, this is what the `--inspect-tx` flag _actually_ does; the proxy can be accessed without this flag as well, but it will shut down too quickly to be useful).
 

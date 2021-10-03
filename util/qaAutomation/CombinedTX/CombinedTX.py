@@ -46,7 +46,7 @@ class CombinedTX:
             os.environ["NTS_PASS"]
             self._support_nts = True
         except:
-            print("Environment variables NTS_USER and NTS_PASS are not set. Disabling support for the Nationale Terminologieserver")
+            print("\033[1;31mEnvironment variables NTS_USER and NTS_PASS are not set. Disabling support for the Nationale Terminologieserver\033[0m")
             ctx.log.info("Environment variables NTS_USER and NTS_PASS are not set. Disabling support for the Nationale Terminologieserver")
             self._support_nts = False
 
@@ -263,7 +263,7 @@ class CombinedTX:
             ctx.log.info("Retrieved an NTS access token")
             self._nts_token = response.json()["access_token"]
         else:
-            print("No NTS authorization. Disabling further requests to the Nationale Terminologieserver.")
+            print("\033[1;31mNo NTS authorization. Disabling further requests to the Nationale Terminologieserver.\033[0m")
             ctx.log.info("No NTS authorization. Disabling further requests to the Nationale Terminologieserver.")
             self._nts_token = None
             self._support_nts = False

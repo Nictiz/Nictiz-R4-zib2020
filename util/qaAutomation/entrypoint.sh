@@ -52,7 +52,7 @@ else
   # Start the proxy server to intelligently handle terminology requests
   set -m
   mitmweb --web-host "0.0.0.0" -s /tools/CombinedTX/CombinedTX.py -q &
-  echo "You can spy on the terminology server log at http://localhost:8081"
+  echo -e "\033[0;33mYou can spy on the terminology server log at http://localhost:8081\033[0m"
 fi
 
 source /scripts/getresources.sh
