@@ -12,8 +12,8 @@
    <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.2.1--20200901000000"/>
    <identifier>
       <use value="official"/>
-      <system value="http://art-decor.org/ns/oids/vs"/>
-      <value value="2.16.840.1.113883.2.4.3.11.60.40.2.13.2.1"/>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.13.2.1"/>
    </identifier>
    <version value="2020-09-01T00:00:00"/>
    <name value="TekstUitslagTypeCodelijst"/>
@@ -43,7 +43,7 @@
                <valueString value="microbiologie"/>
             </extension>
             <code value="19851009"/>
-            <display value="Microbiology"/>
+            <display value="microbiologisch onderzoek"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -60,7 +60,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Microbiologisch onderzoek"/>
+               <value value="microbiologisch onderzoek"/>
             </designation>
          </concept>
          <concept>
@@ -68,7 +68,7 @@
                <valueString value="overige beeld vormende techniek"/>
             </extension>
             <code value="363679005"/>
-            <display value="Imaging"/>
+            <display value="beeldvormende verrichting"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -85,7 +85,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Beeldvormende verrichting"/>
+               <value value="beeldvormende verrichting"/>
             </designation>
          </concept>
          <concept>
@@ -93,7 +93,7 @@
                <valueString value="röntgen"/>
             </extension>
             <code value="363680008"/>
-            <display value="X-ray"/>
+            <display value="radiografische beeldvormende verrichting"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -110,7 +110,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Radiografische beeldvormende verrichting"/>
+               <value value="radiografische beeldvormende verrichting"/>
             </designation>
          </concept>
          <concept>
@@ -118,7 +118,7 @@
                <valueString value="echografie"/>
             </extension>
             <code value="16310003"/>
-            <display value="Ultrasound"/>
+            <display value="diagnostische echografie"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -135,7 +135,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Diagnostische echografie"/>
+               <value value="diagnostische echografie"/>
             </designation>
          </concept>
          <concept>
@@ -154,13 +154,31 @@
                <value value="Computerized axial tomography"/>
             </designation>
             <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Computerised axial tomography"/>
+            </designation>
+            <designation>
                <language value="nl-NL"/>
                <use>
                   <system value="http://snomed.info/sct"/>
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Computertomografie"/>
+               <value value="CT-scan"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="CT"/>
             </designation>
          </concept>
          <concept>
@@ -168,7 +186,7 @@
                <valueString value="MRI"/>
             </extension>
             <code value="113091000"/>
-            <display value="MRI"/>
+            <display value="magnetic resonance imaging"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -185,7 +203,16 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Magnetic resonance imaging"/>
+               <value value="MRI-scan"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="magnetic resonance imaging"/>
             </designation>
          </concept>
          <concept>
@@ -193,7 +220,7 @@
                <valueString value="angiografie"/>
             </extension>
             <code value="77343006"/>
-            <display value="Angiography"/>
+            <display value="angiografie"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -210,7 +237,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Angiografie"/>
+               <value value="angiografie"/>
             </designation>
          </concept>
          <concept>
@@ -218,7 +245,7 @@
                <valueString value="echocardiografie"/>
             </extension>
             <code value="40701008"/>
-            <display value="Cardiac Echo"/>
+            <display value="echocardiografie"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -235,7 +262,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Echocardiografie"/>
+               <value value="echocardiografie"/>
             </designation>
          </concept>
          <concept>
@@ -243,7 +270,7 @@
                <valueString value="nucleaire geneeskunde"/>
             </extension>
             <code value="371572003"/>
-            <display value="Nuclear Medicine"/>
+            <display value="nucleair geneeskundige verrichting"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -260,7 +287,16 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Nucleair geneeskundige verrichting"/>
+               <value value="nucleair geneeskundige verrichting"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="nucleair onderzoek"/>
             </designation>
          </concept>
          <concept>
@@ -268,7 +304,7 @@
                <valueString value="pathologie"/>
             </extension>
             <code value="108257001"/>
-            <display value="Pathology"/>
+            <display value="pathologisch-anatomische verrichting"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -285,7 +321,16 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Pathologisch-anatomische verrichting"/>
+               <value value="pathologisch onderzoek"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="pathologisch-anatomische verrichting"/>
             </designation>
          </concept>
          <concept>
@@ -293,7 +338,7 @@
                <valueString value="procedure"/>
             </extension>
             <code value="71388002"/>
-            <display value="Procedure"/>
+            <display value="verrichting"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -310,7 +355,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Verrichting"/>
+               <value value="verrichting"/>
             </designation>
          </concept>
          <concept>
@@ -318,7 +363,7 @@
                <valueString value="PET CT"/>
             </extension>
             <code value="450436003"/>
-            <display value="PET CT"/>
+            <display value="positronemissietomografie met computertomografie"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -335,7 +380,16 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Positronemissietomografie met computertomografie"/>
+               <value value="positronemissietomografie met computertomografie"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="PET-CT-scan"/>
             </designation>
          </concept>
       </include>
