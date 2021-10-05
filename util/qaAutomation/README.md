@@ -13,7 +13,7 @@ The assumption is that (just like in a Github workflow) for each run a unique co
 
 The `-f` flag needs to be added when calling from any other dir than the current dir.
 
-This command will check all the resources in the current repository, which can take quite some time. Ususally however, only the things that are new or changed or of interest to the developer (although a full run is of course advised when things are finished to see if they still mesh with what was already there). To do so, add the `--changed-only` flag at the end of the command:
+This command will check all the resources in the current repository, which can take quite some time. Ususally however, only the things that are new or changed or of interest to the developer (although a full run is of course advised when things are finished to see if they still mesh with what was already there). To do so, add the `--changed-only` flag at the end of the command (which only takes into account the things that have been changed or added compared to the _main_ branch):
 
   > docker-compose run [-f path/to/docker-compose.yml] --rm validate --changed-only
 
