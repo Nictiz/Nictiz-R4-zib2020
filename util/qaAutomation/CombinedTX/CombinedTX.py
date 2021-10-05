@@ -61,8 +61,8 @@ class CombinedTX:
             fhir_version = 4 if flow.request.pretty_host == self.PROXY_HOSTNAME_V4 else 3
 
             if flow.request.path.endswith(self.PATH_VALIDATE):
-                # If the system being validated is not present on the default TX but only on the NTS, route the request 
-                # to the NTS
+                # If the system being validated is not present on the NTS but only on the default TX, route the request 
+                # to the default TX
                 tree = ET.fromstring(flow.request.content.decode("UTF-8"))
                 system = tree.findall("./f:parameter/f:name[@value='coding']../f:valueCoding/f:system", self.FHIR_NAMESPACE)[0].attrib["value"]
                 
@@ -72,20 +72,10 @@ class CombinedTX:
                         flow.response = refreshed
                         return
 
-                if system not in self.codesystems_dtx and system in self.codesystems_nts:
-                    ctx.log.info(f"Rerouting request for system '{system}' to NTS")
-                    headers = {
-                        "Content-Type": f"application/fhir+xml; fhirVersion={fhir_version}.0",
-                        "Accept": f"application/fhir+xml; fhirVersion={fhir_version}.0"
-                    }
-                    response = self._makeNTSRequest(flow.request.path, fhir_version, body = flow.request.content)
-                    if response.status_code == requests.codes.ok:
-                        flow.response = http.HTTPResponse.make(200, response.content, {"Content-Type": "application/fhir+xml"})
-                        flow.response.headers["TX-Origin"] = self.NTS_HOSTNAME
-                        return
-                    else:
-                        flow.response = self._createFailureResponse(400, "Couldn't validate code on " + self.NTS_HOSTNAME)
-                        return
+                if system not in self.codesystems_nts and system in self.codesystems_dtx:
+                    ctx.log.info(f"Rerouting request for system '{system}' to default TX")
+                    flow.request.host = self.DTX_HOSTNAME
+                    flow.request.path = (self.DTX_PATH_V3 if fhir_version == 3 else self.DTX_PATH_V4) + flow.request.path
                     return
             elif flow.request.path == self.PATH_METADATA_SUMMARY:
                 flow.response = self._getMetadataSummary(fhir_version)
@@ -94,15 +84,18 @@ class CombinedTX:
                 flow.response = self._getMetadataTerminology(flow, fhir_version)
                 return
 
-            # By default, route the request to the default TX server
-            flow.request.host = self.DTX_HOSTNAME
-            flow.request.path = (self.DTX_PATH_V3 if fhir_version == 3 else self.DTX_PATH_V4) + flow.request.path
+            # By default, route the request to the NTS
+            response = self._makeNTSRequest(flow.request.path, fhir_version, body = flow.request.content)
+            if response.status_code == requests.codes.ok:
+                flow.response = http.HTTPResponse.make(200, response.content, {"Content-Type": "application/fhir+xml"})
+                flow.response.headers["TX-Origin"] = self.NTS_HOSTNAME
+            else:
+                flow.response = self._createFailureResponse(400, "Couldn't validate code on " + self.NTS_HOSTNAME)
+            return
     
     def response(self, flow):
-        if flow.request.pretty_host == self.DTX_HOSTNAME:
-            tx_origin = self.DTX_HOST
-
-            # If the default server fails to validate a code but the CodeSystem is supported by the NTS, we can try 
+        if "TX-Origin" in flow.response.headers and flow.response.headers["TX-Origin"] == self.NTS_HOSTNAME:
+            # If the NTS fails to validate a code but the CodeSystem is supported by the default tx server, we can try 
             # again to see if it will validate there.
             if flow.response.status_code == 200 and flow.request.path.endswith(self.PATH_VALIDATE):
 
@@ -112,27 +105,31 @@ class CombinedTX:
                 result = tree.findall("./f:parameter/f:name[@value='result']../f:valueBoolean", self.FHIR_NAMESPACE)[0].attrib["value"]
                 
                 # If the display is deemed incorrect, the result is still true but a message will be appended, which 
-                # we'll have to analyze 
+                # we'll have to analyze
                 invalid_display = False
                 for message in tree.findall("./f:parameter/f:name[@value='message']../f:valueString", self.FHIR_NAMESPACE):
-                    if re.match('The display ".*" is not a valid display for the code', message.attrib["value"]):
+                    match = re.match('The code ([\\w-]+) exists in the CodeSystem, but the display "(.*)" is incorrect', message.attrib["value"])
+                    if match:
                         invalid_display = True
+                        ctx.log.info((f"Retrying display check for code {match.group(1)} (display; '{match.group(2)}') to default TX"))
                         break
 
                 if result == "false" or invalid_display:
-                    # Send a request to the NTS
-                    fhir_version = 4 if flow.request.path.startswith(self.DTX_PATH_V4) else 3
-                    if fhir_version == 3:
-                        path = flow.request.path.replace(self.DTX_PATH_V3, "")
-                    else:
-                        path = flow.request.path.replace(self.DTX_PATH_V4, "")
-                    response = self._makeNTSRequest(path, fhir_version, body = flow.request.content.decode("UTF-8"))
+                    # Send a request to the default TX
+                    headers = {
+                        "Content-Type": "application/fhir+xml; fhirVersion=4.0",
+                        "Accept": "application/fhir+xml; fhirVersion=4.0"
+                    }
+                    response = requests.post(self.DTX_HOST + self.DTX_PATH_V4 + flow.request.path, headers = headers, data = flow.request.content)
+
                     if response != False and response.status_code == requests.codes.ok:
-                        flow.response.content = response.content
-                        tx_origin = self.NTS_HOST
-            
-            # Add a header to identify the actual origin of the tx server
-            flow.response.headers["TX-Origin"] = tx_origin
+                        # The result of the operation                
+                        tree = ET.fromstring(response.content.decode("UTF-8"))
+                        result = tree.findall("./f:parameter/f:name[@value='result']../f:valueBoolean", self.FHIR_NAMESPACE)[0].attrib["value"]
+                        print(response.content.decode("UTF-8"))
+                        if result == "true":
+                            flow.response.content = response.content
+                            flow.response.headers["TX-Origin"] = self.DTX_HOST
 
     def _getMetadataSummary(self, fhir_version):
         """ Return a response to /metadata?_summary=true """
