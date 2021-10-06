@@ -1,7 +1,8 @@
 <ValueSet xmlns="http://hl7.org/fhir">
     <id value="2.16.840.1.113883.2.4.3.11.60.40.2.9.13.3--20200901000000"/>
     <meta>
-        <profile value="http://hl7.org/fhir/StructureDefinition/shareablevalueset"/><!--<profile value="http://hl7.org/fhir/4.0/StructureDefinition/ValueSet"/>-->
+        <profile value="http://hl7.org/fhir/StructureDefinition/shareablevalueset"/>
+      <!--<profile value="http://hl7.org/fhir/4.0/StructureDefinition/ValueSet"/>-->
     </meta>
     <extension url="http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod">
         <valuePeriod>
@@ -11,8 +12,8 @@
     <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.13.3--20200901000000"/>
     <identifier>
         <use value="official"/>
-        <system value="http://art-decor.org/ns/oids/vs"/>
-        <value value="2.16.840.1.113883.2.4.3.11.60.40.2.9.13.3"/>
+        <system value="urn:ietf:rfc:3986"/>
+        <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.9.13.3"/>
     </identifier>
     <version value="2020-09-01T00:00:00"/>
     <name value="MedicatieToedieningRedenVanAfwijkenCodelijst"/>
@@ -34,54 +35,6 @@
     <description value="MedicatieToedieningRedenVanAfwijkenCodelijst"/>
     <immutable value="false"/>
     <compose>
-        <include>
-            <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
-            <concept>
-                <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-                    <valueString value="Geen informatie"/>
-                </extension>
-                <code value="NI"/>
-                <display value="No information"/>
-            </concept>
-        </include>
-        <include>
-            <system value="http://terminology.hl7.org/CodeSystem/v3-ActReason"/>
-            <concept>
-                <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-                    <valueString value="Product niet meer leverbaar"/>
-                </extension>
-                <code value="DISCONT"/>
-                <display value="Product discontinued"/>
-            </concept>
-            <concept>
-                <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-                    <valueString value="Patiënt niet beschikbaar"/>
-                </extension>
-                <code value="NON-AVAIL"/>
-                <display value="Patient not available"/>
-            </concept>
-            <concept>
-                <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-                    <valueString value="Patiënt heeft geweigerd"/>
-                </extension>
-                <code value="PREFUS"/>
-                <display value="Patient refuse"/>
-            </concept>
-            <concept>
-                <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-                    <valueString value="Toediening volgens voorschrift niet mogelijk"/>
-                </extension>
-                <code value="UNABLE"/>
-                <display value="Unable to use"/>
-            </concept>
-            <concept>
-                <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-                    <valueString value="Medicatieafspraak is gestopt"/>
-                </extension>
-                <code value="FOABORT"/>
-                <display value="Order aborted"/>
-            </concept>
-        </include>
         <include>
             <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4"/>
             <concept>
@@ -126,6 +79,144 @@
                         <display value="Synonym"/>
                     </use>
                     <value value="Administration performer not available"/>
+                </designation>
+            </concept>
+        </include>
+        <include>
+            <system value="http://terminology.hl7.org/CodeSystem/v3-ActReason"/>
+            <concept>
+                <code value="DISCONT"/>
+                <display value="Product discontinued"/>
+                <designation>
+                    <language value="en-US"/>
+                    <use>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="900000000000013009"/>
+                        <display value="Synonym"/>
+                    </use>
+                    <value value="Product discontinued"/>
+                </designation>
+                <designation>
+                    <language value="nl-NL"/>
+                    <use>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="900000000000013009"/>
+                        <display value="Synonym"/>
+                    </use>
+                    <value value="Product niet meer leverbaar"/>
+                </designation>
+            </concept>
+            <concept>
+                <code value="NON-AVAIL"/>
+                <display value="Patient not available"/>
+                <designation>
+                    <language value="en-US"/>
+                    <use>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="900000000000013009"/>
+                        <display value="Synonym"/>
+                    </use>
+                    <value value="Patient not available"/>
+                </designation>
+                <designation>
+                    <language value="nl-NL"/>
+                    <use>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="900000000000013009"/>
+                        <display value="Synonym"/>
+                    </use>
+                    <value value="Patiënt niet beschikbaar"/>
+                </designation>
+            </concept>
+            <concept>
+                <code value="PREFUS"/>
+                <display value="Patient refuse"/>
+                <designation>
+                    <language value="en-US"/>
+                    <use>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="900000000000013009"/>
+                        <display value="Synonym"/>
+                    </use>
+                    <value value="Patient refuse"/>
+                </designation>
+                <designation>
+                    <language value="nl-NL"/>
+                    <use>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="900000000000013009"/>
+                        <display value="Synonym"/>
+                    </use>
+                    <value value="Patiënt heeft geweigerd"/>
+                </designation>
+            </concept>
+            <concept>
+                <code value="UNABLE"/>
+                <display value="Unable to use"/>
+                <designation>
+                    <language value="en-US"/>
+                    <use>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="900000000000013009"/>
+                        <display value="Synonym"/>
+                    </use>
+                    <value value="Unable to use"/>
+                </designation>
+                <designation>
+                    <language value="nl-NL"/>
+                    <use>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="900000000000013009"/>
+                        <display value="Synonym"/>
+                    </use>
+                    <value value="Toediening volgens voorschrift niet mogelijk"/>
+                </designation>
+            </concept>
+            <concept>
+                <code value="FOABORT"/>
+                <display value="Order aborted"/>
+                <designation>
+                    <language value="en-US"/>
+                    <use>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="900000000000013009"/>
+                        <display value="Synonym"/>
+                    </use>
+                    <value value="Order aborted"/>
+                </designation>
+                <designation>
+                    <language value="nl-NL"/>
+                    <use>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="900000000000013009"/>
+                        <display value="Synonym"/>
+                    </use>
+                    <value value="Medicatieafspraak is gestopt"/>
+                </designation>
+            </concept>
+        </include>
+        <include>
+            <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+            <concept>
+                <code value="NI"/>
+                <display value="No information"/>
+                <designation>
+                    <language value="en-US"/>
+                    <use>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="900000000000013009"/>
+                        <display value="Synonym"/>
+                    </use>
+                    <value value="No information"/>
+                </designation>
+                <designation>
+                    <language value="nl-NL"/>
+                    <use>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="900000000000013009"/>
+                        <display value="Synonym"/>
+                    </use>
+                    <value value="Geen informatie"/>
                 </designation>
             </concept>
         </include>
