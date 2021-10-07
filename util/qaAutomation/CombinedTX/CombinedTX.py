@@ -126,7 +126,6 @@ class CombinedTX:
                         # The result of the operation                
                         tree = ET.fromstring(response.content.decode("UTF-8"))
                         result = tree.findall("./f:parameter/f:name[@value='result']../f:valueBoolean", self.FHIR_NAMESPACE)[0].attrib["value"]
-                        print(response.content.decode("UTF-8"))
                         if result == "true":
                             flow.response.content = response.content
                             flow.response.headers["TX-Origin"] = self.DTX_HOST
