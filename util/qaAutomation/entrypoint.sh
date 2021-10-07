@@ -16,17 +16,56 @@ cd $work_dir
 changed_only=0
 output_redirect="> /dev/null 2> /dev/null"
 tx_opt=""
+declare -A perform_step
+perform_step[zib profiles]=0
+perform_step[zib extensions]=0
+perform_step[nl-core profiles]=0
+perform_step[nl-core extensions]=0
+perform_step[other profiles]=0
+perform_step[ConceptMaps]=0
+perform_step[other terminology]=0
+perform_step[examples]=0
+perform_step[zib compliance]=0
+perform_all_steps=1
 while [ "$1" != "" ]; do
     case $1 in
-        --changed-only) changed_only=1
-                        ;;
-        --debug)        output_redirect=""
-                        ;;
-        --no-tx)        tx_opt="-tx n/a"
-                        ;;
-        *)              echo "Usage: $0 [--changed-only] [--debug]"
-                        exit 1
-                        ;;
+        --changed-only)       changed_only=1
+                              ;;
+        --debug)              output_redirect=""
+                              ;;
+        --no-tx)              tx_opt="-tx n/a"
+                              ;;
+        --zib-profiles)       perform_step[zib profiles]=1
+                              perform_all_steps=0
+                              ;;
+        --zib-extensions)     perform_step[zib extensions]=1
+                              perform_all_steps=0
+                              ;;
+        --nl-core-profiles)   perform_step[nl-core profiles]=1
+                              perform_all_steps=0
+                              ;;
+        --nl-core-extensions) perform_step[nl-core extensions]=1
+                              perform_all_steps=0
+                              ;;
+        --other-profiles)     perform_step[other profiles]=1
+                              perform_all_steps=0
+                              ;;
+        --conceptmaps)        perform_step[ConceptMaps]=1
+                              perform_all_steps=0
+                              ;;
+        --other-terminology)  perform_step[other terminology]=1
+                              perform_all_steps=0
+                              ;;
+        --examples)           perform_step[examples]=1
+                              perform_all_steps=0
+                              ;;
+        --zib-compliance)     perform_step[zib compliance]=1
+                              perform_all_steps=0
+                              ;;
+        *)                    echo "Usage: $0 [--changed-only] [--debug] [--no-tx]"
+                              echo "In addition, you can select to run only one or more individual checks using --zib-profiles, --zib-extensions, --nl-core-profiles, --nl-core-extensions, --other-profiles, --conceptmaps, --other-terminology, --examples or -zib-compliance"
+                              exit 1
+                              ;;
     esac
     shift
 done
@@ -38,6 +77,10 @@ source /scripts/getresources.sh
 # $2: list of files to analyze (remember to quote them in case the list is empty)
 # $3: optional profile canonical to validate the resources against
 validate() {
+  if [[ $perform_all_steps == 0 && ${perform_step[$1]} == 0 ]]; then
+    return
+  fi
+  
   echo
   if [[ $2 =~ ^[^\s]*$ ]]; then
     echo -e "\033[1;37m+++ No $1 to check\033[0m"
@@ -81,27 +124,29 @@ validate "other terminology" "$other_terminology"
 validate "examples" "$examples"
 
 # Run zib compliance tool
-echo
-echo -e "\033[1;37m+++ Checking zib compliance\033[0m"
-if [[ -z $zib_profiles ]]; then
-  echo "No input, skipping"
-else
-  echo "Generating snapshots"
-  eval /scripts/generatezibsnapshots.sh $zib_profiles $zib_extensions $output_redirect
-
-  if [ $? -eq 0 ]; then
-    if [[ $changed_only == 0 ]]; then
-      check_missing="mapped-only"
-    else
-      check_missing="none"
-    fi
-    node $tools_dir/zib-compliance-fhir/index.js -m qa/zibs2020.max -z 2020 -l 2 --check-missing=$check_missing -f text --fail-at warning --zib-overrides known-issues.yml snapshots/*json
+if [[ $perform_all_steps == 1 || ${perform_step[zib compliance]} == 1 ]]; then
+  echo
+  echo -e "\033[1;37m+++ Checking zib compliance\033[0m"
+  if [[ -z $zib_profiles ]]; then
+    echo "No input, skipping"
   else
-    echo -e "\033[0;33mThere was an error during snapshot generation. Re-run with the --debug option to see the output.\033[0m"
-    echo "Skipping zib compliance check."
-  fi
-  if [ $? -ne 0 ]; then
-    exit_code=1
+    echo "Generating snapshots"
+    eval /scripts/generatezibsnapshots.sh $zib_profiles $zib_extensions $output_redirect
+
+    if [ $? -eq 0 ]; then
+      if [[ $changed_only == 0 ]]; then
+        check_missing="mapped-only"
+      else
+        check_missing="none"
+      fi
+      node $tools_dir/zib-compliance-fhir/index.js -m qa/zibs2020.max -z 2020 -l 2 --check-missing=$check_missing -f text --fail-at warning --zib-overrides known-issues.yml snapshots/*json
+    else
+      echo -e "\033[0;33mThere was an error during snapshot generation. Re-run with the --debug option to see the output.\033[0m"
+      echo "Skipping zib compliance check."
+    fi
+    if [ $? -ne 0 ]; then
+      exit_code=1
+    fi
   fi
 fi
 
