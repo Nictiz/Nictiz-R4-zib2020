@@ -6,14 +6,7 @@ This folder contains some utilities for zib2020 profiling.
 
 This folders contains the pieces to run the automated QA tools. These tools are used in the configured Github actions (configured in `.github/actions/*.yml` from the root of this repo) but can also be used manually. See the README in that folder for more information.
 
-Assuming Docker is running, the workflow can be started using the batch scripts provided here:
-* qa-All.bat to perform the qa workflow on all materials
-* qa-Changed.bat to perform the qa workflow on just the materials that have been added or changed as compared to the _main_ branch.
-
-In addition, the following flags may be added to the command:
-* `--no-tx` to disable terminology checking using a terminology server.
-* `--inspect-tx` to inspect the traffic to the terminology server (at <http://localhost:8081>)
-* `--debug` when an error occurs and you want to see full output of all the tools.
+Assuming Docker is running, the workflow can be started using the batch scripts "qa.bat". Ik will provide you with a menu to pick what to do.
 
 To use the Nationale Terminologieserver for validation, you need to place a file called "nts-credentials.env" in the "qaAutomation" folder, containing the following content:
 

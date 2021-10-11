@@ -12,8 +12,11 @@ Terminologieserver (terminologieserver.nl).
 
 The proxy is an addon for MITMProxy. It can be invoked using the `-s CombinedTX.py` flag in one of the commands.
 
+When running, the proxy listens to calls on http://v4.combined.tx/. All other requests will be passed on as-is.
+
 The Nationale Terminologieserver requires an account with proper permissions. The username and password should be set
-in the environment variables NTS_USER and NTS_PASS.
+in the environment variables NTS_USER and NTS_PASS, or using the special POST request on /resetNTSCredentials with a
+body containing "user" and "pass".
 """
 class CombinedTX:
     PROXY_HOSTNAME    = "combined.tx"

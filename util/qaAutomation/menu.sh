@@ -9,6 +9,8 @@ showNTSCredentialsMenu() {
   )
   if [[ $? == 0 ]]; then
     nts_credentials=($dialog_result)
+    NTS_USER=${nts_credentials[0]}
+    NTS_PASS=${nts_credentials[1]}
     export http_proxy="http://127.0.0.1:8080"
     http_body=$(python3 -c "import urllib.parse; print(urllib.parse.urlencode({'user': '${nts_credentials[0]}', 'pass': '${nts_credentials[1]}'}))")
     wget --quiet --post-data="$http_body" http://v4.combined.tx/resetNTSCredentials
@@ -76,8 +78,42 @@ showMenu() {
     debug_display="Disable debugging"
   fi
 
+  text=""
+  if [[ $perform_all_steps == 1 ]]; then
+    text="All checks will be performed"
+  else
+    text="The following steps:\n"
+    for step_name in "${!perform_step[@]}"; do
+      if [[ ${perform_step[$step_name]} == 1 ]]; then
+        if [[ $step_name == "zib compliance" ]]; then
+          text="$text* $step_name\n"
+        else
+          text="$text* validate $step_name\n"
+        fi
+      fi
+    done
+    text="$text""will be performed"
+  fi
+  if [[ $changed_only == 1 ]]; then
+    text="$text on \Zuchanged\ZU materials.\n\n"
+  else
+    text="$text on \Zuall\ZU materials.\n\n"
+  fi
+  if [[ $disable_tx == 1 ]]; then
+    text="$text""No terminology server will be used"
+  else
+    if [[ -n "$NTS_USER" && -n "$NTS_PASS" ]]; then
+      text="$text""The Nationale Terminologieserver will be used with backup from the default FHIR terminlogy server."
+    else
+      text="$text""The default FHIR terminlogy server will be used (set the NTS_USER and NTS_PASS variables or use the menu to enter credentials if you want to use the Nationale Terminologieserver)."
+    fi
+    text="$text You can inspect the terminology server traffic by pointing your browser to http://127.0.0.1:8081"
+  fi
+  
   dialog_result=$(
-    dialog --clear --menu "Choose what to do" 0 0 7 \
+    dialog --colors --clear \
+      --title "Zib2020/R4 QA tooling" \
+      --menu "$text" 0 0 7 \
       1 "Run QA tooling" \
       2 "Select the checks to perform" \
       3 "$changed_only_display" \
@@ -88,10 +124,13 @@ showMenu() {
       3>&1 1>&2 2>&3
   )
 
-  if [[ $? == 1 ]]; then
+  exit_code=$?
+  if [[ $exit_code == 1 ]]; then
     dialog_result="x"
+  elif [[ $exit_code == 255 ]]; then # Special case where a subwindow can't be created
+    showMenu
   fi
-
+  
   # Clear screen without clearing the scroll buffer. Works pretty unreliably across the various platforms.  
   printf '\033[H'
   printf '\033[0J'

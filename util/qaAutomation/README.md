@@ -2,7 +2,7 @@
 
 Each of the QA tools for this project can be run manually, but to ease development, a Docker based solution is provided to execute the full stack (the same tools are executed on Github).  It consists of:
 
-* an image called "validate" that includes:
+* an image called "qa-zib2020-r4" that includes:
   * the required tooling plus software, caches etc. needed to run it.
   * an entrypoint script that runs all the tools.
 * a docker-compose file to specify the container to run the image.
@@ -25,6 +25,10 @@ In order for the image to be used, it needs to be built first. This is done auto
 
 This is quite a lengthy step. If there's just a change in one of the scripts, the `--no-cache` option can be omitted
 
+## Interactive vs. batch mode 
+
+By using the `--menu` flag, you will get a terminal menu where you can pick all settings and select the stept to perform. The default is to run in batch mode, where Docker will exit after performing the required steps.
+
 ## Terminology checking and the Nationale Terminologieserver
 
 ### Dual checking using the Nationale Terminologieserver
@@ -34,7 +38,7 @@ The [Nationale Terminologieserver](https://terminologieserver.nl/fhir) is a part
 
 Note: the FHIR Validator will report this as using `v4.combined.tx` as the terminology server.
 
-To use this service, the user needs to have a valid login to the Nationale Terminologieserver. These credentials should be stored in the file "nts-credentials.env" in the format:
+To use this service, the user needs to have a valid login to the Nationale Terminologieserver. These credentials can be entered when using interactive mode or they can be stored in the file "nts-credentials.env" in the format:
 
 ```
 NTS_USER=xxx
@@ -53,7 +57,7 @@ If this file is absent or empty or the credentials are invalid, only the fallbac
 
 ### Spying on the terminology server
 
-The dual check is implemented using a proxy server that relays requests to the actual terminology server(s). A bonus feature of this proxy is that it can be used to inspect all calls from the FHIR Validator. To do so, add the option `-p 8081:8081` and the `-inspect-tx` flag to the docker-compose command and point your web browser at `http://localhost:8081`:
+The dual check is implemented using a proxy server that relays requests to the actual terminology server(s). A bonus feature of this proxy is that it can be used to inspect all calls from the FHIR Validator. To do so, add the option `-p 8081:8081` to the docker-compose command and point your web browser at `http://localhost:8081`. When using batch mode, the `-inspect-tx` flag should be added as well. 
 
   > docker-compose [-f path/to/docker-compose.yml] --env-file path/to/nts-credentials.env run --rm -p 8081:8081 validate --inspect-tx
 

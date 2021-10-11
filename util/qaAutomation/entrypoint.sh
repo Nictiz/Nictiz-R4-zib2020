@@ -63,7 +63,7 @@ while [ "$1" != "" ]; do
         --zib-compliance)     perform_step[zib compliance]=1
                               perform_all_steps=0
                               ;;
-        *)                    echo "Usage: $0 [--changed-only] [--debug] [--no-tx] [--inspect-tx]"
+        *)                    echo "Usage: $0 [--menu] [--changed-only] [--debug] [--no-tx] [--inspect-tx]"
                               echo "In addition, you can select to run only one or more individual checks using --zib-profiles, --zib-extensions, --nl-core-profiles, --nl-core-extensions, --other-profiles, --conceptmaps, --other-terminology, --examples or -zib-compliance"
                         exit 1
                         ;;
