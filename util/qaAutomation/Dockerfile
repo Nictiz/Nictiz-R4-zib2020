@@ -3,6 +3,7 @@ RUN apt-get update && apt-get -y upgrade
 RUN apt-get -y install wget
 RUN apt-get -y install openjdk-11-jre-headless
 RUN apt-get -y install git
+RUN apt-get -y install dialog
 RUN apt-get -y install python3 python3-yaml python3-requests
 RUN apt-get -y install mitmproxy
 RUN apt-get -y install nodejs npm
@@ -30,9 +31,10 @@ RUN mkdir /scripts
 COPY getresources.sh /scripts/getresources.sh
 COPY checktx.sh /scripts/checktx.sh
 COPY generatezibsnapshots.sh /scripts/generatezibsnapshots.sh
+COPY menu.sh scripts/menu.sh
 COPY entrypoint.sh entrypoint.sh
 COPY CombinedTX /tools/CombinedTX
 RUN chmod +x entrypoint.sh
 RUN chmod +x /scripts/*.sh
-RUN dos2unix /scripts/getresources.sh /scripts/checktx.sh /scripts/generatezibsnapshots.sh entrypoint.sh
+RUN dos2unix /scripts/getresources.sh /scripts/checktx.sh /scripts/generatezibsnapshots.sh scripts/menu.sh entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
