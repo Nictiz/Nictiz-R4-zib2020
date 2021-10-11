@@ -2,6 +2,7 @@ import os
 import os.path
 import re
 import requests
+import urllib.parse
 from mitmproxy import ctx, http
 import xml.etree.ElementTree as ET
 
@@ -34,6 +35,8 @@ class CombinedTX:
     PATH_METADATA_TERMINOLOGY = "/metadata?mode=terminology"
     PATH_VALIDATE             = "/$validate-code"
 
+    PATH_RESET_NTS_CREDENTIALS = "/resetNTSCredentials"
+    
     FHIR_NAMESPACE = {"f": "http://hl7.org/fhir"}
 
     def __init__(self):
@@ -41,15 +44,13 @@ class CombinedTX:
         self.codesystems_dtx = set()
         self.codesystems_nts = set()
 
-        try:
-            os.environ["NTS_USER"]
-            os.environ["NTS_PASS"]
-            self._support_nts = True
-        except:
-            print("\033[1;31mEnvironment variables NTS_USER and NTS_PASS are not set. Disabling support for the Nationale Terminologieserver\033[0m")
-            ctx.log.info("Environment variables NTS_USER and NTS_PASS are not set. Disabling support for the Nationale Terminologieserver")
-            self._support_nts = False
-
+        self._support_nts = True
+        self._nts_user = None
+        self._nts_pass = None
+        if "NTS_USER" in os.environ and "NTS_PASS" in os.environ:
+            self._nts_user = os.environ["NTS_USER"]
+            self._nts_pass = os.environ["NTS_PASS"]
+        
         # Cache the token for calls to the NTS
         self._nts_token = None
 
@@ -82,6 +83,20 @@ class CombinedTX:
                 return
             elif flow.request.path == self.PATH_METADATA_TERMINOLOGY:
                 flow.response = self._getMetadataTerminology(flow, fhir_version)
+                return
+            elif flow.request.path == self.PATH_RESET_NTS_CREDENTIALS:
+                # Special method for resetting NTS credentials. Payload should be application/x-www-form-urlencoded
+                # with keys "user" and "pass".
+                try:
+                    ctx.log.info(flow.request.content.decode("UTF-8"))
+                    content = urllib.parse.parse_qs(flow.request.content.decode("UTF-8"))
+                    self._nts_user = content["user"][0]
+                    self._nts_pass = content["pass"][0]
+                    self._support_nts = True
+                    ctx.log.info("Ready to re-try the Nationale Terminologieserver credentials")
+                except KeyError:
+                    ctx.log.info("Couldn't parse the payload for NTS credentials")
+                flow.response = http.HTTPResponse.make(200)
                 return
 
             # By default, route the request to the NTS
@@ -234,12 +249,10 @@ class CombinedTX:
         """ Retrieve an access token to perform NTS operations and set it to self._nts_token. If no valid token can be
             retrieved, self._support_nts is set to False and further requests always return immediately. """
 
-        try:
-            _nts_user = os.environ["NTS_USER"]
-            _nts_pass = os.environ["NTS_PASS"]
-        except:
+        if self._nts_user == None or self._nts_pass == None:
             self._support_nts = False
-            ctx.log.info("Environment variables NTS_USER and NTS_PASS should be set to support the Nationale Terminologieserver")
+            ctx.log.info("No credentials for the Nationale Terminologieserver")
+            print("\033[1;31mNo credentials for the Nationale Terminologieserver, only the default terminology server will be used\033[0m")
             return
 
         headers = {
@@ -247,8 +260,8 @@ class CombinedTX:
             "Content-Type": "application/x-www-form-urlencoded",
         }
         body = {
-            "username"     : _nts_user,
-            "password"     : _nts_pass,
+            "username"     : self._nts_user,
+            "password"     : self._nts_pass,
             "client_id"    : "cli_client",
             "client_secret": "",
             "grant_type"   : "password"

@@ -74,7 +74,9 @@ done
 # Start the proxy server to intelligently handle terminology requests
 set -m
 mitmweb --web-host "0.0.0.0" -s /tools/CombinedTX/CombinedTX.py -q &
-echo -e "\033[0;33mYou can spy on the terminology server log at http://localhost:8081\033[0m"
+if [[ $use_menu == 0 ]]; then
+  echo -e "\033[0;33mYou can spy on the terminology server log at http://localhost:8081\033[0m"
+fi
 
 resetFiles() {
   # The repo is mounted read-only, we make a local copy to src_dir where we can modify things if needed.
@@ -85,18 +87,11 @@ resetFiles() {
 }
 
 setTXOption() {
-    if [[ $disable_tx == 0 ]]; then
-      source /scripts/checktx.sh
-      if [[ $disable_tx == 1 ]]; then
-        echo -e "\033[0;33mtx.fhir.org couldn't be reached. Disabling terminology server checking.\033[0m"
-      fi
-    fi
-    if [[ $disable_tx == 1 ]]; then
-      tx_opt="-tx n/a"
-    else
-      tx_opt="-proxy 127.0.0.1:8080 -tx http://v4.combined.tx"
-
-    fi
+  if [[ $disable_tx == 1 ]]; then
+    tx_opt="-tx n/a"
+  else
+    tx_opt="-proxy 127.0.0.1:8080 -tx http://v4.combined.tx"
+  fi
 }
 
 # Run the HL7 Validator and analyze the output. Parameters:

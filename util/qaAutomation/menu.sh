@@ -1,5 +1,23 @@
 #!/bin/bash
 
+showNTSCredentialsMenu() {
+  dialog_result=$(
+    dialog --clear --insecure --mixedform "Set NTS credentials" 0 0 0 \
+      "User"     1 1 "$NTS_USER" 1 10 20 20 0 \
+      "Password" 2 1 "$NTS_PASS" 2 10 20 20 1 \
+      3>&1 1>&2 2>&3
+  )
+  if [[ $? == 0 ]]; then
+    nts_credentials=($dialog_result)
+    export http_proxy="http://127.0.0.1:8080"
+    http_body=$(python3 -c "import urllib.parse; print(urllib.parse.urlencode({'user': '${nts_credentials[0]}', 'pass': '${nts_credentials[1]}'}))")
+    wget --quiet --post-data="$http_body" http://v4.combined.tx/resetNTSCredentials
+  fi
+  
+  unset dialog_result
+  unset nts_credentials
+}
+
 showStepsMenu() {
   declare -A perform_step_dialog
   for key in "${!perform_step[@]}"; do 
@@ -59,12 +77,13 @@ showMenu() {
   fi
 
   dialog_result=$(
-    dialog --clear --menu "Choose what to do" 0 0 6 \
+    dialog --clear --menu "Choose what to do" 0 0 7 \
       1 "Run QA tooling" \
       2 "Select the checks to perform" \
       3 "$changed_only_display" \
       4 "$disable_tx_display" \
-      5 "$debug_display" \
+      5 "Set NTS credentials" \
+      6 "$debug_display" \
       x "Exit" \
       3>&1 1>&2 2>&3
   )
@@ -98,6 +117,18 @@ showMenu() {
       disable_tx=0
     else
       disable_tx=1
+    fi
+    showMenu
+    ;;
+  "5")
+    showNTSCredentialsMenu
+    showMenu
+    ;;
+  "6")
+    if [[ $output_redirect == "" ]]; then
+      output_redirect="> /dev/null 2> /dev/null"
+    else
+      output_redirect=""
     fi
     showMenu
     ;;
