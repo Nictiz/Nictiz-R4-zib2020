@@ -2,7 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="ext-Procedure.ProcedureMethod" />
   <url value="http://nictiz.nl/fhir/StructureDefinition/ext-Procedure.ProcedureMethod" />
-  <name value="ExtAnatomicalLocationLaterality" />
+  <name value="ExtProcedureProcedureMethod" />
   <title value="ext Procedure.ProcedureMethod" />
   <status value="draft" />
   <publisher value="Nictiz" />
@@ -26,35 +26,40 @@
   <kind value="complex-type" />
   <abstract value="false" />
   <context>
-    <type value="element"/>
-    <expression value="Procedure"/>
+    <type value="element" />
+    <expression value="Procedure" />
   </context>
   <type value="Extension" />
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
   <derivation value="constraint" />
   <differential>
     <element id="Extension">
-      <path value="Extension"/>
-      <short value="The method used to perform the procedure"/>
-      <definition value="The method used to perform this procedure."/>
-      <comment value="Improve definition. Add mappings."/>
-      <min value="0"/>
-      <max value="*"/>
-    </element>
-    <element id="Extension.extension">
-      <path value="Extension.extension"/>
-      <max value="0"/>
+      <path value="Extension" />
+      <short value="The method used to perform the procedure" />
+      <definition value="The method used to perform this procedure." />
     </element>
     <element id="Extension.url">
-      <path value="Extension.url"/>
-      <fixedUri value="http://hl7.org/fhir/StructureDefinition/procedure-method"/>
+      <path value="Extension.url" />
+      <fixedUri value="http://hl7.org/fhir/StructureDefinition/procedure-method" />
     </element>
     <element id="Extension.value[x]">
-      <path value="Extension.value[x]"/>
-      <min value="1"/>
+      <path value="Extension.value[x]" />
+      <short value="ProcedureMethod" />
+      <definition value="The method or technique that was used to perform the procedure, e.g. approach, lavage, pressuring, etc." />
+      <alias value="VerrichtingMethode" />
+      <min value="1" />
       <type>
-        <code value="CodeableConcept"/>
+        <code value="CodeableConcept" />
       </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.14.1.4--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-procedure-v5.2-2020EN" />
+        <map value="NL-CM:14.1.12" />
+        <comment value="ProcedureMethod" />
+      </mapping>
     </element>
   </differential>
 </StructureDefinition>

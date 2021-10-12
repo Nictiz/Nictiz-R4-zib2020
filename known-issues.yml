@@ -299,6 +299,9 @@ zib-Procedure:
     Procedure.bodySite:
       - datatype: CodeableConcept
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+    Procedure.Extension.value[x]:
+      - cardinality: 1..1
+        reason: The used extension uses a cardinality of 1..1 on the value[x] element. However, the extension itself is added with a cardinality of 0..1. 
         
 zib-Procedure-ServiceRequest:
   zib deviations:
