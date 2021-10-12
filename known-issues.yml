@@ -354,7 +354,7 @@ zib-Problem:
         reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.  
 
 zib-Procedure:
- ignored issues:
+  ignored issues:
     Procedure.report:textResult:
       - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The restiction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
@@ -375,6 +375,9 @@ zib-Procedure-ServiceRequest:
     ServiceRequest.bodySite:
       - datatype: CodeableConcept
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+    ServiceRequest.requester:
+      - cardinality: 0..1
+        reason: It seems that the zib may have an error in the cardinality for this concept and the cardinality should acctually be 0..1 rather than 0..*. This issue is being tracked here https://bits.nictiz.nl/browse/ZIB-1488
 
 zib-TextResult:
   zib deviations:
