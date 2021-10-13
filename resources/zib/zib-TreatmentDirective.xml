@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-TreatmentDirective2" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective2" />
+  <name value="ZibTreatmentDirective2" />
+  <title value="zib TreatmentDirective2" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A living will is a verbal or written description of the patient’s wishes with regard to future medical action or end of their life. A living will is mainly used for situations in which the patient is no longer able to speak about these decisions with their healthcare provider." />
+  <purpose value="This Consent resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) TreatmentDirective2-v1.0(2020EN)](https://zibs.nl/wiki/TreatmentDirective2-v1.0(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/TreatmentDirective2-v1.0(2020EN)" />
+    <name value="zib TreatmentDirective2-v1.0(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Consent" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Consent" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Consent">
+      <path value="Consent" />
+      <mapping>
+        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+        <map value="NL-CM:2.2.1" />
+      </mapping>
+    </element>
+    <element id="Consent.extension">
+      <path value="Consent.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Consent.extension:comment">
+      <path value="Consent.extension" />
+      <sliceName value="comment" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Comment" />
+      </type>
+    </element>
+    <element id="Consent.extension:comment.value[x]">
+      <path value="Consent.extension.value[x]" />
+      <mapping>
+        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+        <map value="NL-CM:2.2.13" />
+      </mapping>
+    </element>
+    <element id="Consent.status">
+      <path value="Consent.status" />
+      <comment value="This element is implictly mapped to the zib concept NL-CM:7.15.7 (LivingWillDate). Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When the LivingWillDate is in the future, `.status` will usually be set to _proposed_.&#xD;&#xA;* When LivingWillDate is in the past, `.status` will usually be set to _active_.&#xD;&#xA;* When LivingWillDate is absent, which is not possible by the zib, `.status` will usually be set to _draft_." />
+    </element>
+    <element id="Consent.scope">
+      <path value="Consent.scope" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://terminology.hl7.org/CodeSystem/consentscope" />
+          <code value="treatment" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Consent.category">
+      <path value="Consent.category" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="129125009" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Consent.dateTime">
+      <path value="Consent.dateTime" />
+      <mapping>
+        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+        <map value="NL-CM:2.2.5" />
+      </mapping>
+    </element>
+    <element id="Consent.source[x]">
+      <path value="Consent.source[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Consent.source[x]:sourceReference">
+      <path value="Consent.sourceReference" />
+      <sliceName value="sourceReference" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Consent" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Contract" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdvanceDirective" />
+      </type>
+      <mapping>
+        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+        <map value="NL-CM:2.2.8" />
+      </mapping>
+    </element>
+    <element id="Consent.provision.type">
+      <path value="Consent.provision.type" />
+      <mapping>
+        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+        <map value="NL-CM:2.2.2" />
+      </mapping>
+    </element>
+    <element id="Consent.provision.actor">
+      <path value="Consent.provision.actor" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="role" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Consent.provision.actor:agreementParty">
+      <path value="Consent.provision.actor" />
+      <sliceName value="agreementParty" />
+      <mapping>
+        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+        <map value="NL-CM:2.2.9" />
+      </mapping>
+    </element>
+    <element id="Consent.provision.actor:agreementParty.role">
+      <path value="Consent.provision.actor.role" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode" />
+          <code value="CONSENTER" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Consent.provision.actor:agreementParty.reference">
+      <path value="Consent.provision.actor.reference" />
+      <mapping>
+        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+        <map value="NL-CM:2.2.10" />
+      </mapping>
+      <mapping>
+        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+        <map value="NL-CM:2.2.11" />
+      </mapping>
+      <mapping>
+        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+        <map value="NL-CM:2.2.12" />
+      </mapping>
+    </element>
+    <element id="Consent.provision.code">
+      <path value="Consent.provision.code" />
+      <max value="1" />
+      <mapping>
+        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+        <map value="NL-CM:2.2.3" />
+      </mapping>
+    </element>
+    <element id="Consent.provision.dataPeriod.end">
+      <path value="Consent.provision.dataPeriod.end" />
+      <mapping>
+        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+        <map value="NL-CM:2.2.6" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
