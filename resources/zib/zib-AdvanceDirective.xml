@@ -63,15 +63,18 @@
     <element id="Consent.extension:comment">
       <path value="Consent.extension" />
       <sliceName value="comment" />
-      <short value="Comment" />
-      <definition value="Comment on the living will: the form, such as a medallion, tattoo, etc., or where the living will can be found." />
-      <alias value="Toelichting" />
       <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Comment" />
       </type>
+    </element>
+    <element id="Consent.extension:comment.value[x]">
+      <path value="Consent.extension.value[x]" />
+      <short value="Comment" />
+      <definition value="Comment on the living will: the form, such as a medallion, tattoo, etc., or where the living will can be found." />
+      <alias value="Toelichting" />
       <mapping>
         <identity value="zib-advancedirective-v3.1.1-2020EN" />
         <map value="NL-CM:7.15.6" />
@@ -162,7 +165,7 @@
       <path value="Consent.provision.actor.role" />
       <patternCodeableConcept>
         <coding>
-          <system value="http://hl7.org/fhir/R4/v3/RoleCode/cs.html" />
+          <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode" />
           <code value="RESPRSN" />
         </coding>
       </patternCodeableConcept>
