@@ -4,7 +4,18 @@ This folder contains some utilities for zib2020 profiling.
 
 ## qaAutomation
 
-This folders contains the pieces to run the automated QA tools. These tools are used in the configured Github actions (configured in `.github/actions/*.yml` from the root of this repo) but can also be used manually. See the README in that folder.
+This folders contains the pieces to run the automated QA tools. These tools are used in the configured Github actions (configured in `.github/actions/*.yml` from the root of this repo) but can also be used manually. See the README in that folder for more information.
+
+Assuming Docker is running, the workflow can be started using the batch scripts "qa.bat". Ik will provide you with a menu to pick what to do.
+
+To use the Nationale Terminologieserver for validation, you need to place a file called "nts-credentials.env" in the "qaAutomation" folder, containing the following content:
+
+```
+NTS_USER=xxx
+NTS_PASS=yyy
+```
+
+Where `xxx` and `yyy` are your username and password for the Nationale Terminologieserver.
 
 ## addDataFromZib
 
