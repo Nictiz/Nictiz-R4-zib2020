@@ -2,6 +2,12 @@
 # The issues here are deliberate deviations from the guidelines, as flagged by the qa tooling.
 # For each issue documented, a reason for deviating from the guidelines is given.
 
+ext-AdvanceDirective.Disorder:
+  zib deviations:
+    Extension.value[x]:
+      - cardinality: 0..1
+        reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension is added 0..* in the hosting element.
+
 ext-LanguageProficiency.CommunicationDetails:
   zib deviations:
     Extension.value[x]:
@@ -40,6 +46,12 @@ zib-AddressInformation:
     Address.line.extension:*.value[x]:
       - cardinality: 1..1
         reason: The value of the extension is required, but the extension itself is optional, making the effective cardinality 0..1 as required by the zib.
+
+zib-AdvanceDirective:
+  zib deviations:
+    Consent.provision.actor:representative.reference:
+      - cardinality: 1..1
+        reason: Consent.provision.actor has cardinality 0..1, making the cardinality of Consent.provision.actor:representative.reference effectively 0..1 as required by the zib.
 
 zib-Alert:
   zib deviations:
