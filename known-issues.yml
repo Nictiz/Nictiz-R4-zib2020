@@ -289,7 +289,7 @@ zib-Patient:
       - cardinality: 0..*
         reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
 
-zib-Procedure:
+zib-Procedure-event:
   ignored issues:
     Procedure.report:textResult:
       - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
@@ -306,7 +306,7 @@ zib-Procedure:
       - datatype: CodeableConcept
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
         
-zib-Procedure-ServiceRequest:
+zib-Procedure-request:
   zib deviations:
     ServiceRequest.bodySite:
       - datatype: CodeableConcept

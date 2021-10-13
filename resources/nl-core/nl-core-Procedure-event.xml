@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="nl-core-Procedure" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure" />
-  <name value="NlcoreProcedure" />
-  <title value="nl core Procedure" />
+  <id value="nl-core-Procedure-event" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event" />
+  <name value="NlcoreProcedureEvent" />
+  <title value="nl core Procedure event" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -14,20 +14,20 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="This profile covers the recording of therapeutic or diagnostic procedure undergone by the patient. The ServiceRequest profile (http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-ServiceRequest) covers the procedure that the patient will undergo." />
-  <purpose value="A derived profile from [zib-Procedure](http://nictiz.nl/fhir/StructureDefinition/zib-Procedure) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <description value="This profile covers the recording of therapeutic or diagnostic procedure undergone by the patient. The ServiceRequest profile (http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request) covers the procedure that the patient will undergo." />
+  <purpose value="A derived profile from [zib-Procedure](http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-event) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <kind value="resource" />
   <abstract value="false" />
   <type value="Procedure" />
-  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-event" />
   <derivation value="constraint" />
   <differential>
     <element id="Procedure">
       <path value="Procedure" />
-      <definition value="The zib Procedure is mapped for all but one concept (Requester) to this Procedure profile and a profile on ServiceRequest (http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-ServiceRequest). The Requester is mapped in the ServiceRequest profile and is referenced in `basedOn`.&#xD;&#xA;&#xD;&#xA;Practically, the zib Procedure is split in two based on time to align with the intention of FHIR. All past procedures are covered in the Procedure resource. All future procedures, including the adviced procedures, are covered in the ServiceRequest resource. Both resources contain the zib mappings. The only exeption is the Requester concept which is only mapped in ServiceRequest." />
-      <alias value="nl-core-Procedure" />
+      <definition value="The zib Procedure is mapped for all but one concept (Requester) to this Procedure profile and a profile on ServiceRequest (http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request). The Requester is mapped in the ServiceRequest profile and is referenced in `basedOn`.&#xD;&#xA;&#xD;&#xA;Practically, the zib Procedure is split in two based on time to align with the intention of FHIR. All past procedures are covered in the Procedure resource. All future procedures, including the adviced procedures, are covered in the ServiceRequest resource. Both resources contain the zib mappings. The only exeption is the Requester concept which is only mapped in ServiceRequest." />
+      <alias value="nl-core-Procedure-event" />
     </element>
     <element id="Procedure.basedOn">
       <path value="Procedure.basedOn" />
@@ -35,7 +35,7 @@
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/CarePlan" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/ServiceRequest" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-ServiceRequest" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request" />
       </type>
     </element>
     <element id="Procedure.subject">
