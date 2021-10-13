@@ -496,6 +496,14 @@ zib-TextResult.VisualResult:
       - cardinality: 1..1
         reason: The use of the Media resource referenced in zib-TextResult DiagnosticReport.media.link is optional (0..*), but if the Media resource is used, Media.content should be present (1..1).
 
+zib-TreatmentDirective2:
+  zib deviations:
+    Consent.provision.actor:agreementParty:
+      - cardinality: 0..*
+        reason: The zib container AgreementParty is 2..*, but considering the conceptual cardinalities this is correctly mapped to a 0..* element. 
+      - datatype: BackboneElement
+        reason: The zib container AgreementParty can be mapped correctly to te actor's BackboneElement.
+
 zib-Vaccination-event:
   zib deviations:
     Immunization.vaccineCode:
