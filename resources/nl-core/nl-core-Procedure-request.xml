@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="nl-core-Procedure-ServiceRequest" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-ServiceRequest" />
-  <name value="NlcoreProcedureServiceRequest" />
-  <title value="nl core Procedure ServiceRequest" />
+  <id value="nl-core-Procedure-request" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request" />
+  <name value="NlcoreProcedureRequest" />
+  <title value="nl core Procedure request" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -14,20 +14,20 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="This profile covers the recording of therapeutic or diagnostic procedure that the patient will undergo. The Procedure profile (http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure) covers the procedure undergone by the patient." />
-  <purpose value="A derived profile from [zib-Procedure-ServiceRequest](http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-ServiceRequest) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <description value="This profile covers the recording of therapeutic or diagnostic procedure that the patient will undergo. The Procedure profile (http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event) covers the procedure undergone by the patient." />
+  <purpose value="A derived profile from [zib-Procedure-ServiceRequest](http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-request) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <kind value="resource" />
   <abstract value="false" />
   <type value="ServiceRequest" />
-  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-ServiceRequest" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-request" />
   <derivation value="constraint" />
   <differential>
     <element id="ServiceRequest">
       <path value="ServiceRequest" />
       <definition value="The zib Procedure is mapped to this ServiceRequest profile and a profile on Procedure (http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure) which reference this profile using `Procedure.basedOn`.&#xD;&#xA;&#xD;&#xA;Practically, the zib Procedure is split in two based on time to align with the intention of FHIR. All past procedures are covered in the Procedure resource. All future procedures, including the adviced procedures, are covered in the ServiceRequest resource. Both resources contain the zib mappings. The only exeption is the Requester concept which is only mapped in ServiceRequest." />
-      <alias value="nl-core-Procedure-ServiceRequest" />
+      <alias value="nl-core-Procedure-request" />
     </element>
     <element id="ServiceRequest.subject">
       <path value="ServiceRequest.subject" />
