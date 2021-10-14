@@ -36,8 +36,8 @@
       <constraint>
         <key value="hcim-treatmentdirective2-1" />
         <severity value="error" />
-        <human value="extension.additionalAdvanceDirective may only be used for AdvanceDirective references in addition to first reference in .source[x]." />
-        <xpath value="extension.where(url = 'http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.AdvanceDirective').empty() or source.exists()" />
+        <human value="`extension.additionalAdvanceDirective` may only be used for AdvanceDirective references in addition to first reference in `.source[x]`." />
+        <expression value="extension.where(url = 'http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.AdvanceDirective').empty() or source.exists()" />
       </constraint>
       <mapping>
         <identity value="zib-treatmentdirective2-v1.0-2020EN" />
@@ -160,8 +160,8 @@
         <comment value="AdvanceDirective" />
       </mapping>
     </element>
-    <element id="Consent.provision.modifierExtension">
-      <path value="Consent.provision.modifierExtension" />
+    <element id="Consent.provision.extension">
+      <path value="Consent.provision.extension" />
       <slicing>
         <discriminator>
           <type value="value" />
@@ -171,8 +171,8 @@
       </slicing>
       <min value="0" />
     </element>
-    <element id="Consent.provision.modifierExtension:reasonForEnding">
-      <path value="Consent.provision.modifierExtension" />
+    <element id="Consent.provision.extension:reasonForEnding">
+      <path value="Consent.provision.extension" />
       <sliceName value="reasonForEnding" />
       <min value="0" />
       <type>
@@ -200,8 +200,8 @@
         <comment value="TreatmentDecision" />
       </mapping>
     </element>
-    <element id="Consent.provision.type.extension">
-      <path value="Consent.provision.type.extension" />
+    <element id="Consent.provision.type.modifierExtension">
+      <path value="Consent.provision.type.modifierExtension" />
       <slicing>
         <discriminator>
           <type value="value" />
@@ -211,8 +211,8 @@
       </slicing>
       <min value="0" />
     </element>
-    <element id="Consent.provision.type.extension:specificationOther">
-      <path value="Consent.provision.type.extension" />
+    <element id="Consent.provision.type.modifierExtension:specificationOther">
+      <path value="Consent.provision.type.modifierExtension" />
       <sliceName value="specificationOther" />
       <min value="0" />
       <type>

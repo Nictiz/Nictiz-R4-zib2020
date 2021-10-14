@@ -185,6 +185,16 @@ This document contains release notes per zib, indicating differences with their 
 * The comment element is moved to `Observation.note.text` instead of `Observation.comment`
 * The datatype for PackYears has been changed from Quantity to integer to align with the functional definition and the Quantity datatype does not bring additional benefits to justify not aligning with the zib.
 
+## zib-TreatmentDirective2
+* The zib has been remodeled quite intensively, in fact it may be considerd as a new zib, despite that below are the most relevant changes compared to the STU3 profile.
+* Removed modifierExtension:treatmentPermitted, which is now mapped to `Consent.provision.type`.
+* Added a modifierExtension on `Consent.provision.type` to caputure zib concept specificationOther.
+* Removed extension:treatment, which is now mapped to `Consent.provision.code`.
+* Removed extension:verification because the related functional concept has been removed in the zib.
+* Added guidance for mandatory elements `Consent.status`, `Consent.scope` and `Consent.policy` or `Consent.policyRule`.
+* Moved AdvanceDirective from `Consent.source[x]` to `Consent.source[x]:sourceReference` to be more specific.
+* Removed references that are not defined by the zib (e.g. `Consent.organization` and `Consent.actor`).
+
 ## zib-Vaccination
 * Renamed profiles names: zib-Vaccination to zib-Vaccination-event and zib-VaccinationRecommendation to zib-Vaccination-request conform new profiling guidelines.
 * Removed references not accounted for by the zib (e.g. `Immunization.location`, `Immunization.manufacturer` and `ImmunizationRecommendation.recommendation.supportingImmunization`).
