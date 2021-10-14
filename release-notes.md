@@ -77,12 +77,12 @@ Style - profiling guidelines
 * Added a comment to `deceased[x]`: When exporting the data, if `deceasedDateTim` (DateOfDeath) is present and has a value, DeathIndicator may be set to 'true', since DeathIndicator and DateOfDeath cannot both be represented at the same time.
 
 ## zib-Problem
-* ProbleemType has been added on a slice of `Condition.category` allowing the category element to be used for other purpose too.
+* ProblemType has been added on a slice of `Condition.category` allowing the category element to be used for other purposes too.
 * FurtherSpecificationProblemName has been added with an extension on `Condition.code`.
 * `Condition.bodySite` is now based on the zib AnatomicalLocation profile.
 * ProblemStartDate and ProblemEndDate are placed on a DateTime type slice of `Condition.onset[x]` and `Condition.abatement[x]` allowing the option to use other types.
-* `Condition.note`now honours the max cardinality of zib Comment.
-* `Condition.verificationStatus` contains a mandatory `.coding` element to capture the zib terminology because of the required binding on the CodeableConcept level and the zib and FHIR valueset do not completely map.
+* `Condition.note` now honours the max cardinality of zib Comment.
+* `Condition.verificationStatus` contains a mandatory `.coding` element to capture the zib terminology because of the required binding on the CodeableConcept level and the zib and FHIR ValueSet do not completely map.
 
 ## zib-Range
 * There is no profile for this partial zib because the relevant parts can be modelled directly in the profiles where this zib is used.
