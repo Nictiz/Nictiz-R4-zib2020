@@ -282,3 +282,15 @@ zib-Patient:
         reason: The mapping is placed on the extension and not on the value[x] because of the nature of this extension. The extension itself contains a valueCoding that gets the zibs value. This datatype matches the zib CD type.
       - cardinality: 0..*
         reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
+
+zib-TreatmentDirective2:
+  zib deviations:
+    Consent.source[x]:sourceReference:
+      - cardinality: 0..1
+        reason: The cardinality of the source element does not comply with the cardinality of the AdvanceDirective concept (NL-CM:2.2.8) specified in the HCIM TreatmentDirective2.  This is solved by adding an extension that can be used to provide additional sources.
+    Consent.provision.actor:agreementParty:
+      - cardinality: 0..*
+        reason: The zib container AgreementParty is 2..*, but considering the conceptual cardinalities this is correctly mapped to a 0..* element. 
+      - datatype: BackboneElement
+        reason: The zib container AgreementParty can be mapped correctly to te actor's BackboneElement.
+        
