@@ -33,6 +33,12 @@
       <path value="Consent" />
       <short value="TreatmentDirective" />
       <alias value="BehandelAanwijzing" />
+      <constraint>
+        <key value="hcim-treatmentdirective2-1" />
+        <severity value="error" />
+        <human value="extension.additionalAdvanceDirective may only be used for AdvanceDirective references in addition to first reference in .source[x]." />
+        <xpath value="extension.where(url = 'http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.AdvanceDirective').empty() or source.exists()" />
+      </constraint>
       <mapping>
         <identity value="zib-treatmentdirective2-v1.0-2020EN" />
         <map value="NL-CM:2.2.1" />
@@ -70,6 +76,16 @@
         <map value="NL-CM:2.2.13" />
         <comment value="Comment" />
       </mapping>
+    </element>
+    <element id="Consent.extension:additionalAdvanceDirective">
+      <path value="Consent.extension" />
+      <sliceName value="additionalAdvanceDirective" />
+      <min value="0" />
+      <max value="*" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.AdvanceDirective" />
+      </type>
     </element>
     <element id="Consent.status">
       <path value="Consent.status" />
