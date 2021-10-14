@@ -38,6 +38,7 @@
         <severity value="error" />
         <human value="`extension.additionalAdvanceDirective` may only be used for AdvanceDirective references in addition to first reference in `.source[x]`." />
         <expression value="extension.where(url = 'http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.AdvanceDirective').empty() or source.exists()" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective2" />
       </constraint>
       <mapping>
         <identity value="zib-treatmentdirective2-v1.0-2020EN" />
@@ -81,7 +82,6 @@
       <path value="Consent.extension" />
       <sliceName value="additionalAdvanceDirective" />
       <min value="0" />
-      <max value="*" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.AdvanceDirective" />
@@ -200,8 +200,8 @@
         <comment value="TreatmentDecision" />
       </mapping>
     </element>
-    <element id="Consent.provision.type.modifierExtension">
-      <path value="Consent.provision.type.modifierExtension" />
+    <element id="Consent.provision.type.extension">
+      <path value="Consent.provision.type.extension" />
       <slicing>
         <discriminator>
           <type value="value" />
@@ -211,8 +211,8 @@
       </slicing>
       <min value="0" />
     </element>
-    <element id="Consent.provision.type.modifierExtension:specificationOther">
-      <path value="Consent.provision.type.modifierExtension" />
+    <element id="Consent.provision.type.extension:specificationOther">
+      <path value="Consent.provision.type.extension" />
       <sliceName value="specificationOther" />
       <min value="0" />
       <type>
