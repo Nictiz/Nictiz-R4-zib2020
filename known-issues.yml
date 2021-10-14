@@ -508,8 +508,10 @@ zib-TreatmentDirective2:
       - cardinality: 0..1
         reason: The cardinality of the source element does not comply with the cardinality of the AdvanceDirective concept (NL-CM:2.2.8) specified in the HCIM TreatmentDirective2.  This is solved by adding an extension that can be used to provide additional sources.
     Consent.provision.actor:agreementParty:
+      - cardinality: 0..*
+        reason: The zib container AgreementParty is 2..*, but considering the conceptual cardinalities this is correctly mapped to a 0..* element. 
       - datatype: BackboneElement
-        reason: The zib container AgreementParty can be mapped correctly to the actor's BackboneElement.
+        reason: The zib container AgreementParty can be mapped correctly to te actor's BackboneElement.
 
 zib-Vaccination-event:
   zib deviations:
