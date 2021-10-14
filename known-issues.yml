@@ -4,6 +4,12 @@ ext-LanguageProficiency.CommunicationDetails:
       - cardinality: 0..1
         reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension should be added 0..* in the hosting element.
 
+ext-TreatmentDirective2.AdvanceDirective:
+  zib deviations:
+    Extension.value[x]:
+      - cardinality: 0..1
+        reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension should be added 0..* in the hosting element.
+
 pattern-NlCoreHealthProfessionalReference:
   ignored issues:
     StructureDefinition:

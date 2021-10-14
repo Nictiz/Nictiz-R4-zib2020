@@ -13,6 +13,15 @@ This document contains release notes per zib, indicating differences with their 
  * The notion to mark an address as 'official' seems to have its origin in the BRP, but is absent in the zib model.
  * The addition of `extension:official` seemed based on the rationale: "if implementers do not support the custom `extension:addressType`, you should be able to determine the AddressType by looking at `.use`, `.type` and custom `extension:official`". However, in this use case extension:official would probably also be not supported. By mapping 'HP' to .type 'both', all AddressType codes can be mapped to a combination of .type and .use.
 
+## zib-AdvanceDirective
+* Moved TypeOfLivingWill from `Consent.category` to `Consent.provision.code` and made the element 0..1 rather than 1..1 to adhere to the conceptual cardinalities of the zib.
+* Moved LivingWillDocument from `Consent.source[x]` to `Consent.source[x]:sourceAttachment.data`.
+* Moved Representative from `Consent.consentingParty` to `Consent.provision.actor:representative.reference` because the element is removed in the R4. Also `Consent.provision.actor:representative.role` has now a fixed value for this mapping.
+* Replaced fixed zib code 11341000146107#http://snomed.info/sct on `Consent.category` with acd#http://terminology.hl7.org/CodeSystem/consentcategorycodes because this is an applicable code bound in the extensible ValueSet.
+* Removed references that are not defined by the zib (e.g. `Consent.organization and Consent.actor`).
+* Adjusted the `Consent.dateTime` cardinality from 1..1 to 0..1 to adhere to the conceptual cardinalities of the zib.
+* Added guidance for mandatory elements `Consent.status`,`Consent.scope` and `Consent.policy` or `Consent.policyRule`.
+
 ## zib-AnatomicalLocation
 * New partial zib. The anatomical location in FHIR is usually mapped on `.bodySite` (CodeableConcept with example binding). This zib has therefore been mapped onto a datatype profile that can be used for `.bodySite`.
 
@@ -81,3 +90,14 @@ Style - profiling guidelines
 
 ## zib-TimeInterval
 * In the previous release, the concepts of this partial zib were mapped directly in the profiles where they are used. In this release the usage of this partial zib has been expanded and profiles have been created to aid the usage in profiles in the various situations that might occur. 
+
+## zib-TreatmentDirective2
+* The zib has been remodeled quite intensively, in fact it may be considerd as a new zib, despite that below are the most relevant changes compared to the STU3 profile.
+* Removed modifierExtension:treatmentPermitted, which is now mapped to `Consent.provision.type`.
+* Added a modifierExtension on `Consent.provision.type` to caputure zib concept specificationOther.
+* Removed extension:treatment, which is now mapped to `Consent.provision.code`.
+* Removed extension:verification because the related functional concept has been removed in the zib.
+* Added guidance for mandatory elements `Consent.status`, `Consent.scope` and `Consent.policy` or `Consent.policyRule`.
+* Moved AdvanceDirective from `Consent.source[x]` to `Consent.source[x]:sourceReference` to be more specific.
+* Removed references that are not defined by the zib (e.g. `Consent.organization` and `Consent.actor`).
+
