@@ -32,6 +32,7 @@
     <element id="Consent">
       <path value="Consent" />
       <short value="TreatmentDirective" />
+      <comment value="A straightforward and fitting mapping of zib TreatmentDirective2 to FHIR was not possible. The main considerations were between mapping to the Consent and CarePlan resource. Unfortunately, the Consent resource does not have full support for treatment directives yet as its main focus was modelling Patient's privacy consents. However, it seems to be the most fitting resource for the zib intention. The zib describes a mutual agreement about treatments, not necessarily the direct actions or policy for treatments. The latter would be more fitting in the CarePlan resource. Future migration to a higher version of FHIR or the zib will result in the reevaluation of the mapping." />
       <alias value="BehandelAanwijzing" />
       <constraint>
         <key value="hcim-treatmentdirective2-1" />
@@ -183,7 +184,7 @@
     <element id="Consent.provision.type">
       <path value="Consent.provision.type" />
       <short value="TreatmentDecision" />
-      <definition value="The joint decision taken with regard to the desirability of performing the indicated treatment.If the agreement is 'Other', 'Specification Other' shall contain the instructions for whether or not to carry out the treatment." />
+      <definition value="The joint decision taken with regard to the desirability of performing the indicated treatment. If the agreement is 'Other', 'Specification Other' shall contain the instructions for whether or not to carry out the treatment. Implementers SHALL support the SpecificationOther extension on `.provision.type` for this." />
       <alias value="BehandelBesluit" />
       <binding>
         <strength value="required" />
