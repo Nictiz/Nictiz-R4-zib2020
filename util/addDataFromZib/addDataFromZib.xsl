@@ -92,7 +92,7 @@
                     <xsl:apply-templates select="f:contact"/>
                 </xsl:otherwise>
             </xsl:choose>
-            <!-- Automatical description takes too much time atm. -->
+            <!-- Automagical description takes too much time atm. -->
             <xsl:apply-templates select="f:description"/>
             
             <xsl:apply-templates select="f:useContext | f:jurisdiction"/>
