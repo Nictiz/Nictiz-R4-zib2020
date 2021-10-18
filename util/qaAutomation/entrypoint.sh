@@ -199,7 +199,7 @@ main() {
     performQA
     if [[ $keep_mitm_running == 1 ]]; then
       echo
-      echo "Bringing proxxy server to foreground. Press Ctrl+C to finish."
+      echo "Bringing proxy server to foreground. Press Ctrl+C to finish."
       fg > /dev/null
     fi
   fi

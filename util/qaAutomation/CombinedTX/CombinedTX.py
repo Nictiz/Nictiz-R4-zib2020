@@ -68,7 +68,10 @@ class CombinedTX:
                 # If the system being validated is not present on the NTS but only on the default TX, route the request 
                 # to the default TX
                 tree = ET.fromstring(flow.request.content.decode("UTF-8"))
-                system = tree.findall("./f:parameter/f:name[@value='coding']../f:valueCoding/f:system", self.FHIR_NAMESPACE)[0].attrib["value"]
+                system = (
+                    tree.findall("./f:parameter/f:name[@value='coding']../f:valueCoding/f:system", self.FHIR_NAMESPACE) +
+                    tree.findall("./f:parameter/f:name[@value='codeableConcept']../f:valueCodeableConcept/f:coding/f:system", self.FHIR_NAMESPACE) 
+                )[0].attrib["value"]
                 
                 if len(self.codesystems_dtx) == 0:
                     refreshed = self._refreshCodeSystems(fhir_version)
@@ -81,6 +84,33 @@ class CombinedTX:
                     flow.request.host = self.DTX_HOSTNAME
                     flow.request.path = (self.DTX_PATH_V3 if fhir_version == 3 else self.DTX_PATH_V4) + flow.request.path
                     return
+                    
+            elif flow.request.path == "/" and flow.request.method == "POST":
+                # The assumption here is that a POST only happens for batch validation.
+
+                tree = ET.fromstring(flow.request.content.decode("UTF-8"))
+                systems = set(sys.attrib["value"] for sys in tree.findall(".//f:parameter/f:name[@value='coding']../f:valueCoding/f:system", self.FHIR_NAMESPACE))
+
+                systems_in_nts = [] if not self._support_nts else [system in self.codesystems_nts for system in systems]
+                systems_in_dtx = [system in self.codesystems_dtx for system in systems]
+
+                # There is only a weak handling of multiple different code systems in the same request here, because
+                # I think batch validation only happens per code system.  
+                if sum(systems_in_nts) == 0:
+                    ctx.log.info(f"Rerouting request for systems '{systems}' to default TX")
+                    flow.request.host = self.DTX_HOSTNAME
+                    flow.request.path = (self.DTX_PATH_V3 if fhir_version == 3 else self.DTX_PATH_V4) + flow.request.path
+                    return
+                elif sum(systems_in_nts) != len(systems_in_nts):
+                    operation_outcome = open(os.path.join(self._fixture_path, "OperationOutcome.xml")).read()
+                    operation_outcome = operation_outcome\
+                        .replace("<code/>", "<code>not-supported</code>")\
+                        .replace("<severity/>", "<severity>error</severity>")\
+                        .replace("<diagnostics/>", "<diagnostics>A batch operation was made where different systems are supported by different back-ends. This is not supported.</diagnostics>")
+
+                    flow.response = http.HTTPResponse.make(404, operation_outcome.encode("UTF-8"), {"Content-Type": "application/fhir+xml"})
+                    return
+                
             elif flow.request.path == self.PATH_METADATA_SUMMARY:
                 flow.response = self._getMetadataSummary(fhir_version)
                 return
@@ -91,7 +121,6 @@ class CombinedTX:
                 # Special method for resetting NTS credentials. Payload should be application/x-www-form-urlencoded
                 # with keys "user" and "pass".
                 try:
-                    ctx.log.info(flow.request.content.decode("UTF-8"))
                     content = urllib.parse.parse_qs(flow.request.content.decode("UTF-8"))
                     self._nts_user = content["user"][0]
                     self._nts_pass = content["pass"][0]
@@ -104,17 +133,22 @@ class CombinedTX:
 
             # By default, route the request to the NTS
             response = self._makeNTSRequest(flow.request.path, fhir_version, body = flow.request.content)
-            if response.status_code == requests.codes.ok:
-                flow.response = http.HTTPResponse.make(200, response.content, {"Content-Type": "application/fhir+xml"})
-                flow.response.headers["TX-Origin"] = self.NTS_HOSTNAME
-            else:
-                flow.response = self._createFailureResponse(400, "Couldn't validate code on " + self.NTS_HOSTNAME)
-            return
+            if response != False:
+                if response.status_code == requests.codes.ok:
+                    flow.response = http.HTTPResponse.make(200, response.content, {"Content-Type": "application/fhir+xml"})
+                    flow.response.headers["TX-Origin"] = self.NTS_HOSTNAME
+                else:
+                    flow.response = self._createFailureResponse(400, "Couldn't validate code on " + self.NTS_HOSTNAME)
+                return
+            
+            # Default to a false result
+            fixture = open(os.path.join(self._fixture_path, "Parameters-false.xml")).read()
+            flow.response = http.HTTPResponse.make(200, fixture, {"Content-Type": "application/fhir+xml"})
     
     def response(self, flow):
         if "TX-Origin" in flow.response.headers and flow.response.headers["TX-Origin"] == self.NTS_HOSTNAME:
             # If the NTS fails to validate a code but the CodeSystem is supported by the default tx server, we can try 
-            # again to see if it will validate there.
+            # again to see if it will validate there. Note that this doesn't work for batched requests.
             if flow.response.status_code == 200 and flow.request.path.endswith(self.PATH_VALIDATE):
 
                 tree = ET.fromstring(flow.response.content.decode("UTF-8"))
@@ -189,7 +223,6 @@ class CombinedTX:
             refreshed = self._refreshCodeSystems(fhir_version)
             if refreshed != True:
                 return refreshed
-
         if fhir_version == 3:
             ctx.log.info("Creating combined Parameters to provide terminology capabilities")
             fixture = open(os.path.join(self._fixture_path, "Parameters-terminology_capabilities.xml")).read()
