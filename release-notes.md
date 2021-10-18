@@ -14,11 +14,11 @@ This document contains release notes per zib, indicating differences with their 
  * The addition of `extension:official` seemed based on the rationale: "if implementers do not support the custom `extension:addressType`, you should be able to determine the AddressType by looking at `.use`, `.type` and custom `extension:official`". However, in this use case extension:official would probably also be not supported. By mapping 'HP' to .type 'both', all AddressType codes can be mapped to a combination of .type and .use.
 
 ## zib-AdvanceDirective
-* Moved TypeOfLivingWill from `Consent.category` to `Consent.provision.code` and made the element 0..1 rather than 1..1 to adhere to the conceptual cardinalities of the zib.
+* Moved TypeOfLivingWill from `Consent.category` to `Consent.provision.code`, renamed it to LivingWillType in accordance with the zib and made the element 0..1 rather than 1..1 to adhere to the conceptual cardinalities of the zib.
 * Moved LivingWillDocument from `Consent.source[x]` to `Consent.source[x]:sourceAttachment.data`.
-* Moved Representative from `Consent.consentingParty` to `Consent.provision.actor:representative.reference` because the element is removed in the R4. Also `Consent.provision.actor:representative.role` has now a fixed value for this mapping.
+* Moved Representative from `Consent.consentingParty` to `Consent.provision.actor:representative.reference` because the element is removed in R4. Also `Consent.provision.actor:representative.role` has now a fixed value for this mapping.
 * Replaced fixed zib code 11341000146107#http://snomed.info/sct on `Consent.category` with acd#http://terminology.hl7.org/CodeSystem/consentcategorycodes because this is an applicable code bound in the extensible ValueSet.
-* Removed references that are not defined by the zib (e.g. `Consent.organization and Consent.actor`).
+* Removed references that are not defined by the zib (e.g. `Consent.organization` and `Consent.actor`).
 * Adjusted the `Consent.dateTime` cardinality from 1..1 to 0..1 to adhere to the conceptual cardinalities of the zib.
 * Added guidance for mandatory elements `Consent.status`,`Consent.scope` and `Consent.policy` or `Consent.policyRule`.
 
