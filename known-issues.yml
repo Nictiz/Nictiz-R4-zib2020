@@ -35,6 +35,10 @@ zib-AddressInformation:
         reason: The mapping of zib AddressInformation on the FHIR Address datatype is the result of compatibility with HL7v3, which is the format that a lot of healthcare data in the Netherlands is stored in.  As a result of this, the zib HouseNumberIndication concept with CD datatype is mapped to a FHIR string datatype with a constraint added (the value can only be 'by' or 'to').
 
 zib-AdvanceDirective:
+  ignored issues:
+    StructureDefinition.differential.element[6].pattern.ofType(CodeableConcept).coding[0]:
+      - message: "Unknown Code http://terminology.hl7.org/CodeSystem/consentscope#adr in http://terminology.hl7.org/CodeSystem/consentscope for 'http://terminology.hl7.org/CodeSystem/consentscope#adr'"
+        reason: This concerns an error in the FHIR terminology server. The adr code has been removed for R5 and the terminology server was updated for it too soon. They will fix it according to this zulip chat "https://chat.fhir.org/#narrow/stream/179166-implementers/topic/Consent.2Escope.3A.20diff.20in.20codes.20shown.20on.20FHIR.20vs.20Tx.20server"
   zib deviations:
     Consent.provision.actor:representative.reference:
       - cardinality: 1..1
