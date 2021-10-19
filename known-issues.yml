@@ -47,13 +47,13 @@ zib-BloodPressure:
   zib deviations:
     Observation.note.text:
       - cardinality: 1..1
-        reason: Observation.note has a cardinality, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
+        reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
 
 zib-BodyHeight:
   zib deviations:
     Observation.note.text:
       - cardinality: 1..1
-        reason: Observation.note has a cardinality, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
+        reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
 
 zib-BodyTemperature:
   ignored issues:
@@ -63,13 +63,13 @@ zib-BodyTemperature:
   zib deviations:
     Observation.note.text:
       - cardinality: 1..1
-        reason: Observation.note has a cardinality, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
+        reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
 
 zib-BodyWeight:
   zib deviations:
     Observation.note.text:
       - cardinality: 1..1
-        reason: Observation.note has a cardinality, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
+        reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
 
 zib-ContactInformation-TelephoneNumbers:
   zib deviations:
@@ -105,13 +105,13 @@ zib-HeadCircumference:
   zib deviations:
     Observation.note.text:
       - cardinality: 1..1
-        reason: Observation.note has a cardinality, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
+        reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
 
 zib-HeartRate:
   zib deviations:
     Observation.note.text:
       - cardinality: 1..1
-        reason: Observation.note has a cardinality, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
+        reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
 
 zib-HealthcareProvider:
   zib deviations:
@@ -202,7 +202,7 @@ zib-NursingIntervention:
         reason: zib concepts Interval and Frequency are represented by a combination of .frequency, .period and .periodUnit, not by a single element of Quantity datatype.
     CarePlan.note.text:
       - cardinality: 1..1
-        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
+        reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
   ignored issues:
     CarePlan.contributor:requester:
       - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
@@ -221,7 +221,7 @@ zib-O2Saturation:
   zib deviations:
     Observation.note.text:
       - cardinality: 1..1
-        reason: Observation.note has a cardinality, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
+        reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
 
 zib-Patient:
   zib deviations:
