@@ -88,6 +88,7 @@ Style - profiling guidelines
 * Alligned cardinality of `Immunization.note` with the zib by making it 0..1.
 * Moved VaccinationDate on a type slice on `Immunization.occurrence[x]:occurrenceDateTime`. This element has been renamed from `date` to `occurence[x]` in R4.
 * Moved Administrator to a slice on `Immunization.performer` with a mandatory fixed pattern in `Immunization.performer.function`.
+* Added a pattern on `Immunization.doseQuantity` to mandate the use of mL by ucum because the definition of Dose states to use milliliters. 
 * Removed orderStatus extension because PlannedCareActivityForTransfer zib does not exists anymore.
 * Aligned cardinalities of ImmunizationRecommendation with the zib by constraining them and documentend this on the root element.
 * Removed mapping of DesiredDateForRevaccination because it has been removed by the zib as well. The DesiredDateForRevaccination concept has been replaced by mapping to VaccinationDate which is placed on `ImmunizationRecommendation.recommendation.dateCriterion.value`. The mapping to PlannedCareActivityForTransfer start and end dates have been removed from this element.
