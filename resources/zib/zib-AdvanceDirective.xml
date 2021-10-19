@@ -82,7 +82,7 @@
     </element>
     <element id="Consent.status">
       <path value="Consent.status" />
-      <comment value="This element is implictly mapped to the zib concept NL-CM:7.15.7 (LivingWillDate). Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When the LivingWillDate is in the future, `.status` will usually be set to _proposed_.&#xD;&#xA;* When LivingWillDate is in the past, `.status` will usually be set to _active_.&#xD;&#xA;* When LivingWillDate is absent, which is not possible by the zib, `.status` will usually be set to _draft_." />
+      <comment value="This element is implicitly mapped to the zib concept NL-CM:7.15.7 (LivingWillDate). Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When LivingWillDate is in the past, `.status` will usually be set to _active_.&#xD;&#xA;* When LivingWillDate is absent, which is not possible following the zib, `.status` will usually be set to _draft_.&#xD;&#xA;* When the LivingWillDate is in the future, which is not possible following the zib, `.status` will usually be set to _proposed_." />
       <mapping>
         <identity value="zib-advancedirective-v3.1.1-2020EN" />
         <map value="NL-CM:7.15.7" />
@@ -148,7 +148,7 @@
     </element>
     <element id="Consent.policy.uri">
       <path value="Consent.policy.uri" />
-      <comment value="Either a policy or policyRule is mandated by the HL7 core resource by the ppc-1 constraint, therefore, if no explicit value is recorded a fallback is to populate `policy.uri` with _http://wetten.overheid.nl/_." />
+      <comment value="Either `.policy` or `.policyRule` should exist following core constraint ppc-1. If no explicit value is recorded, a fallback is to populate `.policy.uri` with _https://wetten.overheid.nl/_ if the advance directive is recorded following Dutch law and regulations." />
     </element>
     <element id="Consent.provision.actor">
       <path value="Consent.provision.actor" />
