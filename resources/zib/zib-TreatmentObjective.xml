@@ -39,13 +39,6 @@
             <short value="TreatmentObjective"/>
             <comment value="The zib FunctionalOrMentalStatus is mapped to a FHIR Observation resource, which represents something that has been observed in the past. Zib TreatmentObjective describes a desired result in the future. Using a reference to a zib-FunctionalOrMentalStatus instance of Observation would therefore be incorrect. This is why the properties of FunctionalOrMentalStatus have been mapped in this zib-TreatmentObjective profile."/>
             <alias value="Behandeldoel"/>
-            <constraint>
-                <key value="zib-TreatmentObjective-1"/>
-                <severity value="error"/>
-                <human value="One concept from DesiredHealthCondition and DesiredHealthcareResult must be selected."/>
-                <expression value="description.text.exists() xor target.exists()"/>
-                <source value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentObjective"/>
-            </constraint>
             <mapping>
                 <identity value="zib-treatmentobjective-v3.2-2020EN"/>
                 <map value="NL-CM:13.5.1"/>
@@ -60,12 +53,22 @@
             <path value="Goal.description.text"/>
             <short value="DesiredHealthcareResult"/>
             <definition value="The textual account of the treatment objective. This concept provides the option to define a treatment objective which cannot be described as a measurement value or functional/mental status."/>
+            <comment value="If the concept DesiredHealthcareResult is not present in this instance of zib TreatmentObject, but DesiredHealthCondition::FunctionalOrMentalStatus is, `description.text` should be filled with a textual representation of FunctionalOrMentalStatus::StatusName and FunctionalOrMentalStatus::StatusValue because `description` has a cardinality of 1..1."/>
             <alias value="GewenstZorgresultaat"/>
-            <condition value="zib-TreatmentObjective-1"/>
             <mapping>
                 <identity value="zib-treatmentobjective-v3.2-2020EN"/>
                 <map value="NL-CM:13.5.5"/>
                 <comment value="DesiredHealthcareResult"/>
+            </mapping>
+            <mapping>
+                <identity value="zib-functionalormentalstatus-v3.2-2020EN"/>
+                <map value="NL-CM:4.26.2"/>
+                <comment value="StatusName (implicit, main mapping is on Goal.target.measure)"/>
+            </mapping>
+            <mapping>
+                <identity value="zib-functionalormentalstatus-v3.2-2020EN"/>
+                <map value="NL-CM:4.26.3"/>
+                <comment value="StatusValue (implicit, main mapping is on Goal.target.detailCodeableConcept)"/>
             </mapping>
         </element>
         <element id="Goal.target">
@@ -74,7 +77,6 @@
             <definition value="The desired health condition is a target value which can be expressed as the patient’s functional or mental status."/>
             <alias value="GewensteGezondheidstoestand"/>
             <max value="1"/>
-            <condition value="zib-TreatmentObjective-1"/>
             <mapping>
                 <identity value="zib-treatmentobjective-v3.2-2020EN"/>
                 <map value="NL-CM:13.5.3"/>
