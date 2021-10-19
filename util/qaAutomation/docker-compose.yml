@@ -1,10 +1,16 @@
 version: "3.9"
 services:
-  validate:
+  qa-zib2020-r4:
     build: .
+    image: nictiz/qa-zib2020-r4
     container_name: qa-zib2020-r4
     volumes:
       - type: bind
         source: ../..
         target: /repo
         read_only: true
+    environment:
+      - NTS_USER
+      - NTS_PASS
+    ports:
+      - 8081:8081
