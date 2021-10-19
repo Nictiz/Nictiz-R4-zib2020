@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-TreatmentObjective" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentObjective" />
+  <name value="ZibTreatmentObjective" />
+  <title value="zib TreatmentObjective" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The treatment objective describes the desired result of the treatment/interventions in terms of the patient’s diagnosed problem. The objective and target date are entered in addition to the target value. Comparing the healthcare results to the treatment objective provides insight into the effectivity of the treatment/interventions." />
+  <purpose value="This Goal resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) TreatmentObjective v3.2 (2020)](https://zibs.nl/wiki/TreatmentObjective-v3.2(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-treatmentobjective-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/TreatmentObjective-v3.2(2020EN)" />
+    <name value="zib TreatmentObjective-v3.2(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/FunctionalOrMentalStatus-v3.2(2020EN)" />
+    <name value="zib FunctionalOrMentalStatus-v3.2(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Goal" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Goal" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Goal">
+      <path value="Goal" />
+      <short value="TreatmentObjective" />
+      <comment value="The concepts of FunctionalOrMentalStatus are individually mapped on the elements of Goal's FHIR resource. A direct reference was not possible on the .target element." />
+      <alias value="Behandeldoel" />
+      <constraint>
+        <key value="zib-TreatmentObjective-1" />
+        <severity value="error" />
+        <human value="One concept from DesiredHealthCondition and DesiredHealthcareResult must be selected." />
+        <expression value="description.text.empty() or target.empty()" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentObjective" />
+      </constraint>
+      <mapping>
+        <identity value="zib-treatmentobjective-v3.2-2020EN" />
+        <map value="NL-CM:13.5.1" />
+        <comment value="TreatmentObjective" />
+      </mapping>
+    </element>
+    <element id="Goal.lifecycleStatus">
+      <path value="Goal.lifecycleStatus" />
+      <comment value="This element is combined with Goal.description.text. Based on the DesiredHealthcareResult, the lifecycleStatus gets a value if the goal is still being targeted." />
+      <mapping>
+        <identity value="zib-treatmentobjective-v3.2-2020EN" />
+        <map value="NL-CM:13.5.5" />
+        <comment value="DesiredHealthcareResult (implicit, main mapping is on Goal.description.text)" />
+      </mapping>
+    </element>
+    <element id="Goal.description.text">
+      <path value="Goal.description.text" />
+      <short value="DesiredHealthcareResult" />
+      <definition value="The textual account of the treatment objective. This concept provides the option to define a treatment objective which cannot be described as a measurement value or functional/mental status." />
+      <alias value="GewenstZorgresultaat" />
+      <mapping>
+        <identity value="zib-treatmentobjective-v3.2-2020EN" />
+        <map value="NL-CM:13.5.5" />
+        <comment value="DesiredHealthcareResult" />
+      </mapping>
+    </element>
+    <element id="Goal.target">
+      <path value="Goal.target" />
+      <max value="1" />
+    </element>
+    <element id="Goal.target.extension">
+      <path value="Goal.target.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Goal.target.extension:medicalDevice">
+      <path value="Goal.target.extension" />
+      <sliceName value="medicalDevice" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-FunctionalOrMentalStatus.MedicalDevice" />
+      </type>
+    </element>
+    <element id="Goal.target.measure">
+      <path value="Goal.target.measure" />
+      <short value="StatusName" />
+      <definition value="Coded description of the functional or mental status or limitation.&#xD;&#xA;Code systems used include:&#xD;&#xA;&#xD;&#xA;SNOMED CT&#xD;&#xA;ICF (International Classification of Functioning, Disability and Health)&#xD;&#xA;NOC (Nursing Outcomes Classification)&#xD;&#xA;OMAHA" />
+      <alias value="StatusNaam" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.4--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
+        <map value="NL-CM:4.26.2" />
+        <comment value="StatusName" />
+      </mapping>
+    </element>
+    <element id="Goal.target.detail[x]">
+      <path value="Goal.target.detail[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Goal.target.detail[x]:detailCodeableConcept">
+      <path value="Goal.target.detail[x]" />
+      <sliceName value="detailCodeableConcept" />
+      <short value="StatusValue" />
+      <definition value="The extent to which the patient is limited by the functional or mental condition.&#xD;&#xA;If both the status name and the status value are recorded in code, then both values must come from the same code system. If the patient uses a medical device, the evaluation of the extent of the limitation will take place without this aid. The answer codes must be selected from the subselection of the code system corresponding with the request in accordance with the rules applicable to that system." />
+      <alias value="StatusWaarde" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.3--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
+        <map value="NL-CM:4.26.3" />
+        <comment value="StatusValue" />
+      </mapping>
+    </element>
+    <element id="Goal.addresses">
+      <path value="Goal.addresses" />
+      <short value="Problem" />
+      <definition value="Description of the problem to which the treatment objective applies." />
+      <alias value="Probleem" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationStatement" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/NutritionOrder" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ServiceRequest" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RiskAssessment" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem" />
+      </type>
+      <mapping>
+        <identity value="zib-treatmentobjective-v3.2-2020EN" />
+        <map value="NL-CM:13.5.4" />
+        <comment value="Problem" />
+      </mapping>
+    </element>
+    <element id="Goal.note">
+      <path value="Goal.note" />
+      <max value="1" />
+    </element>
+    <element id="Goal.note.text">
+      <path value="Goal.note.text" />
+      <short value="Comment" />
+      <definition value="Explanatory comments as a description of the functional or mental status." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
+        <map value="NL-CM:4.26.4" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

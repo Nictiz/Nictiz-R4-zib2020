@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-FunctionalOrMentalStatus.MedicalDevice" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-FunctionalOrMentalStatus.MedicalDevice" />
+  <name value="ExtFunctionalOrMentalStatusMedicalDevice" />
+  <title value="ext FunctionalOrMentalStatus.MedicalDevice" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="An extension to add a reference to zib-MedicalDevice to Goal.target in zib-FunctionalOrMentalStatus that is modelled inline in zib-TreatmentObjective." />
+  <purpose value="This extension represents the MedicalDevice concept of [zib FunctionalOrMentalStatus v3.2(2020)](https://zibs.nl/wiki/FunctionalOrMentalStatus-v3.2(2020EN))" />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/FunctionalOrMentalStatus-v3.2(2020EN)" />
+    <name value="zib FunctionalOrMentalStatus-v3.2(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="Goal.target" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-FunctionalOrMentalStatus.MedicalDevice" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="MedicalDevice" />
+      <definition value="Medical aid the patient has to reduce the impact of the disability or disorder." />
+      <alias value="Hulpmiddel" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice" />
+      </type>
+      <mapping>
+        <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
+        <map value="NL-CM:4.26.5" />
+        <comment value="MedicalDevice" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

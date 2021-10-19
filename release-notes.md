@@ -257,3 +257,10 @@ This is a newly added zib but had profiles that preceded the zib, namely gp-Enco
 * ValueCodeableConcept is now modulated on its own slice
 * The comment element is modulated on `Observation.note.text` instead of `Observation.comment`
 * The PackYears element has been changed from Quantity to integer as datatype
+
+## zib-TreatmentObjective
+* Removed identifier mapping on `Goal.identifier`
+* DesiredHealthcareResult element moved to `Goal.description.text`
+* Removed the mapping on `Goal.expressedBy` and the reference to practitionerRole
+* The reference FunctionalOrMentalStatus is mapped inline on the goal resource elements (see comment on the root element for the explanation)
+* The medicalDevice extension is mapped on `.target` element
