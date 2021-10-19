@@ -720,6 +720,20 @@ zib-TreatmentObjective:
     Goal.note.text:
       - cardinality: 1..1
         reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
+
+zib-Vaccination-event:
+  zib deviations:
+    Immunization.vaccineCode:
+      - cardinality: 1..1
+        reason: This is a known difference between the zib (0..*) and FHIR (1..1). The mandatory element by FHIR seems legit. If an immunization event has taken place the vaccine code should be known. Otherwise, the value of the whole Immunization resource will be strongly diminished.
+    Immunization.note.text:
+      - cardinality: 1..1
+        reason: Immunization.note has cardinality 0..1, making the cardinality of Immunization.note.text effectively 0..1 as required by the zib.
+zib-Vaccination-request:
+  zib deviations:
+    ImmunizationRecommendation.recommendation.dateCriterion.value:
+      - cardinality: 1..1
+        reason: ImmunizationRecommendation.recommendation.dateCriterion has cardinality 0..1, making the cardinality of ImmunizationRecommendation.recommendation.dateCriterion.value effectively 0..1 as required by the zib.
         
 zib-VisualAcuity:
   zib deviations:
