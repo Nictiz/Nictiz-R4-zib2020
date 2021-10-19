@@ -282,3 +282,17 @@ zib-Patient:
         reason: The mapping is placed on the extension and not on the value[x] because of the nature of this extension. The extension itself contains a valueCoding that gets the zibs value. This datatype matches the zib CD type.
       - cardinality: 0..*
         reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
+
+zib-Vaccination-event:
+  zib deviations:
+    Immunization.vaccineCode:
+      - cardinality: 1..1
+        reason: This is a known difference between the zib (0..*) and FHIR (1..1). The mandatory element by FHIR seems legit. If an immunization event has taken place the vaccine code should be known. Otherwise, the value of the whole Immunization resource will be strongly diminished.
+    Immunization.note.text:
+      - cardinality: 1..1
+        reason: Immunization.note has cardinality 0..1, making the cardinality of Immunization.note.text effectively 0..1 as required by the zib.
+zib-Vaccination-request:
+  zib deviations:
+    ImmunizationRecommendation.recommendation.dateCriterion.value:
+      - cardinality: 1..1
+        reason: ImmunizationRecommendation.recommendation.dateCriterion has cardinality 0..1, making the cardinality of ImmunizationRecommendation.recommendation.dateCriterion.value effectively 0..1 as required by the zib.
