@@ -32,6 +32,7 @@
     <element id="Immunization">
       <path value="Immunization" />
       <short value="Vaccination" />
+      <comment value="The zib Vaccination is mapped to this Immunization profile and a profile on ImmunizationRecommendation (http://nictiz.nl/fhir/StructureDefinition/zib-Vaccination-request) to align with the intention of FHIR. All past vaccinations are covered using this Immunization profile, while all future vaccinations, including the advised vaccinations, are covered in the ImmunizationRecommendation profile. Both profiles contain the zib mappings, with the exception of the Dose (NL-CM:11.1.4) and Administrator (NL-CM:11.1.6) concepts which are, based on their current definition, not suitable for future vaccinations. Therefore they have only been mapped to the Immunization profile.&#xD;&#xA;&#xD;&#xA;Please note that in contrary to the related zib concepts, `.vaccineCode` and `.occurrence[x]` are mandatory by FHIR and need to be recorded before Immunization resources can be exchanged." />
       <alias value="Vaccinatie" />
       <mapping>
         <identity value="zib-vaccination-v4.0-2020EN" />
@@ -39,11 +40,19 @@
         <comment value="Vaccination" />
       </mapping>
     </element>
+    <element id="Immunization.status">
+      <path value="Immunization.status" />
+      <comment value="This element has no functional counterpart in the zib and cannot be implicitly mapped to other concepts. Unless a more appropriate status is recorded, it is assumed that only _completed_ Immunization resources will be exchanged." />
+    </element>
     <element id="Immunization.vaccineCode">
       <path value="Immunization.vaccineCode" />
       <short value="ProductCode" />
-      <definition value="The product code of the vaccine administered. &#xA;                        There are several possible code systems for documenting the product code. If the vaccination data is registered based on an anamnesis, coding with the ATC code is preferred. In all cases it concerns those products that fall under ATC group J07 (vaccines)." />
+      <definition value="The product code of the vaccine administered.&#xD;&#xA;There are several possible code systems for documenting the product code. If the vaccination data is registered based on an anamnesis, coding with the ATC code is preferred. In all cases it concerns those products that fall under ATC group J07 (vaccines)." />
       <alias value="ProductCode" />
+      <binding>
+        <strength value="example" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.12--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-vaccination-v4.0-2020EN" />
         <map value="NL-CM:11.1.2" />
@@ -103,6 +112,7 @@
     </element>
     <element id="Immunization.performer:administrator.function">
       <path value="Immunization.performer.function" />
+      <min value="1" />
       <patternCodeableConcept>
         <coding>
           <system value="https://hl7.org/FHIR/v2/0443/index.html" />
@@ -132,6 +142,17 @@
     <element id="Immunization.note">
       <path value="Immunization.note" />
       <max value="1" />
+    </element>
+    <element id="Immunization.note.text">
+      <path value="Immunization.note.text" />
+      <short value="Comment" />
+      <definition value="Free text explanation.  &#xD;&#xA; &#xD;&#xA;Examples of commonly used explanations are:  &#xD;&#xA;* &quot;Vaccination according to the National Immunisation Program&quot;.  &#xD;&#xA;* &quot;Not according to the National Immunisation Program&quot;, followed by further explanation. &#xD;&#xA;* &quot;Unknown&quot;" />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-vaccination-v4.0-2020EN" />
+        <map value="NL-CM:11.1.7" />
+        <comment value="Comment" />
+      </mapping>
     </element>
   </differential>
 </StructureDefinition>
