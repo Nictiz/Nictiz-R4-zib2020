@@ -32,13 +32,21 @@
     <element id="ImmunizationRecommendation">
       <path value="ImmunizationRecommendation" />
       <short value="Vaccination" />
-      <comment value="The zib Vaccination is mapped to this ImmunizationRecommendation profile and a profile on Immunization (http://nictiz.nl/fhir/StructureDefinition/zib-Vaccination-event) to align with the intention of FHIR. All past vaccinations are covered using the Immunization profile, while all future vaccinations, including the advised vaccinations, are covered in this ImmunizationRecommendation profile. Both profiles contain the zib mappings, except for the Dose (NL-CM:11.1.4) and Administrator (NL-CM:11.1.6) concepts which are, based on their current definition, not suitable for future vaccinations. Therefore they have only been mapped to the Immunization profile.&#xA;&#xA;Please note that the ImmunizationRecommendation profile has been aligned as much as possible with the zib Vaccination by setting the cardinalities of `.recommendation` ,`.vaccineCode` and `.dateCriterion` to x..1. This results in the removal of the ability to exchange a vaccination schema. Moreover, ImmunizationRecommendation has more mandatory elements that are not represented in the zib, such as `.date` and `.recomendation.forecastStatus`. Implementers will need to take these requirements into account when implementing the future vaccinations.&#xD;&#xA;&#xD;&#xA;The zib centre has acknowledged that the Vaccination zib is currently ill-defined, especially concerning future vaccinations. Therefore the zib will be completely redesigned for a future release." />
+      <comment value="The zib Vaccination is mapped to this ImmunizationRecommendation profile and a profile on Immunization (&lt;http://nictiz.nl/fhir/StructureDefinition/zib-Vaccination-event&gt;). All administered vaccinations are covered using the Immunization profile, while all planned vaccinations are covered in this ImmunizationRecommendation profile. The zib concepts Dose (NL-CM:11.1.4) and Administrator (NL-CM:11.1.6) are not suitable for planned vaccinations based on their current definitions and are therefore not mapped in this ImmunizationRecommendation profile.&#xA;&#xA;Please note that the ImmunizationRecommendation profile has been aligned as much as possible with the zib Vaccination by setting the cardinalities of `.recommendation` ,`.vaccineCode` and `.dateCriterion` to x..1. This results in the removal of the ability to exchange a vaccination schema. Moreover, ImmunizationRecommendation has more mandatory elements that are not represented in the zib, such as `.date` and `.recomendation.forecastStatus`. Implementers will need to take these requirements into account when implementing future vaccinations." />
       <alias value="Vaccinatie" />
       <mapping>
         <identity value="zib-vaccination-v4.0-2020EN" />
         <map value="NL-CM:11.1.1" />
         <comment value="Vaccination" />
       </mapping>
+    </element>
+    <element id="ImmunizationRecommendation.patient">
+      <path value="ImmunizationRecommendation.patient" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient" />
+      </type>
     </element>
     <element id="ImmunizationRecommendation.recommendation">
       <path value="ImmunizationRecommendation.recommendation" />
@@ -50,6 +58,10 @@
       <definition value="The product code of the vaccine administered. There are several possible code systems for documenting the product code. If the vaccination data is registered based on an anamnesis, coding with the ATC code is preferred. In all cases it concerns those products that fall under ATC group J07 (vaccines)." />
       <alias value="ProductCode" />
       <max value="1" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.12--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-vaccination-v4.0-2020EN" />
         <map value="NL-CM:11.1.2" />
@@ -72,7 +84,7 @@
       <path value="ImmunizationRecommendation.recommendation.dateCriterion.value" />
       <short value="VaccinationDate" />
       <definition value="Date (and if possible time) that the vaccine was or will be administered. In the case of a planned re-vaccination, a vague date (month, year) is allowed (Clinical reminder). If a planned vaccination cannot be administered before a certain date, the date stated (vague or not) must indicate this." />
-      <comment value="Please note that `.dateCriterion.code` is made mandatory by FHIR to provide a classification of the date. For example, earliest date to give, latest date to give, etc. This seems to be functionally covered by the zib as well, however, within the VaccinationDate concept as can be read from the definition: &quot;_If a planned vaccination cannot be administered before a certain date, the date stated (vague or not) must indicate this._&quot;. In FHIR it is not possible to include this kind of information inside a DateTime datatype, but rather it is explicitly captured in the `.dateCriterion.code` element." />
+      <comment value="Please note that `.dateCriterion.code` is made mandatory in FHIR to provide a classification of the date. This is functionally covered by the zib within the VaccinationDate concept as vague dates are allowed. This information cannot be included inside the DateTime datatype, but is explicitly captured in `.dateCriterion.code`." />
       <alias value="VaccinatieDatum" />
       <mapping>
         <identity value="zib-vaccination-v4.0-2020EN" />
