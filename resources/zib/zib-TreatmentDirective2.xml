@@ -87,10 +87,11 @@
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.AdvanceDirective" />
       </type>
+      <condition value="hcim-treatmentdirective2-1" />
     </element>
     <element id="Consent.status">
       <path value="Consent.status" />
-      <comment value="This element is implicitly mapped to the zib concepts NL-CM:2.2.5 (MostRecentReviewDate) and NL-CM:2.2.6 (DateExpired). Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When MostRecentReviewDate is absent or in the future, `.status` will usually be set to _draft_.&#xD;&#xA;* When MostRecentReviewDate is in the past and DateExpired is absent or in the future, `.status` will usually be set to _active_.&#xD;&#xA;* When DateExpired is in the past, `.status` will usually be set to _inactive_." />
+      <comment value="This element is implicitly mapped to the zib concepts NL-CM:2.2.5 (MostRecentReviewDate) and NL-CM:2.2.6 (DateExpired). Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When MostRecentReviewDate is in the past and DateExpired is absent or in the future, `.status` will usually be set to _active_.&#xD;&#xA;* When DateExpired is in the past, `.status` will usually be set to _inactive_.&#xD;&#xA;* When MostRecentReviewDate is absent or in the future,  which is not possible following the zib, `.status` will usually be set to _draft_." />
       <mapping>
         <identity value="zib-treatmentdirective2-v1.0-2020EN" />
         <map value="NL-CM:2.2.5" />
@@ -140,6 +141,7 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <condition value="hcim-treatmentdirective2-1" />
     </element>
     <element id="Consent.source[x]:sourceReference">
       <path value="Consent.source[x]" />
@@ -160,6 +162,10 @@
         <map value="NL-CM:2.2.8" />
         <comment value="AdvanceDirective" />
       </mapping>
+    </element>
+    <element id="Consent.policy.uri">
+      <path value="Consent.policy.uri" />
+      <comment value="Either `.policy` or `.policyRule` should exist following core constraint ppc-1. If no explicit value is recorded, a fallback is to populate `.policy.uri` with _https://wetten.overheid.nl/_ if the advance directive is recorded following Dutch law and regulations." />
     </element>
     <element id="Consent.provision.extension">
       <path value="Consent.provision.extension" />
