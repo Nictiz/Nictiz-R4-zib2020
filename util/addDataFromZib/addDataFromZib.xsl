@@ -145,7 +145,7 @@
             
             <xsl:apply-templates select="f:derivation"/>
             
-            <!-- Add id as alias to root of nl-core profile if no differential or snapshot is fount -->
+            <!-- Add id as alias to root of nl-core profile if no differential or snapshot is found -->
             <xsl:choose>
                 <xsl:when test="not(f:differential) and not(f:snapshot) and starts-with($id, 'nl-core-')">
                     <differential>

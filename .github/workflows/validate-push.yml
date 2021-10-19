@@ -1,8 +1,8 @@
-name: Profile QA - changed files
-on: push
+name: Profile QA - full repository
+on: pull_request
 
 jobs:
-  validate-changed:
+  validate-all:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -10,10 +10,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Get changed profiles and extensions
+      - name: Get profiles and extensions
         id: get-resources
         run: |
-          changed_only=1
+          changed_only=0
           source util/qaAutomation/getresources.sh
           echo "::set-output name=zib_profiles::"$zib_profiles
           echo "::set-output name=zib_extensions::"$zib_extensions
@@ -40,6 +40,7 @@ jobs:
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Profiles
           source:  ${{ steps.get-resources.outputs.zib_profiles }}
           ignored-issues: known-issues.yml
+          tx: n/a
         continue-on-error: true
       - name: Validate zib extensions
         id: validate-zib-extensions
@@ -51,6 +52,7 @@ jobs:
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Extensions
           source:  ${{ steps.get-resources.outputs.zib_extensions }}
           ignored-issues: known-issues.yml
+          tx: n/a
         continue-on-error: true
       - name: Validate nl-core profiles
         id: validate-nl-core-profiles
@@ -62,17 +64,19 @@ jobs:
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore-Profiles
           source:  ${{ steps.get-resources.outputs.nlcore_profiles }}
           ignored-issues: known-issues.yml
+          tx: n/a
         continue-on-error: true
       - name: Validate nl-core extensions
         id: validate-nl-core-extensions
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.16
         with:
           version: "4.0"
-          ig: resources/ qa/
+          ig: ig/
           recurse: true
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore-Extensions
           source:  ${{ steps.get-resources.outputs.nlcore_extensions }}
           ignored-issues: known-issues.yml
+          tx: n/a
         continue-on-error: true
       - name: Validate other profiles
         id: validate-other-profiles
@@ -84,6 +88,7 @@ jobs:
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions
           source:  ${{ steps.get-resources.outputs.other_profiles }}
           ignored-issues: known-issues.yml
+          tx: n/a
         continue-on-error: true
       - name: Validate ConceptMaps
         id: validate-conceptmaps
@@ -95,6 +100,7 @@ jobs:
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-ConceptMaps
           source:  ${{ steps.get-resources.outputs.conceptmaps }}
           ignored-issues: known-issues.yml
+          tx: n/a
         continue-on-error: true
       - name: Validate other terminology
         id: validate-other-terminology
@@ -105,6 +111,7 @@ jobs:
           recurse: true
           source:  ${{ steps.get-resources.outputs.other_terminology }}
           ignored-issues: known-issues.yml
+          tx: n/a
         continue-on-error: true
       - name: Validate examples
         id: validate-examples
@@ -115,6 +122,7 @@ jobs:
           recurse: true
           source:  ${{ steps.get-resources.outputs.examples }}
           ignored-issues: known-issues.yml
+          tx: n/a
         continue-on-error: true
       - name: Collect results
         id: collect-statistics
@@ -168,7 +176,7 @@ jobs:
           echo "${{ steps.collect-statistics.outputs.github_report }}"
           exit ${{ steps.collect-statistics.outputs.result_status }}
 
-  zib-compliance-changed:
+  zib-compliance-all:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -178,7 +186,7 @@ jobs:
       - name: Get profiles and extensions
         id: get-resources
         run: |
-          changed_only=1
+          changed_only=0
           source util/qaAutomation/getresources.sh
           echo "::set-output name=zib_profiles::"$zib_profiles
           echo "::set-output name=zib_extensions::"$zib_extensions
@@ -197,6 +205,7 @@ jobs:
           structuredefinitions: snapshots/*
           zib-release: 2020
           fail-at: warning
+          check-missing: mapped-only
           zib-deviations: known-issues.yml
       - name: Collect results
         id: collect-statistics
@@ -225,3 +234,4 @@ jobs:
         run: |
           echo "${{ steps.collect-statistics.outputs.github_report }}"
           exit ${{ steps.collect-statistics.outputs.result_status }}
+
