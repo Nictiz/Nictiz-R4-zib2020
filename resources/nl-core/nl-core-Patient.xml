@@ -35,6 +35,22 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NameInformation" />
       </type>
     </element>
+    <element id="Patient.name:nameInformation">
+      <path value="Patient.name" />
+      <sliceName value="nameInformation" />
+      <type>
+        <code value="HumanName" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NameInformation" />
+      </type>
+    </element>
+    <element id="Patient.name:nameInformation-GivenName">
+      <path value="Patient.name" />
+      <sliceName value="nameInformation-GivenName" />
+      <type>
+        <code value="HumanName" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NameInformation.GivenName" />
+      </type>
+    </element>
     <element id="Patient.telecom:telephoneNumbers">
       <path value="Patient.telecom" />
       <sliceName value="telephoneNumbers" />
@@ -67,10 +83,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="Patient.contact.extension:contactPerson">
       <path value="Patient.contact.extension" />
       <sliceName value="contactPerson" />
+      <min value="0" />
     </element>
     <element id="Patient.contact.extension:contactPerson.value[x]">
       <path value="Patient.contact.extension.value[x]" />
