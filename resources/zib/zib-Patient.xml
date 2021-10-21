@@ -75,13 +75,11 @@
         </discriminator>
         <rules value="open" />
       </slicing>
-      <min value="0" />
     </element>
     <element id="Patient.extension:nationality">
       <path value="Patient.extension" />
       <sliceName value="nationality" />
       <comment value="Due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time), the cardinality of the extension is left at 0..* instead of the zib cardinality of 0..1." />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/patient-nationality" />
@@ -96,12 +94,10 @@
         </discriminator>
         <rules value="open" />
       </slicing>
-      <min value="0" />
     </element>
     <element id="Patient.extension:nationality.extension:code">
       <path value="Patient.extension.extension" />
       <sliceName value="code" />
-      <min value="0" />
     </element>
     <element id="Patient.extension:nationality.extension:code.value[x]">
       <path value="Patient.extension.extension.value[x]" />
@@ -239,12 +235,10 @@
         </discriminator>
         <rules value="open" />
       </slicing>
-      <min value="0" />
     </element>
     <element id="Patient.gender.extension:geslachtCodelijst">
       <path value="Patient.gender.extension" />
       <sliceName value="geslachtCodelijst" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -327,7 +321,9 @@
     </element>
     <element id="Patient.address">
       <path value="Patient.address" />
+      <short value="AddressInformation" />
       <definition value="Patient's address information." />
+      <alias value="Adresgegevens" />
       <type>
         <code value="Address" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation" />
@@ -399,12 +395,10 @@
         </discriminator>
         <rules value="open" />
       </slicing>
-      <min value="0" />
     </element>
     <element id="Patient.contact.extension:contactPerson">
       <path value="Patient.contact.extension" />
       <sliceName value="contactPerson" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -473,8 +467,10 @@
     </element>
     <element id="Patient.contact.name">
       <path value="Patient.contact.name" />
+      <short value="NameInformation" />
       <definition value="Full name of the contact." />
       <comment value="The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use." />
+      <alias value="Naamgegevens" />
       <type>
         <code value="HumanName" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
@@ -527,8 +523,10 @@
     </element>
     <element id="Patient.contact.address">
       <path value="Patient.contact.address" />
+      <short value="AddressInformation" />
       <definition value="Contact’s address information." />
       <comment value="This element can and should not completely capture the AddressInformation concept from zib ContactPerson; it should just be used for the information that is needed for contacting the person in relation to care of the patient. The full address information should instead be captured using an instance of [zib-ContactPerson](http://nictiz.nl/fhir/StructureDefintion/zib-ContactPerson), which can then be referenced from this resource. See the comment on `Patient.contact` for more information." />
+      <alias value="Adresgegevens" />
       <type>
         <code value="Address" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation" />
@@ -559,7 +557,6 @@
         </discriminator>
         <rules value="open" />
       </slicing>
-      <min value="0" />
     </element>
     <element id="Patient.communication.extension:languageControl">
       <path value="Patient.communication.extension" />
@@ -570,7 +567,6 @@
       <alias value="TaalvaardigheidBegrijpen" />
       <alias value="TaalvaardigheidSpreken" />
       <alias value="TaalvaardigheidLezen" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/patient-proficiency" />
@@ -600,7 +596,6 @@
         </discriminator>
         <rules value="open" />
       </slicing>
-      <min value="2" />
     </element>
     <element id="Patient.communication.extension:languageControl.extension:level">
       <path value="Patient.communication.extension.extension" />
@@ -623,7 +618,6 @@
     <element id="Patient.communication.extension:communicationDetails">
       <path value="Patient.communication.extension" />
       <sliceName value="communicationDetails" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-LanguageProficiency.CommunicationDetails" />
@@ -632,7 +626,7 @@
     <element id="Patient.communication.extension:comment">
       <path value="Patient.communication.extension" />
       <sliceName value="comment" />
-      <min value="0" />
+      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Comment" />
