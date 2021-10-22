@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patient xmlns="http://hl7.org/fhir">
+   <!-- An example of the corner case where both official first names (voornamen) and initials of official first names 
+        (initialen) are given, but they don't match and the sending system has no information on the relationship 
+        between these two distinct sets of information. -->
+   
+   <id value="nl-core-NameInformation-complete"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+   </meta>
+
+   <!-- The full names are communicated along with other official name information in the first .name element with
+        .name.use set to "official". -->
+   <name>
+      <use value="official"/>
+      <text value="Hendrik Willem (Henk) Schemer"/>
+      <family value="Schemer">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Schemer"/>
+         </extension>
+      </family>
+      
+      <!-- Each official first name is communicated individually, augmented with the iso21090-EN-qualifier
+           extension set to "BR" (Birth) to indicate that it is a complete and official first name. -->
+      <given value="Hendrik">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="Willem">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+   </name>
+   
+   <!-- The initials are then communicated in a second .name instance with .name.use set to "official", which contains
+        no other name information. Because this is a corner case, sending systems are not required to create this 
+        instance and recieving systems are not required to process it. -->   
+   <name>
+      <use value="official"/>
+
+      <!-- Each official first name initial is communicated individually, augmented with the iso21090-EN-qualifier
+           extension set to "IN" (Initial). -->
+      <given value="H.">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="IN"/>
+         </extension>
+      </given>
+      <given value="J.">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="IN"/>
+         </extension>
+      </given>
+      <given value="W.">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="IN"/>
+         </extension>
+      </given>
+   </name>
+   
+   <!-- The given name (roepnaam) is communicated using an additional .name instance with .name.use set to usual -->
+   <name>
+      <use value="usual"/>
+      <given value="Henk"/>
+   </name>
+</Patient>
