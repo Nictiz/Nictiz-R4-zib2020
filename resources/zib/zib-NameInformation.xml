@@ -35,34 +35,6 @@
       <definition value="Name information includes a person's given names, last name and possibly the partner's last name." />
       <comment value="This `.name` element represents a Dutch name according to the [zib NameInformation (v1.1, 2020)](https://zibs.nl/wiki/NameInformation-v1.1(2020EN)) (except for the GivenName concept). A Dutch name is represented in FHIR as an ordinary international name, but is augmented using extensions to specify how the last name is built up according to the Dutch rules. See the guidance on `.family` and on `.extension:nameUsage` for more information. Systems that need to work in a Dutch context SHOULD support these extensions as specified here. In addition, systems SHOULD use the core elements according to the FHIR specifications to provide compatibility outside Dutch contexts. It is encouraged to provide a representation of the full name in the `.text` element.&#xD;&#xA;&#xD;&#xA;**Note 1**: The zib cannot be represented straightforward in FHIR. Especially note the guidance on `.given` on how to map the FirstNames and Initials concepts, and on `.prefix`/`.suffix` on how to map the Titles concept.&#xD;&#xA;&#xD;&#xA;**Note 2**: This element should only contain a person's _official_ names. The GivenName concept is represented in another `.name` element with `.name.use` = _official_." />
       <alias value="Naamgegevens" />
-      <example>
-        <label value="Johanna Petronella Maria (Jo) van der Giessen-van Putten" />
-        <valueHumanName>
-          <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
-            <valueCode value="NL4" />
-          </extension>
-          <use value="official" />
-          <text value="Johanna Petronella Maria van der Giessen-van Putten" />
-          <family value="van der Giessen-van Putten">
-            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-              <valueString value="Jongeneel" />
-            </extension>
-            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
-              <valueString value="de" />
-            </extension>
-            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
-              <valueString value="Haas" />
-            </extension>
-          </family>
-          <given value="Johanna">
-            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-              <valueCode value="CL" />
-            </extension>
-          </given>
-          <given value="Petronella" />
-          <given value="Maria" />
-        </valueHumanName>
-      </example>
       <constraint>
         <key value="zib-NameInformation-1" />
         <severity value="error" />
