@@ -99,19 +99,37 @@
     </element>
     <element id="RelatedPerson.name">
       <path value="RelatedPerson.name" />
-      <short value="NameInformation" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="use" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
       <definition value="Full name of the contact." />
       <comment value="The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use." />
-      <alias value="Naamgegevens" />
-      <type>
-        <code value="HumanName" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
-      </type>
       <mapping>
         <identity value="zib-contactperson-v3.4-2020EN" />
         <map value="NL-CM:3.1.4" />
         <comment value="NameInformation" />
       </mapping>
+    </element>
+    <element id="RelatedPerson.name:nameInformation">
+      <path value="RelatedPerson.name" />
+      <sliceName value="nameInformation" />
+      <max value="2" />
+      <type>
+        <code value="HumanName" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
+      </type>
+    </element>
+    <element id="RelatedPerson.name:nameInformation-GivenName">
+      <path value="RelatedPerson.name" />
+      <sliceName value="nameInformation-GivenName" />
+      <type>
+        <code value="HumanName" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation.GivenName" />
+      </type>
     </element>
     <element id="RelatedPerson.telecom">
       <path value="RelatedPerson.telecom" />
@@ -155,9 +173,7 @@
     </element>
     <element id="RelatedPerson.address">
       <path value="RelatedPerson.address" />
-      <short value="AddressInformation" />
       <definition value="Contact’s address information." />
-      <alias value="Adresgegevens" />
       <type>
         <code value="Address" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation" />
