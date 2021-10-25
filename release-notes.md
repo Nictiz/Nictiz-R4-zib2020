@@ -48,21 +48,17 @@ This document contains release notes per zib, indicating differences with their 
 * Explained cardinality mismatch of Practitioner.name on that element.
 
 ## zib-NameInformation
-Style - profiling guidelines
-* Moved information and mappings from the extension level to the `value[x]` level. Note that the zib compliance test is complaining now about cardinality differences.
-* `HumanName.family.extensions` now have the zib concept names as slice names instead of the extension names.
-* Usage of correct zib alias values.
-* Removed copied FHIR definitions and comments as this originated from DSTU2 and is given in the base data type. Moreover, this increases the focus on our added comments. 
-* Removed BRP mappings.
------
-* Sliced HumanName.given for every zib concept that is mapped to this element. Slices are differentiated by a mandatory qualifier extension that contains a pattern. This makes the profile more explicit.
+* The way this partial zib has been modelled on the HumanName datatype has been overhauled to properly accommodate the way first names are handled. In the STU3 version, official first names, initials of this first name, and the given name (nickname, roepnaam) were all added to a `.given` element in the same HumanName instance, with a annotation of the type using an extension. This turned out to be the wrong approach, as all `.given` names are to be concatenated to the complete list of first names. So instead, there are now different instances of HumanName used to communicate the official names and the given name, indicated by `.use` -- resulting in two profiles. Communicating initials is now only done for names where the full name is not known (this deviates from the zib model).   
+* `.use` has been made mandatory (instead of discouraged).
+* Moved information and mappings from the extension level to the `value[x]` level.
+* `.family.extension`'s now have the zib concept names as slice names instead of the extension names.
+* The `.given.extension` slice name has been changed to indicate that it is only about full name or initial. 
 * Added mappings for the newly added zib concept 'titels' on `prefix` and `suffix`. Added documentation/implementation guidance on `prefix` and the root.
-* Added a notion that `HumanName.use` is discouraged on the root and in the `use` element.
-* Added a notion on the root that explains that if `HumanName.use` is used, the full name will likely break up in multiple instances of the HumanName. Systems should expect this.
-* Added invariant to test for when `HumanName.use` is official that the name is truly official.
-* Removed `use` in the inline examples.
-* Added a notion on the root that `HumanName.text` is encouraged to be given too.
-* Added a notion on the root that we have not profiled the zib constraint to mandate a LastName.
+* Removed copied FHIR definitions and comments as these originated from DSTU2 and are given in the base data type. Moreover, this increases the focus on our added comments. 
+* Removed explanation of splitting up family names, as this is already given by the zib.
+* Aliases has been aligned with the zib.
+* Removed BRP mappings.
+* Added the notion on the root that populating `HumanName.text` is encouraged.
 
 ## zib-NursingIntervention
 * The resource to represent this zib has been changed from Procedure to CarePlan. This aligns better with the meaning of the zib: a statement of a plan (which may or not may have been completed) rather than the record of a procedure that has been carried out. The profile for the current version is created from scratch.
