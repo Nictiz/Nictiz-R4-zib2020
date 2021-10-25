@@ -14,7 +14,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="This profile covers the recording of therapeutic or diagnostic procedure undergone by the patient. The ServiceRequest profile (http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-request) covers the procedure that the patient will undergo." />
+  <description value="Therapeutic or diagnostic procedure undergone by the patient (the complementary profile [zib-Procedure-request](http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-request) can be used for therapeutic or diagnostics procedures that the patient will undergo). A procedure can be a simple blood pressure measurement, but also a complex heart surgery.&#xD;&#xA;In some care settings, the term treatment is used instead of the term procedure." />
   <purpose value="This Procedure resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Procedure v5.2 (2020)](https://zibs.nl/wiki/Procedure-v5.2(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
@@ -37,7 +37,7 @@
     <element id="Procedure">
       <path value="Procedure" />
       <short value="Procedure" />
-      <comment value="The zib Procedure is mapped to this Procedure profile and a profile on ServiceRequest (http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-request) to align with the intention of FHIR. All past procedures are covered using this Procedure resource, while all future procedures, including the advised procedures, are covered in the ServiceRequest resource. Both resources contain the zib mappings, with the exception of the Requester concept; this is not relevant for past procedures and has only been mapped to the ServiceRequest profile.&#xD;&#xA;&#xD;&#xA;The planned and performed procedures can be linked using `Procedure.basedOn`." />
+      <comment value="The zib Procedure is mapped both to this Procedure profile and a profile on ServiceRequest (&lt;http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-request&gt;) to align with the intention of FHIR. All past procedures are covered using this Procedure resource, while all future procedures, including the advised procedures, are covered in the ServiceRequest resource. Both resources contain the zib mappings, with the exception of the Requester concept; this is not relevant for past procedures and has only been mapped to the ServiceRequest profile.&#xD;&#xA;&#xD;&#xA;The planned and performed procedures can be linked using `Procedure.basedOn`." />
       <alias value="Verrichting" />
       <mapping>
         <identity value="zib-procedure-v5.2-2020EN" />
