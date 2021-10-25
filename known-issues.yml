@@ -54,7 +54,6 @@ pattern-NlCoreHealthProfessionalReference:
       - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
         reason: The title is shown in the hosting profiles as the name of the datatype. "zib HealthProfessional Reference" is more descriptive than the title according to the profiling guidelines ("pattern NlCoreHealthProfessionalReference").
 
-<<<<<<< HEAD
 pattern-GstdSimpleQuantity:
   ignored issues:
     StructureDefinition:
@@ -181,12 +180,18 @@ zib-ContactInformation-TelephoneNumbers:
 zib-ContactPerson:
   zib deviations:
     RelatedPerson.name:
+      - datatype: HumanName
+        reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
       - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use. Documented in the profile too.
+        reason: The name information according to zib NameInformation may be split up over multiple instances of RelatedPerson.name
+    RelatedPerson.name:nameInformation:
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
       - short: NameInformation
         reason: The concept PayerName from zib-Payer is also mapped on Patient.name. However, because this mapping is secondary to NameInformation, we exclude it from appearing in short.
+      - cardinality: 0..2
+        reason: The name information according to zib NameInformation may be split up over multiple instances of RelatedPerson.name  
+
     RelatedPerson.address:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
@@ -291,10 +296,15 @@ zib-HealthcareProvider:
 zib-HealthProfessional-Practitioner:
   zib deviations:
     Practitioner.name:
-      - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use. Documented in the profile too.
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
+      - cardinality: 0..*
+        reason: The name information according to zib NameInformation may be split up over multiple instances of Practitioner.name
+    Practitioner.name:nameInformation:
+      - datatype: HumanName
+        reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
+      - cardinality: 0..2
+        reason: The name information according to zib NameInformation may be split up over multiple instances of Practitioner.name  
     Practitioner.telecom:
       - cardinality: 0..*
         reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby still honoring the cardinality requirements of the zib.
@@ -467,6 +477,19 @@ zib-NameInformation:
     HumanName.suffix:
       - cardinality: 0..*
         reason: prefix and suffix are mapped to the "titles" concept from the zib. There's a mismatch however in the way this information is represented in the zib and in FHIR. The mapping is documented in the profile.
+    HumanName.given:
+      - short: FirstName / Initial
+        reason: The zib defines both the complete list of first names and of initals as a single string. In FHIR this is done fundamentally different, by using separate names. Hence, the short has been changed to the singular form.
+      - alias: first name,middle name,Voornaam,Initiaal
+        reason: The first two initials are provided by FHIR. For the singular form of the latter two, see the remark above.
+      - cardinality: 0..*
+        reason: See the remark above
+
+zib-NameInformation.GivenName:
+  zib deviations:
+    HumanName.given:
+      - cardinality: 1..*
+        reason: The GivenName is optional according to the zib, but when this datatype profile is used, a name should be provided.
 
 zib-NursingIntervention:
   zib deviations:
@@ -519,13 +542,11 @@ zib-Patient:
     Patient.extension:nationality.extension:code.value[x]:
       - cardinality: 1..1
         reason: The used extension uses a cardinality of 1..1 on the value[x] element. However, the extension itself is added with a cardinality of 0..1.
-    Patient.name:
-      - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use. Documented in the profile too.
+    Patient.name:nameInformation:
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
-      - short: NameInformation
-        reason: The concept PayerName from zib-Payer is also mapped on Patient.name. However, because this mapping is secondary to NameInformation, we exclude it from appearing in short.
+      - cardinality: 0..2
+        reason: The name information according to zib NameInformation may be split up over multiple instances of Patient.name  
     Patient.telecom:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
@@ -753,3 +774,4 @@ unmapped zib concepts:
     reason: This zib concept does not match the definition of the FHIR element and therefore it is not mapped see https://github.com/Nictiz/Nictiz-R4-zib2020/issues/111
   - NL-CM:13.5.3: TreatmentObjective.DesiredHealthCondition::FunctionalOrMentalStatus
     reason: This zib concept is a reference to FunctionalOrMentalStatus a direct reference was not possible, so each element of the zib is mapped separately. 
+

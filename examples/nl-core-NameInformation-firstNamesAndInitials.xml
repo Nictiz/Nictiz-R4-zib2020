@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patient xmlns="http://hl7.org/fhir">
+   <!-- An example of a situatiom where just the first official name is fully known while for the additional first 
+        names just an initial is known. . -->
+   
+   <id value="nl-core-NameInformation-complete"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+   </meta>
+
+   <!-- Both full names and initials are communicated along with other official name information in a .name element
+        with .name.use set to "official". -->
+   <name>
+      <use value="official"/>
+      <text value="Hendrik J. W. (Henk) Schemer"/>
+      <family value="Schemer">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Schemer"/>
+         </extension>
+      </family>
+      
+      <!-- Each official first name is communicated individually, augmented with the iso21090-EN-qualifier
+           extension set to "BR" (Birth) for complete names or "IN" for initials. -->
+      <given value="Hendrik">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="J.">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="IN"/>
+         </extension>
+      </given>
+      <given value="W.">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="IN"/>
+         </extension>
+      </given>
+   </name>
+      
+   <!-- The given name (roepnaam) is communicated using an additional .name instance with .name.use set to usual -->
+   <name>
+      <use value="usual"/>
+      <given value="Henk"/>
+   </name>
+</Patient>
