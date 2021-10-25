@@ -72,10 +72,15 @@ zib-ContactInformation-TelephoneNumbers:
 zib-ContactPerson:
   zib deviations:
     RelatedPerson.name:
-      - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use. Documented in the profile too.
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
+      - cardinality: 0..*
+        reason: The name information according to zib NameInformation may be split up over multiple instances of RelatedPerson.name
+    RelatedPerson.name:nameInformation:
+      - datatype: HumanName
+        reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
+      - cardinality: 0..2
+        reason: The name information according to zib NameInformation may be split up over multiple instances of RelatedPerson.name  
     RelatedPerson.address:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
@@ -131,10 +136,15 @@ unmapped zib concepts:
 zib-HealthProfessional-Practitioner:
   zib deviations:
     Practitioner.name:
-      - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use. Documented in the profile too.
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
+      - cardinality: 0..*
+        reason: The name information according to zib NameInformation may be split up over multiple instances of Practitioner.name
+    Practitioner.name:nameInformation:
+      - datatype: HumanName
+        reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
+      - cardinality: 0..2
+        reason: The name information according to zib NameInformation may be split up over multiple instances of Practitioner.name  
     Practitioner.telecom:
       - cardinality: 0..*
         reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby still honoring the cardinality requirements of the zib.
@@ -227,6 +237,11 @@ zib-Patient:
     Patient.extension:nationality.extension:code.value[x]:
       - cardinality: 1..1
         reason: The used extension uses a cardinality of 1..1 on the value[x] element. However, the extension itself is added with a cardinality of 0..1.
+    Patient.name:
+      - datatype: HumanName
+        reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
+      - cardinality:
+        reason: The name information according to zib NameInformation may be split up over multiple instances of Patient.name
     Patient.name:nameInformation:
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
