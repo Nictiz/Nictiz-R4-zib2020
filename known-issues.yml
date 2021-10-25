@@ -56,12 +56,6 @@ MedicatieToedieningStatus-to-MedicationAdministrationStatus:
       - message: "cm-pg-04: 'The title of the ConceptMap should conform to the profiling guidelines'"
         reason: The canonical URL, name and title are shortened to meet the max 64 char constraint of the fhir spec for ids and the id is used to construct the aformentioned elements. 
 
-pattern-NlCoreHealthProfessionalReference:
-  ignored issues:
-    StructureDefinition:
-      - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
-        reason: The title is shown in the hosting profiles as the name of the datatype. "zib HealthProfessional Reference" is more descriptive than the title according to the profiling guidelines ("pattern NlCoreHealthProfessionalReference").
-
 pattern-GstdSimpleQuantity:
   ignored issues:
     StructureDefinition:
@@ -74,6 +68,18 @@ pattern-GstdQuantity:
       - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
         reason: The title is shown in the hosting profiles as the name of the datatype. "G-Standaard Quantity" is more descriptive than the title according to the profiling guidelines ("pattern GstdQuantity").
 
+pattern-NlCoreHealthProfessionalReference:
+  ignored issues:
+    StructureDefinition:
+      - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
+        reason: The title is shown in the hosting profiles as the name of the datatype. "zib HealthProfessional Reference" is more descriptive than the title according to the profiling guidelines ("pattern NlCoreHealthProfessionalReference").
+
+pattern-VitalSigns:
+  ignored issues:
+    Observation.category:VSCat:
+      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+        reason: This slice name is adopted from the Vital Signs profile.
+        
 pattern-ZibHealthProfessionalReference:
   ignored issues:
     StructureDefinition:
@@ -110,7 +116,42 @@ zib-AdministrationAgreement:
     MedicationDispense.extension:periodOfUse-Duration.value[x]:        
       - datatype: Duration
         reason: The zib TimerInterval is not represented as a resource but is rather mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Duration as would have been the case within the zib TimeInterval.
-        
+
+zib-BloodPressure:
+  ignored issues:
+    Observation.component:SystolicBP:
+      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+        reason: The slice "SystolicBP" starts with an uppercase letter to align with the HL7 Vital Signs profile.
+    Observation.component:DiastolicBP:
+      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+        reason: The slice "DiastolicBP" starts with an uppercase letter to align with the HL7 Vital Signs profile.
+  zib deviations:
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
+
+zib-BodyHeight:
+  zib deviations:
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
+
+zib-BodyTemperature:
+  ignored issues:
+    Observation.code.coding:BodyTempCode:
+      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+        reason: The slice name "BodyTempCode" is chosen to align with the Vital Signs profile for BodyTemperature.
+  zib deviations:
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
+
+zib-BodyWeight:
+  zib deviations:
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
+
 zib-ContactInformation-TelephoneNumbers:
   zib deviations:
     ContactPoint.system:
@@ -155,7 +196,19 @@ zib-DispenseRequest:
     MedicationRequest.dispenseRequest.numberOfRepeatsAllowed:
       - datatype: unsignedInt
         reason: unsignedInt is a restriction on the zib INT concept (only non-negative INT) which matches with the definition of the NumberOfRefills. A negative NumberOfRefills don't make sense. 
-    
+
+zib-HeadCircumference:
+  zib deviations:
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
+
+zib-HeartRate:
+  zib deviations:
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
+
 zib-HealthcareProvider:
   zib deviations:
     Location.address:
@@ -359,7 +412,7 @@ zib-NursingIntervention:
         reason: zib concepts Interval and Frequency are represented by a combination of .frequency, .period and .periodUnit, not by a single element of Quantity datatype.
     CarePlan.note.text:
       - cardinality: 1..1
-        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
+        reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
   ignored issues:
     CarePlan.contributor:requester:
       - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
@@ -373,6 +426,12 @@ zib-NursingIntervention:
     CarePlan.activity.detail.performer:patient:
       - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice. 
+
+zib-O2Saturation:
+  zib deviations:
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
 
 zib-Patient:
   zib deviations:
