@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-CodeSpecification" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification" />
+  <name value="ExtCodeSpecification" />
+  <title value="ext CodeSpecification" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Sometimes it is not possible to use the ValueSet from the functional description on the corresponding FHIR element. This is a common occurence when the FHIR element has datatype _code_ and has a _required_ binding with an incompatible FHIR core ValueSet. It can also happen when the FHIR element has a _string_ or other non-coded datatype.&#xD;&#xA;&#xD;&#xA;In this case, the FHIR element may be augmented with this extension to communicate the code from the functional description. This information should always be _added_ to the normal use of the FHIR element to allow for maximum interoperability." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="code" />
+  </context>
+  <context>
+    <type value="element" />
+    <expression value="Coding" />
+  </context>
+  <context>
+    <type value="element" />
+    <expression value="string" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
