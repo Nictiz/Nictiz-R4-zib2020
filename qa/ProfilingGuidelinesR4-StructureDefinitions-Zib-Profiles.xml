@@ -5,7 +5,6 @@
   <name value="ProfilingGuidelinesR4StructureDefinitionsZibProfiles" />
   <title value="Zib StructureDefinition conformance to FHIR Profiling Guidelines for FHIR R4" />
   <status value="draft" />
-  <description value="Conformance profile to check &quot;normal&quot; zib profiles (i.e. not extensions) for conformance to the [Nictiz profiling guidelines for FHIR R4](https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4)." />
   <fhirVersion value="4.0.1" />
   <mapping>
     <identity value="rim" />
@@ -39,7 +38,7 @@
   <derivation value="constraint" />
   <differential>
     <element id="StructureDefinition">
-      <path value="StructureDefinition" />
+      <path value="StructureDefinition"/>
       <constraint>
         <key value="sd-zpg-p-01" />
         <severity value="error" />
@@ -58,16 +57,6 @@
     <element id="StructureDefinition.abstract">
       <path value="StructureDefinition.abstract" />
       <fixedBoolean value="true" />
-    </element>
-    <element id="StructureDefinition.differential.element.type">
-      <path value="StructureDefinition.differential.element.type" />
-      <constraint>
-        <key value="sd-zpg-03" />
-        <severity value="error" />
-        <human value="References to other resource profiles should be added next to the HL7  base references." />
-        <expression value="code = 'Reference' implies targetProfile.where($this.startsWith('http://hl7.org/fhir/StructureDefinition/')).exists()" />
-        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4#Constraining_references" />
-      </constraint>
     </element>
   </differential>
 </StructureDefinition>

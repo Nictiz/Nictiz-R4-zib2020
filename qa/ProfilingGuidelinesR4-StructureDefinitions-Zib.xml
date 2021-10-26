@@ -5,7 +5,6 @@
   <name value="ProfilingGuidelinesR4StructureDefinitionsZib" />
   <title value="Zib StructureDefinition conformance to FHIR Profiling Guidelines for FHIR R4" />
   <status value="draft" />
-  <description value="Conformance profile to check zib profiles for conformance to the [Nictiz profiling guidelines for FHIR R4](https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4)." />
   <fhirVersion value="4.0.1" />
   <mapping>
     <identity value="rim" />
@@ -75,25 +74,15 @@
         <expression value="alias.exists() implies mapping.map.exists()" />
         <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
       </constraint>
+    </element>
+    <element id="StructureDefinition.differential.element.type">
+      <path value="StructureDefinition.differential.element.type" />
       <constraint>
-        <key value="sd-pg-02" />
-        <human value="If mapping.map exists and the mapping is not implicit, short should exist" />
-        <expression value="mapping.select(map.exists() and comment.contains(' (implicit, main mapping is on ').not()).anyTrue() implies short.exists()" />
-        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
-      </constraint>
-      <constraint>
-        <key value="sd-pg-03" />
+        <key value="sd-zpg-03" />
         <severity value="error" />
-        <human value="If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist." />
-        <expression value="(mapping.select(map.exists() and comment.contains(' (implicit, main mapping is on ').not()).anyTrue() and $this.indexOf('.') != -1) implies definition.exists()" />
-        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
-      </constraint>
-      <constraint>
-        <key value="sd-pg-04" />
-        <severity value="error" />
-        <human value="If mapping.map exists and the mapping is not implicit, alias should exist." />
-        <expression value="mapping.select(map.exists() and comment.contains(' (implicit, main mapping is on ').not()).anyTrue() implies alias.exists()" />
-        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
+        <human value="References to other resource profiles should be added next to the HL7  base references." />
+        <expression value="code = 'Reference' implies targetProfile.where($this.startsWith('http://hl7.org/fhir/StructureDefinition/')).exists()" />
+        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4#Constraining_references" />
       </constraint>
     </element>
   </differential>
