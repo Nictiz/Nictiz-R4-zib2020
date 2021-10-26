@@ -7,27 +7,19 @@
    <status value="final"/>
    <type>
       <coding>
-         <system value="http://loinc.org"/>
-         <code value="67781-5"/>
-         <display value="Summarization of encounter note Narrative"/>
+         <system value="http://snomed.info/sct"/>
+         <code value="11591000146107"/>
+         <display value="patiëntcontactverslag"/>
       </coding>
    </type>
    <date value="2019-07-21"/>
    <author>
-      <reference value="PractitionerRole/nl-core-PractitionerRole-xx"/>
-      <display value="Huisarts H.A. Janszens"/>
+      <reference value="PractitionerRole/nl-core-SOAPReport-01-PractitionerRole-01"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), H.A Janszens"/>
    </author>
-   <title value="Example nl-core-SOAPReport"/>
+   <title value="Geneesmiddelbijwerking"/>
    <section>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode">
-         <valueCodeableConcept>
-            <coding>
-               <system value="http://hl7.org/fhir/sid/icpc-1-nl"/>
-               <code value="R05"/>
-               <display value="Hoesten"/>
-            </coding>
-         </valueCodeableConcept>
-      </extension>
       <code>
          <coding>
             <system value="http://snomed.info/sct"/>
@@ -35,9 +27,11 @@
             <display value="Subjective"/>
          </coding>
       </code>
+      <text value="SOAPLineText: Sinds 2 maanden hoesten. Begonnen na start enalapril. Een weekje gestopt, klachten toen weg. Na hervatten klachten weer terug gekomen. (SOAPLineCode: Hoesten"/>
       <entry>
-         <reference value="Observation/nl-core-SOAPReport-Observation-01"/>
-         <display value="S-regel"/>
+         <reference value="Observation/nl-core-SOAPReport.SOAPLine-01"/>
+         <type value="Observation"/>
+         <display value="SOAP line observation, Subjective, code Hoesten"/>
       </entry>
    </section>
    <section>
@@ -48,21 +42,14 @@
             <display value="Objective"/>
          </coding>
       </code>
+      <text value="SOAPLineText: Keelinspectie geen bijzonderheden, pulmonaal vesiculair ademgeruis (VAG)"/>
       <entry>
-         <reference value="Observation/nl-core-SOAPReport-Observation-02"/>
-         <display value="O-regel"/>
+         <reference value="Observation/nl-core-SOAPReport.SOAPLine-02"/>
+         <type value="Observation"/>
+         <display value="SOAP line observation, Objective"/>
       </entry>
    </section>
    <section>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode">
-         <valueCodeableConcept>
-            <coding>
-               <system value="http://hl7.org/fhir/sid/icpc-1-nl"/>
-               <code value="A85"/>
-               <display value="Geneesmiddelbijwerking"/>
-            </coding>
-         </valueCodeableConcept>
-      </extension>
       <code>
          <coding>
             <system value="http://snomed.info/sct"/>
@@ -70,9 +57,11 @@
             <display value="Evaluatie"/>
          </coding>
       </code>
+      <text value="SOAPLineText: bijwerking ACE-remmer (SOAPLineCode: Geneesmiddelbijwerking"/>
       <entry>
-         <reference value="Observation/nl-core-SOAPReport-Observation-03"/>
-         <display value="E-regel"/>
+         <reference value="Observation/nl-core-SOAPReport.SOAPLine-03"/>
+         <type value="Observation"/>
+         <display value="SOAP line observation, Evaluatie, code Geneesmiddelbijwerking"/>
       </entry>
    </section>
    <section>
@@ -83,9 +72,11 @@
             <display value="Beleid"/>
          </coding>
       </code>
+      <text value="SOAPLineText: Overzetten van enalapril naar telmisartan. Evaluatie over 2 weken."/>
       <entry>
-         <reference value="Observation/nl-core-SOAPReport-Observation-04"/>
-         <display value="P-regel"/>
+         <reference value="Observation/nl-core-SOAPReport.SOAPLine-04"/>
+         <type value="Observation"/>
+         <display value="SOAP line observation, Beleid"/>
       </entry>
    </section>
 </Composition>
