@@ -32,13 +32,17 @@
     <element id="Composition">
       <path value="Composition" />
       <short value="SOAPReport" />
-      <comment value="Zib SOAPReport is implemented using two profiles: this profile implements the SOAPReport concept of the zib, while &amp;lt;http://nictiz.nl/fhir/StructureDefinition/zib-SOAPReport.SOAPLine&amp;gt; represents the SOAPLine concept of the zib which is referenced by `.section.entry`. &#xD;&#xA;The Composition resource MAY hold a summary of the information found in the referenced SOAPReport.SOAPLine profile." />
+      <comment value="Zib SOAPReport is implemented using two profiles: this profile implements the SOAPReport concept of the zib, while &amp;lt;http://nictiz.nl/fhir/StructureDefinition/zib-SOAPReport.SOAPLine&amp;gt; represents the SOAPLine concept of the zib which is referenced by `.section.entry`. &#xD;&#xA;The Composition resource SHOULD hold a summary in the `.section.text` elements of the information found in the referenced SOAPReport.SOAPLine profile." />
       <alias value="SOEPVerslag" />
       <mapping>
         <identity value="zib-soapreport-v1.0-2020EN" />
         <map value="NL-CM:13.6.1" />
         <comment value="SOAPReport" />
       </mapping>
+    </element>
+    <element id="Composition.status">
+      <path value="Composition.status" />
+      <comment value="Unless the status is explicitly recorded it is expected that only _final_ reports are exchanged." />
     </element>
     <element id="Composition.type">
       <path value="Composition.type" />
@@ -135,11 +139,12 @@
     </element>
     <element id="Composition.section:soapLine.text">
       <path value="Composition.section.text" />
-      <definition value="MAY hold a summary of the referenced zib-SOAPReport-Observation profile." />
+      <comment value="This element SHOULD hold the information as found in the referenced SOAPReport.SOAPLine profile to provide a human-readable narrative of the Composistion." />
     </element>
     <element id="Composition.section:soapLine.entry">
       <path value="Composition.section.entry" />
-      <definition value="A reference to data that supports this section. At minimum, there should be an entry for the zib-SOAPReport-SOAPLine(Observation) that the section.entry.text was based on. Note that this Observation in turn will connect to the ICPC coding if relevant." />
+      <definition value="A reference to data that supports this section. At a minimum, there should be an entry for the SOAPReport.SOAPLine profile." />
+      <min value="1" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
