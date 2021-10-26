@@ -4,19 +4,17 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Encounter"/>
    </meta>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
-      <valueString value="Buikpijn"/>
-   </extension>
-   <status value="arrived"/>
+   <status value="finished"/>
    <class>
       <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
       <code value="IMP"/>
-      <display value="inpatient encounter"/>
+      <display value="Inpatient"/>
    </class>
    <participant>
       <individual>
-         <reference value="PractitionerRole/nl-core-HealthProfessional-PractitionerRole-01"/>
-         <display value="G.Z.M. de Wit"/>
+         <reference value="PractitionerRole/nl-core-Encounter-01-PractitionerRole-01"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), G.Z.M. de Wit"/>
       </individual>
    </participant>
    <period>
@@ -24,9 +22,11 @@
       <end value="2012-08-19"/>
    </period>
    <reasonReference>
-      <reference value="Condition/nl-core-Problem-01"/>
-      <display value="Functional abdominal pain"/>    
-   </reasonReference>  
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+         <valueString value="Buikpijn"/>
+      </extension>
+      <!--TODO: nl-core-LaboratoryTestResult-->
+   </reasonReference>
    <hospitalization>
       <admitSource>
          <coding>
@@ -45,8 +45,9 @@
    </hospitalization>
    <location>
       <location>
-         <reference value="Location/nl-core-HealthcareProvider-01"/>
-         <display value="Erasmus MC"/>
+         <reference value="Location/nl-core-Encounter-01-Location-01"/>
+         <type value="Location"/>
+         <display value="Healthcare provider (location), St. Lucas Andreas Ziekenhuis"/>
       </location>
    </location>
 </Encounter>
