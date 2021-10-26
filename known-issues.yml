@@ -10,12 +10,6 @@ pattern-NlCoreHealthProfessionalReference:
       - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
         reason: The title is shown in the hosting profiles as the name of the datatype. "zib HealthProfessional Reference" is more descriptive than the title according to the profiling guidelines ("pattern NlCoreHealthProfessionalReference").
 
-nl-core-SOAPReport:
-  ignored issues:
-    StructureDefinition.differential.element[4].sliceName:
-      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
-        reason: "sliceName 'SOAPLine' starts with an uppercase letter because the SOAP abbreviation is commonly capitalized."
-
 pattern-VitalSigns:
   ignored issues:
     Observation.category:VSCat:
@@ -293,19 +287,15 @@ zib-SOAPReport:
   zib deviations:
     Composition.date:
       - cardinality: 1..1
-        reason: The cardinality of FHIR is 1..1, where the zib (SOAPReportDateTime) is 0..1. In case of absent data, the profiling guidelines provide guidance.
-    Composition.author:
-      - cardinality: 1..1
-        reason: The cardinality of FHIR is 1..1, where the zib (Author) is 0..1. In case of absent data, the profiling guidelines provide guidance.
-    Composition.section:SOAPLine.code:
+        reason: This is a known difference with the zib. FHIR mandates a date for the Compositions. It seems like a requirement systems can honour.
+    Composition.section:soapLine:
+      - datatype: BackboneElement
+        reason: This is a proper mapping.
+    Composition.section:soapLine.code:
       - cardinality: 1..1
         reason: The cardinality of both zib (SOAPLineHeader) and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected. In case of absent data, the profiling guidelines provide guidance.
 
 zib-SOAPReport.SOAPLine:
-  ignored issues:
-    StructureDefinition.differential.element[2].sliceName:
-      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
-        reason: "sliceName 'SOAPLineCode' starts with an uppercase letter because the SOAP abbreviation is commonly capitalized."
   zib deviations:
     Observation.code:
       - cardinality: 1..1
