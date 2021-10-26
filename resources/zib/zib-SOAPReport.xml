@@ -117,27 +117,6 @@
         <comment value="SOAPLine" />
       </mapping>
     </element>
-    <element id="Composition.section:soapLine.extension">
-      <path value="Composition.section.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
-    <element id="Composition.section:soapLine.extension:soapLineCode">
-      <path value="Composition.section.extension" />
-      <sliceName value="soapLineCode" />
-      <min value="0" />
-      <max value="1" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode" />
-      </type>
-    </element>
     <element id="Composition.section:soapLine.code">
       <path value="Composition.section.code" />
       <short value="SOAPLineHeader" />
