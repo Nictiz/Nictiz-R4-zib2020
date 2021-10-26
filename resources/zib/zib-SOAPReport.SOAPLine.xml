@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="zib-SOAPReport-Observation" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-SOAPReport-Observation" />
-  <name value="ZibSOAPReportObservation" />
-  <title value="zib SOAPReport Observation" />
+  <id value="zib-SOAPReport.SOAPLine" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-SOAPReport.SOAPLine" />
+  <name value="ZibSOAPReportSOAPLine" />
+  <title value="zib SOAPReport SOAPLine" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -39,7 +39,7 @@
         <severity value="error" />
         <human value="In a SOAP report an ICPC code may be assigned, but only to the S and E line." />
         <expression value="extension('http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode').exists() implies (code.coding.where(code = '255362007' and system = 'http://snomed.info/sct').exists() or code.coding.where(code = '129265001' and system = 'http://snomed.info/sct').exists())" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-SOAPReport-Observation" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-SOAPReport.SOAPLine" />
       </constraint>
       <mapping>
         <identity value="zib-soapreport-v1.0-2020EN" />
