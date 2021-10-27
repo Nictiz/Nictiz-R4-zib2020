@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-SNAQ65plusScore" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-SNAQ65plusScore" />
+  <name value="NlcoreSNAQ65plusScore" />
+  <title value="nl core SNAQ65plusScore" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The Short Nutritional Assessment Questionnaire 65+ (SNAQ65+) is a (validated) measuring tool for determining the extent of a patient’s malnutrition. The tool comprises a number of questions, each of which is assigned a score. The total score determines the extent of malnutrition.&#xD;&#xA;The SNAQ helps to recognize and treat malnutrition at an early stage.&#xD;&#xA;Three varieties of the measuring tool were developed for different care settings: hospitals (adults and children), nursing and retirement homes and independently living seniors. This concept describes the tool intended for the setting of independently living elderly." />
+  <purpose value="A derived profile from [zib-SNAQ65plusScore](http://nictiz.nl/fhir/StructureDefinition/zib-SNAQ65plusScore) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Observation" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-SNAQ65plusScore" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <alias value="nl-core-SNAQ65plusScore" />
+    </element>
+    <element id="Observation.subject">
+      <path value="Observation.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
