@@ -166,6 +166,12 @@ zib-HealthProfessional-PractitionerRole:
       - datatype: ContactPoint
         reason: See PractitionerRole.telecom
 
+zib-MultidisciplinaryTeamMeeting-CarePlan:
+  zib deviations:
+    CarePlan.activity.reference:
+      - cardinality: 0..1
+        reason: CarePlan.activity has cardinality 0..*, making the cardinality of CarePlan.activity.reference effectively 0..* as required by the zib.
+
 zib-NameInformation:
   zib deviations:
     HumanName.prefix:
