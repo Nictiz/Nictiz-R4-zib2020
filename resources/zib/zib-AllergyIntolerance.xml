@@ -32,7 +32,7 @@
     <element id="AllergyIntolerance">
       <path value="AllergyIntolerance" />
       <short value="AllergyIntolerance" />
-      <comment value="The zib defines certain allergy statuses in the AllergieStatusCodelijst (HCIM NL-CM:8.2.5 AllergyStatus). These statuses are represented using the FHIR elements `AllergyIntolerance.clinicalStatus` and `AllergyIntolerance.verificationStatus`, because the code _nullified_ can only be represented by  `verificationStatus` _entered-in-error_.&#xD;&#xA;&#xD;&#xA;For both these concepts, a separate ConceptMap is defined. Because both ConceptMaps define 'unmatched' concepts, a codeSpecification-extension would be expected on both `clinicalStatus` and `verificationStatus`. However, because both ConceptMaps together provide an _equal_ mapping of each AllergieStatusCodelijst concept, these have been omitted." />
+      <comment value="The zib defines certain allergy statuses in the AllergieStatusCodelijst (NL-CM:8.2.5 AllergyStatus). These statuses are represented using both the FHIR elements `AllergyIntolerance.clinicalStatus` and `AllergyIntolerance.verificationStatus`; most of the zib codes map to a `.clinicalStatus` code, but the zib code _nullified_ can only be represented by  `.verificationStatus`=_entered-in-error_.&#xD;&#xA;&#xD;&#xA;For both these FHIR elements, a separate ConceptMap is defined. Although both ConceptMaps include _unmatched_ concepts, together they provide an _equal_ mapping of each AllergieStatusCodelijst concept. Therefore, there's no need to include the zib code using the codeSpecification extension, as would normally be expected in these situations." />
       <alias value="AllergieIntolerantie" />
       <mapping>
         <identity value="zib-allergyintolerance-v3.3-2020EN" />
@@ -44,6 +44,7 @@
       <path value="AllergyIntolerance.clinicalStatus" />
       <short value="AllergyStatus" />
       <definition value="Statement on the status of the patient’s hypersensitivity." />
+      <comment value="See the comment on the root element for guidance on mapping zib AllergyStatus to FHIR." />
       <alias value="AllergieStatus" />
       <binding>
         <strength value="required" />
@@ -64,6 +65,7 @@
       <path value="AllergyIntolerance.verificationStatus" />
       <short value="AllergyStatus" />
       <definition value="Statement on the status of the patient’s hypersensitivity." />
+      <comment value="See the comment on the root element for guidance on mapping zib AllergyStatus to FHIR." />
       <alias value="AllergieStatus" />
       <binding>
         <strength value="required" />
