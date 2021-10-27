@@ -48,10 +48,9 @@ This document contains release notes per zib, indicating differences with their 
 * Explained cardinality mismatch of Practitioner.name on that element.
 
 ## zib-LivingSituation
+* Added two new concepts and modelled them on `Observation.component:homeAdaption` and `Observation.component:livingCondition`
+* Concept 'HouseType' has been moved to its own valueCodeableConcept slice 
 * The comment element has been moved to `Observation.note.text`
-* Added two new concepts and modulated them on `Observation.component:homeAdaption` and `Observation.component:livingCondition`
-* Element 'HouseType' modulated on its own valueCodeableConcept slice 
-* LivingSituationCode modulated on `Observation.code`
 
 ## zib-NameInformation
 Style - profiling guidelines
