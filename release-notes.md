@@ -15,7 +15,7 @@ This document contains release notes per zib, indicating differences with their 
 
 # zib-AllergyIntolerance
 * Applied 'combined ValueSets' to `code` and `reaction.substance` instead of slicing per ValueSet.
-* Applied the profiling guidelines when handling conflicts between FHIR core bindings and zib bindings. As a result code-specification extensions have been removed at `clinicalStatus` and `reaction.severity`.
+* The code-specification extensions have been removed from `clinicalStatus` and `reaction.severity` because the zib concepts can be fully mapped to FHIR.
 * Because AlleryStatus maps to both `clinicalStatus` and `verificationStatus`, but `verificationStatus` now has cardinality 0..1 compared to 1..1 in STU3, guidance on how to interpret the mapping has been added to the root, but has been simplified.
 * Changed cardinality of `note` from 0..* to 0..1 to align with the zib.
 
