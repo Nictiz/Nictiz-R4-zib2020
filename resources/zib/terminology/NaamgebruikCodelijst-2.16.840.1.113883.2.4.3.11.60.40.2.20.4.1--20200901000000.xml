@@ -12,8 +12,8 @@
    <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.20.4.1--20200901000000"/>
    <identifier>
       <use value="official"/>
-      <system value="http://art-decor.org/ns/oids/vs"/>
-      <value value="2.16.840.1.113883.2.4.3.11.60.40.2.20.4.1"/>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.20.4.1"/>
    </identifier>
    <version value="2020-09-01T00:00:00"/>
    <name value="NaamgebruikCodelijst"/>
@@ -35,31 +35,6 @@
    <description value="NaamgebruikCodelijst"/>
    <immutable value="false"/>
    <compose>
-      <include>
-         <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
-         <concept>
-            <code value="UNK"/>
-            <display value="Unknown"/>
-            <designation>
-               <language value="en-US"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Unknown"/>
-            </designation>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Onbekend"/>
-            </designation>
-         </concept>
-      </include>
       <include>
          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.101.5.4"/>
          <concept>
@@ -124,6 +99,31 @@
                   <display value="Synonym"/>
                </use>
                <value value="Eigen geslachtsnaam gevolgd door geslachtsnaam partner"/>
+            </designation>
+         </concept>
+      </include>
+      <include>
+         <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+         <concept>
+            <code value="UNK"/>
+            <display value="Unknown"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Unknown"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Onbekend"/>
             </designation>
          </concept>
       </include>
