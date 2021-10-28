@@ -45,12 +45,12 @@ This document contains release notes per zib, indicating differences with their 
 * Added textual guidance on the root to clarify the use of Practitioner and PractitionerRole.
 * Added textual guidance on the root of the concept of HealthProfessionalRole.
 * `PractitionerRole.specialty` is not sliced anymore but has a combined ValueSet.
-* Explained cardinality mismatch of Practitioner.name on that element.
+* Explained cardinality mismatch of `Practitioner.name` on that element.
 
 ## zib-LivingSituation
-* Added two new concepts and modelled them on `Observation.component:homeAdaption` and `Observation.component:livingCondition`
-* Concept 'HouseType' has been moved to its own valueCodeableConcept slice 
-* The comment element has been moved to `Observation.note.text`
+* Added two new concepts and modelled them on `Observation.component:homeAdaption` and `Observation.component:livingCondition`.
+* Concept 'HouseType' has been moved to its own valueCodeableConcept slice.
+* The comment element has been moved to `Observation.note.text`.
 
 ## zib-NameInformation
 Style - profiling guidelines
