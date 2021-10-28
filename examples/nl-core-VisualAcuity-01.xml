@@ -4,6 +4,15 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualAcuity"/>
    </meta>
+   <extension url="http://hl7.org/fhir/StructureDefinition/observation-deviceCode">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="419475002"/>
+            <display value="Pinhole visual acuity"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
    <status value="final"/>
    <code>
       <coding>
@@ -29,12 +38,18 @@
             </coding>
          </valueCodeableConcept>
       </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="81745001"/>
+         <display value="structuur van bulbus oculi (lichaamsstructuur)"/>
+      </coding>
    </bodySite>
    <component>
       <code>
          <coding>
             <system value="http://snomed.info/sct"/>
-            <code value="TODO-ZIB-1445"/>
+            <code value="16830007"/>
+            <display value="onderzoek van visus (verrichting)"/>
          </coding>
       </code>
       <valueCodeableConcept>
@@ -50,6 +65,7 @@
          <coding>
             <system value="http://snomed.info/sct"/>
             <code value="363691001"/>
+            <display value="verrichting ingedeeld naar hulpmiddel (verrichting)"/>
          </coding>
       </code>
       <valueCodeableConcept>
@@ -64,7 +80,8 @@
       <code>
          <coding>
             <system value="http://snomed.info/sct"/>
-            <code value="TODO-ZIB-1441"/>
+            <code value="152731000146106"/>
+            <display value="distance to visual acuity chart (observable entity)"/>
          </coding>
       </code>
       <valueQuantity>
