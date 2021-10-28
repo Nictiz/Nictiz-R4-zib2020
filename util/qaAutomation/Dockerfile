@@ -3,7 +3,9 @@ RUN apt-get update && apt-get -y upgrade
 RUN apt-get -y install wget
 RUN apt-get -y install openjdk-11-jre-headless
 RUN apt-get -y install git
-RUN apt-get -y install python3 python3-yaml
+RUN apt-get -y install dialog
+RUN apt-get -y install python3 python3-yaml python3-requests
+RUN apt-get -y install mitmproxy
 RUN apt-get -y install nodejs npm
 RUN wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb && dpkg -i packages-microsoft-prod.deb && rm packages-microsoft-prod.deb
 RUN apt-get update && apt-get -y install apt-transport-https && apt-get -y install dotnet-sdk-3.1 
@@ -27,11 +29,11 @@ RUN git clone -b v0.15 --depth 1 https://github.com/pieter-edelman-nictiz/hl7-fh
 RUN apt-get -y install dos2unix
 RUN mkdir /scripts
 COPY getresources.sh /scripts/getresources.sh
-COPY checktx.sh /scripts/checktx.sh
-COPY mkprofilingig.sh /scripts/mkprofilingig.sh
 COPY generatezibsnapshots.sh /scripts/generatezibsnapshots.sh
+COPY menu.sh scripts/menu.sh
 COPY entrypoint.sh entrypoint.sh
+COPY CombinedTX /tools/CombinedTX
 RUN chmod +x entrypoint.sh
 RUN chmod +x /scripts/*.sh
-RUN dos2unix /scripts/getresources.sh /scripts/checktx.sh /scripts/mkprofilingig.sh /scripts/generatezibsnapshots.sh entrypoint.sh
+RUN dos2unix /scripts/getresources.sh /scripts/generatezibsnapshots.sh scripts/menu.sh entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
