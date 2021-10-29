@@ -95,7 +95,7 @@ zib-AddressInformation:
     Address.line.extension:houseNumberIndication.value[x]:
       - datatype: string
         reason: The mapping of zib AddressInformation on the FHIR Address datatype is the result of compatibility with HL7v3, which is the format that a lot of healthcare data in the Netherlands is stored in.  As a result of this, the zib HouseNumberIndication concept with CD datatype is mapped to a FHIR string datatype with a constraint added (the value can only be 'by' or 'to').
-        
+
 zib-Alert:
   zib deviations:
     Flag.code:
@@ -138,7 +138,7 @@ zib-AlcoholUse:
     Observation.note.text:
       - cardinality: 1..1
         reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
-
+        
 zib-AllergyIntolerance:
   zib deviations:
     AllergyIntolerance.note.text:
@@ -211,8 +211,6 @@ zib-ContactPerson:
     RelatedPerson.name:nameInformation:
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
-      - short: NameInformation
-        reason: The concept PayerName from zib-Payer is also mapped on Patient.name. However, because this mapping is secondary to NameInformation, we exclude it from appearing in short.
       - cardinality: 0..2
         reason: The name information according to zib NameInformation may be split up over multiple instances of RelatedPerson.name  
     RelatedPerson.address:
@@ -376,13 +374,13 @@ zib-LivingSituation:
   zib deviations:
     Observation.component:homeAdaption.value[x]:
       - cardinality: 0..1
-        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent participant element that may exists 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent participant element that may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
     Observation.component:livingCondition.value[x]:
       - cardinality: 0..1
-        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent participant element that may exists 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent participant element that may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
     Observation.note.text:
       - cardinality: 1..1
-        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting in a cardinality of 0..1 for this element.
 
 zib-MedicationContraIndication:
   zib deviations:
@@ -573,11 +571,6 @@ zib-NutritionAdvice:
       - cardinality: 1..1
         reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
       
-zib-O2Saturation:
-  zib deviations:
-    Observation.note.text:
-      - cardinality: 1..1
-        reason: Observation.note has a cardinality, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
 
 zib-Patient:
   zib deviations:
@@ -786,54 +779,3 @@ zib-TobaccoUse:
     Observation.note.text:
       - cardinality: 1..1
         reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
-
-zib-TreatmentObjective:
-  zib deviations:
-    Goal.note.text:
-      - cardinality: 1..1
-        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
-
-zib-TreatmentDirective2:
-  zib deviations:
-    Consent.source[x]:sourceReference:
-      - cardinality: 0..1
-        reason: The cardinality of the source element does not comply with the cardinality of the AdvanceDirective concept (NL-CM:2.2.8) specified in the HCIM TreatmentDirective2.  This is solved by adding an extension that can be used to provide additional sources.
-    Consent.provision.actor:agreementParty:
-      - cardinality: 0..*
-        reason: The zib container AgreementParty is 2..*, but considering the conceptual cardinalities this is correctly mapped to a 0..* element. 
-      - datatype: BackboneElement
-        reason: The zib container AgreementParty can be mapped correctly to te actor's BackboneElement.
-
-zib-Vaccination-event:
-  zib deviations:
-    Immunization.vaccineCode:
-      - cardinality: 1..1
-        reason: This is a known difference between the zib (0..*) and FHIR (1..1). The mandatory element by FHIR seems legit. If an immunization event has taken place the vaccine code should be known. Otherwise, the value of the whole Immunization resource will be strongly diminished.
-    Immunization.note.text:
-      - cardinality: 1..1
-        reason: Immunization.note has cardinality 0..1, making the cardinality of Immunization.note.text effectively 0..1 as required by the zib.
-zib-Vaccination-request:
-  zib deviations:
-    ImmunizationRecommendation.recommendation.dateCriterion.value:
-      - cardinality: 1..1
-        reason: ImmunizationRecommendation.recommendation.dateCriterion has cardinality 0..1, making the cardinality of ImmunizationRecommendation.recommendation.dateCriterion.value effectively 0..1 as required by the zib.
-        
-zib-VisualAcuity:
-  zib deviations:
-    Observation.extension:visualAcuityMeasurementDevice.value[x]:
-      - cardinality: 1..1
-        reason: The used extension uses a cardinality of 1..1 on the value[x] element. However, the extension itself is added with a cardinality of 0..1.
-    Observation.bodySite.extension:laterality.value[x]:
-      - short: AnatomicalLocation
-        reason: The zib implies a reference to AnatomicalLocation::Laterality, but actually references AnatomicalLocation. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442
-      - datatype: CodeableConcept
-        reason: The zib implies a reference to AnatomicalLocation::Laterality, but actually references AnatomicalLocation. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442
-
-unmapped zib concepts:
-  - NL-CM:17.2.10: HealthcareProvider.LocationNumber
-    reason: This zib concept is problematic to map cleanly to FHIR and it has been deemed too uncommon in practice to warrant an extension.
-  - NL-CM:4.26.6: FunctionalOrMentalStatus.StatusDate
-    reason: This zib concept does not match the definition of the FHIR element and therefore it is not mapped see https://github.com/Nictiz/Nictiz-R4-zib2020/issues/111
-  - NL-CM:13.5.3: TreatmentObjective.DesiredHealthCondition::FunctionalOrMentalStatus
-    reason: This zib concept is a reference to FunctionalOrMentalStatus a direct reference was not possible, so each element of the zib is mapped separately. 
-
