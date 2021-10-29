@@ -28,12 +28,23 @@
       <path value="DiagnosticReport" />
       <alias value="nl-core-TextResult" />
     </element>
+    <element id="DiagnosticReport.subject">
+      <path value="DiagnosticReport.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
     <element id="DiagnosticReport.media.link">
       <path value="DiagnosticReport.media.link" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Media" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TextResult-Media" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TextResult.VisualResult" />
       </type>
     </element>
   </differential>

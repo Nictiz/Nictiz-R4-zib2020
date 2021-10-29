@@ -10,8 +10,8 @@ This document contains release notes per zib, indicating differences with their 
 * Added a comment to `line.extension:houseNumberLetter-houseNumberAddition` on the possibility of a leading space not being parsed.
 * Added a constraint to `line.extension:houseNumberIndication` to restrict it to the values 'by' or 'to'.
 * Mapped AddressType to `extension:addressType` and added ConceptMaps to map AddressType to `.use` and `.type` to adhere to international use. However, `extension:official` was removed. AddressType code 'HP' is now mapped to `.use` 'home' and `.type` 'both'. This was done because of two reasons:
-* The notion to mark an address as 'official' seems to have its origin in the BRP, but is absent in the zib model.
-* The addition of `extension:official` seemed based on the rationale: "if implementers do not support the custom `extension:addressType`, you should be able to determine the AddressType by looking at `.use`, `.type` and custom `extension:official`". However, in this use case extension:official would probably also be not supported. By mapping 'HP' to .type 'both', all AddressType codes can be mapped to a combination of .type and .use.
+ * The notion to mark an address as 'official' seems to have its origin in the BRP, but is absent in the zib model.
+ * The addition of `extension:official` seemed based on the rationale: "if implementers do not support the custom `extension:addressType`, you should be able to determine the AddressType by looking at `.use`, `.type` and custom `extension:official`". However, in this use case extension:official would probably also be not supported. By mapping 'HP' to .type 'both', all AddressType codes can be mapped to a combination of .type and .use.
 
 ## zib-AdministrationAgreement
 * Placed mapping of MedicineForAdministrationAgreement on a type slice of `MedicationDispense.medicationReference` allowing the use of a CodeableConcept and thereby adhering to the open world modeling principle.
@@ -199,11 +199,11 @@ This document contains release notes per zib, indicating differences with their 
 * The comment element has been moved to `NutritionOrder.note.text`
 
 ## zib-Patient
-* Includes Nationality, MaritalStatus, LanguageProficiency
-* Cardinality of `Patient.extension:nationality` left at 0..* due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time)
-* Cardinality of `Patient.name` left at 0..* to allow including several name elements with a different name.use each.
-* Cardinality of `Patient.telecom` left at 0..* to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not dot.
-* Added a comment to `deceased[x]`: When exporting the data, if `deceasedDateTim` (DateOfDeath) is present and has a value, DeathIndicator may be set to 'true', since DeathIndicator and DateOfDeath cannot both be represented at the same time.
+* Includes Nationality, MaritalStatus, LanguageProficiency.
+* Cardinality of `Patient.extension:nationality` left at 0..* due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time).
+* Cardinality of `Patient.name` left at 0..* to allow including several name elements with a different `name.use` each.
+* Cardinality of `Patient.telecom` left at 0..* to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not.
+* Added a comment to `deceased[x]`: When exporting the data, if `deceasedDateTime` (DateOfDeath) is present and has a value, DeathIndicator may be set to 'true', since DeathIndicator and DateOfDeath cannot both be represented at the same time.
 
 ## Procedure
 * ProcedureStartDate and ProcedureEndDate have been mapped to `Procedure.performed[x]` instead of `Procedure.performedPeriod` to account for the use of `Procedure.performedDateTime` when the zib Procedure concerns a instantaneous procedure.
@@ -255,7 +255,10 @@ This is a newly added zib but had profiles that preceded the zib, namely gp-Enco
 * Added iso21090-PQ-translation extension to `ingredient.strength.numerator` and `ingredient.strength.denominator` to allow adding quantity translation using other code systems (e.g. G-Standard and NHG).
 
 ## zib-TimeInterval
-* In the previous release, the concepts of this partial zib were mapped directly in the profiles where they are used. In this release the usage of this partial zib has been expanded and profiles have been created to aid the usage in profiles in the various situations that might occur. 
+* In the previous release, the concepts of this partial zib were mapped directly in the profiles where they are used. In this release the usage of this partial zib has been expanded and profiles have been created to aid the usage in profiles in the various situations that might occur.
+
+## zib-TextResult
+* New concept VisualResult mapped in additional profile zib-TextResult.VisualResult on `Media.content`. `DiagnosticReport.image.link` references this profile.
 
 # zib-TobaccoUse
 * The TobaccoUseCode is mapped to `Observation.code` and based on a pattern
