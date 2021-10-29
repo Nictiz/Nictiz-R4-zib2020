@@ -4,6 +4,12 @@ ext-AdministrationAgreement.AdditionalInformation:
       - cardinality:  0..1
         reason: The extension allows the value to occure only once (0..1), but the use of the extension itself (in a resource)is allowed to be repeated (0..*), effectively resulting a cardinality of 0..* for this element.
 
+ext-AdvanceDirective.Disorder:
+  zib deviations:
+    Extension.value[x]:
+      - cardinality: 0..1
+        reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension is added 0..* in the hosting element.
+
 ext-DispenseRequest.AdditionalWishes:
   zib deviations:
     Extension.value[x]:
@@ -95,6 +101,12 @@ zib-Alert:
     Flag.code:
       - cardinality: 1..1
         reason: The cardinality of FHIR is 1..1, where the zib (AlertName) is 0..1. Because of a constraint in the zib (a choice should be made between AlertName and Condition::Concern), the profile provides guidance on a code that should be used in case of absent data.
+
+zib-AdvanceDirective:
+  zib deviations:
+    Consent.provision.actor:representative.reference:
+      - cardinality: 1..1
+        reason: Consent.provision.actor has cardinality 0..1, making the cardinality of Consent.provision.actor:representative.reference effectively 0..1 as required by the zib.
 
 zib-AdministrationAgreement:
   zib deviations:
