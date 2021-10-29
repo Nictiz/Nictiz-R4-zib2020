@@ -271,6 +271,12 @@ zib-Encounter:
       - cardinality: 1..1
         reason: The cardinality mismatch between the zib (0..1) and FHIR (1..1) is explained by the parent location element that is constraint to 0..1 to honour the zib maximum cardinality.
 
+zib-FreedomRestrictingIntervention:
+    zib deviations:
+        Procedure.code:
+            - cardinality: 1..1
+              reason: Although the concept TypeOfIntervention should be interpreted as conceptual and thus optional, Procedure.code is required by FHIR -- it doesn't make much sense to communicate a Procedure without communicating _which_ procedure, and the same applies to a FreedomRestrictingIntervention (procedure). 
+
 zib-HeadCircumference:
   zib deviations:
     Observation.note.text:
