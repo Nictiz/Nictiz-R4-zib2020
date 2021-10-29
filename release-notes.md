@@ -35,6 +35,11 @@ This document contains release notes per zib, indicating differences with their 
 * Removed the role extension (http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role) because `RelatedPerson.relationship` has changed from 0..1 to 0..*. The zib concept role is now mapped to a slice on relationship.
 * Updated to new zib-NameInformation, zib-AddressInformation and zib-ContactInformation profiles.
 
+## zib-DrugUse
+* The drugUseCode is mapped to `Observation.code` and based on a pattern
+* The code on `Observation.component:drugOrMedicationType.code` has changed to 105590001
+* The code on `Observation.component:amount.code` has changed to 363908000
+
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.
 * `Organization.type[DepartmentSpecialty]` and `Organization.type[OrganizationType]` from 0..* to 0..1.
