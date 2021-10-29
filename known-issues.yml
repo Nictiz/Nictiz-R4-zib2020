@@ -27,6 +27,12 @@ zib-AddressInformation:
     Address.line.extension:houseNumberIndication.value[x]:
       - datatype: string
         reason: The mapping of zib AddressInformation on the FHIR Address datatype is the result of compatibility with HL7v3, which is the format that a lot of healthcare data in the Netherlands is stored in.  As a result of this, the zib HouseNumberIndication concept with CD datatype is mapped to a FHIR string datatype with a constraint added (the value can only be 'by' or 'to').
+
+zib-AlcoholUse:
+  zib deviations:
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
         
 zib-Alert:
   zib deviations:
