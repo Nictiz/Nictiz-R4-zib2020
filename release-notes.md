@@ -31,16 +31,16 @@ This document contains release notes per zib, indicating differences with their 
 * Ranamed MedicationTreatment extension to PharmaceuticalTreatment.Identifier and moved to the nl-core-profile. The extension is now also better documented.
 * `MedicationDispense.status` has become mandatory in R4, therefore, guidance is added on how to populate this field.
 
+## zib-Alert
+* Renamed `extension:ConcernReference` to `extension:concern` to match its functional counterpart.
+* Added EndDateTime and Comment concepts
+* Added constraints in the profile on the choice that the zib provides between Concern and AlertName. Add guidance on which code to add to Flag.code if a reference to Concern is added.
+
 # zib-AllergyIntolerance
 * Applied 'combined ValueSets' to `code` and `reaction.substance` instead of slicing per ValueSet.
 * The code-specification extensions have been removed from `clinicalStatus` and `reaction.severity` because the zib concepts can be fully mapped to FHIR.
 * Because AlleryStatus maps to both `clinicalStatus` and `verificationStatus`, but `verificationStatus` now has cardinality 0..1 compared to 1..1 in STU3, guidance on how to interpret the mapping has been added to the root, but has been simplified.
 * Changed cardinality of `note` from 0..* to 0..1 to align with the zib.
-
-## zib-Alert
-* Renamed `extension:ConcernReference` to `extension:concern` to match its functional counterpart.
-* Added EndDateTime and Comment concepts
-* Added constraints in the profile on the choice that the zib provides between Concern and AlertName. Add guidance on which code to add to Flag.code if a reference to Concern is added.
 
 ## zib-AnatomicalLocation
 * New partial zib. The anatomical location in FHIR is usually mapped on `.bodySite` (CodeableConcept with example binding). This zib has therefore been mapped onto a data type profile that can be used for `.bodySite`.
