@@ -264,6 +264,9 @@ This is a newly added zib but had profiles that preceded the zib, namely gp-Enco
 * Placed SubstanceCode on a CodeableConcept type slice instead of the .item[x] element adhering to the open world modeling principle.
 * Added iso21090-PQ-translation extension to `ingredient.strength.numerator` and `ingredient.strength.denominator` to allow adding quantity translation using other code systems (e.g. G-Standard and NHG).
 
+## zib-Refraction
+* New zib, no STU3 version.
+
 ## zib-TimeInterval
 * In the previous release, the concepts of this partial zib were mapped directly in the profiles where they are used. In this release the usage of this partial zib has been expanded and profiles have been created to aid the usage in profiles in the various situations that might occur.
 
