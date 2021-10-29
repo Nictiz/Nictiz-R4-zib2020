@@ -48,6 +48,12 @@ ext-MedicationUse.AsAgreedIndicator:
       - cardinality:  0..1
         reason: The extension allows the value to occure only once (0..1), but the use of the extension itself (in a resource)is allowed to be repeated (0..*), effectively resulting a cardinality of 0..* for this element.
 
+ext-TreatmentDirective2.AdvanceDirective:
+  zib deviations:
+    Extension.value[x]:
+      - cardinality: 0..1
+        reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension should be added 0..* in the hosting element.
+
 pattern-NlCoreHealthProfessionalReference:
   ignored issues:
     StructureDefinition:
@@ -774,6 +780,17 @@ zib-TreatmentObjective:
     Goal.note.text:
       - cardinality: 1..1
         reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
+
+zib-TreatmentDirective2:
+  zib deviations:
+    Consent.source[x]:sourceReference:
+      - cardinality: 0..1
+        reason: The cardinality of the source element does not comply with the cardinality of the AdvanceDirective concept (NL-CM:2.2.8) specified in the HCIM TreatmentDirective2.  This is solved by adding an extension that can be used to provide additional sources.
+    Consent.provision.actor:agreementParty:
+      - cardinality: 0..*
+        reason: The zib container AgreementParty is 2..*, but considering the conceptual cardinalities this is correctly mapped to a 0..* element. 
+      - datatype: BackboneElement
+        reason: The zib container AgreementParty can be mapped correctly to te actor's BackboneElement.
 
 zib-Vaccination-event:
   zib deviations:

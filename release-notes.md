@@ -256,3 +256,14 @@ This is a newly added zib but had profiles that preceded the zib, namely gp-Enco
 
 ## zib-TextResult
 * New concept VisualResult mapped in additional profile zib-TextResult.VisualResult on `Media.content`. `DiagnosticReport.image.link` references this profile.
+
+## zib-TreatmentDirective2
+* The zib has been remodeled quite intensively, in fact it may be considerd as a new zib, despite that below are the most relevant changes compared to the STU3 profile.
+* Removed the modifier extension `treatmentPermitted`, which is now mapped to `Consent.provision.type`.
+* Added a modifierExtension on `Consent.provision.type` to capture zib concept SpecificationOther.
+* Removed `treatment` extension, which is now mapped to `Consent.provision.code`.
+* Removed `verification` extension because the related functional concept has been removed in the zib.
+* Added guidance for mandatory elements `Consent.status`, `Consent.scope` and `Consent.policy` or `Consent.policyRule`.
+* Moved AdvanceDirective from `Consent.source[x]` to `Consent.source[x]:sourceReference` to be more specific.
+* Removed references that are not defined by the zib (e.g. `Consent.organization` and `Consent.actor`).
+
