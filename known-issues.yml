@@ -83,6 +83,12 @@ zib-AddressInformation:
     Address.line.extension:houseNumberIndication.value[x]:
       - datatype: string
         reason: The mapping of zib AddressInformation on the FHIR Address datatype is the result of compatibility with HL7v3, which is the format that a lot of healthcare data in the Netherlands is stored in.  As a result of this, the zib HouseNumberIndication concept with CD datatype is mapped to a FHIR string datatype with a constraint added (the value can only be 'by' or 'to').
+        
+zib-Alert:
+  zib deviations:
+    Flag.code:
+      - cardinality: 1..1
+        reason: The cardinality of FHIR is 1..1, where the zib (AlertName) is 0..1. Because of a constraint in the zib (a choice should be made between AlertName and Condition::Concern), the profile provides guidance on a code that should be used in case of absent data.
 
 zib-AdministrationAgreement:
   zib deviations:
@@ -191,7 +197,6 @@ zib-ContactPerson:
         reason: The concept PayerName from zib-Payer is also mapped on Patient.name. However, because this mapping is secondary to NameInformation, we exclude it from appearing in short.
       - cardinality: 0..2
         reason: The name information according to zib NameInformation may be split up over multiple instances of RelatedPerson.name  
-
     RelatedPerson.address:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
@@ -468,7 +473,13 @@ zib-MedicationUse2:
     MedicationStatement.reasonCode:reasonForUse.text:
       - cardinality:  1..1
         reason: The reasonCode.text has been made mandatory because it is placed within a slice (reasonForUse) and the element is used as a discriminator for the validator. Because the concept is placed within a slice on a 0..* element it is possible to not populate this zib concept, which matches the zib definition.
-    
+    Observation.component:livingCondition.value[x]:
+      - cardinality: 0..1
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent participant element that may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting in a cardinality of 0..1 for this element.
+
 zib-NameInformation:
   zib deviations:
     HumanName.prefix:

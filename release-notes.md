@@ -28,6 +28,11 @@ This document contains release notes per zib, indicating differences with their 
 * Because AlleryStatus maps to both `clinicalStatus` and `verificationStatus`, but `verificationStatus` now has cardinality 0..1 compared to 1..1 in STU3, guidance on how to interpret the mapping has been added to the root, but has been simplified.
 * Changed cardinality of `note` from 0..* to 0..1 to align with the zib.
 
+## zib-Alert
+* Renamed `extension:ConcernReference` to `extension:concern` to match its functional counterpart.
+* Added EndDateTime and Comment concepts
+* Added constraints in the profile on the choice that the zib provides between Concern and AlertName. Add guidance on which code to add to Flag.code if a reference to Concern is added.
+
 ## zib-AnatomicalLocation
 * New partial zib. The anatomical location in FHIR is usually mapped on `.bodySite` (CodeableConcept with example binding). This zib has therefore been mapped onto a data type profile that can be used for `.bodySite`.
 
@@ -96,7 +101,12 @@ This document contains release notes per zib, indicating differences with their 
 * Added textual guidance on the root to clarify the use of Practitioner and PractitionerRole.
 * Added textual guidance on the root of the concept of HealthProfessionalRole.
 * `PractitionerRole.specialty` is not sliced anymore but has a combined ValueSet.
-* Explained cardinality mismatch of Practitioner.name on that element.
+* Explained cardinality mismatch of `Practitioner.name` on that element.
+
+## zib-LivingSituation
+* Added two new concepts and modelled them on `Observation.component:homeAdaption` and `Observation.component:livingCondition`.
+* Concept 'HouseType' has been moved to its own valueCodeableConcept slice.
+* The comment element has been moved to `Observation.note.text`.
 
 ## zib-MedicationContraIndication
 * MedicationContraIndication is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.

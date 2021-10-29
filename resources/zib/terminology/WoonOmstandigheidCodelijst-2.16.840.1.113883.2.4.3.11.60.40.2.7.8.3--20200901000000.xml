@@ -1,5 +1,5 @@
 <ValueSet xmlns="http://hl7.org/fhir">
-   <id value="2.16.840.1.113883.2.4.3.11.60.40.2.8.3.2--20200901000000"/>
+   <id value="2.16.840.1.113883.2.4.3.11.60.40.2.7.8.3--20200901000000"/>
    <meta>
       <profile value="http://hl7.org/fhir/StructureDefinition/shareablevalueset"/>
       <!--<profile value="http://hl7.org/fhir/4.0/StructureDefinition/ValueSet"/>-->
@@ -9,15 +9,15 @@
          <start value="2020-09-01T00:00:00+02:00"/>
       </valuePeriod>
    </extension>
-   <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.8.3.2--20200901000000"/>
+   <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.8.3--20200901000000"/>
    <identifier>
       <use value="official"/>
       <system value="urn:ietf:rfc:3986"/>
-      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.8.3.2"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.7.8.3"/>
    </identifier>
    <version value="2020-09-01T00:00:00"/>
-   <name value="AlertNaamCodelijst"/>
-   <title value="AlertNaamCodelijst"/>
+   <name value="WoonOmstandigheidCodelijst"/>
+   <title value="WoonOmstandigheidCodelijst"/>
    <status value="active"/>
    <experimental value="false"/>
    <publisher value="Registratie aan de bron"/>
@@ -32,43 +32,18 @@
          <value value="https://www.zibs.nl"/>
       </telecom>
    </contact>
-   <description value="AlertNaamCodelijst"/>
+   <description value="WoonOmstandigheidCodelijst"/>
    <immutable value="false"/>
    <copyright value="This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these artefacts must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/getsnomed-ct or info@snomed.org."/>
    <compose>
       <include>
-         <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
-         <concept>
-            <code value="OTH"/>
-            <display value="Other"/>
-            <designation>
-               <language value="en-US"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Other"/>
-            </designation>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Anders"/>
-            </designation>
-         </concept>
-      </include>
-      <include>
          <system value="http://snomed.info/sct"/>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Drager van besmettelijke ziekte"/>
+               <valueString value="Trap in woning"/>
             </extension>
-            <code value="66598005"/>
-            <display value="drager van infectie"/>
+            <code value="160708008"/>
+            <display value="huis bevat trap"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -76,7 +51,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Infectious disease carrier"/>
+               <value value="Stairs in house"/>
             </designation>
             <designation>
                <language value="nl-NL"/>
@@ -85,15 +60,15 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="drager van infectie"/>
+               <value value="huis bevat trap"/>
             </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Drager Enterobacteriaceae – CPE"/>
+               <valueString value="Woning bereikbaar met lift"/>
             </extension>
-            <code value="715881003"/>
-            <display value="drager van carbapenemresistente Enterobacteriaceae"/>
+            <code value="609241003"/>
+            <display value="woont in appartement met lift"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -101,7 +76,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Carbapenemase producing Enterobacteriaceae carrier"/>
+               <value value="Lives in apartment with elevator access"/>
             </designation>
             <designation>
                <language value="nl-NL"/>
@@ -110,15 +85,15 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="drager van carbapenemresistente Enterobacteriaceae"/>
+               <value value="woont in appartement met lift"/>
             </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Drager Enterobacteriaceae – BRMO excl. CPE"/>
+               <valueString value="Woning bereikbaar met trap"/>
             </extension>
-            <code value="97961000146102"/>
-            <display value="drager van carbapenemgevoelige multiresistente Enterobacteriaceae"/>
+            <code value="715758005"/>
+            <display value="toegang tot woning via trap"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -126,7 +101,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Carrier of carbapenem susceptible multidrug resistant Enterobacteriaceae"/>
+               <value value="Access to residence by stairs"/>
             </designation>
             <designation>
                <language value="nl-NL"/>
@@ -135,15 +110,15 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="drager van carbapenemgevoelige multiresistente Enterobacteriaceae"/>
+               <value value="toegang tot woning via trap"/>
             </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Drager Stenotrophomonas maltophilia – BRMO"/>
+               <valueString value="Woning moeilijk toegankelijk"/>
             </extension>
-            <code value="97981000146105"/>
-            <display value="drager van multiresistente Stenotrophomonas maltophilia"/>
+            <code value="424948003"/>
+            <display value="ingang van woning geblokkeerd"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -151,7 +126,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Carrier of multidrug resistant Stenotrophomonas maltophilia"/>
+               <value value="Obstructed means of residential entrance"/>
             </designation>
             <designation>
                <language value="nl-NL"/>
@@ -160,15 +135,15 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="drager van multiresistente Stenotrophomonas maltophilia"/>
+               <value value="ingang van woning geblokkeerd"/>
             </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Drager Acinetobacter spp – BRMO"/>
+               <valueString value="Woning moeilijk doorgankelijk"/>
             </extension>
-            <code value="97971000146108"/>
-            <display value="drager van multiresistente Acinetobacter"/>
+            <code value="423155007"/>
+            <display value="huis bevat structurele belemmering voor verplaatsing"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -176,7 +151,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Carrier of multidrug resistant Acinetobacter"/>
+               <value value="Housing contains structural barriers to movement"/>
             </designation>
             <designation>
                <language value="nl-NL"/>
@@ -185,15 +160,15 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="drager van multiresistente Acinetobacter"/>
+               <value value="huis bevat structurele belemmering voor verplaatsing"/>
             </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Drager Pseudomonas aeruginosa – BRMO"/>
+               <valueString value="Overvolle leefruimte"/>
             </extension>
-            <code value="98001000146104"/>
-            <display value="drager van multiresistente Pseudomonas aeruginosa"/>
+            <code value="424661000"/>
+            <display value="rommelige leefruimte"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -201,7 +176,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Carrier of multidrug resistant Pseudomonas aeruginosa"/>
+               <value value="Cluttered living space"/>
             </designation>
             <designation>
                <language value="nl-NL"/>
@@ -210,15 +185,15 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="drager van multiresistente Pseudomonas aeruginosa"/>
+               <value value="rommelige leefruimte"/>
             </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Drager Enterococcus faecium – VRE"/>
+               <valueString value="Vervuilde leefomstandigheden"/>
             </extension>
-            <code value="431109006"/>
-            <display value="drager van vancomycineresistente enterokok"/>
+            <code value="424415008"/>
+            <display value="vieze leefomstandigheden"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -226,7 +201,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Carrier of vancomycin resistant enterococcus"/>
+               <value value="Dirty living conditions"/>
             </designation>
             <designation>
                <language value="nl-NL"/>
@@ -235,15 +210,15 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="drager van vancomycineresistente enterokok"/>
+               <value value="vieze leefomstandigheden"/>
             </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Drager Streptococcus pneumoniae – PRP"/>
+               <valueString value="Huisdieren aanwezig"/>
             </extension>
-            <code value="97991000146107"/>
-            <display value="drager van multiresistente Streptococcus pneumoniae"/>
+            <code value="224152001"/>
+            <display value="houdt huisdieren"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -251,7 +226,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Carrier of multidrug resistant Streptococcus pneumoniae"/>
+               <value value="Keeps pets"/>
             </designation>
             <designation>
                <language value="nl-NL"/>
@@ -260,15 +235,15 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="drager van multiresistente Streptococcus pneumoniae"/>
+               <value value="houdt huisdieren"/>
             </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Drager MRSA"/>
+               <valueString value="Onveilige vloerbedekking"/>
             </extension>
-            <code value="432415000"/>
-            <display value="drager van meticillineresistente Staphylococcus aureus"/>
+            <code value="423527000"/>
+            <display value="vloerbedekking onveilig"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -276,7 +251,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Methicillin resistant staphylococcus aureus carrier"/>
+               <value value="Unsafe floor covering"/>
             </designation>
             <designation>
                <language value="nl-NL"/>
@@ -285,57 +260,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="drager van meticillineresistente Staphylococcus aureus"/>
-            </designation>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Drager HIV"/>
-            </extension>
-            <code value="699433000"/>
-            <display value="drager van humaan immunodeficiëntievirus"/>
-            <designation>
-               <language value="en-US"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Human immunodeficiency virus carrier"/>
-            </designation>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="drager van humaan immunodeficiëntievirus"/>
-            </designation>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Kindermishandeling"/>
-            </extension>
-            <code value="397940009"/>
-            <display value="slachtoffer van kindermishandeling"/>
-            <designation>
-               <language value="en-US"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Victim of child abuse"/>
-            </designation>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="slachtoffer van kindermishandeling"/>
+               <value value="vloerbedekking onveilig"/>
             </designation>
          </concept>
       </include>
