@@ -28,6 +28,18 @@ zib-AddressInformation:
       - datatype: string
         reason: The mapping of zib AddressInformation on the FHIR Address datatype is the result of compatibility with HL7v3, which is the format that a lot of healthcare data in the Netherlands is stored in.  As a result of this, the zib HouseNumberIndication concept with CD datatype is mapped to a FHIR string datatype with a constraint added (the value can only be 'by' or 'to').
 
+zib-AlcoholUse:
+  zib deviations:
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
+        
+zib-Alert:
+  zib deviations:
+    Flag.code:
+      - cardinality: 1..1
+        reason: The cardinality of FHIR is 1..1, where the zib (AlertName) is 0..1. Because of a constraint in the zib (a choice should be made between AlertName and Condition::Concern), the profile provides guidance on a code that should be used in case of absent data.
+
 zib-BloodPressure:
   ignored issues:
     Observation.component:SystolicBP:
@@ -72,10 +84,15 @@ zib-ContactInformation-TelephoneNumbers:
 zib-ContactPerson:
   zib deviations:
     RelatedPerson.name:
-      - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use. Documented in the profile too.
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
+      - cardinality: 0..*
+        reason: The name information according to zib NameInformation may be split up over multiple instances of RelatedPerson.name
+    RelatedPerson.name:nameInformation:
+      - datatype: HumanName
+        reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
+      - cardinality: 0..2
+        reason: The name information according to zib NameInformation may be split up over multiple instances of RelatedPerson.name  
     RelatedPerson.address:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
@@ -92,6 +109,15 @@ zib-ContactPerson:
     RelatedPerson.telecom:emailAddresses:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
+        
+zib-DrugUse:
+  zib deviations:
+   Observation.note.text:
+      - cardinality: 1..1
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
+   Observation.component:routeOfAdministration.value[x]:
+      - cardinality: 0..1
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent .component element that may exists 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
 
 zib-HeadCircumference:
   zib deviations:
@@ -124,17 +150,18 @@ zib-HealthcareProvider:
       - datatype: ContactPoint
         reason: See Location.telecom
 
-unmapped zib concepts:
-  - NL-CM:17.2.10: HealthcareProvider.LocationNumber
-    reason: This zib concept is problematic to map cleanly to FHIR and it has been deemed too uncommon in practice to warrant an extension.
-
 zib-HealthProfessional-Practitioner:
   zib deviations:
     Practitioner.name:
-      - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use. Documented in the profile too.
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
+      - cardinality: 0..*
+        reason: The name information according to zib NameInformation may be split up over multiple instances of Practitioner.name
+    Practitioner.name:nameInformation:
+      - datatype: HumanName
+        reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
+      - cardinality: 0..2
+        reason: The name information according to zib NameInformation may be split up over multiple instances of Practitioner.name  
     Practitioner.telecom:
       - cardinality: 0..*
         reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby still honoring the cardinality requirements of the zib.
@@ -166,6 +193,18 @@ zib-HealthProfessional-PractitionerRole:
       - datatype: ContactPoint
         reason: See PractitionerRole.telecom
 
+zib-LivingSituation:
+  zib deviations:
+    Observation.component:homeAdaption.value[x]:
+      - cardinality: 0..1
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent participant element that may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+    Observation.component:livingCondition.value[x]:
+      - cardinality: 0..1
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent participant element that may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting in a cardinality of 0..1 for this element.
+
 zib-NameInformation:
   zib deviations:
     HumanName.prefix:
@@ -174,6 +213,19 @@ zib-NameInformation:
     HumanName.suffix:
       - cardinality: 0..*
         reason: prefix and suffix are mapped to the "titles" concept from the zib. There's a mismatch however in the way this information is represented in the zib and in FHIR. The mapping is documented in the profile.
+    HumanName.given:
+      - short: FirstName / Initial
+        reason: The zib defines both the complete list of first names and of initals as a single string. In FHIR this is done fundamentally different, by using separate names. Hence, the short has been changed to the singular form.
+      - alias: first name,middle name,Voornaam,Initiaal
+        reason: The first two initials are provided by FHIR. For the singular form of the latter two, see the remark above.
+      - cardinality: 0..*
+        reason: See the remark above
+
+zib-NameInformation.GivenName:
+  zib deviations:
+    HumanName.given:
+      - cardinality: 1..*
+        reason: The GivenName is optional according to the zib, but when this datatype profile is used, a name should be provided.
 
 zib-NursingIntervention:
   zib deviations:
@@ -215,10 +267,15 @@ zib-Patient:
       - cardinality: 1..1
         reason: The used extension uses a cardinality of 1..1 on the value[x] element. However, the extension itself is added with a cardinality of 0..1.
     Patient.name:
-      - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use. Documented in the profile too.
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
+      - cardinality:
+        reason: The name information according to zib NameInformation may be split up over multiple instances of Patient.name
+    Patient.name:nameInformation:
+      - datatype: HumanName
+        reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
+      - cardinality: 0..2
+        reason: The name information according to zib NameInformation may be split up over multiple instances of Patient.name  
     Patient.telecom:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
@@ -292,3 +349,27 @@ zib-Problem:
       - cardinality: 1..1
         reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.  
 
+zib-TextResult:
+  zib deviations:
+    DiagnosticReport.status:
+      - cardinality: 1..1
+        reason: TextResultStatus (0..1) is mapped to mandatory status element which should not be a problem because implementers shall have to support status one way or another. When TextResultStatus is absent, other codes may be used than from the zib. The _unknown_ code can be used as a fallback.
+    DiagnosticReport.code:
+      - cardinality: 1..1
+        reason: The cardinality of both zib and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected. In case of absent data, the profiling guidelines provide guidance.
+        
+zib-TextResult.VisualResult:
+  zib deviations:
+    Media.content:
+      - cardinality: 1..1
+        reason: The use of the Media resource referenced in zib-TextResult DiagnosticReport.media.link is optional (0..*), but if the Media resource is used, Media.content should be present (1..1).
+
+zib-TobaccoUse:
+  zib deviations:
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
+
+unmapped zib concepts:
+  - NL-CM:17.2.10: HealthcareProvider.LocationNumber
+    reason: This zib concept is problematic to map cleanly to FHIR and it has been deemed too uncommon in practice to warrant an extension.
