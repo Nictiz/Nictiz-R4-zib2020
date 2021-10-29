@@ -28,11 +28,20 @@
       <path value="Practitioner" />
       <alias value="nl-core-HealthProfessional-Practitioner" />
     </element>
-    <element id="Practitioner.name">
+    <element id="Practitioner.name:nameInformation">
       <path value="Practitioner.name" />
+      <sliceName value="nameInformation" />
       <type>
         <code value="HumanName" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NameInformation" />
+      </type>
+    </element>
+    <element id="Practitioner.name:nameInformation-GivenName">
+      <path value="Practitioner.name" />
+      <sliceName value="nameInformation-GivenName" />
+      <type>
+        <code value="HumanName" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NameInformation.GivenName" />
       </type>
     </element>
     <element id="Practitioner.telecom:telephoneNumbers">
