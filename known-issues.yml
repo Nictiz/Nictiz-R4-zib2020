@@ -54,6 +54,12 @@ ext-MedicationUse.AsAgreedIndicator:
       - cardinality:  0..1
         reason: The extension allows the value to occure only once (0..1), but the use of the extension itself (in a resource)is allowed to be repeated (0..*), effectively resulting a cardinality of 0..* for this element.
 
+ext-Procedure.ProcedureMethod:
+  zib deviations:
+    Extension.value[x]:
+      - cardinality: 1..1
+        reason: The used extension uses a cardinality of 1..1 on the value[x] element. However, the extension itself is added with a cardinality of 0..1. 
+
 ext-TreatmentDirective2.AdvanceDirective:
   zib deviations:
     Extension.value[x]:
@@ -706,15 +712,31 @@ zib-Procedure:
       - datatype: CodeableConcept
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
         
-zib-Procedure-ServiceRequest:
+zib-Procedure-event:
+  ignored issues:
+    Procedure.report:textResult:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restiction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+
+  zib deviations:
+    Procedure.focalDevice.manipulated:
+      - cardinality: 1..1
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (1..1) is explained by the parent container, Procedure.focalDevice, that has a cardinality of 0..*.
+    Procedure.performer.actor:
+      - cardinality: 0..1
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (1..1) is explained by a parent container, Procedure.performer, that has a cardinality of 0..*.
+    Procedure.bodySite:
+      - datatype: CodeableConcept
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+        
+zib-Procedure-request:
   zib deviations:
     ServiceRequest.bodySite:
       - datatype: CodeableConcept
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
     ServiceRequest.requester:
       - cardinality: 0..1
-        reason: Known issue - cardinality difference between FHIR (0..1) and zib (0..*), as documented here https://github.com/Nictiz/Nictiz-R4-zib2020/issues/69
-        
+        reason: It seems that the zib may have an error in the cardinality for this concept and the cardinality should acctually be 0..1 rather than 0..*. This issue is being tracked here https://bits.nictiz.nl/browse/ZIB-1488        
 zib-Problem:
   zib deviations:
     Condition.bodySite:

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="zib-Procedure" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure" />
-  <name value="ZibProcedure" />
-  <title value="zib Procedure" />
+  <id value="zib-Procedure-event" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-event" />
+  <name value="ZibProcedureevent" />
+  <title value="zib Procedure event" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -14,7 +14,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="This profile covers the recording of therapeutic or diagnostic procedure undergone by the patient. The ServiceRequest profile (http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-ServiceRequest) covers the procedure that the patient will undergo." />
+  <description value="Therapeutic or diagnostic procedure undergone by the patient (the complementary profile [zib-Procedure-request](http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-request) can be used for therapeutic or diagnostics procedures that the patient will undergo). A procedure can be a simple blood pressure measurement, but also a complex heart surgery.&#xD;&#xA;In some care settings, the term treatment is used instead of the term procedure." />
   <purpose value="This Procedure resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Procedure v5.2 (2020)](https://zibs.nl/wiki/Procedure-v5.2(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
@@ -37,7 +37,7 @@
     <element id="Procedure">
       <path value="Procedure" />
       <short value="Procedure" />
-      <definition value="The zib Procedure is mapped for all but one concept (Requester) to this Procedure profile and a profile on ServiceRequest (http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-ServiceRequest). The Requester is mapped in the ServiceRequest profile and is referenced in `basedOn`.&#xD;&#xA;&#xD;&#xA;Practically, the zib Procedure is split in two based on time to align with the intention of FHIR. All past procedures are covered in the Procedure resource. All future procedures, including the adviced procedures, are covered in the ServiceRequest resource. Both resources contain the zib mappings. The only exeption is the Requester concept which is only mapped in ServiceRequest." />
+      <comment value="The zib Procedure is mapped both to this Procedure profile and a profile on ServiceRequest (&lt;http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-request&gt;) to align with the intention of FHIR. All past procedures are covered using this Procedure resource, while all future procedures, including the advised procedures, are covered in the ServiceRequest resource. Both resources contain the zib mappings, with the exception of the Requester concept; this is not relevant for past procedures and has only been mapped to the ServiceRequest profile.&#xD;&#xA;&#xD;&#xA;The planned and performed procedures can be linked using `Procedure.basedOn`." />
       <alias value="Verrichting" />
       <mapping>
         <identity value="zib-procedure-v5.2-2020EN" />
@@ -54,38 +54,40 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="Procedure.extension:procedureMethod">
       <path value="Procedure.extension" />
       <sliceName value="procedureMethod" />
+      <min value="0" />
       <type>
         <code value="Extension" />
-        <profile value="http://hl7.org/fhir/StructureDefinition/procedure-method" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Procedure.ProcedureMethod" />
       </type>
-    </element>
-    <element id="Procedure.extension:procedureMethod.value[x]">
-      <path value="Procedure.extension.value[x]" />
-      <short value="ProcedureMethod" />
-      <definition value="the method or technique that was used to perform the procedure, e.g. approach, lavage, pressuring, ets" />
-      <alias value="VerrichtingMethode" />
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.14.1.4--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-procedure-v5.2-2020EN" />
-        <map value="NL-CM:14.1.12" />
-        <comment value="ProcedureMethod" />
-      </mapping>
     </element>
     <element id="Procedure.basedOn">
       <path value="Procedure.basedOn" />
+      <comment value="The root element provides more information on the usage of `Procedure.basedOn` for the zib Procedure." />
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/CarePlan" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/ServiceRequest" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-ServiceRequest" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-request" />
       </type>
+    </element>
+    <element id="Procedure.status">
+      <path value="Procedure.status" />
+      <definition value="This element is implictly mapped to the zib concepts ProcedureStartDate (NL-CM:14.1.2) and ProcedureEndDate  (NL-CM:14.1.3). Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When the ProcedureStartDate is in the future, `.status` will usually be set to _preparation_.&#xD;&#xA;* When ProcedureStartDate is in the past and ProcedureEndDate is in the future, `.status` will usually be set to _in-progress_.&#xD;&#xA;* When ProcedureEndDate is in the past, `.status` will usually be set to _completed_.&#xD;&#xA;* When ProcedureStartDate is in the past and ProcedureEndDate is missing, it may be assumed that the Procedure was recorded as a point in time and `.status` will usually be set to _completed_.&#xD;&#xA;* When a system is unable to infer the status from the ProcedureStartDate and ProcedureEndDate , `.status` will be set to _unknown_. The _unknown_ code is not to be used to convey other statuses. The _unknown_ code should be used when one of the statuses applies, but the authoring system doesn't know the current state of the Procedure." />
+      <mapping>
+        <identity value="zib-procedure-v5.2-2020EN" />
+        <map value="NL-CM:14.1.2" />
+        <comment value="ProcedureStartDate (implicit, main mapping is on Procedure.performedPeriod.start and Procedure.performedDateTime)" />
+      </mapping>
+      <mapping>
+        <identity value="zib-procedure-v5.2-2020EN" />
+        <map value="NL-CM:14.1.3" />
+        <comment value="ProcedureEndDate (implicit, main mapping is on Procedure.performedPeriod.end)" />
+      </mapping>
     </element>
     <element id="Procedure.code">
       <path value="Procedure.code" />
@@ -216,7 +218,7 @@
     </element>
     <element id="Procedure.bodySite">
       <path value="Procedure.bodySite" />
-      <short value="ProcedureAnatomicalLocation" />
+      <short value="Location / ProcedureAnatomicalLocation" />
       <definition value="Anatomical location which is the focus of the procedure." />
       <alias value="VerrichtingAnatomischeLocatie" />
       <max value="1" />
@@ -224,6 +226,10 @@
         <code value="CodeableConcept" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
       </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--2020090100000" />
+      </binding>
       <mapping>
         <identity value="zib-procedure-v5.2-2020EN" />
         <map value="NL-CM:14.1.13" />
