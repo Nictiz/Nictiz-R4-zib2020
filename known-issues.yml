@@ -358,3 +358,9 @@ zib-TextResult.VisualResult:
     Media.content:
       - cardinality: 1..1
         reason: The use of the Media resource referenced in zib-TextResult DiagnosticReport.media.link is optional (0..*), but if the Media resource is used, Media.content should be present (1..1).
+
+zib-TobaccoUse:
+  zib deviations:
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.

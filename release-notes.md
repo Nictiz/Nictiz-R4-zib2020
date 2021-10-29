@@ -98,3 +98,9 @@ This document contains release notes per zib, indicating differences with their 
 
 ## zib-TextResult
 * New concept VisualResult mapped in additional profile zib-TextResult.VisualResult on `Media.content`. `DiagnosticReport.image.link` references this profile.
+
+# zib-TobaccoUse
+* StartDate and EndDate are placed on a type slice of `Observation.effective[x]` adhering to the open world modelling principle.
+* TobaccoUseStatus is placed on a type slice of `Observation.value[x]` adhering to the open world modelling principle.
+* The comment element is moved to `Observation.note.text` instead of `Observation.comment`
+* The datatype for PackYears has been changed from Quantity to integer to align with the functional definition and the Quantity datatype does not bring additional benefits to justify not aligning with the zib.
