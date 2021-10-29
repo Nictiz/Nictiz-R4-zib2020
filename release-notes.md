@@ -37,9 +37,6 @@ This document contains release notes per zib, indicating differences with their 
 
 ## zib-DrugUse
 * The drugUseCode is mapped to `Observation.code` and based on a pattern
-* EffectivePeriod is now modulated on its own slice
-* ValueCodeableConcept is now modulated on its own slice
-* The comment element is modulated on `Observation.note.text` instead of `Observation.comment`
 * The code on `Observation.component:drugOrMedicationType.code` has changed to 105590001
 * The code on `Observation.component:amount.code` has changed to 363908000
 
