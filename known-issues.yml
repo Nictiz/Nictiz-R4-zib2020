@@ -150,10 +150,6 @@ zib-HealthcareProvider:
       - datatype: ContactPoint
         reason: See Location.telecom
 
-unmapped zib concepts:
-  - NL-CM:17.2.10: HealthcareProvider.LocationNumber
-    reason: This zib concept is problematic to map cleanly to FHIR and it has been deemed too uncommon in practice to warrant an extension.
-
 zib-HealthProfessional-Practitioner:
   zib deviations:
     Practitioner.name:
@@ -364,3 +360,7 @@ zib-TobaccoUse:
     Observation.note.text:
       - cardinality: 1..1
         reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
+
+unmapped zib concepts:
+  - NL-CM:17.2.10: HealthcareProvider.LocationNumber
+    reason: This zib concept is problematic to map cleanly to FHIR and it has been deemed too uncommon in practice to warrant an extension.
