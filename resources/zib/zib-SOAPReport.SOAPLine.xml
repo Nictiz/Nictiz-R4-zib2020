@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-SOAPReport.SOAPLine" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-SOAPReport.SOAPLine" />
+  <name value="ZibSOAPReportSOAPLine" />
+  <title value="zib SOAPReport.SOAPLine" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A SOAP report is a textual report of (part of the consult) according to the SOAP structure. SOAP (acronym for subjective, objective, assessment, plan) is a method used by health professionals to structurally record information that comes up during contact between the patient and a health professionals in the patient's record. The following standardized format is used for reporting:&#xD;&#xA;&#xD;&#xA;* Subjective: the patient's complaint and request for help and the amnesic data&#xD;&#xA;* Objective: the findings from the physical and supplementary examination.&#xD;&#xA;* Assessment: the working hypothesis and the thinking process, for example a differential diagnosis of the healthcare professional.&#xD;&#xA;* Plan: the diagnostic plan or treatment plan and what has been discussed or agreed with the patient.&#xD;&#xA;&#xD;&#xA;The SOAP report is mainly used in general practice care." />
+  <purpose value="This Observation resource represents the SOAPline container in Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) SOAPReport v1.0(2020)](https://zibs.nl/wiki/SOAPReport-v1.0(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-soapreport-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/SOAPReport-v1.0(2020EN)" />
+    <name value="zib SOAPReport-v1.0(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="SOAPLine" />
+      <comment value="Zib SOAPReport is implemented using two profiles: this profile implements the SOAPLine concept of the zib, while &amp;lt;http://nictiz.nl/fhir/StructureDefinition/zib-SOAPReport&amp;gt; represents the SOAPReport concept of the zib." />
+      <alias value="SOEPRegel" />
+      <constraint>
+        <key value="zib-SOAPReport-Observation" />
+        <severity value="error" />
+        <human value="In a SOAP report an ICPC code may be assigned, but only to the S and E line." />
+        <expression value="extension('http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode').exists() implies (code.coding.where(code = '255362007' and system = 'http://snomed.info/sct').exists() or code.coding.where(code = '129265001' and system = 'http://snomed.info/sct').exists())" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-SOAPReport.SOAPLine" />
+      </constraint>
+      <mapping>
+        <identity value="zib-soapreport-v1.0-2020EN" />
+        <map value="NL-CM:13.6.4" />
+        <comment value="SOAPLine" />
+      </mapping>
+    </element>
+    <element id="Observation.extension">
+      <path value="Observation.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Observation.extension:soapLineCode">
+      <path value="Observation.extension" />
+      <sliceName value="soapLineCode" />
+      <min value="0" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode" />
+      </type>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <short value="SOAPLineHeader" />
+      <definition value="The name of the SOAP line as an coded description. In a SOAP report this can be one of the following: subjective, objective, assessment or plan." />
+      <alias value="SOEPRegelNaam" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.6.2--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-soapreport-v1.0-2020EN" />
+        <map value="NL-CM:13.6.6" />
+        <comment value="SOAPLineHeader" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueString">
+      <path value="Observation.value[x]" />
+      <sliceName value="valueString" />
+      <short value="SOAPLineText" />
+      <definition value="The actual content of the section as free formatted text." />
+      <alias value="SOEPRegelTekst" />
+      <type>
+        <code value="string" />
+      </type>
+      <mapping>
+        <identity value="zib-soapreport-v1.0-2020EN" />
+        <map value="NL-CM:13.6.7" />
+        <comment value="SOAPLineText" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

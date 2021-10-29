@@ -27,16 +27,16 @@
   <abstract value="false" />
   <context>
     <type value="element" />
-    <expression value="Composition.section" />
-  </context>
-  <context>
-    <type value="element" />
     <expression value="Observation" />
   </context>
   <type value="Extension" />
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
   <derivation value="constraint" />
   <differential>
+    <element id="Extension">
+      <path value="Extension" />
+      <max value="1" />
+    </element>
     <element id="Extension.url">
       <path value="Extension.url" />
       <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode" />
