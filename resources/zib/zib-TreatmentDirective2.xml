@@ -96,8 +96,19 @@
       </type>
       <condition value="hcim-treatmentdirective2-1" />
     </element>
-    <element id="Consent.extension:specificationOther">
-      <path value="Consent.extension" />
+    <element id="Consent.modifierExtension">
+      <path value="Consent.modifierExtension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Consent.modifierExtension:specificationOther">
+      <path value="Consent.modifierExtension" />
       <sliceName value="specificationOther" />
       <min value="0" />
       <type>
