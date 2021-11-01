@@ -364,7 +364,9 @@ zib-Procedure-event:
     Procedure.report:textResult:
       - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The restiction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
-
+      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: Usage of the zib TextResult information for short, alias and definition is confusing in the zib Procedure profile because the reference is reversed in FHIR. Therefore short, definition and alias have been replaced with a comment in this element.
+        
   zib deviations:
     Procedure.focalDevice.manipulated:
       - cardinality: 1..1
@@ -375,7 +377,12 @@ zib-Procedure-event:
     Procedure.bodySite:
       - datatype: CodeableConcept
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
-        
+    Procedure.report:textResult:  
+      - short: Any report resulting from the procedure
+        reason: Usage of the zib TextResult information for short, alias and definition is confusing in the zib Procedure profile because the reference is reversed in FHIR. Therefore short, definition and alias have been replaced with a comment in this element.
+      - alias: ''
+        reason: Usage of the zib TextResult information for short, alias and definition is confusing in the zib Procedure profile because the reference is reversed in FHIR. Therefore short, definition and alias have been replaced with a comment in this element.
+
 zib-Procedure-request:
   zib deviations:
     ServiceRequest.bodySite:
