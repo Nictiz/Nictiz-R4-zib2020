@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-ParticipationInSociety" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-ParticipationInSociety" />
+  <name value="ZibParticipationInSociety" />
+  <title value="zib ParticipationInSociety" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Participation in society pertains to the patient’s initiative to participate in social activities in daily life, such as practicing a profession and hobbies. Participation in society also describes the patient’s social network." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) ParticipationInSociety-v3.1(2020EN)](https://zibs.nl/wiki/ParticipationInSociety-v3.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-participationinsociety-v3.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/ParticipationInSociety-v3.1(2020EN)" />
+    <name value="zib ParticipationInSociety-v3.1(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="ParticipationInSociety" />
+      <alias value="ParticipatieInMaatschappij" />
+      <mapping>
+        <identity value="zib-participationinsociety-v3.1-2020EN" />
+        <map value="NL-CM:18.6.1" />
+        <comment value="ParticipationInSociety" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="314845004" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.note">
+      <path value="Observation.note" />
+      <max value="1" />
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
+      <short value="Comment" />
+      <definition value="Comment on the participation in society." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-participationinsociety-v3.1-2020EN" />
+        <map value="NL-CM:18.6.5" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:socialNetwork">
+      <path value="Observation.component" />
+      <sliceName value="socialNetwork" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:socialNetwork.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="365469004" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:socialNetwork.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="SocialNetwork" />
+      <definition value="A description of the patient’s social network, such as family, neighbors and friends." />
+      <alias value="SociaalNetwerk" />
+      <type>
+        <code value="string" />
+      </type>
+      <mapping>
+        <identity value="zib-participationinsociety-v3.1-2020EN" />
+        <map value="NL-CM:18.6.2" />
+        <comment value="SocialNetwork" />
+      </mapping>
+    </element>
+    <element id="Observation.component:hobby">
+      <path value="Observation.component" />
+      <sliceName value="hobby" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:hobby.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="405081003" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:hobby.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Hobby" />
+      <definition value="An activity the patient enjoys doing in their free time." />
+      <alias value="Vrijetijdsbesteding" />
+      <type>
+        <code value="string" />
+      </type>
+      <mapping>
+        <identity value="zib-participationinsociety-v3.1-2020EN" />
+        <map value="NL-CM:18.6.3" />
+        <comment value="Hobby" />
+      </mapping>
+    </element>
+    <element id="Observation.component:workSituation">
+      <path value="Observation.component" />
+      <sliceName value="workSituation" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:workSituation.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="364703007" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:workSituation.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="WorkSituation" />
+      <definition value="WorkSituation describes the extent to which and in what way the patient participates in the workforce. Work is meant in the broadest sense of the word: activities that contribute to the person themselves, their environment or society. This includes both paid and unpaid work." />
+      <alias value="Arbeidssituatie" />
+      <type>
+        <code value="string" />
+      </type>
+      <mapping>
+        <identity value="zib-participationinsociety-v3.1-2020EN" />
+        <map value="NL-CM:18.6.4" />
+        <comment value="WorkSituation" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
