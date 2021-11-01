@@ -98,6 +98,9 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-FreedomRistrictingIntervention
 * This concerns a newly added zib.
 
+## zib-FluidBalance
+* Changed `Observation.code` from 364396009 to 710853006#http://snomed.info/sct.
+
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.
 * `Organization.type[DepartmentSpecialty]` and `Organization.type[OrganizationType]` from 0..* to 0..1.
