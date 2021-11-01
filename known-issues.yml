@@ -35,6 +35,10 @@ zib-AlcoholUse:
         reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
         
 zib-Alert:
+  ignored issues:
+    Flag:
+      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias "Alert" is already defined in the base profile, so it doesn't need to be defined again in the differential.
   zib deviations:
     Flag.code:
       - cardinality: 1..1
@@ -269,7 +273,7 @@ zib-Patient:
     Patient.name:
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
-      - cardinality:
+      - cardinality: 0..*
         reason: The name information according to zib NameInformation may be split up over multiple instances of Patient.name
     Patient.name:nameInformation:
       - datatype: HumanName
