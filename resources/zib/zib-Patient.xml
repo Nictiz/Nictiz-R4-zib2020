@@ -17,7 +17,7 @@
     </telecom>
   </contact>
   <description value="A person who receives medical, psychological, paramedical or nursing care. In some care settings, the term client or participant is used instead of the term patient.&#xD;&#xA;Nationality is used as an indication of the country of citizenship. &#xD;&#xA;Marital status is a person’s formal position as defined by the Dutch civil code. There is a distinction between marriage and civil union." />
-  <purpose value="This Patient resource represents the Dutch zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) [Patient v3.2 (2020)](https://zibs.nl/wiki/Patient-v3.2(2020EN)), [Nationality v3.0 (2020)](https://zibs.nl/wiki/Nationality-v3.0(2020EN)) and [MaritalStatus v3.1 (2020)](https://zibs.nl/wiki/MaritalStatus-v3.1(2020EN))." />
+  <purpose value="This Patient resource represents the Dutch zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model)[Patient v3.2 (2020)](https://zibs.nl/wiki/Patient-v3.2(2020EN)). It also includes zib [Nationality v3.0 (2020)](https://zibs.nl/wiki/Nationality-v3.0(2020EN)), zib [MaritalStatus v3.1 (2020)](https://zibs.nl/wiki/MaritalStatus-v3.1(2020EN)) and zib [LanguageProficiency-v3.2(2020EN)](https://zibs.nl/wiki/LanguageProficiency-v3.2(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -75,11 +75,13 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="Patient.extension:nationality">
       <path value="Patient.extension" />
       <sliceName value="nationality" />
       <comment value="Due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time), the cardinality of the extension is left at 0..* instead of the zib cardinality of 0..1." />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/patient-nationality" />
@@ -94,10 +96,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="Patient.extension:nationality.extension:code">
       <path value="Patient.extension.extension" />
       <sliceName value="code" />
+      <min value="0" />
     </element>
     <element id="Patient.extension:nationality.extension:code.value[x]">
       <path value="Patient.extension.extension.value[x]" />
@@ -142,19 +146,38 @@
     </element>
     <element id="Patient.name">
       <path value="Patient.name" />
-      <short value="NameInformation" />
-      <definition value="Patient's full name.&#xD;&#xA;The cardinality differs from the zib to allow including several name elements with a different name.use each." />
-      <comment value="The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use." />
-      <alias value="Naamgegevens" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="use" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+         <short value="NameInformation"/>
+         <definition value="Patient's full name."/>
+         <alias value="Naamgegevens"/>
+      <mapping>
+        <identity value="zib-patient-v3.2-2020EN" />
+        <map value="NL-CM:0.1.6" />
+            <comment value="NameInformation"/>
+      </mapping>
+    </element>
+    <element id="Patient.name:nameInformation">
+      <path value="Patient.name" />
+      <sliceName value="nameInformation" />
+      <max value="2" />
       <type>
         <code value="HumanName" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
       </type>
-      <mapping>
-        <identity value="zib-patient-v3.2-2020EN" />
-        <map value="NL-CM:0.1.6" />
-        <comment value="NameInformation" />
-      </mapping>
+    </element>
+    <element id="Patient.name:nameInformation-GivenName">
+      <path value="Patient.name" />
+      <sliceName value="nameInformation-GivenName" />
+      <type>
+        <code value="HumanName" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation.GivenName" />
+      </type>
     </element>
     <element id="Patient.telecom">
       <path value="Patient.telecom" />
@@ -225,17 +248,19 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
-    <element id="Patient.gender.extension:geslachtCodelijst">
+    <element id="Patient.gender.extension:genderCodelist">
       <path value="Patient.gender.extension" />
-      <sliceName value="geslachtCodelijst" />
+      <sliceName value="genderCodelist" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification" />
       </type>
     </element>
-    <element id="Patient.gender.extension:geslachtCodelijst.value[x]">
+    <element id="Patient.gender.extension:genderCodelist.value[x]">
       <path value="Patient.gender.extension.value[x]" />
       <short value="Gender" />
       <definition value="Patient’s administrative gender." />
@@ -311,9 +336,9 @@
     </element>
     <element id="Patient.address">
       <path value="Patient.address" />
-      <short value="AddressInformation" />
+         <short value="AddressInformation"/>
       <definition value="Patient's address information." />
-      <alias value="Adresgegevens" />
+         <alias value="Adresgegevens"/>
       <type>
         <code value="Address" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation" />
@@ -385,10 +410,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="Patient.contact.extension:contactPerson">
       <path value="Patient.contact.extension" />
       <sliceName value="contactPerson" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -457,10 +484,10 @@
     </element>
     <element id="Patient.contact.name">
       <path value="Patient.contact.name" />
-      <short value="NameInformation" />
+         <short value="NameInformation"/>
       <definition value="Full name of the contact." />
-      <comment value="The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the HumanName.use element. A full name can be broken into parts using multiple instances of HumanName that have its own value for use." />
-      <alias value="Naamgegevens" />
+      <comment value="This element can and should not completely capture the NameInformation concept from zib ContactPerson; it should just be used for the information that is needed for contacting the person in relation to care of the patient. The full name information should instead be captured using an instance of [zib-ContactPerson](http://nictiz.nl/fhir/StructureDefintion/zib-ContactPerson), which can then be referenced from this resource. See the comment on `Patient.contact` for more information." />
+         <alias value="Naamgegevens"/>
       <type>
         <code value="HumanName" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
@@ -513,10 +540,10 @@
     </element>
     <element id="Patient.contact.address">
       <path value="Patient.contact.address" />
-      <short value="AddressInformation" />
+         <short value="AddressInformation"/>
       <definition value="Contact’s address information." />
       <comment value="This element can and should not completely capture the AddressInformation concept from zib ContactPerson; it should just be used for the information that is needed for contacting the person in relation to care of the patient. The full address information should instead be captured using an instance of [zib-ContactPerson](http://nictiz.nl/fhir/StructureDefintion/zib-ContactPerson), which can then be referenced from this resource. See the comment on `Patient.contact` for more information." />
-      <alias value="Adresgegevens" />
+         <alias value="Adresgegevens"/>
       <type>
         <code value="Address" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation" />
@@ -530,7 +557,6 @@
     <element id="Patient.communication">
       <path value="Patient.communication" />
       <short value="LanguageProficiency" />
-      <definition value="Root concept of the LanguageProficiency information model. This concept contains all data elements of the LanguageProficiency information model." />
       <alias value="Taalvaardigheid" />
       <mapping>
         <identity value="zib-languageproficiency-v3.2-2020EN" />
@@ -547,6 +573,7 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="Patient.communication.extension:languageControl">
       <path value="Patient.communication.extension" />
@@ -557,6 +584,7 @@
       <alias value="TaalvaardigheidBegrijpen" />
       <alias value="TaalvaardigheidSpreken" />
       <alias value="TaalvaardigheidLezen" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/patient-proficiency" />
@@ -586,6 +614,7 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="2" />
     </element>
     <element id="Patient.communication.extension:languageControl.extension:level">
       <path value="Patient.communication.extension.extension" />
@@ -608,6 +637,7 @@
     <element id="Patient.communication.extension:communicationDetails">
       <path value="Patient.communication.extension" />
       <sliceName value="communicationDetails" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-LanguageProficiency.CommunicationDetails" />
@@ -616,6 +646,8 @@
     <element id="Patient.communication.extension:comment">
       <path value="Patient.communication.extension" />
       <sliceName value="comment" />
+      <min value="0" />
+      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Comment" />
