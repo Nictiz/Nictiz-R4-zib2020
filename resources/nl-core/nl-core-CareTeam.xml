@@ -50,14 +50,6 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
       </type>
     </element>
-    <element id="CareTeam.participant:patient.onBehalfOf">
-      <path value="CareTeam.participant.onBehalfOf" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization" />
-      </type>
-    </element>
     <element id="CareTeam.participant:healthcareProfessional">
       <path value="CareTeam.participant" />
       <sliceName value="healthcareProfessional" />
@@ -68,6 +60,14 @@
         <code value="Reference" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
+      </type>
+    </element>
+    <element id="CareTeam.participant:healthcareProfessional.onBehalfOf">
+      <path value="CareTeam.participant.onBehalfOf" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization" />
       </type>
     </element>
     <element id="CareTeam.reasonReference">

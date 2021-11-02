@@ -150,7 +150,17 @@ zib-AlcoholUse:
     Observation.note.text:
       - cardinality: 1..1
         reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
-        
+
+zib-Alert:
+  ignored issues:
+    Flag:
+      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias "Alert" is already defined in the base profile, so it doesn't need to be defined again in the differential.
+  zib deviations:
+    Flag.code:
+      - cardinality: 1..1
+        reason: The cardinality of FHIR is 1..1, where the zib (AlertName) is 0..1. Because of a constraint in the zib (a choice should be made between AlertName and Condition::Concern), the profile provides guidance on a code that should be used in case of absent data.
+
 zib-AllergyIntolerance:
   zib deviations:
     AllergyIntolerance.note.text:
@@ -199,13 +209,17 @@ zib-CareTeam:
   ignored issues:
     CareTeam.participant:contactperson.member:
       - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The restiction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
     CareTeam.participant:patient.member:
       - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The restiction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
     CareTeam.participant:healthcareProfessional.member:
       - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The restiction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+  zib deviations:
+    CareTeam.name:
+      - short: CareTeamName
+        reason: The zib concept name "CareTeamNaam" is an incorrect translation of the Dutch name into English.
 
 zib-ContactInformation-TelephoneNumbers:
   zib deviations:
@@ -346,10 +360,6 @@ zib-HealthcareProvider:
     Location.telecom:emailAddresses:
       - datatype: ContactPoint
         reason: See Location.telecom
-
-unmapped zib concepts:
-  - NL-CM:17.2.10: HealthcareProvider.LocationNumber
-    reason: This zib concept is problematic to map cleanly to FHIR and it has been deemed too uncommon in practice to warrant an extension.
 
 zib-HealthProfessional-Practitioner:
   zib deviations:
@@ -622,7 +632,7 @@ zib-Patient:
     Patient.name:
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
-      - cardinality:
+      - cardinality: 0..*
         reason: The name information according to zib NameInformation may be split up over multiple instances of Patient.name
     Patient.name:nameInformation:
       - datatype: HumanName
@@ -730,6 +740,15 @@ zib-PharmaceuticalProduct:
     Medication.ingredient.item[x]:
       - cardinality: 1..1
         reason: There is a known cardinality mismatch between FHIR (1..1) and the zib (0..1) for the .ingredient.item element which is nested in the optional .ingredient container. This constraint was already in place for the STU3 profile. Moreover this does not seem to be a concern for the Medication Proces information standard will use this profile as they will make this element required in their dataset.
+
+zib-Problem:
+  zib deviations:
+    Condition.bodySite:
+      - datatype: CodeableConcept
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+    Condition.note.text:
+      - cardinality: 1..1
+        reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
 
 zib-Procedure:
   ignored issues:
@@ -840,3 +859,7 @@ zib-VisualAcuity:
         reason: The zib implies a reference to AnatomicalLocation::Laterality, but actually references AnatomicalLocation. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442
       - datatype: CodeableConcept
         reason: The zib implies a reference to AnatomicalLocation::Laterality, but actually references AnatomicalLocation. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442
+
+unmapped zib concepts:
+  - NL-CM:17.2.10: HealthcareProvider.LocationNumber
+    reason: This zib concept is problematic to map cleanly to FHIR and it has been deemed too uncommon in practice to warrant an extension.
