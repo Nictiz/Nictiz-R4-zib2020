@@ -249,8 +249,9 @@
     <element id="Procedure.report:textResult">
       <path value="Procedure.report" />
       <sliceName value="textResult" />
-      <comment value="The direction of the reference between zibs TextResult and Procedure is reversed in FHIR. Therefore the concept Procedure (NL-CM:13.2.5) of zib TextResult is mapped to this element." />
-      <max value="1" />
+      <short value="TextResult" />
+      <comment value="The direction of the reference between zibs TextResult and Procedure is reversed in FHIR. Therefore the concept Procedure (NL-CM:13.2.5) of zib TextResult is mapped to this element.&#xD;&#xA;&#xD;&#xA;Please note that on a functional level, zib TextResult references zib Procedure, but in FHIR this direction is reversed." />
+      <alias value="TekstUitslag" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-TextResult" />
@@ -258,7 +259,7 @@
       <mapping>
         <identity value="zib-textresult-v4.4-2020EN" />
         <map value="NL-CM:13.2.5" />
-        <comment value="Procedure" />
+        <comment value="Reversed reference for zib TextResult.Procedure" />
       </mapping>
     </element>
     <element id="Procedure.focalDevice.manipulated">
