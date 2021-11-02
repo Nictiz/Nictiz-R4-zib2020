@@ -4,6 +4,12 @@ ext-LanguageProficiency.CommunicationDetails:
       - cardinality: 0..1
         reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension should be added 0..* in the hosting element.
 
+ext-Procedure.ProcedureMethod:
+  zib deviations:
+    Extension.value[x]:
+      - cardinality: 1..1
+        reason: The used extension uses a cardinality of 1..1 on the value[x] element. However, the extension itself is added with a cardinality of 0..1. 
+
 pattern-NlCoreHealthProfessionalReference:
   ignored issues:
     StructureDefinition:
@@ -35,6 +41,10 @@ zib-AlcoholUse:
         reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
         
 zib-Alert:
+  ignored issues:
+    Flag:
+      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias "Alert" is already defined in the base profile, so it doesn't need to be defined again in the differential.
   zib deviations:
     Flag.code:
       - cardinality: 1..1
@@ -74,6 +84,22 @@ zib-BodyWeight:
     Observation.note.text:
       - cardinality: 1..1
         reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
+
+zib-CareTeam:
+  ignored issues:
+    CareTeam.participant:contactperson.member:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+    CareTeam.participant:patient.member:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+    CareTeam.participant:healthcareProfessional.member:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+  zib deviations:
+    CareTeam.name:
+      - short: CareTeamName
+        reason: The zib concept name "CareTeamNaam" is an incorrect translation of the Dutch name into English.
 
 zib-ContactInformation-TelephoneNumbers:
   zib deviations:
@@ -275,7 +301,7 @@ zib-Patient:
     Patient.name:
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
-      - cardinality:
+      - cardinality: 0..*
         reason: The name information according to zib NameInformation may be split up over multiple instances of Patient.name
     Patient.name:nameInformation:
       - datatype: HumanName
@@ -345,6 +371,41 @@ zib-Patient:
         reason: The mapping is placed on the extension and not on the value[x] because of the nature of this extension. The extension itself contains a valueCoding that gets the zibs value. This datatype matches the zib CD type.
       - cardinality: 0..*
         reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
+
+zib-Problem:
+  zib deviations:
+    Condition.bodySite:
+      - datatype: CodeableConcept
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+    Condition.note.text:
+      - cardinality: 1..1
+        reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.  
+
+zib-Procedure-event:
+  ignored issues:
+    Procedure.report:textResult:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restiction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+        
+  zib deviations:
+    Procedure.focalDevice.manipulated:
+      - cardinality: 1..1
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (1..1) is explained by the parent container, Procedure.focalDevice, that has a cardinality of 0..*.
+    Procedure.performer.actor:
+      - cardinality: 0..1
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (1..1) is explained by a parent container, Procedure.performer, that has a cardinality of 0..*.
+    Procedure.bodySite:
+      - datatype: CodeableConcept
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+
+zib-Procedure-request:
+  zib deviations:
+    ServiceRequest.bodySite:
+      - datatype: CodeableConcept
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+    ServiceRequest.requester:
+      - cardinality: 0..1
+        reason: It seems that the zib may have an error in the cardinality for this concept and the cardinality should acctually be 0..1 rather than 0..*. This issue is being tracked here https://bits.nictiz.nl/browse/ZIB-1488
 
 zib-TextResult:
   zib deviations:
