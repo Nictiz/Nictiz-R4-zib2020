@@ -31,7 +31,8 @@
     </xsl:param>
     
     <xsl:variable name="resourceIds" select="collection(concat($inputdir, '?select=*.xml;recurse=yes'))//f:id/@value" as="attribute()*"/>
-    <xsl:variable name="codeSystemURIs" select="collection(concat($inputdir, '?select=*.xml;recurse=yes'))//f:system[starts-with(@value, 'http') or starts-with(@value, 'urn:')][not(parent::f:identifier or parent::f:patternIdentifier or contains(@value, 'urn:iso') or contains(@value, 'hl7.org') or contains(@value, 'loinc.org') or contains(@value, 'snomed.info'))]/@value" as="attribute()*"/>
+    <xsl:variable name="codeSystemURIs" select="collection(concat($inputdir, '?select=*.xml;recurse=yes'))//f:system[starts-with(@value, 'http') or starts-with(@value, 'urn:')][not(parent::f:identifier or parent::f:patternIdentifier or contains(@value, 'urn:iso') or contains(@value, 'loinc.org') or contains(@value, 'snomed.info') or contains(@value, 'terminology.hl7.org') or @value = 'http://hl7.org/fhir/contact-point-system' or @value = 'http://hl7.org/fhir/contact-point-use' )]/@value" as="attribute()*"/>
+    <!-- contact-point-system and contact-point-use are added as hardcoded exemptions, because we do reference them from ValueSets that restrict core ValueSets, but there is no need to include them in our package since they are already included in the core package -->
     
     <xd:doc>
         <xd:desc/>
