@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-Problem.FurtherSpecificationProblemName" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-Problem.FurtherSpecificationProblemName" />
+  <name value="ExtProblemFurtherSpecificationProblemName" />
+  <title value="ext Problem.FurtherSpecificationProblemName" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="An extension to specify the problem name. The extension can be seen as an addition to the ProblemName concept mapped to the code element." />
+  <purpose value="This extension represents the FurtherSpecificationProblemName concept of [zib Problem v4.4(2020)](https://zibs.nl/wiki/Problem-v4.4(2020EN))" />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-problem-v4.4-2020EN" />
+    <uri value="https://zibs.nl/wiki/Problem-v4.4(2020EN)" />
+    <name value="zib Problem-v4.4(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="Condition.code" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-Problem.FurtherSpecificationProblemName" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="FurtherSpecificationProblemName" />
+      <definition value="Further specification of problem name when it is recorded via a thesaurus or code system in which the required level of detail is not (yet) available." />
+      <alias value="NadereSpecificatieProbleemNaam" />
+      <type>
+        <code value="string" />
+      </type>
+      <mapping>
+        <identity value="zib-problem-v4.4-2020EN" />
+        <map value="NL-CM:5.1.13" />
+        <comment value="FurtherSpecificationProblemName" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

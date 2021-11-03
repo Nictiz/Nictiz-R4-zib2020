@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="nl-core-DrugUse-02"/>
+   <id value="nl-core-TobaccoUse-01"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-DrugUse"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TobaccoUse"/>
    </meta>
    <status value="final"/>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="228366006"/>
-         <display value="bevinding betreffende drugsgebruik"/>
+         <code value="365980008"/>
+         <display value="bevinding betreffende tabakgebruik en blootstelling aan tabaksrook"/>
       </coding>
    </code>
    <subject>
@@ -18,29 +18,31 @@
       <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
    </subject>
    <effectivePeriod>
-      <start value="1970-01-01"/>
-      <end value="1985-01-01"/>
+      <start value="1985-01-01"/>
    </effectivePeriod>
    <valueCodeableConcept>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="387085005"/>
-         <display value="Cocaïne"/>
+         <code value="65568007"/>
+         <display value="Rookt sigaretten"/>
       </coding>
    </valueCodeableConcept>
+   <note>
+      <text value="Probeert te stoppen. Thuis wordt ook door partner gerookt"/>
+   </note>
    <component>
       <code>
          <coding>
             <system value="http://snomed.info/sct"/>
-            <code value="105590001"/>
-            <display value="substantie"/>
+            <code value="53661000146106"/>
+            <display value="Type of tobacco used"/>
          </coding>
       </code>
       <valueCodeableConcept>
          <coding>
             <system value="http://snomed.info/sct"/>
-            <code value="387341002"/>
-            <display value="Heroïne"/>
+            <code value="160619003"/>
+            <display value="Rookt shag"/>
          </coding>
       </valueCodeableConcept>
    </component>
@@ -48,26 +50,25 @@
       <code>
          <coding>
             <system value="http://snomed.info/sct"/>
-            <code value="410675002"/>
-            <display value="toedieningsweg"/>
+            <code value="266918002"/>
+            <display value="Tobacco smoking consumption"/>
          </coding>
       </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="228368007"/>
-            <display value="Heeft nooit drugs gebruikt"/>
-         </coding>
-      </valueCodeableConcept>
+      <valueQuantity>
+         <value value="350"/>
+         <unit value="g per week"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="{g per week}"/>
+      </valueQuantity>
    </component>
    <component>
       <code>
          <coding>
             <system value="http://snomed.info/sct"/>
-            <code value="363908000"/>
-            <display value="detail over drugsmisbruik"/>
+            <code value="401201003"/>
+            <display value="pakjaren"/>
          </coding>
       </code>
-      <valueString value="3x per week"/>
+      <valueInteger value="20"/>
    </component>
 </Observation>
