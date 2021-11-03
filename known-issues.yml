@@ -11,9 +11,6 @@ ext-LanguageProficiency.CommunicationDetails:
     Extension.value[x]:
       - cardinality: 0..1
         reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension should be added 0..* in the hosting element.
-<<<<<<< HEAD
-        
-=======
 
 ext-Procedure.ProcedureMethod:
   zib deviations:
@@ -21,7 +18,6 @@ ext-Procedure.ProcedureMethod:
       - cardinality: 1..1
         reason: The used extension uses a cardinality of 1..1 on the value[x] element. However, the extension itself is added with a cardinality of 0..1. 
 
->>>>>>> origin/main
 pattern-NlCoreHealthProfessionalReference:
   ignored issues:
     StructureDefinition:
@@ -376,13 +372,7 @@ zib-Patient:
       - datatype: Extension
         reason: The mapping is placed on the extension and not on the value[x] because of the nature of this extension. The extension itself contains a valueCoding that gets the zibs value. This datatype matches the zib CD type.
       - cardinality: 0..*
-        reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
-        
-zib-TreatmentObjective:
-  zib deviations:
-    Goal.note.text:
-      - cardinality: 1..1
-        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting in a cardinality of 0..1 for this element.
+        reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat. 
 
 zib-Problem:
   zib deviations:
@@ -433,6 +423,16 @@ zib-TextResult.VisualResult:
     Media.content:
       - cardinality: 1..1
         reason: The use of the Media resource referenced in zib-TextResult DiagnosticReport.media.link is optional (0..*), but if the Media resource is used, Media.content should be present (1..1).
+        
+zib-TreatmentObjective:
+  zib deviations:
+    Goal.note.text:
+      - cardinality: 1..1
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting in a cardinality of 0..1 for this element.
+    Goal.target:
+      - datatype: BackboneElement
+        readon: The zib FunctionalOrMentalStatus is mapped to an Observation resource, which represents something that has been observed in the past. The zib TreatmentObjective describes a desired result in the future. Using a reference to a zib-FunctionalOrMentalStatus instance of Observation would therefore be incorrect. This is why the properties of FunctionalOrMentalStatus have been mapped in this zib-TreatmentObjective profile.
+
 
 zib-TobaccoUse:
   zib deviations:
