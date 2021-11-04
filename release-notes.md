@@ -12,6 +12,9 @@ This document contains release notes per zib, indicating differences with their 
 * Mapped AddressType to `extension:addressType` and added ConceptMaps to map AddressType to `.use` and `.type` to adhere to international use. However, `extension:official` was removed. AddressType code 'HP' is now mapped to `.use` 'home' and `.type` 'both'. This was done because of two reasons:
  * The notion to mark an address as 'official' seems to have its origin in the BRP, but is absent in the zib model.
  * The addition of `extension:official` seemed based on the rationale: "if implementers do not support the custom `extension:addressType`, you should be able to determine the AddressType by looking at `.use`, `.type` and custom `extension:official`". However, in this use case extension:official would probably also be not supported. By mapping 'HP' to .type 'both', all AddressType codes can be mapped to a combination of .type and .use.
+ 
+## zib-AlcoholUse
+* The code on `Observation.component:amount.code` has changed to 897148007
 
 ## zib-Alert
 * Renamed `extension:ConcernReference` to `extension:concern` to match its functional counterpart.
@@ -26,6 +29,9 @@ This document contains release notes per zib, indicating differences with their 
 
 ## zib-AnatomicalLocation
 * New partial zib. The anatomical location in FHIR is usually mapped on `.bodySite` (CodeableConcept with example binding). This zib has therefore been mapped onto a data type profile that can be used for `.bodySite`.
+
+## zib-CareTeam
+* CareTeam is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
 
 ## zib-ContactInformation
 * zib ContactInformation is mapped onto two profiles: one for the concept TelephoneNumbers and one for the concept E-mailAddresses. Both are added to the hosting profile.
@@ -45,6 +51,11 @@ This document contains release notes per zib, indicating differences with their 
 * The drugUseCode is mapped to `Observation.code` and based on a pattern
 * The code on `Observation.component:drugOrMedicationType.code` has changed to 105590001
 * The code on `Observation.component:amount.code` has changed to 363908000
+
+## zib-EpisodeOfCare
+* New zib in 2020. However, in the zib2017 package the nl-core-episodeofcare profile exists, which is not based on a zib but included some use case concepts. This zib profile supersedes this profile.
+* The extension EpisodOfCare-Title has been replaced by ext-EpisodeOfCare.EpisodeOfCareName because this zib concept is functionally equivalent.
+* The extensions EpisodeOfCare-DateFirstEncounter and EpisodeOfCare-DateLastEncounter from the previous profile are not inherited because no functional backing exists.
 
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.
@@ -93,6 +104,24 @@ This document contains release notes per zib, indicating differences with their 
 * Cardinality of `Patient.telecom` left at 0..* to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not.
 * Added a comment to `deceased[x]`: When exporting the data, if `deceasedDateTime` (DateOfDeath) is present and has a value, DeathIndicator may be set to 'true', since DeathIndicator and DateOfDeath cannot both be represented at the same time.
 
+## zib-Problem
+* ProblemType has been added on a slice of `Condition.category` allowing the category element to be used for other purposes too.
+* FurtherSpecificationProblemName has been added with an extension on `Condition.code`.
+* `Condition.bodySite` is now based on the zib AnatomicalLocation profile.
+* ProblemStartDate and ProblemEndDate are placed on a DateTime type slice of `Condition.onset[x]` and `Condition.abatement[x]` allowing the option to use other types.
+* `Condition.note` now honours the max cardinality of zib Comment.
+* `Condition.verificationStatus` contains a mandatory `.coding` element to capture the zib terminology because of the required binding on the CodeableConcept level and the zib and FHIR ValueSet do not completely map.
+
+## Procedure
+* Renamed profiles from zib-Procedure and zib-ProcedureRequest to zib-Procedure-event and zib-Procedure-request conform profiling guidelines.
+* ProcedureStartDate and ProcedureEndDate have been mapped to `Procedure.performed[x]` instead of `Procedure.performedPeriod` to account for the use of `Procedure.performedDateTime` when the zib Procedure concerns a instantaneous procedure.
+* Aligned cardinality of ProcedureMethod by setting the 'procedure-method' to 0..* instead of 0..0.
+* The ProcedureAnatomicalLocation is mapped on `Procedure.bodySite` and the cadinality has been set to 0..1 instead of 0..*.
+* The resource ProcedureRequest has been renamed to ServiceRequest and now includes a mapping for all the possible concepts of zib Procedure. Compared to STU3 a mapping has been added for ProcedureMethod, ProcedureAnatomicalLocation, MedicalDevice, ProcedureStartDate and ProcedureEndDate.
+* `Procedure.location` and `ServiceRequest.locationReference` are used to reference the zib HealthcareProvider instead of `Procedure.performer` and `ProcedureRequest.performer` to indicate where the Procedure takes place.
+* The `Procedure.performer` only references the zib HealthProfessional represented in a PractitionerRole resource. Other references not dictated by the zib are removed.
+* `ServiceRequest.performer` contains a reference to the zib CareTeam because the FHIR definition deviates from the zib Performer concept when multiple references are provided. This is described in the element's comment.
+
 ## zib-Range
 * There is no profile for this partial zib because the relevant parts can be modelled directly in the profiles where this zib is used.
 
@@ -101,3 +130,9 @@ This document contains release notes per zib, indicating differences with their 
 
 ## zib-TextResult
 * New concept VisualResult mapped in additional profile zib-TextResult.VisualResult on `Media.content`. `DiagnosticReport.image.link` references this profile.
+
+# zib-TobaccoUse
+* StartDate and EndDate are placed on a type slice of `Observation.effective[x]` adhering to the open world modelling principle.
+* TobaccoUseStatus is placed on a type slice of `Observation.value[x]` adhering to the open world modelling principle.
+* The comment element is moved to `Observation.note.text` instead of `Observation.comment`
+* The datatype for PackYears has been changed from Quantity to integer to align with the functional definition and the Quantity datatype does not bring additional benefits to justify not aligning with the zib.
