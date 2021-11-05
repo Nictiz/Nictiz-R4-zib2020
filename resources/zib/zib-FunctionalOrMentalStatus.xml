@@ -32,7 +32,7 @@
     <element id="Observation">
       <path value="Observation" />
       <short value="FunctionalOrMentalStatus" />
-      <comment value="The reference to MedicalDevice (NL-CM:4.26.5) is reversed in FHIR. `DeviceUseStatement.reasonReference` in the nl-core-MedicalDevice profile refers to this profile." />
+      <comment value="Please note that on a functional level, FunctionalOrMentalStatus references MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept MedicalDevice (NL-CM:4.26.5) is mapped on `DeviceUseStatement.reasonReference` in profile zib-MedicalDevice instead of in this profile." />
       <alias value="FunctioneleOfMentaleStatus" />
       <mapping>
         <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
@@ -52,9 +52,10 @@
       <min value="1" />
       <constraint>
         <key value="zib-FunctionalOrMentalStatus-1" />
-        <severity value="error" />
+        <severity value="warning" />
         <human value="Either a category for funtional status finding or mental status finding is present." />
-        <expression value="category.where(coding.system = 'http://snomed.info/sct' and coding.code = '118228005').exists() or category.where(coding.system = 'http://snomed.info/sct' and coding.code = '384821006').exists()" />
+        <expression value="where(coding.system = 'http://snomed.info/sct' and coding.code = '118228005').exists() or where(coding.system = 'http://snomed.info/sct' and coding.code = '384821006').exists()" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus" />
       </constraint>
     </element>
     <element id="Observation.category:functionalStatusFinding">

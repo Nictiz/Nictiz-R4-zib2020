@@ -104,6 +104,15 @@ zib-AbilityToEat:
 
 zib-AddressInformation:
   zib deviations:
+    Address.line.extension:streetName.value[x]:
+      - cardinality: 1..1
+        reason: The used extension makes the value required (1..1), but the use of the extension itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
+    Address.line.extension:houseNumber.value[x]:
+      - cardinality: 1..1
+        reason: The used extension makes the value required (1..1), but the use of the extension itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
+    Address.line.extension:houseNumberLetter-houseNumberAddition.value[x]:
+      - cardinality: 1..1
+        reason: The used extension makes the value required (1..1), but the use of the extension itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
     Address.line.extension:houseNumberIndication.value[x]:
       - datatype: string
         reason: The mapping of zib AddressInformation on the FHIR Address datatype is the result of compatibility with HL7v3, which is the format that a lot of healthcare data in the Netherlands is stored in.  As a result of this, the zib HouseNumberIndication concept with CD datatype is mapped to a FHIR string datatype with a constraint added (the value can only be 'by' or 'to').
@@ -301,7 +310,7 @@ zib-FluidBalance:
   zib deviations:
     Observation.note.text:
       - cardinality: 1..1
-        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
+        reason: The text element makes the value required (1..1), but the use of the note itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
 
 zib-HeadCircumference:
   zib deviations:
@@ -557,6 +566,21 @@ zib-MedicationUse2:
 
 zib-NameInformation:
   zib deviations:
+    HumanName.extension:humannameAssemblyOrder.value[x]:
+      - cardinality: 1..1
+        reason: The used extension makes the value required (1..1), but the use of the extension itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
+    HumanName.family.extension:prefix.value[x]:
+      - cardinality: 1..1
+        reason: The used extension makes the value required (1..1), but the use of the extension itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
+    HumanName.family.extension:lastName.value[x]:
+      - cardinality: 1..1
+        reason: The used extension makes the value required (1..1), but the use of the extension itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
+    HumanName.family.extension:partnerPrefix.value[x]:
+      - cardinality: 1..1
+        reason: The used extension makes the value required (1..1), but the use of the extension itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
+    HumanName.family.extension:partnerLastName.value[x]:
+      - cardinality: 1..1
+        reason: The used extension makes the value required (1..1), but the use of the extension itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
     HumanName.prefix:
       - cardinality: 0..*
         reason: prefix and suffix are mapped to the "titles" concept from the zib. There's a mismatch however in the way this information is represented in the zib and in FHIR. The mapping is documented in the profile.
@@ -668,6 +692,8 @@ zib-Patient:
     Patient.contact.extension:contactPerson.value[x]:
       - datatype: Reference
         reason: This is an additional reference to a separate zib-ContactPerson (RelatedPerson) instance, next to the information in Pateint.contact. Patient.contact and RelatedPerson can both be used to capture the information from zib-ContactPerson, but each are used within a different context. Information may therefore be duplicated; this is the recommended way.
+      - cardinality: 1..1
+        reason: The inclusion of the extension itself is optional. However, _when_ it is included, it should contain a value to make sense. 
     Patient.contact.name:
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
