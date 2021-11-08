@@ -59,7 +59,6 @@
     <element id="Encounter.participant">
       <path value="Encounter.participant" />
       <short value="Participant" />
-      <definition value="Container of the Participant concept.This container contains all data elements of the Participant concept." />
       <alias value="Deelnemer" />
       <mapping>
         <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
@@ -140,7 +139,7 @@
     </element>
     <element id="Encounter.period">
       <path value="Encounter.period" />
-      <comment value="'PatientConsultationDateTime' is mapped to both `period.start` and `period.end`. When all is known is a single value, both `.start` and `.end` should be populated with this value, otherwise the `period`, and thus the MultidisciplinaryTeamMetting, is considered 'ongoing'. In FHIR R4, the Period datatype has an invariant that inconsistently says in text that Period.start shall be lower than Period.end, but actually supports lower than or equal in its expression, which reflects the original intent. This has been fixed for FHIR R5; the text now reflects the expression. &#xD;&#xA;&#xD;&#xA;When a system is able to populate both `period.start` and `period.end`, the value of `.start` is leading when converting FHIR data to a zib instance." />
+      <comment value="'PatientConsultationDateTime' is mapped to both `period.start` and `period.end`. When all is known is a single value, both `.start` and `.end` should be populated with this value, otherwise the `period`, and thus the MultidisciplinaryTeamMeeting, is considered 'ongoing'. In FHIR R4, the Period datatype has an invariant that inconsistently says in text that Period.start shall be lower than Period.end, but actually supports lower than or equal in its expression, which reflects the original intent. This has been fixed for FHIR R5; the text now reflects the expression. &#xD;&#xA;&#xD;&#xA;When a system is able to populate both `period.start` and `period.end`, the value of `.start` is leading when converting FHIR data to a zib instance." />
     </element>
     <element id="Encounter.period.start">
       <path value="Encounter.period.start" />
