@@ -100,7 +100,7 @@
       <min value="0" />
       <type>
         <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-FunctionalOrMentalStatus.MedicalDevice" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentObjective.MedicalDevice" />
       </type>
     </element>
     <element id="Goal.target.measure">
@@ -147,11 +147,25 @@
         <comment value="StatusValue" />
       </mapping>
     </element>
-    <element id="Goal.statusDate">
-      <path value="Goal.statusDate" />
+    <element id="Goal.target.due[x]">
+      <path value="Goal.target.due[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Goal.target.due[x]:dueDate">
+      <path value="Goal.target.dueDate" />
+      <sliceName value="dueDate" />
       <short value="StatusDate" />
       <definition value="Date on which the status was determined. A ‘vague’ date, such as only the year, is permitted." />
       <alias value="StatusDatum" />
+      <type>
+        <code value="date" />
+      </type>
       <mapping>
         <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
         <map value="NL-CM:4.26.6" />
