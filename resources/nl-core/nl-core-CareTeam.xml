@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-CareTeam" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-CareTeam" />
+  <name value="NlcoreCareTeam" />
+  <title value="nl core CareTeam" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A care team is a group of health professionals and other people involved in caring for a patient for one or more problems." />
+  <purpose value="A derived profile from [zib-CareTeam](http://nictiz.nl/fhir/StructureDefinition/zib-CareTeam) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="CareTeam" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-CareTeam" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="CareTeam">
+      <path value="CareTeam" />
+      <alias value="nl-core-CareTeam" />
+    </element>
+    <element id="CareTeam.participant:contactperson">
+      <path value="CareTeam.participant" />
+      <sliceName value="contactperson" />
+    </element>
+    <element id="CareTeam.participant:contactperson.member">
+      <path value="CareTeam.participant.member" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson" />
+      </type>
+    </element>
+    <element id="CareTeam.participant:patient">
+      <path value="CareTeam.participant" />
+      <sliceName value="patient" />
+    </element>
+    <element id="CareTeam.participant:patient.member">
+      <path value="CareTeam.participant.member" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="CareTeam.participant:healthcareProfessional">
+      <path value="CareTeam.participant" />
+      <sliceName value="healthcareProfessional" />
+    </element>
+    <element id="CareTeam.participant:healthcareProfessional.member">
+      <path value="CareTeam.participant.member" />
+      <type>
+        <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
+      </type>
+    </element>
+    <element id="CareTeam.participant:healthcareProfessional.onBehalfOf">
+      <path value="CareTeam.participant.onBehalfOf" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization" />
+      </type>
+    </element>
+    <element id="CareTeam.reasonReference">
+      <path value="CareTeam.reasonReference" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
