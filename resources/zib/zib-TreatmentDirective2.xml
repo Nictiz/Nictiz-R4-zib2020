@@ -35,14 +35,14 @@
       <comment value="A straightforward and fitting mapping of zib TreatmentDirective2 to FHIR was not possible. The main considerations were between mapping to the Consent and CarePlan resource. Unfortunately, the Consent resource does not have full support for treatment directives yet as its main focus was modelling Patient's privacy consents. However, it seems to be the most fitting resource for the zib intention. The zib describes a mutual agreement about treatments, not necessarily the direct actions or policy for treatments. The latter would be more fitting in the CarePlan resource. Future migration to a higher version of FHIR or the zib will result in the reevaluation of the mapping." />
       <alias value="BehandelAanwijzing" />
       <constraint>
-        <key value="zib-TreatmentDirective2-01" />
+        <key value="zib-TreatmentDirective2-1" />
         <severity value="error" />
         <human value="`extension.additionalAdvanceDirective` may only be used for AdvanceDirective references in addition to first reference in `.source[x]`." />
         <expression value="extension.where(url = 'http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.AdvanceDirective').empty() or source.exists()" />
         <source value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective2" />
       </constraint>
       <constraint>
-        <key value="zib-TreatmentDirective2-02" />
+        <key value="zib-TreatmentDirective2-2" />
         <severity value="error" />
         <human value="If the specificationOther extension is used, `.provision.type` MUST be absent and vice versa" />
         <expression value="(extension.where(url = 'http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.SpecificitionOther').exists() and provision.type.exists()).not()" />
@@ -94,7 +94,6 @@
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.AdvanceDirective" />
       </type>
-      <condition value="hcim-treatmentdirective2-1" />
     </element>
     <element id="Consent.modifierExtension">
       <path value="Consent.modifierExtension" />
@@ -168,7 +167,6 @@
         </discriminator>
         <rules value="open" />
       </slicing>
-      <condition value="hcim-treatmentdirective2-1" />
     </element>
     <element id="Consent.source[x]:sourceReference">
       <path value="Consent.source[x]" />
