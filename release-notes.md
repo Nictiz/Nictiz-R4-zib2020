@@ -53,7 +53,7 @@ This document contains release notes per zib, indicating differences with their 
 
 ## zib-FunctionalOrMentalStatus
 * MedicalDevice extension has been removed because the reference is reversed in FHIR. The MedicalDevice profile refers to this profile.
-* Moved the fixed functional status finding and mental status to slices on `Observation.category` instead of `.category.coding`, discriminated by a pattern, and strengthened by an invariant to check if one of the fixed terminology codes is present.
+* Moved the fixed functional status finding and mental status finding to slices on `Observation.category` instead of `.category.coding`, discriminated by a pattern, and strengthened by an invariant to check if one of the fixed terminology codes is present.
 * The comment element is mapped on `Observation.note.text` instead of `Observation.comment`.
 
 ## zib-HealthcareProvider
