@@ -51,6 +51,14 @@ This document contains release notes per zib, indicating differences with their 
 * The extension EpisodOfCare-Title has been replaced by ext-EpisodeOfCare.EpisodeOfCareName because this zib concept is functionally equivalent.
 * The extensions EpisodeOfCare-DateFirstEncounter and EpisodeOfCare-DateLastEncounter from the previous profile are not inherited because no functional backing exists.
 
+# zib-FLACCpainScale
+* The system and code value has changed to `http://snomed.info/sct` and `108291000146105` on `Observation.code`.
+* The system and code value has changed to `http://snomed.info/sct` and `12013003` on `Observation.component:face.code`.
+* The system and code value has changed to `http://snomed.info/sct` and `12013004` on `Observation.component:legs.code`.
+* The system and code value has changed to `http://snomed.info/sct` and `12013005` on `Observation.component:activity.code`.
+* The system and code value has changed to `http://snomed.info/sct` and `12013006` on `Observation.component:cry.code`.
+* The system and code value has changed to `http://snomed.info/sct` and `12013009` on `Observation.component:consolability.code`.
+
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.
 * `Organization.type[DepartmentSpecialty]` and `Organization.type[OrganizationType]` from 0..* to 0..1.
