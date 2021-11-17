@@ -121,10 +121,10 @@ This document contains release notes per zib, indicating differences with their 
 
 ## zib-SNAQrcScore
 * The datatype of `Observation.value[x]` (zib concept TotalScore) element has been changed from Quantity to Integer and a minimum allowed value of 0 and maximum allowed value of 5 is applied
-* The code on `Observation.component:weightLossScore.code` has changed to 4029003 and the system value to http://snomed.info/sct
-* The code on `Observation.component:appetiteScore.code` has changed to 4029004 and the system value to http://snomed.info/sct
-* The code on `Observation.component:bmiScore.code` has changed to 4029005 and the system value to http://snomed.info/sct
-* The code on `Observation.component:assistedEating.code` has changed to 4029008 and the system value to http://snomed.info/sct
+* The code on `Observation.component:weightLossScore.code` has changed to 4029003 and the system value to 2.16.840.1.113883.2.4.3.11.60.40.4.0.1
+* The code on `Observation.component:appetiteScore.code` has changed to 4029004 and the system value to 2.16.840.1.113883.2.4.3.11.60.40.4.0.1
+* The code on `Observation.component:bmiScore.code` has changed to 4029005 and the system value to 2.16.840.1.113883.2.4.3.11.60.40.4.0.1
+* The code on `Observation.component:assistedEating.code` has changed to 4029008 and the system value to 2.16.840.1.113883.2.4.3.11.60.40.4.0.1
 
 ## zib-TimeInterval
 * In the previous release, the concepts of this partial zib were mapped directly in the profiles where they are used. In this release the usage of this partial zib has been expanded and profiles have been created to aid the usage in profiles in the various situations that might occur.
