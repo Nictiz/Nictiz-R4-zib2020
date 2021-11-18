@@ -40,6 +40,15 @@
         <comment value="MultidisciplinaryTeamMeeting" />
       </mapping>
     </element>
+      <element id="Encounter.status">
+          <path value="Encounter.status" />
+          <comment value="This element is implictly mapped to the zib concept NL-CM:15.1.3 (PatientConsultationDateTime), which maps to both `Encounter.period.start` and `Encounter.period.end`. Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When PatientConsultationDateTime is in the future, `.status` will usually be set to _planned_.&#xD;&#xA;* When `Encounter.period.end` is present and in the past, `.status` will usually be set to _finished_.&#xD;&#xA;* When PatientConsultationDateTime is in the past and `Encounter.period.end` is either equal to `.start` or not present, this means it was a point-in-time encounter and `.status` will usually be set to _finished_.&#xD;&#xA;* When a system is unable to infer the status from the PatientConsultationDateTime, `.status` will be set to _unknown_.&#xD;&#xA;&#xD;&#xA;The _unknown_ code is not to be used to convey other statuses.  The _unknown_ code should be used when one of the statuses applies, but the authoring system doesn't know the current state of the encounter.&#xA;&#xA;This element is labeled as a modifier because the status contains codes that mark the resource as not currently valid." />
+          <mapping>
+              <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
+              <map value="NL-CM:15.1.3" />
+              <comment value="PatientConsultationDateTime (implicit, main mapping is on `Encounter.period`)" />
+          </mapping>
+      </element>
     <element id="Encounter.type.text">
       <path value="Encounter.type.text" />
       <short value="PatientConsultationLabel" />
