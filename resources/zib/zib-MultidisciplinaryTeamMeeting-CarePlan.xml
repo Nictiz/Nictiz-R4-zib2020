@@ -29,10 +29,17 @@
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/CarePlan" />
   <derivation value="constraint" />
   <differential>
-    <element id="CarePlan">
-      <path value="CarePlan" />
-      <comment value="Zib MultidisciplinaryTeamMeeting is mapped to this CarePlan profile and a profile on Encounter (&amp;amp;amp;lt;http://nictiz.nl/fhir/StructureDefinition/zib-MultidisciplinaryTeamMeeting&amp;amp;amp;gt;), which acts as the focal resource of MultidisciplinaryTeamMeeting. &#xD;&#xA;&#xD;&#xA;This profile references the Encounter resource through `.encounter`." />
-    </element>
+        <element id="CarePlan">
+            <path value="CarePlan"/>
+            <short value="Plan"/>
+            <comment value="Zib MultidisciplinaryTeamMeeting is mapped to this CarePlan profile and a profile on Encounter (&amp;amp;amp;lt;http://nictiz.nl/fhir/StructureDefinition/zib-MultidisciplinaryTeamMeeting&amp;amp;amp;gt;), which acts as the focal resource of MultidisciplinaryTeamMeeting. &#xD;&#xA;&#xD;&#xA;This profile holds the 'Plan' concept (NL-CM:15.2.10) and references the Encounter resource through `.encounter`."/>
+            <alias value="Beleid"/>
+            <mapping>
+                <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN"/>
+                <map value="NL-CM:15.2.10"/>
+                <comment value="Plan"/>
+            </mapping>
+        </element>
     <element id="CarePlan.extension">
       <path value="CarePlan.extension" />
       <slicing>
@@ -52,6 +59,37 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MultidisciplinaryTeamMeeting.IntentTreatment" />
       </type>
     </element>
+        <element id="CarePlan.status">
+            <path value="CarePlan.status"/>
+            <comment value="Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical record.&#xD;&#xA;&#xD;&#xA;For zib MultidisciplinaryTeamMeeting, this will normally be _active_, but the context may specify a more suitable status."/>
+        </element>
+        <element id="CarePlan.intent">
+            <path value="CarePlan.intent"/>
+            <definition value="Indicates the level of authority/intentionality associated with the care plan and where the care plan fits into the workflow chain.&#xD;&#xA;&#xD;&#xA;For zib MultidisciplinaryTeamMeeting, this will normally be _plan_, but the context may specify a more suitable intent."/>
+        </element>
+        <element id="CarePlan.category">
+            <path value="CarePlan.category"/>
+            <slicing>
+                <discriminator>
+                    <type value="pattern"/>
+                    <path value="$this"/>
+                </discriminator>
+                <rules value="open"/>
+            </slicing>
+            <min value="1"/>
+        </element>
+      <element id="CarePlan.category:multidisciplinaryTeamMeetingCode">
+          <path value="CarePlan.category" />
+          <sliceName value="multidisciplinaryTeamMeetingCode" />
+          <min value="1" />
+          <max value="1" />
+          <patternCodeableConcept>
+              <coding>
+                  <system value="http://snomed.info/sct" />
+                  <code value="423134005" />
+              </coding>
+          </patternCodeableConcept>
+      </element>
     <element id="CarePlan.encounter">
       <path value="CarePlan.encounter" />
       <short value="Plan" />
