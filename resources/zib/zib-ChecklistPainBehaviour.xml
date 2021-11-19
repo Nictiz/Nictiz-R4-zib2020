@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-ChecklistPainBehaviour" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-ChecklistPainBehaviour" />
+  <name value="ZibChecklistPainBehaviour" />
+  <title value="zib ChecklistPainBehaviour" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The CPB (Checklist Pain Behaviour) is a pain assessment tool, that is used to assess pain in children with a limited expressive repertoire or with a profound cognitive impairment, by observing their behaviour&#xD;&#xA;The CPB has ten observations that need te be addressed. The final score indicates whether the observed child suffers pain and 'how much'. The score is often combined with a VAS score that is completed by the nurses on basis of clinical experience." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) ChecklistPainBehavior-v1.1(2020EN)](https://zibs.nl/wiki/ChecklistPainBehavior-v1.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-checklistpainbehavior-v1.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/ChecklistPainBehavior-v1.1(2020EN)" />
+    <name value="zib ChecklistPainBehavior-v1.1(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="ChecklistPainBehaviour" />
+      <alias value="ChecklistPijnGedrag" />
+      <mapping>
+        <identity value="zib-checklistpainbehavior-v1.1-2020EN" />
+        <map value="NL-CM:12.17.1" />
+        <comment value="ChecklistPainBehaviour" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="108331000146104" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.note">
+      <path value="Observation.note" />
+      <max value="1" />
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
+      <short value="Comment" />
+      <definition value="A comment on the circumstances during the measurement." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-checklistpainbehavior-v1.1-2020EN" />
+        <map value="NL-CM:12.17.14" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
