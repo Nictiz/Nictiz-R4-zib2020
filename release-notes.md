@@ -120,10 +120,10 @@ This document contains release notes per zib, indicating differences with their 
 * There is no profile for this partial zib because the relevant parts can be modelled directly in the profiles where this zib is used.
 
 ## zib-SNAQScore
-* The datatype of the TotalScore element has been changed from Quantity to integer.
-* The system and code on `Observation.component:weightLossScore.code` have changed to http://snomed.info/sct and 4006003 respectively.
-* The system and code on `Observation.component:appetiteScore.code` have changed to http://snomed.info/sct and 4006004 respectively.
-* The system and code on `Observation.component:nutritionScore.code` have changed to http://snomed.info/sct and 4006005 respectively.
+* The datatype of `Observation.value[x]` (zib concept TotalScore) element has been changed from Quantity to Integer, and minimum and maximum allowed values of 0 and 5 respectively are applied.
+* The code on `Observation.component:weightLossScore.code` has changed to 4006003 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The code on `Observation.component:appetiteScore.code` has changed to 4006004 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The code on `Observation.component:nutritionScore.code` has changed to 4006005 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
 
 ## zib-TimeInterval
 * In the previous release, the concepts of this partial zib were mapped directly in the profiles where they are used. In this release the usage of this partial zib has been expanded and profiles have been created to aid the usage in profiles in the various situations that might occur.
