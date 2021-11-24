@@ -52,12 +52,12 @@ This document contains release notes per zib, indicating differences with their 
 * The extensions EpisodeOfCare-DateFirstEncounter and EpisodeOfCare-DateLastEncounter from the previous profile are not inherited because no functional backing exists.
 
 # zib-FLACCpainScale
-* The system and code value has changed to `http://snomed.info/sct` and `108291000146105` on `Observation.code`.
-* The system and code value has changed to `http://snomed.info/sct` and `12013003` on `Observation.component:face.code`.
-* The system and code value has changed to `http://snomed.info/sct` and `12013004` on `Observation.component:legs.code`.
-* The system and code value has changed to `http://snomed.info/sct` and `12013005` on `Observation.component:activity.code`.
-* The system and code value has changed to `http://snomed.info/sct` and `12013006` on `Observation.component:cry.code`.
-* The system and code value has changed to `http://snomed.info/sct` and `12013009` on `Observation.component:consolability.code`.
+* The system value on the component slices has changed from http://loinc.org to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The code on `Observation.component:face.code` has changed from *38216-8* to* *12013003*.
+* The code on `Observation.component:legs.code` has changed from *38217-6* to *12013004*.
+* The code on `Observation.component:activity.code` has changed from *38218-4* to *12013005*.
+* The code on `Observation.component:cry.code` has changed from *38219-2* to *12013006*.
+* The code on `Observation.component:consolability.code` has changed from *38220-0* to *12013009*.
 
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.
