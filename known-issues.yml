@@ -39,7 +39,7 @@ zib-AddressInformation:
         reason: The mapping of zib AddressInformation on the FHIR Address datatype is the result of compatibility with HL7v3, which is the format that a lot of healthcare data in the Netherlands is stored in.  As a result of this, the zib HouseNumberIndication concept with CD datatype is mapped to a FHIR string datatype with a constraint added (the value can only be 'by' or 'to').
     Address.line.extension:*.value[x]:
       - cardinality: 1..1
-        reason: The value of the extension is required, but the extension self is optional, making the effective cardinality 0..1 as required by the zib.
+        reason: The value of the extension is required, but the extension itself is optional, making the effective cardinality 0..1 as required by the zib.
 
 zib-Alert:
   zib deviations:
@@ -162,7 +162,7 @@ zib-NameInformation:
         reason: See the remark above
     HumanName.family.extension:*.value[x]:
       - cardinality: 1..1
-        reason: The value of the extension is required, but the extension self is optional, making the effective cardinality 0..1 as required by the zib.
+        reason: The value of the extension is required, but the extension itself is optional, making the effective cardinality 0..1 as required by the zib.
 
 zib-NameInformation.GivenName:
   zib deviations:
@@ -183,7 +183,7 @@ zib-NursingIntervention:
         reason: zib concepts Interval and Frequency are represented by a combination of .frequency, .period and .periodUnit, not by a single element of Quantity datatype.
     CarePlan.activity.detail.extension:medicalDevice.value[x]:
       - cardinality: 0..1
-        reason: The value of the extension can only occur once, but the use of the extension self is unlimited, making the effective cardinality 0..* as required by the zib.
+        reason: The value of the extension can only occur once, but the use of the extension itself is unlimited, making the effective cardinality 0..* as required by the zib.
   ignored issues:
     CarePlan.contributor:requester:
       - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
@@ -301,7 +301,7 @@ unmapped zib concepts:
 ---
 # The following issues are not "real" deviations stemming from design choices, but rather problems that pop up due to
 # shortcomings in tooling, the used terminology server, etc.
-# These might occur in one or more profile, or in none if they have been fixed in the meantime. 
+# These might occur in one or more profiles, or in none if they have been fixed in the meantime. 
 
 issues should occur: false
   
