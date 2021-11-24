@@ -48,10 +48,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="NutritionOrder.extension:problem">
       <path value="NutritionOrder.extension" />
       <sliceName value="problem" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -80,7 +82,7 @@
     </element>
     <element id="NutritionOrder.intent">
       <path value="NutritionOrder.intent" />
-      <comment value="The mandatory intent element has no mapping with a zib element. Unless `intent` is explicitly recorded it may be assumed that the exchanged NutritionAdvise represents an _order_." />
+      <comment value="No zib concept can be mapped to `intent`. Unless `intent` is explicitly recorded it may be assumed that a NutritionAdvise represents an _order_." />
     </element>
     <element id="NutritionOrder.oralDiet.type.text">
       <path value="NutritionOrder.oralDiet.type.text" />
