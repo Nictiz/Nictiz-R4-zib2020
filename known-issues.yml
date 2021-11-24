@@ -300,6 +300,12 @@ zib-Encounter:
       - cardinality: 1..1
         reason: The cardinality mismatch between the zib (0..1) and FHIR (1..1) is explained by the parent location element that is constraint to 0..1 to honour the zib maximum cardinality.
 
+zib-EpisodeOfCare:
+  zib deviations:
+    EpisodeOfCare.diagnosis.condition:
+      - cardinality: 1..1
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .diagnosis, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.  
+
 zib-FreedomRestrictingIntervention:
     zib deviations:
         Procedure.code:
@@ -412,6 +418,12 @@ zib-HealthProfessional-PractitionerRole:
     PractitionerRole.telecom:emailAddresses:
       - datatype: ContactPoint
         reason: See PractitionerRole.telecom
+        
+zib-Mobility:
+    zib deviations:
+      Observation.note.text:
+      - cardinality: 1..1
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
 
 zib-LegalSituation-LegalStatus:
   zib deviations:
