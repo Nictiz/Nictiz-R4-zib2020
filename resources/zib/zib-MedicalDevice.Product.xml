@@ -52,9 +52,9 @@
       </slicing>
       <max value="1" />
     </element>
-    <element id="Device.identifier:gs1ProductId">
+    <element id="Device.identifier:gs1ProductID">
       <path value="Device.identifier" />
-      <sliceName value="gs1ProductId" />
+      <sliceName value="gs1ProductID" />
       <short value="ProductID" />
       <definition value="Unique identification of the product, such as the serial number. The `identifier` may only be used if it also identifies the resource." />
       <alias value="ProductID" />
@@ -65,13 +65,13 @@
         <comment value="ProductID" />
       </mapping>
     </element>
-    <element id="Device.identifier:gs1ProductId.system">
+    <element id="Device.identifier:gs1ProductID.system">
       <path value="Device.identifier.system" />
       <fixedUri value="https://www.gs1.org/gtin" />
     </element>
-    <element id="Device.identifier:hibcProductId">
+    <element id="Device.identifier:hibcProductID">
       <path value="Device.identifier" />
-      <sliceName value="hibcProductId" />
+      <sliceName value="hibcProductID" />
       <short value="ProductID" />
       <definition value="Unique identification of the product, such as the serial number. The `identifier` may only be used if it also identifies the resource." />
       <alias value="ProductID" />
@@ -82,7 +82,7 @@
         <comment value="ProductID" />
       </mapping>
     </element>
-    <element id="Device.identifier:hibcProductId.system">
+    <element id="Device.identifier:hibcProductID.system">
       <path value="Device.identifier.system" />
       <fixedUri value="urn:oid:2.16.840.1.113883.6.40" />
     </element>
@@ -109,15 +109,8 @@
     </element>
     <element id="Device.udiCarrier:gs1UdiCarrier.issuer">
       <path value="Device.udiCarrier.issuer" />
-      <short value="ProductID" />
-      <definition value="Organization that is charged with issuing UDIs for devices. For the zib, this would be the Global Trade Item Number (GTIN) or Health Industry Bar Code (HIBC). Note that the issuer must match the issuer implicitly contained in the ProductID." />
-      <alias value="ProductID" />
+      <definition value="Organization that is charged with issuing UDIs for devices. For the zib this would be GS1's Global Trade Item Number (GTIN) or Health Industry Bar Code (HIBC). Note that the issuer must match the issuer implicitly contained in the ProductID." />
       <fixedUri value="https://www.gs1.org/gtin" />
-      <mapping>
-        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
-        <map value="NL-CM:10.1.4" />
-        <comment value="ProductID" />
-      </mapping>
     </element>
     <element id="Device.udiCarrier:gs1UdiCarrier.carrierHRF">
       <path value="Device.udiCarrier.carrierHRF" />
@@ -136,15 +129,8 @@
     </element>
     <element id="Device.udiCarrier:hibcUdiCarrier.issuer">
       <path value="Device.udiCarrier.issuer" />
-      <short value="ProductID" />
-      <definition value="Organization that is charged with issuing UDIs for devices. For the zib, this would be the Global Trade Item Number (GTIN) or Health Industry Bar Code (HIBC). Note that the issuer must match the issuer implicitly contained in the ProductID." />
-      <alias value="ProductID" />
+      <definition value="Organization that is charged with issuing UDIs for devices. For the zib this would be GS1's Global Trade Item Number (GTIN) or Health Industry Bar Code (HIBC). Note that the issuer must match the issuer implicitly contained in the ProductID." />
       <fixedUri value="urn:oid:2.16.840.1.113883.6.40" />
-      <mapping>
-        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
-        <map value="NL-CM:10.1.4" />
-        <comment value="ProductID" />
-      </mapping>
     </element>
     <element id="Device.udiCarrier:hibcUdiCarrier.carrierHRF">
       <path value="Device.udiCarrier.carrierHRF" />
