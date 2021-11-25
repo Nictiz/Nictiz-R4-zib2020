@@ -27,15 +27,6 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-CareTeam
 * CareTeam is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
 
-## zib-ContactInformation
-* zib ContactInformation is mapped onto two profiles: one for the concept TelephoneNumbers and one for the concept E-mailAddresses. Both are added to the hosting profile.
-* Removed mapping guidance on the root comment of zib-ContactInformation-E-mailAddresses, as this is now straightforward.
-* Simplified mapping guidance on the root comment of zib-ContactInformation-TelephoneNumbers, as this is now straightforward.
-* `ContactPoint.system` has a fixed value for zib-ContactInformation-E-mailAddresses and a restricted ValueSet for zib-ContactInformation-TelephoneNumbers to implement only the relevant zib parts.
-* `ContactPoint.use` has a restricted ValueSet in both profiles to implement only the relevant zib parts.
-* The extension zib-ContactInformation-TelecomType, which replaced the generic code-specification extensions from release 2.x of the zib2017 package onwards, has been deprecated again in favor of code-specication, as the mapping is now much more straightforward.
-* The element TelephoneNumbers/Comment was introduced. This is represented using the ext-Comment extension in the profile for TelephoneNumbers.
-
 ## zib-ChecklistPainBehaviour
 * The datatype of `Observation.value[x]` (zib concept TotalScore) element has been changed from Quantity to Integer, and minimum and maximum allowed values of 0 and 10 respectively are applied.
 * The system value on the `Observation.component.code` slices has changed from http://loinc.org to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
@@ -50,6 +41,15 @@ This document contains release notes per zib, indicating differences with their 
 * The code on `Observation.component:cry.code` has changed from *12.17.10* to *12017010*.
 * The code on `Observation.component:soundsOfRestlessness.code` has changed from *12.17.11* to *12017011*.
 * The code on `Observation.component:tears.code` has changed from *12.17.12* to *12017012*.
+
+## zib-ContactInformation
+* zib ContactInformation is mapped onto two profiles: one for the concept TelephoneNumbers and one for the concept E-mailAddresses. Both are added to the hosting profile.
+* Removed mapping guidance on the root comment of zib-ContactInformation-E-mailAddresses, as this is now straightforward.
+* Simplified mapping guidance on the root comment of zib-ContactInformation-TelephoneNumbers, as this is now straightforward.
+* `ContactPoint.system` has a fixed value for zib-ContactInformation-E-mailAddresses and a restricted ValueSet for zib-ContactInformation-TelephoneNumbers to implement only the relevant zib parts.
+* `ContactPoint.use` has a restricted ValueSet in both profiles to implement only the relevant zib parts.
+* The extension zib-ContactInformation-TelecomType, which replaced the generic code-specification extensions from release 2.x of the zib2017 package onwards, has been deprecated again in favor of code-specication, as the mapping is now much more straightforward.
+* The element TelephoneNumbers/Comment was introduced. This is represented using the ext-Comment extension in the profile for TelephoneNumbers.
 
 ## zib-ContactPerson
 * Added textual guidance on the root to guide usage of RelatedPerson versus Patient.
