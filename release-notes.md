@@ -52,7 +52,7 @@ This document contains release notes per zib, indicating differences with their 
 * The extensions EpisodeOfCare-DateFirstEncounter and EpisodeOfCare-DateLastEncounter from the previous profile are not inherited because no functional backing exists.
 
 # zib-FLACCpainScale
-* The system value on the component slices has changed from http://loinc.org to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The system value on the `Observation.component.code` slices has changed from http://loinc.org to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
 * The code on `Observation.component:face.code` has changed from *38216-8* to *12013003*.
 * The code on `Observation.component:legs.code` has changed from *38217-6* to *12013004*.
 * The code on `Observation.component:activity.code` has changed from *38218-4* to *12013005*.
