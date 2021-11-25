@@ -33,7 +33,7 @@
       <path value="Device" />
       <short value="Product" />
       <definition value="The medical device (internally or externally)." />
-      <comment value="The zib requires the coding systems Health Industry Bar Code (HIBC) or the GS1's Global Trade Item Number (GTIN) to indentify devices. The device identification happens on the basis of an UDI. This resources contains a mapping on all UDI related elements. These elements, which are also relavant and populated when GTIN is used, contain a mapping to the zib concept ProductID.&#xD;&#xA;&#xD;&#xA;In short, the full indentifier will be populated in `udiCarrier.carrierHRF` and may be broken down into structural parts. These parts are the `.identifier`, `.udiCarrier.deviceIdentifier`, `.manufactureDate`, `.expirationDate`, `.lotNumber` and `.serialNumber`.&#xD;&#xA;&#xD;&#xA;The element `udiCarrier.issuer` is used to indicate which 'coding system' is used." />
+      <comment value="Frequently used coding systems to identify devices are Health Industry Bar Code (HIBC) or GS1's Global Trade Item Number (GTIN). If one of these systems is used, the device identification happens on the basis of a UDI. Next to these two, other systems to identify devices are allowed by the zib, as long as such a system allows for unique identification of the device.&#xD;&#xA;&#xD;&#xA;In all cases the full identifier will be populated in `.identifier`. If the identifier is a UDI in particular, it should also be populated in `udiCarrier.carrierHRF`, and the element `udiCarrier.issuer` is used to indicate which 'coding system' is used. Moreover the identifier may be broken down into several parts in that case, namely `.udiCarrier.deviceIdentifier`, `.manufactureDate`, `.expirationDate`, `.lotNumber` and `.serialNumber`. For GTIN, guidance is given at the respective elements in this profile and is based on https://www.gs1.org/industries/healthcare/udi. For HIBC we refer to the Supplier Labeling Standard that can be found at https://www.hibcc.org/udi-labeling-standards/barcode-standards/, as conversion into the several parts is less straightforward." />
       <alias value="Product" />
       <mapping>
         <identity value="zib-medicaldevice-v3.3.1-2020EN" />
@@ -46,51 +46,75 @@
       <slicing>
         <discriminator>
           <type value="value" />
-          <path value="$this" />
+          <path value="system" />
         </discriminator>
         <rules value="open" />
       </slicing>
+      <max value="1" />
     </element>
-    <element id="Device.identifier:productID">
+    <element id="Device.identifier:gs1ProductID">
       <path value="Device.identifier" />
-      <sliceName value="productID" />
+      <sliceName value="gs1ProductID" />
       <short value="ProductID" />
-      <definition value="Unique identification of the product, such as the serial number. The `identifier` may only be used if it also identifies the resource. For this the serial number needs to be unique to one device.&#xD;&#xA;&#xD;&#xA;The serial number which is a component of the production identifier (PI), a conditional, variable portion of a UDI. The identifier.type code should be set to “SNO”(Serial Number) and the system left empty." />
+      <definition value="Unique identification of the product, such as the serial number. The `identifier` may only be used if it also identifies the resource." />
       <alias value="ProductID" />
       <max value="1" />
-      <patternIdentifier>
-        <type>
-          <coding>
-            <system value="http://terminology.hl7.org/CodeSystem/v2-0203" />
-            <code value="SNO" />
-          </coding>
-        </type>
-      </patternIdentifier>
       <mapping>
         <identity value="zib-medicaldevice-v3.3.1-2020EN" />
         <map value="NL-CM:10.1.4" />
         <comment value="ProductID" />
       </mapping>
+    </element>
+    <element id="Device.identifier:gs1ProductID.system">
+      <path value="Device.identifier.system" />
+      <fixedUri value="https://www.gs1.org/gtin" />
+    </element>
+    <element id="Device.identifier:hibcProductID">
+      <path value="Device.identifier" />
+      <sliceName value="hibcProductID" />
+      <short value="ProductID" />
+      <definition value="Unique identification of the product, such as the serial number. The `identifier` may only be used if it also identifies the resource." />
+      <alias value="ProductID" />
+      <max value="1" />
+      <mapping>
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
+        <map value="NL-CM:10.1.4" />
+        <comment value="ProductID" />
+      </mapping>
+    </element>
+    <element id="Device.identifier:hibcProductID.system">
+      <path value="Device.identifier.system" />
+      <fixedUri value="urn:oid:2.16.840.1.113883.6.40" />
     </element>
     <element id="Device.udiCarrier">
       <path value="Device.udiCarrier" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="issuer" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <definition value="Unique device identifier (UDI) assigned to device label or package. Note that a udiCarrier is only applicable if the zib concept ProductID actually contains a UDI, e.g. an ID according to GTIN or HIBC." />
       <max value="1" />
     </element>
-    <element id="Device.udiCarrier.deviceIdentifier">
+    <element id="Device.udiCarrier:gs1UdiCarrier">
+      <path value="Device.udiCarrier" />
+      <sliceName value="gs1UdiCarrier" />
+      <max value="1" />
+    </element>
+    <element id="Device.udiCarrier:gs1UdiCarrier.deviceIdentifier">
       <path value="Device.udiCarrier.deviceIdentifier" />
-      <short value="ProductID" />
-      <definition value="The device identifier (DI) is a mandatory, fixed portion of a UDI that identifies the labeler and the specific version or model of a device.&#xD;&#xA;This represents also the GS1's Global Trade Item Number (GTIN)" />
-      <alias value="ProductID" />
-      <mapping>
-        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
-        <map value="NL-CM:10.1.4" />
-        <comment value="ProductID" />
-      </mapping>
+      <definition value="The device identifier (DI) is a mandatory, fixed portion of a UDI that identifies the labeler and the specific version or model of a device.&#xD;&#xA;In the GS1 standard this element represents the GTIN itself - e.g. 01234567891234 - as part of the Application Identifier (AI), namely AI(01)." />
     </element>
-    <element id="Device.udiCarrier.issuer">
+    <element id="Device.udiCarrier:gs1UdiCarrier.issuer">
       <path value="Device.udiCarrier.issuer" />
+      <definition value="Organization that is charged with issuing UDIs for devices. For the zib this would be GS1's Global Trade Item Number (GTIN) or Health Industry Bar Code (HIBC). Note that the issuer must match the issuer implicitly contained in the ProductID." />
+      <fixedUri value="https://www.gs1.org/gtin" />
+    </element>
+    <element id="Device.udiCarrier:gs1UdiCarrier.carrierHRF">
+      <path value="Device.udiCarrier.carrierHRF" />
       <short value="ProductID" />
-      <definition value="Organization that is charged with issuing UDIs for devices. For the zib, this would be the Global Trade Item Number (GTIN) or &#xD;&#xA;Health Industry Bar Code (HIBC). &#xD;&#xA;The are https://www.gs1.org/gtin and http://hl7.org/fhir/NamingSystem/hibcc, respectively." />
       <alias value="ProductID" />
       <mapping>
         <identity value="zib-medicaldevice-v3.3.1-2020EN" />
@@ -98,7 +122,17 @@
         <comment value="ProductID" />
       </mapping>
     </element>
-    <element id="Device.udiCarrier.carrierHRF">
+    <element id="Device.udiCarrier:hibcUdiCarrier">
+      <path value="Device.udiCarrier" />
+      <sliceName value="hibcUdiCarrier" />
+      <max value="1" />
+    </element>
+    <element id="Device.udiCarrier:hibcUdiCarrier.issuer">
+      <path value="Device.udiCarrier.issuer" />
+      <definition value="Organization that is charged with issuing UDIs for devices. For the zib this would be GS1's Global Trade Item Number (GTIN) or Health Industry Bar Code (HIBC). Note that the issuer must match the issuer implicitly contained in the ProductID." />
+      <fixedUri value="urn:oid:2.16.840.1.113883.6.40" />
+    </element>
+    <element id="Device.udiCarrier:hibcUdiCarrier.carrierHRF">
       <path value="Device.udiCarrier.carrierHRF" />
       <short value="ProductID" />
       <alias value="ProductID" />
@@ -110,40 +144,19 @@
     </element>
     <element id="Device.manufactureDate">
       <path value="Device.manufactureDate" />
-      <definition value="The date a specific device was manufactured - which is a component of the production identifier (PI), a conditional, variable portion of a UDI. &#xD;&#xA;GS1 standards: this represents the Manufacture date AI(11) - e.g. 250717 - as part of the Application Identifier (AI)." />
+      <definition value="The date a specific device was manufactured - which is a component of the production identifier (PI), a conditional, variable portion of a UDI. &#xD;&#xA;In the GS1 standard this element represents the Manufacture date - e.g. 250717 - as part of the Application Identifier (AI), namely AI(11)." />
     </element>
     <element id="Device.expirationDate">
       <path value="Device.expirationDate" />
-      <short value="ProductID" />
-      <definition value="The expiration date of a specific device - which is a component of the production identifier (PI), a conditional, variable portion of a UDI.&#xD;&#xA;GS1 standards: this represents the Expiration date AI(17) - e.g. 141120 - as part of the Application Identifier (AI)." />
-      <alias value="ProductID" />
-      <mapping>
-        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
-        <map value="NL-CM:10.1.4" />
-        <comment value="ProductID" />
-      </mapping>
+      <definition value="The expiration date of a specific device - which is a component of the production identifier (PI), a conditional, variable portion of a UDI.&#xD;&#xA;In the GS1 standard this element represents the Expiration date - e.g. 141120 - as part of the Application Identifier (AI), namely AI(17)." />
     </element>
     <element id="Device.lotNumber">
       <path value="Device.lotNumber" />
-      <short value="ProductID" />
-      <definition value="The lot or batch number within which a device was manufactured - which is a component of the production identifier (PI), a conditional, variable portion of a UDI.&#xD;&#xA;GS1 standards: this represents the Batch - lot AI(10) - e.g. 1234AB - as part of the Application Identifier (AI)." />
-      <alias value="ProductID" />
-      <mapping>
-        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
-        <map value="NL-CM:10.1.4" />
-        <comment value="ProductID" />
-      </mapping>
+      <definition value="The lot or batch number within which a device was manufactured - which is a component of the production identifier (PI), a conditional, variable portion of a UDI.&#xD;&#xA;In the GS1 standard this element represents the Lot/batch number - e.g. 1234AB - as part of the Application Identifier (AI), namely AI(10)." />
     </element>
     <element id="Device.serialNumber">
       <path value="Device.serialNumber" />
-      <short value="ProductID" />
-      <definition value="The serial number assigned by the organization when the device was manufactured.&#xD;&#xA;GS1 standards: this represents the Serial number AI(21) - e.g. 12345XYZ - as part of the Application Identifier (AI)." />
-      <alias value="ProductID" />
-      <mapping>
-        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
-        <map value="NL-CM:10.1.4" />
-        <comment value="ProductID" />
-      </mapping>
+      <definition value="The serial number assigned by the organization when the device was manufactured.&#xD;&#xA;In the GS1 standard this element represents the Serial number - e.g. 12345XYZ - as part of the Application Identifier (AI), namely AI(21)." />
     </element>
     <element id="Device.type">
       <path value="Device.type" />
