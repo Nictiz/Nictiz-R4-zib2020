@@ -334,6 +334,9 @@ zib-NameInformation.GivenName:
 
 zib-NursingIntervention:
   zib deviations:
+    CarePlan.activity.detail.extension:medicalDevice.value[x]:
+      - cardinality: 0..1
+        reason: CarePlan.activity.detail.extension:medicalDevice has cardinality 0..*, making the cardinality of CarePlan.activity.detail.extension:medicalDevice.value[x] effectively 0..* as required by the zib.
     CarePlan.activity.detail.scheduled[x]:scheduledTiming.repeat.frequency:
       - datatype: positiveInt
         reason: zib concepts Interval and Frequency are represented by a combination of .frequency, .period and .periodUnit, not by a single element of Quantity datatype.
