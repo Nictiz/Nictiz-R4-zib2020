@@ -66,6 +66,14 @@ ext-TreatmentDirective2.AdvanceDirective:
       - cardinality: 0..1
         reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension should be added 0..* in the hosting element.
 
+ext-TreatmentObjective.MedicalDevice:
+  zib deviations:
+   Extension.value[x]:
+   - short: MedicalDevice
+     reason: We only use the part before the double colons according to the profile guidelines.
+   - cardinality: 0..1
+     reason: The extension allows the value to occur only once (0..1), but the use of the extension itself (in a resource) is allowed to be repeated (0..*), effectively resulting in a cardinality of 0..* for this element.
+
 pattern-NlCoreHealthProfessionalReference:
   ignored issues:
     StructureDefinition:
@@ -880,6 +888,15 @@ zib-TextResult.VisualResult:
     Media.content:
       - cardinality: 1..1
         reason: The use of the Media resource referenced in zib-TextResult DiagnosticReport.media.link is optional (0..*), but if the Media resource is used, Media.content should be present (1..1).
+        
+zib-TreatmentObjective:
+  zib deviations:
+    Goal.note.text:
+      - cardinality: 1..1
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting in a cardinality of 0..1 for this element.
+    Goal.target:
+      - datatype: BackboneElement
+        reason: The zib FunctionalOrMentalStatus is mapped to an Observation resource, which represents something that has been observed in the past. The zib TreatmentObjective describes a desired result in the future. Using a reference to a zib-FunctionalOrMentalStatus instance of Observation would therefore be incorrect. This is why the properties of FunctionalOrMentalStatus have been mapped in this zib-TreatmentObjective profile.
 
 zib-TobaccoUse:
   zib deviations:

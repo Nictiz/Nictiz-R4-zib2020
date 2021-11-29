@@ -37,15 +37,8 @@
     <element id="Goal">
       <path value="Goal" />
       <short value="TreatmentObjective" />
-      <comment value="The concepts of FunctionalOrMentalStatus are individually mapped on the elements of Goal's FHIR resource. A direct reference was not possible on the .target element." />
+      <comment value="The zib FunctionalOrMentalStatus is mapped to a FHIR Observation resource, which represents something that has been observed in the past. Zib TreatmentObjective describes a desired result in the future. Using a reference to a zib-FunctionalOrMentalStatus instance of Observation would therefore be incorrect. This is why the properties of FunctionalOrMentalStatus have been mapped in this zib-TreatmentObjective profile." />
       <alias value="Behandeldoel" />
-      <constraint>
-        <key value="zib-TreatmentObjective-1" />
-        <severity value="error" />
-        <human value="One concept from DesiredHealthCondition and DesiredHealthcareResult must be selected." />
-        <expression value="description.text.empty() or target.empty()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentObjective" />
-      </constraint>
       <mapping>
         <identity value="zib-treatmentobjective-v3.2-2020EN" />
         <map value="NL-CM:13.5.1" />
@@ -54,27 +47,41 @@
     </element>
     <element id="Goal.lifecycleStatus">
       <path value="Goal.lifecycleStatus" />
-      <comment value="This element is combined with Goal.description.text. Based on the DesiredHealthcareResult, the lifecycleStatus gets a value if the goal is still being targeted." />
-      <mapping>
-        <identity value="zib-treatmentobjective-v3.2-2020EN" />
-        <map value="NL-CM:13.5.5" />
-        <comment value="DesiredHealthcareResult (implicit, main mapping is on Goal.description.text)" />
-      </mapping>
+      <comment value="No zib concept can be mapped (implicitly). Unless `lifecycleStatus` is explicitly recorded, it is expected that only _active_ goals are exchanged." />
     </element>
     <element id="Goal.description.text">
       <path value="Goal.description.text" />
-      <short value="DesiredHealthcareResult" />
+      <short value="DesiredHealthcareResult / StatusName / StatusValue" />
       <definition value="The textual account of the treatment objective. This concept provides the option to define a treatment objective which cannot be described as a measurement value or functional/mental status." />
+      <comment value="If the concept DesiredHealthcareResult (NL-CM:13.5.5) is not present in this instance of zib TreatmentObject, but DesiredHealthCondition (NL-CM:13.5.3) is, `description.text` should be filled with a textual representation of FunctionalOrMentalStatus.StatusName and FunctionalOrMentalStatus.StatusValue." />
       <alias value="GewenstZorgresultaat" />
       <mapping>
         <identity value="zib-treatmentobjective-v3.2-2020EN" />
         <map value="NL-CM:13.5.5" />
         <comment value="DesiredHealthcareResult" />
       </mapping>
+      <mapping>
+        <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
+        <map value="NL-CM:4.26.2" />
+        <comment value="StatusName (implicit, main mapping is on Goal.target.measure)" />
+      </mapping>
+      <mapping>
+        <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
+        <map value="NL-CM:4.26.3" />
+        <comment value="StatusValue (implicit, main mapping is on Goal.target.detailCodeableConcept)" />
+      </mapping>
     </element>
     <element id="Goal.target">
       <path value="Goal.target" />
+      <short value="DesiredHealthCondition" />
+      <definition value="The desired health condition is a target value which can be expressed as the patient’s functional or mental status." />
+      <alias value="GewensteGezondheidstoestand" />
       <max value="1" />
+      <mapping>
+        <identity value="zib-treatmentobjective-v3.2-2020EN" />
+        <map value="NL-CM:13.5.3" />
+        <comment value="DesiredHealthCondition" />
+      </mapping>
     </element>
     <element id="Goal.target.extension">
       <path value="Goal.target.extension" />
@@ -85,13 +92,15 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="Goal.target.extension:medicalDevice">
       <path value="Goal.target.extension" />
       <sliceName value="medicalDevice" />
+      <min value="0" />
       <type>
         <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-FunctionalOrMentalStatus.MedicalDevice" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentObjective.MedicalDevice" />
       </type>
     </element>
     <element id="Goal.target.measure">
@@ -136,6 +145,31 @@
         <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
         <map value="NL-CM:4.26.3" />
         <comment value="StatusValue" />
+      </mapping>
+    </element>
+    <element id="Goal.target.due[x]">
+      <path value="Goal.target.due[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Goal.target.due[x]:dueDate">
+      <path value="Goal.target.dueDate" />
+      <sliceName value="dueDate" />
+      <short value="StatusDate" />
+      <definition value="Indicates the date of the DesiredHealthCondition by which the goal should be met." />
+      <alias value="StatusDatum" />
+      <type>
+        <code value="date" />
+      </type>
+      <mapping>
+        <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
+        <map value="NL-CM:4.26.6" />
+        <comment value="StatusDate" />
       </mapping>
     </element>
     <element id="Goal.addresses">
