@@ -37,7 +37,7 @@
     <element id="Goal">
       <path value="Goal" />
       <short value="TreatmentObjective" />
-      <comment value="The zib FunctionalOrMentalStatus is mapped to a FHIR Observation resource, which represents something that has been observed in the past. Zib TreatmentObjective describes a desired result in the future. Using a reference to a zib-FunctionalOrMentalStatus instance of Observation would therefore be incorrect. This is why the properties of FunctionalOrMentalStatus have been mapped in this zib-TreatmentObjective profile." />
+      <comment value="Although the zib model assumes there's a reference from zib OutcomeOfCare to a distinct instance of zib FunctionalOrMentalStatus (in future context), in this profile the concepts of zib FunctionalOrMentalStatus are mapped directly as this aligns with the way the Goal resource is used." />
       <alias value="Behandeldoel" />
       <mapping>
         <identity value="zib-treatmentobjective-v3.2-2020EN" />
@@ -158,7 +158,7 @@
       </slicing>
     </element>
     <element id="Goal.target.due[x]:dueDate">
-      <path value="Goal.target.dueDate" />
+      <path value="Goal.target.due[x]" />
       <sliceName value="dueDate" />
       <short value="StatusDate" />
       <definition value="Indicates the date of the DesiredHealthCondition by which the goal should be met." />
