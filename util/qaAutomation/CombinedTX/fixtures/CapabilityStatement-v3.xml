@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CapabilityStatement xmlns="http://hl7.org/fhir">
+  <id value="FhirServer"/>
+  <meta>
+  <tag>
+    <system value="http://hl7.org/fhir/v3/ObservationValue"/>
+    <code value="SUBSETTED"/>
+    <display value="Subsetted"/>
+  </tag>
+  </meta>
+  <name value="Combined Proxy TX server Conformance Statement"/>
+  <status value="active"/>
+  <kind value="instance"/>
+  <instantiates value="http://hl7.org/fhir/Conformance/terminology-server"/>
+  <software>
+    <name value="CombinedTX"/>
+  </software>
+  <fhirVersion value="3.0.2"/>
+  <format value="application/fhir+xml"/>
+  <rest>
+    <mode value="server"/>
+    <security>
+      <cors value="true"/>
+    </security>
+    <operation>
+      <name value="lookup"/>
+      <definition>
+        <reference value="http://hl7.org/fhir/OperationDefinition/ValueSet-lookup"/>
+      </definition>
+    </operation>
+    <operation>
+      <name value="validate-code"/>
+      <definition>
+        <reference value="http://hl7.org/fhir/OperationDefinition/Resource-validate"/>
+      </definition>
+    </operation>
+    <operation>
+      <name value="translate"/>
+      <definition>
+        <reference value="http://hl7.org/fhir/OperationDefinition/ConceptMap-translate"/>
+      </definition>
+    </operation>
+    <operation>
+      <name value="closure"/>
+      <definition>
+        <reference value="http://hl7.org/fhir/OperationDefinition/ConceptMap-closure"/>
+      </definition>
+    </operation>
+    <operation>
+      <name value="versions"/>
+      <definition>
+        <reference value="/OperationDefinition/fso-versions"/>
+      </definition>
+    </operation>
+  </rest>
+</CapabilityStatement>
