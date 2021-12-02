@@ -46,6 +46,24 @@
         <comment value="NursingIntervention" />
       </mapping>
     </element>
+    <element id="CarePlan.status">
+      <path value="CarePlan.status" />
+      <comment value="Sending systems that don't record an explicit status can use the following guidance to infer a value from the zib:&#xD;&#xA;&#xD;&#xA;* ProcedureEndTime present:&#xD;&#xA;    * and in the future: _active_&#xD;&#xA;    * and in the past: _completed_&#xD;&#xA;* ProcedureEndTime absent:&#xD;&#xA;    * ProcedureStartTime present: _active_&#xD;&#xA;    * ProcedureStartTime absent: _unknown_" />
+      <mapping>
+        <identity value="zib-nursingintervention-v3.2-2020EN" />
+        <map value="NL-CM:14.2.11" />
+        <comment value="ProcedureStartDateTime (implicit, main mapping is on CarePlan.period.start and optionally on CarePlan.activity.detail.scheduledTiming.repeat.boundsPeriod.start)" />
+      </mapping>
+      <mapping>
+        <identity value="zib-nursingintervention-v3.2-2020EN" />
+        <map value="NL-CM:14.2.12" />
+        <comment value="ProcedureEndDateTime (implicit, main mapping is on CarePlan.period.end and optionally on CarePlan.activity.detail.scheduledTiming.repeat.boundsPeriod.end)" />
+      </mapping>
+    </element>
+    <element id="CarePlan.intent">
+      <path value="CarePlan.intent" />
+      <definition value="Indicates the level of authority/intentionality associated with the care plan and where the care plan fits into the workflow chain.&#xD;&#xA;&#xD;&#xA;For zib NursingIntervention, this will normally be _plan_, but the context may specify a more suitable intent." />
+    </element>
     <element id="CarePlan.category">
       <path value="CarePlan.category" />
       <slicing>
@@ -137,6 +155,7 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="1" />
     </element>
     <element id="CarePlan.contributor:requester.extension:contributorIsRequester">
       <path value="CarePlan.contributor.extension" />
@@ -174,7 +193,7 @@
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Goal" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-OutcomeOfCare" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentObjective" />
       </type>
       <mapping>
         <identity value="zib-nursingintervention-v3.2-2020EN" />
@@ -184,6 +203,7 @@
     </element>
     <element id="CarePlan.activity">
       <path value="CarePlan.activity" />
+      <comment value="A nursing intervention in the Dutch realm always consists of a single activity. For this reason, the cardinality of `.activity` is restricted to 0..1." />
       <max value="1" />
     </element>
     <element id="CarePlan.activity.detail.extension">
@@ -195,12 +215,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="CarePlan.activity.detail.extension:medicalDevice">
       <path value="CarePlan.activity.detail.extension" />
       <sliceName value="medicalDevice" />
       <min value="0" />
-      <max value="*" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-CarePlan-MaterialUsed" />
@@ -421,6 +441,10 @@
         <map value="NL-CM:14.2.18" />
         <comment value="Instruction" />
       </mapping>
+    </element>
+    <element id="CarePlan.note">
+      <path value="CarePlan.note" />
+      <max value="1" />
     </element>
     <element id="CarePlan.note.text">
       <path value="CarePlan.note.text" />
