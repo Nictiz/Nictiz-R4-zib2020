@@ -410,46 +410,42 @@ zib-VisualFunction.VisualAid.Product:
 unmapped zib concepts:
   - NL-CM:17.2.10: HealthcareProvider.LocationNumber
     reason: This zib concept is problematic to map cleanly to FHIR and it has been deemed too uncommon in practice to warrant an extension.
-                           
+
 ---
-#    The following issues are not "real" deviations stemming from design choices, but rather problems that pop up due   to   
-#
-shortcomingsintooling,theusedterminologyserver,etc.#
-Thesemightoccurinoneormoreprofiles,orinnoneiftheyhavebeenfixedinthemeantime.                   
-issues should occur: false     
-                    
+# The following issues are not "real" deviations stemming from design choices, but rather problems that pop up due to
+# shortcomings in tooling, the used terminology server, etc.
+# These might occur in one or more profiles, or in none if they have been fixed in the meantime. 
+
+issues should occur: false
+
 "*-AdvanceDirective*":
- ignored issues: 
+  ignored issues:
+    Consent.scope*:
+      - message: Unknown Code http://terminology.hl7.org/CodeSystem/consentscope#adr in http://terminology.hl7.org/CodeSystem/consentscope for 'http://terminology.hl7.org/CodeSystem/consentscope#adr'
+        reason: This concerns an error in the FHIR terminology server. The adr code has been removed for R5 and the terminology server was updated for it too soon. They will fix it according to this zulip chat "https://chat.fhir.org/#narrow/stream/179166-implementers/topic/Consent.2Escope.3A.20diff.20in.20codes.20shown.20on.20FHIR.20vs.20Tx.20server"
+      - message: None of the codings provided are in the value set 'Consent Scope Codes' (http://hl7.org/fhir/ValueSet/consent-scope), and a coding should come from this value set unless it has no suitable code
+        reason: see above
 
-Consent.scope*:      -message:
-UnknownCodehttp://terminology.hl7.org/CodeSystem/consentscope#adrinhttp://terminology.hl7.org/CodeSystem/consentscopefor'http://terminology.hl7.org/CodeSystem/consentscope#adr'  reason: ThisconcernsanerrorintheFHIRterminologyserver.TheadrcodehasbeenremovedforR5andtheterminologyserverwasupdatedforittoosoon.Theywillfixitaccordingtothiszulipchat"https://chat.fhir.org/#narrow/stream/179166-implementers/topic/Consent.2Escope.3A.20diff.20in.20codes.20shown.20on.20FHIR.20vs.20Tx.20server"
-    -message:Noneofthecodingsprovidedareinthevalueset'ConsentScopeCodes'(http://hl7.org/fhir/ValueSet/consent-scope),
-andacodingshouldcomefromthisvaluesetunlessithasnosuitablecode       reason: see above     
-                                             
-nl- core-CareTeam-01:                             
-        ignoredissues:  
+nl-core-CareTeam-01:
+  ignored issues:
+    CareTeam.participant[*]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
 
-CareTeam.participant[*]:      -message:
-Slicingcannotbeevaluated  reason :
-Tocheckslicingininstances,thereferencedresourcesneedtobeinspected,butthisisnotsupportedbytheHL7Validator.    
-zib- Alert:    
-        ignoredissues:                     
+zib-Alert:
+  ignored issues:
+    Flag:
+      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias "Alert" is already defined in the base profile, so it doesn't need to be defined again in the differential.
 
-Flag:      -message:
-"sd-pg-04:'Ifmapping.mapexistsandthemappingisnotimplicit,aliasshouldexist.'"  reason :
-Thealias"Alert"isalreadydefinedinthebaseprofile,soitdoesn'tneedtobedefinedagaininthedifferential.    
-zib- Patient:             
-        ignoredissues:                     
-
-Patient.address:      -message:
-"sd-pg-04:'Ifmapping.mapexistsandthemappingisnotimplicit,aliasshouldexist.'"  reason :
-Thealiasisdefinedonthedatatypeprofileandnotrepeatedinthedifferential.    Patient.contact.name:
+zib-Patient:
+  ignored issues:
+    Patient.address:
+      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias is defined on the datatype profile and not repeated in the differential.
+    Patient.contact.name:
       - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.
     Patient.contact.address:
       - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.
-    
-                    
-                      
- 
