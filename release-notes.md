@@ -55,6 +55,11 @@ This document contains release notes per zib, indicating differences with their 
 * The code on `Observation.component:drugOrMedicationType.code` has changed to 105590001
 * The code on `Observation.component:amount.code` has changed to 363908000
 
+## zib-EpisodeOfCare
+* New zib in 2020. However, in the zib2017 package the nl-core-episodeofcare profile exists, which is not based on a zib but included some use case concepts. This zib profile supersedes this profile.
+* The extension EpisodOfCare-Title has been replaced by ext-EpisodeOfCare.EpisodeOfCareName because this zib concept is functionally equivalent.
+* The extensions EpisodeOfCare-DateFirstEncounter and EpisodeOfCare-DateLastEncounter from the previous profile are not inherited because no functional backing exists.
+
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.
 * `Organization.type[DepartmentSpecialty]` and `Organization.type[OrganizationType]` from 0..* to 0..1.
@@ -134,3 +139,14 @@ This document contains release notes per zib, indicating differences with their 
 * TobaccoUseStatus is placed on a type slice of `Observation.value[x]` adhering to the open world modelling principle.
 * The comment element is moved to `Observation.note.text` instead of `Observation.comment`
 * The datatype for PackYears has been changed from Quantity to integer to align with the functional definition and the Quantity datatype does not bring additional benefits to justify not aligning with the zib.
+
+## zib-Vaccination
+* Renamed profiles names: zib-Vaccination to zib-Vaccination-event and zib-VaccinationRecommendation to zib-Vaccination-request conform new profiling guidelines.
+* Removed references not accounted for by the zib (e.g. `Immunization.location`, `Immunization.manufacturer` and `ImmunizationRecommendation.recommendation.supportingImmunization`).
+* Aligned cardinality of `Immunization.note` with the zib by making it 0..1.
+* Moved VaccinationDate on a type slice on `Immunization.occurrence[x]:occurrenceDateTime`. This element has been renamed from `date` to `occurence[x]` in R4.
+* Moved Administrator to a slice on `Immunization.performer` with a mandatory fixed pattern in `Immunization.performer.function`.
+* Added a pattern on `Immunization.doseQuantity` to mandate the use of mL by ucum because the definition of Dose states to use milliliters. 
+* Removed orderStatus extension because PlannedCareActivityForTransfer zib does not exist anymore.
+* Aligned cardinalities of ImmunizationRecommendation with the zib by constraining them and documentend this on the root element.
+* Removed mapping of DesiredDateForRevaccination because it has been removed by the zib as well. The DesiredDateForRevaccination concept has been replaced by mapping to VaccinationDate which is placed on `ImmunizationRecommendation.recommendation.dateCriterion.value`. The mapping to PlannedCareActivityForTransfer start and end dates have been removed from this element.

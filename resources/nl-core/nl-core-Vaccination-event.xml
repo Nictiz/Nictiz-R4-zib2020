@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-Vaccination-event" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Vaccination-event" />
+  <name value="NlcoreVaccinationevent" />
+  <title value="nl core Vaccination event" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Immunization can be defined as “Generating natural immunity against pathogens by means of vaccination (active immunization) or by administering immunoglobulins (passive immunization)”.&#xD;&#xA;&#xD;&#xA;Only the (administered and planned) vaccinations are included in this information model. Administering immunoglobulins is part of the medication overview. Vaccinations have lifelong relevance.&#xD;&#xA;&#xD;&#xA;Most vaccinations are carried out in the Netherlands as part of the RVP (Rijksvaccinatieprogramma, National Immunisation Program). RVP information is especially important for children.&#xD;&#xA;&#xD;&#xA;Vaccinations are also relevant for adult patients such as transplant patients, dialysis patients and patients with a post-splenectomy status. In addition, there are specific indications for the vaccination of risk groups, such as travelers, professionals who come into contact with blood or patients with wounds, weakened immune systems or heightened risk." />
+  <purpose value="A derived profile from [zib-Vaccination-event](http://nictiz.nl/fhir/StructureDefinition/zib-Vaccination-event) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Immunization" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-Vaccination-event" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Immunization">
+      <path value="Immunization" />
+      <comment value="The zib Vaccination is mapped to this Immunization profile and a profile on ImmunizationRecommendation (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-Vaccination-request&gt;). All administered vaccinations are covered using this Immunization profile, while all planned vaccinations are covered in the ImmunizationRecommendation profile. &#xD;&#xA;&#xD;&#xA;Please note that, contrary to the related zib concepts, `.vaccineCode` and `.occurrence[x]` are mandatory in FHIR and need to be recorded to exchange Immunization resources." />
+      <alias value="nl-core-Vaccination-event" />
+    </element>
+    <element id="Immunization.patient">
+      <path value="Immunization.patient" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Immunization.performer:administrator">
+      <path value="Immunization.performer" />
+      <sliceName value="administrator" />
+    </element>
+    <element id="Immunization.performer:administrator.actor">
+      <path value="Immunization.performer.actor" />
+      <type>
+        <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
