@@ -35,20 +35,6 @@
       <definition value="This slice represents the person's official name information, including given names, last name and possibly the partner's last name." />
       <comment value="This `.name` element represents a Dutch name according to the [zib NameInformation (v1.1, 2020)](https://zibs.nl/wiki/NameInformation-v1.1(2020EN)) (except for the GivenName concept). A Dutch name is represented in FHIR as an ordinary international name, but is augmented using extensions to specify how the last name is built up according to the Dutch rules. See the guidance on `.family` and on `.extension:nameUsage` for more information. Systems that need to work in a Dutch context SHOULD support these extensions as specified here. In addition, systems SHOULD use the core elements according to the FHIR specifications to provide compatibility outside Dutch contexts. It is encouraged to provide a representation of the full name in the `.text` element.&#xD;&#xA;&#xD;&#xA;**Note 1**: The zib cannot be represented straightforward in FHIR. Especially note the guidance on `.given` on how to map the FirstNames and Initials concepts, and on `.prefix`/`.suffix` on how to map the Titles concept.&#xD;&#xA;&#xD;&#xA;**Note 2**: This element should only contain a person's _official_ names. The GivenName concept is represented in another `.name` element with `.name.use` = _usual_.&#xD;&#xA;&#xD;&#xA;**Note 3**: The examples illustrate how the zib is mapped to FHIR." />
       <alias value="Naamgegevens" />
-      <constraint>
-        <key value="zib-NameInformation-1" />
-        <severity value="error" />
-        <human value="If a prefix for a familiy name is specified, the family name is expected as well" />
-        <expression value="name.family.extension('http://hl7.org/fhir/StructureDefinition/humanname-own-prefix').empty().not() implies name.family.extension('http://hl7.org/fhir/StructureDefinition/humanname-own-name').empty().not()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
-      </constraint>
-      <constraint>
-        <key value="zib-NameInformation-2" />
-        <severity value="error" />
-        <human value="If the prefix for a partner family name is specified, the partner family name is expected as well" />
-        <expression value="name.family.extension('http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix').empty().not() implies name.family.extension('http://hl7.org/fhir/StructureDefinition/humanname-partner-name').empty().not()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
-      </constraint>
       <mapping>
         <identity value="zib-nameinformation-v1.1-2020EN" />
         <map value="NL-CM:20.4.1" />
@@ -100,6 +86,23 @@
       <min value="1" />
       <fixedCode value="official" />
     </element>
+    <element id="HumanName.family">
+      <path value="HumanName.family" />
+      <constraint>
+        <key value="zib-NameInformation-1" />
+        <severity value="error" />
+        <human value="If a prefix for a familiy name is specified, the family name is expected as well" />
+        <expression value="extension('http://hl7.org/fhir/StructureDefinition/humanname-own-prefix').empty().not() implies extension('http://hl7.org/fhir/StructureDefinition/humanname-own-name').empty().not()" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
+      </constraint>
+      <constraint>
+        <key value="zib-NameInformation-2" />
+        <severity value="error" />
+        <human value="If the prefix for a partner family name is specified, the partner family name is expected as well" />
+        <expression value="extension('http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix').empty().not() implies extension('http://hl7.org/fhir/StructureDefinition/humanname-partner-name').empty().not()" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
+      </constraint>
+    </element>
     <element id="HumanName.family.extension">
       <path value="HumanName.family.extension" />
       <slicing>
@@ -119,12 +122,14 @@
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix" />
       </type>
+      <condition value="zib-NameInformation-1" />
     </element>
     <element id="HumanName.family.extension:prefix.value[x]">
       <path value="HumanName.family.extension.value[x]" />
       <short value="Prefix" />
       <definition value="Prefix to the person’s own last name." />
       <alias value="Voorvoegsels" />
+      <condition value="zib-NameInformation-1" />
       <mapping>
         <identity value="zib-nameinformation-v1.1-2020EN" />
         <map value="NL-CM:20.4.11" />
@@ -139,12 +144,14 @@
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/humanname-own-name" />
       </type>
+      <condition value="zib-NameInformation-1" />
     </element>
     <element id="HumanName.family.extension:lastName.value[x]">
       <path value="HumanName.family.extension.value[x]" />
       <short value="LastName" />
       <definition value="The person’s official last name" />
       <alias value="Achternaam" />
+      <condition value="zib-NameInformation-1" />
       <mapping>
         <identity value="zib-nameinformation-v1.1-2020EN" />
         <map value="NL-CM:20.4.10" />
@@ -159,12 +166,14 @@
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix" />
       </type>
+      <condition value="zib-NameInformation-2" />
     </element>
     <element id="HumanName.family.extension:partnerPrefix.value[x]">
       <path value="HumanName.family.extension.value[x]" />
       <short value="PartnerPrefix" />
       <definition value="Prefix to the partner’s last name." />
       <alias value="VoorvoegselsPartner" />
+      <condition value="zib-NameInformation-2" />
       <mapping>
         <identity value="zib-nameinformation-v1.1-2020EN" />
         <map value="NL-CM:20.4.9" />
@@ -179,12 +188,14 @@
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/humanname-partner-name" />
       </type>
+      <condition value="zib-NameInformation-2" />
     </element>
     <element id="HumanName.family.extension:partnerLastName.value[x]">
       <path value="HumanName.family.extension.value[x]" />
       <short value="PartnerLastName" />
       <definition value="Partner’s official last name." />
       <alias value="AchternaamPartner" />
+      <condition value="zib-NameInformation-2" />
       <mapping>
         <identity value="zib-nameinformation-v1.1-2020EN" />
         <map value="NL-CM:20.4.8" />

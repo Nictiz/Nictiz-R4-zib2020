@@ -50,10 +50,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="Address.extension:addressType">
       <path value="Address.extension" />
       <sliceName value="addressType" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -113,10 +115,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="Address.line.extension:streetName">
       <path value="Address.line.extension" />
       <sliceName value="streetName" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -137,6 +141,7 @@
     <element id="Address.line.extension:houseNumber">
       <path value="Address.line.extension" />
       <sliceName value="houseNumber" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -157,6 +162,7 @@
     <element id="Address.line.extension:houseNumberLetter-houseNumberAddition">
       <path value="Address.line.extension" />
       <sliceName value="houseNumberLetter-houseNumberAddition" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -183,6 +189,7 @@
     <element id="Address.line.extension:houseNumberIndication">
       <path value="Address.line.extension" />
       <sliceName value="houseNumberIndication" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -196,7 +203,7 @@
       <comment value="The mapping of zib AddressInformation on the FHIR Address datatype is the result of compatibility with HL7v3, which is the format that a lot of healthcare data in the Netherlands is stored in. As a result of this, the coded zib HouseNumberIndication concept (CD datatype) is mapped to a FHIR string datatype with a constraint added (the value can only be 'by' or 'to')." />
       <alias value="AanduidingBijNummer" />
       <constraint>
-        <key value="houseNumberIndication" />
+        <key value="zib-AddressInformation-1" />
         <severity value="error" />
         <human value="Must have value 'by' or 'to'" />
         <expression value="value in ('by' | 'to')" />
@@ -211,6 +218,7 @@
     <element id="Address.line.extension:additionalInformation">
       <path value="Address.line.extension" />
       <sliceName value="additionalInformation" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -273,10 +281,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="Address.country.extension:countryCode">
       <path value="Address.country.extension" />
       <sliceName value="countryCode" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />

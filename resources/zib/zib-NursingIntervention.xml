@@ -34,9 +34,9 @@
       <short value="NursingIntervention" />
       <alias value="VerpleegkundigeInterventie" />
       <constraint>
-        <key value="zib-NursingIntervention-01" />
+        <key value="zib-NursingIntervention-1" />
         <severity value="error" />
-        <human value="The start and/or end date of a repeating schedule should be communicated in CarePlan.encounter as well." />
+        <human value="The start and/or end date of a repeating schedule should be communicated in CarePlan.period as well." />
         <expression value="activity.detail.scheduledTiming.repeat.boundsPeriod.exists() implies (period = activity.detail.scheduledTiming.repeat.boundsPeriod)" />
         <source value="http://nictiz.nl/fhir/StructureDefinition/zib-NursingIntervention" />
       </constraint>
@@ -96,11 +96,16 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
       </type>
     </element>
+    <element id="CarePlan.period">
+      <path value="CarePlan.period" />
+      <condition value="zib-NursingIntervention-1" />
+    </element>
     <element id="CarePlan.period.start">
       <path value="CarePlan.period.start" />
       <short value="ProcedureStartDateTime" />
       <definition value="The start date (and if possible start time) of the procedure. The concept offers the option to indicate the start of the period of a series of repeating procedures, in which case it should be repeated in `CarePlan.activity.detail.scheduledTiming.repeat.boundsPeriod.start`." />
       <alias value="ActieStartDatumTijd" />
+      <condition value="zib-NursingIntervention-1" />
       <mapping>
         <identity value="zib-nursingintervention-v3.2-2020EN" />
         <map value="NL-CM:14.2.11" />
@@ -112,6 +117,7 @@
       <short value="ProcedureEndDateTime" />
       <definition value="The end date (and if possible end time) of the procedure. The concept offers the option to indicate the end of the period of a series of repeating procedures, in which case it should be repeated in `CarePlan.activity.detail.scheduledTiming.repeat.boundsPeriod.end`." />
       <alias value="ActieEindDatumTijd" />
+      <condition value="zib-NursingIntervention-1" />
       <mapping>
         <identity value="zib-nursingintervention-v3.2-2020EN" />
         <map value="NL-CM:14.2.12" />
@@ -285,17 +291,19 @@
       </slicing>
     </element>
     <element id="CarePlan.activity.detail.scheduled[x]:scheduledTiming.repeat.bounds[x]:boundsPeriod">
-      <path value="CarePlan.activity.detail.scheduled[x].repeat.bounds[x]" />
+      <path value="CarePlan.activity.detail.scheduled[x].repeat.boundsPeriod" />
       <sliceName value="boundsPeriod" />
       <type>
         <code value="Period" />
       </type>
+      <condition value="zib-NursingIntervention-1" />
     </element>
     <element id="CarePlan.activity.detail.scheduled[x]:scheduledTiming.repeat.bounds[x]:boundsPeriod.start">
-      <path value="CarePlan.activity.detail.scheduled[x].repeat.bounds[x].start" />
+      <path value="CarePlan.activity.detail.scheduled[x].repeat.boundsPeriod.start" />
       <short value="ProcedureStartDateTime" />
       <definition value="Zib concept ProcedureStartDateTime should primarily be communicated using `CarePlan.period.start`, but it should be repeated here if it indicates the end of a series of repeating procedures." />
       <alias value="ActieStartDatumTijd" />
+      <condition value="zib-NursingIntervention-1" />
       <mapping>
         <identity value="zib-nursingintervention-v3.2-2020EN" />
         <map value="NL-CM:14.2.11" />
@@ -303,10 +311,11 @@
       </mapping>
     </element>
     <element id="CarePlan.activity.detail.scheduled[x]:scheduledTiming.repeat.bounds[x]:boundsPeriod.end">
-      <path value="CarePlan.activity.detail.scheduled[x].repeat.bounds[x].end" />
+      <path value="CarePlan.activity.detail.scheduled[x].repeat.boundsPeriod.end" />
       <short value="ProcedureEndDateTime" />
       <definition value="Zib concept ProcedureEndDateTime should primarily be communicated using `CarePlan.period.end`, but it should be repeated here if it indicates the end of a series of repeating procedures." />
       <alias value="ActieEindDatumTijd" />
+      <condition value="zib-NursingIntervention-1" />
       <mapping>
         <identity value="zib-nursingintervention-v3.2-2020EN" />
         <map value="NL-CM:14.2.12" />
