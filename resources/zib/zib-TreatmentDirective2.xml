@@ -95,6 +95,10 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.AdvanceDirective" />
       </type>
     </element>
+    <element id="Consent.extension:additionalAdvanceDirective.value[x]">
+      <path value="Consent.extension.value[x]" />
+      <condition value="zib-TreatmentDirective2-1" />
+    </element>
     <element id="Consent.modifierExtension">
       <path value="Consent.modifierExtension" />
       <slicing>
@@ -114,6 +118,10 @@
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.SpecificationOther" />
       </type>
+    </element>
+    <element id="Consent.modifierExtension:specificationOther.value[x]">
+      <path value="Consent.modifierExtension.value[x]" />
+      <condition value="zib-TreatmentDirective2-2" />
     </element>
     <element id="Consent.status">
       <path value="Consent.status" />
@@ -167,6 +175,7 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <condition value="zib-TreatmentDirective2-1" />
     </element>
     <element id="Consent.source[x]:sourceReference">
       <path value="Consent.source[x]" />
@@ -217,6 +226,7 @@
       <short value="TreatmentDecision" />
       <definition value="The joint decision taken with regard to the desirability of performing the indicated treatment. If the agreement is 'Other', 'Specification Other' shall contain the instructions for whether or not to carry out the treatment. Implementers SHALL support the SpecificationOther extension on `.provision.type` for this." />
       <alias value="BehandelBesluit" />
+      <condition value="zib-TreatmentDirective2-2" />
       <binding>
         <strength value="required" />
         <description value="Use ConceptMap 'TreatmentDecisionCodelist-to-ConsentProvisionType' to translate zib terminology to profile terminology in ValueSet 'ConsentProvisionType'" />
