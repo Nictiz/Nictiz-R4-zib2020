@@ -86,6 +86,7 @@
     </element>
     <element id="Consent.scope">
       <path value="Consent.scope" />
+      <comment value="At the moment of writing (02-11-2021) the _adr_ code is incorrectly removed from the ConsentScopeCodes CodeSystem (http://terminology.hl7.org/CodeSystem/consentscope). This will be corrected within the R4 release of FHIR based on this tracker item: &lt;https://jira.hl7.org/browse/FHIR-34215&gt;." />
       <patternCodeableConcept>
         <coding>
           <system value="http://terminology.hl7.org/CodeSystem/consentscope" />
@@ -143,7 +144,7 @@
     </element>
     <element id="Consent.policy.uri">
       <path value="Consent.policy.uri" />
-        <comment value="Either `.policy` or `.policyRule` should exist following core constraint ppc-1. If no explicit value is recorded, a fallback is to populate `.policy.uri` with &lt;https://wetten.overheid.nl/&gt; if the advance directive is recorded following Dutch law and regulations." />
+      <comment value="Either `.policy` or `.policyRule` should exist following core constraint ppc-1. If no explicit value is recorded, a fallback is to populate `.policy.uri` with &lt;https://wetten.overheid.nl/&gt; if the advance directive is recorded following Dutch law and regulations." />
     </element>
     <element id="Consent.provision.actor">
       <path value="Consent.provision.actor" />
