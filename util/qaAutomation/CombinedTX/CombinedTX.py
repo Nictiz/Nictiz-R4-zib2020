@@ -136,9 +136,10 @@ class CombinedTX:
             if response != False:
                 if response.status_code == requests.codes.ok:
                     flow.response = http.HTTPResponse.make(200, response.content, {"Content-Type": "application/fhir+xml"})
-                    flow.response.headers["TX-Origin"] = self.NTS_HOSTNAME
                 else:
-                    flow.response = self._createFailureResponse(400, "Couldn't validate code on " + self.NTS_HOSTNAME)
+                    headers = [(key.encode("UTF-8"), response.headers[key].encode("UTF-8")) for key in response.headers]
+                    flow.response = http.HTTPResponse.make(response.status_code, response.content, headers)
+                flow.response.headers["TX-Origin"] = self.NTS_HOSTNAME
                 return
             
             # Default to a false result
@@ -239,9 +240,9 @@ class CombinedTX:
         """ Create a FHIR style failure response using an OperationOutcome. """
         operation_outcome = open(os.path.join(self._fixture_path, "OperationOutcome.xml")).read()
         operation_outcome = operation_outcome\
-            .replace("<code/>", f"<code>{code}</code>")\
-            .replace("<severity/>", f"<severity>{severity}</severity>")\
-            .replace("<diagnostics/>", f"<diagnostics>{diagnostics}</diagnostics>")
+            .replace("<code/>", f'<code value="{code}"/>')\
+            .replace("<severity/>", f'<severity value="{severity}"/>')\
+            .replace("<diagnostics/>", f'<diagnostics value="{diagnostics}"/>')
 
         return http.HTTPResponse.make(response_code, operation_outcome.encode("UTF-8"), {"Content-Type": "application/fhir+xml"})
 
