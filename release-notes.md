@@ -21,8 +21,20 @@ This document contains release notes per zib, indicating differences with their 
 * Added EndDateTime and Comment concepts
 * Added constraints in the profile on the choice that the zib provides between Concern and AlertName. Add guidance on which code to add to Flag.code if a reference to Concern is added.
 
+## zib-AdvanceDirective
+* Moved TypeOfLivingWill from `Consent.category` to `Consent.provision.code`, renamed it to LivingWillType in accordance with the zib and made the element 0..1 rather than 1..1 to adhere to the conceptual cardinalities of the zib.
+* Moved LivingWillDocument from `Consent.source[x]` to `Consent.source[x]:sourceAttachment.data`.
+* Moved Representative from `Consent.consentingParty` to `Consent.provision.actor:representative.reference` because the element is removed in R4. Also `Consent.provision.actor:representative.role` has now a fixed value for this mapping.
+* Replaced fixed zib code 11341000146107#http://snomed.info/sct on `Consent.category` with acd#http://terminology.hl7.org/CodeSystem/consentcategorycodes because this is an applicable code bound in the extensible ValueSet.
+* Removed references that are not defined by the zib (e.g. `Consent.organization` and `Consent.actor`).
+* Adjusted the `Consent.dateTime` cardinality from 1..1 to 0..1 to adhere to the conceptual cardinalities of the zib.
+* Added guidance for mandatory elements `Consent.status`,`Consent.scope` and `Consent.policy` or `Consent.policyRule`.
+
 ## zib-AnatomicalLocation
 * New partial zib. The anatomical location in FHIR is usually mapped on `.bodySite` (CodeableConcept with example binding). This zib has therefore been mapped onto a data type profile that can be used for `.bodySite`.
+
+## zib-CareTeam
+* CareTeam is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
 
 ## zib-ContactInformation
 * zib ContactInformation is mapped onto two profiles: one for the concept TelephoneNumbers and one for the concept E-mailAddresses. Both are added to the hosting profile.
@@ -42,6 +54,11 @@ This document contains release notes per zib, indicating differences with their 
 * The drugUseCode is mapped to `Observation.code` and based on a pattern
 * The code on `Observation.component:drugOrMedicationType.code` has changed to 105590001
 * The code on `Observation.component:amount.code` has changed to 363908000
+
+## zib-EpisodeOfCare
+* New zib in 2020. However, in the zib2017 package the nl-core-episodeofcare profile exists, which is not based on a zib but included some use case concepts. This zib profile supersedes this profile.
+* The extension EpisodOfCare-Title has been replaced by ext-EpisodeOfCare.EpisodeOfCareName because this zib concept is functionally equivalent.
+* The extensions EpisodeOfCare-DateFirstEncounter and EpisodeOfCare-DateLastEncounter from the previous profile are not inherited because no functional backing exists.
 
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.
@@ -98,6 +115,16 @@ This document contains release notes per zib, indicating differences with their 
 * `Condition.note` now honours the max cardinality of zib Comment.
 * `Condition.verificationStatus` contains a mandatory `.coding` element to capture the zib terminology because of the required binding on the CodeableConcept level and the zib and FHIR ValueSet do not completely map.
 
+## Procedure
+* Renamed profiles from zib-Procedure and zib-ProcedureRequest to zib-Procedure-event and zib-Procedure-request conform profiling guidelines.
+* ProcedureStartDate and ProcedureEndDate have been mapped to `Procedure.performed[x]` instead of `Procedure.performedPeriod` to account for the use of `Procedure.performedDateTime` when the zib Procedure concerns a instantaneous procedure.
+* Aligned cardinality of ProcedureMethod by setting the 'procedure-method' to 0..* instead of 0..0.
+* The ProcedureAnatomicalLocation is mapped on `Procedure.bodySite` and the cadinality has been set to 0..1 instead of 0..*.
+* The resource ProcedureRequest has been renamed to ServiceRequest and now includes a mapping for all the possible concepts of zib Procedure. Compared to STU3 a mapping has been added for ProcedureMethod, ProcedureAnatomicalLocation, MedicalDevice, ProcedureStartDate and ProcedureEndDate.
+* `Procedure.location` and `ServiceRequest.locationReference` are used to reference the zib HealthcareProvider instead of `Procedure.performer` and `ProcedureRequest.performer` to indicate where the Procedure takes place.
+* The `Procedure.performer` only references the zib HealthProfessional represented in a PractitionerRole resource. Other references not dictated by the zib are removed.
+* `ServiceRequest.performer` contains a reference to the zib CareTeam because the FHIR definition deviates from the zib Performer concept when multiple references are provided. This is described in the element's comment.
+
 ## zib-Range
 * There is no profile for this partial zib because the relevant parts can be modelled directly in the profiles where this zib is used.
 
@@ -112,3 +139,14 @@ This document contains release notes per zib, indicating differences with their 
 * TobaccoUseStatus is placed on a type slice of `Observation.value[x]` adhering to the open world modelling principle.
 * The comment element is moved to `Observation.note.text` instead of `Observation.comment`
 * The datatype for PackYears has been changed from Quantity to integer to align with the functional definition and the Quantity datatype does not bring additional benefits to justify not aligning with the zib.
+
+## zib-Vaccination
+* Renamed profiles names: zib-Vaccination to zib-Vaccination-event and zib-VaccinationRecommendation to zib-Vaccination-request conform new profiling guidelines.
+* Removed references not accounted for by the zib (e.g. `Immunization.location`, `Immunization.manufacturer` and `ImmunizationRecommendation.recommendation.supportingImmunization`).
+* Aligned cardinality of `Immunization.note` with the zib by making it 0..1.
+* Moved VaccinationDate on a type slice on `Immunization.occurrence[x]:occurrenceDateTime`. This element has been renamed from `date` to `occurence[x]` in R4.
+* Moved Administrator to a slice on `Immunization.performer` with a mandatory fixed pattern in `Immunization.performer.function`.
+* Added a pattern on `Immunization.doseQuantity` to mandate the use of mL by ucum because the definition of Dose states to use milliliters. 
+* Removed orderStatus extension because PlannedCareActivityForTransfer zib does not exist anymore.
+* Aligned cardinalities of ImmunizationRecommendation with the zib by constraining them and documentend this on the root element.
+* Removed mapping of DesiredDateForRevaccination because it has been removed by the zib as well. The DesiredDateForRevaccination concept has been replaced by mapping to VaccinationDate which is placed on `ImmunizationRecommendation.recommendation.dateCriterion.value`. The mapping to PlannedCareActivityForTransfer start and end dates have been removed from this element.
