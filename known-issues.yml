@@ -154,6 +154,12 @@ zib-FLACCpainScale:
       - cardinality: 1..1
         reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
 
+zib-EpisodeOfCare:
+  zib deviations:
+    EpisodeOfCare.diagnosis.condition:
+      - cardinality: 1..1
+        reason: The mapped element has a cardinality of 1..1. However, the parent element, .diagnosis, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.  
+
 zib-HeadCircumference:
   zib deviations:
     Observation.note.text:
@@ -165,12 +171,6 @@ zib-HeartRate:
     Observation.note.text:
       - cardinality: 1..1
         reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
-
-zib-EpisodeOfCare:
-  zib deviations:
-    EpisodeOfCare.diagnosis.condition:
-      - cardinality: 1..1
-        reason: The mapped element has a cardinality of 1..1. However, the parent element, .diagnosis, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.  
 
 zib-HealthcareProvider:
   zib deviations:
