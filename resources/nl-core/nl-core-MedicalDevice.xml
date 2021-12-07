@@ -37,10 +37,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="DeviceUseStatement.extension:healthProfessional">
       <path value="DeviceUseStatement.extension" />
       <sliceName value="healthProfessional" />
+      <min value="0" />
     </element>
     <element id="DeviceUseStatement.extension:healthProfessional.value[x]">
       <path value="DeviceUseStatement.extension.value[x]" />
@@ -54,6 +56,7 @@
     <element id="DeviceUseStatement.extension:location">
       <path value="DeviceUseStatement.extension" />
       <sliceName value="location" />
+      <min value="0" />
     </element>
     <element id="DeviceUseStatement.extension:location.value[x]">
       <path value="DeviceUseStatement.extension.value[x]" />
@@ -79,15 +82,11 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice.Product" />
       </type>
     </element>
-    <element id="DeviceUseStatement.reasonReference">
+    <element id="DeviceUseStatement.reasonReference:indication">
       <path value="DeviceUseStatement.reasonReference" />
+      <sliceName value="indication" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DiagnosticReport" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Media" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
       </type>
     </element>

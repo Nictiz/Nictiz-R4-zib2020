@@ -158,6 +158,10 @@ zib-HealthProfessional-PractitionerRole:
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consits of two parts the rootconcept of the ContactInformation is mapped on .telecom.
 
 zib-HearingFunction.HearingAid:
+  ignored issues:
+    DeviceUseStatement.reasonReference:*:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     DeviceUseStatement:
       - datatype: undefined
@@ -170,6 +174,10 @@ zib-HearingFunction.HearingAid:
         reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
 
 zib-HearingFunction.HearingAid.Product:
+  ignored issues:
+    Device.type:
+      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias for ProductType is already present in the base profile where this profile is derived from. It should not be added twice to silence this issue.
   zib deviations:
     Device.identifier:*ProductID:
       - datatype: Identifier
@@ -179,6 +187,10 @@ zib-HearingFunction.HearingAid.Product:
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
 
 zib-MedicalDevice:
+  ignored issues:
+    DeviceUseStatement.reasonReference:*:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept
@@ -314,7 +326,7 @@ zib-Procedure-event:
   ignored issues:
     Procedure.report:textResult:
       - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The restiction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
         
   zib deviations:
     Procedure.bodySite:
@@ -358,6 +370,10 @@ zib-Vaccination-request:
         reason: ImmunizationRecommendation.recommendation.dateCriterion has cardinality 0..1, making the cardinality of ImmunizationRecommendation.recommendation.dateCriterion.value effectively 0..1 as required by the zib.
 
 zib-VisualFunction.VisualAid:
+  ignored issues:
+    DeviceUseStatement.reasonReference:*:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     DeviceUseStatement:
       - datatype: undefined
@@ -370,6 +386,10 @@ zib-VisualFunction.VisualAid:
         reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
 
 zib-VisualFunction.VisualAid.Product:
+  ignored issues:
+    Device.type:
+      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias for ProductType is already present in the base profile where this profile is derived from. It should not be added twice to silence this issue.
   zib deviations:
     Device.identifier:*ProductID:
       - datatype: Identifier
