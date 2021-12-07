@@ -131,6 +131,17 @@
     </element>
     <element id="DeviceUseStatement.reasonReference">
       <path value="DeviceUseStatement.reasonReference" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="DeviceUseStatement.reasonReference:indication">
+      <path value="DeviceUseStatement.reasonReference" />
+      <sliceName value="indication" />
       <short value="Indication" />
       <definition value="The medical reason for use of the medical device." />
       <alias value="Indicatie" />
@@ -147,6 +158,62 @@
         <identity value="zib-medicaldevice-v3.3.1-2020EN" />
         <map value="NL-CM:10.1.7" />
         <comment value="Indication" />
+      </mapping>
+    </element>
+    <element id="DeviceUseStatement.reasonReference:observation">
+      <path value="DeviceUseStatement.reasonReference" />
+      <sliceName value="observation" />
+      <short value="BladderFunction / BowelFunction / FeedingTubeSystem / FunctionalOrMentalStatus / Mobility / Stoma" />
+      <comment value="The direction of the reference between several zibs and MedicalDevice is reversed in FHIR. Therefore the following concepts are mapped to this element:&#xD;&#xA;* IncontinenceMaterial (NL-CM:4.14.5) of zib BladderFunction&#xD;&#xA;* IncontinenceMaterial (NL-CM:4.15.6) of zib BowelFunction&#xD;&#xA;* MedicalDevice (NL-CM:10.3.7) of zib FeedingTubeSystem&#xD;&#xA;* MedicalDevice (NL-CM:4.26.5) of zib FunctionalOrMentalStatus&#xD;&#xA;* MedicalDevice (NL-CM:4.3.4) of zib Mobility&#xD;&#xA;* StomaMaterial (NL-CM:5.2.3) of zib Stoma&#xD;&#xA;&#xD;&#xA;Please note that on a functional level, the zibs mentioned above reference zib MedicalDevice, but in FHIR this direction is reversed." />
+      <alias value="Blaasfunctie" />
+      <alias value="Darmfunctie" />
+      <alias value="SondeSysteem" />
+      <alias value="FunctioneleOfMentaleStatus" />
+      <alias value="Mobiliteit" />
+      <alias value="Stoma" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DiagnosticReport" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Media" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-BowelFunction" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-BladderFunction" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-FeedingTubeSystem" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Stoma" />
+      </type>
+      <mapping>
+        <identity value="zib-bladderfunction-v3.2-2020EN" />
+        <map value="NL-CM:4.14.5" />
+        <comment value="Reversed reference for zib BladderFunction.IncontinenceMaterial" />
+      </mapping>
+      <mapping>
+        <identity value="zib-bowelfunction-v3.1.1-2020EN" />
+        <map value="NL-CM:4.15.6" />
+        <comment value="Reversed reference for zib BowelFunction.IncontinenceMaterial" />
+      </mapping>
+      <mapping>
+        <identity value="zib-feedingtubesystem-v3.3-2020EN" />
+        <map value="NL-CM:10.3.7" />
+        <comment value="Reversed reference for zib FeedingTubeSystem.MedicalDevice" />
+      </mapping>
+      <mapping>
+        <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
+        <map value="NL-CM:4.26.5" />
+        <comment value="Reversed reference for zib FunctionalOrMentalStatus.MedicalDevice" />
+      </mapping>
+      <mapping>
+        <identity value="zib-mobility-v3.3-2020EN" />
+        <map value="NL-CM:4.3.4" />
+        <comment value="Reversed reference for zib Mobility.MedicalDevice" />
+      </mapping>
+      <mapping>
+        <identity value="zib-stoma-v3.3-2020EN" />
+        <map value="NL-CM:5.2.3" />
+        <comment value="Reversed reference for zib Stoma.StomaMaterial" />
       </mapping>
     </element>
     <element id="DeviceUseStatement.bodySite">
