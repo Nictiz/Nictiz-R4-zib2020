@@ -83,8 +83,7 @@ This document contains release notes per zib, indicating differences with their 
 * The comment element has been moved to `Observation.note.text`.
 
 ## zib-Mobility
-* The comment element is mapped on `Observation.note.text` instead of `Observation.comment`
-
+* The comment element is mapped on `Observation.note.text` instead of `Observation.comment`.
 
 ## zib-NameInformation
 * The way this partial zib has been modelled on the HumanName datatype has been overhauled to properly accommodate the way first names are handled. In the STU3 version, official first names, initials of this first name, and the given name (nickname, roepnaam) were all added to a `.given` element in the same HumanName instance, with a annotation of the type using an extension. This turned out to be the wrong approach, as all `.given` names are to be concatenated to the complete list of first names. So instead, there are now different instances of HumanName used to communicate the official names and the given name, indicated by `.use` -- resulting in two profiles. Communicating initials is now only done for names where the full name is not known (this deviates from the zib model).   
