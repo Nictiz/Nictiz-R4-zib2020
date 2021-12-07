@@ -161,26 +161,23 @@ zib-HearingFunction.HearingAid:
   zib deviations:
     DeviceUseStatement:
       - datatype: undefined
-        reason: In FHIR, the reference to the MedicalDevice points in the other direction (so the MedicalDevice refers to HearingFunction). The MedicalDevice reference is however mapped on the root element that represents this zib rather than on the DeviceUseStatement.reasonReference resulting in an unmatched datatype. 
+        reason: In FHIR, the reference to the MedicalDevice points in the other direction (so the MedicalDevice refers to HearingFunction). The MedicalDevice reference is however mapped on the root element that represents this zib rather than on the DeviceUseStatement.reasonReference resulting in an unmatched datatype.
+    DeviceUseStatement.reasonReference:observation:
+      - short: BladderFunction / BowelFunction / FeedingTubeSystem / FunctionalOrMentalStatus / Mobility / Stoma
+        reason: Multiple reversed references to MedicalDevice are mapped to this slice, hence the short includes all these references.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept
-        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.  
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
     DeviceUseStatement.timing[x]:timingPeriod.end:
       - short: EndDate
         reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
 
 zib-HearingFunction.HearingAid.Product:
   zib deviations:
-    Device.identifier:gs1ProductID:
+    Device.identifier:*ProductID:
       - datatype: Identifier
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
-    Device.identifier:hibcProductID:
-      - datatype: Identifier
-        reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
-    Device.udiCarrier:gs1UdiCarrier.carrierHRF:
-      - datatype: string
-        reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
-    Device.udiCarrier:hibcUdiCarrier.carrierHRF:
+    Device.udiCarrier:*UdiCarrier.carrierHRF:
       - datatype: string
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
   ignored issues:
@@ -190,28 +187,22 @@ zib-HearingFunction.HearingAid.Product:
 
 zib-MedicalDevice:
   zib deviations:
+    DeviceUseStatement.reasonReference:observation:
+      - short: BladderFunction / BowelFunction / FeedingTubeSystem / FunctionalOrMentalStatus / Mobility / Stoma
+        reason: Multiple reversed references to MedicalDevice are mapped to this slice, hence the short includes all these references.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept
-        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.  
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
     DeviceUseStatement.timing[x]:timingPeriod.end:
       - short: EndDate
         reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
 
 zib-MedicalDevice.Product:
   zib deviations:
-    Device.note.text:
-      - cardinality: 1..1
-        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
-    Device.identifier:gs1ProductID:
+    Device.identifier:*ProductID:
       - datatype: Identifier
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
-    Device.identifier:hibcProductID:
-      - datatype: Identifier
-        reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
-    Device.udiCarrier:gs1UdiCarrier.carrierHRF:
-      - datatype: string
-        reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
-    Device.udiCarrier:hibcUdiCarrier.carrierHRF:
+    Device.udiCarrier:*UdiCarrier.carrierHRF:
       - datatype: string
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
 
@@ -284,7 +275,7 @@ zib-Patient:
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
     Patient.deceased[x]:deceasedDateTime:
       - short: DateOfDeath
-        reason: This element is mapped to two zib concepts, DateOfDeath and DeathIndicator. However, the latter is implicit -- althougt the zib recognizes both concepts, FHIR supports populating just one of them, thus DeathIndicator is assumed to be true when DateOfDeath is populated. For clarity reasons, the metadata of deceasedDateTime is only mapped to DateOfDeath.
+        reason: This element is mapped to two zib concepts, DateOfDeath and DeathIndicator. However, the latter is implicit -- although the zib recognizes both concepts, FHIR supports populating just one of them, thus DeathIndicator is assumed to be true when DateOfDeath is populated. For clarity reasons, the metadata of deceasedDateTime is only mapped to DateOfDeath.
       - datatype: dateTime
         reason: The boolean expected by DeathIndicator is only assumed; see the explanation above.
     Patient.contact:
@@ -380,26 +371,23 @@ zib-VisualFunction.VisualAid:
   zib deviations:
     DeviceUseStatement:
       - datatype: undefined
-        reason: In FHIR, the reference to the MedicalDevice points in the other direction (so the MedicalDevice refers to VisualFunction). The MedicalDevice reference is however mapped on the root element that represents this zib rather than on the DeviceUseStatement.reasonReference resulting in an unmatched datatype. 
+        reason: In FHIR, the reference to the MedicalDevice points in the other direction (so the MedicalDevice refers to VisualFunction). The MedicalDevice reference is however mapped on the root element that represents this zib rather than on the DeviceUseStatement.reasonReference resulting in an unmatched datatype.
+    DeviceUseStatement.reasonReference:observation:
+      - short: BladderFunction / BowelFunction / FeedingTubeSystem / FunctionalOrMentalStatus / Mobility / Stoma
+        reason: Multiple reversed references to MedicalDevice are mapped to this slice, hence the short includes all these references.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept
-        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.  
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
     DeviceUseStatement.timing[x]:timingPeriod.end:
       - short: EndDate
         reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
 
 zib-VisualFunction.VisualAid.Product:
   zib deviations:
-    Device.identifier:gs1ProductID:
+    Device.identifier:*ProductID:
       - datatype: Identifier
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
-    Device.identifier:hibcProductID:
-      - datatype: Identifier
-        reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
-    Device.udiCarrier:gs1UdiCarrier.carrierHRF:
-      - datatype: string
-        reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
-    Device.udiCarrier:hibcUdiCarrier.carrierHRF:
+    Device.udiCarrier:*UdiCarrier.carrierHRF:
       - datatype: string
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
   ignored issues:
