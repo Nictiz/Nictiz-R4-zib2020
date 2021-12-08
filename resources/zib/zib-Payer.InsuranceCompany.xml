@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="zib-Payer" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Payer" />
-  <name value="ZibPayer" />
-  <title value="zib Payer" />
+  <id value="zib-Payer.InsuranceCompany" />
+  <meta>
+    <lastUpdated value="2021-12-08T16:12:01.9657167+00:00" />
+  </meta>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Payer.InsuranceCompany" />
+  <name value="ZibPayerInsuranceCompany" />
+  <title value="zib Payer.InsuranceCompany" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -15,7 +18,7 @@
     </telecom>
   </contact>
   <description value="Payers are organizations or individuals that pay for the healthcare supplied to the patient. These organizations or individuals can be: facilities or people who financially guarantee or who are responsible for the patient (such as parents or guardians of minors), organizations with direct financial responsibility, combinations of these or the patient themselves." />
-  <purpose value="This Coverage resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Payer-v3.1.1(2020EN)](https://zibs.nl/wiki/Payer-v3.1.1(2020EN))." />
+  <purpose value="This Coverage resource represents the InsuranceCompany concept of Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Payer-v3.1.1(2020EN)](https://zibs.nl/wiki/Payer-v3.1.1(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -32,7 +35,7 @@
     <element id="Coverage">
       <path value="Coverage" />
       <short value="Payer / Insurance" />
-      <comment value="The zib Payer is mapped to this Coverage profile and a profile on Organization (&amp;lt;http://nictiz.nl/fhir/StructureDefinition/zib-Payer-Organization&amp;gt;). This Coverage profile acts as the focal resource of Payer, although Coverage is more associated with the Insurance container of the zib then with Payer as a whole. Nevertheless, the Coverage resource acts as an overarching resource that references the various resources that represent PayerPerson or InsuranceCompany and adds details like BankInformation. For the InsuranceCompany concept, the profile on Organization is used which is referenced using the `payor` element." />
+      <comment value="The zib Payer is split into two focal profiles on Coverage based on the PayerPerson and InsuranceCompany containers. These two containers cannot be profiled within one profile because they both require profiling the similiar elements such as the `.payor` and `.type` elements.&#xD;&#xA;&#xD;&#xA;The zib container Payer.InsuranceCompany is mapped to this Coverage profile and uses the profile zib-Payer-Organization (&amp;lt;http://nictiz.nl/fhir/StructureDefinition/zib-Payer-Organization&amp;gt;) to capture the OrganizationName, IdentificationNumber, AddressInformation and ContactInformation. The zib-Payer-Organization profile is referenced using the `.payor` element." />
       <alias value="Betaler" />
       <alias value="Verzekering" />
       <mapping>
@@ -48,7 +51,7 @@
     </element>
     <element id="Coverage.status">
       <path value="Coverage.status" />
-      <comment value="Sending systems that don't record an explicit status can use the following guidance to infer a value from the zib:&#xD;&#xA;&#xD;&#xA;* EndDateTime present:&#xD;&#xA;    * and in the future: _active_&#xD;&#xA;    * and in the past: _cancelled_&#xD;&#xA;* When no status can be derived from the StartDateTime and EndDateTime, e.g. the Coverage concerns a PayerPerson, it is expected that only _active_ Coverage resources are exchanged." />
+      <comment value="Sending systems that don't record an explicit status can use the following guidance to infer a value from the zib:&#xD;&#xA;&#xD;&#xA;* EndDateTime present:&#xD;&#xA;    * and in the future: _active_&#xD;&#xA;    * and in the past: _cancelled_&#xD;&#xA;* When no status can be derived from the StartDateTime and EndDateTime it is expected that only _active_ Coverage resources are exchanged." />
       <mapping>
         <identity value="zib-payer-v3.1.1-2020EN" />
         <map value="NL-CM:1.1.14" />
@@ -113,10 +116,7 @@
     </element>
     <element id="Coverage.payor">
       <path value="Coverage.payor" />
-      <short value="PayerPerson / InsuranceCompany" />
-      <definition value="In the PayerPerson concept a person is a natural person or a juridical person, such as an organization, municipality, etc." />
-      <comment value="If the resource referenced is conformant to one of the target zib profiles, these profiles provide a mapping to the relevant zib Payer concepts. If it is not of conformant to one of these zib profiles, it SHALL have at least the following FHIR elements filled to be compliant with the subsequent zib Payer concepts:&#xD;&#xA;* `name.text` - PayerPerson::PayerName (NL-CM:1.1.5)&#xD;&#xA;* `address` - AddressInformation (NL-CM:1.1.17)&#xD;&#xA;* `telecom` - ContactInformation (NL-CM:1.1.12)" />
-      <alias value="BetalerPersoon" />
+      <short value="InsuranceCompany" />
       <alias value="Verzekeraar" />
       <max value="1" />
       <type>
@@ -125,39 +125,12 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Payer-Organization" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson" />
       </type>
-      <mapping>
-        <identity value="zib-payer-v3.1.1-2020EN" />
-        <map value="NL-CM:1.1.2" />
-        <comment value="PayerPerson" />
-      </mapping>
       <mapping>
         <identity value="zib-payer-v3.1.1-2020EN" />
         <map value="NL-CM:1.1.3" />
         <comment value="InsuranceCompany" />
       </mapping>
-    </element>
-    <element id="Coverage.payor.extension">
-      <path value="Coverage.payor.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
-    <element id="Coverage.payor.extension:bankInformation">
-      <path value="Coverage.payor.extension" />
-      <sliceName value="bankInformation" />
-      <min value="0" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Payer.BankInformation" />
-      </type>
     </element>
   </differential>
 </StructureDefinition>
