@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-PainScore" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-PainScore" />
+  <name value="ZibPainScore" />
+  <title value="zib PainScore" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The pain score is a general measurement for pain experience, not a description of specific, localized pain.&#xD;&#xA;&#xD;&#xA;The following are used as an easily reproducible measurement for pain experience:&#xD;&#xA;NRS (Numeric Rating Scale) in which the patient gives the pain a number on a scale of 1 (no pain) to 10 (unbearable pain).&#xD;&#xA;VAS (Visual Analogue Score), in which the patient points to a bar with a line to indicate the pain they feel. The back of the bar has a scale from 0 (no pain) to 10 (unbearable pain) on it.&#xD;&#xA;&#xD;&#xA;The results of both scores have the same meaning, but the visual analogue method (VAS) is seen as more reliable than the NRS pain score." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) PainScore-v4.0(2020EN)](https://zibs.nl/wiki/PainScore-v4.0(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-painscore-v4.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/PainScore-v4.0(2020EN)" />
+    <name value="zib PainScore-v4.0(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="PainScore" />
+      <alias value="PijnScore" />
+      <mapping>
+        <identity value="zib-painscore-v4.0-2020EN" />
+        <map value="NL-CM:12.9.1" />
+        <comment value="PainScore" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="425401001" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effectiveDateTime" />
+      <sliceName value="effectiveDateTime" />
+      <short value="PainScoreDateTime" />
+      <definition value="The date and time at which the pain score was measured." />
+      <alias value="PijnscoreDatumTijd" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-painscore-v4.0-2020EN" />
+        <map value="NL-CM:12.9.3" />
+        <comment value="PainScoreDateTime" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueInteger">
+      <path value="Observation.valueInteger" />
+      <sliceName value="valueInteger" />
+      <short value="PainScoreValue" />
+      <definition value="The score is a general measurement of pain experience, not a description of specific, localized pain. &#xD;&#xA; &#xD;&#xA;Depending on the measuring method used, it indicates the level of pain experienced by the patient on a scale of 0 to 10: 0 = no pain and 10 = the worst pain imaginable. No descriptions are used for the intermediate values, so that the value is displayed as a number and not as a code.  &#xD;&#xA; &#xD;&#xA;Sometimes a value range of 0-100 is used instead of 0-10." />
+      <alias value="PijnscoreWaarde" />
+      <type>
+        <code value="integer" />
+      </type>
+      <mapping>
+        <identity value="zib-painscore-v4.0-2020EN" />
+        <map value="NL-CM:12.9.2" />
+        <comment value="PainScoreValue" />
+      </mapping>
+    </element>
+    <element id="Observation.note">
+      <path value="Observation.note" />
+      <max value="1" />
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
+      <short value="Comment" />
+      <definition value="Comment on the pain score measurement, including comments on for example the circumstances and/or disruptive factors that may influence the result." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-painscore-v4.0-2020EN" />
+        <map value="NL-CM:12.9.5" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Observation.method">
+      <path value="Observation.method" />
+      <short value="PainMeasuringMethod" />
+      <definition value="The measuring method describes the method used to determine the pain score. The measurement involves a visualization of the pain scale." />
+      <alias value="PijnMeetmethode" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.9.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-painscore-v4.0-2020EN" />
+        <map value="NL-CM:12.9.4" />
+        <comment value="PainMeasuringMethod" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
