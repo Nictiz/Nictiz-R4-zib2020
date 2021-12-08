@@ -70,16 +70,16 @@
     </element>
     <element id="DeviceUseStatement.status">
       <path value="DeviceUseStatement.status" />
-      <comment value="This element is implictly mapped to the zib concepts NL-CM:10.1.11 (StartDate) and NL-CM:10.1.14(EndDate). Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When StartDate is in the future, `.status` will usually be set to _intended_.&#xD;&#xA;* When StartDate is in the past and EndDate has a value and in the future or EndDate has no value, `.status` will usually be set to _active_.&#xD;&#xA;* When EndDate has a value and is in the past, `.status` will usually be set to _completed_." />
+      <comment value="This element is implictly mapped to the zib concepts NL-CM:10.1.11 (StartDate) and NL-CM:10.1.14 (EndDate). Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When StartDate is in the future, `.status` will usually be set to _intended_.&#xD;&#xA;* When StartDate is in the past and EndDate has a value and in the future or EndDate has no value, `.status` will usually be set to _active_.&#xD;&#xA;* When EndDate has a value and is in the past, `.status` will usually be set to _completed_." />
       <mapping>
         <identity value="zib-medicaldevice-v3.3.1-2020EN" />
         <map value="NL-CM:10.1.11" />
-        <comment value="StartDate (implicit, main mapping is on `DeviceUseStatement.timingPeriod.start`)" />
+        <comment value="StartDate (implicit, main mapping is on DeviceUseStatement.timingPeriod.start)" />
       </mapping>
       <mapping>
         <identity value="zib-medicaldevice-v3.3.1-2020EN" />
         <map value="NL-CM:10.1.14" />
-        <comment value="EndDate (implicit, main mapping is on `DeviceUseStatement.timingPeriod.end`)" />
+        <comment value="EndDate (implicit, main mapping is on DeviceUseStatement.timingPeriod.end)" />
       </mapping>
     </element>
     <element id="DeviceUseStatement.timing[x]">
