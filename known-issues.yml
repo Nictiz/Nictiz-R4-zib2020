@@ -290,13 +290,7 @@ zib-Procedure-request:
     ServiceRequest.requester:
       - cardinality: 0..1
         reason: It seems that the zib may have an error in the cardinality for this concept and the cardinality should acctually be 0..1 rather than 0..*. This issue is being tracked here https://bits.nictiz.nl/browse/ZIB-1488
-        
-zib-StrongKidsScore:
-  zib deviations:
-    Observation.note.text:
-      - cardinality: 1..1
-        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
-
+   
 zib-TextResult:
   zib deviations:
     DiagnosticReport.status:

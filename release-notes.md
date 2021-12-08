@@ -128,6 +128,10 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-Range
 * There is no profile for this partial zib because the relevant parts can be modelled directly in the profiles where this zib is used.
 
+## zib-StrongKidsScore
+* The datatype of Observation.value[x] (zib concept TotalScore) element has been changed from Quantity to Integer, and minimum and maximum allowed values of 0 and 5 respectively are applied.
+* The semantic codes on the Observation.component.code elements have changed from urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0 to codes from the zib's ScoreObservaties code systeem (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1) in accordance with the zib's definitioncodes.
+
 ## zib-TimeInterval
 * In the previous release, the concepts of this partial zib were mapped directly in the profiles where they are used. In this release the usage of this partial zib has been expanded and profiles have been created to aid the usage in profiles in the various situations that might occur.
 

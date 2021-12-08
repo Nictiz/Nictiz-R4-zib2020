@@ -33,6 +33,13 @@
       <path value="Observation" />
       <short value="StrongKidsScore" />
       <alias value="StrongKidsScore" />
+      <constraint>
+        <key value="zib-StrongKidsScore-1" />
+        <severity value="error" />
+        <human value="If one of the component codes is present, all SHALL be present." />
+        <expression value="component.code.coding.where(system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1').where(code='4028003' or code='4028004' or code='4028005' or code='4028008').empty() or component.code.coding.where(system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1').where(code='4028003' or code='4028004' or code='4028005' or code='4028008').code().distinct().count()=4" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-StrongKidsScore" />
+      </constraint>
       <mapping>
         <identity value="zib-strongkidsscore-v1.1-2020EN" />
         <map value="NL-CM:4.28.1" />
@@ -59,7 +66,7 @@
       </slicing>
     </element>
     <element id="Observation.effective[x]:effectiveDateTime">
-      <path value="Observation.effectiveDateTime" />
+      <path value="Observation.effective[x]" />
       <sliceName value="effectiveDateTime" />
       <short value="ScoreDateTime" />
       <definition value="The date and time at which the StrongKids score was determined." />
@@ -84,7 +91,7 @@
       </slicing>
     </element>
     <element id="Observation.value[x]:valueInteger">
-      <path value="Observation.valueInteger" />
+      <path value="Observation.value[x]" />
       <sliceName value="valueInteger" />
       <short value="TotalScore" />
       <definition value="The total score is the sum of all the individual scores. The total score has a range from 0 - 5." />
@@ -134,7 +141,7 @@
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
           <code value="4028003" />
         </coding>
       </patternCodeableConcept>
@@ -166,7 +173,7 @@
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
           <code value="4028004" />
         </coding>
       </patternCodeableConcept>
@@ -198,7 +205,7 @@
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
           <code value="4028005" />
         </coding>
       </patternCodeableConcept>
@@ -230,7 +237,7 @@
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
           <code value="4028008" />
         </coding>
       </patternCodeableConcept>
