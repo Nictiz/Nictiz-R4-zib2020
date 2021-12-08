@@ -155,6 +155,15 @@
         <comment value="Indication" />
       </mapping>
     </element>
+    <element id="DeviceUseStatement.reasonReference:observation">
+      <path value="DeviceUseStatement.reasonReference" />
+      <sliceName value="observation" />
+      <comment value="There are several zibs that reference zib MedicalDevice on a functional level, but for which the direction of the reference in FHIR is reversed. Consult the mappings on this element for an overview of which zib concepts are mapped to this element. &#xD;&#xA;&#xD;&#xA;Note that some zibs have a reference to MedicalDevice that is further constrained (e.g. with additional constraints on ProductType or AnatomicalLocation), such as HearingFunction and VisualFunction. For these zibs separate DeviceUseStatement profiles have been created (based on this profile), and the MedicalDevice concept mapping is present on these resources. Moreover these type of zibs explain the presence of the core Observation target profile on this element, as otherwise it is not possible to restrict this slice to specific profiles in those DeviceUseStatement profiles." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+      </type>
+    </element>
     <element id="DeviceUseStatement.bodySite">
       <path value="DeviceUseStatement.bodySite" />
       <short value="Location / AnatomicalLocation" />

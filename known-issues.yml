@@ -158,6 +158,10 @@ zib-HealthProfessional-PractitionerRole:
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consits of two parts the rootconcept of the ContactInformation is mapped on .telecom.
         
 zib-HearingFunction.HearingAid:
+  ignored issues:
+    DeviceUseStatement.reasonReference:*:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     DeviceUseStatement:
       - datatype: undefined
@@ -171,7 +175,7 @@ zib-HearingFunction.HearingAid:
 
 zib-HearingFunction.HearingAid.Product:
   ignored issues:
-    StructureDefinition.differential.element[0]:
+    Device.type:
       - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias for ProductType is already present in the base profile where this profile is derived from. It should not be added twice to silence this issue.
   zib deviations:
@@ -366,6 +370,10 @@ zib-Vaccination-request:
         reason: ImmunizationRecommendation.recommendation.dateCriterion has cardinality 0..1, making the cardinality of ImmunizationRecommendation.recommendation.dateCriterion.value effectively 0..1 as required by the zib.
 
 zib-VisualFunction.VisualAid:
+  ignored issues:
+    DeviceUseStatement.reasonReference:*:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     DeviceUseStatement:
       - datatype: undefined
@@ -379,7 +387,7 @@ zib-VisualFunction.VisualAid:
 
 zib-VisualFunction.VisualAid.Product:
   ignored issues:
-    StructureDefinition.differential.element[0]:
+    Device.type:
       - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias for ProductType is already present in the base profile where this profile is derived from. It should not be added twice to silence this issue.
   zib deviations:
