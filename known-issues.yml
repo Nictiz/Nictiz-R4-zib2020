@@ -162,9 +162,6 @@ zib-HearingFunction.HearingAid:
     DeviceUseStatement:
       - datatype: undefined
         reason: In FHIR, the reference to the MedicalDevice points in the other direction (so the MedicalDevice refers to HearingFunction). The MedicalDevice reference is however mapped on the root element that represents this zib rather than on the DeviceUseStatement.reasonReference resulting in an unmatched datatype.
-    DeviceUseStatement.reasonReference:observation:
-      - short: BladderFunction / BowelFunction / FeedingTubeSystem / FunctionalOrMentalStatus / Mobility / Stoma
-        reason: Multiple reversed references to MedicalDevice are mapped to this slice, hence the short includes all these references.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
@@ -191,9 +188,6 @@ zib-MedicalDevice:
       - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
-    DeviceUseStatement.reasonReference:observation:
-      - short: BladderFunction / BowelFunction / FeedingTubeSystem / FunctionalOrMentalStatus / Mobility / Stoma
-        reason: Multiple reversed references to MedicalDevice are mapped to this slice, hence the short includes all these references.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
@@ -376,9 +370,6 @@ zib-VisualFunction.VisualAid:
     DeviceUseStatement:
       - datatype: undefined
         reason: In FHIR, the reference to the MedicalDevice points in the other direction (so the MedicalDevice refers to VisualFunction). The MedicalDevice reference is however mapped on the root element that represents this zib rather than on the DeviceUseStatement.reasonReference resulting in an unmatched datatype.
-    DeviceUseStatement.reasonReference:observation:
-      - short: BladderFunction / BowelFunction / FeedingTubeSystem / FunctionalOrMentalStatus / Mobility / Stoma
-        reason: Multiple reversed references to MedicalDevice are mapped to this slice, hence the short includes all these references.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
@@ -421,6 +412,24 @@ issues should occur: false
 nl-core-CareTeam-01:
   ignored issues:
     CareTeam.participant[*]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+
+nl-core-HearingFunction.HearingAid-*:
+  ignored issues:
+    DeviceUseStatement.reasonReference[*]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+
+nl-core-MedicalDevice-*:
+  ignored issues:
+    DeviceUseStatement.reasonReference[*]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+
+nl-core-VisualFunction.VisualAid-*:
+  ignored issues:
+    DeviceUseStatement.reasonReference[*]:
       - message: Slicing cannot be evaluated
         reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
 
