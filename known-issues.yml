@@ -277,7 +277,7 @@ zib-Patient:
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
     Patient.deceased[x]:deceasedDateTime:
       - short: DateOfDeath
-        reason: This element is mapped to two zib concepts, DateOfDeath and DeathIndicator. However, the latter is implicit -- althougt the zib recognizes both concepts, FHIR supports populating just one of them, thus DeathIndicator is assumed to be true when DateOfDeath is populated. For clarity reasons, the metadata of deceasedDateTime is only mapped to DateOfDeath.
+        reason: This element is mapped to two zib concepts, DateOfDeath and DeathIndicator. However, the latter is implicit -- although the zib recognizes both concepts, FHIR supports populating just one of them, thus DeathIndicator is assumed to be true when DateOfDeath is populated. For clarity reasons, the metadata of deceasedDateTime is only mapped to DateOfDeath.
       - datatype: dateTime
         reason: The boolean expected by DeathIndicator is only assumed; see the explanation above.
     Patient.contact:
@@ -420,6 +420,24 @@ issues should occur: false
 nl-core-CareTeam-01:
   ignored issues:
     CareTeam.participant[*]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+
+nl-core-HearingFunction.HearingAid-*:
+  ignored issues:
+    DeviceUseStatement.reasonReference[*]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+
+nl-core-MedicalDevice-*:
+  ignored issues:
+    DeviceUseStatement.reasonReference[*]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+
+nl-core-VisualFunction.VisualAid-*:
+  ignored issues:
+    DeviceUseStatement.reasonReference[*]:
       - message: Slicing cannot be evaluated
         reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
 
