@@ -291,12 +291,6 @@ zib-Procedure-request:
       - cardinality: 0..1
         reason: It seems that the zib may have an error in the cardinality for this concept and the cardinality should acctually be 0..1 rather than 0..*. This issue is being tracked here https://bits.nictiz.nl/browse/ZIB-1488
 
-zib-SNAQ65plusScore:
-  zib deviations:
-    Observation.note.text:
-      - cardinality: 1..1
-        reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
-
 zib-TextResult:
   zib deviations:
     DiagnosticReport.status:
