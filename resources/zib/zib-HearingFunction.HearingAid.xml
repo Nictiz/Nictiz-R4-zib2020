@@ -15,7 +15,7 @@
     </telecom>
   </contact>
   <description value="Hearing is the ability to observe sound, with the purpose of communicating with others, localizing the source of the sound and recognizing certain sounds. This pertains to observing the sound waves, and not processing the sounds in the brain.&#xD;&#xA;A hearing disorder can lead to things including communication problems." />
-  <purpose value="This DeviceUseStatement resource represents the adaptations of zib [zib HearingFunction-v3.2 ('Zorginformatiebouwsteen', i.e. Health and Care Information Model)](https://zibs.nl/wiki/HearingFunction-v3.2(2020EN)) on [zib MedicalDevice v3.3.1](https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN))." />
+  <purpose value="This DeviceUseStatement resource represents the adaptations for [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) HearingFunction v3.2 (2020)](https://zibs.nl/wiki/HearingFunction-v3.2(2020EN)) of [zib MedicalDevice v3.3.1 (2020)](https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -31,14 +31,8 @@
   <differential>
     <element id="DeviceUseStatement">
       <path value="DeviceUseStatement" />
-      <short value="MedicalDevice / HearingAid" />
       <definition value="The medical aid used to help the patient hear." />
-      <alias value="HorenHulpmiddel" />
-      <mapping>
-        <identity value="zib-hearingfunction-v3.2-2020EN" />
-        <map value="NL-CM:4.17.4" />
-        <comment value="HearingAid" />
-      </mapping>
+      <comment value="This is a specialization of the [zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice) profile to represent HearingAid devices within the context of zib HearingFunction." />
     </element>
     <element id="DeviceUseStatement.device">
       <path value="DeviceUseStatement.device" />
@@ -51,10 +45,17 @@
     <element id="DeviceUseStatement.reasonReference:observation">
       <path value="DeviceUseStatement.reasonReference" />
       <sliceName value="observation" />
+      <short value="HearingFunction" />
+      <alias value="FunctieHoren" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HearingFunction" />
       </type>
+      <mapping>
+        <identity value="zib-hearingfunction-v3.2-2020EN" />
+        <map value="NL-CM:4.17.4" />
+        <comment value="Reversed reference for zib HearingFunction.HearingAid" />
+      </mapping>
     </element>
     <element id="DeviceUseStatement.bodySite">
       <path value="DeviceUseStatement.bodySite" />
