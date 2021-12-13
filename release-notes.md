@@ -33,6 +33,9 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-AnatomicalLocation
 * New partial zib. The anatomical location in FHIR is usually mapped on `.bodySite` (CodeableConcept with example binding). This zib has therefore been mapped onto a data type profile that can be used for `.bodySite`.
 
+## zib-CareAgreement
+* CareAgreement is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
+
 ## zib-CareTeam
 * CareTeam is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
 
