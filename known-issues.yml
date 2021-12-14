@@ -70,6 +70,12 @@ zib-BodyTemperature:
     Observation.code.coding:BodyTempCode:
       - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
         reason: The slice name "BodyTempCode" is chosen to align with the Vital Signs profile for BodyTemperature.
+        
+zib-CareAgreement: 
+  zib deviations:
+    CarePlan.addresses:
+      - short: Problem
+        reason: The zib concept name "problem" is included as a lowercase letter in the zib and must be capitalized.
 
 zib-CareTeam:
   ignored issues:
