@@ -23,6 +23,11 @@
     <uri value="https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN)" />
     <name value="zib MedicalDevice-v3.3.1(2020EN)" />
   </mapping>
+  <mapping>
+    <identity value="zib-mobility-v3.3-2020EN" />
+    <uri value="https://zibs.nl/wiki/Mobility-v3.3(2020EN)" />
+    <name value="zib Mobility-v3.3(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="true" />
   <type value="DeviceUseStatement" />
@@ -158,11 +163,19 @@
     <element id="DeviceUseStatement.reasonReference:observation">
       <path value="DeviceUseStatement.reasonReference" />
       <sliceName value="observation" />
+      <short value="Mobility" />
       <comment value="There are several zibs that reference zib MedicalDevice on a functional level, but for which the direction of the reference in FHIR is reversed. Consult the mappings on this element for an overview of which zib concepts are mapped to this element. &#xD;&#xA;&#xD;&#xA;Note that some zibs have a reference to MedicalDevice that is further constrained (e.g. with additional constraints on ProductType or AnatomicalLocation), such as HearingFunction and VisualFunction. For these zibs separate DeviceUseStatement profiles have been created (based on this profile), and the MedicalDevice concept mapping is present on these resources. Moreover these type of zibs explain the presence of the core Observation target profile on this element, as otherwise it is not possible to restrict this slice to specific profiles in those DeviceUseStatement profiles." />
+      <alias value="Mobiliteit" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility" />
       </type>
+      <mapping>
+        <identity value="zib-mobility-v3.3-2020EN" />
+        <map value="NL-CM:4.3.4" />
+        <comment value="Reversed reference for zib Mobility.MedicalDevice" />
+      </mapping>
     </element>
     <element id="DeviceUseStatement.bodySite">
       <path value="DeviceUseStatement.bodySite" />
