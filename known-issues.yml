@@ -165,10 +165,13 @@ zib-HearingFunction.HearingAid:
   zib deviations:
     DeviceUseStatement:
       - datatype: undefined
-        reason: In FHIR, the reference to the MedicalDevice points in the other direction (so the MedicalDevice refers to HearingFunction). The MedicalDevice reference is however mapped on the root element that represents this zib rather than on the DeviceUseStatement.reasonReference resulting in an unmatched datatype. 
+        reason: In FHIR, the reference to the MedicalDevice points in the other direction (so the MedicalDevice refers to HearingFunction). The MedicalDevice reference is however mapped on the root element that represents this zib rather than on DeviceUseStatement.reasonReference resulting in an unmatched datatype.
+    DeviceUseStatement.reasonReference:observation:
+      - short: HearingFunction
+        reason: Multiple reversed references to MedicalDevice are mapped to this slice in the base profile, but here only a reference to HearingFunction is applicable.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept
-        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.  
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
     DeviceUseStatement.timing[x]:timingPeriod.end:
       - short: EndDate
         reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
@@ -194,7 +197,7 @@ zib-MedicalDevice:
   zib deviations:
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept
-        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.  
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
     DeviceUseStatement.timing[x]:timingPeriod.end:
       - short: EndDate
         reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
@@ -377,10 +380,13 @@ zib-VisualFunction.VisualAid:
   zib deviations:
     DeviceUseStatement:
       - datatype: undefined
-        reason: In FHIR, the reference to the MedicalDevice points in the other direction (so the MedicalDevice refers to VisualFunction). The MedicalDevice reference is however mapped on the root element that represents this zib rather than on the DeviceUseStatement.reasonReference resulting in an unmatched datatype. 
+        reason: In FHIR, the reference to the MedicalDevice points in the other direction (so the MedicalDevice refers to VisualFunction). The MedicalDevice reference is however mapped on the root element that represents this zib rather than on DeviceUseStatement.reasonReference resulting in an unmatched datatype.
+    DeviceUseStatement.reasonReference:observation:
+      - short: VisualFunction
+        reason: Multiple reversed references to MedicalDevice are mapped to this slice in the base profile, but here only a reference to VisualFunction is applicable.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept
-        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.  
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
     DeviceUseStatement.timing[x]:timingPeriod.end:
       - short: EndDate
         reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
