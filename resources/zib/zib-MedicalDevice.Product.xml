@@ -33,7 +33,7 @@
       <path value="Device" />
       <short value="Product" />
       <definition value="The medical device (internally or externally)." />
-      <comment value="Frequently used coding systems to identify devices are Health Industry Bar Code (HIBC) or GS1's Global Trade Item Number (GTIN). If one of these systems is used, the device identification happens on the basis of a UDI. Next to these two, other systems to identify devices are allowed by the zib, as long as such a system allows for unique identification of the device.&#xD;&#xA;&#xD;&#xA;In all cases the full identifier will be populated in `.identifier`. If the identifier is a UDI in particular, it should also be populated in `udiCarrier.carrierHRF`, and the element `udiCarrier.issuer` is used to indicate which 'coding system' is used. Moreover the identifier may be broken down into several parts in that case, namely `.udiCarrier.deviceIdentifier`, `.manufactureDate`, `.expirationDate`, `.lotNumber` and `.serialNumber`. For GTIN, guidance is given at the respective elements in this profile and is based on https://www.gs1.org/industries/healthcare/udi. For HIBC we refer to the Supplier Labeling Standard that can be found at https://www.hibcc.org/udi-labeling-standards/barcode-standards/, as conversion into the several parts is less straightforward." />
+      <comment value="Frequently used coding systems to identify devices are Health Industry Bar Code (HIBC) or GS1's Global Trade Item Number (GTIN). If one of these systems is used, the device identification happens on the basis of a UDI. Next to these two, other systems to identify devices are allowed by the zib, as long as such a system allows for unique identification of the device.&#xD;&#xA;&#xD;&#xA;In all cases the full identifier will be populated in `.identifier`. If the identifier is a UDI in particular, it should also be populated in `udiCarrier.carrierHRF`, and the element `udiCarrier.issuer` is used to indicate which 'coding system' is used. Moreover the identifier may be broken down into several parts in that case, namely `.udiCarrier.deviceIdentifier`, `.manufactureDate`, `.expirationDate`, `.lotNumber` and `.serialNumber`. For GTIN, guidance is given at the respective elements in this profile and is based on &lt;https://www.gs1.org/industries/healthcare/udi&gt;. For HIBC please consult the the Supplier Labeling Standard that can be found at &lt;https://www.hibcc.org/udi-labeling-standards/barcode-standards/&gt;, as conversion into the several parts is less straightforward." />
       <alias value="Product" />
       <mapping>
         <identity value="zib-medicaldevice-v3.3.1-2020EN" />
@@ -45,8 +45,8 @@
       <path value="Device.identifier" />
       <slicing>
         <discriminator>
-          <type value="value" />
-          <path value="system" />
+          <type value="pattern" />
+          <path value="$this" />
         </discriminator>
         <rules value="open" />
       </slicing>
@@ -59,15 +59,14 @@
       <definition value="Unique identification of the product, such as the serial number. The `identifier` may only be used if it also identifies the resource." />
       <alias value="ProductID" />
       <max value="1" />
+      <patternIdentifier>
+        <system value="https://www.gs1.org/gtin" />
+      </patternIdentifier>
       <mapping>
         <identity value="zib-medicaldevice-v3.3.1-2020EN" />
         <map value="NL-CM:10.1.4" />
         <comment value="ProductID" />
       </mapping>
-    </element>
-    <element id="Device.identifier:gs1ProductID.system">
-      <path value="Device.identifier.system" />
-      <fixedUri value="https://www.gs1.org/gtin" />
     </element>
     <element id="Device.identifier:hibcProductID">
       <path value="Device.identifier" />
@@ -76,15 +75,14 @@
       <definition value="Unique identification of the product, such as the serial number. The `identifier` may only be used if it also identifies the resource." />
       <alias value="ProductID" />
       <max value="1" />
+      <patternIdentifier>
+        <system value="urn:oid:2.16.840.1.113883.6.40" />
+      </patternIdentifier>
       <mapping>
         <identity value="zib-medicaldevice-v3.3.1-2020EN" />
         <map value="NL-CM:10.1.4" />
         <comment value="ProductID" />
       </mapping>
-    </element>
-    <element id="Device.identifier:hibcProductID.system">
-      <path value="Device.identifier.system" />
-      <fixedUri value="urn:oid:2.16.840.1.113883.6.40" />
     </element>
     <element id="Device.udiCarrier">
       <path value="Device.udiCarrier" />
