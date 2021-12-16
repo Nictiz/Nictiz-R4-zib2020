@@ -118,7 +118,13 @@ zib-ContactPerson:
     RelatedPerson.telecom:emailAddresses:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
-        
+
+zib-FunctionalOrMentalStatus:
+  zib deviations:
+    Observation.code:
+      - cardinality: 1..1
+        reason: The FHIR profiles are expected to implement zib cardinalities as conceptual cardinalities, but FHIR requires the Observation.code element to be present. This aligns with the intention of the zib, as the StatusName concept is required for zib FunctionalOrMentalStatus to make sense.
+
 zib-HealthcareProvider:
   zib deviations:
     Location.address:
