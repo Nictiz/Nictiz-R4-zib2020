@@ -26,6 +26,7 @@
   <differential>
     <element id="Observation">
       <path value="Observation" />
+      <comment value="Please note that on a functional level, zib FunctionalOrMentalStatus references zib MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept MedicalDevice (NL-CM:4.26.5) is mapped on `DeviceUseStatement.reasonReference` in profile [nl-core-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice) instead of in this profile." />
       <alias value="nl-core-FunctionalOrMentalStatus" />
     </element>
     <element id="Observation.subject">
