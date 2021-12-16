@@ -16,7 +16,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="A person who receives medical, psychological, paramedical or nursing care. In some care settings, the term client or participant is used instead of the term patient.&#xD;&#xA;Nationality is used as an indication of the country of citizenship. &#xD;&#xA;Marital status is a person’s formal position as defined by the Dutch civil code. There is a distinction between marriage and civil union." />
+  <description value="A person who receives medical, psychological, paramedical or nursing care. In some care settings, the term client or participant is used instead of the term patient.&#xD;&#xA;Nationality is used as an indication of the country of citizenship. &#xD;&#xA;Marital status is a person’s formal position as defined by the Dutch civil code. There is a distinction between marriage and civil union.&#xD;&#xA;Linguistic proficiency is the ability to express oneself in a certain language and understand statements made in that language. This includes both oral and written communication." />
   <purpose value="This Patient resource represents the Dutch zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model)[Patient v3.2 (2020)](https://zibs.nl/wiki/Patient-v3.2(2020EN)). It also includes zib [Nationality v3.0 (2020)](https://zibs.nl/wiki/Nationality-v3.0(2020EN)), zib [MaritalStatus v3.1 (2020)](https://zibs.nl/wiki/MaritalStatus-v3.1(2020EN)) and zib [LanguageProficiency-v3.2(2020EN)](https://zibs.nl/wiki/LanguageProficiency-v3.2(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
@@ -82,6 +82,7 @@
       <sliceName value="nationality" />
       <comment value="Due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time), the cardinality of the extension is left at 0..* instead of the zib cardinality of 0..1." />
       <min value="0" />
+      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/patient-nationality" />
@@ -153,13 +154,13 @@
         </discriminator>
         <rules value="open" />
       </slicing>
-         <short value="NameInformation"/>
-         <definition value="Patient's full name."/>
-         <alias value="Naamgegevens"/>
+      <short value="NameInformation" />
+      <definition value="Patient's full name." />
+      <alias value="Naamgegevens" />
       <mapping>
         <identity value="zib-patient-v3.2-2020EN" />
         <map value="NL-CM:0.1.6" />
-            <comment value="NameInformation"/>
+        <comment value="NameInformation" />
       </mapping>
     </element>
     <element id="Patient.name:nameInformation">
@@ -336,9 +337,7 @@
     </element>
     <element id="Patient.address">
       <path value="Patient.address" />
-         <short value="AddressInformation"/>
       <definition value="Patient's address information." />
-         <alias value="Adresgegevens"/>
       <type>
         <code value="Address" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation" />
@@ -484,10 +483,8 @@
     </element>
     <element id="Patient.contact.name">
       <path value="Patient.contact.name" />
-         <short value="NameInformation"/>
       <definition value="Full name of the contact." />
       <comment value="This element can and should not completely capture the NameInformation concept from zib ContactPerson; it should just be used for the information that is needed for contacting the person in relation to care of the patient. The full name information should instead be captured using an instance of [zib-ContactPerson](http://nictiz.nl/fhir/StructureDefintion/zib-ContactPerson), which can then be referenced from this resource. See the comment on `Patient.contact` for more information." />
-         <alias value="Naamgegevens"/>
       <type>
         <code value="HumanName" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
@@ -540,10 +537,8 @@
     </element>
     <element id="Patient.contact.address">
       <path value="Patient.contact.address" />
-         <short value="AddressInformation"/>
       <definition value="Contact’s address information." />
       <comment value="This element can and should not completely capture the AddressInformation concept from zib ContactPerson; it should just be used for the information that is needed for contacting the person in relation to care of the patient. The full address information should instead be captured using an instance of [zib-ContactPerson](http://nictiz.nl/fhir/StructureDefintion/zib-ContactPerson), which can then be referenced from this resource. See the comment on `Patient.contact` for more information." />
-         <alias value="Adresgegevens"/>
       <type>
         <code value="Address" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation" />
