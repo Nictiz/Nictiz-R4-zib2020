@@ -42,10 +42,16 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HearingFunction.HearingAid.Product" />
       </type>
     </element>
-    <element id="DeviceUseStatement.reasonReference:observation">
+    <element id="DeviceUseStatement.reasonReference:zibMedicalDeviceReference">
       <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="observation" />
+      <sliceName value="zibMedicalDeviceReference" />
+      <max value="0" />
+    </element>
+    <element id="DeviceUseStatement.reasonReference:hearingFunction">
+      <path value="DeviceUseStatement.reasonReference" />
+      <sliceName value="hearingFunction" />
       <short value="HearingFunction" />
+      <comment value="Please note that on a functional level, zib HearingFunction references zib MedicalDevice, but in FHIR this direction is reversed." />
       <alias value="FunctieHoren" />
       <type>
         <code value="Reference" />

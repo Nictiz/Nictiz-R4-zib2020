@@ -42,9 +42,14 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-VisualFunction.VisualAid.Product" />
       </type>
     </element>
-    <element id="DeviceUseStatement.reasonReference:observation">
+    <element id="DeviceUseStatement.reasonReference:zibMedicalDeviceReference">
       <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="observation" />
+      <sliceName value="zibMedicalDeviceReference" />
+      <max value="0" />
+    </element>
+    <element id="DeviceUseStatement.reasonReference:visualFunction">
+      <path value="DeviceUseStatement.reasonReference" />
+      <sliceName value="visualFunction" />
       <short value="VisualFunction" />
       <comment value="Please note that on a functional level, zib VisualFunction references zib MedicalDevice, but in FHIR this direction is reversed." />
       <alias value="FunctieZien" />

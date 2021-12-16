@@ -172,9 +172,6 @@ zib-HearingFunction.HearingAid:
     DeviceUseStatement:
       - datatype: undefined
         reason: In FHIR, the reference to the MedicalDevice points in the other direction (so the MedicalDevice refers to HearingFunction). The MedicalDevice reference is however mapped on the root element that represents this zib rather than on DeviceUseStatement.reasonReference resulting in an unmatched datatype.
-    DeviceUseStatement.reasonReference:observation:
-      - short: HearingFunction
-        reason: Multiple reversed references to MedicalDevice are mapped to this slice in the base profile, but here only a reference to HearingFunction is applicable.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
@@ -204,6 +201,9 @@ zib-MedicalDevice:
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+    DeviceUseStatement.reasonReference:zibMedicalDeviceReference:
+      - short: zib MedicalDevice reference
+        reason: This is a special slice that represent all situations where zib MedicalDevice is referenced from another zib. Because this reference is reversed in FHIR, this profile needs to contain the mappings for the references in _all_ these zibs. A common slice is defined with an indicative name rather than the name of all the targets. 
     DeviceUseStatement.timing[x]:timingPeriod.end:
       - short: EndDate
         reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
@@ -387,9 +387,6 @@ zib-VisualFunction.VisualAid:
     DeviceUseStatement:
       - datatype: undefined
         reason: In FHIR, the reference to the MedicalDevice points in the other direction (so the MedicalDevice refers to VisualFunction). The MedicalDevice reference is however mapped on the root element that represents this zib rather than on DeviceUseStatement.reasonReference resulting in an unmatched datatype.
-    DeviceUseStatement.reasonReference:observation:
-      - short: VisualFunction
-        reason: Multiple reversed references to MedicalDevice are mapped to this slice in the base profile, but here only a reference to VisualFunction is applicable.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
@@ -459,6 +456,12 @@ nl-core-VisualFunction.VisualAid-*:
       - message: Slicing cannot be evaluated
         reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
 
+zib-*Function.*Aid:
+  zib deviations:
+    DeviceUseStatement.reasonReference:zibMedicalDeviceReference:
+      - short: zib MedicalDevice reference
+        reason: The profiles zib-HearingFunction.HearingAid and zib-VisualFunction.VisualAid are derived from zib-MedicalDevice, where this slice is defined, but this slice is disabled in these derived profiles. However, the mapping still ends up in the snapshot, resulting in a warning here.
+        
 zib-Alert:
   ignored issues:
     Flag:
