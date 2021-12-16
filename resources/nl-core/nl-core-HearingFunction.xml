@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="nl-core-Mobility" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility" />
-  <name value="NlcoreMobility" />
-  <title value="nl core Mobility" />
+  <id value="nl-core-HearingFunction" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HearingFunction" />
+  <name value="NlcoreHearingFunction" />
+  <title value="nl core HearingFunction" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -14,19 +14,20 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="Mobility describes the abilities and any limitations in all aspects of mobility, such as changing position, walking and moving forward, in some cases with the help of an aid." />
-  <purpose value="A derived profile from [zib-Mobility](http://nictiz.nl/fhir/StructureDefinition/zib-Mobility) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <description value="Hearing is the ability to observe sound, with the purpose of communicating with others, localizing the source of the sound and recognizing certain sounds. This pertains to observing the sound waves, and not processing the sounds in the brain.&#xD;&#xA;A hearing disorder can lead to things including communication problems." />
+  <purpose value="A derived profile from [zib-HearingFunction](http://nictiz.nl/fhir/StructureDefinition/zib-HearingFunction) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <kind value="resource" />
   <abstract value="false" />
   <type value="Observation" />
-  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-HearingFunction" />
   <derivation value="constraint" />
   <differential>
     <element id="Observation">
       <path value="Observation" />
-      <alias value="nl-core-Mobility" />
+      <comment value="Please note that on a functional level, zib HearingFunction references zib MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept HearingAid (NL-CM:4.17.4) is mapped on `DeviceUseStatement.reasonReference:observation` in profile [nl-core-HearingFunction.HearingAid](http://nictiz.nl/fhir/StructureDefinition/nl-core-HearingFunction.HearingAid) instead of in this profile." />
+      <alias value="nl-core-HearingFunction" />
     </element>
     <element id="Observation.subject">
       <path value="Observation.subject" />

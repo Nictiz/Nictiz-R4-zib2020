@@ -153,6 +153,7 @@ zib-AdministrationAgreement:
     MedicationDispense.extension:periodOfUse-Duration.value[x]:        
       - datatype: Duration
         reason: The zib TimerInterval is not represented as a resource but is rather mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Duration as would have been the case within the zib TimeInterval.
+
 zib-Alert:
   zib deviations:
     Flag.code:
@@ -161,9 +162,6 @@ zib-Alert:
 
 zib-AllergyIntolerance:
   zib deviations:
-    AllergyIntolerance.note.text:
-      - cardinality: 1..1
-        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting a cardinality of 0..1 for this element.
     AllergyIntolerance.reaction.manifestation:
       - cardinality: 1..*
         reason: The FHIR profiles are expected to implement zib cardinalities as conceptual cardinalities, but FHIR requires the manifestation element to be present. This aligns with the intention of the zib, as the Symptom concept is required for the container Reaction to make sense.
@@ -250,7 +248,7 @@ zib-FreedomRestrictingIntervention:
         Procedure.code:
             - cardinality: 1..1
               reason: Although the concept TypeOfIntervention should be interpreted as conceptual and thus optional, Procedure.code is required by FHIR -- it doesn't make much sense to communicate a Procedure without communicating _which_ procedure, and the same applies to a FreedomRestrictingIntervention (procedure).
-
+        
 zib-HealthcareProvider:
   zib deviations:
     Location.address:
@@ -294,6 +292,35 @@ zib-HealthProfessional-PractitionerRole:
     PractitionerRole.telecom*:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consits of two parts the rootconcept of the ContactInformation is mapped on .telecom.
+        
+zib-HearingFunction.HearingAid:
+  ignored issues:
+    DeviceUseStatement.reasonReference:*:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+  zib deviations:
+    DeviceUseStatement:
+      - datatype: undefined
+        reason: In FHIR, the reference to the MedicalDevice points in the other direction (so the MedicalDevice refers to HearingFunction). The MedicalDevice reference is however mapped on the root element that represents this zib rather than on DeviceUseStatement.reasonReference resulting in an unmatched datatype.
+    DeviceUseStatement.bodySite:
+      - datatype: CodeableConcept
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+    DeviceUseStatement.timing[x]:timingPeriod.end:
+      - short: EndDate
+        reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
+
+zib-HearingFunction.HearingAid.Product:
+  ignored issues:
+    Device.type:
+      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias for ProductType is already present in the base profile where this profile is derived from. It should not be added twice to silence this issue.
+  zib deviations:
+    Device.identifier:*ProductID:
+      - datatype: Identifier
+        reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.udiCarrier:*UdiCarrier.carrierHRF:
+      - datatype: string
+        reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
 
 zib-InstructionsForUse.DosageInstructions:
   zib deviations:
@@ -366,6 +393,31 @@ zib-LivingSituation:
     Observation.note.text:
       - cardinality: 1..1
         reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting in a cardinality of 0..1 for this element.
+
+zib-MedicalDevice:
+  ignored issues:
+    DeviceUseStatement.reasonReference:*:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+  zib deviations:
+    DeviceUseStatement.bodySite:
+      - datatype: CodeableConcept
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+    DeviceUseStatement.reasonReference:zibMedicalDeviceReference:
+      - short: zib MedicalDevice reference
+        reason: This is a special slice that represent all situations where zib MedicalDevice is referenced from another zib. Because this reference is reversed in FHIR, this profile needs to contain the mappings for the references in _all_ these zibs. A common slice is defined with an indicative name rather than the name of all the targets. 
+    DeviceUseStatement.timing[x]:timingPeriod.end:
+      - short: EndDate
+        reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
+
+zib-MedicalDevice.Product:
+  zib deviations:
+    Device.identifier:*ProductID:
+      - datatype: Identifier
+        reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.udiCarrier:*UdiCarrier.carrierHRF:
+      - datatype: string
+        reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
 
 zib-MedicationContraIndication:
   zib deviations:
@@ -521,7 +573,7 @@ zib-Patient:
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
     Patient.deceased[x]:deceasedDateTime:
       - short: DateOfDeath
-        reason: This element is mapped to two zib concepts, DateOfDeath and DeathIndicator. However, the latter is implicit -- althougt the zib recognizes both concepts, FHIR supports populating just one of them, thus DeathIndicator is assumed to be true when DateOfDeath is populated. For clarity reasons, the metadata of deceasedDateTime is only mapped to DateOfDeath.
+        reason: This element is mapped to two zib concepts, DateOfDeath and DeathIndicator. However, the latter is implicit -- although the zib recognizes both concepts, FHIR supports populating just one of them, thus DeathIndicator is assumed to be true when DateOfDeath is populated. For clarity reasons, the metadata of deceasedDateTime is only mapped to DateOfDeath.
       - datatype: dateTime
         reason: The boolean expected by DeathIndicator is only assumed; see the explanation above.
     Patient.contact:
@@ -608,7 +660,7 @@ zib-Procedure-event:
   ignored issues:
     Procedure.report:textResult:
       - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The restiction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
         
   zib deviations:
     Procedure.bodySite:
@@ -696,6 +748,35 @@ zib-VisualAcuity:
       - datatype: CodeableConcept
         reason: The zib implies a reference to AnatomicalLocation::Laterality, but actually references AnatomicalLocation. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442
 
+zib-VisualFunction.VisualAid:
+  ignored issues:
+    DeviceUseStatement.reasonReference:*:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+  zib deviations:
+    DeviceUseStatement:
+      - datatype: undefined
+        reason: In FHIR, the reference to the MedicalDevice points in the other direction (so the MedicalDevice refers to VisualFunction). The MedicalDevice reference is however mapped on the root element that represents this zib rather than on DeviceUseStatement.reasonReference resulting in an unmatched datatype.
+    DeviceUseStatement.bodySite:
+      - datatype: CodeableConcept
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+    DeviceUseStatement.timing[x]:timingPeriod.end:
+      - short: EndDate
+        reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
+
+zib-VisualFunction.VisualAid.Product:
+  ignored issues:
+    Device.type:
+      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias for ProductType is already present in the base profile where this profile is derived from. It should not be added twice to silence this issue.
+  zib deviations:
+    Device.identifier:*ProductID:
+      - datatype: Identifier
+        reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.udiCarrier:*UdiCarrier.carrierHRF:
+      - datatype: string
+        reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
+
 unmapped zib concepts:
   - NL-CM:17.2.10: HealthcareProvider.LocationNumber
     reason: This zib concept is problematic to map cleanly to FHIR and it has been deemed too uncommon in practice to warrant an extension.
@@ -720,6 +801,36 @@ nl-core-CareTeam-01:
     CareTeam.participant[*]:
       - message: Slicing cannot be evaluated
         reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+
+nl-core-HearingFunction.HearingAid-*:
+  ignored issues:
+    DeviceUseStatement.reasonReference[*]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+
+nl-core-MedicalDevice-*:
+  ignored issues:
+    DeviceUseStatement.reasonReference[*]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+
+nl-core-Mobility-*:
+  ignored issues:
+    DeviceUseStatement.reasonReference[*]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+
+nl-core-VisualFunction.VisualAid-*:
+  ignored issues:
+    DeviceUseStatement.reasonReference[*]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+
+zib-*Function.*Aid:
+  zib deviations:
+    DeviceUseStatement.reasonReference:zibMedicalDeviceReference:
+      - short: zib MedicalDevice reference
+        reason: The profiles zib-HearingFunction.HearingAid and zib-VisualFunction.VisualAid are derived from zib-MedicalDevice, where this slice is defined, but this slice is disabled in these derived profiles. However, the mapping still ends up in the snapshot, resulting in a warning here.
 
 zib-Alert:
   ignored issues:
