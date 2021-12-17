@@ -26,14 +26,6 @@ ext-DispenseRequest.DispenseLocation:
       - datatype:  Reference
         reason: Although the mapping is placed on a Reference and not a String, the actual information will be placed inside a String datatype in Location.name. A reference to a Location resource has been chosen over an extension with a String to allow for more detailed information to be captured in use cases not accounted for by the zib while also provide a correct zib mapping. 
 
-ext-FunctionalOrMentalStatus.MedicalDevice:
-  zib deviations:
-   Extension.value[x]:
-   - short: MedicalDevice
-     reason: We only use the part before the double colons according to the profile guidelines.
-   - cardinality: 0..1
-     reason: The extension allows the value to occure only once (0..1), but the use of the extension itself (in a resource)is allowed to be repeated (0..*), effectively resulting a cardinality of 0..* for this element.
-
 ext-LanguageProficiency.CommunicationDetails:
   zib deviations:
     Extension.value[x]:
@@ -219,7 +211,7 @@ zib-ContactPerson:
     RelatedPerson.telecom:emailAddresses:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
-
+        
 zib-Encounter:
   zib deviations:
     Encounter.class:
@@ -248,7 +240,13 @@ zib-FreedomRestrictingIntervention:
         Procedure.code:
             - cardinality: 1..1
               reason: Although the concept TypeOfIntervention should be interpreted as conceptual and thus optional, Procedure.code is required by FHIR -- it doesn't make much sense to communicate a Procedure without communicating _which_ procedure, and the same applies to a FreedomRestrictingIntervention (procedure).
-        
+
+zib-FunctionalOrMentalStatus:
+  zib deviations:
+    Observation.code:
+      - cardinality: 1..1
+        reason: The FHIR profiles are expected to implement zib cardinalities as conceptual cardinalities, but FHIR requires the Observation.code element to be present. This aligns with the intention of the zib, as the StatusName concept is required for zib FunctionalOrMentalStatus to make sense. 
+
 zib-HealthcareProvider:
   zib deviations:
     Location.address:
@@ -292,7 +290,7 @@ zib-HealthProfessional-PractitionerRole:
     PractitionerRole.telecom*:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consits of two parts the rootconcept of the ContactInformation is mapped on .telecom.
-        
+
 zib-HearingFunction.HearingAid:
   ignored issues:
     DeviceUseStatement.reasonReference:*:
@@ -304,7 +302,7 @@ zib-HearingFunction.HearingAid:
         reason: In FHIR, the reference to the MedicalDevice points in the other direction (so the MedicalDevice refers to HearingFunction). The MedicalDevice reference is however mapped on the root element that represents this zib rather than on DeviceUseStatement.reasonReference resulting in an unmatched datatype.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept
-        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.  
     DeviceUseStatement.timing[x]:timingPeriod.end:
       - short: EndDate
         reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
@@ -402,7 +400,7 @@ zib-MedicalDevice:
   zib deviations:
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept
-        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.  
     DeviceUseStatement.reasonReference:zibMedicalDeviceReference:
       - short: zib MedicalDevice reference
         reason: This is a special slice that represent all situations where zib MedicalDevice is referenced from another zib. Because this reference is reversed in FHIR, this profile needs to contain the mappings for the references in _all_ these zibs. A common slice is defined with an indicative name rather than the name of all the targets. 
@@ -503,7 +501,7 @@ zib-MultidisciplinaryTeamMeeting-CarePlan:
     CarePlan.activity.reference:
       - cardinality: 0..1
         reason: CarePlan.activity has cardinality 0..*, making the cardinality of CarePlan.activity.reference effectively 0..* as required by the zib.
-
+        
 zib-NameInformation:
   zib deviations:
     HumanName.prefix:
@@ -759,7 +757,7 @@ zib-VisualFunction.VisualAid:
         reason: In FHIR, the reference to the MedicalDevice points in the other direction (so the MedicalDevice refers to VisualFunction). The MedicalDevice reference is however mapped on the root element that represents this zib rather than on DeviceUseStatement.reasonReference resulting in an unmatched datatype.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept
-        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.  
     DeviceUseStatement.timing[x]:timingPeriod.end:
       - short: EndDate
         reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.

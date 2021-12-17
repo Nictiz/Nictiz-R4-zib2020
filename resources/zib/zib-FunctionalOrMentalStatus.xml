@@ -32,7 +32,7 @@
     <element id="Observation">
       <path value="Observation" />
       <short value="FunctionalOrMentalStatus" />
-      <comment value="Please note that on a functional level, FunctionalOrMentalStatus references MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept MedicalDevice (NL-CM:4.26.5) is mapped on `DeviceUseStatement.reasonReference` in profile zib-MedicalDevice instead of in this profile." />
+      <comment value="Please note that on a functional level, zib FunctionalOrMentalStatus references zib MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept MedicalDevice (NL-CM:4.26.5) is mapped on `DeviceUseStatement.reasonReference` in profile [zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice) instead of in this profile." />
       <alias value="FunctioneleOfMentaleStatus" />
       <mapping>
         <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
@@ -53,8 +53,8 @@
       <constraint>
         <key value="zib-FunctionalOrMentalStatus-1" />
         <severity value="warning" />
-        <human value="Either a category for funtional status finding or mental status finding is present." />
-        <expression value="where(coding.system = 'http://snomed.info/sct' and coding.code = '118228005').exists() or where(coding.system = 'http://snomed.info/sct' and coding.code = '384821006').exists()" />
+        <human value="Either a category for functional status finding or mental status finding is present." />
+        <expression value="where(coding.system = 'http://snomed.info/sct' and coding.code = '118228005').exists() xor where(coding.system = 'http://snomed.info/sct' and coding.code = '384821006').exists()" />
         <source value="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus" />
       </constraint>
     </element>
@@ -68,6 +68,7 @@
           <code value="118228005" />
         </coding>
       </patternCodeableConcept>
+      <condition value="zib-FunctionalOrMentalStatus-1" />
     </element>
     <element id="Observation.category:mentalStatusFinding">
       <path value="Observation.category" />
@@ -79,6 +80,7 @@
           <code value="384821006" />
         </coding>
       </patternCodeableConcept>
+      <condition value="zib-FunctionalOrMentalStatus-1" />
     </element>
     <element id="Observation.code">
       <path value="Observation.code" />
