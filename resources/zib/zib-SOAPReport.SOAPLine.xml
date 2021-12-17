@@ -35,7 +35,7 @@
       <comment value="Zib SOAPReport is implemented using two profiles: this profile implements the SOAPLine concept of the zib, while &amp;lt;http://nictiz.nl/fhir/StructureDefinition/zib-SOAPReport&amp;gt; represents the SOAPReport concept of the zib." />
       <alias value="SOEPRegel" />
       <constraint>
-        <key value="zib-SOAPReport-Observation" />
+        <key value="zib-SOAPReport-1" />
         <severity value="error" />
         <human value="In a SOAP report an ICPC code may be assigned, but only to the S and E line." />
         <expression value="extension('http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode').exists() implies (code.coding.where(code = '255362007' and system = 'http://snomed.info/sct').exists() or code.coding.where(code = '129265001' and system = 'http://snomed.info/sct').exists())" />
@@ -66,12 +66,18 @@
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode" />
       </type>
+      <condition value="zib-SOAPReport-1" />
+    </element>
+    <element id="Observation.extension:soapLineCode.value[x]">
+      <path value="Observation.extension.value[x]" />
+      <condition value="zib-SOAPReport-1" />
     </element>
     <element id="Observation.code">
       <path value="Observation.code" />
       <short value="SOAPLineHeader" />
       <definition value="The name of the SOAP line as an coded description. In a SOAP report this can be one of the following: subjective, objective, assessment or plan." />
       <alias value="SOEPRegelNaam" />
+      <condition value="zib-SOAPReport-1" />
       <binding>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.6.2--20200901000000" />
@@ -81,6 +87,10 @@
         <map value="NL-CM:13.6.6" />
         <comment value="SOAPLineHeader" />
       </mapping>
+    </element>
+    <element id="Observation.code.coding">
+      <path value="Observation.code.coding" />
+      <condition value="zib-SOAPReport-1" />
     </element>
     <element id="Observation.value[x]">
       <path value="Observation.value[x]" />
