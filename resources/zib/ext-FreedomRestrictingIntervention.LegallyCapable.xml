@@ -40,6 +40,7 @@
         <severity value="warning" />
         <human value="If the patient is not legally capable, an explanation must be provided" />
         <expression value="extension.where(url='legallyCapable').value = false implies extension.where(url='legallyCapableComment').value.exists()" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.LegallyCapable" />
       </constraint>
     </element>
     <element id="Extension.extension">
@@ -51,11 +52,14 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="Extension.extension:legallyCapable">
       <path value="Extension.extension" />
       <sliceName value="legallyCapable" />
+      <min value="0" />
       <max value="1" />
+      <condition value="zib-FreedomRestrictingIntervention-01" />
     </element>
     <element id="Extension.extension:legallyCapable.url">
       <path value="Extension.extension.url" />
@@ -69,6 +73,7 @@
       <type>
         <code value="boolean" />
       </type>
+      <condition value="zib-FreedomRestrictingIntervention-01" />
       <mapping>
         <identity value="zib-freedomrestrictingintervention-v1.0-2020EN" />
         <map value="NL-CM:14.6.2" />
@@ -78,7 +83,9 @@
     <element id="Extension.extension:legallyCapableComment">
       <path value="Extension.extension" />
       <sliceName value="legallyCapableComment" />
+      <min value="0" />
       <max value="1" />
+      <condition value="zib-FreedomRestrictingIntervention-01" />
     </element>
     <element id="Extension.extension:legallyCapableComment.url">
       <path value="Extension.extension.url" />
@@ -92,6 +99,7 @@
       <type>
         <code value="string" />
       </type>
+      <condition value="zib-FreedomRestrictingIntervention-01" />
       <mapping>
         <identity value="zib-freedomrestrictingintervention-v1.0-2020EN" />
         <map value="NL-CM:14.6.3" />
