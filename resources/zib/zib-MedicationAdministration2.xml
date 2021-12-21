@@ -329,7 +329,7 @@
       </slicing>
     </element>
     <element id="MedicationAdministration.dosage.rate[x]:rateQuantity">
-      <path value="MedicationAdministration.dosage.rate[x]" />
+      <path value="MedicationAdministration.dosage.rateQuantity" />
       <sliceName value="rateQuantity" />
       <short value="AdministeringSpeed / nominalValue" />
       <definition value="The administering speed is used in slow administration of liquid. In practice, the measuring unit is almost always ml/hour. Entering an interval (such as 0-10 ml/hour) is also a commonly used option. &#xA;For example, with an administering speed of 10ml/hour: &#xD;&#xA;- amount = 10,&#xD;&#xA;- dose unit = ml          &#xD;&#xA;- time unit = hour&#xD;&#xA;&#xD;&#xA;Optionally a translation to NHG table Gebruiksvoorschriften(Table 25) is also allowed." />
@@ -338,7 +338,6 @@
       <alias value="nominaleWaarde" />
       <type>
         <code value="Quantity" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdSimpleQuantity" />
       </type>
       <mapping>
         <identity value="zib-medicationadministration2-v1.1.1-2020EN" />
