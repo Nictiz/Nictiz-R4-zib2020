@@ -9,8 +9,7 @@
   <title value="ext TargetProfile" />
   <status value="draft" />
   <publisher value="Nictiz" />
-  <description value="The expected profile of the target of the reference. &#xD;&#xA;&#xD;&#xA;The TargetProfile is the Canonical URL of profile Definition that is the profile this reference refers to. References are URLs that are relative to http://nictiz.nl/fhir/StructureDefinition/ e.g. &quot;nl-core-MedicationAgreement&quot; is a reference to http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement." />
-  <purpose value="This element is used to indicate the profile of the target of the reference in cases when the Reference.type is not precise enough to determine the functional counterpart of the reference element. This may be used which ever of the other elements are populated (or not). In some cases, the profile of the target may be determined by inspection of the reference (e.g. a RESTful URL) or by resolving the target of the reference; if both the TargetProfile and a reference is provided, the reference SHALL resolve to a resource of the same TargetProfile as that specified." />
+  <description value="This extension is used to augment a reference with the target profile, in cases when Reference.type is not precise enough to determine the functional counterpart of the reference.          The value of this extension is the canonical url that uniquely identifies the target profile." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <kind value="complex-type" />
@@ -29,11 +28,11 @@
     </element>
     <element id="Extension.value[x]">
       <path value="Extension.value[x]" />
-      <short value="TargetProfile the reference refers to (e.g. &quot;nl-core-MedicationAgreement&quot;)" />
-      <definition value="The expected profile of the target of the reference. &#xD;&#xA;&#xD;&#xA;The TargetProfile is the Canonical URL of profile Definition that is the profile this reference refers to. References are URLs that are relative to http://nictiz.nl/fhir/StructureDefinition/ e.g. &quot;nl-core-MedicationAgreement&quot; is a reference to http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement." />
+      <definition value="The expected profile of the target of the reference. &#xD;&#xA;&#xD;&#xA;The TargetProfile is the Canonical URL of profile Definition that is the profile this reference refers to." />
       <comment value="This element is used to indicate the profile of the target of the reference in cases when the Reference.type is not precise enough to determine the functional counterpart of the reference element. This may be used which ever of the other elements are populated (or not). In some cases, the profile of the target may be determined by inspection of the reference (e.g. a RESTful URL) or by resolving the target of the reference; if both the TargetProfile and a reference is provided, the reference SHALL resolve to a resource of the same TargetProfile as that specified." />
       <type>
-        <code value="uri" />
+        <code value="canonical" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/StructureDefinition" />
       </type>
     </element>
   </differential>
