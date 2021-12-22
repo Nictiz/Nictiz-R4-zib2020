@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="ext-MedicationAgreement.RelatedAdministrationAgreement" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelatedAdministrationAgreement" />
-  <name value="ExtMedicationAgreementRelatedAdministrationAgreement" />
-  <title value="ext MedicationAgreement.RelatedAdministrationAgreement" />
+  <id value="ext-MedicationAgreement.RelationAdministrationAgreement" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelationAdministrationAgreement" />
+  <name value="ExtMedicationAgreementRelationAdministrationAgreement" />
+  <title value="ext MedicationAgreement.RelationAdministrationAgreement" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -26,7 +26,7 @@
   <abstract value="false" />
   <context>
     <type value="element" />
-    <expression value="MedicationRequest" />
+    <expression value="MedicationRequest.basedOn" />
   </context>
   <type value="Extension" />
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
@@ -38,7 +38,7 @@
     </element>
     <element id="Extension.url">
       <path value="Extension.url" />
-      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelatedAdministrationAgreement" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelationAdministrationAgreement" />
     </element>
     <element id="Extension.value[x]">
       <path value="Extension.value[x]" />

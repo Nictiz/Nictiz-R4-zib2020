@@ -64,31 +64,12 @@
     </element>
     <element id="MedicationRequest.extension:copyIndicator.value[x]">
       <path value="MedicationRequest.extension.value[x]" />
-      <short value="CopyIndicator" />
       <alias value="KopieIndicator" />
       <mapping>
         <identity value="Medication-Process-v9-2-0-0" />
         <map value="mp-dataelement920-273" />
         <comment value="CopyIndicator" />
       </mapping>
-    </element>
-    <element id="MedicationRequest.extension:relatedAdministrationAgreement">
-      <path value="MedicationRequest.extension" />
-      <sliceName value="relatedAdministrationAgreement" />
-      <min value="0" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelatedAdministrationAgreement" />
-      </type>
-    </element>
-    <element id="MedicationRequest.extension:relatedMedicationUse">
-      <path value="MedicationRequest.extension" />
-      <sliceName value="relatedMedicationUse" />
-      <min value="0" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelatedMedicationUse" />
-      </type>
     </element>
     <element id="MedicationRequest.extension:relatedEpisodeOfCare">
       <path value="MedicationRequest.extension" />
@@ -174,6 +155,37 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
+      </type>
+    </element>
+    <element id="MedicationRequest.basedOn.extension">
+      <path value="MedicationRequest.basedOn.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="MedicationRequest.basedOn.extension:relationAdministrationAgreement">
+      <path value="MedicationRequest.basedOn.extension" />
+      <sliceName value="relationAdministrationAgreement" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelationAdministrationAgreement" />
+      </type>
+    </element>
+    <element id="MedicationRequest.basedOn.extension:relationMedicationUse">
+      <path value="MedicationRequest.basedOn.extension" />
+      <sliceName value="relationMedicationUse" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelationMedicationUse" />
       </type>
     </element>
     <element id="MedicationRequest.priorPrescription">
