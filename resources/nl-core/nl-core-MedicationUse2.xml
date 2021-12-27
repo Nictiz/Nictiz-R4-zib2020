@@ -214,7 +214,7 @@
       <slicing>
         <discriminator>
           <type value="value" />
-          <path value="extension.valueUri" />
+          <path value="extension.valueCodeableConcept" />
         </discriminator>
         <rules value="open" />
       </slicing>
@@ -247,20 +247,24 @@
       </slicing>
       <min value="0" />
     </element>
-    <element id="MedicationStatement.derivedFrom:relationMedicationAgreement.extension:targetProfile">
+    <element id="MedicationStatement.derivedFrom:relationMedicationAgreement.extension:resourceCategory">
       <path value="MedicationStatement.derivedFrom.extension" />
-      <sliceName value="targetProfile" />
+      <sliceName value="resourceCategory" />
       <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TargetProfile" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory" />
       </type>
-      <isModifier value="false" />
     </element>
-    <element id="MedicationStatement.derivedFrom:relationMedicationAgreement.extension:targetProfile.value[x]">
+    <element id="MedicationStatement.derivedFrom:relationMedicationAgreement.extension:resourceCategory.value[x]">
       <path value="MedicationStatement.derivedFrom.extension.value[x]" />
-      <fixedUri value="nl-core-MedicationAgreement" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="16076005" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="MedicationStatement.derivedFrom:relationAdministrationAgreement">
       <path value="MedicationStatement.derivedFrom" />
@@ -291,19 +295,23 @@
       </slicing>
       <min value="0" />
     </element>
-    <element id="MedicationStatement.derivedFrom:relationAdministrationAgreement.extension:targetProfile">
+    <element id="MedicationStatement.derivedFrom:relationAdministrationAgreement.extension:resourceCategory">
       <path value="MedicationStatement.derivedFrom.extension" />
-      <sliceName value="targetProfile" />
+      <sliceName value="resourceCategory" />
       <min value="0" />
-      <max value="1" />
       <type>
         <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TargetProfile" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory" />
       </type>
     </element>
-    <element id="MedicationStatement.derivedFrom:relationAdministrationAgreement.extension:targetProfile.value[x]">
+    <element id="MedicationStatement.derivedFrom:relationAdministrationAgreement.extension:resourceCategory.value[x]">
       <path value="MedicationStatement.derivedFrom.extension.value[x]" />
-      <fixedUri value="nl-core-AdministrationAgreement" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="422037009" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="MedicationStatement.derivedFrom:relationMedicationDispense">
       <path value="MedicationStatement.derivedFrom" />
@@ -329,19 +337,23 @@
       </slicing>
       <min value="0" />
     </element>
-    <element id="MedicationStatement.derivedFrom:relationMedicationDispense.extension:targetProfile">
+    <element id="MedicationStatement.derivedFrom:relationMedicationDispense.extension:resourceCategory">
       <path value="MedicationStatement.derivedFrom.extension" />
-      <sliceName value="targetProfile" />
+      <sliceName value="resourceCategory" />
       <min value="0" />
-      <max value="1" />
       <type>
         <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TargetProfile" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory" />
       </type>
     </element>
-    <element id="MedicationStatement.derivedFrom:relationMedicationDispense.extension:targetProfile.value[x]">
+    <element id="MedicationStatement.derivedFrom:relationMedicationDispense.extension:resourceCategory.value[x]">
       <path value="MedicationStatement.derivedFrom.extension.value[x]" />
-      <fixedUri value="nl-core-MedicationDispense" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="373784005" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="MedicationStatement.dosage">
       <path value="MedicationStatement.dosage" />
