@@ -181,10 +181,39 @@
     </element>
     <element id="MedicationAdministration.request">
       <path value="MedicationAdministration.request" />
+      <short value="MedicationAgreement / RelationVariableDosingRegimen" />
+      <definition value="Medication agreement or variable-dosing regimen on which this administration is based." />
+      <comment value="The extension ext-ResourceCategory can be used to discriminate the reference between the concepts MedicationAgreement (NL-CM:9.13.23170) and RelationVariableDosingRegimen (mp-dataelement920-1325) without the need of resolving the reference." />
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationRequest" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-VariableDosingRegimen" />
+      </type>
+      <mapping>
+        <identity value="Medication-Process-v9-2-0-0" />
+        <map value="mp-dataelement920-1325" />
+        <comment value="RelationVariableDosingRegimen" />
+      </mapping>
+    </element>
+    <element id="MedicationAdministration.request.extension">
+      <path value="MedicationAdministration.request.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="MedicationAdministration.request.extension:resourceCategory">
+      <path value="MedicationAdministration.request.extension" />
+      <sliceName value="resourceCategory" />
+      <min value="0" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory" />
       </type>
     </element>
     <element id="MedicationAdministration.dosage.extension">
