@@ -156,8 +156,8 @@
       <path value="MedicationAdministration.supportingInformation" />
       <slicing>
         <discriminator>
-          <type value="value" />
-          <path value="type" />
+          <type value="profile" />
+          <path value="resolve()" />
         </discriminator>
         <rules value="open" />
       </slicing>
@@ -179,11 +179,6 @@
         <map value="NL-CM:9.13.23237" />
         <comment value="AdministrationAgreement" />
       </mapping>
-    </element>
-    <element id="MedicationAdministration.supportingInformation:administrationAgreement.type">
-      <path value="MedicationAdministration.supportingInformation.type" />
-      <min value="1" />
-      <patternUri value="MedicationDispense" />
     </element>
     <element id="MedicationAdministration.effective[x]">
       <path value="MedicationAdministration.effective[x]" />
@@ -329,7 +324,7 @@
       </slicing>
     </element>
     <element id="MedicationAdministration.dosage.rate[x]:rateQuantity">
-      <path value="MedicationAdministration.dosage.rateQuantity" />
+      <path value="MedicationAdministration.dosage.rate[x]" />
       <sliceName value="rateQuantity" />
       <short value="AdministeringSpeed / nominalValue" />
       <definition value="The administering speed is used in slow administration of liquid. In practice, the measuring unit is almost always ml/hour. Entering an interval (such as 0-10 ml/hour) is also a commonly used option. &#xA;For example, with an administering speed of 10ml/hour: &#xD;&#xA;- amount = 10,&#xD;&#xA;- dose unit = ml          &#xD;&#xA;- time unit = hour&#xD;&#xA;&#xD;&#xA;Optionally a translation to NHG table Gebruiksvoorschriften(Table 25) is also allowed." />
