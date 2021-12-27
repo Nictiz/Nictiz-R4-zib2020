@@ -144,7 +144,7 @@ This document contains release notes per zib, indicating differences with their 
 * Aligned cardinality of `MedicationAdministration.note` with the zib Comment cardinality (0..1).
 * Moved mapping of AdministrationProduct on a Reference type slice of `MedicationAdministration.medication[x]` element adhering to the open world modeling principle.
 * Moved the mapping of AdministrationDateTime to a type slice on `MedicationStatement.effective[x]` so the `MedicationStatement.effectivePeriod` can be used too.
-* Extended `MedicationAdministration.rate[x]` with a Range datatype to allow the population of minimumValue and maximumValue of the AdministreringSpeed. 
+* Extended `MedicationAdministration.dosage.rate[x]` with a Range datatype by adding an extension on `MedicationAdministration.dosage` to allow the population of minimumValue and maximumValue of the AdministeringSpeed. Extending a polymorphic element is not yet fully supported by FHIR tooling, hence the extension on `.dosage`. 
 
 ## zib-MedicationAgreement
 * Removed references not accounted for by the zib.
