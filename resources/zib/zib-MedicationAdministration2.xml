@@ -294,17 +294,17 @@
       </slicing>
       <min value="0" />
     </element>
-    <element id="MedicationAdministration.dosage.extension:administeringSpeed Range">
+    <element id="MedicationAdministration.dosage.extension:administeringSpeedRange">
       <path value="MedicationAdministration.dosage.extension" />
-      <sliceName value="administeringSpeed Range" />
+      <sliceName value="administeringSpeedRange" />
       <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AdministeringSpeedRange" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AdministreringSpeedRange" />
       </type>
     </element>
-    <element id="MedicationAdministration.dosage.extension:administeringSpeed Range.value[x].low">
+    <element id="MedicationAdministration.dosage.extension:administeringSpeedRange.value[x].low">
       <path value="MedicationAdministration.dosage.extension.value[x].low" />
       <short value="minimumValue" />
       <definition value="The minimal value of the range. The boundary is inclusive." />
@@ -315,7 +315,7 @@
         <comment value="minimumValue" />
       </mapping>
     </element>
-    <element id="MedicationAdministration.dosage.extension:administeringSpeed Range.value[x].high">
+    <element id="MedicationAdministration.dosage.extension:administeringSpeedRange.value[x].high">
       <path value="MedicationAdministration.dosage.extension.value[x].high" />
       <short value="maximumValue" />
       <definition value="The maximum value of the range. The boundary is inclusive." />
@@ -371,7 +371,7 @@
       <sliceName value="rateQuantity" />
       <short value="AdministeringSpeed / nominalValue" />
       <definition value="The administering speed is used in slow administration of liquid. In practice, the measuring unit is almost always ml/hour. Entering an interval (such as 0-10 ml/hour) is also a commonly used option. &#xA;For example, with an administering speed of 10ml/hour: &#xD;&#xA;- amount = 10,&#xD;&#xA;- dose unit = ml          &#xD;&#xA;- time unit = hour&#xD;&#xA;&#xD;&#xA;Optionally a translation to NHG table Gebruiksvoorschriften(Table 25) is also allowed." />
-      <comment value="The extension MedicationAdministration2AdministeringSpeedRange extends `.rate[x]` with the Range datatype to allow population of the minimumValue and the maximumValue of the zib Range." />
+      <comment value="The extension MedicationAdministration2AdministreringSpeedRange extends `.rate[x]` with the Range datatype to allow population of the minimumValue and the maximumValue of the zib Range." />
       <alias value="Toedieningssnelheid" />
       <alias value="nominaleWaarde" />
       <type>
