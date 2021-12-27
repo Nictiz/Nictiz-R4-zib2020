@@ -141,15 +141,6 @@ zib-AdvanceDirective:
       - cardinality: 1..1
         reason: Consent.provision.actor has cardinality 0..1, making the cardinality of Consent.provision.actor:representative.reference effectively 0..1 as required by the zib.
 
-zib-BloodPressure:
-  ignored issues:
-    Observation.component:SystolicBP:
-      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
-        reason: The slice "SystolicBP" starts with an uppercase letter to align with the HL7 Vital Signs profile.
-    Observation.component:DiastolicBP:
-      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
-        reason: The slice "DiastolicBP" starts with an uppercase letter to align with the HL7 Vital Signs profile.
-
 zib-Alert:
   zib deviations:
     Flag.code:
