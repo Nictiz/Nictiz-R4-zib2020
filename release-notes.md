@@ -39,10 +39,10 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-AdministrationAgreement
 * Placed mapping of MedicineForAdministrationAgreement on a type slice of `MedicationDispense.medicationReference` allowing the use of a CodeableConcept and thereby adhering to the open world modeling principle.
 * Moved AdministrationAgreementAdditionalInformation to its own extension.
-* PeriodOfUse has been remodeld using two renamed extensions based on the zib TimerInterval. This should make the mapping more clear. 
+* PeriodOfUse has been remodeled using two renamed extensions based on the zib TimerInterval. This should make the mapping more clear. 
 * Added an extension in the nl-core profile that mimics `MedicationDispense.category` so the category can be used as intented by the FHIR core definition.
 * Aligned cardinality of `MedicationDispense.note` with the zib Comment cardinality (0..1).
-* Ranamed MedicationTreatment extension to PharmaceuticalTreatment.Identifier and moved to the nl-core-profile. The extension is now also better documented.
+* Renamed MedicationTreatment extension to PharmaceuticalTreatment.Identifier and moved to the nl-core-profile. The extension is now also better documented.
 * `MedicationDispense.status` has become mandatory in R4, therefore, guidance is added on how to populate this field.
 
 ## zib-AnatomicalLocation
@@ -71,11 +71,11 @@ This document contains release notes per zib, indicating differences with their 
 * Moved AdditionalWishes to its own extension.
 * Added iso21090-PQ-translation extension to `MedicationDispense.dispenseRequest.quantity` to allow adding quantity translations using other code systems (e.g. G-Standard and NHG).
 * Added mapping of new CanceledIndicator concept to `MedicationDispense.status`
-* Ranamed MedicationTreatment extension to PharmaceuticalTreatment.Identifier and moved to the nl-core-profile. The extension is now also better documented.
+* Renamed MedicationTreatment extension to PharmaceuticalTreatment.Identifier and moved to the nl-core-profile. The extension is now also better documented.
 * Aligned cardinality of `MedicationRequest.note` with the zib Comment cardinality (0..1).
 * Removed reference on `MedicationRequest.recorder` because this is not accounted for by the zib or a use case.
-* PeriodOfUse has been remodeld using new extensions based on the zib TimerInterval. This should make the mapping more clear.
-* Moved mapping of PeriodOfUse Duration from `MedicationRequest.dispenseRequest.expectedSupplyDuration` to `MedicationRequest.dispenseRequest.extension:periodOfUse-Duration` because of semantic diferences in concept definitions.
+* PeriodOfUse has been remodeled using new extensions based on the zib TimerInterval. This should make the mapping more clear.
+* Removed mapping of PeriodOfUse Duration from `MedicationRequest.dispenseRequest.expectedSupplyDuration` because of incorrect semantic mapping. The PeriodOfUse duration is found in `.dispenseRequest.validityPeriod`.
 * Replaced fixed _order_ code on `MedicationRequest.intent` with guidance and documentation on which code to use to adhere to open world modeling principle. 
 
 ## zib-DrugUse
@@ -140,18 +140,17 @@ This document contains release notes per zib, indicating differences with their 
 
 ## zib-MedicationAdministration2
 * Added an extension in the nl-core profile that mimics `MedicationAdministration.category` so the category can be used as intented by the FHIR core definition.
-* Ranamed MedicationTreatment extension to PharmaceuticalTreatment.Identifier and moved to the nl-core-profile. The extension is now also better documented.
+* Renamed MedicationTreatment extension to PharmaceuticalTreatment.Identifier and moved to the nl-core-profile. The extension is now also better documented.
 * Aligned cardinality of `MedicationAdministration.note` with the zib Comment cardinality (0..1).
 * Moved mapping of AdministrationProduct on a Reference type slice of `MedicationAdministration.medication[x]` element adhering to the open world modeling principle.
 * Moved the mapping of AdministrationDateTime to a type slice on `MedicationStatement.effective[x]` so the `MedicationStatement.effectivePeriod` can be used too.
 * Extended `MedicationAdministration.dosage.rate[x]` with a Range datatype by adding an extension on `MedicationAdministration.dosage` to allow the population of minimumValue and maximumValue of the AdministeringSpeed. Extending a polymorphic element is not yet fully supported by FHIR tooling, hence the extension on `.dosage`. 
 
 ## zib-MedicationAgreement
-* Removed references not accounted for by the zib.
 * Moved fixed MedicationAgreementCode on a `MedicationRequest.category`, allowing reuse of `category`.
 * Moved mapping of AgreedMedicine on a Reference type slice of `MedicationRequest.medication[x]` element adhering to the open world modeling principle.
 * The AdditionalInformation to its own extension.
-* Ranamed MedicationTreatment extension to PharmaceuticalTreatment.Identifier and moved to the nl-core-profile. The extension is now also better documented.
+* Renamed MedicationTreatment extension to PharmaceuticalTreatment.Identifier and moved to the nl-core-profile. The extension is now also better documented.
 * Added MP CopyIndicator extension to nl-core profile.
 * Mapped MP concept RelatieMedicatieafspraak  to `periorPrescription` instead of an extension in the nl-core profile. 
 * Instead of one extension, the concepts MP RelatieToedieningsafspraak and RelatieMedicatiegebruik are placed in specific extensions in the nl-core profile.
@@ -165,7 +164,7 @@ This document contains release notes per zib, indicating differences with their 
 * Moved AdditionalInformation to its own extension to align more with the profiling guidelines.
 * Relaxed cardinality of additionalInformation extension to 0..* to align with the zib.
 * Added iso21090-PQ-translation extension to MedicationDispense.dispenseRequest.quantity to allow adding quantity translations using with code systems (e.g. G-Standard and NHG).
-* Ranamed MedicationTreatment extension to PharmaceuticalTreatment.Identifier and moved to the nl-core-profile. The extension is now also better documented.
+* Renamed MedicationTreatment extension to PharmaceuticalTreatment.Identifier and moved to the nl-core-profile. The extension is now also better documented.
 * Aligned cardinality of `MedicationDispense.note` with the zib Comment cardinality (0..1).
 * `MedicationDispense.status` has become mandatory in R4, therefore, guidance is added on how to populate this field.
 
@@ -173,9 +172,9 @@ This document contains release notes per zib, indicating differences with their 
 * Changed fixed category code from 6#urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3 to 422979000#http://snomed.info/sct.
 * Aligned cardinality of `MedicationStatement.note` with the zib Comment cardinality (0..1).
 * Moved the mapping of ProductUsed on type slice on `MedicationStatement.medication[x]` allowing the use of a CodeableConcept.
-* Moved the mapping of ReasonForUse to a slice on `MedicationStatement.reasoncode` so the element can be reused for other purposes too.
+* Moved the mapping of ReasonForUse to a slice on `MedicationStatement.reasonCode` so the element can be reused for other purposes too.
 * Moved the mapping of PeriodOfUse to a type slice on `MedicationStatement.effective[x]` so the `MedicationStatement.effectiveDateTime` can be used too.
-* PeriodOfUse has been remodeld using new extensions and a profile on Period based on the zib TimerInterval. This should make the mapping more clear.
+* PeriodOfUse has been remodeled using new extensions and a profile on Period based on the zib TimerInterval. This should make the mapping more clear.
 * Moved mapping of UseIndicator from an extension to `MedicationStatement.status`.
 * Moved mapping of MedicationUseStopType from `MedicationStatement.status` to modifier extension StopType because this was actually incorrectly mapped in STU3 and this aligns with AdministrationAgreement and MedicationAgreement. 
 
