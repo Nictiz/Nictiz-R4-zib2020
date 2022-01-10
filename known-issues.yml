@@ -511,3 +511,9 @@ zib-Patient:
     Patient.contact.address:
       - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.
+
+zib-Payer-Organization:
+  ignored issues:
+    Organization.address:
+      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias "Adresgegevens" is already defined in the base profile, so it doesn't need to be defined again in the differential. 
