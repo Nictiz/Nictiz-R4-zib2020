@@ -335,22 +335,22 @@ zib-Payer:
   zib deviations:
     Coverage.identifier:insurantNumber:
       - datatype: Identifier
-        reason: The value of an Identifier has datatype string, which correspons with the string datatype of zib concept InsurantNumber.
+        reason: The value of an Identifier has datatype string, which corresponds to the string datatype of zib concept InsurantNumber.
     Coverage.payor:payerPerson.extension:bankInformation:
       - datatype: Extension
-        reason: The (complex) extension acts as a container for three sub-extensions that each contain a zib sub-concept.
+        reason: The (complex) extension acts as a container for three subextensions that each contain a zib subconcept.
 
 zib-Payer-Organization:
   zib deviations:
     Organization.telecom:
       - datatype: ContactPoint
-        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consits of two parts the rootconcept of the ContactInformation is mapped on .telecom.
+        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consists of two parts the rootconcept of the ContactInformation is mapped on .telecom.
     Organization.telecom:telephoneNumbers:
       - datatype: ContactPoint
-        reason: See Organization.telecom
+        reason: See Organization.telecom.
     Organization.telecom:emailAddresses:
       - datatype: ContactPoint
-        reason: See Organization.telecom
+        reason: See Organization.telecom.
     Organization.address:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
