@@ -22,6 +22,11 @@
     <identity value="zib-medicaldevice-v3.3.1-2020EN" />
     <uri value="https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN)" />
     <name value="zib MedicalDevice-v3.3.1(2020EN)" />
+    </mapping>
+    <mapping>
+        <identity value="zib-procedure-v5.2-2020EN"/>
+        <uri value="https://zibs.nl/wiki/Procedure-v5.2(2020EN)"/>
+        <name value="zib Procedure-v5.2(2020EN)"/>
   </mapping>
   <mapping>
     <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
@@ -90,6 +95,34 @@
         <identity value="zib-medicaldevice-v3.3.1-2020EN" />
         <map value="NL-CM:10.1.14" />
         <comment value="EndDate (implicit, main mapping is on DeviceUseStatement.timingPeriod.end)" />
+            </mapping>
+        </element>
+        <element id="DeviceUseStatement.derivedFrom">
+            <path value="DeviceUseStatement.derivedFrom"/>
+            <slicing>
+                <discriminator>
+                    <type value="profile"/>
+                    <path value="resolve()"/>
+                </discriminator>
+                <rules value="open"/>
+            </slicing>
+        </element>
+        <element id="DeviceUseStatement.derivedFrom:zibMedicalDeviceReference">
+            <path value="DeviceUseStatement.derivedFrom"/>
+            <sliceName value="zibMedicalDeviceReference"/>
+            <short value="zib MedicalDevice reference"/>
+            <definition value="The association between a zib MedicalDevice and another zib or other functional model."/>
+            <comment value="There are several zibs that reference zib MedicalDevice on a functional level, but for which the direction of the reference in FHIR is reversed. Consult the mappings on this element for an overview of which zib concepts are mapped to this element."/>
+            <alias value="Procedure"/>
+            <type>
+                <code value="Reference"/>
+                <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-event"/>
+                <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-request"/>
+            </type>
+            <mapping>
+                <identity value="zib-procedure-v5.2-2020EN"/>
+                <map value="NL-CM:14.1.7"/>
+                <comment value="Reversed reference for zib Procedure.MedicalDevice"/>
       </mapping>
     </element>
     <element id="DeviceUseStatement.timing[x]">
