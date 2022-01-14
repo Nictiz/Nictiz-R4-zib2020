@@ -49,7 +49,7 @@
       </slicing>
     </element>
     <element id="Observation.effective[x]:effectiveDateTime">
-      <path value="Observation.effectiveDateTime" />
+      <path value="Observation.effective[x]" />
       <sliceName value="effectiveDateTime" />
       <short value="DevelopmentChildDateTime" />
       <definition value="The date and time on which the status of the development of the child are registered." />
@@ -88,20 +88,145 @@
         <rules value="open" />
       </slicing>
     </element>
+    <element id="Observation.component:ageFirstMenstruation">
+      <path value="Observation.component" />
+      <sliceName value="ageFirstMenstruation" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:ageFirstMenstruation.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://loinc.org" />
+          <code value="42798-9" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:ageFirstMenstruation.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="AgeFirstMenstruation" />
+      <definition value="The age of the start of the first menstruation." />
+      <alias value="LeeftijdEersteMenstruatie" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <mapping>
+        <identity value="zib-developmentchild-v1.2-2020EN" />
+        <map value="NL-CM:4.32.7" />
+        <comment value="AgeFirstMenstruation" />
+      </mapping>
+    </element>
     <element id="Observation.component:developmentLocomotion">
       <path value="Observation.component" />
       <sliceName value="developmentLocomotion" />
       <max value="1" />
+    </element>
+    <element id="Observation.component:developmentLocomotion.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="282716004" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:developmentLocomotion.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="DevelopmentLocomotion" />
+      <definition value="Milestones of locomotive development of a child." />
+      <alias value="OntwikkelingMotoriek" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mapping>
+        <identity value="zib-developmentchild-v1.2-2020EN" />
+        <map value="NL-CM:4.32.7" />
+        <comment value="OntwikkelingMotoriek" />
+      </mapping>
     </element>
     <element id="Observation.component:developmentSocial">
       <path value="Observation.component" />
       <sliceName value="developmentSocial" />
       <max value="1" />
     </element>
+    <element id="Observation.component:developmentSocial.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="225597007" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:developmentSocial.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="DevelopmentSocial" />
+      <definition value="Milestones of social development of a child." />
+      <alias value="OntwikkelingSociaal" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mapping>
+        <identity value="zib-developmentchild-v1.2-2020EN" />
+        <map value="NL-CM:4.32.8" />
+        <comment value="DevelopmentSocial" />
+      </mapping>
+    </element>
     <element id="Observation.component:developmentLinguistics">
       <path value="Observation.component" />
       <sliceName value="developmentLinguistics" />
       <max value="1" />
+    </element>
+    <element id="Observation.component:developmentLinguistics.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="61909002" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:developmentLinguistics.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="DevelopmentLinguistics" />
+      <definition value="Milestones of lingual development of a child." />
+      <alias value="OntwikkelingTaal" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mapping>
+        <identity value="zib-developmentchild-v1.2-2020EN" />
+        <map value="NL-CM:4.32.9" />
+        <comment value="DevelopmentLinguistics" />
+      </mapping>
+    </element>
+    <element id="Observation.component:developmentCognition">
+      <path value="Observation.component" />
+      <sliceName value="developmentCognition" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:developmentCognition.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="311465003" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:developmentCognition.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="DevelopmentCognition" />
+      <definition value="Milestones of cognitive development of a child." />
+      <alias value="OntwikkelingVerstandelijk" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mapping>
+        <identity value="zib-developmentchild-v1.2-2020EN" />
+        <map value="NL-CM:4.32.10" />
+        <comment value="DevelopmentCognition" />
+      </mapping>
     </element>
   </differential>
 </StructureDefinition>
