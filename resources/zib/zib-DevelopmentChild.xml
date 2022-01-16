@@ -88,6 +88,70 @@
         <rules value="open" />
       </slicing>
     </element>
+    <element id="Observation.component:toiletTrainednessUrine">
+      <path value="Observation.component" />
+      <sliceName value="toiletTrainednessUrine" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:toiletTrainednessUrine.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="275819003" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:toiletTrainednessUrine.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="ToiletTrainednessUrine" />
+      <definition value="Degree of toilet trainedness for urine." />
+      <alias value="ZindelijkheidUrine" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.32.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-developmentchild-v1.2-2020EN" />
+        <map value="NL-CM:4.32.4" />
+        <comment value="ToiletTrainednessUrine" />
+      </mapping>
+    </element>
+    <element id="Observation.component:toiletTrainednessFeces">
+      <path value="Observation.component" />
+      <sliceName value="toiletTrainednessFeces" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:toiletTrainednessFeces.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="275818006" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:toiletTrainednessFeces.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="ToiletTrainednessFeces" />
+      <definition value="Degree of toilet trainedness for feces." />
+      <alias value="ZindelijkheidFeces" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.32.2--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-developmentchild-v1.2-2020EN" />
+        <map value="NL-CM:4.32.5" />
+        <comment value="ToiletTrainednessFeces" />
+      </mapping>
+    </element>
     <element id="Observation.component:ageFirstMenstruation">
       <path value="Observation.component" />
       <sliceName value="ageFirstMenstruation" />
@@ -138,6 +202,10 @@
       <type>
         <code value="CodeableConcept" />
       </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.32.3--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-developmentchild-v1.2-2020EN" />
         <map value="NL-CM:4.32.7" />
@@ -166,6 +234,10 @@
       <type>
         <code value="CodeableConcept" />
       </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.32.4--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-developmentchild-v1.2-2020EN" />
         <map value="NL-CM:4.32.8" />
@@ -194,6 +266,10 @@
       <type>
         <code value="CodeableConcept" />
       </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.32.5--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-developmentchild-v1.2-2020EN" />
         <map value="NL-CM:4.32.9" />
@@ -222,6 +298,10 @@
       <type>
         <code value="CodeableConcept" />
       </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.32.6--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-developmentchild-v1.2-2020EN" />
         <map value="NL-CM:4.32.10" />
