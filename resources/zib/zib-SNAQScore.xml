@@ -33,6 +33,20 @@
       <path value="Observation" />
       <short value="SNAQScore" />
       <alias value="SNAQScore" />
+      <constraint>
+        <key value="zib-SNAQScore-1" />
+        <severity value="error" />
+        <human value="If one of the component codes is present, all SHALL be present." />
+        <expression value="component.code.coding.where(system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1').where(code='4006003' or code='4006004' or code='4006005').empty() or component.code.coding.where(system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1').where(code='4006003' or code='4006004' or code='4006005').code().distinct().count()=3" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-SNAQScore" />
+      </constraint>
+      <constraint>
+        <key value="zib-SNAQScore-2" />
+        <severity value="error" />
+        <human value="If the component codes are not present, the value SHALL be present." />
+        <expression value="not(value.empty()) or component.code.coding.where(system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1').where(code='4006003' or code='4006004' or code='4006005').code().distinct().count()=3" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-SNAQScore" />
+      </constraint>
       <mapping>
         <identity value="zib-snaqscore-v3.2-2020EN" />
         <map value="NL-CM:4.6.1" />
