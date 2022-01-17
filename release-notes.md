@@ -56,6 +56,11 @@ This document contains release notes per zib, indicating differences with their 
 * Removed the role extension (http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role) because `RelatedPerson.relationship` has changed from 0..1 to 0..*. The zib concept role is now mapped to a slice on relationship.
 * Updated to new zib-NameInformation, zib-AddressInformation and zib-ContactInformation profiles.
 
+## zib-DevelopmentChild
+* The binding strenght of all ValueSets has changed from 'extensible' to 'required'.
+* The datatype for AgeFirstMenstruation has been changed from ValueDate to ValueQuantity. 
+* The code on `Observation.component:developmentCognition.code` has changed to 311465003.
+
 ## zib-DrugUse
 * The drugUseCode is mapped to `Observation.code` and based on a pattern
 * The code on `Observation.component:drugOrMedicationType.code` has changed to 105590001
