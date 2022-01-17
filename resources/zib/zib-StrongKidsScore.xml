@@ -37,7 +37,14 @@
         <key value="zib-StrongKidsScore-1" />
         <severity value="error" />
         <human value="If one of the component codes is present, all SHALL be present." />
-        <expression value="component.code.coding.where(system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1').where(code='4028003' or code='4028004' or code='4028005' or code='4028008').empty() or component.code.coding.where(system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1').where(code='4028003' or code='4028004' or code='4028005' or code='4028008').code().distinct().count()=4" />
+        <expression value="component.code.coding.where(system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1').where(code='4028003' or code='4028004' or code='4028005' or code='4028008').empty() or component.code.coding.where(system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1').where(code='4028003' or code='4028004' or code='4028005' or code='4028008').code.distinct().count()=4" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-StrongKidsScore" />
+      </constraint>
+      <constraint>
+        <key value="zib-StrongKidsScore-2" />
+        <severity value="error" />
+        <human value="If the component codes are not all present, the value SHALL be present." />
+        <expression value="value.empty().not() or component.code.coding.where(system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1').where(code='4028003' or code='4028004' or code='4028005' or code='4028008').code.distinct().count()=4" />
         <source value="http://nictiz.nl/fhir/StructureDefinition/zib-StrongKidsScore" />
       </constraint>
       <mapping>
