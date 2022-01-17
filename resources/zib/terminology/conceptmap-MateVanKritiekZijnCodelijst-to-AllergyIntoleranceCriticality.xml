@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConceptMap xmlns="http://hl7.org/fhir">
+    <id value="MateVanKritiekZijnCodelijst-to-AllergyIntoleranceCriticality"/>
+  <extension url="http://hl7.org/fhir/StructureDefinition/concept-bidirectional">
+    <valueBoolean value="false"/>
+  </extension>
+    <url value="http://nictiz.nl/fhir/ConceptMap/MateVanKritiekZijnCodelijst-to-AllergyIntoleranceCriticality"/>
+  <version value="0.0.1"/>
+    <name value="MateVanKritiekZijnCodelijst_to_AllergyIntoleranceCriticality"/>
+    <title value="MateVanKritiekZijnCodelijst to AllergyIntoleranceCriticality"/>
+  <status value="draft"/>
+  <publisher value="Nictiz"/>
+  <contact>
+    <name value="Nictiz"/>
+    <telecom>
+      <system value="email"/>
+      <value value="info@nictiz.nl"/>
+      <use value="work"/>
+    </telecom>
+  </contact>
+    <description value="Maps gender codes as found in the Dutch zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) [AllergyIntolerance v3.3 (2020)](https://zibs.nl/wiki/AllergyIntolerance-v3.3(2020EN)) to &lt;	http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality&gt; as found in `AllergyIntolerance.reaction.severity` in FHIR R4."/>
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+    <sourceCanonical value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.8.2.4--20200901000000" />
+    <targetCanonical value="http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality"/>
+    <group>
+        <source value="http://snomed.info/sct"/>
+        <target value="http://hl7.org/fhir/allergy-intolerance-criticality"/>
+        <element>
+            <code value="255604002" />
+            <display value="Mild" />
+            <target>
+                <code value="low" />
+                <display value="Low" />
+                <equivalence value="equal" />
+            </target>
+        </element>
+        <element>
+            <code value="6736007" />
+            <display value="Moderate" />
+            <target>
+                <code value="high" />
+                <display value="High" />
+                <equivalence value="wider" />
+            </target>
+        </element>
+        <element>
+            <code value="24484000" />
+            <display value="Severe" />
+            <target>
+                <code value="high" />
+                <display value="High" />
+                <equivalence value="equal" />
+            </target>
+        </element>
+        <element>
+            <code value="399166001" />
+            <display value="Fatal" />
+            <target>
+                <code value="high" />
+                <display value="High" />
+                <equivalence value="wider" />
+            </target>
+        </element>
+    </group>
+</ConceptMap>
