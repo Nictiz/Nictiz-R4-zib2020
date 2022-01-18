@@ -33,6 +33,20 @@
       <path value="Observation" />
       <short value="SNAQrcScore" />
       <alias value="SNAQrcScore" />
+      <constraint>
+        <key value="zib-SNAQrcScore-1" />
+        <severity value="error" />
+        <human value="If one of the component codes is present, all SHALL be present." />
+        <expression value="component.where(code.coding.system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1' and code.coding.code.subsetOf('4029003'|'4029004'|'4029005'|'4029008')).count().subsetOf(0|4)" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-SNAQrcScore" />
+      </constraint>
+      <constraint>
+        <key value="zib-SNAQrcScore-2" />
+        <severity value="error" />
+        <human value="If the component codes are not all present, the value SHALL be present." />
+        <expression value="value.empty().not() or component.where(code.coding.system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1' and code.coding.code.subsetOf('4029003'|'4029004'|'4029005'|'4029008')).count()=4" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-SNAQrcScore" />
+      </constraint>
       <mapping>
         <identity value="zib-snaqrcscore-v1.1-2020EN" />
         <map value="NL-CM:4.29.1" />
@@ -84,7 +98,7 @@
       </slicing>
     </element>
     <element id="Observation.value[x]:valueInteger">
-      <path value="Observation.value[x]" />
+      <path value="Observation.valueInteger" />
       <sliceName value="valueInteger" />
       <short value="TotalScore" />
       <definition value="The total score is the sum of all the individual scores. The total score has a range from 0 - 5. The relation between the value of the total score and the color outcome of the score tool is:&lt;br /&gt;0-1 = green&lt;br /&gt;2= orange&lt;br /&gt;3 and higher = red." />
@@ -94,6 +108,7 @@
       </type>
       <minValueInteger value="0" />
       <maxValueInteger value="5" />
+      <condition value="zib-SNAQrcScore-2" />
       <mapping>
         <identity value="zib-snaqrcscore-v1.1-2020EN" />
         <map value="NL-CM:4.29.2" />
@@ -129,6 +144,8 @@
       <path value="Observation.component" />
       <sliceName value="weightLossScore" />
       <max value="1" />
+      <condition value="zib-SNAQrcScore-1" />
+      <condition value="zib-SNAQrcScore-2" />
     </element>
     <element id="Observation.component:weightLossScore.code">
       <path value="Observation.component.code" />
@@ -161,6 +178,8 @@
       <path value="Observation.component" />
       <sliceName value="appetiteScore" />
       <max value="1" />
+      <condition value="zib-SNAQrcScore-1" />
+      <condition value="zib-SNAQrcScore-2" />
     </element>
     <element id="Observation.component:appetiteScore.code">
       <path value="Observation.component.code" />
@@ -193,6 +212,8 @@
       <path value="Observation.component" />
       <sliceName value="bmiScore" />
       <max value="1" />
+      <condition value="zib-SNAQrcScore-1" />
+      <condition value="zib-SNAQrcScore-2" />
     </element>
     <element id="Observation.component:bmiScore.code">
       <path value="Observation.component.code" />
@@ -225,6 +246,8 @@
       <path value="Observation.component" />
       <sliceName value="assistedEating" />
       <max value="1" />
+      <condition value="zib-SNAQrcScore-1" />
+      <condition value="zib-SNAQrcScore-2" />
     </element>
     <element id="Observation.component:assistedEating.code">
       <path value="Observation.component.code" />
