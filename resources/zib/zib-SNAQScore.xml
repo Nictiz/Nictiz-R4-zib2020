@@ -37,14 +37,14 @@
         <key value="zib-SNAQScore-1" />
         <severity value="error" />
         <human value="If one of the component codes is present, all SHALL be present." />
-        <expression value="component.code.coding.where(system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1').where(code='4006003' or code='4006004' or code='4006005').empty() or component.code.coding.where(system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1').where(code='4006003' or code='4006004' or code='4006005').code.distinct().count()=3" />
+        <expression value="component.where(code.coding.system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1' and code.coding.code.subsetOf('4006004'|'4006005'|'4006006')).count().subsetOf(0|3)" />
         <source value="http://nictiz.nl/fhir/StructureDefinition/zib-SNAQScore" />
       </constraint>
       <constraint>
         <key value="zib-SNAQScore-2" />
         <severity value="error" />
         <human value="If the component codes are not all present, the value SHALL be present." />
-        <expression value="value.empty().not() or component.code.coding.where(system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1').where(code='4006003' or code='4006004' or code='4006005').code.distinct().count()=3" />
+        <expression value="value.empty().not() or component.where(code.coding.system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1' and code.coding.code.subsetOf('4006004'|'4006005'|'4006006')).count()=3" />
         <source value="http://nictiz.nl/fhir/StructureDefinition/zib-SNAQScore" />
       </constraint>
       <mapping>
@@ -98,7 +98,7 @@
       </slicing>
     </element>
     <element id="Observation.value[x]:valueInteger">
-      <path value="Observation.value[x]" />
+      <path value="Observation.valueInteger" />
       <sliceName value="valueInteger" />
       <short value="TotalScore" />
       <definition value="The total score is the sum of all the individual scores. The total score has a range from 0 - 5." />
@@ -108,6 +108,7 @@
       </type>
       <minValueInteger value="0" />
       <maxValueInteger value="5" />
+      <condition value="zib-SNAQScore-2" />
       <mapping>
         <identity value="zib-snaqscore-v3.2-2020EN" />
         <map value="NL-CM:4.6.2" />
@@ -143,6 +144,8 @@
       <path value="Observation.component" />
       <sliceName value="weightLossScore" />
       <max value="1" />
+      <condition value="zib-SNAQScore-1" />
+      <condition value="zib-SNAQScore-2" />
     </element>
     <element id="Observation.component:weightLossScore.code">
       <path value="Observation.component.code" />
@@ -175,6 +178,8 @@
       <path value="Observation.component" />
       <sliceName value="appetiteScore" />
       <max value="1" />
+      <condition value="zib-SNAQScore-1" />
+      <condition value="zib-SNAQScore-2" />
     </element>
     <element id="Observation.component:appetiteScore.code">
       <path value="Observation.component.code" />
@@ -207,6 +212,8 @@
       <path value="Observation.component" />
       <sliceName value="nutritionScore" />
       <max value="1" />
+      <condition value="zib-SNAQScore-1" />
+      <condition value="zib-SNAQScore-2" />
     </element>
     <element id="Observation.component:nutritionScore.code">
       <path value="Observation.component.code" />
