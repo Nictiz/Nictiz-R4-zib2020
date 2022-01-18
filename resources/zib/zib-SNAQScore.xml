@@ -37,14 +37,14 @@
         <key value="zib-SNAQScore-1" />
         <severity value="error" />
         <human value="If one of the component codes is present, all SHALL be present." />
-        <expression value="component.where(code.coding.system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1' and code.coding.code.subsetOf('4006004'|'4006005'|'4006006')).count().subsetOf(0|3)" />
+        <expression value="component.where(code.coding.system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1' and code.coding.code.subsetOf('4006003'|'4006004'|'4006005')).count().subsetOf(0|3)" />
         <source value="http://nictiz.nl/fhir/StructureDefinition/zib-SNAQScore" />
       </constraint>
       <constraint>
         <key value="zib-SNAQScore-2" />
         <severity value="error" />
         <human value="If the component codes are not all present, the value SHALL be present." />
-        <expression value="value.empty().not() or component.where(code.coding.system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1' and code.coding.code.subsetOf('4006004'|'4006005'|'4006006')).count()=3" />
+        <expression value="value.empty().not() or component.where(code.coding.system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1' and code.coding.code.subsetOf('4006003'|'4006004'|'4006005')).count()=3" />
         <source value="http://nictiz.nl/fhir/StructureDefinition/zib-SNAQScore" />
       </constraint>
       <mapping>
