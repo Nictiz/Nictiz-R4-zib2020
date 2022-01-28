@@ -32,6 +32,7 @@
     <element id="Encounter">
       <path value="Encounter" />
       <short value="MultidisciplinaryTeamMeeting" />
+      <definition value="An interaction between healthcare provider(s), and/or patient(s) for the purpose of providing healthcare service(s) or assessing the health status of patient(s). (Note: this definition is a pre-adopt of &lt;https://jira.hl7.org/browse/FHIR-20479&gt;. Referencing the Patient as `.subject` does not indicate its presence at the Encounter. Use `.participant.individual.extension:patient` for this.)" />
       <comment value="Zib MultidisciplinaryTeamMeeting is mapped to this Encounter profile and a profile on CarePlan (&lt;http://nictiz.nl/fhir/StructureDefinition/zib-MultidisciplinaryTeamMeeting.Plan&gt;). This Encounter profile acts as the focal resource of MultidisciplinaryTeamMeeting. This profile is referenced by the CarePlan resource, which holds the 'Plan' concept (NL-CM:15.2.10), through `CarePlan.encounter`.&#xD;&#xA;&#xD;&#xA;This profile pre-adopts the definition of `.subject` accepted in &lt;https://jira.hl7.org/browse/FHIR-20479&gt;, which means that referencing the Patient as `.subject` does not indicate its presence at the Encounter. Use `.participant.individual.extension:patient` for this purpose." />
       <alias value="Patientbespreking" />
       <mapping>
@@ -39,27 +40,6 @@
         <map value="NL-CM:15.2.1" />
         <comment value="MultidisciplinaryTeamMeeting" />
       </mapping>
-    </element>
-    <element id="Encounter.extension">
-      <path value="Encounter.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
-    <element id="Encounter.extension:patientConsultationLabel">
-      <path value="Encounter.extension" />
-      <sliceName value="patientConsultationLabel" />
-      <min value="0" />
-      <max value="1" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MultidisciplinaryTeamMeeting.PatientConsultationLabel" />
-      </type>
     </element>
     <element id="Encounter.status">
       <path value="Encounter.status" />
@@ -70,28 +50,23 @@
         <comment value="PatientConsultationDateTime (implicit, main mapping is on `Encounter.period`)" />
       </mapping>
     </element>
-    <element id="Encounter.type">
-      <path value="Encounter.type" />
-      <slicing>
-        <discriminator>
-          <type value="pattern" />
-          <path value="$this" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="1" />
+    <element id="Encounter.class">
+      <path value="Encounter.class" />
+      <patternCoding>
+        <system value="http://snomed.info/sct" />
+        <code value="384682003" />
+      </patternCoding>
     </element>
-    <element id="Encounter.type:multidisciplinaryTeamMeetingCode">
-      <path value="Encounter.type" />
-      <sliceName value="multidisciplinaryTeamMeetingCode" />
-      <min value="1" />
-      <max value="1" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="384682003" />
-        </coding>
-      </patternCodeableConcept>
+    <element id="Encounter.type.text">
+      <path value="Encounter.type.text" />
+      <short value="PatientConsultationLabel" />
+      <definition value="The name used to identify the particular patient consultation, e.g. MDC head and neck cancer." />
+      <alias value="PatientbesprekingLabel" />
+      <mapping>
+        <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
+        <map value="NL-CM:15.2.5" />
+        <comment value="PatientConsultationLabel" />
+      </mapping>
     </element>
     <element id="Encounter.subject">
       <path value="Encounter.subject" />
