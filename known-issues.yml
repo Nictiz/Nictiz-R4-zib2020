@@ -120,6 +120,10 @@ zib-ContactPerson:
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
 
 zib-Encounter:
+  ignored issues:
+    Encounter.reasonReference:*:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     Encounter.class:
       - cardinality: 1..1
