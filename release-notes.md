@@ -57,9 +57,9 @@ This document contains release notes per zib, indicating differences with their 
 * Updated to new zib-NameInformation, zib-AddressInformation and zib-ContactInformation profiles.
 
 ## zib-DevelopmentChild
-* The binding strenght of all ValueSets has changed from 'extensible' to 'required'.
-* The datatype for AgeFirstMenstruation has been changed from ValueDate to ValueQuantity. 
-* The code on `Observation.component:developmentCognition.code` has changed to 311465003.
+* The binding strength of all ValueSets has changed from 'extensible' to 'required'.
+* The datatype for AgeFirstMenstruation has been changed from ValueDate to ValueQuantity and the UCUM unit is added.
+* The code on `Observation.component:developmentCognition.code` has been changed to 311465003.
 
 ## zib-DrugUse
 * The drugUseCode is mapped to `Observation.code` and based on a pattern
