@@ -49,16 +49,27 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
       </type>
     </element>
-    <element id="Encounter.reasonReference">
+    <element id="Encounter.reasonReference:problem">
       <path value="Encounter.reasonReference" />
+      <sliceName value="problem" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Procedure" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
+      </type>
+    </element>
+    <element id="Encounter.reasonReference:procedure">
+      <path value="Encounter.reasonReference" />
+      <sliceName value="procedure" />
+      <type>
+        <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event" />
+      </type>
+    </element>
+    <element id="Encounter.reasonReference:deviatingResult">
+      <path value="Encounter.reasonReference" />
+      <sliceName value="deviatingResult" />
+      <type>
+        <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult" />
       </type>
     </element>
