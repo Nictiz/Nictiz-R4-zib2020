@@ -151,36 +151,13 @@
     </element>
     <element id="Encounter.reasonReference">
       <path value="Encounter.reasonReference" />
-      <short value="Problem / Procedure / DeviatingResult" />
-      <comment value="DeviatingResult is captured with a reference to the zib LaboratoryTestResult instead of a string value as the zib 2020 incorrectly states. This will be fixed in a future version of the zib. At time of writing (November 2021), the proposed change can be followed in this BITS ticket: &lt;https://bits.nictiz.nl/browse/ZIB-1427&gt;." />
-      <alias value="Probleem" />
-      <alias value="Verrichting" />
-      <alias value="AfwijkendeUitslag" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Procedure" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-event" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult" />
-      </type>
-      <mapping>
-        <identity value="zib-encounter-v4.0.1-2020EN" />
-        <map value="NL-CM:15.1.6" />
-        <comment value="Problem" />
-      </mapping>
-      <mapping>
-        <identity value="zib-encounter-v4.0.1-2020EN" />
-        <map value="NL-CM:15.1.11" />
-        <comment value="Procedure" />
-      </mapping>
-      <mapping>
-        <identity value="zib-encounter-v4.0.1-2020EN" />
-        <map value="NL-CM:15.1.12" />
-        <comment value="DeviatingResult" />
-      </mapping>
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
     </element>
     <element id="Encounter.reasonReference.extension">
       <path value="Encounter.reasonReference.extension" />
@@ -212,6 +189,55 @@
         <identity value="zib-encounter-v4.0.1-2020EN" />
         <map value="NL-CM:15.1.17" />
         <comment value="CommentContactReason" />
+      </mapping>
+    </element>
+    <element id="Encounter.reasonReference:problem">
+      <path value="Encounter.reasonReference" />
+      <sliceName value="problem" />
+      <short value="Problem" />
+      <definition value="The problem that is the reason for the contact." />
+      <alias value="Probleem" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem" />
+      </type>
+      <mapping>
+        <identity value="zib-encounter-v4.0.1-2020EN" />
+        <map value="NL-CM:15.1.6" />
+        <comment value="Problem" />
+      </mapping>
+    </element>
+    <element id="Encounter.reasonReference:procedure">
+      <path value="Encounter.reasonReference" />
+      <sliceName value="procedure" />
+      <short value="Procedure" />
+      <definition value="The procedure carried out or will be carried out during the contact." />
+      <alias value="Verrichting" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-event" />
+      </type>
+      <mapping>
+        <identity value="zib-encounter-v4.0.1-2020EN" />
+        <map value="NL-CM:15.1.11" />
+        <comment value="Procedure" />
+      </mapping>
+    </element>
+    <element id="Encounter.reasonReference:deviatingResult">
+      <path value="Encounter.reasonReference" />
+      <sliceName value="deviatingResult" />
+      <short value="DeviatingResult" />
+      <definition value="A deviating result which serves as the reason for the contact." />
+      <comment value="DeviatingResult is captured with a reference to the zib LaboratoryTestResult instead of a string value as the zib 2020 incorrectly states. This will be fixed in a future version of the zib. At time of writing (November 2021), the proposed change can be followed in this BITS ticket: &lt;https://bits.nictiz.nl/browse/ZIB-1427&gt;." />
+      <alias value="AfwijkendeUitslag" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult" />
+      </type>
+      <mapping>
+        <identity value="zib-encounter-v4.0.1-2020EN" />
+        <map value="NL-CM:15.1.12" />
+        <comment value="DeviatingResult" />
       </mapping>
     </element>
     <element id="Encounter.hospitalization.admitSource">
