@@ -35,7 +35,7 @@ ext-LanguageProficiency.CommunicationDetails:
 ext-MedicationAdministration2.AdministeringSpeedRange:
   zib deviations:
     Extension.value[x]:
-      - dataype: Range
+      - datatype: Range
         reason: The zib Range is not represented as a resource rather it is mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Range as would have been the case within the zib Range.
 
 ext-MedicationAgreement.MedicationAgreementAdditionalInformation:
@@ -321,49 +321,49 @@ zib-MedicalDevice.Product:
 zib-InstructionsForUse.DosageInstructions:
   zib deviations:
     Dosage.additionalInstruction:
-      - dataype: CodeableConcept
+      - datatype: CodeableConcept
         reason: The AdditionalInstructions defintion mentions the uses of coded text and known use cases actually bind a valueset to this concept. Therefore a mapping on the CodeableConcept level seems more appropriate than a mapping to CodeableConcept.text. If no coded form is known, the zib information can be found in CodeableConcept.text, which is op type string.
     Dosage.timing:
-      - dataype: Timing
+      - datatype: Timing
         reason: AdministeringSchedule is represented using the Timing datatype in FHIR. It is not a container or BackboneElement in the Dosage datatype.
     Dosage.timing.repeat.count:
-      - dataype: positiveInt
+      - datatype: positiveInt
         reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
     Dosage.timing.repeat.countMax:
-      - dataype: positiveInt
+      - datatype: positiveInt
         reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
     Dosage.timing.repeat.duration:
-      - dataype: decimal
+      - datatype: decimal
         reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
     Dosage.timing.repeat.durationUnit:
-      - dataype: code
+      - datatype: code
         reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
     Dosage.timing.repeat.frequency:
-      - dataype: positiveInt
+      - datatype: positiveInt
         reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
     Dosage.timing.repeat.frequencyMax: 
-      - dataype: positiveInt
+      - datatype: positiveInt
         reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
     Dosage.timing.repeat.period:
-      - dataype: decimal
+      - datatype: decimal
         reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
     Dosage.timing.repeat.periodUnit:
-      - dataype: code
+      - datatype: code
         reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
     Dosage.timing.repeat.timeOfDay:
-      - dataype: time
+      - datatype: time
         reason: The datatype time is more specific than the zib datatype TS. To use only a time instead of a dateTime matches with the definition of AdministrationTime.
     Dosage.doseAndRate:
-      - dataype: Element
+      - datatype: Element
         reason: The Dosage concepts maps neatly to the doseAndRate element. It is however unclear why FHIR defined an Element rather than a BackboneElement here.
     Dosage.doseAndRate.dose[x]:
-      - dataype: Range
+      - datatype: Range
         reason: The zib Range is not represented as a resource rather it is mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Range as would have been the case within the zib Range.
     Dosage.doseAndRate.rate[x]:
-      - dataype: Ratio
+      - datatype: Ratio
         reason: The mapping is placed to this polymorphic element that also contains the option to give a Ratio datatype. This Ratio datatype is not used by the zib mapping. It is however not removed as option because of the open world modelling principle.
     Dosage.maxDosePerPeriod:
-      - dataype: Ratio
+      - datatype: Ratio
         reason: The zib Range is not represented as a resource rather it is mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Ratio as would have been the case within the zib Range. 
     
 zib-MedicationAdministration2:
