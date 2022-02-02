@@ -15,7 +15,7 @@
     </telecom>
   </contact>
   <description value="Visual acuity is a measurement of sharpness of vision. It is a measure of the smallest details that someone can still distinguish." />
-  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) VisualAcuity-v1.0(2020EN)](https://zibs.nl/wiki/VisualAcuity-v1.0(2020EN))." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) VisualAcuity-v1.0(2020EN)](https://zibs.nl/wiki/VisualAcuity-v1.0(2020EN)). Because of some irregularities that were found in the 2020 version of the zib, concept names, descriptions and DefinitionCodes were taken from version [v2.0(2021EN)](https://zibs.nl/wiki/Visus-v2.0(2021NL))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -77,7 +77,7 @@
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
-          <code value="16830007" />
+          <code value="363983007" />
         </coding>
       </patternCodeableConcept>
     </element>
@@ -119,9 +119,9 @@
     <element id="Observation.value[x]:valueQuantity">
       <path value="Observation.value[x]" />
       <sliceName value="valueQuantity" />
-      <short value="DecimalVisualAqcuity" />
+      <short value="VisualAcuity" />
       <definition value="The measured decimal visual acuity." />
-      <alias value="DecimaleVisusWaarde" />
+      <alias value="VisusWaarde" />
       <type>
         <code value="Quantity" />
       </type>
@@ -142,7 +142,7 @@
       <mapping>
         <identity value="zib-visualacuity-v1.0-2020EN" />
         <map value="NL-CM:12.19.11" />
-        <comment value="DecimalVisualAqcuity" />
+        <comment value="VisualAcuity" />
       </mapping>
     </element>
     <element id="Observation.bodySite">
@@ -211,14 +211,14 @@
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
-            <code value="16830007" />
+          <code value="16830007" />
         </coding>
       </patternCodeableConcept>
     </element>
     <element id="Observation.component:visualAcuityType.value[x]">
       <path value="Observation.component.value[x]" />
       <short value="VisualAcuityType" />
-      <definition value="Type of visual acuity measurment." />
+      <definition value="Type of visual acuity measurement." />
       <alias value="VisusMetingType" />
       <type>
         <code value="CodeableConcept" />
@@ -243,7 +243,7 @@
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
-          <code value="363691001" />
+          <code value="421763006" />
         </coding>
       </patternCodeableConcept>
     </element>
