@@ -33,6 +33,20 @@
       <path value="Observation" />
       <short value="PainScore" />
       <alias value="PijnScore" />
+      <constraint>
+        <key value="zib-PainScore-1" />
+        <severity value="error" />
+        <human value="maxValue of 10 if method is VAS10 or NRS or 100 if VAS100" />
+        <expression value="((method.coding.code = 'VAS10' or method.coding.code = 'NRS') and valueQuantity.value &lt;= 10) or (method.coding.code='VAS100' and valueQuantity.value &lt;= 100)" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-PainScore" />
+      </constraint>
+      <constraint>
+        <key value="zib-PainScore-2" />
+        <severity value="error" />
+        <human value="minValue of 1 if method is NRS or 0 if VAS" />
+        <expression value="((method.coding.code = 'VAS10' or method.coding.code = 'VAS100') and valueQuantity.value &gt;= 0) or (method.coding.code='NRS' and valueQuantity.value &gt;= 1)" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-PainScore" />
+      </constraint>
       <mapping>
         <identity value="zib-painscore-v4.0-2020EN" />
         <map value="NL-CM:12.9.1" />
@@ -59,7 +73,7 @@
       </slicing>
     </element>
     <element id="Observation.effective[x]:effectiveDateTime">
-      <path value="Observation.effectiveDateTime" />
+      <path value="Observation.effective[x]" />
       <sliceName value="effectiveDateTime" />
       <short value="PainScoreDateTime" />
       <definition value="The date and time at which the pain score was measured." />
@@ -84,7 +98,7 @@
       </slicing>
     </element>
     <element id="Observation.value[x]:valueInteger">
-      <path value="Observation.valueInteger" />
+      <path value="Observation.value[x]" />
       <sliceName value="valueInteger" />
       <short value="PainScoreValue" />
       <definition value="The score is a general measurement of pain experience, not a description of specific, localized pain. &#xD;&#xA; &#xD;&#xA;Depending on the measuring method used, it indicates the level of pain experienced by the patient on a scale of 0 to 10: 0 = no pain and 10 = the worst pain imaginable. No descriptions are used for the intermediate values, so that the value is displayed as a number and not as a code.  &#xD;&#xA; &#xD;&#xA;Sometimes a value range of 0-100 is used instead of 0-10." />
