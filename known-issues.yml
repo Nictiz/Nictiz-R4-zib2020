@@ -116,18 +116,10 @@ zib-AdministrationAgreement:
       - datatype: code
         reason: CanceledIndicator can be mapped to the status element that holds an appropriate code for when CanceledIndicator = true. 
       - cardinality: 1..1
-        reason: The base FHIR spect defines status as 1..1. This is not a problem for the mapping of CanceledIndicator because if CanceledIndicator is absent or false another more appropriate code should be chosen for this mandatory element.
-    MedicationDispense.note.text:
-      - cardinality:  1..1
-        reason: The text element makes the value required (1..1), but the use of the note itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
-    MedicationDispense.performer.actor:
-      - cardinality:  1..1
-        reason: The actor element makes the value required (1..1), but the use of the performer itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.    
+        reason: The base FHIR spect defines status as 1..1. This is not a problem for the mapping of CanceledIndicator because if CanceledIndicator is absent or false another more appropriate code should be chosen for this mandatory element. 
     MedicationDispense.dosageInstruction:
       - datatype: Dosage
         reason: InstructionsForUse and DosingInstructions are represented by the Dosage datatype and not by a resource in FHIR hence the mismatch in datatypes.
-      - cardinality:  0..*
-        reason: This Dosage datatype _mainly_ represents the DosingInstructions concept of InstructionsForUse which has a cardinality of 0..*.
     MedicationDispense.extension:periodOfUse-Period.value[x]:
       - datatype: Period
         reason: The zib TimerInterval is not represented as a resource but is rather mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Period as would have been the case within the zib TimeInterval.
@@ -397,15 +389,7 @@ zib-MedicationAdministration2:
 
 zib-MedicationAgreement:
   zib deviations:
-    MedicationRequest.note.text:
-      - cardinality:  1..1
-        reason: The text element makes the value required (1..1), but the use of the note itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
-    MedicationRequest.extension:additionalInformation.value[x]:
-      - cardinality:  0..1
-        reason: The used extension allows the value to occure only once (0..1), but the use of the extension itself is allowed to be repeated (0..*), effectively resulting a cardinality of 0..* for this element.
     MedicationRequest.dosageInstruction:
-      - cardinality:  0..*
-        reason: DosageInstructions is profiled on a datatype level (Dosage) and not a resource. In FHIR the root concepts of InstructionsForUse do not all extist in the Dosage datatype. These are represented in the resource that includes the Dosage information. Therefore, the cardinality needs to be 0..* because the zib container DosageInstruction within InstructionsForUse is also 0..*. 
       - datatype: Dosage
         reason: DosageInstructions in FHIR is represented using the Dosage datatype, not as a separate resource.
     MedicationRequest.extension:periodOfUse-Duration.value[x]:
