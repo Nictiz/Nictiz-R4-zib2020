@@ -35,7 +35,7 @@ ext-LanguageProficiency.CommunicationDetails:
 ext-MedicationAdministration2.AdministeringSpeedRange:
   zib deviations:
     Extension.value[x]:
-      - dataype: Range
+      - datatype: Range
         reason: The zib Range is not represented as a resource rather it is mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Range as would have been the case within the zib Range.
 
 ext-MedicationAgreement.MedicationAgreementAdditionalInformation:
@@ -116,24 +116,13 @@ zib-AdministrationAgreement:
       - datatype: code
         reason: CanceledIndicator can be mapped to the status element that holds an appropriate code for when CanceledIndicator = true. 
       - cardinality: 1..1
-        reason: The base FHIR spect defines status as 1..1. This is not a problem for the mapping of CanceledIndicator because if CanceledIndicator is absent or false another more appropriate code should be chosen for this mandatory element.
-    MedicationDispense.note.text:
-      - cardinality:  1..1
-        reason: The text element makes the value required (1..1), but the use of the note itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
-    MedicationDispense.performer.actor:
-      - cardinality:  1..1
-        reason: The actor element makes the value required (1..1), but the use of the performer itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.    
+        reason: The base FHIR spect defines status as 1..1. This is not a problem for the mapping of CanceledIndicator because if CanceledIndicator is absent or false another more appropriate code should be chosen for this mandatory element. 
     MedicationDispense.dosageInstruction:
       - datatype: Dosage
         reason: InstructionsForUse and DosingInstructions are represented by the Dosage datatype and not by a resource in FHIR hence the mismatch in datatypes.
-      - cardinality:  0..*
-        reason: This Dosage datatype _mainly_ represents the DosingInstructions concept of InstructionsForUse which has a cardinality of 0..*.
-    MedicationDispense.extension:periodOfUse-Period.value[x]:
+    MedicationDispense.extension:periodOfUse.value[x]:
       - datatype: Period
-        reason: The zib TimerInterval is not represented as a resource but is rather mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Period as would have been the case within the zib TimeInterval.
-    MedicationDispense.extension:periodOfUse-Duration.value[x]:        
-      - datatype: Duration
-        reason: The zib TimerInterval is not represented as a resource but is rather mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Duration as would have been the case within the zib TimeInterval.
+        reason: The zib TimerInterval is not represented as a resource but is mapped within the zib profile. De 'Duration' part of the concept is represented by an extension within this extension.
 
 zib-AdvanceDirective:
   zib deviations:
@@ -209,9 +198,6 @@ zib-ContactPerson:
 
 zib-DispenseRequest:
   zib deviations:
-    MedicationRequest.note.text:
-      - cardinality:  1..1
-        reason: The text element makes the value required (1..1), but the use of the note itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
     MedicationRequest.dispenseRequest.extension:periodOfUse-Duration.value[x]:
       - datatype: Duration
         reason: The zib TimerInterval is not represented as a resource but is rather mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Duration as would have been the case within the zib TimeInterval.
@@ -335,56 +321,53 @@ zib-MedicalDevice.Product:
 zib-InstructionsForUse.DosageInstructions:
   zib deviations:
     Dosage.additionalInstruction:
-      - dataype: CodeableConcept
+      - datatype: CodeableConcept
         reason: The AdditionalInstructions defintion mentions the uses of coded text and known use cases actually bind a valueset to this concept. Therefore a mapping on the CodeableConcept level seems more appropriate than a mapping to CodeableConcept.text. If no coded form is known, the zib information can be found in CodeableConcept.text, which is op type string.
     Dosage.timing:
-      - dataype: Timing
+      - datatype: Timing
         reason: AdministeringSchedule is represented using the Timing datatype in FHIR. It is not a container or BackboneElement in the Dosage datatype.
     Dosage.timing.repeat.count:
-      - dataype: positiveInt
+      - datatype: positiveInt
         reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
     Dosage.timing.repeat.countMax:
-      - dataype: positiveInt
+      - datatype: positiveInt
         reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
     Dosage.timing.repeat.duration:
-      - dataype: decimal
+      - datatype: decimal
         reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
     Dosage.timing.repeat.durationUnit:
-      - dataype: code
+      - datatype: code
         reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
     Dosage.timing.repeat.frequency:
-      - dataype: positiveInt
+      - datatype: positiveInt
         reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
     Dosage.timing.repeat.frequencyMax: 
-      - dataype: positiveInt
+      - datatype: positiveInt
         reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
     Dosage.timing.repeat.period:
-      - dataype: decimal
+      - datatype: decimal
         reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
     Dosage.timing.repeat.periodUnit:
-      - dataype: code
+      - datatype: code
         reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
     Dosage.timing.repeat.timeOfDay:
-      - dataype: time
+      - datatype: time
         reason: The datatype time is more specific than the zib datatype TS. To use only a time instead of a dateTime matches with the definition of AdministrationTime.
     Dosage.doseAndRate:
-      - dataype: Element
+      - datatype: Element
         reason: The Dosage concepts maps neatly to the doseAndRate element. It is however unclear why FHIR defined an Element rather than a BackboneElement here.
     Dosage.doseAndRate.dose[x]:
-      - dataype: Range
+      - datatype: Range
         reason: The zib Range is not represented as a resource rather it is mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Range as would have been the case within the zib Range.
     Dosage.doseAndRate.rate[x]:
-      - dataype: Ratio
+      - datatype: Ratio
         reason: The mapping is placed to this polymorphic element that also contains the option to give a Ratio datatype. This Ratio datatype is not used by the zib mapping. It is however not removed as option because of the open world modelling principle.
     Dosage.maxDosePerPeriod:
-      - dataype: Ratio
+      - datatype: Ratio
         reason: The zib Range is not represented as a resource rather it is mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Ratio as would have been the case within the zib Range. 
     
 zib-MedicationAdministration2:
   zib deviations:
-    MedicationAdministration.note.text:
-      - cardinality:  1..1
-        reason: The text element makes the value required (1..1), but the use of the note itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
     MedicationAdministration.status:
       - cardinality:  1..1
         reason: TODO
@@ -397,41 +380,21 @@ zib-MedicationAdministration2:
 
 zib-MedicationAgreement:
   zib deviations:
-    MedicationRequest.note.text:
-      - cardinality:  1..1
-        reason: The text element makes the value required (1..1), but the use of the note itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
-    MedicationRequest.extension:additionalInformation.value[x]:
-      - cardinality:  0..1
-        reason: The used extension allows the value to occure only once (0..1), but the use of the extension itself is allowed to be repeated (0..*), effectively resulting a cardinality of 0..* for this element.
     MedicationRequest.dosageInstruction:
-      - cardinality:  0..*
-        reason: DosageInstructions is profiled on a datatype level (Dosage) and not a resource. In FHIR the root concepts of InstructionsForUse do not all extist in the Dosage datatype. These are represented in the resource that includes the Dosage information. Therefore, the cardinality needs to be 0..* because the zib container DosageInstruction within InstructionsForUse is also 0..*. 
       - datatype: Dosage
         reason: DosageInstructions in FHIR is represented using the Dosage datatype, not as a separate resource.
-    MedicationRequest.extension:periodOfUse-Duration.value[x]:
-      - datatype: Duration
-        reason: The zib TimerInterval is not represented as a resource but is rather mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Duration as would have been the case within the zib TimeInterval.
-    MedicationRequest.extension:periodOfUse-Period.value[x]:
+    MedicationRequest.extension:periodOfUse.value[x]:
       - datatype: Period
-        reason: The zib TimerInterval is not represented as a resource but is rather mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Period as would have been the case within the zib TimeInterval.
+        reason: The zib TimerInterval is not represented as a resource but is mapped within the zib profile. De 'Duration' part of the concept is represented by an extension within this extension.
     
 zib-MedicationDispense:
   zib deviations:
-    MedicationDispense.note.text:
-      - cardinality:  1..1
-        reason: The text element makes the value required (1..1), but the use of the note itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
-    MedicationDispense.performer.actor:
-      - cardinality:  1..1
-        reason: The actor element makes the value required (1..1), but the use of the performer itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
     MedicationDispense.destination:
       - datatype: Reference
         reason: A mapping to a native FHIR element, this reference to a Location, has been chosen over the use of an extension. The actual information will be placed inside a string datatype in Location.name matching the datatype of the zib.
 
 zib-MedicationUse2:
   zib deviations:
-    MedicationStatement.note.text:
-      - cardinality:  1..1
-        reason: The text element makes the value required (1..1), but the use of the note itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
     MedicationStatement.extension:periodOfUse-Duration.value[x]:
       - datatype: Duration
         reason: The zib TimerInterval is not represented as a resource but is rather mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Duration as would have been the case within the zib TimeInterval.
@@ -439,13 +402,8 @@ zib-MedicationUse2:
       - datatype: Period
         reason: The zib TimerInterval is not represented as a resource but is rather mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Period as would have been the case within the zib TimeInterval.
     MedicationStatement.dosage:
-      - cardinality:  0..*
-        reason: DosageInstructions is profiled on a datatype level (Dosage) and not a resource. In FHIR the root concepts of InstructionsForUse do not all extist in the Dosage datatype. These are represented in the resource that includes the Dosage information. Therefore, the cardinality needs to be 0..* because the zib container DosageInstruction within InstructionsForUse is also 0..*. 
       - datatype: Dosage
         reason: DosageInstructions in FHIR is represented using the Dosage datatype, not as a separate resource.
-    MedicationStatement.reasonCode:reasonForUse.text:
-      - cardinality:  1..1
-        reason: The reasonCode.text has been made mandatory because it is placed within a slice (reasonForUse) and the element is used as a discriminator for the validator. Because the concept is placed within a slice on a 0..* element it is possible to not populate this zib concept, which matches the zib definition.
     MedicationStatement.status:
       - cardinality:  1..1
         reason: UseIndicator is mapped to the status element of MedicationStatement which is 1..1. This should not be problematic because the status element is used for more than holding UseIndicator information. If UseIndicator is absent because it is 0..1 another status code is chosen to fullfil the 1..1 requirement by FHIR. 
