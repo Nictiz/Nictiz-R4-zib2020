@@ -413,9 +413,6 @@ zib-MedicationDispense:
 
 zib-MedicationUse2:
   zib deviations:
-    MedicationStatement.note.text:
-      - cardinality:  1..1
-        reason: The text element makes the value required (1..1), but the use of the note itself is optional (0..1), effectively resulting a cardinality of 0..1 for this element.
     MedicationStatement.extension:periodOfUse-Duration.value[x]:
       - datatype: Duration
         reason: The zib TimerInterval is not represented as a resource but is rather mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Duration as would have been the case within the zib TimeInterval.
@@ -423,8 +420,6 @@ zib-MedicationUse2:
       - datatype: Period
         reason: The zib TimerInterval is not represented as a resource but is rather mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Period as would have been the case within the zib TimeInterval.
     MedicationStatement.dosage:
-      - cardinality:  0..*
-        reason: DosageInstructions is profiled on a datatype level (Dosage) and not a resource. In FHIR the root concepts of InstructionsForUse do not all extist in the Dosage datatype. These are represented in the resource that includes the Dosage information. Therefore, the cardinality needs to be 0..* because the zib container DosageInstruction within InstructionsForUse is also 0..*. 
       - datatype: Dosage
         reason: DosageInstructions in FHIR is represented using the Dosage datatype, not as a separate resource.
     MedicationStatement.reasonCode:reasonForUse.text:
