@@ -140,6 +140,9 @@ zib-Encounter:
     Encounter.reasonReference.extension:comment.value[x]:
       - cardinality: 0..*
         reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*, effective) is explained by the missing ContactReason container in FHIR. This container may exists 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+    Encounter.location.location:
+      - cardinality: 0..*
+        reason: The zib has a restricted cardinality of 0..1 for the Location concept (NL-CM:15.1.8). However, this cardianlity is propably too restricted (see <https://bits.nictiz.nl/browse/ZIB-1632> for discussion) and would prevent some practical use cases. Therefore, the cardinality has been left on 0..* in this profile.
 
 zib-FunctionalOrMentalStatus:
   zib deviations:
