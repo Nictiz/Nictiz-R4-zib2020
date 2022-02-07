@@ -176,7 +176,7 @@ This document contains release notes per zib, indicating differences with their 
 * Removed mapping of DesiredDateForRevaccination because it has been removed by the zib as well. The DesiredDateForRevaccination concept has been replaced by mapping to VaccinationDate which is placed on `ImmunizationRecommendation.recommendation.dateCriterion.value`. The mapping to PlannedCareActivityForTransfer start and end dates have been removed from this element.
 
 ## zib-VisualAcuity
-* New zib
+* New zib.
 
 ## zib-VisualFunction
 * Changed fixed slice on `.code.coding` to a pattern on `.code`.

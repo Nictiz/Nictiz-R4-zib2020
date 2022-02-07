@@ -48,10 +48,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="Observation.extension:visualAcuityMeasurementDevice">
       <path value="Observation.extension" />
       <sliceName value="visualAcuityMeasurementDevice" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/observation-deviceCode" />
@@ -131,13 +133,13 @@
       </patternQuantity>
       <minValueQuantity>
         <value value="0" />
-          <system value="http://unitsofmeasure.org" />
-          <code value="{decimal}" />
+        <system value="http://unitsofmeasure.org" />
+        <code value="{decimal}" />
       </minValueQuantity>
       <maxValueQuantity>
         <value value="2" />
-          <system value="http://unitsofmeasure.org" />
-          <code value="{decimal}" />
+        <system value="http://unitsofmeasure.org" />
+        <code value="{decimal}" />
       </maxValueQuantity>
       <mapping>
         <identity value="zib-visualacuity-v1.0-2020EN" />
@@ -151,12 +153,12 @@
         <code value="CodeableConcept" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
       </type>
-        <patternCodeableConcept>
-            <coding>
-                <system value="http://snomed.info/sct" />
-                <code value="81745001" />
-            </coding>
-        </patternCodeableConcept>
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="81745001" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Observation.bodySite.extension">
       <path value="Observation.bodySite.extension" />
@@ -167,11 +169,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="Observation.bodySite.extension:laterality">
       <path value="Observation.bodySite.extension" />
       <sliceName value="laterality" />
-      <max value="1" />
+      <min value="0" />
     </element>
     <element id="Observation.bodySite.extension:laterality.url">
       <path value="Observation.bodySite.extension.url" />
@@ -182,9 +185,6 @@
       <short value="AnatomicalLocation" />
       <definition value="The laterality of the eye of which the visual acuity has been measured." />
       <alias value="AnatomischeLocatie" />
-      <type>
-        <code value="CodeableConcept" />
-      </type>
       <mapping>
         <identity value="zib-visualacuity-v1.0-2020EN" />
         <map value="NL-CM:12.19.5" />
@@ -275,7 +275,7 @@
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
-            <code value="152731000146106" />
+          <code value="152731000146106" />
         </coding>
       </patternCodeableConcept>
     </element>
@@ -287,10 +287,10 @@
       <type>
         <code value="Quantity" />
       </type>
-        <patternQuantity>
-            <system value="http://unitsofmeasure.org" />
-            <code value="m" />
-        </patternQuantity>
+      <patternQuantity>
+        <system value="http://unitsofmeasure.org" />
+        <code value="m" />
+      </patternQuantity>
       <mapping>
         <identity value="zib-visualacuity-v1.0-2020EN" />
         <map value="NL-CM:12.19.8" />
