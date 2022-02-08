@@ -14,7 +14,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="A person who receives medical, psychological, paramedical or nursing care. In some care settings, the term client or participant is used instead of the term patient.&#xD;&#xA;Nationality is used as an indication of the country of citizenship. &#xD;&#xA;Marital status is a person’s formal position as defined by the Dutch civil code. There is a distinction between marriage and civil union." />
+  <description value="A person who receives medical, psychological, paramedical or nursing care. In some care settings, the term client or participant is used instead of the term patient.&#xD;&#xA;Nationality is used as an indication of the country of citizenship. &#xD;&#xA;Marital status is a person’s formal position as defined by the Dutch civil code. There is a distinction between marriage and civil union.&#xD;&#xA;Linguistic proficiency is the ability to express oneself in a certain language and understand statements made in that language. This includes both oral and written communication." />
   <purpose value="A derived profile from [zib-Patient](http://nictiz.nl/fhir/StructureDefinition/zib-Patient) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
@@ -32,7 +32,22 @@
       <path value="Patient.name" />
       <type>
         <code value="HumanName" />
+      </type>
+    </element>
+    <element id="Patient.name:nameInformation">
+      <path value="Patient.name" />
+      <sliceName value="nameInformation" />
+      <type>
+        <code value="HumanName" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NameInformation" />
+      </type>
+    </element>
+    <element id="Patient.name:nameInformation-GivenName">
+      <path value="Patient.name" />
+      <sliceName value="nameInformation-GivenName" />
+      <type>
+        <code value="HumanName" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NameInformation.GivenName" />
       </type>
     </element>
     <element id="Patient.telecom:telephoneNumbers">
@@ -67,10 +82,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="Patient.contact.extension:contactPerson">
       <path value="Patient.contact.extension" />
       <sliceName value="contactPerson" />
+      <min value="0" />
     </element>
     <element id="Patient.contact.extension:contactPerson.value[x]">
       <path value="Patient.contact.extension.value[x]" />

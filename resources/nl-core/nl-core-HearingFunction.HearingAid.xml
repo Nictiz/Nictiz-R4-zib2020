@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-HearingFunction.HearingAid" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HearingFunction.HearingAid" />
+  <name value="NlcoreHearingFunctionHearingAid" />
+  <title value="nl core HearingFunction.HearingAid" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Hearing is the ability to observe sound, with the purpose of communicating with others, localizing the source of the sound and recognizing certain sounds. This pertains to observing the sound waves, and not processing the sounds in the brain.&#xD;&#xA;A hearing disorder can lead to things including communication problems." />
+  <purpose value="A derived profile from [zib-HearingFunction.HearingAid](http://nictiz.nl/fhir/StructureDefinition/zib-HearingFunction.HearingAid) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="DeviceUseStatement" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-HearingFunction.HearingAid" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="DeviceUseStatement">
+      <path value="DeviceUseStatement" />
+      <alias value="nl-core-HearingFunction.HearingAid" />
+    </element>
+    <element id="DeviceUseStatement.extension">
+      <path value="DeviceUseStatement.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="DeviceUseStatement.extension:healthProfessional">
+      <path value="DeviceUseStatement.extension" />
+      <sliceName value="healthProfessional" />
+      <min value="0" />
+    </element>
+    <element id="DeviceUseStatement.extension:healthProfessional.value[x]">
+      <path value="DeviceUseStatement.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.extension:location">
+      <path value="DeviceUseStatement.extension" />
+      <sliceName value="location" />
+      <min value="0" />
+    </element>
+    <element id="DeviceUseStatement.extension:location.value[x]">
+      <path value="DeviceUseStatement.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.subject">
+      <path value="DeviceUseStatement.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.device">
+      <path value="DeviceUseStatement.device" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HearingFunction.HearingAid.Product" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.reasonReference:indication">
+      <path value="DeviceUseStatement.reasonReference" />
+      <sliceName value="indication" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.reasonReference:hearingFunction">
+      <path value="DeviceUseStatement.reasonReference" />
+      <sliceName value="hearingFunction" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HearingFunction" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HearingFunction" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
