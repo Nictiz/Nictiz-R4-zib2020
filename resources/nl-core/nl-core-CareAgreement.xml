@@ -41,8 +41,8 @@
       <path value="CarePlan.author" />
       <type>
         <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner" />
       </type>
     </element>
     <element id="CarePlan.contributor:patient">
@@ -53,13 +53,21 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
       </type>
     </element>
+    <element id="CarePlan.contributor:contactPerson">
+      <path value="CarePlan.contributor" />
+      <sliceName value="contactPerson" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson" />
+      </type>
+    </element>
     <element id="CarePlan.contributor:healthProfessional">
       <path value="CarePlan.contributor" />
       <sliceName value="healthProfessional" />
       <type>
         <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner" />
       </type>
     </element>
     <element id="CarePlan.addresses">
@@ -91,8 +99,8 @@
       <sliceName value="healthProfessional" />
       <type>
         <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner" />
       </type>
     </element>
   </differential>
