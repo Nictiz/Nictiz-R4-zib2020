@@ -364,10 +364,7 @@ zib-Stoma:
         reason: The FHIR profiles are expected to implement zib cardinalities as conceptual cardinalities, but StomaType is essential to identify the Stoma. This aligns with the intention of the zib, as the StomaType concept is required for zib Stoma to make sense.
     Condition.bodySite:
       - datatype: CodeableConcept
-        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation. 
-    Condition.note.text:
-      - cardinality: 1..1
-        reason: Condition.note has cardinality 0..1, making the cardinality of Condition.note.text effectively 0..1 as required by the zib.
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
         
 zib-TextResult:
   zib deviations:
