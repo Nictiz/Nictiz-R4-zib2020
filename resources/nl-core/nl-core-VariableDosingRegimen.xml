@@ -117,6 +117,27 @@
         <comment value="Description" />
       </mapping>
     </element>
+    <element id="MedicationRequest.extension:periodOfUse">
+      <path value="MedicationRequest.extension" />
+      <sliceName value="periodOfUse" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period" />
+      </type>
+    </element>
+    <element id="MedicationRequest.extension:periodOfUse.value[x]">
+      <path value="MedicationRequest.extension.value[x]" />
+      <short value="PeriodOfUse" />
+      <definition value="**Start date**: This is the time at which the agreement was to take effect (or took effect or will take effect). This is the time at which the instructions for use in this agreement start. In the case of an agreement to discontinue use, this is the start date of the original medication agreement. The end date indicates from when the medication is to be discontinued.&#xD;&#xA;&#xD;&#xA;**End date**: The time at which the period of use ends (or ended or will end). In the case of an agreement to discontinue use, this is the time at which the medication is to be discontinued. To avoid confusion between 'to' and 'up to', the submission of time is always mandatory for the end date.&#xD;&#xA;&#xD;&#xA;With medication for an indefinite period only a start date is indicated." />
+      <alias value="Gebruiksperiode" />
+      <mapping>
+        <identity value="Medication-Process-v9-2-0-0" />
+        <map value="mp-dataelement920-635" />
+        <comment value="PeriodOfUse" />
+      </mapping>
+    </element>
     <element id="MedicationRequest.modifierExtension">
       <path value="MedicationRequest.modifierExtension" />
       <slicing>
