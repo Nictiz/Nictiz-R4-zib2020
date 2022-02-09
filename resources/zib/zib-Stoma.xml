@@ -42,7 +42,20 @@
     </element>
     <element id="Condition.category">
       <path value="Condition.category" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="coding" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
       <min value="1" />
+    </element>
+    <element id="Condition.category:stoma">
+      <path value="Condition.category" />
+      <sliceName value="stoma" />
+      <min value="1" />
+      <max value="1" />
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
