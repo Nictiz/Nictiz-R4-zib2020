@@ -33,7 +33,7 @@
       <path value="Observation" />
       <short value="LaboratoryTestResult / LaboratoryTest" />
       <definition value="An instance of zib LaboratoryTestResult or of a single LaboratoryTest within this zib." />
-      <comment value="The zib LaboratoryTestResult captures both singular laboratory tests and panels/clusters of multiple related tests requested together (e.g. blood gases and EBV serology). This profile should be used slightly different in these two situations:&#xD;&#xA;&#xD;&#xA;* For singlular laboratory test results&#xD;&#xA;    * A single instance of this profile is to be used.&#xD;&#xA;    * `Observation.code` represents zib concept TestCode (NL-CM:13.1.8, the name and code of the executed test) while zib concept PanelOrBattery (NL-CM:13.1.4, the name and code of the compound test) is not expected to be present.&#xD;&#xA;    * `Observation.status` represents zib concept TestResultStatus (NL-CM:13.1.31, the status of the test result). ResultStatus (NL-CM:13.1.6) is redundant in this situation and not expected to be present.&#xD;&#xA;* For a panel or cluster:&#xD;&#xA;    * There is a single instance for the overall result plus an instance for each individual test result.&#xD;&#xA;    * For the instance representing the overall result:&#xD;&#xA;      * `Observation.code` represents zib concept PanelOrBattery (NL-CM:13.1.4, the name and code of the compound test), which is required for panels/clusters.&#xD;&#xA;      * `Observation.status` represents zib concept ResultStatus (NL-CM:13.1.6, the overall status of the test result). This status should be in accordance with the statuses of each individual test.&#xD;&#xA;      * The instances respresenting the individual test results are referenced using `Observation.hasMember`.&#xD;&#xA;    * For the instances representing the individual test results:&#xD;&#xA;      * `Observation.code` represents zib concept TestCode (NL-CM:13.1.8, the name and code of the executed test) for that particular test.&#xD;&#xA;      * `Observation.status` represents zib concept TestResultStatus (NL-CM:13.1.31, the status of the test result) for that particular test." />
+      <comment value="The zib LaboratoryTestResult captures both singular laboratory tests and panels/clusters of multiple related tests requested together (e.g. blood gases and EBV serology)*. This profile should be used slightly different in these two situations:&#xD;&#xA;&#xD;&#xA;* For singlular laboratory test results&#xD;&#xA;    * A single instance of this profile is to be used.&#xD;&#xA;    * `Observation.code` represents zib concept TestCode (NL-CM:13.1.8, the name and code of the executed test) while zib concept PanelOrBattery (NL-CM:13.1.4, the name and code of the compound test) is not expected to be present.&#xD;&#xA;    * `Observation.status` represents zib concept TestResultStatus (NL-CM:13.1.31, the status of the test result). ResultStatus (NL-CM:13.1.6) is redundant in this situation and not expected to be present.&#xD;&#xA;* For a panel or cluster:&#xD;&#xA;    * There is a single instance for the overall result plus an instance for each individual test result.&#xD;&#xA;    * For the instance representing the overall result:&#xD;&#xA;      * `Observation.code` represents zib concept PanelOrBattery (NL-CM:13.1.4, the name and code of the compound test), which is required for panels/clusters.&#xD;&#xA;      * `Observation.status` represents zib concept ResultStatus (NL-CM:13.1.6, the overall status of the test result). This status should be in accordance with the statuses of each individual test.&#xD;&#xA;      * The instances respresenting the individual test results are referenced using `Observation.hasMember`.&#xD;&#xA;    * For the instances representing the individual test results:&#xD;&#xA;      * `Observation.code` represents zib concept TestCode (NL-CM:13.1.8, the name and code of the executed test) for that particular test.&#xD;&#xA;      * `Observation.status` represents zib concept TestResultStatus (NL-CM:13.1.31, the status of the test result) for that particular test.&#xD;&#xA;&#xD;&#xA;*) Please note the the zib also recognizes the RelatedResult concept (NL-CM:13.1.33). This is unrelated to the use of panels/clusters. This concept is represented either using `Observation.derivedFrom` or `Observation.extension:relatedResult`." />
       <alias value="LaboratoriumUitslag" />
       <alias value="LaboratoriumTest" />
       <mapping>
@@ -86,7 +86,8 @@
     <element id="Observation.status">
       <path value="Observation.status" />
       <short value="ResultStatus / TestResultStatus" />
-      <definition value="The status of the laboratory test result. If this resource doesn't represent a single test but represents the overall result of a panel/cluster, this status should represent the status of the panel/cluster as well and should be in accordance with the test result statuses of the individual tests." />
+      <definition value="The status of the laboratory test result or test result panel/cluster." />
+      <comment value="If this resource represents a singular test result or a single test in a cluster/panel, this will be the status of this particular test result. However, if it represents the overall result of a panel/cluster, this status should represent the status of the panel/cluster and should be in accordance with the test result statuses of the individual tests." />
       <alias value="TestUitslagStatus" />
       <binding>
         <strength value="required" />
@@ -135,7 +136,7 @@
       <alias value="TestCode" />
       <binding>
         <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/TestCode-and-PanelOrBattery-Codelijsten" />
+        <valueSet value="http://nictiz.nl/fhir/ValueSet/TestCode-and-PanelOrBattery-Codelijsten" />
       </binding>
       <mapping>
         <identity value="zib-laboratorytestresult-v4.6-2020EN" />
@@ -310,6 +311,17 @@
         <map value="NL-CM:13.1.11" />
         <comment value="ReferenceRangeUpperLimit" />
       </mapping>
+    </element>
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
+      <comment value="When this resource is used to represent the overall result of a panel/cluster of laboratory tests, the individual test resultss SHOULD be referenced here. See the root of this profile for guidance." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MolecularSequence" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult" />
+      </type>
     </element>
     <element id="Observation.derivedFrom">
       <path value="Observation.derivedFrom" />
