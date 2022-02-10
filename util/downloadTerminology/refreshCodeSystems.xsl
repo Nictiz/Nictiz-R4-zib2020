@@ -14,6 +14,7 @@
     </xd:doc>
     
     <xsl:output omit-xml-declaration="yes"/>
+    <xsl:include href="rewriteTerminologyResource.xsl"/>
     
     <xsl:param name="inputdir">../../resources/zib/</xsl:param>
     <xsl:param name="outputdir">
@@ -58,7 +59,9 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
-            <xsl:variable name="codeSystem" select="doc($codeSystemURI)//f:CodeSystem" as="element()?"/>
+            <xsl:variable name="codeSystem" as="element()?">
+                <xsl:apply-templates select="doc($codeSystemURI)//f:CodeSystem" mode="rewrite"/>
+            </xsl:variable> 
             <xsl:variable name="codeSystemName" select="$codeSystem/descendant-or-self::f:CodeSystem/f:name/@value"/>
             
             <xsl:variable name="codeSystemIdExists" select="$resourceIds[. = $codeSystem/descendant-or-self::f:CodeSystem/f:id/@value]"/>
