@@ -15,14 +15,14 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="An extension for a reference to PharmaceuticalProduct" />
+  <description value="An extension to refer to zib PharmaceuticalProduct from an Immunization resource." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <kind value="complex-type" />
   <abstract value="false" />
   <context>
     <type value="element" />
-    <expression value="Reference" />
+    <expression value="Immunization" />
   </context>
   <type value="Extension" />
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
@@ -34,10 +34,11 @@
     </element>
     <element id="Extension.value[x]">
       <path value="Extension.value[x]" />
+      <short value="PharmaceuticalProduct" />
+      <alias value="FarmaceutischProduct" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Medication" />
       </type>
     </element>
   </differential>
