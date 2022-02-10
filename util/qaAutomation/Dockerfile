@@ -1,4 +1,4 @@
-FROM ubuntu:20.10
+FROM ubuntu:20.04
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get -y install wget
 RUN apt-get -y install openjdk-11-jre-headless
@@ -24,7 +24,7 @@ RUN ~/.dotnet/tools/fhir install hl7.fhir.r4.core 4.0.1
 RUN git clone -b action --depth 1 https://github.com/pieter-edelman-nictiz/zib-compliance-fhir.git /tools/zib-compliance-fhir
 RUN cd tools/zib-compliance-fhir && npm install && cd /
 
-RUN git clone -b v0.15 --depth 1 https://github.com/pieter-edelman-nictiz/hl7-fhir-validator-action /tools/hl7-fhir-validator-action
+RUN git clone -b v0.17 --depth 1 https://github.com/pieter-edelman-nictiz/hl7-fhir-validator-action /tools/hl7-fhir-validator-action
 
 RUN apt-get -y install dos2unix
 RUN mkdir /scripts

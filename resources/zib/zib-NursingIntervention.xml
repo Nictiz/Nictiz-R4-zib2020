@@ -155,6 +155,7 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="1" />
     </element>
     <element id="CarePlan.contributor:requester.extension:contributorIsRequester">
       <path value="CarePlan.contributor.extension" />
@@ -214,10 +215,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="CarePlan.activity.detail.extension:medicalDevice">
       <path value="CarePlan.activity.detail.extension" />
       <sliceName value="medicalDevice" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-CarePlan-MaterialUsed" />
@@ -230,7 +233,7 @@
       <alias value="MedischHulpmiddel" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DeviceUseStatement" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice" />
       </type>
       <mapping>
@@ -438,6 +441,10 @@
         <map value="NL-CM:14.2.18" />
         <comment value="Instruction" />
       </mapping>
+    </element>
+    <element id="CarePlan.note">
+      <path value="CarePlan.note" />
+      <max value="1" />
     </element>
     <element id="CarePlan.note.text">
       <path value="CarePlan.note.text" />
