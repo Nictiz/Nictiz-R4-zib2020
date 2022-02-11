@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="ext-MedicationAdministration2.AdministreringSpeedRange" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AdministreringSpeedRange" />
-  <name value="ExtMedicationAdministration2AdministreringSpeedRange" />
-  <title value="ext MedicationAdministration2.AdministreringSpeedRange" />
+  <id value="ext-MedicationAdministration2.AdministeringSpeedRange" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AdministeringSpeedRange" />
+  <name value="ExtMedicationAdministration2AdministeringSpeedRange" />
+  <title value="ext MedicationAdministration2.AdministeringSpeedRange" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -27,7 +27,7 @@
   <abstract value="false" />
   <context>
     <type value="element" />
-    <expression value="MedicationAdministration.dosage.rate[x]" />
+    <expression value="MedicationAdministration.dosage" />
   </context>
   <type value="Extension" />
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
@@ -35,7 +35,7 @@
   <differential>
     <element id="Extension.url">
       <path value="Extension.url" />
-      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AdministreringSpeedRange" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AdministeringSpeedRange" />
     </element>
     <element id="Extension.value[x]">
       <path value="Extension.value[x]" />
@@ -53,17 +53,25 @@
     </element>
     <element id="Extension.value[x].low">
       <path value="Extension.value[x].low" />
-      <type>
-        <code value="Quantity" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdSimpleQuantity" />
-      </type>
+      <short value="minimumValue" />
+      <definition value="The minimal value of the range. The boundary is inclusive." />
+      <alias value="minimumWaarde" />
+      <mapping>
+        <identity value="zib-range-v1.0.1-2020EN" />
+        <map value="NL-CM:20.1.2" />
+        <comment value="minimumValue" />
+      </mapping>
     </element>
     <element id="Extension.value[x].high">
       <path value="Extension.value[x].high" />
-      <type>
-        <code value="Quantity" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdSimpleQuantity" />
-      </type>
+      <short value="maximumValue" />
+      <definition value="The maximum value of the range. The boundary is inclusive." />
+      <alias value="maximumWaarde" />
+      <mapping>
+        <identity value="zib-range-v1.0.1-2020EN" />
+        <map value="NL-CM:20.1.3" />
+        <comment value="maximumValue" />
+      </mapping>
     </element>
   </differential>
 </StructureDefinition>

@@ -173,7 +173,18 @@
     </element>
     <element id="MedicationRequest.basedOn">
       <path value="MedicationRequest.basedOn" />
-      <short value="RelatedMedicationAgreement" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="MedicationRequest.basedOn:relationMedicationAgreement">
+      <path value="MedicationRequest.basedOn" />
+      <sliceName value="relationMedicationAgreement" />
+      <short value="RelationMedicationAgreement" />
       <definition value="A reference to the MedicationAgreement(s) that were/are the basis of this DispenseRequest." />
       <alias value="RelatieMedicatieafspraak" />
       <type>

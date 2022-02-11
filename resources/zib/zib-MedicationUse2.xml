@@ -59,27 +59,6 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction" />
       </type>
     </element>
-    <element id="MedicationStatement.extension:periodOfUse-Duration">
-      <path value="MedicationStatement.extension" />
-      <sliceName value="periodOfUse-Duration" />
-      <min value="0" />
-      <max value="1" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration" />
-      </type>
-    </element>
-    <element id="MedicationStatement.extension:periodOfUse-Duration.value[x]">
-      <path value="MedicationStatement.extension.value[x]" />
-      <short value="Duration / PeriodOfUse" />
-      <definition value="Medication use can be recorded for a certain moment or over a certain period. Thus, medication use can be recorded multiple times during the use of medication. The usage period is the period or moment over which the data is recorded.&#xD;&#xA;&#xD;&#xA;**Duration**: The intended duration of use. E.g. 5 days or 8 weeks. It is not allowed to indicate the duration in months, because different months have a variable duration in days.&#xD;&#xA;&#xD;&#xA;The duration of the interval in appropriate units of time (e.g. days or hours, etc.)" />
-      <alias value="Gebruiksperiode" />
-      <mapping>
-        <identity value="zib-medicationuse2-v1.1.1-2020EN" />
-        <map value="NL-CM:9.11.22663" />
-        <comment value="PeriodOfUse" />
-      </mapping>
-    </element>
     <element id="MedicationStatement.extension:prescriber">
       <path value="MedicationStatement.extension" />
       <sliceName value="prescriber" />
@@ -115,15 +94,6 @@
       </slicing>
       <min value="0" />
     </element>
-    <element id="MedicationStatement.modifierExtension:repeatPeriodCyclicalSchedule">
-      <path value="MedicationStatement.modifierExtension" />
-      <sliceName value="repeatPeriodCyclicalSchedule" />
-      <min value="0" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule" />
-      </type>
-    </element>
     <element id="MedicationStatement.modifierExtension:stopType">
       <path value="MedicationStatement.modifierExtension" />
       <sliceName value="stopType" />
@@ -143,13 +113,23 @@
         <comment value="MedicationUseStopType" />
       </mapping>
     </element>
+    <element id="MedicationStatement.modifierExtension:repeatPeriodCyclicalSchedule">
+      <path value="MedicationStatement.modifierExtension" />
+      <sliceName value="repeatPeriodCyclicalSchedule" />
+      <min value="0" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule" />
+      </type>
+    </element>
     <element id="MedicationStatement.status">
       <path value="MedicationStatement.status" />
-      <short value="UseIndicator" />
+      <short value="UseIndicator / MedicationUseStopType / PeriodOfUse" />
       <definition value="Status may contain information on the stop type, the manner in which this medication is discontinued (temporary or definitive) and if the medicine is used or not." />
       <comment value="This element is mapped to the zib concept UseIndicator and implicitly to MedicationUseStopType and PeriodOfUse. Unless a more appropriate status is recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When MedicationUseStopType has no value and UseIndicator is _true_, `.status` will usually be set to _active_.&#xD;&#xA;* When UseIndicator is _false_, `.status` will be set to _not-taken_.&#xD;&#xA;* When MedicationUseStopType is _112171000146100_, `.status` will usually be set to _on-hold_.&#xD;&#xA;* When MedicationUseStopType is _112161000146106_, `.status` will usually be set to _stopped_.&#xD;&#xA;* When PeriodOfUse start date is in the past and PeriodOfUse end date is present and in the future, `.status` will usually be set to _active_.&#xD;&#xA;* When PeriodOfUse end date has a value and in the past, `.status` will usually be set to _completed_.&#xD;&#xA;* When PeriodOfUse duration and start date are known, the end date can be deducted and the previous rules apply. &#xD;&#xA;* When a system is unable to infer the status, `.status` will be set to _unknown_. The _unknown_ code is not to be used to convey other statuses. The _unknown_ code should be used when one of the statuses applies, but the authoring system doesn't know the current state of the MedicationStatement." />
       <alias value="MedicatieGebruikStopType" />
       <alias value="GebruikIndicator" />
+      <alias value="Gebruiksperiode" />
       <binding>
         <strength value="required" />
         <description value="Use ConceptMap 'MedicationUseStopTypeCodeLijst-to-MedicationStatementStatus' to translate zib terminology to profile terminology in ValueSet 'Medication Status Codes'." />
@@ -172,7 +152,7 @@
       <mapping>
         <identity value="zib-medicationuse2-v1.1.1-2020EN" />
         <map value="NL-CM:9.11.22663" />
-        <comment value="PeriodOfUse (implicit, main mapping is on `.effective[x]:effectivePeriod` and extension ext-TimeInterval-Duration)" />
+        <comment value="PeriodOfUse (implicit, main mapping is on `.effective[x]:effectivePeriod` and extension ext-TimeInterval.Duration)" />
       </mapping>
     </element>
     <element id="MedicationStatement.statusReason">
@@ -245,7 +225,7 @@
       <alias value="Gebruiksperiode" />
       <type>
         <code value="Period" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-ZibTimeIntervalPeriod" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-TimeInterval" />
       </type>
       <mapping>
         <identity value="zib-medicationuse2-v1.1.1-2020EN" />

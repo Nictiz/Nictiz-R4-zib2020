@@ -209,6 +209,152 @@
         <comment value="InformantIsHealthProfessional" />
       </mapping>
     </element>
+    <element id="MedicationStatement.derivedFrom">
+      <path value="MedicationStatement.derivedFrom" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="extension.valueCodeableConcept" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="MedicationStatement.derivedFrom:relationMedicationAgreement">
+      <path value="MedicationStatement.derivedFrom" />
+      <sliceName value="relationMedicationAgreement" />
+      <short value="RelationMedicationAgreement" />
+      <definition value="Medication agreement to which the entered medication use refers. In case medication use is recorded as 'as agreed', the agreement to which is referred, is stated here." />
+      <alias value="RelatieMedicatieAfspraak" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationAgreement" />
+      </type>
+      <mapping>
+        <identity value="Medication-Process-v9-2-0-0" />
+        <map value="mp-dataelement920-413" />
+        <comment value="RelationMedicationAgreement" />
+      </mapping>
+    </element>
+    <element id="MedicationStatement.derivedFrom:relationMedicationAgreement.extension">
+      <path value="MedicationStatement.derivedFrom.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="MedicationStatement.derivedFrom:relationMedicationAgreement.extension:resourceCategory">
+      <path value="MedicationStatement.derivedFrom.extension" />
+      <sliceName value="resourceCategory" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory" />
+      </type>
+    </element>
+    <element id="MedicationStatement.derivedFrom:relationMedicationAgreement.extension:resourceCategory.value[x]">
+      <path value="MedicationStatement.derivedFrom.extension.value[x]" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="16076005" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="MedicationStatement.derivedFrom:relationAdministrationAgreement">
+      <path value="MedicationStatement.derivedFrom" />
+      <sliceName value="relationAdministrationAgreement" />
+      <short value="RelationAdministrationAgreement" />
+      <definition value="Administration agreement to which the entered medication use refers. In case medication use is recorded as 'as agreed', the agreement to which is referred, is stated here." />
+      <alias value="RelatieToedieningsafspraak" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdministrationAgreement" />
+      </type>
+      <mapping>
+        <identity value="Medication-Process-v9-2-0-0" />
+        <map value="mp-dataelement920-1329" />
+        <comment value="RelationAdministrationAgreement" />
+      </mapping>
+    </element>
+    <element id="MedicationStatement.derivedFrom:relationAdministrationAgreement.extension">
+      <path value="MedicationStatement.derivedFrom.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="MedicationStatement.derivedFrom:relationAdministrationAgreement.extension:resourceCategory">
+      <path value="MedicationStatement.derivedFrom.extension" />
+      <sliceName value="resourceCategory" />
+      <min value="0" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory" />
+      </type>
+    </element>
+    <element id="MedicationStatement.derivedFrom:relationAdministrationAgreement.extension:resourceCategory.value[x]">
+      <path value="MedicationStatement.derivedFrom.extension.value[x]" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="422037009" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="MedicationStatement.derivedFrom:relationMedicationDispense">
+      <path value="MedicationStatement.derivedFrom" />
+      <sliceName value="relationMedicationDispense" />
+      <short value="RelationMedicationDispense" />
+      <definition value="Medication dispense which is the basis for entering the medication use." />
+      <alias value="RelatieMedicatieverstrekking" />
+      <max value="1" />
+      <mapping>
+        <identity value="Medication-Process-v9-2-0-0" />
+        <map value="mp-dataelement920-416" />
+        <comment value="RelationMedicationDispense" />
+      </mapping>
+    </element>
+    <element id="MedicationStatement.derivedFrom:relationMedicationDispense.extension">
+      <path value="MedicationStatement.derivedFrom.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="MedicationStatement.derivedFrom:relationMedicationDispense.extension:resourceCategory">
+      <path value="MedicationStatement.derivedFrom.extension" />
+      <sliceName value="resourceCategory" />
+      <min value="0" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory" />
+      </type>
+    </element>
+    <element id="MedicationStatement.derivedFrom:relationMedicationDispense.extension:resourceCategory.value[x]">
+      <path value="MedicationStatement.derivedFrom.extension.value[x]" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="373784005" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
     <element id="MedicationStatement.dosage">
       <path value="MedicationStatement.dosage" />
       <type>

@@ -88,10 +88,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="Dosage.timing.repeat.extension:timingExact">
       <path value="Dosage.timing.repeat.extension" />
       <sliceName value="timingExact" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/timing-exact" />
@@ -517,14 +519,13 @@
       </mapping>
     </element>
     <element id="Dosage.doseAndRate.rate[x]:rateQuantity">
-      <path value="Dosage.doseAndRate.rate[x]" />
+      <path value="Dosage.doseAndRate.rateQuantity" />
       <sliceName value="rateQuantity" />
       <short value="nominalValue" />
       <definition value="The nominal value of the quantity." />
       <alias value="nominaleWaarde" />
       <type>
         <code value="Quantity" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdSimpleQuantity" />
       </type>
       <mapping>
         <identity value="zib-range-v1.0.1-2020EN" />

@@ -117,17 +117,17 @@
         <comment value="Description" />
       </mapping>
     </element>
-    <element id="MedicationRequest.extension:periodOfUse-Period">
+    <element id="MedicationRequest.extension:periodOfUse">
       <path value="MedicationRequest.extension" />
-      <sliceName value="periodOfUse-Period" />
+      <sliceName value="periodOfUse" />
       <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Period" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period" />
       </type>
     </element>
-    <element id="MedicationRequest.extension:periodOfUse-Period.value[x]">
+    <element id="MedicationRequest.extension:periodOfUse.value[x]">
       <path value="MedicationRequest.extension.value[x]" />
       <short value="PeriodOfUse" />
       <definition value="**Start date**: This is the time at which the agreement was to take effect (or took effect or will take effect). This is the time at which the instructions for use in this agreement start. In the case of an agreement to discontinue use, this is the start date of the original medication agreement. The end date indicates from when the medication is to be discontinued.&#xD;&#xA;&#xD;&#xA;**End date**: The time at which the period of use ends (or ended or will end). In the case of an agreement to discontinue use, this is the time at which the medication is to be discontinued. To avoid confusion between 'to' and 'up to', the submission of time is always mandatory for the end date.&#xD;&#xA;&#xD;&#xA;With medication for an indefinite period only a start date is indicated." />
@@ -136,43 +136,6 @@
         <identity value="Medication-Process-v9-2-0-0" />
         <map value="mp-dataelement920-635" />
         <comment value="PeriodOfUse" />
-      </mapping>
-      <mapping>
-        <identity value="Medication-Process-v9-2-0-0" />
-        <map value="mp-dataelement920-636" />
-        <comment value="startDateTime" />
-      </mapping>
-      <mapping>
-        <identity value="Medication-Process-v9-2-0-0" />
-        <map value="mp-dataelement920-637" />
-        <comment value="endDateTime" />
-      </mapping>
-    </element>
-    <element id="MedicationRequest.extension:periodOfUse-Duration">
-      <path value="MedicationRequest.extension" />
-      <sliceName value="periodOfUse-Duration" />
-      <min value="0" />
-      <max value="1" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval-Duration" />
-      </type>
-    </element>
-    <element id="MedicationRequest.extension:periodOfUse-Duration.value[x]">
-      <path value="MedicationRequest.extension.value[x]" />
-      <short value="Duration / PeriodOfUse" />
-      <definition value="**Duration**: The intended duration of use. E.g. 5 days or 8 weeks. It is not allowed to indicate the duration in months, because different months have a variable duration in days." />
-      <comment value="Please note that when the zib concept Duration is known together with the zib concept startDateTime or a endDateTime, it should be communicated using a calculated Period in `extension:periodOfUse-Period`. This element SHALL only be used if a Duration is known when neither startDateTime and endDateTime are known." />
-      <alias value="Gebruiksperiode" />
-      <mapping>
-        <identity value="Medication-Process-v9-2-0-0" />
-        <map value="mp-dataelement920-635" />
-        <comment value="PeriodOfUse" />
-      </mapping>
-      <mapping>
-        <identity value="Medication-Process-v9-2-0-0" />
-        <map value="mp-dataelement920-638" />
-        <comment value="Duration" />
       </mapping>
     </element>
     <element id="MedicationRequest.modifierExtension">
@@ -236,7 +199,7 @@
       <mapping>
         <identity value="Medication-Process-v9-2-0-0" />
         <map value="mp-dataelement920-635" />
-        <comment value="PeriodOfUse (implicit, main mapping is on the extensions ext-TimeInterval-Period and ext-TimeInterval-Duration)" />
+        <comment value="PeriodOfUse (implicit, main mapping is on the extensions ext-TimeInterval.Period and ext-TimeInterval.Duration)" />
       </mapping>
       <mapping>
         <identity value="Medication-Process-v9-2-0-0" />
@@ -267,19 +230,51 @@
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
-          <code value="274512008" />
+          <code value="395067002" />
         </coding>
       </patternCodeableConcept>
     </element>
     <element id="MedicationRequest.medication[x]">
       <path value="MedicationRequest.medication[x]" />
-      <comment value="It is not expected for the VariableDosingRegimen to have a relationship with a Medication resource. An Data Absent Reason extension holding an _unkonwn_ code may be used to meet the the cardinality requirements of FHIR." />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="MedicationRequest.medication[x]:medicationReference">
+      <path value="MedicationRequest.medication[x]" />
+      <sliceName value="medicationReference" />
+      <short value="AgreedMedicine" />
+      <definition value="The medicine agreed upon to be used." />
+      <alias value="Afgesprokengeneesmiddel" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Medication" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct" />
+      </type>
+    </element>
+    <element id="MedicationRequest.subject">
+      <path value="MedicationRequest.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
     </element>
     <element id="MedicationRequest.encounter">
       <path value="MedicationRequest.encounter" />
       <short value="RelationContact" />
       <definition value="Relation between this building block and the Contact-building block." />
       <alias value="RelatieContact" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Encounter" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Encounter" />
+      </type>
       <mapping>
         <identity value="Medication-Process-v9-2-0-0" />
         <map value="mp-dataelement920-1341" />
@@ -370,22 +365,6 @@
         <comment value="RelationMedicationAgreement" />
       </mapping>
     </element>
-    <element id="MedicationRequest.basedOn:relationVariableDosingRegimen">
-      <path value="MedicationRequest.basedOn" />
-      <sliceName value="relationVariableDosingRegimen" />
-      <short value="RelationVariableDosingRegimen" />
-      <definition value="Relation to the previous version of the dosing schedule." />
-      <max value="1" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://nictiz.nl/fhir/StructureDefinition/nl-core-VariableDosingRegimen" />
-      </type>
-      <mapping>
-        <identity value="Medication-Process-v9-2-0-0" />
-        <map value="mp-dataelement920-1319" />
-        <comment value="RelationVariableDosingRegimen" />
-      </mapping>
-    </element>
     <element id="MedicationRequest.note">
       <path value="MedicationRequest.note" />
       <max value="1" />
@@ -414,6 +393,22 @@
         <identity value="Medication-Process-v9-2-0-0" />
         <map value="mp-dataelement920-646" />
         <comment value="InstructionsForUse" />
+      </mapping>
+    </element>
+    <element id="MedicationRequest.priorPrescription">
+      <path value="MedicationRequest.priorPrescription" />
+      <short value="RelationVariableDosingRegimen" />
+      <definition value="Relation to the previous version of the dosing schedule." />
+      <alias value="RelatieWisselendDoseerschema" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationRequest" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-VariableDosingRegimen" />
+      </type>
+      <mapping>
+        <identity value="Medication-Process-v9-2-0-0" />
+        <map value="mp-dataelement920-1319" />
+        <comment value="RelationVariableDosingRegimen" />
       </mapping>
     </element>
   </differential>
