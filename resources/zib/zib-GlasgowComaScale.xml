@@ -59,7 +59,7 @@
       </slicing>
     </element>
     <element id="Observation.effective[x]:effectiveDateTime">
-      <path value="Observation.effectiveDateTime" />
+      <path value="Observation.effective[x]" />
       <sliceName value="effectiveDateTime" />
       <short value="GlasgowComaScaleDateTime" />
       <definition value="Time at which the EMV score was determined." />
@@ -84,7 +84,7 @@
       </slicing>
     </element>
     <element id="Observation.value[x]:valueInteger">
-      <path value="Observation.valueInteger" />
+      <path value="Observation.value[x]" />
       <sliceName value="valueInteger" />
       <short value="TotalScore" />
       <definition value="The sum of the EMV scores, expressed as a number on a scale from 3-15. The value does not have to be recorded, as it can always be calculated based on the individual scores, and as recording the total is not common for a difficult to determine individual score." />
@@ -113,6 +113,112 @@
         <identity value="zib-glasgowcomascale-v3.2-2020EN" />
         <map value="NL-CM:12.8.9" />
         <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:gcsEyes">
+      <path value="Observation.component" />
+      <sliceName value="gcsEyes" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:gcsEyes.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="281395000" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:gcsEyes.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="GCS_Eyes" />
+      <definition value="Best eye response to a stimulus. The element is mandatory, but does not require a numerical value. If no value is given, the reason for this is to be provided in the ConditionsDuringMeasurement concept." />
+      <alias value="GCS_Eyes" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.8.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-glasgowcomascale-v3.2-2020EN" />
+        <map value="NL-CM:12.8.2" />
+        <comment value="GCS_Eyes" />
+      </mapping>
+    </element>
+    <element id="Observation.component:gcsMotor">
+      <path value="Observation.component" />
+      <sliceName value="gcsMotor" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:gcsMotor.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="281396004" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:gcsMotor.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="GCS_Motor" />
+      <definition value="Best motor response to a stimulus. The element is mandatory, but does not require a numerical value. If no value is given, the reason for this is to be provided in the ConditionsDuringMeasurement concept." />
+      <alias value="GCS_Motor" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.5--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-glasgowcomascale-v3.2-2020EN" />
+        <map value="NL-CM:12.8.4" />
+        <comment value="GCS_Motor" />
+      </mapping>
+    </element>
+    <element id="Observation.component:gcsVerbal">
+      <path value="Observation.component" />
+      <sliceName value="gcsVerbal" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:gcsVerbal.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="281397008" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:gcsVerbal.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="GCS_Verbal" />
+      <definition value="Best verbal response to a stimulus. The element is mandatory, but does not require a numerical value. If no value is given, the reason for this is to be provided in the ConditionsDuringMeasurement concept." />
+      <alias value="GCS_Verbal" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.6--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-glasgowcomascale-v3.2-2020EN" />
+        <map value="NL-CM:12.8.6" />
+        <comment value="GCS_Verbal" />
       </mapping>
     </element>
   </differential>
