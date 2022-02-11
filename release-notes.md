@@ -125,7 +125,6 @@ This document contains release notes per zib, indicating differences with their 
 * Note: although the zib has changed quite dramatically since release 2017, the previous version of the profile was based on a pre-adopt of zib pre-release 2018, which is the same as release 2020.
 
 ## zib-PainScore
-* The code on `Observation.code` has changed to 425401001.
 * Removed `Observation.bodySite` mapping because AnatomicalLocation concept does not exist anymore.
 * Cardinality of `Observation.method` has changed from 1..1 to 0..1. 
 * The datatype of `Observation.value[x]` (zib concept PainScoreValue) element has been changed from Quantity to Integer.
