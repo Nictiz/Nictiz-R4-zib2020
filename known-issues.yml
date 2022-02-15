@@ -241,6 +241,12 @@ zib-NameInformation:
     HumanName.family.extension:*.value[x]:
       - cardinality: 1..1
         reason: The value of the extension is required, but the extension itself is optional, making the effective cardinality 0..1 as required by the zib.
+        
+zib-OutcomeOfCare:
+  ignored issues:
+    CarePlan.activity.outcomeReference:
+      - short: zib OutcomeOfCare reference
+        reason: Because this reference is reversed in FHIR, this profile needs to contain the mappings for the references in _all_ these zibs.
 
 zib-NameInformation.GivenName:
   zib deviations:
