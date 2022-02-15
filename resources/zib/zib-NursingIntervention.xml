@@ -23,6 +23,11 @@
     <uri value="https://zibs.nl/wiki/NursingIntervention-v3.2(2020EN)" />
     <name value="zib NursingIntervention-v3.2(2020EN)" />
   </mapping>
+  <mapping>
+    <identity value="zib-outcomeofcare-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/OutcomeOfCare-v3.2(2020EN)" />
+    <name value="zib OutcomeOfCare-v3.2(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="true" />
   <type value="CarePlan" />
@@ -205,6 +210,22 @@
       <path value="CarePlan.activity" />
       <comment value="A nursing intervention in the Dutch realm always consists of a single activity. For this reason, the cardinality of `.activity` is restricted to 0..1." />
       <max value="1" />
+    </element>
+    <element id="CarePlan.activity.outcomeReference">
+      <path value="CarePlan.activity.outcomeReference" />
+      <short value="Intervention" />
+      <definition value="A description of the nursing intervention of which the effectivity is evaluated with the healthcare result." />
+      <alias value="Interventie" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-OutcomeOfCare" />
+      </type>
+      <mapping>
+        <identity value="zib-outcomeofcare-v3.2-2020EN" />
+        <map value="NL-CM:13.4.4" />
+        <comment value="Reversed reference for zib OutcomeOfCare.Intervention" />
+      </mapping>
     </element>
     <element id="CarePlan.activity.detail.extension">
       <path value="CarePlan.activity.detail.extension" />

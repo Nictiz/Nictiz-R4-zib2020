@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-OutcomeOfCare" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-OutcomeOfCare" />
+  <name value="ZibOutcomeOfCare" />
+  <title value="zib OutcomeOfCare" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The OutcomeOfCare concept describes the determined status of the patient in terms of a certain problem. Comparing the healthcare result with the treatment objective provides insight into the effectively of the nursing interventions/activities carried out for this problem. It is a part of the nursing process, together with nursing diagnoses/problems, the treatment objective and nursing interventions." />
+  <purpose value="This DiagnosticReport resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) OutcomeOfCare -v3.2(2020EN)](https://zibs.nl/wiki/OutcomeOfCare-v3.2(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-outcomeofcare-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/OutcomeOfCare-v3.2(2020EN)" />
+    <name value="zib OutcomeOfCare-v3.2(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="DiagnosticReport" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/DiagnosticReport" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="DiagnosticReport">
+      <path value="DiagnosticReport" />
+      <short value="OutcomeOfCare" />
+      <alias value="UitkomstVanZorg" />
+      <mapping>
+        <identity value="zib-outcomeofcare-v3.2-2020EN" />
+        <map value="NL-CM:13.4.1" />
+        <comment value="OutcomeOfCare" />
+      </mapping>
+    </element>
+    <element id="DiagnosticReport.code">
+      <path value="DiagnosticReport.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="423100009" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="DiagnosticReport.result">
+      <path value="DiagnosticReport.result" />
+      <short value="HealthCondition" />
+      <definition value="A description of the patient’s health condition in the form of a functional and/or mental status." />
+      <alias value="Gezondheidstoestand" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus" />
+      </type>
+      <mapping>
+        <identity value="zib-outcomeofcare-v3.2-2020EN" />
+        <map value="NL-CM:13.4.3" />
+        <comment value="HealthCondition" />
+      </mapping>
+    </element>
+    <element id="DiagnosticReport.conclusion">
+      <path value="DiagnosticReport.conclusion" />
+      <short value="HealthcareResult" />
+      <definition value="The textual account of the healthcare result. If HealthcareResult cannot be entered as a measurement value or functional/mental status, it can be described as free text in the healthcare result." />
+      <alias value="Zorgresultaat" />
+      <mapping>
+        <identity value="zib-outcomeofcare-v3.2-2020EN" />
+        <map value="NL-CM:13.4.5" />
+        <comment value="HealthcareResult" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
