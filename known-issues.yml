@@ -241,12 +241,6 @@ zib-NameInformation:
     HumanName.family.extension:*.value[x]:
       - cardinality: 1..1
         reason: The value of the extension is required, but the extension itself is optional, making the effective cardinality 0..1 as required by the zib.
-        
-zib-OutcomeOfCare:
-  ignored issues:
-    CarePlan.activity.outcomeReference:
-      - short: zib OutcomeOfCare reference
-        reason: Because this reference is reversed in FHIR, this profile needs to contain the mappings for the references in _all_ these zibs.
 
 zib-NameInformation.GivenName:
   zib deviations:
@@ -269,6 +263,9 @@ zib-NursingIntervention:
       - cardinality: 0..1
         reason: The value of the extension can only occur once, but the use of the extension itself is unlimited, making the effective cardinality 0..* as required by the zib.
   ignored issues:
+    CarePlan.activity.outcomeReference:
+      - short: zib OutcomeOfCare reference
+        reason: Because this reference is reversed in FHIR, this profile needs to contain the mappings for the references in _all_ these zibs.
     CarePlan.contributor:requester:
       - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice.
