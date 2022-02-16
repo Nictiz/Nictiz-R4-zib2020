@@ -124,6 +124,12 @@ This document contains release notes per zib, indicating differences with their 
 * Because there's a better match with CarePlan, the five custom extensions are removed. One custom extension is added to mark a `CarePlan.contributor` as the zib Requester, and another one to define the materials used.
 * Note: although the zib has changed quite dramatically since release 2017, the previous version of the profile was based on a pre-adopt of zib pre-release 2018, which is the same as release 2020.
 
+## zib-OutcomeOfCare
+* The code on `DiagnosticReport.code` has been changed to 423100009 and the system value to http://snomed.info/sct.
+* Removed MeasurementValue mapping because this element does not exist anymore.
+* Element HealthCondition::FunctionalOrMentalStatus with ID NL-CM:13.4.3 is mapped on `DiagnosticReport.result`	instead on it's own slice.
+* Intervention extension has been removed because the reference is reversed in FHIR. The NursingIntervention profile refers to this profile.
+
 ## zib-Patient
 * Includes Nationality, MaritalStatus, LanguageProficiency.
 * Cardinality of `Patient.extension:nationality` left at 0..* due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time).
