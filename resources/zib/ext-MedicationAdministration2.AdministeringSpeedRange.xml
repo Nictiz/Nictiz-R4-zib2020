@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-MedicationAdministration2.AdministeringSpeedRange" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AdministeringSpeedRange" />
+  <name value="ExtMedicationAdministration2AdministeringSpeedRange" />
+  <title value="ext MedicationAdministration2.AdministeringSpeedRange" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="An extension to extend `MedicationAdministration.dosage.rate[x]` with a Range datatype to populate the minimumValue and maximumValue of AdministeringSpeed." />
+  <purpose value="This extension represents the minimum and maximum values of AdministeringSpeed of zib [MedicationAdministration2 v1.1.1 (2020EN)](https://zibs.nl/wiki/MedicationAdministration2-v1.1.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-medicationadministration2-v1.1.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/MedicationAdministration2-v1.1.1(2020EN)" />
+    <name value="zib MedicationAdministration2-v1.1.1(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="MedicationAdministration.dosage" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AdministeringSpeedRange" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="AdministeringSpeed" />
+      <definition value="The administering speed is used in slow administration of liquid. In practice, the measuring unit is almost always ml/hour. Entering an interval (such as 0-10 ml/hour) is also a commonly used option. &#xA;For example, with an administering speed of 10ml/hour: &#xD;&#xA;- amount = 10,&#xD;&#xA;- dose unit = ml          &#xD;&#xA;- time unit = hour&#xD;&#xA;&#xD;&#xA;Optionally a translation to NHG table Gebruiksvoorschriften(Table 25) is also allowed." />
+      <alias value="Toedieningssnelheid" />
+      <type>
+        <code value="Range" />
+      </type>
+      <mapping>
+        <identity value="zib-medicationadministration2-v1.1.1-2020EN" />
+        <map value="NL-CM:9.13.23159" />
+        <comment value="AdministeringSpeed" />
+      </mapping>
+    </element>
+    <element id="Extension.value[x].low">
+      <path value="Extension.value[x].low" />
+      <short value="minimumValue" />
+      <definition value="The minimal value of the range. The boundary is inclusive." />
+      <alias value="minimumWaarde" />
+      <mapping>
+        <identity value="zib-range-v1.0.1-2020EN" />
+        <map value="NL-CM:20.1.2" />
+        <comment value="minimumValue" />
+      </mapping>
+    </element>
+    <element id="Extension.value[x].high">
+      <path value="Extension.value[x].high" />
+      <short value="maximumValue" />
+      <definition value="The maximum value of the range. The boundary is inclusive." />
+      <alias value="maximumWaarde" />
+      <mapping>
+        <identity value="zib-range-v1.0.1-2020EN" />
+        <map value="NL-CM:20.1.3" />
+        <comment value="maximumValue" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

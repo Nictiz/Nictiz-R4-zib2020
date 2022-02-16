@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-FreedomRestrictingIntervention.Assent" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.Assent" />
+  <name value="ExtFreedomRestrictingInterventionAssent" />
+  <title value="ext FreedomRestrictingIntervention.Assent" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="This extension adds one concept from FreedomRestrictingIntervention as defined by the Dutch Health and Care Information models (Dutch: Zorginformatiebouwsteen or ZIB) version 1.0, namely Assent, to the Procedure resource. The extention holds information wether permission is given to the health professional(s) by the patient or legal representative to implement medical restraints." />
+  <purpose value="Freedom-restricting interventions (also called involuntary / compulsory care) are applied to prevent or limit serious harm to the person concerned or others or to stabilize or restore the mental health of the person concerned.&#xD;&#xA;Implementing freedom-restricting interventions is risky and can result in damage to the the person concerned if they are not carefully implemented. Health professionals fulfill an important role in identifying risks, observing the effect of the interventions and any changes to the policy in terms of involuntary/compulsory care. Recording all information on the interventions is of major importance for insight into decision-making, implementing, monitoring and evaluating the freedom-restricting interventions.&#xD;&#xA;The reporting of applied freedom-restricting interventions is also part of the set of quality indicators of the Healthcare and Youth Care Inspectorate" />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-freedomrestrictingintervention-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/FreedomRestrictingIntervention-v1.0(2020EN)" />
+    <name value="zib FreedomRestrictingIntervention-v1.0(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="Procedure" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.Assent" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="Assent" />
+      <definition value="The assent given to the health professional(s) by legal representative to implement the involuntary care." />
+      <alias value="Instemming" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mapping>
+        <identity value="zib-freedomrestrictingintervention-v1.0-2020EN" />
+        <map value="NL-CM:14.6.7" />
+        <comment value="Assent" />
+      </mapping>
+    </element>
+    <element id="Extension.value[x].coding">
+      <path value="Extension.value[x].coding" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.14.6.5--20200901000000" />
+      </binding>
+    </element>
+  </differential>
+</StructureDefinition>

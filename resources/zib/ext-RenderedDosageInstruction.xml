@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-RenderedDosageInstruction" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction" />
+  <name value="ExtRenderedDosageInstruction" />
+  <title value="ext RenderedDosageInstruction" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Pre-adopt of the `.renderedDosageInstructions` concept from the FHIR R5 medication resources. It provides a full representation of the dose of the medication included in all dosage instructions. To be used when multiple dosage instructions are included to represent complex dosing such as increasing or tapering doses." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="MedicationRequest" />
+  </context>
+  <context>
+    <type value="element" />
+    <expression value="MedicationDispense" />
+  </context>
+  <context>
+    <type value="element" />
+    <expression value="MedicationAdministration" />
+  </context>
+  <context>
+    <type value="element" />
+    <expression value="MedicationUse" />
+  </context>
+  <context>
+    <type value="element" />
+    <expression value="MedicationStatement" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension">
+      <path value="Extension" />
+      <definition value="Pre-adopt from FHIR R5 of the `.renderedDosageInstruction` element found in various medication resources." />
+      <max value="1" />
+    </element>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <definition value="The full representation of the dose of the medication included in all dosage instructions. To be used when multiple dosage instructions are included to represent complex dosing such as increasing or tapering doses." />
+      <comment value="The content of the renderedDosageInstructions must not be different than the dose represented in the dosageInstruction content." />
+      <type>
+        <code value="string" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>

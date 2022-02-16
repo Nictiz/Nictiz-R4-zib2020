@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-MultidisciplinaryTeamMeeting-CarePlan" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MultidisciplinaryTeamMeeting-CarePlan" />
+  <name value="NlcoreMultidisciplinaryTeamMeetingCarePlan" />
+  <title value="nl core MultidisciplinaryTeamMeeting CarePlan" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A multidisciplinary team meeting is a meeting of health care providers in which the results of examinations and treatment are discussed with the aim of formulating joint advice for the treatment of the patient. A patient can also be present. When healthcare professionals from various disciplines participate, and this is structurally organized (local, regional, sub regional or through a partnership), this is often referred to as a multi-disciplinary consultation ." />
+  <purpose value="A derived profile from [zib-MultidisciplinaryTeamMeeting-CarePlan](http://nictiz.nl/fhir/StructureDefinition/zib-MultidisciplinaryTeamMeeting-CarePlan) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="CarePlan" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-MultidisciplinaryTeamMeeting-CarePlan" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="CarePlan">
+      <path value="CarePlan" />
+      <alias value="nl-core-MultidisciplinaryTeamMeeting-CarePlan" />
+    </element>
+    <element id="CarePlan.subject">
+      <path value="CarePlan.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="CarePlan.encounter">
+      <path value="CarePlan.encounter" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Encounter" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MultidisciplinaryTeamMeeting" />
+      </type>
+    </element>
+    <element id="CarePlan.activity.reference">
+      <path value="CarePlan.activity.reference" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Appointment" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/CommunicationRequest" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DeviceRequest" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationRequest" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/NutritionOrder" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Task" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ServiceRequest" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/VisionPrescription" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RequestGroup" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>

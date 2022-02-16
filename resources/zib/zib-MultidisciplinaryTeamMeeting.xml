@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-MultidisciplinaryTeamMeeting" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-MultidisciplinaryTeamMeeting" />
+  <name value="ZibMultidisciplinaryTeamMeeting" />
+  <title value="zib MultidisciplinaryTeamMeeting" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A multidisciplinary team meeting is a meeting of health care providers in which the results of examinations and treatment are discussed with the aim of formulating joint advice for the treatment of the patient. A patient can also be present. When healthcare professionals from various disciplines participate, and this is structurally organized (local, regional, sub regional or through a partnership), this is often referred to as a multi-disciplinary consultation ." />
+  <purpose value="This Encounter resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) MultidisciplinaryTeamMeeting-v1.0(2020EN)](https://zibs.nl/wiki/MultidisciplinaryTeamMeeting-v1.0(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/MultidisciplinaryTeamMeeting-v1.0(2020EN)" />
+    <name value="zib MultidisciplinaryTeamMeeting-v1.0(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Encounter" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Encounter" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Encounter">
+      <path value="Encounter" />
+      <short value="MultidisciplinaryTeamMeeting" />
+      <comment value="Zib MultidisciplinaryTeamMeeting is mapped to this Encounter profile and a profile on CarePlan (&amp;amp;amp;lt;http://nictiz.nl/fhir/StructureDefinition/zib-MultidisciplinaryTeamMeeting-CarePlanMedia&amp;amp;amp;gt;). This Encounter profile acts as the focal resource of MultidisciplinaryTeamMeeting. This profile is referenced by the CarePlan resource, which holds the 'Plan' concept (NL-CM:15.2.10), through `CarePlan.encounter`." />
+      <alias value="Patientbespreking" />
+      <mapping>
+        <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
+        <map value="NL-CM:15.2.1" />
+        <comment value="MultidisciplinaryTeamMeeting" />
+      </mapping>
+    </element>
+    <element id="Encounter.extension">
+      <path value="Encounter.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Encounter.extension:patientConsultationLabel">
+      <path value="Encounter.extension" />
+      <sliceName value="patientConsultationLabel" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MultidisciplinaryTeamMeeting.PatientConsultationLabel" />
+      </type>
+    </element>
+    <element id="Encounter.status">
+      <path value="Encounter.status" />
+      <comment value="This element is implictly mapped to the zib concept NL-CM:15.1.3 (PatientConsultationDateTime), which maps to both `Encounter.period.start` and `Encounter.period.end`. Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When PatientConsultationDateTime is in the future, `.status` will usually be set to _planned_.&#xD;&#xA;* When `Encounter.period.end` is present and in the past, `.status` will usually be set to _finished_.&#xD;&#xA;* When PatientConsultationDateTime is in the past and `Encounter.period.end` is either equal to `.start` or not present, this means it was a point-in-time encounter and `.status` will usually be set to _finished_.&#xD;&#xA;* When a system is unable to infer the status from the PatientConsultationDateTime, `.status` will be set to _unknown_.&#xD;&#xA;&#xD;&#xA;The _unknown_ code is not to be used to convey other statuses.  The _unknown_ code should be used when one of the statuses applies, but the authoring system doesn't know the current state of the encounter.&#xA;&#xA;This element is labeled as a modifier because the status contains codes that mark the resource as not currently valid." />
+      <mapping>
+        <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
+        <map value="NL-CM:15.1.3" />
+        <comment value="PatientConsultationDateTime (implicit, main mapping is on `Encounter.period`)" />
+      </mapping>
+    </element>
+    <element id="Encounter.type">
+      <path value="Encounter.type" />
+      <slicing>
+        <discriminator>
+          <type value="pattern" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="1" />
+    </element>
+    <element id="Encounter.type:multidisciplinaryTeamMeetingCode">
+      <path value="Encounter.type" />
+      <sliceName value="multidisciplinaryTeamMeetingCode" />
+      <min value="1" />
+      <max value="1" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="384682003" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Encounter.subject">
+      <path value="Encounter.subject" />
+      <short value="The patient or group related to this encounter" />
+      <definition value="The patient or group related to this encounter. (Note: this definition is a pre-adopt of https://jira.hl7.org/browse/FHIR-20479. Referencing the Patient as `.subject` does not indicate its presence at the Encounter. Use `.participant.individual.extension:patient` for this.)" />
+    </element>
+    <element id="Encounter.participant">
+      <path value="Encounter.participant" />
+      <short value="Participant" />
+      <alias value="Deelnemer" />
+      <mapping>
+        <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
+        <map value="NL-CM:15.2.13" />
+        <comment value="Participant" />
+      </mapping>
+    </element>
+    <element id="Encounter.participant.type">
+      <path value="Encounter.participant.type" />
+      <short value="RolDeelnemer" />
+      <definition value="Role of the person in the patient meeting, for example chairman, expert, notifier, secretary." />
+      <alias value="RolDeelnemer" />
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.15.2.2--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
+        <map value="NL-CM:15.2.14" />
+        <comment value="RolDeelnemer" />
+      </mapping>
+    </element>
+    <element id="Encounter.participant.individual">
+      <path value="Encounter.participant.individual" />
+      <short value="HealthProfessional / Contactperson" />
+      <definition value="* Health professional as participant of the patient consultation.&#xD;&#xA;* Contactperson as participant of the patient consultation." />
+      <alias value="Zorgverlener" />
+      <alias value="Contactpersoon" />
+      <type>
+        <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-ZibHealthProfessionalReference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson" />
+      </type>
+      <mapping>
+        <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
+        <map value="NL-CM:15.2.3" />
+        <comment value="HealthProfessional" />
+      </mapping>
+      <mapping>
+        <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
+        <map value="NL-CM:15.2.15" />
+        <comment value="Contactperson" />
+      </mapping>
+    </element>
+    <element id="Encounter.participant.individual.extension">
+      <path value="Encounter.participant.individual.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Encounter.participant.individual.extension:patient">
+      <path value="Encounter.participant.individual.extension" />
+      <sliceName value="patient" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Encounter-PatientParticipant" />
+      </type>
+    </element>
+    <element id="Encounter.participant.individual.extension:patient.value[x]">
+      <path value="Encounter.participant.individual.extension.value[x]" />
+      <short value="Patient" />
+      <definition value="The patient as participant of the patient consultation." />
+      <alias value="Patient" />
+      <mapping>
+        <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
+        <map value="NL-CM:15.2.16" />
+        <comment value="Patient" />
+      </mapping>
+    </element>
+    <element id="Encounter.period">
+      <path value="Encounter.period" />
+      <comment value="'PatientConsultationDateTime' is mapped to both `period.start` and `period.end`. When all is known is a single value, both `.start` and `.end` should be populated with this value, otherwise the `period`, and thus the MultidisciplinaryTeamMeeting, is considered 'ongoing'. In FHIR R4, the Period datatype has an invariant that inconsistently says in text that Period.start shall be lower than Period.end, but actually supports lower than or equal in its expression, which reflects the original intent. This has been fixed for FHIR R5; the text now reflects the expression. &#xD;&#xA;&#xD;&#xA;When a system is able to populate both `period.start` and `period.end`, the value of `.start` is leading when converting FHIR data to a zib instance." />
+    </element>
+    <element id="Encounter.period.start">
+      <path value="Encounter.period.start" />
+      <short value="PatientConsultationDateTime" />
+      <definition value="The date (and time) the patient consultation is scheduled or took place." />
+      <alias value="PatientbesprekingDatumTijd" />
+      <mapping>
+        <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
+        <map value="NL-CM:15.2.6" />
+        <comment value="PatientConsultationDateTime" />
+      </mapping>
+    </element>
+    <element id="Encounter.period.end">
+      <path value="Encounter.period.end" />
+      <short value="PatientConsultationDateTime" />
+      <definition value="The date (and time) the patient consultation is scheduled or took place." />
+      <alias value="PatientbesprekingDatumTijd" />
+      <mapping>
+        <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
+        <map value="NL-CM:15.2.6" />
+        <comment value="PatientConsultationDateTime" />
+      </mapping>
+    </element>
+    <element id="Encounter.reasonReference">
+      <path value="Encounter.reasonReference" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Encounter.reasonReference:disease">
+      <path value="Encounter.reasonReference" />
+      <sliceName value="disease" />
+      <short value="Disease" />
+      <definition value="The disease or patient problem that is the reason for the patient consultation." />
+      <alias value="Aandoening" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem" />
+      </type>
+      <mapping>
+        <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
+        <map value="NL-CM:15.2.7" />
+        <comment value="Disease" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
