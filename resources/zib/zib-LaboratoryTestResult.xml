@@ -58,19 +58,19 @@
       </slicing>
       <min value="0" />
     </element>
-    <element id="Observation.extension:relatedResult">
+    <element id="Observation.extension:sequelTo">
       <path value="Observation.extension" />
-      <sliceName value="relatedResult" />
+      <sliceName value="sequelTo" />
       <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/observation-sequelTo" />
       </type>
     </element>
-    <element id="Observation.extension:relatedResult.value[x]">
+    <element id="Observation.extension:sequelTo.value[x]">
       <path value="Observation.extension.value[x]" />
       <short value="RelatedResult" />
-      <definition value="Reference to related tests, e.g. paired tests or sequential tests like gram staining and microbiological cultures" />
+      <definition value="This is one of the two mechanisms to represent zib concept RelatedResult (NL-CM:13.1.33), The other mechanism is `Observation.derivedFrom`." />
       <alias value="GerelateerdeUitslag" />
       <type>
         <code value="Reference" />
@@ -328,7 +328,7 @@
     <element id="Observation.derivedFrom">
       <path value="Observation.derivedFrom" />
       <short value="RelatedResult" />
-      <definition value="Reference to related tests, e.g. paired tests or sequential tests like gram staining and microbiological cultures" />
+      <definition value="The target resource that represents a measurement from which this observation value is derived. For example, a calculated anion gap or a fetal measurement based on an ultrasound image.&#xD;&#xA;&#xD;&#xA;This is one of the two mechanisms to represent zib concept RelatedResult (NL-CM:13.1.33), The other mechanism is `Observation.extension:sequelTo`." />
       <alias value="GerelateerdeUitslag" />
       <mapping>
         <identity value="zib-laboratorytestresult-v4.6-2020EN" />
