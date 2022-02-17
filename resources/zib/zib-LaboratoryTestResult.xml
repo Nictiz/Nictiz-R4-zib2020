@@ -292,6 +292,15 @@
         <comment value="TestMethod" />
       </mapping>
     </element>
+    <element id="Observation.specimen">
+      <path value="Observation.specimen" />
+      <comment value="The Specimen concept of the zib defines either the collected source material without further processing, or a microorganism, optionally including the source material from which it whas isolated.&#xD;&#xA;&#xD;&#xA;* If the Specimen pertains a material (zib concept SpecimenMaterial), the `Specimen.type` of the resource referenced here should contain a coding indicating a specimen material.&#xD;&#xA;* If the Specimen pertains a microorganism (zib concept Microorganism), the `Specimen.type` of the resource referenced here should contain a coding indicating the microorganims. If required, the sample material from which the microorganism was isolated can be referenced using `Specimen.parent` on that resource, but it is not referenced here." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Specimen" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult.Specimen" />
+      </type>
+    </element>
     <element id="Observation.referenceRange.low">
       <path value="Observation.referenceRange.low" />
       <short value="ReferenceRangeLowerLimit" />
