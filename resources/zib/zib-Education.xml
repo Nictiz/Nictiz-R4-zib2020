@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-Education" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Education" />
+  <name value="ZibEducation" />
+  <title value="zib Education" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Education indicates the highest level of education achieved." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Education-v3.2(2020EN)](https://zibs.nl/wiki/Education-v3.2(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-education-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/Education-v3.2(2020EN)" />
+    <name value="zib Education-v3.2(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <short value="SchoolType" />
+      <definition value="Indication of the highest level of education achieved." />
+      <alias value="SchoolType" />
+      <mapping>
+        <identity value="zib-education-v3.2-2020EN" />
+        <map value="NL-CM:7.10.2" />
+        <comment value="SchoolType" />
+      </mapping>
+    </element>
+    <element id="Observation.note">
+      <path value="Observation.note" />
+      <max value="1" />
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
+      <short value="Comment" />
+      <definition value="If deemed relevant, a specification of the degree program can be provided by means of an explanation (e.g.: patient is in medical school)." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-education-v3.2-2020EN" />
+        <map value="NL-CM:7.10.3" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
