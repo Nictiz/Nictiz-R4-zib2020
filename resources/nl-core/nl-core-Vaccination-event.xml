@@ -86,5 +86,31 @@
               <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
           </type>
       </element>
+    <element id="Immunization.reasonCode">
+      <path value="Immunization.reasonCode" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Immunization.reasonCode:vaccinationIndication">
+      <path value="Immunization.reasonCode" />
+      <sliceName value="vaccinationIndication" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/3.0/ValueSet//2.16.840.1.113883.2.4.3.11.60.131.11.4" />
+      </binding>
+    </element>
+    <element id="Immunization.reasonCode:vaccinationCause">
+      <path value="Immunization.reasonCode" />
+      <sliceName value="vaccinationCause" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/3.0/ValueSet//2.16.840.1.113883.2.4.3.11.60.131.11.2" />
+      </binding>
+    </element>
   </differential>
 </StructureDefinition>
