@@ -51,6 +51,10 @@
               <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Vaccination.PharmaceuticalProduct" />
           </type>
       </element>
+    <element id="Immunization.extension:pharmaceuticalProduct.value[x]">
+      <path value="Immunization.extension.value[x]" />
+      <definition value="The pharmaceutical product of the administered vaccination&#xD;&#xA;&#xD;&#xA;Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list)." />
+    </element>
       <element id="Immunization.vaccineCode">
           <path value="Immunization.vaccineCode" />
           <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination.&#xD;&#xA;&#xD;&#xA;It is possible to use a reference to zib PharmaceuticalProduct to identify the used vaccine, using `Immunization.extension:pharmaceuticalProduct'. If this reference is used, the MedicationCode in the referenced resource (Medication.code) SHALL be repeated in this element." />
