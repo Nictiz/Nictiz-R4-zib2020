@@ -198,6 +198,34 @@ zib-HearingFunction.HearingAid.Product:
       - datatype: string
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
 
+zib-LaboratoryTestResult:
+  ignored issues:
+    Observation.performer:performer:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+  zib deviations:
+    Observation.status:
+      - cardinality: 1..1
+        reason: Although the equivalent concept is optional in the zib, this element is required in FHIR.
+    Observation.code:
+      - cardinality: 1..1
+        reason: This element is mapped to the concepts PanelOrBatter and TestCode at the same time. PanelOrBattery is marked as optional in the zib, but this is strictly not true; it must be absent if the zib instantiates a singular laboratory test, but is required if the zib instantiates a panel. Therefore, both mappings to this elements are in fact required.
+    Observation.value:
+      - datatype: Quantity
+        reason: According to the zib, the concept TestResult is either a value with a unit or a coded value.
+
+zib-LaboratoryTestResult.Specimen:
+  zib deviations:
+    Specimen.identifier:
+      - cardinality: 0..*
+        reason: Although a single SpecimenId is allowed according to the zib, .identifier is often used for additional identifiers outside the scope of the zib. It's not possible to create a slice or pattern specifically for SpecimenId without further formal requirements by the zib.
+    Specimen.collection.bodySite:
+      - datatype: CodeableConcept
+        reason: Zib AnatomicalLocation is implemented as a datatype profile on CodeableConcept, so the datatype is not a Reference.
+    Specimen.container.identifier:specimenNumberExtension:
+      - datatype: Identifier
+        reason: An element of type Interger doesn't natively exist to accommodate serial numbers. However, the .identifier element can be used to accommodate serial numbers as well. For this reason, the .type of this slice is fixed on "SNO" (serial number) and the .system is made 0..0.
+        
 zib-MedicalDevice:
   ignored issues:
     DeviceUseStatement.reasonReference:*:
