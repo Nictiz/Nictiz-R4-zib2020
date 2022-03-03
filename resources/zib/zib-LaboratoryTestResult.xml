@@ -89,6 +89,7 @@
       <definition value="The status of the laboratory test result or test result panel/cluster." />
       <comment value="If this resource represents a singular test result or a single test in a cluster/panel, this will be the status of this particular test result. However, if it represents the overall result of a panel/cluster, this status should represent the status of the panel/cluster and should be in accordance with the test result statuses of the individual tests." />
       <alias value="TestUitslagStatus" />
+      <alias value="ResultaatStatus" />
       <binding>
         <strength value="required" />
         <description value="Use ConceptMap 'TestUitslagStatusCodelijst-to-ObservationStatus' to translate zib terminology to profile terminology in ValueSet 'ObservationStatus'" />
@@ -137,7 +138,7 @@
       <alias value="TestCode" />
       <binding>
         <strength value="required" />
-        <valueSet value="http://nictiz.nl/fhir/ValueSet/TestCode-and-PanelOrBattery-Codelijsten" />
+        <valueSet value="http://nictiz.nl/fhir/ValueSet/TestCode-en-Onderzoek-Codelijsten" />
       </binding>
       <mapping>
         <identity value="zib-laboratorytestresult-v4.6-2020EN" />
