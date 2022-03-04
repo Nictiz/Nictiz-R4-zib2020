@@ -7,12 +7,12 @@
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
-      <name value="Nictiz" />
-      <telecom>
-          <system value="email" />
-          <value value="info@nictiz.nl" />
-          <use value="work" />
-      </telecom>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
   </contact>
   <description value="Immunization can be defined as “Generating natural immunity against pathogens by means of vaccination (active immunization) or by administering immunoglobulins (passive immunization)”.&#xD;&#xA;&#xD;&#xA;Only the (administered and planned) vaccinations are included in this information model. Administering immunoglobulins is part of the medication overview. Vaccinations have lifelong relevance.&#xD;&#xA;&#xD;&#xA;Most vaccinations are carried out in the Netherlands as part of the RVP (Rijksvaccinatieprogramma, National Immunisation Program). RVP information is especially important for children.&#xD;&#xA;&#xD;&#xA;Vaccinations are also relevant for adult patients such as transplant patients, dialysis patients and patients with a post-splenectomy status. In addition, there are specific indications for the vaccination of risk groups, such as travelers, professionals who come into contact with blood or patients with wounds, weakened immune systems or heightened risk." />
   <purpose value="A derived profile from [zib-Vaccination-event](http://nictiz.nl/fhir/StructureDefinition/zib-Vaccination-event) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
@@ -24,68 +24,68 @@
   <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-Vaccination-event" />
   <derivation value="constraint" />
   <differential>
-      <element id="Immunization">
-          <path value="Immunization" />
-          <comment value="The zib Vaccination is mapped to this Immunization profile and a profile on ImmunizationRecommendation (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-Vaccination-request&gt;). All administered vaccinations are covered using this Immunization profile, while all planned vaccinations are covered in the ImmunizationRecommendation profile. &#xD;&#xA;&#xD;&#xA;Please note that, contrary to the related zib concepts, `.vaccineCode` and `.occurrence[x]` are mandatory in FHIR and need to be recorded to exchange Immunization resources." />
-          <alias value="nl-core-Vaccination-event" />
-      </element>
-      <element id="Immunization.extension">
-          <path value="Immunization.extension" />
-          <slicing>
-              <discriminator>
-                  <type value="value" />
-                  <path value="url" />
-              </discriminator>
-              <rules value="open" />
-          </slicing>
-          <min value="0" />
-      </element>
-      <element id="Immunization.extension:pharmaceuticalProduct">
-          <path value="Immunization.extension" />
-          <sliceName value="pharmaceuticalProduct" />
-          <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&#xD;&#xA;&#xD;&#xA;If this reference to zib PharmaceuticalProduct is used, the MedicationCode in the referenced resource (Medication.code) SHALL be repeated in Immunization.vaccineCode of this resource." />
-          <min value="0" />
-          <max value="1" />
-          <type>
-              <code value="Extension" />
-              <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Vaccination.PharmaceuticalProduct" />
-          </type>
-      </element>
+    <element id="Immunization">
+      <path value="Immunization" />
+      <comment value="The zib Vaccination is mapped to this Immunization profile and a profile on ImmunizationRecommendation (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-Vaccination-request&gt;). All administered vaccinations are covered using this Immunization profile, while all planned vaccinations are covered in the ImmunizationRecommendation profile. &#xD;&#xA;&#xD;&#xA;Please note that, contrary to the related zib concepts, `.vaccineCode` and `.occurrence[x]` are mandatory in FHIR and need to be recorded to exchange Immunization resources." />
+      <alias value="nl-core-Vaccination-event" />
+    </element>
+    <element id="Immunization.extension">
+      <path value="Immunization.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Immunization.extension:pharmaceuticalProduct">
+      <path value="Immunization.extension" />
+      <sliceName value="pharmaceuticalProduct" />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&#xD;&#xA;&#xD;&#xA;If this reference to zib PharmaceuticalProduct is used, the MedicationCode in the referenced resource (Medication.code) SHALL be repeated in Immunization.vaccineCode of this resource." />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Vaccination.PharmaceuticalProduct" />
+      </type>
+    </element>
     <element id="Immunization.extension:pharmaceuticalProduct.value[x]">
       <path value="Immunization.extension.value[x]" />
       <definition value="The pharmaceutical product of the administered vaccination&#xD;&#xA;&#xD;&#xA;Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list)." />
     </element>
-      <element id="Immunization.vaccineCode">
-          <path value="Immunization.vaccineCode" />
-          <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination.&#xD;&#xA;&#xD;&#xA;It is possible to use a reference to zib PharmaceuticalProduct to identify the used vaccine, using `Immunization.extension:pharmaceuticalProduct'. If this reference is used, the MedicationCode in the referenced resource (Medication.code) SHALL be repeated in this element." />
-      </element>
-      <element id="Immunization.patient">
-          <path value="Immunization.patient" />
-          <type>
-              <code value="Reference" />
-              <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
-              <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
-          </type>
-      </element>
-      <element id="Immunization.doseQuantity">
-          <path value="Immunization.doseQuantity" />
-          <definition value="The amount of product administered shown UCUM, often in mL. In most cases, the entire product is administered; in some cases, a described part of the product is administered." />
-      </element>
-      <element id="Immunization.performer:administrator">
-          <path value="Immunization.performer" />
-          <sliceName value="administrator" />
-      </element>
-      <element id="Immunization.performer:administrator.actor">
-          <path value="Immunization.performer.actor" />
-          <type>
-              <code value="Reference" />
-              <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
-              <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
-              <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
-              <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
-              <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
-          </type>
-      </element>
+    <element id="Immunization.vaccineCode">
+      <path value="Immunization.vaccineCode" />
+      <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination.&#xD;&#xA;&#xD;&#xA;It is possible to use a reference to zib PharmaceuticalProduct to identify the used vaccine, using `Immunization.extension:pharmaceuticalProduct'. If this reference is used, the MedicationCode in the referenced resource (Medication.code) SHALL be repeated in this element." />
+    </element>
+    <element id="Immunization.patient">
+      <path value="Immunization.patient" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Immunization.doseQuantity">
+      <path value="Immunization.doseQuantity" />
+      <definition value="The amount of product administered shown UCUM, often in mL. In most cases, the entire product is administered; in some cases, a described part of the product is administered." />
+    </element>
+    <element id="Immunization.performer:administrator">
+      <path value="Immunization.performer" />
+      <sliceName value="administrator" />
+    </element>
+    <element id="Immunization.performer:administrator.actor">
+      <path value="Immunization.performer.actor" />
+      <type>
+        <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
+      </type>
+    </element>
     <element id="Immunization.reasonCode">
       <path value="Immunization.reasonCode" />
       <slicing>
