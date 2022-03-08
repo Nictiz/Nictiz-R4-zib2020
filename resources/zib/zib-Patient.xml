@@ -110,21 +110,21 @@
         </discriminator>
         <rules value="open" />
       </slicing>
-    </element>
-    <element id="Patient.identifier:bsn">
-      <path value="Patient.identifier" />
-      <sliceName value="bsn" />
       <short value="PatientIdentificationNumber" />
       <definition value="The patient’s identification number. In transfer situations, use of the social security number (BSN) must comply with the Use of Social Security Numbers in Healthcare Act (Wbsn-z). In other situations, other number systems can be used, such as internal hospital patient numbers for example." />
       <alias value="Identificatienummer" />
-      <patternIdentifier>
-        <system value="http://fhir.nl/fhir/NamingSystem/bsn" />
-      </patternIdentifier>
       <mapping>
         <identity value="zib-patient-v3.2-2020EN" />
         <map value="NL-CM:0.1.7" />
         <comment value="PatientIdentificationNumber" />
       </mapping>
+    </element>
+    <element id="Patient.identifier:bsn">
+      <path value="Patient.identifier" />
+      <sliceName value="bsn" />
+      <patternIdentifier>
+        <system value="http://fhir.nl/fhir/NamingSystem/bsn" />
+      </patternIdentifier>
     </element>
     <element id="Patient.name">
       <path value="Patient.name" />
