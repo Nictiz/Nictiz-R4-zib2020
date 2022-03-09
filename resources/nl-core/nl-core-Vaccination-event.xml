@@ -43,7 +43,6 @@
     <element id="Immunization.extension:pharmaceuticalProduct">
       <path value="Immunization.extension" />
       <sliceName value="pharmaceuticalProduct" />
-      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&#xD;&#xA;&#xD;&#xA;If this reference to zib PharmaceuticalProduct is used, the MedicationCode in the referenced resource (Medication.code) SHALL be repeated in Immunization.vaccineCode of this resource." />
       <min value="0" />
       <max value="1" />
       <type>
@@ -53,11 +52,12 @@
     </element>
     <element id="Immunization.extension:pharmaceuticalProduct.value[x]">
       <path value="Immunization.extension.value[x]" />
-      <definition value="The pharmaceutical product of the administered vaccination&#xD;&#xA;&#xD;&#xA;Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list)." />
+      <definition value="The pharmaceutical product of the administered vaccination." />
+      <comment value="If this reference to zib PharmaceuticalProduct is used, the MedicationCode (`Medication.code`) in the referenced resource SHALL be repeated in `Immunization.vaccineCode` of the current resource." />
     </element>
     <element id="Immunization.vaccineCode">
       <path value="Immunization.vaccineCode" />
-      <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination.&#xD;&#xA;&#xD;&#xA;It is possible to use a reference to zib PharmaceuticalProduct to identify the used vaccine, using `Immunization.extension:pharmaceuticalProduct'. If this reference is used, the MedicationCode in the referenced resource (Medication.code) SHALL be repeated in this element." />
+      <comment value="It is possible to use a reference to zib PharmaceuticalProduct to identify the used vaccine, using `Immunization.extension:pharmaceuticalProduct'. If this reference is used, the MedicationCode (`Medication.code`) in the referenced resource SHALL be repeated in this element." />
     </element>
     <element id="Immunization.patient">
       <path value="Immunization.patient" />
