@@ -123,11 +123,19 @@
     <element id="Observation.category:resultType">
       <path value="Observation.category" />
       <sliceName value="resultType" />
+      <short value="ResultType" />
+      <definition value="The type of result defines the laboratory specialty under which the test is categorized." />
+      <alias value="ResultaatType" />
       <max value="1" />
       <binding>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.1--20200901000000" />
       </binding>
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.7" />
+        <comment value="ResultType" />
+      </mapping>
     </element>
     <element id="Observation.code">
       <path value="Observation.code" />
