@@ -113,6 +113,19 @@
     </element>
     <element id="Immunization.protocolApplied.targetDisease">
       <path value="Immunization.protocolApplied.targetDisease" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Immunization.protocolApplied.targetDisease:vaccinationPathogen">
+      <path value="Immunization.protocolApplied.targetDisease" />
+      <sliceName value="vaccinationPathogen" />
+      <short value="VaccinationPathogen" />
+      <definition value="The diseases or pathogens against what the vaccination is primarily given." />
       <binding>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.131.11.3--20220301175614" />
