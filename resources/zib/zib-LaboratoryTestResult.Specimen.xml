@@ -106,9 +106,17 @@
     <element id="Specimen.collection.collected[x]:collectedDateTime">
       <path value="Specimen.collection.collected[x]" />
       <sliceName value="collectedDateTime" />
+      <short value="CollectionDateTime" />
+      <definition value="Date and time at which the material was collected." />
+      <alias value="AfnameDatumTijd" />
       <type>
         <code value="dateTime" />
       </type>
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.17" />
+        <comment value="CollectionDateTime" />
+      </mapping>
     </element>
     <element id="Specimen.collection.collected[x]:collectedPeriod">
       <path value="Specimen.collection.collected[x]" />
@@ -181,40 +189,68 @@
         <comment value="AnatomicalLocation" />
       </mapping>
     </element>
-    <element id="Specimen.container.identifier">
-      <path value="Specimen.container.identifier" />
+    <element id="Specimen.collection.bodySite.extension">
+      <path value="Specimen.collection.bodySite.extension" />
       <slicing>
         <discriminator>
           <type value="value" />
-          <path value="identifier.type" />
+          <path value="url" />
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
-    <element id="Specimen.container.identifier:specimenNumberExtension">
-      <path value="Specimen.container.identifier" />
-      <sliceName value="specimenNumberExtension" />
-      <short value="SpecimenNumberExtension" />
-      <definition value="The specimen number extension is used when the collected material is distributed from the original tube or container across multiple tubes. In combination with the specimen Id the extension yield a unique identification of the tube or container" />
-      <alias value="Monstervolgnummer" />
+    <element id="Specimen.collection.bodySite.extension:morphology">
+      <path value="Specimen.collection.bodySite.extension" />
+      <sliceName value="morphology" />
+      <min value="0" />
       <max value="1" />
-      <patternIdentifier>
-        <type>
-          <coding>
-            <system value="http://terminology.hl7.org/CodeSystem/v2-0203" />
-            <code value="SNO" />
-          </coding>
-        </type>
-      </patternIdentifier>
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-LaboratoryTestResult.Specimen.Morphology" />
+      </type>
+    </element>
+    <element id="Specimen.container.extension">
+      <path value="Specimen.container.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Specimen.container.extension:specimenNumberExtension">
+      <path value="Specimen.container.extension" />
+      <sliceName value="specimenNumberExtension" />
+      <min value="0" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/specimen-sequenceNumber" />
+      </type>
+    </element>
+    <element id="Specimen.container.extension:specimenNumberExtension.value[x]">
+      <path value="Specimen.container.extension.value[x]" />
+      <short value="SpecimenNumberExtension" />
+      <definition value="The specimen number extension is used when the collected material is distributed from the original tube or container across multiple tubes. In combination with the specimen Id the extension yield a unique identification of the tube or container." />
+      <alias value="Monstervolgnummer" />
       <mapping>
         <identity value="zib-laboratorytestresult-v4.6-2020EN" />
         <map value="NL-CM:13.1.20" />
         <comment value="SpecimenNumberExtension" />
       </mapping>
     </element>
-    <element id="Specimen.container.identifier:specimenNumberExtension.system">
-      <path value="Specimen.container.identifier.system" />
-      <max value="0" />
+    <element id="Specimen.container.identifier">
+      <path value="Specimen.container.identifier" />
+      <short value="SpecimenId" />
+      <definition value="Identification number of the material obtained, as a reference for inquiries to the source organization. In a transmural setting, this number will consist of a specimen number including the identification of the issuing organization, to be unique outside of the borders of an organization." />
+      <alias value="Monsternummer" />
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.15" />
+        <comment value="SpecimenId" />
+      </mapping>
     </element>
     <element id="Specimen.container.type">
       <path value="Specimen.container.type" />
