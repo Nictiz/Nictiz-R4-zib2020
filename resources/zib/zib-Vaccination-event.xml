@@ -135,8 +135,9 @@
     <element id="Immunization.performer:administrator.actor">
       <path value="Immunization.performer.actor" />
       <short value="Administrator" />
-      <definition value="The healthcare provider and/or organization where or by whom the immunization was done or will be done." />
+      <definition value="The healthcare provider and/or organization where or by whom the immunization was done." />
       <alias value="Toediener" />
+      <min value="1" />
       <type>
         <code value="Reference" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-ZibHealthProfessionalReference" />
@@ -144,6 +145,7 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider-Organization" />
       </type>
       <mapping>
         <identity value="zib-vaccination-v4.0-2020EN" />
