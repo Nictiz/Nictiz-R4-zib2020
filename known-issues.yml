@@ -210,10 +210,13 @@ zib-LaboratoryTestResult:
     Observation.code:
       - cardinality: 1..1
         reason: This element is mapped to the concepts PanelOrBatter and TestCode at the same time. PanelOrBattery is marked as optional in the zib, but this is strictly not true; it must be absent if the zib instantiates a singular laboratory test, but is required if the zib instantiates a panel. Therefore, both mappings to this elements are in fact required.
-    Observation.value:
+    Observation.value[x]:testResult:
       - datatype: Quantity
-        reason: According to the zib, the concept TestResult is either a value with a unit or a coded value.
-
+        reason: Although the zib defines this concept as datatype ANY, the definition textually restricts this to a quantity or a coded value.
+    Observation.referenceRange.*:
+      - datatype: Quantity
+        reason: The zib concepts ReferenceRangeUpperLimit and ReferenceRangeLowerLimit are defined as datatype ANY, but it is unclear how these concepts should work for anything that is not a quantity. In addition, there's no obvious way in FHIR to support reference values other than of type Quantity (with the possible exception of String). Until this issue is resolved, support for reference ranges in the profile has been restricten to Quantity. See https://bits.nictiz.nl/browse/ZIB-1703 
+        
 zib-LaboratoryTestResult.Specimen:
   zib deviations:
     Specimen.identifier:
@@ -222,9 +225,15 @@ zib-LaboratoryTestResult.Specimen:
     Specimen.collection.bodySite:
       - datatype: CodeableConcept
         reason: Zib AnatomicalLocation is implemented as a datatype profile on CodeableConcept, so the datatype is not a Reference.
-    Specimen.container.identifier:specimenNumberExtension:
-      - datatype: Identifier
-        reason: An element of type Interger doesn't natively exist to accommodate serial numbers. However, the .identifier element can be used to accommodate serial numbers as well. For this reason, the .type of this slice is fixed on "SNO" (serial number) and the .system is made 0..0.
+    Specimen.collection.collected[x]:collectedPeriod:
+      - datatype: Period
+        reason: Zib TimeInterval is directly mapped onto Speciment.collection.collectedPeriod and Speciment.collection.duration, as this matchs the way these concepts are used in FHIR. 
+    Specimen.collection.duration:
+      - datatype: Duration
+        reason: Zib TimeInterval is directly mapped onto Speciment.collection.collectedPeriod and Speciment.collection.duration, as this matchs the way these concepts are used in FHIR.
+    Specimen.container.extension:specimenNumberExtension.value[x]:
+      - cardinality: 1..1
+        reason: The value in the extension is 1..1, but the extension itself is 0..1, effectively matching the zib cardinality.
         
 zib-MedicalDevice:
   ignored issues:
