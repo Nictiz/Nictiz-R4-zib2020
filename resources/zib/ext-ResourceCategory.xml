@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-ResourceCategory" />
+  <meta>
+    <lastUpdated value="2021-12-21T19:35:02.4475991+00:00" />
+  </meta>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory" />
+  <name value="ExtResourceCategory" />
+  <title value="ext ResourceCategory" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="This extension is used to augment a reference with the target resource category, in cases when Reference.type is not precise enough to determine the functional counterpart of the reference.          The value of this extension is  often a semantic code (e.g. the zib's root definition code) identifies the target resource category." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="Reference" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <definition value="The expected resource category of the target of the reference. &#xD;&#xA;&#xD;&#xA;The ResourceCategory is a semantic code that represents the category of the resource this reference refers to." />
+      <comment value="This element is used to indicate the resource's category of the target of the reference in cases when the Reference.type is not precise enough to determine the functional counterpart of the reference element." />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>

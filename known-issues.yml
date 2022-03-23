@@ -2,11 +2,29 @@
 # The issues here are deliberate deviations from the guidelines, as flagged by the qa tooling.
 # For each issue documented, a reason for deviating from the guidelines is given.
 
+ext-AdministrationAgreement.AdditionalInformation:
+  zib deviations:
+    Extension.value[x]:
+      - cardinality:  0..1
+        reason: The extension allows the value to occure only once (0..1), but the use of the extension itself (in a resource)is allowed to be repeated (0..*), effectively resulting a cardinality of 0..* for this element.
+
 ext-AdvanceDirective.Disorder:
   zib deviations:
     Extension.value[x]:
       - cardinality: 0..1
         reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension is added 0..* in the hosting element.
+
+ext-DispenseRequest.AdditionalWishes:
+  zib deviations:
+    Extension.value[x]:
+      - cardinality:  0..1
+        reason: The extension allows the value to occure only once (0..1), but the use of the extension itself (in a resource)is allowed to be repeated (0..*), effectively resulting a cardinality of 0..* for this element.
+
+ext-DispenseRequest.DispenseLocation:
+  zib deviations:
+    Extension.value[x]:
+      - datatype:  Reference
+        reason: Although the mapping is placed on a Reference and not a String, the actual information will be placed inside a String datatype in Location.name. A reference to a Location resource has been chosen over an extension with a String to allow for more detailed information to be captured in use cases not accounted for by the zib while also provide a correct zib mapping. 
 
 ext-LanguageProficiency.CommunicationDetails:
   zib deviations:
@@ -14,11 +32,57 @@ ext-LanguageProficiency.CommunicationDetails:
       - cardinality: 0..1
         reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension should be added 0..* in the hosting element.
 
+ext-MedicationAdministration2.AdministeringSpeedRange:
+  zib deviations:
+    Extension.value[x]:
+      - datatype: Range
+        reason: The zib Range is not represented as a resource rather it is mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Range as would have been the case within the zib Range.
+
+ext-MedicationAgreement.MedicationAgreementAdditionalInformation:
+  zib deviations:
+    Extension.value[x]:
+      - cardinality:  0..1
+        reason: The extension allows the value to occure only once (0..1), but the use of the extension itself (in a resource)is allowed to be repeated (0..*), effectively resulting a cardinality of 0..* for this element.
+
+ext-MedicationDispense.MedicationDispenseAdditionalInformation:
+  zib deviations:
+    Extension.value[x]:
+      - cardinality:  0..1
+        reason: The extension allows the value to occure only once (0..1), but the use of the extension itself (in a resource)is allowed to be repeated (0..*), effectively resulting a cardinality of 0..* for this element.
+
+ext-MedicationUse.AsAgreedIndicator:
+  zib deviations:
+    Extension.value[x]:
+      - cardinality:  0..1
+        reason: The extension allows the value to occure only once (0..1), but the use of the extension itself (in a resource)is allowed to be repeated (0..*), effectively resulting a cardinality of 0..* for this element.
+
 ext-Procedure.ProcedureMethod:
   zib deviations:
     Extension.value[x]:
       - cardinality: 1..1
         reason: The used extension uses a cardinality of 1..1 on the value[x] element. However, the extension itself is added with a cardinality of 0..1. 
+
+MedicatieToedieningStatus-to-MedicationAdministrationStatus: 
+  ignored issues:
+    ConceptMap:
+      - message: "cm-pg-02: 'The canonical URL should conform to the profiling guidelines'"
+        reason: The canonical URL, name and title are shortened to meet the max 64 char constraint of the fhir spec for ids and the id is used to construct the aformentioned elements. 
+      - message: "cm-pg-03: 'The name of the ConceptMap should conform to the profiling guidelines'"
+        reason:  The canonical URL, name and title are shortened to meet the max 64 char constraint of the fhir spec for ids and the id is used to construct the aformentioned elements. 
+      - message: "cm-pg-04: 'The title of the ConceptMap should conform to the profiling guidelines'"
+        reason: The canonical URL, name and title are shortened to meet the max 64 char constraint of the fhir spec for ids and the id is used to construct the aformentioned elements. 
+
+pattern-GstdSimpleQuantity:
+  ignored issues:
+    StructureDefinition:
+      - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
+        reason: The title is shown in the hosting profiles as the name of the datatype. "G-Standaard SimpleQuantity" is more descriptive than the title according to the profiling guidelines ("pattern GstdSimpleQuantity").
+
+pattern-GstdQuantity: 
+  ignored issues:
+    StructureDefinition:
+      - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
+        reason: The title is shown in the hosting profiles as the name of the datatype. "G-Standaard Quantity" is more descriptive than the title according to the profiling guidelines ("pattern GstdQuantity").
 
 pattern-NlCoreHealthProfessionalReference:
   ignored issues:
@@ -46,6 +110,20 @@ zib-AddressInformation:
     Address.line.extension:*.value[x]:
       - cardinality: 1..1
         reason: The value of the extension is required, but the extension itself is optional, making the effective cardinality 0..1 as required by the zib.
+
+zib-AdministrationAgreement:
+  zib deviations:
+    MedicationDispense.status:
+      - datatype: code
+        reason: CanceledIndicator can be mapped to the status element that holds an appropriate code for when CanceledIndicator = true. 
+      - cardinality: 1..1
+        reason: The base FHIR spect defines status as 1..1. This is not a problem for the mapping of CanceledIndicator because if CanceledIndicator is absent or false another more appropriate code should be chosen for this mandatory element. 
+    MedicationDispense.dosageInstruction:
+      - datatype: Dosage
+        reason: InstructionsForUse and DosingInstructions are represented by the Dosage datatype and not by a resource in FHIR hence the mismatch in datatypes.
+    MedicationDispense.extension:periodOfUse.value[x]:
+      - datatype: Period
+        reason: The zib TimerInterval is not represented as a resource but is mapped within the zib profile. De 'Duration' part of the concept is represented by an extension within this extension.
 
 zib-AdvanceDirective:
   zib deviations:
@@ -118,6 +196,43 @@ zib-ContactPerson:
     RelatedPerson.telecom:emailAddresses:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
+
+zib-DispenseRequest:
+  zib deviations:
+    MedicationRequest.dispenseRequest.extension:periodOfUse-Duration.value[x]:
+      - datatype: Duration
+        reason: The zib TimerInterval is not represented as a resource but is rather mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Duration as would have been the case within the zib TimeInterval.
+    MedicationRequest.dispenseRequest.validityPeriod:
+      - datatype: Period
+        reason: The zib TimerInterval is not represented as a resource but is rather mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Period as would have been the case within the zib TimeInterval.
+    MedicationRequest.dispenseRequest.numberOfRepeatsAllowed:
+      - datatype: unsignedInt
+        reason: unsignedInt is a restriction on the zib INT concept (only non-negative INT) which matches with the definition of the NumberOfRefills. A negative NumberOfRefills don't make sense. 
+
+zib-Encounter:
+  ignored issues:
+    Encounter.reasonReference:*:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+  zib deviations:
+    Encounter.class:
+      - cardinality: 1..1
+        reason: Encounter.class is manadatory by FHIR. The cardinality matches the cardinality of the zib, however, it does not match with the conceptual cardinality concept. This should not be a major problem.
+    Encounter.participant:healthProfessional.individual:
+      - cardinality: 0..1
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent participant element that may exists 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+    Encounter.reasonReference:*:
+      - cardinality: 0..*
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing ContactReason container in FHIR. This container may exists 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+    Encounter.reasonReference:deviatingResult:    
+      - datatype: Reference
+        reason: The datatype mismatch between the zib (string) and FHIR (Reference) is explained by an error in the zib. DeviatingResult is captured with a reference to the zib-LaboratoryTestResult instead of a string value as the zib 2020 incorrectly states. This will be fixed in a future version of the zib (https://bits.nictiz.nl/browse/ZIB-1427).
+    Encounter.reasonReference.extension:comment.value[x]:
+      - cardinality: 0..*
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*, effective) is explained by the missing ContactReason container in FHIR. This container may exists 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+    Encounter.location.location:
+      - cardinality: 0..*
+        reason: The zib has a restricted cardinality of 0..1 for the Location concept (NL-CM:15.1.8). However, this cardianlity is propably too restricted (see <https://bits.nictiz.nl/browse/ZIB-1632> for discussion) and would prevent some practical use cases. Therefore, the cardinality has been left on 0..* in this profile.
         
 zib-FunctionalOrMentalStatus:
   zib deviations:
@@ -222,6 +337,98 @@ zib-MedicalDevice.Product:
     Device.udiCarrier:*UdiCarrier.carrierHRF:
       - datatype: string
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
+
+zib-InstructionsForUse.DosageInstructions:
+  zib deviations:
+    Dosage.additionalInstruction:
+      - datatype: CodeableConcept
+        reason: The AdditionalInstructions defintion mentions the uses of coded text and known use cases actually bind a valueset to this concept. Therefore a mapping on the CodeableConcept level seems more appropriate than a mapping to CodeableConcept.text. If no coded form is known, the zib information can be found in CodeableConcept.text, which is op type string.
+    Dosage.timing:
+      - datatype: Timing
+        reason: AdministeringSchedule is represented using the Timing datatype in FHIR. It is not a container or BackboneElement in the Dosage datatype.
+    Dosage.timing.repeat.count:
+      - datatype: positiveInt
+        reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
+    Dosage.timing.repeat.countMax:
+      - datatype: positiveInt
+        reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
+    Dosage.timing.repeat.duration:
+      - datatype: decimal
+        reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
+    Dosage.timing.repeat.durationUnit:
+      - datatype: code
+        reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
+    Dosage.timing.repeat.frequency:
+      - datatype: positiveInt
+        reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
+    Dosage.timing.repeat.frequencyMax: 
+      - datatype: positiveInt
+        reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
+    Dosage.timing.repeat.period:
+      - datatype: decimal
+        reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
+    Dosage.timing.repeat.periodUnit:
+      - datatype: code
+        reason: The mapping of zib concepts of Frequency and Interval are not straightforward and span multiple elements in FHIR. In result, the mappings of datatype do not match. The profiles provide documentation on the required (datatype) mapping.
+    Dosage.timing.repeat.timeOfDay:
+      - datatype: time
+        reason: The datatype time is more specific than the zib datatype TS. To use only a time instead of a dateTime matches with the definition of AdministrationTime.
+    Dosage.doseAndRate:
+      - datatype: Element
+        reason: The Dosage concepts maps neatly to the doseAndRate element. It is however unclear why FHIR defined an Element rather than a BackboneElement here.
+    Dosage.doseAndRate.dose[x]:
+      - datatype: Range
+        reason: The zib Range is not represented as a resource rather it is mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Range as would have been the case within the zib Range.
+    Dosage.doseAndRate.rate[x]:
+      - datatype: Ratio
+        reason: The mapping is placed to this polymorphic element that also contains the option to give a Ratio datatype. This Ratio datatype is not used by the zib mapping. It is however not removed as option because of the open world modelling principle.
+    Dosage.maxDosePerPeriod:
+      - datatype: Ratio
+        reason: The zib Range is not represented as a resource rather it is mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Ratio as would have been the case within the zib Range. 
+    
+zib-MedicationAdministration2:
+  zib deviations:
+    MedicationAdministration.status:
+      - cardinality:  1..1
+        reason: TODO
+    MedicationAdministration.performer:
+      - datatype: BackboneElement
+        reason: The appropriate representation of Administrator of a MedicationAdministration in FHIR is the performer. The container can be properly mapped to this BackboneElement.
+    MedicationAdministration.dosage.rate[x]:rateQuantity:
+      - datatype: Quantity
+        reason: There is no profile for a reference to the partial zib Range, rather it is given in the profile itself. However, only the nominalValue is currently supported by the FHIR spec, hence the mapping on a rateQuantity.
+
+zib-MedicationAgreement:
+  zib deviations:
+    MedicationRequest.dosageInstruction:
+      - datatype: Dosage
+        reason: DosageInstructions in FHIR is represented using the Dosage datatype, not as a separate resource.
+    MedicationRequest.extension:periodOfUse.value[x]:
+      - datatype: Period
+        reason: The zib TimerInterval is not represented as a resource but is mapped within the zib profile. De 'Duration' part of the concept is represented by an extension within this extension.
+    
+zib-MedicationDispense:
+  zib deviations:
+    MedicationDispense.destination:
+      - datatype: Reference
+        reason: A mapping to a native FHIR element, this reference to a Location, has been chosen over the use of an extension. The actual information will be placed inside a string datatype in Location.name matching the datatype of the zib.
+
+zib-MedicationUse2:
+  zib deviations:
+    MedicationStatement.extension:periodOfUse-Duration.value[x]:
+      - datatype: Duration
+        reason: The zib TimerInterval is not represented as a resource but is rather mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Duration as would have been the case within the zib TimeInterval.
+    MedicationStatement.effective[x]:effectivePeriod:
+      - datatype: Period
+        reason: The zib TimerInterval is not represented as a resource but is rather mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Period as would have been the case within the zib TimeInterval.
+    MedicationStatement.dosage:
+      - datatype: Dosage
+        reason: DosageInstructions in FHIR is represented using the Dosage datatype, not as a separate resource.
+    MedicationStatement.status:
+      - cardinality:  1..1
+        reason: UseIndicator is mapped to the status element of MedicationStatement which is 1..1. This should not be problematic because the status element is used for more than holding UseIndicator information. If UseIndicator is absent because it is 0..1 another status code is chosen to fullfil the 1..1 requirement by FHIR. 
+      - datatype: code
+        reason: UseIndicator is mapped to the status element of MedicationStatement, thereby not represented by a boolean but by a code. Mapping guidance is provided in the profile to transform between the boolean and code datatypes.
 
 zib-NameInformation:
   zib deviations:
@@ -331,6 +538,18 @@ zib-Patient:
       - cardinality: 0..*
         reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
 
+zib-PharmaceuticalProduct:
+  zib deviations:
+    Medication.ingredient:
+      - datatype: BackboneElement
+        reason: The appropriate representation of ingredient in FHIR is Medication.ingredient. The container can be properly mapped to this BackboneElement.
+    Medication.ingredient.strength:
+      - datatype: Ratio
+        reason: The `ingredient.strenght` acts as a container for the two child elements and can the be correclty mapped to the zib Concentration container. 
+    Medication.ingredient.item[x]:
+      - cardinality: 1..1
+        reason: There is a known cardinality mismatch between FHIR (1..1) and the zib (0..1) for the .ingredient.item element which is nested in the optional .ingredient container. This constraint was already in place for the STU3 profile. Moreover this does not seem to be a concern for the Medication Proces information standard will use this profile as they will make this element required in their dataset.
+
 zib-Problem:
   zib deviations:
     Condition.bodySite:
@@ -438,6 +657,12 @@ nl-core-CareTeam-01:
       - message: Slicing cannot be evaluated
         reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
 
+nl-core-Encounter-01:
+  ignored issues:
+    Encounter.participant[*]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+
 nl-core-HearingFunction.HearingAid-*:
   ignored issues:
     DeviceUseStatement.reasonReference[*]:
@@ -445,6 +670,12 @@ nl-core-HearingFunction.HearingAid-*:
         reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
 
 nl-core-MedicalDevice-*:
+  ignored issues:
+    DeviceUseStatement.reasonReference[*]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+
+nl-core-*-DeviceUseStatement-*:
   ignored issues:
     DeviceUseStatement.reasonReference[*]:
       - message: Slicing cannot be evaluated

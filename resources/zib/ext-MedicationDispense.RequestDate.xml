@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-MedicationDispense.RequestDate" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.RequestDate" />
+  <name value="ExtMedicationDispenseRequestDate" />
+  <title value="ext MedicationDispense.RequestDate" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="An extension to provide the time at which a pharmacist records an intended dispense." />
+  <purpose value="This extension represents the RequestDate concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) MedicationDispense v2.0.2 (2020)](https://zibs.nl/wiki/MedicationDispense-v2.0.2(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-medicationdispense-v2.0.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/MedicationDispense-v2.0.2(2020EN)" />
+    <name value="zib MedicationDispense-v2.0.2(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="MedicationDispense" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.RequestDate" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="RequestDate" />
+      <definition value="The request date is the time at which a pharmacist records an intended dispense." />
+      <alias value="AanschrijfDatum" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-medicationdispense-v2.0.2-2020EN" />
+        <map value="NL-CM:9.9.22500" />
+        <comment value="RequestDate" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

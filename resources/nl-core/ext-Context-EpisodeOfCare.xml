@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-Context-EpisodeOfCare" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-Context-EpisodeOfCare" />
+  <name value="ExtContextEpisodeOfCare" />
+  <title value="ext Context EpisodeOfCare" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="`Observation.context` and `MedicationRequest.context` has been renamed and remodeld to only contain a reference to Encounter in R4. `MedicactionStatement.context` and `MedicationAdministration.context` are a 0..1 reference to Encounter|EpisodeOfCare. This extension allows to add a reference to EpisodeOfCare (potentially next to a reference to an Encounter). From R5 onwards, this extension will likely be replaced by a HL7 core extension." />
+  <purpose value="This extension provides a generic method to add a reference to an EpisodeOfCare resource." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="Observation" />
+  </context>
+  <context>
+    <type value="element" />
+    <expression value="MedicationRequest" />
+  </context>
+  <context>
+    <type value="element" />
+    <expression value="MedicationAdministration.context" />
+  </context>
+  <context>
+    <type value="element" />
+    <expression value="MedicationStatement.context" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-Context-EpisodeOfCare" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="EpisodeOfCare" />
+      <definition value="Identifies the episode(s) of care that this resource is relevant to. Establishes the EpisodeOfCare as a 'grouper' of resources that are relevant to that episode." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/EpisodeOfCare" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-EpisodeOfCare" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>

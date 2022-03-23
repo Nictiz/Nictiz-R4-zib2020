@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SearchParameter xmlns="http://hl7.org/fhir">
+  <id value="pharmaceutical-treatment-identifier"/>
+  <url value="http://nictiz.nl/fhir/SearchParameter/pharmaceutical-treatment-identifier" />
+  <name value="PharmaceuticalTreatmentIdentifier" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Searches on the value provided in the pharmaceutical treatment identifier extension ('http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier') in the following resources: 
+    * [MedicationRequest](http://hl7.org/fhir/r4/medicationrequest.html)
+    * [MedicationDispense](http://hl7.org/fhir/r4/medicationdispense.html)
+    * [MedicationStatement](http://hl7.org/fhir/r4/medicationstatement.html)
+    * [MedicationAdministration](http://hl7.org/r4/medicationadministration.html)
+    " />
+  <purpose value="To select the MedicationRequest, MedicationDispense, MedicationAdministration, and MedicationStatement resources based on a specific pharmaceutical treatment identifier."/>
+  <code value="pharmaceutical-treatment-identifier"/>
+  <base value="MedicationAdministration"/>
+  <base value="MedicationStatement"/>
+  <base value="MedicationRequest"/>
+  <base value="MedicationDispense"/>
+  <type value="token"/>
+  <expression value="MedicationRequest.extension('http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier') | MedicationDispense.extension('http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier') | MedicationAdministration.extension('http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier') | MedicationStatement.extension('http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier')"/>
+</SearchParameter>
+
