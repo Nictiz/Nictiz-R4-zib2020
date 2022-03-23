@@ -210,9 +210,9 @@ zib-LaboratoryTestResult:
     Observation.code:
       - cardinality: 1..1
         reason: This element is mapped to the concepts PanelOrBatter and TestCode at the same time. PanelOrBattery is marked as optional in the zib, but this is strictly not true; it must be absent if the zib instantiates a singular laboratory test, but is required if the zib instantiates a panel. Therefore, both mappings to this elements are in fact required.
-    Observation.value[x]:testResult:
+    Observation.value[x]:
       - datatype: Quantity
-        reason: Although the zib defines this concept as datatype ANY, the definition textually restricts this to a quantity or a coded value.
+        reason: In FHIR there's no datatype ANY. All stated datatypes in the description can be accomodated using this element (Quantity and CodeableConcept are in fact both supported).
     Observation.referenceRange.*:
       - datatype: Quantity
         reason: The zib concepts ReferenceRangeUpperLimit and ReferenceRangeLowerLimit are defined as datatype ANY, but it is unclear how these concepts should work for anything that is not a quantity. In addition, there's no obvious way in FHIR to support reference values other than of type Quantity (with the possible exception of String). Until this issue is resolved, support for reference ranges in the profile has been restricten to Quantity. See https://bits.nictiz.nl/browse/ZIB-1703 
