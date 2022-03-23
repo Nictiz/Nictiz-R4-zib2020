@@ -718,7 +718,7 @@ zib-Patient:
         reason: The alias is defined on the datatype profile and not repeated in the differential.
 
 zib-Vaccination-event:
-  ignored issues:
-    Immunization.performer:administrator.actor[*]:
-      - message: "cardinality: WARNING (1..1 instead of 0..1)'"
-        reason: The actor as part of the performer is required, but the performer itself optional and therefore compliant to the zib.
+  zib deviations:
+    Immunization.performer:administrator.actor:
+      - cardinality: 1..1
+        reason: The actor as part of the performer is required, but the performer itself optional. The profile is therefore still zib compliant.
