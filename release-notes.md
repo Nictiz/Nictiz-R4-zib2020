@@ -122,6 +122,13 @@ This document contains release notes per zib, indicating differences with their 
 * Changed fixed slice on `.code.coding` to a pattern on `.code`.
 * Relaxed cardinality of `value[x]` to 0..1 of the conceptual cardinalities of the zib.
 
+## zib-LaboratoryTestResult
+* In the 2017 implementation, five different profiles were used. This has been reduced to two profiles in the current implementation:
+  * The profile HCIM LaboratoryTestResult DiagnosticReport was designed to capture conclusions from zib LaboratoryTestResult, but this has never been used and is not explicitly defined by the zib.
+  * The profile HCIM LaboratoryTestResult Specimen Isolate was used to represent the Specimen container which instantiates a microorganism from a specimen (that is, the Microorganism concept is used). However, it has been found that a single Specimen profile is sufficient to represent both the specimen itself and any isolate from it. To represent both a specimen and the material from which it came, two instances of this profile are needed.
+  * The profile HCIM LaboratoryTestResult Substance was used to represent the Microorganism concept as well.
+* The concept Performer was added, mapped onto `Observation.performer`.
+
 ## zib-LivingSituation
 * Added two new concepts and modelled them on `Observation.component:homeAdaption` and `Observation.component:livingCondition`.
 * Concept 'HouseType' has been moved to its own valueCodeableConcept slice.

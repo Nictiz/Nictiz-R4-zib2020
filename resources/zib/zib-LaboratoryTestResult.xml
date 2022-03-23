@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-LaboratoryTestResult" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult" />
+  <name value="ZibLaboratoryTestResult" />
+  <title value="zib LaboratoryTestResult" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A laboratory result describes the result of a laboratory analysis.&#xD;&#xA;These are specimen-oriented tests as performed in laboratories such as Clinical Chemistry, Serology, Microbiology, etc.&#xD;&#xA;In addition to the results of tests with a singular result, this concept can also contain the results of more complex tests with multiple results or a ‘panel’." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) LaboratoryTestResult v4.6(2020)](https://zibs.nl/wiki/LaboratoryTestResult-v4.6(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+    <uri value="https://zibs.nl/wiki/LaboratoryTestResult-v4.6(2020EN)" />
+    <name value="zib LaboratoryTestResult-v4.6(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="LaboratoryTestResult / LaboratoryTest" />
+      <definition value="An instance of zib LaboratoryTestResult or of a single LaboratoryTest within this zib." />
+      <comment value="**1. Guidance on use for singular tests and panels**&#xD;&#xA;&#xD;&#xA;The zib LaboratoryTestResult captures both singular laboratory tests and panels/clusters of multiple related tests requested together (e.g. blood gases and EBV serology)*. This profile should be used slightly different in these two situations:&#xD;&#xA;&#xD;&#xA;* For singlular laboratory test results&#xD;&#xA;    * A single instance of this profile is to be used.&#xD;&#xA;    * `Observation.code` represents zib concept TestCode (NL-CM:13.1.8, the name and code of the executed test) while zib concept PanelOrBattery (NL-CM:13.1.4, the name and code of the compound test) is not expected to be present.&#xD;&#xA;    * `Observation.status` represents zib concept TestResultStatus (NL-CM:13.1.31, the status of the test result). ResultStatus (NL-CM:13.1.6) is redundant in this situation and not expected to be present.&#xD;&#xA;* For a panel or cluster:&#xD;&#xA;    * There is a single instance for the overall result plus an instance for each individual test result.&#xD;&#xA;    * The concepts Comment (NL-CM:13.1.5, `Observation.note`), ResultType (NL-CM:13.1.7, `Observation.category:resultType`) and Performer (NL-CM:13.1.35, `Observation.performer`) are repeated in the instance for the overall result and in all instances for the individual test results.&#xD;&#xA;    * For the instance representing the overall result:&#xD;&#xA;      * `Observation.code` represents zib concept PanelOrBattery (NL-CM:13.1.4, the name and code of the compound test), which is required for panels/clusters.&#xD;&#xA;      * `Observation.status` represents zib concept ResultStatus (NL-CM:13.1.6, the overall status of the test result). This status should be in accordance with the statuses of each individual test.&#xD;&#xA;      * The instances respresenting the individual test results are referenced using `Observation.hasMember`.&#xD;&#xA;    * For the instances representing the individual test results:&#xD;&#xA;      * `Observation.code` represents zib concept TestCode (NL-CM:13.1.8, the name and code of the executed test) for that particular test.&#xD;&#xA;      * `Observation.status` represents zib concept TestResultStatus (NL-CM:13.1.31, the status of the test result) for that particular test.&#xD;&#xA;&#xD;&#xA;Note 1: The the zib also recognizes the RelatedResult concept (NL-CM:13.1.33). This is unrelated to the use of panels/clusters. This concept is represented either using `Observation.derivedFrom` or `Observation.extension:relatedResult`.&#xD;&#xA;&#xD;&#xA;**2. Unmapped zib concepts**&#xD;&#xA;&#xD;&#xA;* The zib concept Requester (NL-CM:13.1.34) is not implemented because it is deemed unimplementable as-is. It will be removed in the next version of the zib (see &lt;https://bits.nictiz.nl/browse/ZIB-1269&gt; for more information).&#xD;&#xA;* The zib concept InterpretationMethod (NL-CM:13.1.30) is not implemented because there's no obvious mapping to FHIR while the definition is problematic and there doesn't seem to be a use case for exchanging this information (see &lt;https://bits.nictiz.nl/browse/ZIB-1292&gt; for more information)." />
+      <alias value="LaboratoriumUitslag" />
+      <alias value="LaboratoriumTest" />
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.1" />
+        <comment value="LaboratoryTestResult" />
+      </mapping>
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.3" />
+        <comment value="LaboratoryTest" />
+      </mapping>
+    </element>
+    <element id="Observation.extension">
+      <path value="Observation.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Observation.extension:sequelTo">
+      <path value="Observation.extension" />
+      <sliceName value="sequelTo" />
+      <min value="0" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/observation-sequelTo" />
+      </type>
+    </element>
+    <element id="Observation.extension:sequelTo.value[x]">
+      <path value="Observation.extension.value[x]" />
+      <short value="RelatedResult" />
+      <definition value="This is one of the two mechanisms to represent zib concept RelatedResult (NL-CM:13.1.33), The other mechanism is `Observation.derivedFrom`." />
+      <alias value="GerelateerdeUitslag" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult" />
+      </type>
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.33" />
+        <comment value="RelatedResult" />
+      </mapping>
+    </element>
+    <element id="Observation.status">
+      <path value="Observation.status" />
+      <short value="ResultStatus / TestResultStatus" />
+      <definition value="The status of the laboratory test result or test result panel/cluster." />
+      <comment value="If this resource represents a singular test result or a single test in a cluster/panel, this will be the status of this particular test result. However, if it represents the overall result of a panel/cluster, this status should represent the status of the panel/cluster and should be in accordance with the test result statuses of the individual tests." />
+      <alias value="TestUitslagStatus" />
+      <alias value="ResultaatStatus" />
+      <binding>
+        <strength value="required" />
+        <description value="Use ConceptMap 'TestUitslagStatusCodelijst-to-ObservationStatus' to translate zib terminology to profile terminology in ValueSet 'ObservationStatus'" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/observation-status|4.0.1">
+          <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
+            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/TestUitslagStatusCodelijst-to-ObservationStatus" />
+          </extension>
+        </valueSet>
+      </binding>
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.6" />
+        <comment value="ResultStatus" />
+      </mapping>
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.31" />
+        <comment value="TestResultStatus" />
+      </mapping>
+    </element>
+    <element id="Observation.category">
+      <path value="Observation.category" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.category:resultType">
+      <path value="Observation.category" />
+      <sliceName value="resultType" />
+      <short value="ResultType" />
+      <definition value="The type of result defines the laboratory specialty under which the test is categorized." />
+      <alias value="ResultaatType" />
+      <max value="1" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.7" />
+        <comment value="ResultType" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <short value="PanelOrBattery / TestCode" />
+      <definition value="The name and code of the executed test. For laboratory tests comprising multiple subtests and often requested together as a whole, this concept contains the name and code of the compound request (often indicated as a ‘panel’, ‘battery’ or ‘cluster’). Examples include: blood gases and EBV serology." />
+      <comment value="When this resource represents a singular laboratory test result, a code MUST come from NHG Tabel 45 &lt;http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.16--20200901000000&gt; or the Nederlandse Labcodeset &lt;http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.3--20200901000000&gt;. When this resource represent the overall result of a panel/cluster, a code MUST be a LOINC code. See the root of this profile for guidance." />
+      <alias value="Onderzoek" />
+      <alias value="TestCode" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://nictiz.nl/fhir/ValueSet/TestCode-en-Onderzoek-Codelijsten" />
+      </binding>
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.4" />
+        <comment value="PanelOrBattery" />
+      </mapping>
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.8" />
+        <comment value="TestCode" />
+      </mapping>
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effective[x]" />
+      <sliceName value="effectiveDateTime" />
+      <short value="TestDateTime" />
+      <definition value="The date and if possible the time at which the test was carried out." />
+      <alias value="TestDatumTijd" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.13" />
+        <comment value="TestDateTime" />
+      </mapping>
+    </element>
+    <element id="Observation.performer">
+      <path value="Observation.performer" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.performer:performer">
+      <path value="Observation.performer" />
+      <sliceName value="performer" />
+      <short value="Performer" />
+      <definition value="The healthcare provider and/or organization where or by whom the LaboratoryTestResult was performed." />
+      <alias value="Uitvoerder" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-ZibHealthProfessionalReference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner" />
+      </type>
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.35" />
+        <comment value="Performer" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <short value="TestResult" />
+      <definition value="The test result. Depending on the type of test, the result will consist of a value with a unit or a coded value (ordinal or nominal)." />
+      <alias value="TestUitslag" />
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.10" />
+        <comment value="TestResult" />
+      </mapping>
+    </element>
+    <element id="Observation.interpretation">
+      <path value="Observation.interpretation" />
+      <slicing>
+        <discriminator>
+          <type value="exists" />
+          <path value="coding" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.interpretation:resultFlags">
+      <path value="Observation.interpretation" />
+      <sliceName value="resultFlags" />
+      <short value="ResultFlags" />
+      <definition value="Attention codes indicating whether the result of a quantitative test is above or below certain reference values or interpreting the result otherwise.(Resistent). The values Resistant, Intermediate en Susceptible are used with microbiological test results." />
+      <alias value="InterpretatieVlaggen" />
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.7--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.14" />
+        <comment value="ResultFlags" />
+      </mapping>
+    </element>
+    <element id="Observation.interpretation:resultFlags.coding">
+      <path value="Observation.interpretation.coding" />
+      <min value="1" />
+    </element>
+    <element id="Observation.interpretation:resultInterpretation">
+      <path value="Observation.interpretation" />
+      <sliceName value="resultInterpretation" />
+      <max value="1" />
+    </element>
+    <element id="Observation.interpretation:resultInterpretation.coding">
+      <path value="Observation.interpretation.coding" />
+      <max value="0" />
+    </element>
+    <element id="Observation.interpretation:resultInterpretation.text">
+      <path value="Observation.interpretation.text" />
+      <short value="ResultInterpretation" />
+      <definition value="Comment of the laboratory specialist regarding the interpretation of the results" />
+      <alias value="UitslagInterpretatie" />
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.32" />
+        <comment value="ResultInterpretation" />
+      </mapping>
+    </element>
+    <element id="Observation.note">
+      <path value="Observation.note" />
+      <max value="1" />
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
+      <short value="Comment" />
+      <definition value="Comments, such as a textual interpretation or advice accompanying the result, for example." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.5" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Observation.method">
+      <path value="Observation.method" />
+      <short value="TestMethod" />
+      <definition value="The test method used to obtain the result." />
+      <alias value="Testmethode" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.4--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.9" />
+        <comment value="TestMethod" />
+      </mapping>
+    </element>
+    <element id="Observation.specimen">
+      <path value="Observation.specimen" />
+      <comment value="The Specimen concept of the zib defines either the collected source material without further processing, or a microorganism, optionally including the source material from which it whas isolated.&#xD;&#xA;&#xD;&#xA;* If the Specimen pertains a material (zib concept SpecimenMaterial), the `Specimen.type` of the resource referenced here should contain a coding indicating a specimen material.&#xD;&#xA;* If the Specimen pertains a microorganism (zib concept Microorganism), the `Specimen.type` of the resource referenced here should contain a coding indicating the microorganims. If required, the sample material from which the microorganism was isolated can be referenced using `Specimen.parent` on that resource, but it is not referenced here." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Specimen" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult.Specimen" />
+      </type>
+    </element>
+    <element id="Observation.referenceRange.low">
+      <path value="Observation.referenceRange.low" />
+      <short value="ReferenceRangeLowerLimit" />
+      <definition value="The lower reference limit for the patient of the value measured with the test." />
+      <comment value="The zib concepts ReferenceRangeUpperLimit and ReferenceRangeLowerLimit are defined as datatype ANY, but it is unclear how these concepts should work for anything that is not a quantity. In addition, there's no obvious way in FHIR to support reference values other than of type Quantity (with the possible exception of String). Until this issue is resolved, support for reference ranges in the profile has been restricten to Quantity. See &lt;https://bits.nictiz.nl/browse/ZIB-1703&gt;" />
+      <alias value="ReferentieOndergrens" />
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.12" />
+        <comment value="ReferenceRangeLowerLimit" />
+      </mapping>
+    </element>
+    <element id="Observation.referenceRange.high">
+      <path value="Observation.referenceRange.high" />
+      <short value="ReferenceRangeUpperLimit" />
+      <definition value="The upper reference limit for the patient of the value measured in the test." />
+      <comment value="The zib concepts ReferenceRangeUpperLimit and ReferenceRangeLowerLimit are defined as datatype ANY, but it is unclear how these concepts should work for anything that is not a quantity. In addition, there's no obvious way in FHIR to support reference values other than of type Quantity (with the possible exception of String). Until this issue is resolved, support for reference ranges in the profile has been restricten to Quantity. See &lt;https://bits.nictiz.nl/browse/ZIB-1703&gt;" />
+      <alias value="ReferentieBovengrens" />
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.11" />
+        <comment value="ReferenceRangeUpperLimit" />
+      </mapping>
+    </element>
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
+      <comment value="When this resource is used to represent the overall result of a panel/cluster of laboratory tests, the individual test resultss SHOULD be referenced here. See the root of this profile for guidance." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MolecularSequence" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult" />
+      </type>
+    </element>
+    <element id="Observation.derivedFrom">
+      <path value="Observation.derivedFrom" />
+      <short value="RelatedResult" />
+      <definition value="The target resource that represents a measurement from which this observation value is derived. For example, a calculated anion gap or a fetal measurement based on an ultrasound image.&#xD;&#xA;&#xD;&#xA;This is one of the two mechanisms to represent zib concept RelatedResult (NL-CM:13.1.33), The other mechanism is `Observation.extension:sequelTo`." />
+      <alias value="GerelateerdeUitslag" />
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.33" />
+        <comment value="RelatedResult" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
