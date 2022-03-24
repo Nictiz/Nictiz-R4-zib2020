@@ -44,6 +44,31 @@
       </slicing>
       <min value="0" />
     </element>
+    <element id="MedicationRequest.extension:periodOfUse">
+      <path value="MedicationRequest.extension" />
+      <sliceName value="periodOfUse" />
+      <min value="0" />
+    </element>
+    <element id="MedicationRequest.extension:periodOfUse.value[x].extension">
+      <path value="MedicationRequest.extension.value[x].extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="MedicationRequest.extension:periodOfUse.value[x].extension:condition">
+      <path value="MedicationRequest.extension.value[x].extension" />
+      <sliceName value="condition" />
+      <min value="0" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.PeriodOfUse.Condition" />
+      </type>
+    </element>
     <element id="MedicationRequest.extension:pharmaceuticalTreatmentIdentifier">
       <path value="MedicationRequest.extension" />
       <sliceName value="pharmaceuticalTreatmentIdentifier" />
