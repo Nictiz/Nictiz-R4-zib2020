@@ -216,7 +216,7 @@ zib-ContactPerson:
     RelatedPerson.telecom:emailAddresses:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
-        
+
 zib-DispenseRequest:
   zib deviations:
     MedicationRequest.dispenseRequest.extension:periodOfUse-Duration.value[x]:
@@ -228,7 +228,7 @@ zib-DispenseRequest:
     MedicationRequest.dispenseRequest.numberOfRepeatsAllowed:
       - datatype: unsignedInt
         reason: unsignedInt is a restriction on the zib INT concept (only non-negative INT) which matches with the definition of the NumberOfRefills. A negative NumberOfRefills don't make sense. 
-        
+
 zib-Encounter:
   ignored issues:
     Encounter.reasonReference:*:
@@ -271,6 +271,12 @@ zib-FunctionalOrMentalStatus:
     Observation.code:
       - cardinality: 1..1
         reason: The FHIR profiles are expected to implement zib cardinalities as conceptual cardinalities, but FHIR requires the Observation.code element to be present. This aligns with the intention of the zib, as the StatusName concept is required for zib FunctionalOrMentalStatus to make sense. 
+
+zib-HeadCircumference:
+  zib deviations:
+    Observation.note.text:
+      - cardinality: 1..1
+        reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
 
 zib-HealthcareProvider:
   zib deviations:
@@ -345,6 +351,31 @@ zib-HearingFunction.HearingAid.Product:
       - datatype: string
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
 
+zib-MedicalDevice:
+  ignored issues:
+    DeviceUseStatement.reasonReference:*:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+  zib deviations:
+    DeviceUseStatement.bodySite:
+      - datatype: CodeableConcept
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+    DeviceUseStatement.reasonReference:zibMedicalDeviceReference:
+      - short: zib MedicalDevice reference
+        reason: This is a special slice that represent all situations where zib MedicalDevice is referenced from another zib. Because this reference is reversed in FHIR, this profile needs to contain the mappings for the references in _all_ these zibs. A common slice is defined with an indicative name rather than the name of all the targets. 
+    DeviceUseStatement.timing[x]:timingPeriod.end:
+      - short: EndDate
+        reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
+
+zib-MedicalDevice.Product:
+  zib deviations:
+    Device.identifier:*ProductID:
+      - datatype: Identifier
+        reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.udiCarrier:*UdiCarrier.carrierHRF:
+      - datatype: string
+        reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
+
 zib-InstructionsForUse.DosageInstructions:
   zib deviations:
     Dosage.additionalInstruction:
@@ -392,7 +423,7 @@ zib-InstructionsForUse.DosageInstructions:
     Dosage.maxDosePerPeriod:
       - datatype: Ratio
         reason: The zib Range is not represented as a resource rather it is mapped within the zib profile. Therefore no Reference is used, explaining the deviation with the zib, but a Ratio as would have been the case within the zib Range. 
-
+    
 zib-LaboratoryTestResult:
   ignored issues:
     Observation.performer:performer:
@@ -528,7 +559,7 @@ zib-MedicationUse2:
         reason: UseIndicator is mapped to the status element of MedicationStatement which is 1..1. This should not be problematic because the status element is used for more than holding UseIndicator information. If UseIndicator is absent because it is 0..1 another status code is chosen to fullfil the 1..1 requirement by FHIR. 
       - datatype: code
         reason: UseIndicator is mapped to the status element of MedicationStatement, thereby not represented by a boolean but by a code. Mapping guidance is provided in the profile to transform between the boolean and code datatypes.
-
+    
 zib-MultidisciplinaryTeamMeeting-CarePlan:
   zib deviations:
     CarePlan.activity.reference:
