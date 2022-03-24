@@ -28,6 +28,17 @@
       <path value="Observation" />
       <alias value="nl-core-LaboratoryTestResult" />
     </element>
+    <element id="Observation.subject">
+      <path value="Observation.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
     <element id="Observation.performer:performer">
       <path value="Observation.performer" />
       <sliceName value="performer" />
