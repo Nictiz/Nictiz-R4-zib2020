@@ -1,0 +1,93 @@
+<ValueSet xmlns="http://hl7.org/fhir">
+   <id value="2.16.840.1.113883.2.4.3.11.60.40.2.9.6.1--20200901000000"/>
+   <meta>
+      <profile value="http://hl7.org/fhir/StructureDefinition/shareablevalueset"/>
+      <!--<profile value="http://hl7.org/fhir/4.0/StructureDefinition/ValueSet"/>-->
+   </meta>
+   <extension url="http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod">
+      <valuePeriod>
+         <start value="2020-09-01T00:00:00+02:00"/>
+      </valuePeriod>
+   </extension>
+   <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.6.1--20200901000000"/>
+   <identifier>
+      <use value="official"/>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.9.6.1"/>
+   </identifier>
+   <version value="2020-09-01T00:00:00"/>
+   <name value="MedicatieafspraakStopTypeCodelijst"/>
+   <title value="MedicatieafspraakStopTypeCodelijst"/>
+   <status value="active"/>
+   <experimental value="false"/>
+   <publisher value="Registratie aan de bron"/>
+   <contact>
+      <name value="Registratie aan de bron"/>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.registratieaandebron.nl"/>
+      </telecom>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.zibs.nl"/>
+      </telecom>
+   </contact>
+   <description value="2021-04-09: See [ZIB-1261](https://bits.nictiz.nl/browse/ZIB-1261). &#xD;&#xA;&#xD;&#xA;Non-existent SNOMED CT 112171000146100 | Drug therapy temporarily stopped (finding) | replaced with SNOMED CT 113381000146106 | Drug therapy temporarily stopped (situation) | and&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;non-existent SNOMED CT 112161000146106 | Drug therapy temporarily stopped (finding) | replaced with 113371000146109 | Drug therapy definitively stopped (situation) |&#xD;&#xA;&#xD;&#xA;"/>
+   <immutable value="false"/>
+   <copyright value="This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these artefacts must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/getsnomed-ct or info@snomed.org."/>
+   <compose>
+      <include>
+         <system value="http://snomed.info/sct"/>
+         <concept>
+            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
+               <valueString value="Tijdelijke onderbreking van medicamenteuze behandeling (bijvoorbeeld tijdelijk stoppen gebruik vanwege operatie)."/>
+            </extension>
+            <code value="113381000146106"/>
+            <display value="tijdelijk gestopt met medicatie (situatie)"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Drug therapy temporarily stopped"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="tijdelijk gestopt met medicatie"/>
+            </designation>
+         </concept>
+         <concept>
+            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
+               <valueString value="Het staken van een bestaande medicamenteuze behandeling."/>
+            </extension>
+            <code value="113371000146109"/>
+            <display value="definitief gestopt met medicatie (situatie)"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Drug therapy definitely stopped"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="definitief gestopt met medicatie"/>
+            </designation>
+         </concept>
+      </include>
+   </compose>
+</ValueSet>
