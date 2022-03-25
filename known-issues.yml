@@ -716,3 +716,9 @@ zib-Patient:
     Patient.contact.address:
       - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.
+
+zib-Vaccination-event:
+  zib deviations:
+    Immunization.performer:administrator.actor:
+      - cardinality: 1..1
+        reason: The actor as part of the performer is required, but the performer itself optional. The profile is therefore still zib compliant.
