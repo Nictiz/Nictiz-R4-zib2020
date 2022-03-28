@@ -40,11 +40,15 @@
     <element id="Extension.value[x]">
       <path value="Extension.value[x]" />
       <short value="AdministrationAgreementReasonModificationOrDiscontinuation" />
-        <definition value="Reason for modification or discontinuation of this agreement. This will often be the same reason as the one for modification or discontinuation of the medication agreement.&#xD;&#xA;&#xD;&#xA;This field has the option to - if applicable - enter a specific reason for modification or diconstinuation of the administration agreement." />
+      <definition value="Reason for modification or discontinuation of this agreement. This will often be the same reason as the one for modification or discontinuation of the medication agreement.&#xD;&#xA;&#xD;&#xA;This field has the option to - if applicable - enter a specific reason for modification or diconstinuation of the administration agreement." />
       <alias value="RedenAfspraak" />
       <type>
-        <code value="string" />
+        <code value="CodeableConcept" />
       </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.20.77.11.49--20220311132509" />
+      </binding>
       <mapping>
         <identity value="zib-administrationagreement-v1.0.3-2020EN" />
         <map value="NL-CM:9.8.22499" />
