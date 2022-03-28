@@ -45,6 +45,42 @@
         <comment value="DosingInstructions" />
       </mapping>
     </element>
+    <element id="Dosage.extension">
+      <path value="Dosage.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Dosage.extension:asNeeded">
+      <path value="Dosage.extension" />
+      <sliceName value="asNeeded" />
+      <min value="0" />
+      <max value="*" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Dosage-AsNeededFor" />
+      </type>
+    </element>
+    <element id="Dosage.extension:asNeeded.value[x]">
+      <path value="Dosage.extension.value[x]" />
+      <short value="Condition" />
+      <definition value="The condition for administering medication can be:&#xD;&#xA;&#xD;&#xA;* a physiological measurement value (plasma glucose concentration, body temperature, blood pressure);&#xD;&#xA;* a symptom or other circumstance (in the event of a headache, or itch).&#xD;&#xA;&#xD;&#xA;Supplemental information from G-standard bst362 make up the list of values for coded entering of this concept. Also always include the textual description of that code. Physiological measurement values or other conditions that do not occur in bst362 do not need to be coded. These can be expressed in free text in the Description concept." />
+      <alias value="Criterium" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.12.4--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-instructionsforuse-v1.2.1-2020EN" />
+        <map value="NL-CM:9.12.19945" />
+        <comment value="Condition" />
+      </mapping>
+    </element>
     <element id="Dosage.sequence">
       <path value="Dosage.sequence" />
       <short value="SequenceNumber" />
@@ -519,7 +555,7 @@
       </mapping>
     </element>
     <element id="Dosage.doseAndRate.rate[x]:rateQuantity">
-      <path value="Dosage.doseAndRate.rateQuantity" />
+      <path value="Dosage.doseAndRate.rate[x]" />
       <sliceName value="rateQuantity" />
       <short value="nominalValue" />
       <definition value="The nominal value of the quantity." />
