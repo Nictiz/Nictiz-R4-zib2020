@@ -2,6 +2,9 @@
 
 This document contains release notes per zib, indicating differences with their [STU3 versions](https://simplifier.net/packages/nictiz.fhir.nl.stu3.zib2017/), deviations from the [profiling guidelines](https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4) and other points of interest.
 
+## zib-AbilityToManageMedication
+* RequiredAssistance extension has been removed because the reference is reversed in FHIR.
+
 ## zib-AddressInformation
 * Added extra comments on the history of the mapping in relation to v3.
 * Removed mapping to BRP.

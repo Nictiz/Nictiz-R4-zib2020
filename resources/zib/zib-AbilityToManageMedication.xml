@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-AbilityToManageMedication" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-AbilityToManageMedication" />
+  <name value="ZibAbilityToManageMedication" />
+  <title value="zib AbilityToManageMedication" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Managing one's own medication is part of self-healthcare. Limitations in this ability indicate a reduced ability to cope for oneself.&#xD;&#xA;This activity and activities such as those including cooking, using the telephone and shopping are also known as instrumentel activities of daily living (IADL). These tasks support an independent life style. Many people can still live independently even though they need help with one or two of these IADL’s." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) AbilityToManageMedication-v1.0.1(2020EN)](https://zibs.nl/wiki/AbilityToManageMedication-v1.0.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-abilitytomanagemedication-v1.0.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/AbilityToManageMedication-v1.0.1(2020EN)" />
+    <name value="zib AbilityToManageMedication-v1.0.1/(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="AbilityToManageMedication" />
+      <alias value="VermogenTotZelfstandigMedicatiegebruik" />
+      <mapping>
+        <identity value="zib-abilitytomanagemedication-v1.0.1-2020EN" />
+        <map value="NL-CM:4.35.1" />
+        <comment value="AbilityToManageMedication" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="285033005" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueCodeableConcept">
+      <path value="Observation.valueCodeableConcept" />
+      <sliceName value="valueCodeableConcept" />
+      <short value="IndependentMedicationUse" />
+      <definition value="The degree of ability of  the patient to independently manage their own medication." />
+      <alias value="ZelfstandigMedicatiegebruik" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.35.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-abilitytomanagemedication-v1.0.1-2020EN" />
+        <map value="NL-CM:4.35.2" />
+        <comment value="IndependentMedicationUse" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
