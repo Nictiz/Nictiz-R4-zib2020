@@ -118,7 +118,32 @@ zib-ContactPerson:
     RelatedPerson.telecom:emailAddresses:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
-        
+
+zib-Encounter:
+  ignored issues:
+    Encounter.reasonReference:*:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+  zib deviations:
+    Encounter.class:
+      - cardinality: 1..1
+        reason: Encounter.class is manadatory by FHIR. The cardinality matches the cardinality of the zib, however, it does not match with the conceptual cardinality concept. This should not be a major problem.
+    Encounter.participant:healthProfessional.individual:
+      - cardinality: 0..1
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent participant element that may exists 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+    Encounter.reasonReference:*:
+      - cardinality: 0..*
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing ContactReason container in FHIR. This container may exists 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+    Encounter.reasonReference:deviatingResult:    
+      - datatype: Reference
+        reason: The datatype mismatch between the zib (string) and FHIR (Reference) is explained by an error in the zib. DeviatingResult is captured with a reference to the zib-LaboratoryTestResult instead of a string value as the zib 2020 incorrectly states. This will be fixed in a future version of the zib (https://bits.nictiz.nl/browse/ZIB-1427).
+    Encounter.reasonReference.extension:comment.value[x]:
+      - cardinality: 0..*
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*, effective) is explained by the missing ContactReason container in FHIR. This container may exists 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+    Encounter.location.location:
+      - cardinality: 0..*
+        reason: The zib has a restricted cardinality of 0..1 for the Location concept (NL-CM:15.1.8). However, this cardianlity is propably too restricted (see <https://bits.nictiz.nl/browse/ZIB-1632> for discussion) and would prevent some practical use cases. Therefore, the cardinality has been left on 0..* in this profile.
+
 zib-FunctionalOrMentalStatus:
   zib deviations:
     Observation.code:
@@ -438,6 +463,12 @@ nl-core-CareTeam-01:
       - message: Slicing cannot be evaluated
         reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
 
+nl-core-Encounter-01:
+  ignored issues:
+    Encounter.participant[*]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+
 nl-core-HearingFunction.HearingAid-*:
   ignored issues:
     DeviceUseStatement.reasonReference[*]:
@@ -445,6 +476,12 @@ nl-core-HearingFunction.HearingAid-*:
         reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
 
 nl-core-MedicalDevice-*:
+  ignored issues:
+    DeviceUseStatement.reasonReference[*]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+
+nl-core-*-DeviceUseStatement-*:
   ignored issues:
     DeviceUseStatement.reasonReference[*]:
       - message: Slicing cannot be evaluated
