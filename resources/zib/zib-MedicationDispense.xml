@@ -48,10 +48,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="MedicationDispense.extension:medicationDispenseAdditionalInformation">
       <path value="MedicationDispense.extension" />
       <sliceName value="medicationDispenseAdditionalInformation" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.MedicationDispenseAdditionalInformation" />
@@ -60,6 +62,7 @@
     <element id="MedicationDispense.extension:requestDate">
       <path value="MedicationDispense.extension" />
       <sliceName value="requestDate" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -69,7 +72,7 @@
     <element id="MedicationDispense.extension:distributionForm">
       <path value="MedicationDispense.extension" />
       <sliceName value="distributionForm" />
-      <max value="1" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.DistributionForm" />
