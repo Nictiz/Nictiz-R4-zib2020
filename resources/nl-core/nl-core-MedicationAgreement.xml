@@ -126,6 +126,17 @@
         <comment value="Identification" />
       </mapping>
     </element>
+    <element id="MedicationRequest.status">
+      <path value="MedicationRequest.status" />
+      <short value="CanceledIndicator" />
+      <definition value="A code specifying the current state of the order. Generally, this will be an active or completed state. In the event of an error correction, the value of this element shall be _entered-in-error_." />
+      <alias value="GeannuleerdIndicator" />
+      <mapping>
+        <identity value="Medication-Process-v9-2-0-0" />
+        <map value="mp-dataelement920-1373" />
+        <comment value="CanceledIndicator (CanceledIndicator = true if status is _entered-in-error_)" />
+      </mapping>
+    </element>
     <element id="MedicationRequest.medication[x]:medicationReference">
       <path value="MedicationRequest.medication[x]" />
       <sliceName value="medicationReference" />
@@ -197,7 +208,6 @@
       <path value="MedicationRequest.basedOn.extension" />
       <sliceName value="relationAdministrationAgreement" />
       <min value="0" />
-      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelationAdministrationAgreement" />
@@ -207,7 +217,6 @@
       <path value="MedicationRequest.basedOn.extension" />
       <sliceName value="relationMedicationUse" />
       <min value="0" />
-      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelationMedicationUse" />
