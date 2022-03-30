@@ -59,7 +59,7 @@
       </slicing>
     </element>
     <element id="Observation.value[x]:valueInteger">
-      <path value="Observation.valueInteger" />
+      <path value="Observation.value[x]" />
       <sliceName value="valueInteger" />
       <short value="TotalScore" />
       <definition value="The Barthel ADL index is the sum of the scores of the individual variables. &#xD;&#xA;The interpretation of this total score is 0-9 for serious dependence, 10-19 for slight dependence and &#xD;&#xA;20 for independence. Twenty is the maximum score." />
@@ -90,6 +90,15 @@
       <sliceName value="bowels" />
       <max value="1" />
     </element>
+    <element id="Observation.component:bowels.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="129008009" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
     <element id="Observation.component:bowels.value[x]">
       <path value="Observation.component.value[x]" />
       <short value="Bowels" />
@@ -112,6 +121,15 @@
       <path value="Observation.component" />
       <sliceName value="bladder" />
       <max value="1" />
+    </element>
+    <element id="Observation.component:bladder.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="129009001" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Observation.component:bladder.value[x]">
       <path value="Observation.component.value[x]" />
@@ -136,6 +154,15 @@
       <sliceName value="grooming" />
       <max value="1" />
     </element>
+    <element id="Observation.component:grooming.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="704434006" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
     <element id="Observation.component:grooming.value[x]">
       <path value="Observation.component.value[x]" />
       <short value="Grooming" />
@@ -158,6 +185,15 @@
       <path value="Observation.component" />
       <sliceName value="toiletUse" />
       <max value="1" />
+    </element>
+    <element id="Observation.component:toiletUse.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="284899001" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Observation.component:toiletUse.value[x]">
       <path value="Observation.component.value[x]" />
@@ -182,6 +218,15 @@
       <sliceName value="feeding" />
       <max value="1" />
     </element>
+    <element id="Observation.component:feeding.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="165221002" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
     <element id="Observation.component:feeding.value[x]">
       <path value="Observation.component.value[x]" />
       <short value="Feeding" />
@@ -204,6 +249,15 @@
       <path value="Observation.component" />
       <sliceName value="transfers" />
       <max value="1" />
+    </element>
+    <element id="Observation.component:transfers.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="364666007" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Observation.component:transfers.value[x]">
       <path value="Observation.component.value[x]" />
@@ -228,6 +282,15 @@
       <sliceName value="mobility" />
       <max value="1" />
     </element>
+    <element id="Observation.component:mobility.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="282097004" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
     <element id="Observation.component:mobility.value[x]">
       <path value="Observation.component.value[x]" />
       <short value="Mobility" />
@@ -250,6 +313,15 @@
       <path value="Observation.component" />
       <sliceName value="dressing" />
       <max value="1" />
+    </element>
+    <element id="Observation.component:dressing.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="165235000" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Observation.component:dressing.value[x]">
       <path value="Observation.component.value[x]" />
@@ -274,6 +346,15 @@
       <sliceName value="managingStairs" />
       <max value="1" />
     </element>
+    <element id="Observation.component:managingStairs.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="301587001" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
     <element id="Observation.component:managingStairs.value[x]">
       <path value="Observation.component.value[x]" />
       <short value="ManagingStairs" />
@@ -296,6 +377,15 @@
       <path value="Observation.component" />
       <sliceName value="bathing" />
       <max value="1" />
+    </element>
+    <element id="Observation.component:bathing.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="284785009" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Observation.component:bathing.value[x]">
       <path value="Observation.component.value[x]" />
