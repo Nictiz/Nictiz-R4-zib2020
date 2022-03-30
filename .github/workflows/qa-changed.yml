@@ -25,6 +25,7 @@ jobs:
           echo "::set-output name=other_profiles::"$other_profiles
           echo "::set-output name=conceptmaps::"$conceptmaps
           echo "::set-output name=other_terminology::"$other_terminology
+          echo "::set-output name=searchparameters::"$searchparameters
           echo "::set-output name=examples::"$examples
 
       - name: Restore validator cache
@@ -71,7 +72,7 @@ jobs:
         uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.18
         with:
           version: "4.0"
-          ig: ig/
+          ig: resources/ qa/
           recurse: true
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore-Extensions
           source:  ${{ steps.get-resources.outputs.nlcore_extensions }}
@@ -107,6 +108,16 @@ jobs:
           ig: resources/ qa/
           recurse: true
           source:  ${{ steps.get-resources.outputs.other_terminology }}
+          ignored-issues: known-issues.yml
+        continue-on-error: true
+      - name: Validate SearchParameters
+        id: validate-other-searchparameters
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.19
+        with:
+          version: "4.0"
+          ig: resources/ qa/
+          recurse: true
+          source:  ${{ steps.get-resources.outputs.searchparameters }}
           ignored-issues: known-issues.yml
         continue-on-error: true
       - name: Validate examples
@@ -172,6 +183,7 @@ jobs:
           printStatistics("Validate other profiles", "validate-other-profiles")
           printStatistics("Validate ConceptMaps", "validate-conceptmaps")
           printStatistics("Validate other terminology", "validate-other-terminology")
+          printStatistics("Validate SearchParameters", "validate-other-searchparameters")
           printStatistics("Validate examples", "validate-examples")
 
           print(f'::set-output name=result_status::{0 if success else 1}')

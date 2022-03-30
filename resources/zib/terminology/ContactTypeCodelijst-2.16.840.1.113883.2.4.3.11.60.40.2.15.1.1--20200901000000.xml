@@ -1,5 +1,5 @@
 <ValueSet xmlns="http://hl7.org/fhir">
-   <id value="2.16.840.1.113883.2.4.3.11.60.40.2.7.3.2--20200901000000"/>
+   <id value="2.16.840.1.113883.2.4.3.11.60.40.2.15.1.1--20200901000000"/>
    <meta>
       <profile value="http://hl7.org/fhir/StructureDefinition/shareablevalueset"/>
       <!--<profile value="http://hl7.org/fhir/4.0/StructureDefinition/ValueSet"/>-->
@@ -9,15 +9,15 @@
          <start value="2020-09-01T00:00:00+00:00"/>
       </valuePeriod>
    </extension>
-   <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.3.2--20200901000000"/>
+   <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.15.1.1--20200901000000"/>
    <identifier>
       <use value="official"/>
       <system value="urn:ietf:rfc:3986"/>
-      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.7.3.2"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.15.1.1"/>
    </identifier>
    <version value="2020-09-01T00:00:00"/>
-   <name value="AlcoholGebruikStatusCodelijst"/>
-   <title value="AlcoholGebruikStatusCodelijst"/>
+   <name value="ContactTypeCodelijst"/>
+   <title value="ContactTypeCodelijst"/>
    <status value="active"/>
    <experimental value="false"/>
    <publisher value="Registratie aan de bron"/>
@@ -32,11 +32,166 @@
          <value value="https://www.zibs.nl"/>
       </telecom>
    </contact>
-   <description value="AlcoholGebruikStatusCodelijst"/>
+   <description value="ContactTypeCodelijst"/>
    <immutable value="false"/>
-   <copyright value="This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these artefacts must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/getsnomed-ct or info@snomed.org."/>
    <compose>
-      <inactive value="true"/>
+      <include>
+         <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
+         <concept>
+            <code value="AMB"/>
+            <display value="Ambulatory"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Ambulatory"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Poliklinisch"/>
+            </designation>
+         </concept>
+         <concept>
+            <code value="EMER"/>
+            <display value="Emergency"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Emergency"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="SEH"/>
+            </designation>
+         </concept>
+         <concept>
+            <code value="FLD"/>
+            <display value="Field"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Field"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Op lokatie"/>
+            </designation>
+         </concept>
+         <concept>
+            <code value="HH"/>
+            <display value="Home"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Home"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Thuis"/>
+            </designation>
+         </concept>
+         <concept>
+            <code value="IMP"/>
+            <display value="Inpatient"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Inpatient"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Klinisch"/>
+            </designation>
+         </concept>
+         <concept>
+            <code value="SS"/>
+            <display value="Short Stay"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Short Stay"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Dagopname"/>
+            </designation>
+         </concept>
+         <concept>
+            <code value="VR"/>
+            <display value="Virtual"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Virtual"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Virtueel"/>
+            </designation>
+         </concept>
+      </include>
       <include>
          <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
          <concept>
@@ -59,137 +214,6 @@
                   <display value="Synonym"/>
                </use>
                <value value="Anders"/>
-            </designation>
-         </concept>
-      </include>
-      <include>
-         <system value="http://snomed.info/sct"/>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Drinkt alcohol"/>
-            </extension>
-            <code value="219006"/>
-            <display value="drinkt alcohol"/>
-            <designation>
-               <language value="en-US"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Current drinker"/>
-            </designation>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="drinkt alcohol"/>
-            </designation>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Niet-drinker"/>
-            </extension>
-            <code value="105542008"/>
-            <display value="drinkt momenteel geen alcohol"/>
-            <designation>
-               <language value="en-US"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Non - drinker"/>
-            </designation>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="drinkt momenteel geen alcohol"/>
-            </designation>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Dronk vroeger alcohol"/>
-            </extension>
-            <code value="82581004"/>
-            <display value="dronk vroeger alcohol"/>
-            <designation>
-               <language value="en-US"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Ex-drinker"/>
-            </designation>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="dronk vroeger alcohol"/>
-            </designation>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-deprecated">
-               <valueBoolean value="true"/>
-            </extension>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Levenslang niet drinker"/>
-            </extension>
-            <code value="228274009"/>
-            <display value="levenslang niet-drinker"/>
-            <designation>
-               <language value="en-US"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Lifetime non-drinker"/>
-            </designation>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="levenslang niet-drinker"/>
-            </designation>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Levenslang niet drinker"/>
-            </extension>
-            <code value="783261004"/>
-            <display value="levenslange niet-drinker van alcohol"/>
-            <designation>
-               <language value="en-US"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Lifetime non-drinker of alcohol"/>
-            </designation>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="levenslange niet-drinker van alcohol"/>
             </designation>
          </concept>
       </include>
