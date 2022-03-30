@@ -61,6 +61,9 @@ This document contains release notes per zib, indicating differences with their 
 * The code on `Observation.component:drugOrMedicationType.code` has changed to 105590001
 * The code on `Observation.component:amount.code` has changed to 363908000
 
+## zib-DOSScore
+* DOSScore is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
+
 ## zib-Encounter
 * ContactWith is mapped on a slice of `Encounter.participant`.
 * `Encounter.participant.type` now honours the maximum cardinality of HealthProfessionalRole. 
