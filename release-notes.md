@@ -70,7 +70,7 @@ This document contains release notes per zib, indicating differences with their 
 * Reference to other profiles not accounted for by the zib have been removed.
 
 ## zib-Education
-* Education is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
+* There is no previous profile for Education in STU3 and therefore no diff.
 
 ## zib-EpisodeOfCare
 * New zib in 2020. However, in the zib2017 package the nl-core-episodeofcare profile exists, which is not based on a zib but included some use case concepts. This zib profile supersedes this profile.
