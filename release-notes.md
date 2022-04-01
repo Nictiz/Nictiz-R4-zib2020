@@ -75,7 +75,7 @@ This document contains release notes per zib, indicating differences with their 
 * The extensions EpisodeOfCare-DateFirstEncounter and EpisodeOfCare-DateLastEncounter from the previous profile are not inherited because no functional backing exists.
 
 ## zib-FeedingPatternInfant
-* The 'FeedingMethod' element is modulated as a component instead of an extension.
+* The 'FeedingMethod' element is modelled as a component instead of an extension.
 
 ## zib-FunctionalOrMentalStatus
 * MedicalDevice extension has been removed because the reference is reversed in FHIR. The MedicalDevice profile refers to this profile.
