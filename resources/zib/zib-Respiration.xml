@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-Respiration" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Respiration" />
+  <name value="ZibRespiration" />
+  <title value="zib Respiration" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="During breathing or respiration, air flows to and from the lungs, where gas exchange occurs, absorbing oxygen from the air into the blood and exhaling carbon dioxide into the air. Observations of spontaneous breathing, usually registered as part of the observation of vital functions." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-respiration-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/Respiration-v3.2(2020EN)" />
+    <name value="zib Respiration-v3.2(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="Respiration" />
+      <alias value="Ademhaling" />
+      <mapping>
+        <identity value="zib-respiration-v3.2-2020EN" />
+        <map value="NL-CM:12.5.1" />
+        <comment value="Respiration" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="422834003" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effectiveDateTime" />
+      <sliceName value="effectiveDateTime" />
+      <short value="BreathingDateTime" />
+      <definition value="Date and if possible time of measurement." />
+      <alias value="AdemhalingDatumTijd" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-respiration-v3.2-2020EN" />
+        <map value="NL-CM:12.5.4" />
+        <comment value="BreathingDateTime" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
