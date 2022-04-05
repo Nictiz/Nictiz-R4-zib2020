@@ -146,7 +146,10 @@
     </element>
     <element id="MedicationRequest.status">
       <path value="MedicationRequest.status" />
-      <comment value="This element is implictly mapped to the zib concepts NL-CM:9.6.19936 (PeriodOfUse) and NL-CM:9.6.19954 (MedicationAgreementStopType).&#xD;&#xA;Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When MedicationAgreementStopType is _113381000146106_, `.status` will usually be set to _on-hold_.&#xD;&#xA;* When MedicationAgreementStopType is _113371000146109_, `.status` will usually be set to _stopped_.&#xD;&#xA;* When PeriodOfUse start date is in the future, `.status` will usually be set to _active_.&#xD;&#xA;* When PeriodOfUse start date is in the past and PeriodOfUse end date is present and in the future, `.status` will usually be set to _active_.&#xD;&#xA;* When PeriodOfUse end date is present and in the past, `.status` will usually be set to _completed_.&#xD;&#xA;* When PeriodOfUse duration and start date are known, the end date can be deduced and the previous rules apply. &#xD;&#xA;* When a system is unable to infer the status from the Start and End, `.status` will be set to _unknown_. The _unknown_ code is not to be used to convey other statuses. The _unknown_ code should be used when one of the statuses applies, but the authoring system doesn't know the current state of the MedicationAgreement." />
+      <short value="PeriodOfUse / MedicationAgreementStopType" />
+      <comment value="This element is implictly mapped to the zib concepts NL-CM:9.6.19936 (PeriodOfUse) and NL-CM:9.6.19954 (MedicationAgreementStopType).&#xD;&#xA;Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When MedicationAgreementStopType is _113381000146106_, `.status` will usually be set to _on-hold_.&#xD;&#xA;* When MedicationAgreementStopType is _113371000146109_, `.status` will usually be set to _stopped_.&#xD;&#xA;* When PeriodOfUse start date is in the future, `.status` will usually be set to _active_.&#xD;&#xA;* When PeriodOfUse start date is in the past and PeriodOfUse end date is present and in the future, `.status` will usually be set to _active_.&#xD;&#xA;* When PeriodOfUse end date is present and in the past, `.status` will usually be set to _completed_.&#xD;&#xA;* When PeriodOfUse duration and start date are known, the end date can be deduced and the previous rules apply. &#xD;&#xA;* When a system is unable to infer the status, `.status` will be set to _unknown_. The _unknown_ code is not to be used to convey other statuses. The _unknown_ code should be used when one of the statuses applies, but the authoring system doesn't know the current state of the MedicationAgreement." />
+      <alias value="Gebruiksperiode" />
+      <alias value="MedicatieafspraakStopType" />
       <mapping>
         <identity value="zib-medicationagreement-v1.2-2020EN" />
         <map value="NL-CM:9.6.19936" />
@@ -155,7 +158,7 @@
       <mapping>
         <identity value="zib-medicationagreement-v1.2-2020EN" />
         <map value="NL-CM:9.6.19954" />
-        <comment value="MedicationAgreementStopType (implicit, main mapping is on StopType extension)" />
+        <comment value="MedicationAgreementStopType (implicit, main mapping is on the modifier extension ext-StopType)" />
       </mapping>
     </element>
     <element id="MedicationRequest.intent">
