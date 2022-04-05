@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-AsAgreedIndicator" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator" />
+  <name value="ExtAsAgreedIndicator" />
+  <title value="ext AsAgreedIndicator" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="An extension to indicate if the medicine is used or administered as outlined in the medication respectively medication/administration agreement." />
+  <purpose value="This extension represents AsAgreedIndicator of zibs [MedicationUse2 v1.1.1 (2020)](https://zibs.nl/wiki/MedicationUse2-v1.1.1(2020EN)) and [MedicationAdministration2 v1.1.1 (2020)](https://zibs.nl/wiki/MedicationAdministration2-v1.1.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="MedicationStatement" />
+  </context>
+  <context>
+    <type value="element" />
+    <expression value="MedicationAdministration" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension">
+      <path value="Extension" />
+      <max value="1" />
+    </element>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="AsAgreedIndicator" />
+      <definition value="Is the medicine used or administered as outlined in the medication respectively medication/administration agreement?" />
+      <alias value="VolgensAfspraakIndicator" />
+      <type>
+        <code value="boolean" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>

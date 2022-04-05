@@ -73,15 +73,18 @@
       <path value="MedicationStatement.extension" />
       <sliceName value="asAgreedIndicator" />
       <min value="0" />
-      <max value="1" />
       <type>
         <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.AsAgreedIndicator" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator" />
       </type>
     </element>
     <element id="MedicationStatement.extension:asAgreedIndicator.value[x]">
       <path value="MedicationStatement.extension.value[x]" />
-      <definition value="Duration: The intended duration of use. E.g. 5 days or 8 weeks. It is not allowed to indicate the duration in months, because different months have a variable duration in days." />
+      <mapping>
+        <identity value="zib-medicationuse2-v1.1.1-2020EN" />
+        <map value="NL-CM:9.11.22492" />
+        <comment value="AsAgreedIndicator" />
+      </mapping>
     </element>
     <element id="MedicationStatement.modifierExtension">
       <path value="MedicationStatement.modifierExtension" />
