@@ -172,6 +172,18 @@
     </element>
     <element id="MedicationStatement.category">
       <path value="MedicationStatement.category" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="1" />
+    </element>
+    <element id="MedicationStatement.category:medicationUseCode">
+      <path value="MedicationStatement.category" />
+      <sliceName value="medicationUseCode" />
       <min value="1" />
       <patternCodeableConcept>
         <coding>
