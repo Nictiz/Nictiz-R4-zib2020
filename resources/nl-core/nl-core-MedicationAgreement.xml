@@ -78,24 +78,6 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier" />
       </type>
     </element>
-    <element id="MedicationRequest.extension:copyIndicator">
-      <path value="MedicationRequest.extension" />
-      <sliceName value="copyIndicator" />
-      <min value="0" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator" />
-      </type>
-    </element>
-    <element id="MedicationRequest.extension:copyIndicator.value[x]">
-      <path value="MedicationRequest.extension.value[x]" />
-      <alias value="KopieIndicator" />
-      <mapping>
-        <identity value="Medication-Process-v9-2-0-0" />
-        <map value="mp-dataelement920-273" />
-        <comment value="CopyIndicator" />
-      </mapping>
-    </element>
     <element id="MedicationRequest.extension:relatedEpisodeOfCare">
       <path value="MedicationRequest.extension" />
       <sliceName value="relatedEpisodeOfCare" />
@@ -135,6 +117,31 @@
         <identity value="Medication-Process-v9-2-0-0" />
         <map value="mp-dataelement920-1373" />
         <comment value="CanceledIndicator (CanceledIndicator = true if status is _entered-in-error_)" />
+      </mapping>
+    </element>
+    <element id="MedicationRequest.reported[x]">
+      <path value="MedicationRequest.reported[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="MedicationRequest.reported[x]:reportedBoolean">
+      <path value="MedicationRequest.reportedBoolean" />
+      <sliceName value="reportedBoolean" />
+      <short value="CopyIndicator" />
+      <definition value="An indication whether the resource is original (false) or a copy from a different source (true)." />
+      <alias value="KopieIndicator" />
+      <type>
+        <code value="boolean" />
+      </type>
+      <mapping>
+        <identity value="Medication-Process-v9-2-0-0" />
+        <map value="mp-dataelement920-273" />
+        <comment value="CopyIndicator" />
       </mapping>
     </element>
     <element id="MedicationRequest.medication[x]:medicationReference">
