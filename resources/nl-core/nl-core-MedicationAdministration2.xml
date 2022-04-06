@@ -20,7 +20,7 @@
   <fhirVersion value="4.0.1" />
   <mapping>
     <identity value="Medication-Process-v9-2-0-0" />
-    <uri value="https://decor.nictiz.nl/pub/medicatieproces/mp-html-20210921T194523/ds-2.16.840.1.113883.2.4.3.11.60.20.77.1.4-2021-01-01T000000.html" />
+    <uri value="https://decor.nictiz.nl/pub/medicatieproces/mp-html-20220402T205710/ds-2.16.840.1.113883.2.4.3.11.60.20.77.1.4-2022-01-05T132845.html" />
     <name value="Medication Process 9 v2.0.0-beta" />
   </mapping>
   <kind value="resource" />
@@ -52,6 +52,16 @@
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier" />
       </type>
+    </element>
+    <element id="MedicationAdministration.extension:injectionPatchSite">
+      <path value="MedicationAdministration.extension" />
+      <sliceName value="injectionPatchSite" />
+      <min value="0" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.InjectionPatchSite" />
+      </type>
+      <isModifier value="false" />
     </element>
     <element id="MedicationAdministration.identifier">
       <path value="MedicationAdministration.identifier" />
@@ -226,6 +236,15 @@
         <rules value="open" />
       </slicing>
       <min value="0" />
+    </element>
+    <element id="MedicationAdministration.dosage.extension:administeringSpeedRange">
+      <path value="MedicationAdministration.dosage.extension" />
+      <sliceName value="administeringSpeedRange" />
+      <min value="0" />
+    </element>
+    <element id="MedicationAdministration.dosage.extension:administeringSpeedRange.value[x]">
+      <path value="MedicationAdministration.dosage.extension.value[x]" />
+      <comment value="Variable administering speeds are _not_ part of the MedicationAdministration building block within the MedicationProcess information standard, hence this extension should not be used in that context. Instead, every change in administering speed should result in a new MedicationAdministration instance." />
     </element>
     <element id="MedicationAdministration.dosage.extension:agreedAmount">
       <path value="MedicationAdministration.dosage.extension" />

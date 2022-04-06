@@ -20,7 +20,7 @@
   <fhirVersion value="4.0.1" />
   <mapping>
     <identity value="Medication-Process-v9-2-0-0" />
-    <uri value="https://decor.nictiz.nl/pub/medicatieproces/mp-html-20210921T194523/ds-2.16.840.1.113883.2.4.3.11.60.20.77.1.4-2021-01-01T000000.html" />
+    <uri value="https://decor.nictiz.nl/pub/medicatieproces/mp-html-20220402T205710/ds-2.16.840.1.113883.2.4.3.11.60.20.77.1.4-2022-01-05T132845.html" />
     <name value="Medication Process 9 v2.0.0-beta" />
   </mapping>
   <kind value="resource" />
@@ -78,6 +78,24 @@
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier" />
       </type>
+    </element>
+    <element id="MedicationDispense.extension:distributionForm">
+      <path value="MedicationDispense.extension" />
+      <sliceName value="distributionForm" />
+      <min value="0" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.DistributionForm" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="MedicationDispense.extension:distributionForm.value[x]">
+      <path value="MedicationDispense.extension.value[x]" />
+      <mapping>
+        <identity value="Medication-Process-v9-2-0-0" />
+        <map value="mp-dataelement920-1371" />
+        <comment value="DistributionForm" />
+      </mapping>
     </element>
     <element id="MedicationDispense.identifier">
       <path value="MedicationDispense.identifier" />
