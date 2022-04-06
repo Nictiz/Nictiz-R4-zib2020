@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="ext-MedicationAdministration.InjectionPatchSite" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.InjectionPatchSite" />
-  <name value="ExtMedicationAdministrationInjectionPatchSite" />
-  <title value="ext MedicationAdministration.InjectionPatchSite" />
+  <id value="ext-MedicationAdministration2.AgreedAmount" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedAmount" />
+  <name value="ExtMedicationAdministration2AgreedAmount" />
+  <title value="ext MedicationAdministration2.AgreedAmount" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -14,7 +14,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="An extension to provide the site of the patient's body where an injection has been administered or where adhesive medical dressing has been applied." />
+  <description value="An extension to provide the agreed dosage amount from the MedicationAgreement or AdministrationAgreement for which the MedicationAdministration applies." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -26,7 +26,7 @@
   <abstract value="false" />
   <context>
     <type value="element" />
-    <expression value="MedicationAdministration" />
+    <expression value="MedicationAdministration.dosage" />
   </context>
   <type value="Extension" />
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
@@ -38,26 +38,21 @@
     </element>
     <element id="Extension.url">
       <path value="Extension.url" />
-      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration.InjectionPatchSite" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedAmount" />
     </element>
     <element id="Extension.value[x]">
       <path value="Extension.value[x]" />
-      <short value="InjectionPatchSite" />
-      <definition value="Site of the patient's body where an injection has been administered or where adhesive medical dressing has been applied." />
-      <alias value="PrikPlakLocatie" />
-      <min value="1" />
+      <short value="AgreedAmount" />
+      <definition value="The agreed dosage amount from the MedicationAgreement or AdministrationAgreement for which this administration applies." />
+      <alias value="AfgesprokenHoeveelheid" />
       <type>
-        <code value="CodeableConcept" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation" />
+        <code value="Quantity" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdQuantity" />
       </type>
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000" />
-      </binding>
       <mapping>
         <identity value="Medication-Process-v9-2-0-0" />
-        <map value="mp-dataelement920-702" />
-        <comment value="InjectionPatchSite" />
+        <map value="mp-dataelement920-1172" />
+        <comment value="AgreedAmount" />
       </mapping>
     </element>
   </differential>
