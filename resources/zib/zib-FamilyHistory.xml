@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-FamilyHistory" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-FamilyHistory" />
+  <name value="ZibFamilyHistory" />
+  <title value="zib FamilyHistory" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The family history describes any health problems of biological relatives that may be relevant. The family history contains information on the medical disorders of the family member and the biological relationship between the patient and the described family member." />
+  <purpose value="This FamilyMemberHistory resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) NursingIntervention-v3.2(2020EN)](https://zibs.nl/wiki/FamilyHistory-v3.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-familyhistory-v3.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/FamilyHistory-v3.1(2020EN)" />
+    <name value="zib FamilyHistory-v3.1(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="FamilyMemberHistory" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="FamilyMemberHistory">
+      <path value="FamilyMemberHistory" />
+      <short value="FamilyHistory" />
+      <alias value="Familieanamnese" />
+      <mapping>
+        <identity value="zib-familyhistory-v3.1-2020EN" />
+        <map value="NL-CM:6.1.1" />
+        <comment value="FamilyHistory" />
+      </mapping>
+    </element>
+    <element id="FamilyMemberHistory.note">
+      <path value="FamilyMemberHistory.note" />
+      <max value="1" />
+    </element>
+    <element id="FamilyMemberHistory.note.text">
+      <path value="FamilyMemberHistory.note.text" />
+      <short value="Comment" />
+      <definition value="Comment with information on the family member which might be relevant to the family history." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-familyhistory-v3.1-2020EN" />
+        <map value="NL-CM:6.1.5" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
