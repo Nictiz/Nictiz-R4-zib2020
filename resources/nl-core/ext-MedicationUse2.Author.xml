@@ -44,18 +44,14 @@
       <path value="Extension.value[x]" />
       <short value="Author" />
       <definition value="Information on who is the author of the MedicationUse." />
-      <comment value="Each occurence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [nl-core-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [nl-core-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner)). Sending systems should only fill the reference to the PractitionerRole instance here. Recieving systems can retrieve the reference to the Practitioner resource from that PractitionerRole instance." />
       <alias value="Auteur" />
       <min value="1" />
       <type>
         <code value="Reference" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
       </type>
       <mapping>
         <identity value="Medication-Process-v9-2-0-0" />
