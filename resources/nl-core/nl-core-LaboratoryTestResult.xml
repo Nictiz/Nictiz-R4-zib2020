@@ -28,6 +28,35 @@
       <path value="Observation" />
       <alias value="nl-core-LaboratoryTestResult" />
     </element>
+    <element id="Observation.extension">
+      <path value="Observation.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Observation.extension:copyIndicator">
+      <path value="Observation.extension" />
+      <sliceName value="copyIndicator" />
+      <min value="0" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator" />
+      </type>
+    </element>
+    <element id="Observation.extension:edifactReferenceNumber">
+      <path value="Observation.extension" />
+      <sliceName value="edifactReferenceNumber" />
+      <min value="0" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber" />
+      </type>
+    </element>
     <element id="Observation.subject">
       <path value="Observation.subject" />
       <type>
