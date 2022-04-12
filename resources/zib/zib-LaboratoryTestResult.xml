@@ -120,6 +120,18 @@
         <rules value="open" />
       </slicing>
     </element>
+    <element id="Observation.category:LabCat">
+      <path value="Observation.category" />
+      <sliceName value="LabCat" />
+      <min value="1" />
+      <max value="1" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://hl7.org/fhir/codesystem-observation-category.html" />
+          <code value="laboratory" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
     <element id="Observation.category:resultType">
       <path value="Observation.category" />
       <sliceName value="resultType" />
@@ -136,18 +148,6 @@
         <map value="NL-CM:13.1.7" />
         <comment value="ResultType" />
       </mapping>
-    </element>
-    <element id="Observation.category:LabCat">
-      <path value="Observation.category" />
-      <sliceName value="LabCat" />
-      <min value="1" />
-      <max value="1" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://hl7.org/fhir/codesystem-observation-category.html" />
-          <code value="laboratory" />
-        </coding>
-      </patternCodeableConcept>
     </element>
     <element id="Observation.code">
       <path value="Observation.code" />
