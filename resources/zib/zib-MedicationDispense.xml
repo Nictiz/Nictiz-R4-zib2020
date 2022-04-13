@@ -132,6 +132,7 @@
       <path value="MedicationDispense.performer.actor" />
       <short value="Supplier" />
       <definition value="In almost all cases, the supplier will be a pharmacist. It could also be supplied by a webshop (in case of an online order), a drug store or a foreign pharmacist." />
+      <comment value="The 'Supplier' concept of zib MedicationDispense is mapped to both `performer.actor` and `location`. Because individuals who enter the medication dispense are not recorded, the organizational information of the supplier can be referenced here." />
       <alias value="Verstrekker" />
       <type>
         <code value="Reference" />
@@ -142,6 +143,23 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider-Organization" />
+      </type>
+      <mapping>
+        <identity value="zib-medicationdispense-v2.0.2-2020EN" />
+        <map value="NL-CM:9.9.20858" />
+        <comment value="Supplier" />
+      </mapping>
+    </element>
+    <element id="MedicationDispense.location">
+      <path value="MedicationDispense.location" />
+      <short value="Supplier" />
+      <definition value="In almost all cases, the supplier will be a pharmacist. It could also be supplied by a webshop (in case of an online order), a drug store or a foreign pharmacist." />
+      <comment value="The 'Supplier' concept of zib MedicationDispense is mapped to both `performer.actor` and `location`. Details of the physical location of the supplier of the medication dispense can be referenced here." />
+      <alias value="Verstrekker" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider" />
       </type>
       <mapping>
         <identity value="zib-medicationdispense-v2.0.2-2020EN" />
