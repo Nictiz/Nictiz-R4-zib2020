@@ -31,7 +31,7 @@ showStepsMenu() {
   done
 
   dialog_result=$(
-    dialog --clear --checklist "Choose one of the following steps" 0 0 9 \
+    dialog --clear --checklist "Choose one of the following steps" 0 0 10 \
       1 "Validate zib profiles" ${perform_step_dialog[zib profiles]} \
       2 "Validate zib extensions" ${perform_step_dialog[zib extensions]} \
       3 "Validate nl-core profiles" ${perform_step_dialog[nl-core profiles]} \
@@ -39,8 +39,9 @@ showStepsMenu() {
       5 "Validate other profiles" ${perform_step_dialog[other profiles]} \
       6 "Validate ConceptMaps" ${perform_step_dialog[ConceptMaps]} \
       7 "Validate other terminology" ${perform_step_dialog[other terminology]} \
-      8 "Validate examples" ${perform_step_dialog[examples]} \
-      9 "Check zib compliance" ${perform_step_dialog[zib compliance]} \
+      8 "Validate SearchParameters" ${perform_step_dialog[SearchParameters]} \
+      9 "Validate examples" ${perform_step_dialog[examples]} \
+      10 "Check zib compliance" ${perform_step_dialog[zib compliance]} \
       3>&1 1>&2 2>&3
   )
   perform_all_steps=0
@@ -56,8 +57,9 @@ showStepsMenu() {
       5) perform_step[other profiles]=1;;
       6) perform_step[ConceptMaps]=1;;
       7) perform_step[other terminology]=1;;
-      8) perform_step[examples]=1;;
-      9) perform_step[zib compliance]=1;;
+      8) perform_step[SearchParameters]=1;;
+      9) perform_step[examples]=1;;
+      10) perform_step[zib compliance]=1;;
     esac
   done
   
