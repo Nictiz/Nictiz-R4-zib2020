@@ -28,6 +28,30 @@
       <path value="Observation" />
       <alias value="nl-core-LaboratoryTestResult" />
     </element>
+    <element id="Observation.extension">
+      <path value="Observation.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Observation.extension:sequelTo">
+      <path value="Observation.extension" />
+      <sliceName value="sequelTo" />
+      <min value="0" />
+    </element>
+    <element id="Observation.extension:sequelTo.value[x]">
+      <path value="Observation.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult" />
+      </type>
+    </element>
     <element id="Observation.subject">
       <path value="Observation.subject" />
       <type>
