@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ProfilingGuidelinesR4-SearchParameters" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-SearchParameters" />
+  <name value="ProfilingGuidelinesR4_SearchParameters" />
+  <title value="SearchParameters conformance to FHIR Profiling Guidelines for FHIR R4" />
+  <status value="draft" />
+  <description value="Conformance profile to check SearchParameters for conformance to the [Nictiz profiling guidelines for FHIR R4](https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4)." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="rim" />
+    <uri value="http://hl7.org/v3" />
+    <name value="RIM Mapping" />
+  </mapping>
+  <mapping>
+    <identity value="workflow" />
+    <uri value="http://hl7.org/fhir/workflow" />
+    <name value="Workflow Pattern" />
+  </mapping>
+  <mapping>
+    <identity value="w5" />
+    <uri value="http://hl7.org/fhir/fivews" />
+    <name value="FiveWs Pattern Mapping" />
+  </mapping>
+  <mapping>
+    <identity value="objimpl" />
+    <uri value="http://hl7.org/fhir/object-implementation" />
+    <name value="Object Implementation Information" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="SearchParameter" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/SearchParameter" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="SearchParameter">
+      <path value="SearchParameter" />
+      <constraint>
+        <key value="sp-pg-01" />
+        <severity value="error" />
+        <human value="The id should consist of a PascalCased target followed by lowercase words which are sepearated by dashes" />
+        <expression value="SearchParameter.id.matches('^[A-Z][A-Za-z]+-[a-z][a-z-]+[a-z]$')" />
+        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
+      </constraint>
+      <constraint>
+        <key value="sp-pg-02" />
+        <severity value="error" />
+        <human value="The canonical URL should conform to the profiling guidelines" />
+        <expression value="SearchParameter.url = 'http://nictiz.nl/fhir/SearchParameter/' + SearchParameter.id" />
+        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
+      </constraint>
+      <constraint>
+        <key value="sp-pg-03" />
+        <severity value="warning" />
+        <human value="The name of the SearchParameter should conform to the profiling guidelines" />
+        <expression value="SearchParameter.name.replaceMatches('^(.*?)_.*$', '$1') = SearchParameter.id.replaceMatches('^(.*?)-.*$', '$1') and SearchParameter.name.replaceMatches('^.*?_(.*)$', '$1').lower() = SearchParameter.id.replaceMatches('^.*?-(.*)$', '$1').replace('-', '')" />
+        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
+      </constraint>
+      <constraint>
+        <key value="sp-pg-04" />
+        <severity value="error" />
+        <human value="The code of the SearchParameter should align with the id" />
+        <expression value="SearchParameter.code = SearchParameter.id.replaceMatches('^(.*?)-(.*)$', '$2')" />
+        <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
+      </constraint>
+    </element>
+    <element id="SearchParameter.publisher">
+      <path value="SearchParameter.publisher" />
+      <min value="1" />
+      <fixedString value="Nictiz" />
+    </element>
+    <element id="SearchParameter.contact">
+      <path value="SearchParameter.contact" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="SearchParameter.contact.name">
+      <path value="SearchParameter.contact.name" />
+      <min value="1" />
+      <fixedString value="Nictiz" />
+    </element>
+    <element id="SearchParameter.contact.telecom">
+      <path value="SearchParameter.contact.telecom" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="SearchParameter.contact.telecom.system">
+      <path value="SearchParameter.contact.telecom.system" />
+      <min value="1" />
+      <fixedCode value="email" />
+    </element>
+    <element id="SearchParameter.contact.telecom.value">
+      <path value="SearchParameter.contact.telecom.value" />
+      <min value="1" />
+      <fixedString value="info@nictiz.nl" />
+    </element>
+    <element id="SearchParameter.contact.telecom.use">
+      <path value="SearchParameter.contact.telecom.use" />
+      <min value="1" />
+      <fixedCode value="work" />
+    </element>
+    <element id="SearchParameter.purpose">
+      <path value="SearchParameter.purpose" />
+      <min value="1" />
+    </element>
+    <element id="SearchParameter.expression">
+      <path value="SearchParameter.expression" />
+      <min value="1" />
+    </element>
+    <element id="SearchParameter.xpath">
+      <path value="SearchParameter.xpath" />
+      <max value="0" />
+    </element>
+    <element id="SearchParameter.xpathUsage">
+      <path value="SearchParameter.xpathUsage" />
+      <max value="0" />
+    </element>
+  </differential>
+</StructureDefinition>
