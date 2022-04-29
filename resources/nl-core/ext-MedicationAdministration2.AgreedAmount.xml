@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="ext-MedicationAgreement.RelationMedicationUse" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelationMedicationUse" />
-  <name value="ExtMedicationAgreementRelationMedicationUse" />
-  <title value="ext MedicationAgreement.RelationMedicationUse" />
+  <id value="ext-MedicationAdministration2.AgreedAmount" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedAmount" />
+  <name value="ExtMedicationAdministration2AgreedAmount" />
+  <title value="ext MedicationAdministration2.AgreedAmount" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -14,7 +14,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="An extension to provide a relation to a MedicationUse2 on which the MedicationAgreement is based." />
+  <description value="An extension to provide the agreed dosage amount from the MedicationAgreement or AdministrationAgreement for which the MedicationAdministration applies." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -26,7 +26,7 @@
   <abstract value="false" />
   <context>
     <type value="element" />
-    <expression value="MedicationRequest.basedOn" />
+    <expression value="MedicationAdministration.dosage" />
   </context>
   <type value="Extension" />
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
@@ -38,21 +38,21 @@
     </element>
     <element id="Extension.url">
       <path value="Extension.url" />
-      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelationMedicationUse" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedAmount" />
     </element>
     <element id="Extension.value[x]">
       <path value="Extension.value[x]" />
-      <short value="RelationMedicationUse" />
-      <definition value="A reference to a MedicationUse2 on which the MedicationAgreement is based." />
-      <alias value="RelatieMedicatiegebruik" />
+      <short value="AgreedAmount" />
+      <definition value="The agreed dosage amount from the MedicationAgreement or AdministrationAgreement for which this administration applies." />
+      <alias value="AfgesprokenHoeveelheid" />
       <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationUse2" />
+        <code value="Quantity" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdQuantity" />
       </type>
       <mapping>
         <identity value="Medication-Process-v9-2-0-0" />
-        <map value="mp-dataelement920-1327" />
-        <comment value="RelationMedicationUse" />
+        <map value="mp-dataelement920-1172" />
+        <comment value="AgreedAmount" />
       </mapping>
     </element>
   </differential>
