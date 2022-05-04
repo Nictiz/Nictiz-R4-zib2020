@@ -5,7 +5,7 @@ if [[ $changed_only == 0 ]]; then
   zib_resources=$(find resources/zib -maxdepth 1 -name "*.xml")
   nlcore_resources=$(find resources/nl-core -maxdepth 1 -name "*.xml")
   terminology=$(find . -regex "\./resources/.*/terminology/[^/]*\.xml")
-  searchparameters=$(find SearchParameters -name "SearchParameter-*.xml")
+  searchparameters=$(if [[ -d SearchParameters ]]; then find SearchParameters -name "SearchParameter-*.xml"; fi)
   examples=$(
     for file in examples/*;do
       if [[ -f $file ]];then # Use an explicit check otherwise the process will return with exit code 1
