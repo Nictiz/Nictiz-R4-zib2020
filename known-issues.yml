@@ -651,6 +651,12 @@ issues should occur: false
       - message: None of the codings provided are in the value set 'Consent Scope Codes' (http://hl7.org/fhir/ValueSet/consent-scope), and a coding should come from this value set unless it has no suitable code
         reason: see above
 
+nl-core-*:
+  ignored issues:
+    "*.address*.country.extension[0].value*":
+      - message: None of the codings provided are in the value set 'LandCodelijsten' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.10--20200901000000), and a coding from this value set is required) (codes = urn:oid:2.16.840.1.113883.2.4.4.16.34#6030)
+        reason: The current version of the Validator seems to raise in incorrect error here. This is logged as a bug.  
+        
 nl-core-CareTeam-01:
   ignored issues:
     CareTeam.participant[*]:
