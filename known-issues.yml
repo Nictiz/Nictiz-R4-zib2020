@@ -464,7 +464,10 @@ nl-core-*:
   ignored issues:
     "*.address*.country.extension[0].value*":
       - message: None of the codings provided are in the value set 'LandCodelijsten' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.10--20200901000000), and a coding from this value set is required) (codes = urn:oid:2.16.840.1.113883.2.4.4.16.34#6030)
-        reason: The current version of the Validator seems to raise in incorrect error here. This is logged as a bug.  
+        reason: The current version of the Validator incorrectly raises an error on combined ValueSets.
+    "*.code":
+      - message: None of the codings provided are in the value set 'VerrichtingTypeCodelijsten'
+        reason: The current version of the Validator incorrectly raises an error on combined ValueSets.
         
 nl-core-CareTeam-01:
   ignored issues:
@@ -492,6 +495,9 @@ nl-core-MedicalDevice-*:
 
 nl-core-*-DeviceUseStatement-*:
   ignored issues:
+    DeviceUseStatement.derivedFrom[*]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
     DeviceUseStatement.reasonReference[*]:
       - message: Slicing cannot be evaluated
         reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
