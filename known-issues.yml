@@ -20,6 +20,18 @@ ext-Procedure.ProcedureMethod:
       - cardinality: 1..1
         reason: The used extension uses a cardinality of 1..1 on the value[x] element. However, the extension itself is added with a cardinality of 0..1. 
 
+pattern-GstdSimpleQuantity:
+  ignored issues:
+    StructureDefinition:
+      - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
+        reason: The title is shown in the hosting profiles as the name of the datatype. "G-Standaard SimpleQuantity" is more descriptive than the title according to the profiling guidelines ("pattern GstdSimpleQuantity").
+
+pattern-GstdQuantity: 
+  ignored issues:
+    StructureDefinition:
+      - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
+        reason: The title is shown in the hosting profiles as the name of the datatype. "G-Standaard Quantity" is more descriptive than the title according to the profiling guidelines ("pattern GstdQuantity").
+
 pattern-NlCoreHealthProfessionalReference:
   ignored issues:
     StructureDefinition:
@@ -143,7 +155,7 @@ zib-Encounter:
     Encounter.location.location:
       - cardinality: 0..*
         reason: The zib has a restricted cardinality of 0..1 for the Location concept (NL-CM:15.1.8). However, this cardianlity is propably too restricted (see <https://bits.nictiz.nl/browse/ZIB-1632> for discussion) and would prevent some practical use cases. Therefore, the cardinality has been left on 0..* in this profile.
-
+        
 zib-FunctionalOrMentalStatus:
   zib deviations:
     Observation.code:
@@ -358,6 +370,18 @@ zib-Patient:
         reason: The mapping is placed on the extension and not on the value[x] because of the nature of this extension. The extension itself contains a valueCoding that gets the zibs value. This datatype matches the zib CD type.
       - cardinality: 0..*
         reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
+
+zib-PharmaceuticalProduct:
+  zib deviations:
+    Medication.ingredient:
+      - datatype: BackboneElement
+        reason: The appropriate representation of ingredient in FHIR is Medication.ingredient. The container can be properly mapped to this BackboneElement.
+    Medication.ingredient.strength:
+      - datatype: Ratio
+        reason: The `ingredient.strenght` acts as a container for the two child elements and can the be correclty mapped to the zib Concentration container. 
+    Medication.ingredient.item[x]:
+      - cardinality: 1..1
+        reason: There is a known cardinality mismatch between FHIR (1..1) and the zib (0..1) for the .ingredient.item element which is nested in the optional .ingredient container. This constraint was already in place for the STU3 profile. Moreover this does not seem to be a concern for the Medication Proces information standard will use this profile as they will make this element required in their dataset.
 
 zib-Problem:
   zib deviations:
