@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-Infusion" />
+  <url value="https://nictiz.nl/fhir/StructureDefinition/zib-Infusion" />
+  <name value="ZibInfusion" />
+  <title value="zib Infusion" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="email" />
+      <value value="info@nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="An infusion is a device that slowly injects fluid into a blood vessel. The infusion has a number of components.&#xD;&#xA;The infusion contains:&#xD;&#xA;&#xD;&#xA;the (peripheral) cannula or the (central) catheter put into the patient peripherally or centrally;&#xD;&#xA;the administering system connected to the cannula/catheter allowing the administered fluid to run,&#xD;&#xA;the infusion bag containing the fluid.&#xD;&#xA;&#xD;&#xA;Multiple administering systems may be connected to one cannula/catheter. Furthermore, a central venous catheter may have multiple lumens.&#xD;&#xA;Arterial and epidural catheters also exist in addition to venous catheters." />
+  <purpose value="This DeviceUseStatement resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Infusion v4.4(2020)](https://zibs.nl/wiki/Infusion-v3.3(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-infusion-v3.3-2020EN" />
+    <uri value="https://zibs.nl/wiki/Infusion-v3.3(2020EN)" />
+    <name value="zib Infusion-v3.3(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="DeviceUseStatement" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/DeviceUseStatement" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="DeviceUseStatement">
+      <path value="DeviceUseStatement" />
+      <short value="Infusion" />
+      <alias value="Infuus" />
+      <mapping>
+        <identity value="zib-infusion-v3.3-2020EN" />
+        <map value="NL-CM:10.2.1" />
+        <comment value="Infusion" />
+      </mapping>
+    </element>
+    <element id="DeviceUseStatement.note">
+      <path value="DeviceUseStatement.note" />
+      <max value="1" />
+    </element>
+    <element id="DeviceUseStatement.note.text">
+      <path value="DeviceUseStatement.note.text" />
+      <short value="Comment" />
+      <definition value="A comment on the infusion." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-infusion-v3.3-2020EN" />
+        <map value="NL-CM:10.2.8" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
