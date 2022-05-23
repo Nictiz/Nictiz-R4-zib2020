@@ -59,23 +59,11 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalProduct.Description" />
       </type>
     </element>
-    <element id="Medication.code.coding">
-      <path value="Medication.code.coding" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="$this" />
-        </discriminator>
-        <rules value="closed" />
-      </slicing>
-    </element>
-    <element id="Medication.code.coding:medicationCode">
-      <path value="Medication.code.coding" />
-      <sliceName value="medicationCode" />
+    <element id="Medication.code">
+      <path value="Medication.code" />
       <short value="MedicationCode" />
-      <definition value="Coding medication in the Netherlands is done on the basis of the G standard (issued by Z-index), which is filled under the direction of KNMP. &#xD;&#xA;&#xD;&#xA;The coded medication can be expressed as:&#xD;&#xA;&#xD;&#xA;* GTIN International Article Number&#xD;&#xA;* ZI-nummer (2.16.840.1.113883.2.4.4.8)&#xA;* Trade product code (HPK)&#xA;* Prescription code (PRK)&#xA;* Generic product code (GPK)&#xA;* Anatomic Therapeutic Classification code (ATC)&#xA;* Substance Name Code (SNK)&#xA;*  Substance Name Code, in combination with Route of Administration (SSK)&#xA;*  SNOMED CT code&#xD;&#xA;&#xD;&#xA;The GTIN enables identification of the product including its origin with a barcode. The ZI number represents the tradeproduct and the package size. The HPK is the code for the trade product (with the brand name) as used per dose/per time the medication is taken (1 pill, 1 puff, 1ml) The PRK contains als GPK information supplemented with information needed to prescribe the right product. this level is intended to facilitate generic prescription of drugs. The GPK defines the pharmaceutical characteristics of a product: ingredients, strengths, units, pharmaceutical form and route of administration. The Substance Name Code (SNK) is the (active) compound. Further information about the G-Standaard levels see https://www.z-index.nl So called 90.000.000 numbers are used in local IT systems. These numbers shall not be used for external communication. In the this is necessary only the description (not the code) may be included. This is in accordance with national agreements (Nictiz Standard)." />
+      <definition value="Coding medication in the Netherlands is done on the basis of the G standard (issued by Z-index), which is filled under the direction of KNMP. &#xD;&#xA;&#xD;&#xA;The coded medication can be expressed as:&#xD;&#xA;&#xD;&#xA;* GTIN International Article Number&#xD;&#xA;* ZI-nummer (2.16.840.1.113883.2.4.4.8)&#xA;* Trade product code (HPK)&#xA;* Prescription code (PRK)&#xA;* Generic product code (GPK)&#xA;* Anatomic Therapeutic Classification code (ATC)&#xA;* Substance Name Code (SNK)&#xA;*  Substance Name Code, in combination with Route of Administration (SSK)&#xA;*  SNOMED CT code&#xD;&#xA;&#xD;&#xA;The GTIN enables identification of the product including its origin with a barcode. The ZI number represents the tradeproduct and the package size. The HPK is the code for the trade product (with the brand name) as used per dose/per time the medication is taken (1 pill, 1 puff, 1ml) The PRK contains als GPK information supplemented with information needed to prescribe the right product. this level is intended to facilitate generic prescription of drugs. The GPK defines the pharmaceutical characteristics of a product: ingredients, strengths, units, pharmaceutical form and route of administration. The Substance Name Code (SNK) is the (active) compound. Further information about the G-Standaard levels see https://www.z-index.nl So called 90.000.000 numbers are used in local IT systems. These numbers shall not be used for external communication. In the this is necessary only the description (not the code) may be included. This is in accordance with national agreements (Nictiz Standard).&#xD;&#xA;&#xD;&#xA;The bound ValueSet includes the NullFlavor code 'OTH', which is not allowed for the zib concept 'MedicationCode'. However, FHIR explicitly defines 'a textual description if no code is available', which is equivalent to the zib concept 'Medication', to be placed on `.code.text`. The 'OTH' code is included to allow this." />
       <alias value="ProductCode" />
-      <max value="1" />
       <binding>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.12--20200901000000" />
@@ -84,25 +72,6 @@
         <identity value="zib-pharmaceuticalproduct-v2.1.2-2020EN" />
         <map value="NL-CM:9.7.19927" />
         <comment value="MedicationCode" />
-      </mapping>
-    </element>
-    <element id="Medication.code.coding:medicationName">
-      <path value="Medication.code.coding" />
-      <sliceName value="medicationName" />
-      <comment value="This slice 'medicationName' is introduced to allow for the code 'OTH' to be exchanged. Because the definition of `Medication.code` explicitly mentions &quot;or a textual description if no code is available&quot; this code is needed to pass the zib concept 'Medication' ('ProductName') in `code.text` if the concept 'MedicationCode' cannot be exchanged and the only data available is free text." />
-      <max value="1" />
-      <patternCoding>
-        <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor" />
-        <code value="OTH" />
-      </patternCoding>
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://terminology.hl7.org/ValueSet/v3-NullFlavor" />
-      </binding>
-      <mapping>
-        <identity value="zib-pharmaceuticalproduct-v2.1.2-2020EN" />
-        <map value="NL-CM:9.7.19929" />
-        <comment value="Medication (implicit, main mapping is on Medication.code.text)" />
       </mapping>
     </element>
     <element id="Medication.code.text">
