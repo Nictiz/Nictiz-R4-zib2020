@@ -15,7 +15,7 @@
     </telecom>
   </contact>
   <description value="Documentation of agreements between patient, possibly the patient’s contact person(s), and health professional(s) with respect to care, treatment, or activities that should be performed or explicitly avoided. The Care Agreement focuses on a specific activity in the context of treatment and care." />
-  <purpose value="This CarePlan resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) CareAgreement-v1.0(2020EN)](https://zibs.nl/wiki/CareAgreement-v1.0(2020EN))." />
+  <purpose value="This CarePlan resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) CareAgreement v1.0 (2020EN)](https://zibs.nl/wiki/CareAgreement-v1.0(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -41,6 +41,7 @@
     </element>
     <element id="CarePlan.status">
       <path value="CarePlan.status" />
+      <definition value="This element is implictly mapped to the zib concepts StartDate (NL-CM:16.2.16) and EndDate  (NL-CM:16.2.15). Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When StartDate is in the future, `.status` will usually be set to _active_.&#xD;&#xA;* When StartDate is in the past and EndDate is in the future or absent, `.status` will usually be set to _active_.&#xD;&#xA;* When EndDate is in the past, `.status` will usually be set to _completed_.&#xD;&#xA;* When a system is unable to infer the status from the StartDate and EndDate , `.status` will be set to _unknown_. The _unknown_ code is not to be used to convey other statuses. The _unknown_ code should be used when one of the statuses applies, but the authoring system doesn't know the current state of the CareAgreement." />
       <mapping>
         <identity value="zib-careagreement-v1.0-2020EN" />
         <map value="NL-CM:16.2.16" />
@@ -235,7 +236,7 @@
       <path value="CarePlan.activity.detail.performer" />
       <sliceName value="contactPerson" />
       <short value="ContactPerson" />
-      <definition value="The contact person of the patient who took part in making the care agreement." />
+      <definition value="A contact person of the patient as performer of the agreed action or activity." />
       <alias value="Contactpersoon" />
       <max value="1" />
       <type>
@@ -252,7 +253,7 @@
       <path value="CarePlan.activity.detail.performer" />
       <sliceName value="healthProfessional" />
       <short value="HealthProfessional" />
-      <definition value="The health professional who took part in making the care agreement." />
+      <definition value="A health professional as performer of the agreed action or activity." />
       <alias value="Zorgverlener" />
       <max value="1" />
       <type>
