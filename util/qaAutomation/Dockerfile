@@ -1,4 +1,4 @@
-FROM ubuntu:20.10
+FROM ubuntu:20.04
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get -y install wget
 RUN apt-get -y install openjdk-11-jre-headless

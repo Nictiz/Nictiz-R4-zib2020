@@ -20,6 +20,7 @@ perform_step[nl-core profiles]=0
 perform_step[nl-core extensions]=0
 perform_step[other profiles]=0
 perform_step[ConceptMaps]=0
+perform_step[SearchParameters]=0
 perform_step[other terminology]=0
 perform_step[examples]=0
 perform_step[zib compliance]=0
@@ -54,6 +55,9 @@ while [ "$1" != "" ]; do
         --conceptmaps)        perform_step[ConceptMaps]=1
                               perform_all_steps=0
                               ;;
+        --searchparameters)   perform_step[SearchParameters]=1
+                              perform_all_steps=0
+                              ;;
         --other-terminology)  perform_step[other terminology]=1
                               perform_all_steps=0
                               ;;
@@ -64,7 +68,7 @@ while [ "$1" != "" ]; do
                               perform_all_steps=0
                               ;;
         *)                    echo "Usage: $0 [--menu] [--changed-only] [--debug] [--no-tx] [--inspect-tx]"
-                              echo "In addition, you can select to run only one or more individual checks using --zib-profiles, --zib-extensions, --nl-core-profiles, --nl-core-extensions, --other-profiles, --conceptmaps, --other-terminology, --examples or -zib-compliance"
+                              echo "In addition, you can select to run only one or more individual checks using --zib-profiles, --zib-extensions, --nl-core-profiles, --nl-core-extensions, --other-profiles, --conceptmaps, --searchparameters, --other-terminology, --examples or -zib-compliance"
                         exit 1
                         ;;
     esac
@@ -73,7 +77,7 @@ done
 
 # Start the proxy server to intelligently handle terminology requests
 set -m
-mitmweb --web-host "0.0.0.0" -s /tools/CombinedTX/CombinedTX.py -q &
+mitmweb --web-iface "0.0.0.0" -s /tools/CombinedTX/CombinedTX.py -q &
 if [[ $use_menu == 0 ]]; then
   echo -e "\033[0;33mYou can spy on the terminology server log at http://localhost:8081\033[0m"
 fi
@@ -168,6 +172,7 @@ performQA() {
   validate "nl-core extensions" "$nlcore_extensions" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore-Extensions"
   validate "other profiles" "$other_profiles" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions"
   validate "ConceptMaps" "$conceptmaps" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-ConceptMaps"
+  validate "SearchParameters" "$searchparameters" "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-SearchParameters"
   validate "other terminology" "$other_terminology"
   validate "examples" "$examples"
   
