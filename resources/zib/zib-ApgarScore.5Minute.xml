@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="zib-ApgarScore" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-ApgarScore" />
-  <name value="ZibApgarScore" />
-  <title value="zib ApgarScore" />
+  <id value="zib-ApgarScore.5Minute" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-ApgarScore.5Minute" />
+  <name value="ZibApgarScore5Minute" />
+  <title value="zib ApgarScore 5Minute" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -37,6 +37,15 @@
         <map value="NL-CM:12.16.1" />
         <comment value="ApgarScore" />
       </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://loinc.org" />
+          <code value="48333-9" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Observation.effective[x]">
       <path value="Observation.effective[x]" />
@@ -118,6 +127,15 @@
       <sliceName value="respiratoryScore" />
       <max value="1" />
     </element>
+    <element id="Observation.component:respiratoryScore.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://loinc.org" />
+          <code value="32410-3" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
     <element id="Observation.component:respiratoryScore.value[x]">
       <path value="Observation.component.value[x]" />
       <short value="RespiratoryScore" />
@@ -136,6 +154,15 @@
       <path value="Observation.component" />
       <sliceName value="appearanceScore" />
       <max value="1" />
+    </element>
+    <element id="Observation.component:appearanceScore.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://loinc.org" />
+          <code value="32411-1" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Observation.component:appearanceScore.value[x]">
       <path value="Observation.component.value[x]" />
@@ -156,6 +183,13 @@
       <sliceName value="pulseScore" />
       <max value="1" />
     </element>
+    <element id="Observation.component:pulseScore.code">
+      <path value="Observation.component.code" />
+      <code>
+        <system value="http://loinc.org" />
+        <code value="32412-9" />
+      </code>
+    </element>
     <element id="Observation.component:pulseScore.value[x]">
       <path value="Observation.component.value[x]" />
       <short value="PulseScore" />
@@ -175,6 +209,15 @@
       <sliceName value="grimaceScore" />
       <max value="1" />
     </element>
+    <element id="Observation.component:grimaceScore.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://loinc.org" />
+          <code value="32414-5" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
     <element id="Observation.component:grimaceScore.value[x]">
       <path value="Observation.component.value[x]" />
       <short value="GrimaceScore" />
@@ -193,6 +236,13 @@
       <path value="Observation.component" />
       <sliceName value="musleToneScore" />
       <max value="1" />
+    </element>
+    <element id="Observation.component:musleToneScore.code">
+      <path value="Observation.component.code" />
+      <code>
+        <system value="http://loinc.org" />
+        <code value="32413-7" />
+      </code>
     </element>
     <element id="Observation.component:musleToneScore.value[x]">
       <path value="Observation.component.value[x]" />
