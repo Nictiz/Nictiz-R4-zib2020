@@ -7,7 +7,7 @@
    <language value="nl-NL"/>
    <extension url="http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod">
       <valuePeriod>
-         <start value="2020-11-11T00:00:00+00:00"/>
+         <start value="2022-04-25T00:00:00+00:00"/>
       </valuePeriod>
    </extension>
    <url value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
@@ -16,7 +16,7 @@
       <system value="urn:ietf:rfc:3986"/>
       <value value="urn:oid:2.16.840.1.113883.2.4.15.1060"/>
    </identifier>
-   <version value="2020-11-11T00:00:00"/>
+   <version value="2022-04-25T00:00:00"/>
    <name value="RoleCodeNLZorgaanbiederType"/>
    <title value="RoleCodeNL - zorgaanbiedertype (organisaties)"/>
    <status value="active"/>
@@ -29,11 +29,11 @@
          <value value="https://www.nictiz.nl"/>
       </telecom>
    </contact>
-   <description value="Dit codesysteem bevat concepten die het roltype bepaalt van een organisatie die als zorgaanbieder optreedt. Het is een invulling van het HL7v3 vocabulairedomein “RoleCode” en wel specifiek het concept “AssignedRoleType”. &#xD;&#xA;* 2017-02-08: Toegevoegd BRA (Brandwondencentrum) en DIA (Dialysecentrum) op verzoek RIVM.&#xD;&#xA;* 2017-12-20 Level van Openbare apotheek gecorrigeerd van 1 naar 2&#xD;&#xA;* 2018-03-21 Na wijzigingsverzoek codes A1 voor Apotheekinstelling en H1 voor Huisartsinstelling van A (Astract) naar S (Specializable) omgezet zodat deze toepasbaar worden op dit niveau&#xD;&#xA;* 2020-05-18 Toegevoegd code K4 voor Kraamzorg na wijzigingsverzoek (https://bits.nictiz.nl/browse/ZIB-1171)&#xD;&#xA;* 2020-07-16 Toegevoegd code H2 voor Hospice na wijzigingsverzoek van zib-centrum (https://bits.nictiz.nl/browse/ZIB-1171)&#xD;&#xA;* 2020-11-11 Toegevoegd code GC voor Geboortecentrum na wijzigingsverzoek van Geboortezorg&#xA;          (https://bits.nictiz.nl/browse/GZ-333)&#xD;&#xA;&#xD;&#xA;"/>
+   <description value="Dit codesysteem bevat concepten die het roltype bepaalt van een organisatie die als zorgaanbieder optreedt. Het is een invulling van het HL7v3 vocabulairedomein “RoleCode” en wel specifiek het concept “AssignedRoleType”. &#xA;                &#xD;&#xA;* 2017-02-08: Toegevoegd BRA (Brandwondencentrum) en DIA (Dialysecentrum) op verzoek RIVM.&#xD;&#xA;* 2017-12-20 Level van Openbare apotheek gecorrigeerd van 1 naar 2&#xD;&#xA;* 2018-03-21 Na wijzigingsverzoek codes A1 voor Apotheekinstelling en H1 voor Huisartsinstelling van A (Astract) naar S (Specializable) omgezet zodat deze toepasbaar worden op dit niveau&#xD;&#xA;* 2020-05-18 Toegevoegd code K4 voor Kraamzorg na wijzigingsverzoek (https://bits.nictiz.nl/browse/ZIB-1171)&#xD;&#xA;* 2020-07-16 Toegevoegd code H2 voor Hospice na wijzigingsverzoek van zib-centrum (https://bits.nictiz.nl/browse/ZIB-1171)&#xD;&#xA;* 2020-11-11 Toegevoegd code GC voor Geboortecentrum na wijzigingsverzoek van Geboortezorg (https://bits.nictiz.nl/browse/GZ-333)&#xD;&#xA;* 2022-04-25 Toegevoegd code JZ voor Jeugdzorg, G1 voor Verslavingszorg, en F1 voor Fysiotherapiepraktijk na wijzigingsverzoek van Zibcentrum (https://bits.nictiz.nl/browse/ZIB-1559)&#xD;&#xA;&#xD;&#xA;&#xA;            "/>
    <copyright value="Nictiz"/>
    <caseSensitive value="false"/>
    <content value="complete"/>
-   <count value="32"/>
+   <count value="35"/>
    <property>
       <code value="effectiveDate"/>
       <uri value="http://hl7.org/fhir/concept-properties"/>
@@ -107,6 +107,10 @@
       </property>
       <property>
          <code value="child"/>
+         <valueCode value="G1"/>
+      </property>
+      <property>
+         <code value="child"/>
          <valueCode value="G6"/>
       </property>
       <property>
@@ -136,6 +140,14 @@
       <property>
          <code value="child"/>
          <valueCode value="DIA"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="JZ"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="F1"/>
       </property>
    </concept>
    <concept>
@@ -383,6 +395,14 @@
       </property>
    </concept>
    <concept>
+      <code value="G1"/>
+      <display value="Verslavingszorg"/>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
       <code value="G6"/>
       <display value="Verstandelijk gehandicaptenzorg"/>
       <property>
@@ -453,6 +473,22 @@
    <concept>
       <code value="DIA"/>
       <display value="Dialysecentrum"/>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="JZ"/>
+      <display value="Jeugdzorg"/>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="F1"/>
+      <display value="Fysiotherapiepraktijk"/>
       <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
