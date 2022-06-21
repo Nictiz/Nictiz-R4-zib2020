@@ -14,12 +14,12 @@ This document contains release notes per zib, indicating differences with their 
  * The addition of `extension:official` seemed based on the rationale: "if implementers do not support the custom `extension:addressType`, you should be able to determine the AddressType by looking at `.use`, `.type` and custom `extension:official`". However, in this use case extension:official would probably also be not supported. By mapping 'HP' to .type 'both', all AddressType codes can be mapped to a combination of .type and .use.
  
 ## zib-AlcoholUse
-* The code on `Observation.component:amount.code` has changed to 897148007
+* The code on `Observation.component:amount.code` has changed to 897148007.
 
 ## zib-Alert
 * Renamed `extension:ConcernReference` to `extension:concern` to match its functional counterpart.
-* Added EndDateTime and Comment concepts
-* Added constraints in the profile on the choice that the zib provides between Concern and AlertName. Add guidance on which code to add to Flag.code if a reference to Concern is added.
+* Added EndDateTime and Comment concepts.
+* Added constraints in the profile on the choice that the zib provides between Concern and AlertName. Added guidance on which code to add to Flag.code if a reference to Concern is added.
 
 ## zib-AdvanceDirective
 * Moved TypeOfLivingWill from `Consent.category` to `Consent.provision.code`, renamed it to LivingWillType in accordance with the zib and made the element 0..1 rather than 1..1 to adhere to the conceptual cardinalities of the zib.
@@ -57,9 +57,9 @@ This document contains release notes per zib, indicating differences with their 
 * Updated to new zib-NameInformation, zib-AddressInformation and zib-ContactInformation profiles.
 
 ## zib-DrugUse
-* The drugUseCode is mapped to `Observation.code` and based on a pattern
-* The code on `Observation.component:drugOrMedicationType.code` has changed to 105590001
-* The code on `Observation.component:amount.code` has changed to 363908000
+* The drugUseCode is mapped to `Observation.code` and based on a pattern.
+* The code on `Observation.component:drugOrMedicationType.code` has changed to 105590001.
+* The code on `Observation.component:amount.code` has changed to 363908000.
 
 ## zib-Encounter
 * ContactWith is mapped on a slice of `Encounter.participant`.
@@ -67,7 +67,7 @@ This document contains release notes per zib, indicating differences with their 
 * `Encounter.period.start` changed to cardinality 0 .. 1 due to the zibs conceptual cardinalities concept.
 * The mapping of concepts Problem, Procedure and DeviatingResult is moved to `Encounter.reasonReference`.
 * The mapping of Location is moved to `Encounter.location.location`.
-* Reference to other profiles not accounted for by the zib have been removed.
+* References to other profiles not accounted for by the zib have been removed.
 
 ## zib-EpisodeOfCare
 * New zib in 2020. However, in the zib2017 package the nl-core-episodeofcare profile exists, which is not based on a zib but included some use case concepts. This zib profile supersedes this profile.
@@ -82,7 +82,7 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.
 * `Organization.type[DepartmentSpecialty]` and `Organization.type[OrganizationType]` from 0..* to 0..1.
-* For `Organization.type` the slicing discriminator is changed from fixed system values to valueset binding.
+* For `Organization.type` the slicing discriminator is changed from fixed system values to a ValueSet binding.
 * Removed comments on `Organization.alias` because it has no basis in the zib.
 * Added comments on the root to point out to the usage of Location resource and the `Organization.partOf`.
 * Major change: use of Location resource.
@@ -115,7 +115,7 @@ This document contains release notes per zib, indicating differences with their 
 * The comment element is mapped on `Observation.note.text` instead of `Observation.comment`.
 
 ## zib-NameInformation
-* The way this partial zib has been modelled on the HumanName datatype has been overhauled to properly accommodate the way first names are handled. In the STU3 version, official first names, initials of this first name, and the given name (nickname, roepnaam) were all added to a `.given` element in the same HumanName instance, with a annotation of the type using an extension. This turned out to be the wrong approach, as all `.given` names are to be concatenated to the complete list of first names. So instead, there are now different instances of HumanName used to communicate the official names and the given name, indicated by `.use` -- resulting in two profiles. Communicating initials is now only done for names where the full name is not known (this deviates from the zib model).   
+* The way this partial zib has been modelled on the HumanName data type has been overhauled to properly accommodate the way first names are handled. In the STU3 version, official first names, initials of this first name, and the given name (nickname, roepnaam) were all added to a `.given` element in the same HumanName instance, with a annotation of the type using an extension. This turned out to be the wrong approach, as all `.given` names are to be concatenated to the complete list of first names. So instead, there are now different instances of HumanName used to communicate the official names and the given name, indicated by `.use` -- resulting in two profiles. Communicating initials is now only done for names where the full name is not known (this deviates from the zib model).   
 * `.use` has been made mandatory (instead of discouraged).
 * Moved information and mappings from the extension level to the `value[x]` level.
 * `.family.extension`'s now have the zib concept names as slice names instead of the extension names.
@@ -169,16 +169,16 @@ This document contains release notes per zib, indicating differences with their 
 # zib-TobaccoUse
 * StartDate and EndDate are placed on a type slice of `Observation.effective[x]` adhering to the open world modelling principle.
 * TobaccoUseStatus is placed on a type slice of `Observation.value[x]` adhering to the open world modelling principle.
-* The comment element is moved to `Observation.note.text` instead of `Observation.comment`
-* The datatype for PackYears has been changed from Quantity to integer to align with the functional definition and the Quantity datatype does not bring additional benefits to justify not aligning with the zib.
+* The comment element is moved to `Observation.note.text` instead of `Observation.comment`.
+* The data type for PackYears has been changed from Quantity to integer to align with the functional definition and the Quantity data type does not bring additional benefits to justify not aligning with the zib.
 
 ## zib-Vaccination
 * Renamed profiles names: zib-Vaccination to zib-Vaccination-event and zib-VaccinationRecommendation to zib-Vaccination-request conform new profiling guidelines.
 * Removed references not accounted for by the zib (e.g. `Immunization.location`, `Immunization.manufacturer` and `ImmunizationRecommendation.recommendation.supportingImmunization`).
 * Aligned cardinality of `Immunization.note` with the zib by making it 0..1.
-* Moved VaccinationDate on a type slice on `Immunization.occurrence[x]:occurrenceDateTime`. This element has been renamed from `date` to `occurence[x]` in R4.
+* Moved VaccinationDate on a type slice on `Immunization.occurrence[x]:occurrenceDateTime`. This element has been renamed from `date` to `occurrence[x]` in R4.
 * Moved Administrator to a slice on `Immunization.performer` with a mandatory fixed pattern in `Immunization.performer.function`.
-* Added a pattern on `Immunization.doseQuantity` to mandate the use of mL by ucum because the definition of Dose states to use milliliters. 
+* Added a pattern on `Immunization.doseQuantity` to mandate the use of mL by UCUM because the definition of Dose states to use milliliters. 
 * Removed orderStatus extension because PlannedCareActivityForTransfer zib does not exist anymore.
 * Aligned cardinalities of ImmunizationRecommendation with the zib by constraining them and documentend this on the root element.
 * Removed mapping of DesiredDateForRevaccination because it has been removed by the zib as well. The DesiredDateForRevaccination concept has been replaced by mapping to VaccinationDate which is placed on `ImmunizationRecommendation.recommendation.dateCriterion.value`. The mapping to PlannedCareActivityForTransfer start and end dates have been removed from this element.
