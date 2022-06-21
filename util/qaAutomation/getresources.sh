@@ -5,6 +5,7 @@ if [[ $changed_only == 0 ]]; then
   zib_resources=$(find resources/zib -maxdepth 1 -name "*.xml")
   nlcore_resources=$(find resources/nl-core -maxdepth 1 -name "*.xml")
   terminology=$(find . -regex "\./resources/.*/terminology/[^/]*\.xml")
+  searchparameters=$(if [[ -d SearchParameters ]]; then find SearchParameters -name "SearchParameter-*.xml"; fi)
   examples=$(
     for file in examples/*;do
       if [[ -f $file ]];then # Use an explicit check otherwise the process will return with exit code 1
@@ -19,6 +20,8 @@ else
   nlcore_resources="$nlcore_resources "$(git ls-files --others -- resources/nl-core/*.xml)
   terminology=$(git diff --name-only --diff-filter=ACM origin/main -- resources/zib/terminology/*.xml resources/nl-core/terminology/*.xml)
   terminology="$terminology "$(git ls-files --others -- resources/zib/terminology/*.xml resources/nl-core/terminology/*.xml)
+  searchparameters=$(git diff --name-only --diff-filter=ACM origin/main -- SearchParameters)
+  searchparameters="$searchparameters "$(git ls-files --others -- SearchParameters)
   examples=$(git diff --name-only --diff-filter=ACM origin/main -- examples)
   examples="$examples "$(git ls-files --others -- examples)
 fi
@@ -73,4 +76,5 @@ export nlcore_extensions
 export other_profiles
 export conceptmaps
 export other_terminology
+export searchparameters
 export examples

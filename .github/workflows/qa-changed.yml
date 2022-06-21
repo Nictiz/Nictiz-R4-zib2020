@@ -25,6 +25,7 @@ jobs:
           echo "::set-output name=other_profiles::"$other_profiles
           echo "::set-output name=conceptmaps::"$conceptmaps
           echo "::set-output name=other_terminology::"$other_terminology
+          echo "::set-output name=searchparameters::"$searchparameters
           echo "::set-output name=examples::"$examples
 
       - name: Restore validator cache
@@ -35,7 +36,7 @@ jobs:
 
       - name: Validate zib profiles
         id: validate-zib-profiles
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.17
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.19
         with:
           version: "4.0"
           ig: resources/ qa/
@@ -46,7 +47,7 @@ jobs:
         continue-on-error: true
       - name: Validate zib extensions
         id: validate-zib-extensions
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.17
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.19
         with:
           version: "4.0"
           ig: resources/ qa/
@@ -57,7 +58,7 @@ jobs:
         continue-on-error: true
       - name: Validate nl-core profiles
         id: validate-nl-core-profiles
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.17
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.19
         with:
           version: "4.0"
           ig: resources/ qa/
@@ -68,10 +69,10 @@ jobs:
         continue-on-error: true
       - name: Validate nl-core extensions
         id: validate-nl-core-extensions
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.17
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.19
         with:
           version: "4.0"
-          ig: ig/
+          ig: resources/ qa/
           recurse: true
           profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore-Extensions
           source:  ${{ steps.get-resources.outputs.nlcore_extensions }}
@@ -79,7 +80,7 @@ jobs:
         continue-on-error: true
       - name: Validate other profiles
         id: validate-other-profiles
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.17
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.19
         with:
           version: "4.0"
           ig: resources/ qa/
@@ -90,7 +91,7 @@ jobs:
         continue-on-error: true
       - name: Validate ConceptMaps
         id: validate-conceptmaps
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.17
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.19
         with:
           version: "4.0"
           ig: resources/ qa/
@@ -101,7 +102,7 @@ jobs:
         continue-on-error: true
       - name: Validate other terminology
         id: validate-other-terminology
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.17
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.19
         with:
           version: "4.0"
           ig: resources/ qa/
@@ -109,9 +110,19 @@ jobs:
           source:  ${{ steps.get-resources.outputs.other_terminology }}
           ignored-issues: known-issues.yml
         continue-on-error: true
+      - name: Validate SearchParameters
+        id: validate-other-searchparameters
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.19
+        with:
+          version: "4.0"
+          ig: resources/ qa/
+          recurse: true
+          source:  ${{ steps.get-resources.outputs.searchparameters }}
+          ignored-issues: known-issues.yml
+        continue-on-error: true
       - name: Validate examples
         id: validate-examples
-        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.17
+        uses: pieter-edelman-nictiz/hl7-fhir-validator-action@v0.19
         with:
           version: "4.0"
           ig: resources/
@@ -146,17 +157,22 @@ jobs:
             with open(step_data["outputs"]["stats-file"], 'r') as sf:
               stats = json.load(sf)
               
-              out_str = f'"{name}" {"succeeded" if step_success else "failed"} with {stats["fatal"]} fatal messages, {stats["error"]} errors, {stats["warning"]} warnings and {stats["information"]} information messages.'
-
-              if not step_success:
+              if "fatal" not in stats:
+                out_str = f'"{name}" failed to run.'
                 github_report   += f"::error::{out_str}%0A"
-                markdown_report += (f"- :x: {out_str}%0A")
-              elif stats["warning"] > 0:
-                github_report   += f"::warning::{out_str}%0A"
-                markdown_report += (f"- :warning: {out_str}%0A")
+                markdown_report += (f"- :skull_and_crossbones: {out_str}%0A") 
               else:
-                github_report   += f"\033[1;32mOk:\033[0m {out_str}%0A"
-                markdown_report += (f"- :heavy_check_mark: {out_str}%0A")
+                out_str = f'"{name}" {"succeeded" if step_success else "failed"} with {stats["fatal"]} fatal messages, {stats["error"]} errors, {stats["warning"]} warnings and {stats["information"]} information messages.'
+
+                if not step_success:
+                  github_report   += f"::error::{out_str}%0A"
+                  markdown_report += (f"- :x: {out_str}%0A")
+                elif stats["warning"] > 0:
+                  github_report   += f"::warning::{out_str}%0A"
+                  markdown_report += (f"- :warning: {out_str}%0A")
+                else:
+                  github_report   += f"\033[1;32mOk:\033[0m {out_str}%0A"
+                  markdown_report += (f"- :heavy_check_mark: {out_str}%0A")
 
           steps_data = json.loads("""${{ toJSON(steps) }}""")
 
@@ -167,6 +183,7 @@ jobs:
           printStatistics("Validate other profiles", "validate-other-profiles")
           printStatistics("Validate ConceptMaps", "validate-conceptmaps")
           printStatistics("Validate other terminology", "validate-other-terminology")
+          printStatistics("Validate SearchParameters", "validate-other-searchparameters")
           printStatistics("Validate examples", "validate-examples")
 
           print(f'::set-output name=result_status::{0 if success else 1}')
