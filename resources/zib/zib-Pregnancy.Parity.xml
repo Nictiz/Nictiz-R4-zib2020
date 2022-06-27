@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-Pregnancy.Parity" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy.Parity" />
+  <name value="ZibPregnancyParity" />
+  <title value="zib Pregnancy Parity" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Pregnancy or gravidity is the condition in which a woman carries a fertilized egg, which grows into an embryo and then a fetus. A pregnancy of between 37 and 42 weeks is considered normal. “Term pregnancy” is 37 to 42 weeks. The term gravidity is also used for the number of times a woman has been pregnant. This and parity - the number of times a woman has given birth - provides insight into the patient’s obstetric history." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Pregnancy-v4.0(2020EN)](https://zibs.nl/wiki/Pregnancy-v4.0(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-pregnancy-v4.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/Pregnancy-v4.0(2020EN)" />
+    <name value="zib Pregnancy-v4.0(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueInteger">
+      <path value="Observation.valueInteger" />
+      <sliceName value="valueInteger" />
+      <short value="Parity" />
+      <definition value="Number of previous pregnancies ending in partum (&gt;= 16w 0d / 112 days)." />
+      <alias value="Pariteit" />
+      <type>
+        <code value="integer" />
+      </type>
+      <mapping>
+        <identity value="zib-pregnancy-v4.0-2020EN" />
+        <map value="NL-CM:7.14.6" />
+        <comment value="Parity" />
+      </mapping>
+    </element>
+    <element id="Observation.component.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
+    </element>
+  </differential>
+</StructureDefinition>
