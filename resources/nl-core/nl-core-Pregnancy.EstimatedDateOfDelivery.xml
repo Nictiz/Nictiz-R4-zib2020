@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="nl-core-Pregnancy-EstimatedDateOfDelivery" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy-EstimatedDateOfDelivery" />
+  <id value="nl-core-Pregnancy.EstimatedDateOfDelivery" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.EstimatedDateOfDelivery" />
   <name value="NlcorePregnancyEstimatedDateOfDelivery" />
-  <title value="nl core Pregnancy EstimatedDateOfDelivery" />
+  <title value="nl core Pregnancy.EstimatedDateOfDelivery" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -21,12 +21,20 @@
   <kind value="resource" />
   <abstract value="false" />
   <type value="Observation" />
-  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-EstimatedDateOfDelivery" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy.EstimatedDateOfDelivery" />
   <derivation value="constraint" />
   <differential>
     <element id="Observation">
       <path value="Observation" />
-      <alias value="nl-core-Pregnancy-EstimatedDateOfDelivery" />
+      <alias value="nl-core-Pregnancy.EstimatedDateOfDelivery" />
+    </element>
+    <element id="Observation.focus">
+      <path value="Observation.focus" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy" />
+      </type>
     </element>
   </differential>
 </StructureDefinition>

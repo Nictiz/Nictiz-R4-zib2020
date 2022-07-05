@@ -38,6 +38,22 @@
         </coding>
       </patternCodeableConcept>
     </element>
+    <element id="Observation.focus">
+      <path value="Observation.focus" />
+      <short value="Pregnancy" />
+      <alias value="Zwangerschap" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy" />
+      </type>
+      <mapping>
+        <identity value="zib-pregnancy-v4.0-2020EN" />
+        <map value="NL-CM:7.14.1" />
+        <comment value="Pregnancy" />
+      </mapping>
+    </element>
     <element id="Observation.value[x]">
       <path value="Observation.value[x]" />
       <slicing>
