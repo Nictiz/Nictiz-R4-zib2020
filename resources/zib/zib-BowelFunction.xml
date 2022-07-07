@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -52,6 +52,140 @@
         <identity value="zib-bowelfunction-v3.1.1-2020EN" />
         <map value="NL-CM:4.15.7" />
         <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:fecalContinence">
+      <path value="Observation.component" />
+      <sliceName value="fecalContinence" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:fecalContinence.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="129008009" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:fecalContinence.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="FecalContinence" />
+      <definition value="Fecal continence is the voluntary control over the excretion of feces." />
+      <alias value="FecesContinentie" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.15.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-bowelfunction-v3.1.1-2020EN" />
+        <map value="NL-CM:4.15.2" />
+        <comment value="FecalContinence" />
+      </mapping>
+    </element>
+    <element id="Observation.component:frequency">
+      <path value="Observation.component" />
+      <sliceName value="frequency" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:frequency.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="162098000" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:frequency.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Frequency" />
+      <definition value="The defecation frequency." />
+      <alias value="Frequentie" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <mapping>
+        <identity value="zib-bowelfunction-v3.1.1-2020EN" />
+        <map value="NL-CM:4.15.4" />
+        <comment value="Frequency" />
+      </mapping>
+    </element>
+    <element id="Observation.component:defecationConsistency">
+      <path value="Observation.component" />
+      <sliceName value="defecationConsistency" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:defecationConsistency.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="443172007" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:defecationConsistency.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="DefecationConsistency" />
+      <definition value="The consistency of the feces indicates the hardness of the stool. The Bristol Stool scale is used to determine this." />
+      <alias value="DefecatieConsistentie" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.15.2--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-bowelfunction-v3.1.1-2020EN" />
+        <map value="NL-CM:4.15.9" />
+        <comment value="DefecationConsistency" />
+      </mapping>
+    </element>
+    <element id="Observation.component:defecationColor">
+      <path value="Observation.component" />
+      <sliceName value="defecationColor" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:defecationColor.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://loinc.org" />
+          <code value="9397-1" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:defecationColor.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="DefecationColor" />
+      <definition value="The color of feces is possibly relevant for identifying underlying diseases, such as bleeding or biliary tract disease." />
+      <alias value="DefecatieKleur" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.15.5--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-bowelfunction-v3.1.1-2020EN" />
+        <map value="NL-CM:4.15.10" />
+        <comment value="DefecationColor" />
       </mapping>
     </element>
   </differential>
