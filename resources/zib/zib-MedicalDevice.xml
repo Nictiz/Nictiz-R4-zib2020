@@ -38,6 +38,11 @@
     <uri value="https://zibs.nl/wiki/Mobility-v3.3(2020EN)" />
     <name value="zib Mobility-v3.3(2020EN)" />
   </mapping>
+  <mapping>
+    <identity value="zib-respiration-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/Respiration-v3.2(2020EN)" />
+    <name value="zib Respiration-v3.2(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="true" />
   <type value="DeviceUseStatement" />
@@ -123,6 +128,19 @@
         <identity value="zib-procedure-v5.2-2020EN" />
         <map value="NL-CM:14.1.7" />
         <comment value="Reversed reference for zib Procedure.MedicalDevice" />
+      </mapping>
+    </element>
+    <element id="DeviceUseStatement.derivedFrom:respiration">
+      <path value="DeviceUseStatement.derivedFrom" />
+      <sliceName value="respiration" />
+      <short value="AdministrationDevice" />
+      <definition value="Device used for administering extra oxygen to the patient." />
+      <alias value="ToedieningHulpmiddel" />
+      <max value="1" />
+      <mapping>
+        <identity value="zib-respiration-v3.2-2020EN" />
+        <map value="NL-CM:12.5.13" />
+        <comment value="Reversed reference for zib Respiration.AdministrationDevice" />
       </mapping>
     </element>
     <element id="DeviceUseStatement.timing[x]">
