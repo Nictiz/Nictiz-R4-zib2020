@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-Patient.LifeStance" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-Patient.LifeStance" />
+  <name value="ExtPatientLifeStance" />
+  <title value="ext Patient.LifeStance" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The LifeStance concept of zib LifeStance." />
+  <purpose value="This extension represents the LifeStance concept of [zib LifeStance v3.2(2020)](https://zibs.nl/wiki/LifeStance-v3.2(2020EN))" />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-lifestance-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/LifeStance-v3.2(2020EN)" />
+    <name value="zib LifeStance-v3.2(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="Patient" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension">
+      <path value="Extension" />
+      <max value="1" />
+    </element>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-Patient.LifeStance" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="LifeStance" />
+      <definition value="Patient’s life stance and/or religion." />
+      <alias value="Levensovertuiging" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.5.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-lifestance-v3.2-2020EN" />
+        <map value="NL-CM:7.5.2" />
+        <comment value="LifeStance" />
+      </mapping>
+    </element>
+    <element id="Extension.value[x].extension">
+      <path value="Extension.value[x].extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Extension.value[x].extension:comment">
+      <path value="Extension.value[x].extension" />
+      <sliceName value="comment" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Comment" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Extension.value[x].extension:comment.value[x]">
+      <path value="Extension.value[x].extension.value[x]" />
+      <short value="Comment" />
+      <definition value="Explanation that reflects the importance of religion or life stance for the patient, for example how much value the patient attaches to rituals and the like." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-lifestance-v3.2-2020EN" />
+        <map value="NL-CM:7.5.3" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
