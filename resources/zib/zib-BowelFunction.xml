@@ -39,6 +39,28 @@
         <comment value="BowelFunction" />
       </mapping>
     </element>
+    <element id="Observation.extension">
+      <path value="Observation.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Observation.extension:stoma">
+      <path value="Observation.extension" />
+      <sliceName value="stoma" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-BowelFunction.Stoma" />
+      </type>
+      <isModifier value="false" />
+    </element>
     <element id="Observation.note">
       <path value="Observation.note" />
       <max value="1" />
@@ -96,6 +118,10 @@
         <comment value="FecalContinence" />
       </mapping>
     </element>
+    <element id="Observation.component:fecalContinence.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
+    </element>
     <element id="Observation.component:frequency">
       <path value="Observation.component" />
       <sliceName value="frequency" />
@@ -123,6 +149,10 @@
         <map value="NL-CM:4.15.4" />
         <comment value="Frequency" />
       </mapping>
+    </element>
+    <element id="Observation.component:frequency.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
     <element id="Observation.component:defecationConsistency">
       <path value="Observation.component" />
@@ -156,6 +186,10 @@
         <comment value="DefecationConsistency" />
       </mapping>
     </element>
+    <element id="Observation.component:defecationConsistency.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
+    </element>
     <element id="Observation.component:defecationColor">
       <path value="Observation.component" />
       <sliceName value="defecationColor" />
@@ -187,6 +221,10 @@
         <map value="NL-CM:4.15.10" />
         <comment value="DefecationColor" />
       </mapping>
+    </element>
+    <element id="Observation.component:defecationColor.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
   </differential>
 </StructureDefinition>

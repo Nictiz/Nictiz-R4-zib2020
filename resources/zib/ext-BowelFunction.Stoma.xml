@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-BowelFunction.Stoma" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-BowelFunction.Stoma" />
+  <name value="ExtBowelFunctionStoma" />
+  <title value="ext BowelFunction.Stoma" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The Stoma concept of zib BowelFunction." />
+  <purpose value="This extension represents the Stoma concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) BowelFunction-v3.1.1(2020EN)](https://zibs.nl/wiki/BowelFunction-v3.1.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-bowelfunction-v3.1.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/BowelFunction-v3.1.1(2020EN)" />
+    <name value="zib BowelFunction-v3.1.1(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="Observation" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-BowelFunction.Stoma" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="Stoma" />
+      <definition value="Stoma describes the presence of an unnatural, surgically created opening. If the patient has a stoma, the type of stoma must be entered along with the date on and location at which the stoma and any stoma pouches were placed. An comment can also be entered." />
+      <alias value="Stoma" />
+      <type>
+        <code value="Reference" />
+      </type>
+      <mapping>
+        <identity value="zib-bowelfunction-v3.1.1-2020EN" />
+        <map value="NL-CM:4.15.3" />
+        <comment value="Stoma" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
