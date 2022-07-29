@@ -85,7 +85,7 @@
         <key value="sd-pg-03" />
         <severity value="error" />
         <human value="If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist." />
-        <expression value="(mapping.select(map.exists() and comment.contains(' (implicit, main mapping is on ').not()).anyTrue() and $this.indexOf('.') != -1) implies definition.exists()" />
+        <expression value="(mapping.select(map.exists() and comment.contains(' (implicit, main mapping is on ').not()).anyTrue() and id.indexOf('.') != -1 and mapping.select(map.endsWith('.1').not()).anyTrue()) implies definition.exists()" />
         <source value="https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4" />
       </constraint>
       <constraint>
