@@ -24,6 +24,11 @@
     <name value="zib MedicalDevice-v3.3.1(2020EN)" />
   </mapping>
   <mapping>
+    <identity value="zib-procedure-v5.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/Procedure-v5.2(2020EN)" />
+    <name value="zib Procedure-v5.2(2020EN)" />
+  </mapping>
+  <mapping>
     <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
     <uri value="https://zibs.nl/wiki/FunctionalOrMentalStatus-v3.2(2020EN)" />
     <name value="zib FunctionalOrMentalStatus-v3.2(2020EN)" />
@@ -90,6 +95,34 @@
         <identity value="zib-medicaldevice-v3.3.1-2020EN" />
         <map value="NL-CM:10.1.14" />
         <comment value="EndDate (implicit, main mapping is on DeviceUseStatement.timingPeriod.end)" />
+      </mapping>
+    </element>
+    <element id="DeviceUseStatement.derivedFrom">
+      <path value="DeviceUseStatement.derivedFrom" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="DeviceUseStatement.derivedFrom:procedure">
+      <path value="DeviceUseStatement.derivedFrom" />
+      <sliceName value="procedure" />
+      <short value="Procedure" />
+      <definition value="The procedure which has the purpose if placing this product in or on the body." />
+      <comment value="Please note that on a functional level, zib Procedure references zib MedicalDevice, but in FHIR this direction is reversed." />
+      <alias value="Verrichting" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-event" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-request" />
+      </type>
+      <mapping>
+        <identity value="zib-procedure-v5.2-2020EN" />
+        <map value="NL-CM:14.1.7" />
+        <comment value="Reversed reference for zib Procedure.MedicalDevice" />
       </mapping>
     </element>
     <element id="DeviceUseStatement.timing[x]">
