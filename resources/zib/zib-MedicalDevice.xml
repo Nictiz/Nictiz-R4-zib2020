@@ -38,6 +38,11 @@
     <uri value="https://zibs.nl/wiki/Mobility-v3.3(2020EN)" />
     <name value="zib Mobility-v3.3(2020EN)" />
   </mapping>
+  <mapping>
+    <identity value="zib-helpfromothers-v3.0.1-202EN" />
+    <uri value="https://zibs.nl/wiki/HelpFromOthers-v3.01(2020EN)" />
+    <name value="zib HelpFromOthers-v3.01(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="true" />
   <type value="DeviceUseStatement" />
@@ -123,6 +128,22 @@
         <identity value="zib-procedure-v5.2-2020EN" />
         <map value="NL-CM:14.1.7" />
         <comment value="Reversed reference for zib Procedure.MedicalDevice" />
+      </mapping>
+    </element>
+    <element id="DeviceUseStatement.derivedFrom:abilitytoperformmouthcareactivities">
+      <path value="DeviceUseStatement.derivedFrom" />
+      <sliceName value="abilitytoperformmouthcareactivities" />
+      <short value="Prosthesis" />
+      <definition value="Information on the dental aids used by the patient." />
+      <alias value="Prothese" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-AbilityToPerformMouthcareActivities" />
+      </type>
+      <mapping>
+        <identity value="zib-helpfromothers-v3.0.1-202EN" />
+        <map value="NL-CM:4.13.4" />
+        <comment value="Reversed reference for zib AbilityToPerformMouthcareActivities.Prosthesis" />
       </mapping>
     </element>
     <element id="DeviceUseStatement.timing[x]">
