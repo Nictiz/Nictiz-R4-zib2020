@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Immunization xmlns="http://hl7.org/fhir">
+   <id value="nl-core-Vaccination-event-03"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Vaccination-event"/>
+   </meta>
+   <!-- FarmaceutischProduct -->
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Vaccination.PharmaceuticalProduct" >
+      <valueReference >
+         <reference value="Medication/nl-core-Vaccination-03-PharmaceuticalProduct-01"/>
+         <display value="HEPATITIS A, GEINACTIVEERD, INTACT VIRUS"/>
+      </valueReference>
+   </extension>
+   <!-- StatusToediening -->
+   <status value="completed"/>
+   <!-- VaccineCode reflects the ProductCode in the PharmaceuticalProduct reference -->
+   <vaccineCode>
+      <coding>
+         <system value="http://www.whocc.no/atc"/>
+         <code value="J07BC02"/>
+         <display value="HEPATITIS A, GEINACTIVEERD, INTACT VIRUS"/>
+      </coding>
+   </vaccineCode>
+   <!-- Referentie Patient -->
+   <patient>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </patient>
+   <!-- VaccinatieDatumTijd -->
+   <occurrenceDateTime value="2012-06-03"/>
+   <!-- AnatomischeLocatie -->
+   <site>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="59126009"/>
+         <display value="gehele rechter bovenarm"/>
+      </coding>
+   </site>
+   <!-- Toedieningsweg -->
+   <route>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.9.13.2"/>
+         <code value="2"/>
+         <display value="INTRAMUSCULAIR"/>
+      </coding>
+   </route>
+   <!-- Dosis -->
+   <doseQuantity>
+      <value value="1"></value>
+      <unit value="milliliter"></unit>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mL"></code>
+   </doseQuantity>
+   <!-- Toediener::Zorgverlener -->
+   <performer>
+      <function>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/v2-0443"/>
+            <code value="AP"/>
+            <display value="Administering Provider"></display>
+         </coding>
+      </function>
+      <actor>
+         <reference value="PractitionerRole/nl-core-Vaccination-02-PractitionerRole-01"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role)"/>
+      </actor>
+   </performer>
+   <!-- Toelichting -->
+   <note>
+      <text value="Bezoek aan Guatemala."/>
+   </note>
+   <!-- VaccinatieIntentie -->
+   <reasonCode>
+      <!-- reasonCode:vaccinationIndication -->
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="404904002"/>
+         <display value="Kwetsbare oudere (bevinding)"/>
+      </coding>
+   </reasonCode>
+   <!-- VaccinatieAanleiding -->
+   <reasonCode>
+      <!-- reasonCode:vaccinationMotive -->
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="159731000146104"/>
+         <display value="Immunisatie nodig vanuit rijksvaccinatieprogramma (situatie)"/>
+      </coding>
+   </reasonCode>
+   <!-- VaccinatieZiekteverwerkker -->
+   <protocolApplied>
+      <targetDisease>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="128241005"/>
+            <display value="hepatitis"/>
+         </coding>
+      </targetDisease>
+      <doseNumberString value="n/a"/>
+   </protocolApplied>
+</Immunization>
