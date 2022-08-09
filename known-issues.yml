@@ -532,6 +532,15 @@ nl-core-Mobility-*:
       - message: Slicing cannot be evaluated
         reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
 
+nl-core-PharmaceuticalProduct-randomCode-invalid:
+  ignored issues:
+    Medication.code:
+      - message: None of the codings provided are in the value set 'ProductCodeCodelijsten'
+        reason: This is an example of a resource that purposely contains an invalid code system and code
+    Medication.code.coding[0]:
+      - message: Code System URI 'urn:oid:2.16.840.1.113883.2.4.4.9999' is unknown so the code cannot be validated
+        reason: This is an example of a resource that purposely contains an invalid code system and code
+        
 nl-core-VisualFunction.VisualAid-*:
   ignored issues:
     DeviceUseStatement.reasonReference[*]:
