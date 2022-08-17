@@ -18,6 +18,11 @@
   <purpose value="A derived profile from [zib-LaboratoryTestResult.Specimen](http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult.Specimen) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-laboratorytestresult-v5.1-2022EN" />
+    <uri value="https://zibs.nl/wiki/LaboratoryTestResult-v5.1(2022EN)" />
+    <name value="zib LaboratoryTestResult-v5.1(2022EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="Specimen" />
@@ -40,6 +45,22 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice.Product" />
       </type>
+    </element>
+    <element id="Specimen.container.type">
+      <path value="Specimen.container.type" />
+      <short value="ContainerType" />
+      <definition value="Container type describes the envelope in which the material is collected or sent. Examples include blood tubes, transport container, possibly including culture medium." />
+      <alias value="Containertype" />
+      <binding>
+        <strength value="extensible" />
+        <description value="Note: ValueSet is from Zib Release 2022-1. Adds is-a 706046003 | Specimen receptacle (physical object) |. See [ZIB-1552](https://bits.nictiz.nl/browse/ZIB-1552) for details"/>
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.9--20220610000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-laboratorytestresult-v5.1-2022EN" />
+        <map value="NL-CM:13.1.21" />
+        <comment value="ContainerType" />
+      </mapping>
     </element>
   </differential>
 </StructureDefinition>
