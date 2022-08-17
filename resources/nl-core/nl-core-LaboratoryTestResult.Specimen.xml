@@ -35,6 +35,7 @@
     </element>
     <element id="Specimen.subject">
       <path value="Specimen.subject" />
+      <definition value="Usually a specimen comes directly from the patient (nl-core-Patient), but some material comes from a patient-related object, e.g. a cathetertip (nl-core-LaboratoryTestResult.Specimen.Source). In the latter case, the patient is referenced through the Device.patient." />
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
@@ -43,7 +44,7 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Substance" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice.Product" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen.Source" />
       </type>
     </element>
     <element id="Specimen.container.type">
