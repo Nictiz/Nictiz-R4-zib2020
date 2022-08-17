@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="zib-BladderFunction" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-BladderFunction" />
-  <name value="ZibBladderFunction" />
-  <title value="zib BladderFunction" />
+  <id value="zib-BladderFunction.UrineCatheter.Product" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-BladderFunction.UrineCatheter.Product" />
+  <name value="ZibBladderFunctionUrineCatheterProduct" />
+  <title value="zib BladderFunction.UrineCatheter.Product" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -15,7 +15,7 @@
     </telecom>
   </contact>
   <description value="The primary function of the bladder is temporary storage of urine. A second important function of the bladder is secretion of the stored urine at the moment there is cause to do so. These functions can be disrupted due to various causes." />
-  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) BladderFunction-v3.2(2020EN)](https://zibs.nl/wiki/BladderFunction-v3.2(2020EN))." />
+  <purpose value="This Device resource represents the Product container of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) MedicalDevice v3.3.1 (2020)](https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN)) adjusted to the requirements of [zib BladderFunction-v3.2 (2020)](https://zibs.nl/wiki/BladderFunction-v3.2(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -25,33 +25,21 @@
   </mapping>
   <kind value="resource" />
   <abstract value="true" />
-  <type value="Observation" />
-  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <type value="Device" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice.Product" />
   <derivation value="constraint" />
   <differential>
-    <element id="Observation">
-      <path value="Observation" />
-      <short value="BladderFunction" />
-      <alias value="Blaasfunctie" />
+    <element id="Device.type">
+      <path value="Device.type" />
+      <definition value="A description of the type of catheter." />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.14.2--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-bladderfunction-v3.2-2020EN" />
-        <map value="NL-CM:4.14.1" />
-        <comment value="BladderFunction" />
-      </mapping>
-    </element>
-    <element id="Observation.note">
-      <path value="Observation.note" />
-      <max value="1" />
-    </element>
-    <element id="Observation.note.text">
-      <path value="Observation.note.text" />
-      <short value="Comment" />
-      <definition value="Comment on the urinary (in)continence and treatment." />
-      <alias value="Toelichting" />
-      <mapping>
-        <identity value="zib-bladderfunction-v3.2-2020EN" />
-        <map value="NL-CM:4.14.6" />
-        <comment value="Comment" />
+        <map value="NL-CM:10.1.3" />
+        <comment value="ProductType" />
       </mapping>
     </element>
   </differential>
