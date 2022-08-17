@@ -215,9 +215,7 @@
       <max value="1" />
       <type>
         <code value="Reference" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-ZibHealthProfessionalReference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider-Organization" />
       </type>
       <mapping>
         <identity value="zib-laboratorytestresult-v4.6-2020EN" />
@@ -254,7 +252,12 @@
       <alias value="InterpretatieVlaggen" />
       <binding>
         <strength value="extensible" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.7--20200901000000" />
+        <description value="Use ConceptMap 'InterpretatieVlaggenCodelijst-to-ObservationInterpretationCodes' to translate zib terminology to profile terminology in ValueSet 'ObservationInterpretation'" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.7--20200901000000" >
+          <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
+            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/InterpretatieVlaggenCodelijst-to-ObservationInterpretationCodes" />
+          </extension>
+        </valueSet>
       </binding>
       <mapping>
         <identity value="zib-laboratorytestresult-v4.6-2020EN" />
