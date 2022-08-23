@@ -264,10 +264,12 @@ zib-LaboratoryTestResult.Specimen:
         reason: Zib AnatomicalLocation is implemented as a datatype profile on CodeableConcept, so the datatype is not a Reference.
     Specimen.collection.collected[x]:collectedPeriod:
       - datatype: Period
-        reason: Zib TimeInterval is directly mapped onto Speciment.collection.collectedPeriod and Speciment.collection.duration, as this matchs the way these concepts are used in FHIR. 
+        reason: Zib TimeInterval is directly mapped onto Specimen.collection.collectedPeriod and Speciment.collection.duration, as this matchs the way these concepts are used in FHIR. 
     Specimen.collection.duration:
       - datatype: Duration
-        reason: Zib TimeInterval is directly mapped onto Speciment.collection.collectedPeriod and Speciment.collection.duration, as this matchs the way these concepts are used in FHIR.
+        reason: Zib TimeInterval is directly mapped onto Specimen.collection.collectedPeriod and Speciment.collection.duration, as this matchs the way these concepts are used in FHIR.
+    Specimen.container.type:
+      - ZIB-1552 Binding 'extensible' to allow for missing ContainerTypes in zib profile. Added wider ValueSet in nl-core
     Specimen.container.extension:specimenNumberExtension.value[x]:
       - cardinality: 1..1
         reason: The value in the extension is 1..1, but the extension itself is 0..1, effectively matching the zib cardinality.
