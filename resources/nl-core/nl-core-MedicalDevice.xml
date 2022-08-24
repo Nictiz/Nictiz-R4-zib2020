@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -73,6 +73,15 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.derivedFrom:procedure">
+      <path value="DeviceUseStatement.derivedFrom" />
+      <sliceName value="procedure" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request" />
       </type>
     </element>
     <element id="DeviceUseStatement.device">
