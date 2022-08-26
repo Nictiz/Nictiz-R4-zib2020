@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-LaboratoryTestResult.Specimen.Source" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult.Specimen.Source" />
+  <name value="ZibLaboratoryTestResultSpecimenSource" />
+  <title value="zib LaboratoryTestResult.Specimen.Source" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Source of obtained specimen material or a microbial isolate that is used in a laboratory analysis." />
+  <purpose value="This Device resource represents the SpecimenSource concept from Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) LaboratoryTestResult-v4.6(2020EN)](https://zibs.nl/wiki/LaboratoryTestResult-v4.6(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+    <uri value="https://zibs.nl/wiki/LaboratoryTestResult-v4.6(2020EN)" />
+    <name value="zib LaboratoryTestResult-v4.6(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Device" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Device" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Device">
+      <path value="Device" />
+      <comment value="The Device container from Dutch zib LaboratoryTestResult contains the concept for SpecimenSource." />
+    </element>
+    <element id="Device.deviceName">
+      <path value="Device.deviceName" />
+      <min value="1" />
+    </element>
+    <element id="Device.deviceName.name">
+      <path value="Device.deviceName.name" />
+      <short value="SpecimenSource" />
+      <definition value="If the material is not collected directly from the patient but comes from a patient-related object, e.g. a cathetertip, this source of material can be recorded here." />
+      <alias value="BronMonster" />
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.29" />
+        <comment value="SpecimenSource" />
+      </mapping>
+    </element>
+    <element id="Device.deviceName.type">
+      <path value="Device.deviceName.type" />
+      <definition value="The type of name the device is referred by." />
+      <comment value="If type is unknown, use value `other`." />
+    </element>
+  </differential>
+</StructureDefinition>

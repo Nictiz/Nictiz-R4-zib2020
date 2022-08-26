@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-LaboratoryTestResult-03"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+   </meta>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+         <code value="laboratory"/>
+         <display value="Laboratory"/>
+      </coding>
+   </category>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="395124008"/>
+         <display value="Virologisch onderzoek"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="22314-9"/>
+         <display value="Hepatitis A virus IgM Ab [Presence] in Serum"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <effectiveDateTime value="2012-01-16T10:12:00+00:00"/>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="165996008"/>
+         <display value="hepatitis A-test negatief"/>
+      </coding>
+   </valueCodeableConcept>
+   <specimen>
+      <reference value="Specimen/nl-core-LaboratoryTestResult.Specimen-03"/>
+      <type value="Specimen"/>
+      <display value="monster"/>
+   </specimen>
+</Observation>
