@@ -64,6 +64,58 @@
         <comment value="Frequency" />
       </mapping>
     </element>
+    <element id="CarePlan.activity.detail.performer">
+      <path value="CarePlan.activity.detail.performer" />
+      <short value="CareAid" />
+      <alias value="Hulpverlener" />
+      <alias value="Zorgverlener" />
+      <alias value="Mantelzorger" />
+      <alias value="Zorgaanbieder" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/CareTeam" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/HealthcareService" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider-Organization" />
+      </type>
+      <mapping>
+        <identity value="zib-helpfromothers-v3.01-2020EN" />
+        <map value="NL-CM:3.2.5" />
+        <comment value="CareAid" />
+      </mapping>
+      <mapping>
+        <identity value="zib-helpfromothers-v3.01-2020EN" />
+        <map value="NL-CM:3.2.6" />
+        <comment value="HealthProfessional" />
+      </mapping>
+      <mapping>
+        <identity value="zib-helpfromothers-v3.01-2020EN" />
+        <map value="NL-CM:3.2.7" />
+        <comment value="Caregiver" />
+      </mapping>
+      <mapping>
+        <identity value="zib-helpfromothers-v3.01-2020EN" />
+        <map value="NL-CM:3.2.8" />
+        <comment value="HealthcareProvider" />
+      </mapping>
+    </element>
+    <element id="CarePlan.activity.detail.description">
+      <path value="CarePlan.activity.detail.description" />
+      <short value="Nature" />
+      <definition value="The nature of the help/support provided to the patient." />
+      <alias value="Aard" />
+      <mapping>
+        <identity value="zib-helpfromothers-v3.01-2020EN" />
+        <map value="NL-CM:3.2.3" />
+        <comment value="Nature" />
+      </mapping>
+    </element>
     <element id="CarePlan.note">
       <path value="CarePlan.note" />
       <max value="1" />
