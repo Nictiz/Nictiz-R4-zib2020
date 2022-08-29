@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConceptMap xmlns="http://hl7.org/fhir">
+  <id value="TestUitslagStatusCodelijst-to-ObservationStatus"/>
+  <extension url="http://hl7.org/fhir/StructureDefinition/concept-bidirectional">
+    <valueBoolean value="false"/>
+  </extension>
+  <url value="http://nictiz.nl/fhir/ConceptMap/TestUitslagStatusCodelijst-to-ObservationStatus"/>
+  <version value="0.0.1"/>
+  <name value="TestUitslagStatusCodelijst_to_ObservationStatus"/>
+  <title value="TestUitslagStatusCodelijst to ObservationStatus"/>
+  <status value="draft"/>
+  <publisher value="Nictiz"/>
+  <contact>
+    <name value="Nictiz"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://www.nictiz.nl"/>
+      <use value="work"/>
+    </telecom>
+  </contact>
+  <description value="Maps (test) result status codes as found in the Dutch zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) [LaboratoryTestResult v4.6 (2020)](https://zibs.nl/wiki/LaboratoryTestResult-v4.6(2020EN)) to &lt;http://hl7.org/fhir/r4/valueset-observation-status&gt; as found in `Observation.status` in FHIR R4. This ConceptMap can be used for both the ResultStatusCodelist and TestResultStatusCodelist, which have the same content."/>
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <targetCanonical value="http://hl7.org/fhir/ValueSet/administrative-gender"/>
+  <group>
+    <source value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+    <target value="http://hl7.org/fhir/observation-status"/>
+    <element>
+      <code value="pending"/>
+      <target>
+        <code value="registered"/>
+        <equivalence value="equal"/>
+      </target>
+    </element>
+    <element>
+      <code value="preliminary"/>
+      <target>
+        <code value="preliminary"/>
+        <equivalence value="equal"/>
+      </target>
+    </element>
+    <element>
+      <code value="final"/>
+      <target>
+        <code value="final"/>
+        <equivalence value="equal"/>
+      </target>
+    </element>
+    <element>
+      <code value="appended"/>
+      <target>
+        <code value="amended"/>
+        <equivalence value="equal"/>
+      </target>
+    </element>
+    <element>
+      <code value="corrected"/>
+      <target>
+        <code value="corrected"/>
+        <equivalence value="equal"/>
+      </target>
+    </element>
+  </group>
+</ConceptMap>
