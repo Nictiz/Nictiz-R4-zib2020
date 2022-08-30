@@ -42,18 +42,6 @@
     </element>
     <element id="Condition.category">
       <path value="Condition.category" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="coding" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="1" />
-    </element>
-    <element id="Condition.category:stoma">
-      <path value="Condition.category" />
-      <sliceName value="stoma" />
       <min value="1" />
       <max value="1" />
       <patternCodeableConcept>
@@ -97,6 +85,20 @@
     </element>
     <element id="Condition.onset[x]">
       <path value="Condition.onset[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <type>
+        <code value="dateTime" />
+      </type>
+    </element>
+    <element id="Condition.onset[x]:onsetDateTime">
+      <path value="Condition.onset[x]" />
+      <sliceName value="onsetDateTime" />
       <short value="CreationDate" />
       <definition value="The date on which the stoma was created in the patient. A vague date, such as only the year, is permitted." />
       <alias value="AanlegDatum" />
