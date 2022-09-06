@@ -23,31 +23,31 @@ ext-Procedure.ProcedureMethod:
 pattern-GstdSimpleQuantity:
   ignored issues:
     StructureDefinition:
-      - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
+      - message: "Rule sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
         reason: The title is shown in the hosting profiles as the name of the datatype. "G-Standaard SimpleQuantity" is more descriptive than the title according to the profiling guidelines ("pattern GstdSimpleQuantity").
 
 pattern-GstdQuantity: 
   ignored issues:
     StructureDefinition:
-      - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
+      - message: "Rule sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
         reason: The title is shown in the hosting profiles as the name of the datatype. "G-Standaard Quantity" is more descriptive than the title according to the profiling guidelines ("pattern GstdQuantity").
 
 pattern-NlCoreHealthProfessionalReference:
   ignored issues:
     StructureDefinition:
-      - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
+      - message: "Rule sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
         reason: The title is shown in the hosting profiles as the name of the datatype. "zib HealthProfessional Reference" is more descriptive than the title according to the profiling guidelines ("pattern NlCoreHealthProfessionalReference").
 
 pattern-VitalSigns:
   ignored issues:
     Observation.category:VSCat:
-      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+      - message: "Rule sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
         reason: This slice name is adopted from the Vital Signs profile.
         
 pattern-ZibHealthProfessionalReference:
   ignored issues:
     StructureDefinition:
-      - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
+      - message: "Rule sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
         reason: The title is shown in the hosting profiles as the name of the datatype. "zib HealthProfessional Reference" is more descriptive than the title according to the profiling guidelines ("pattern ZibHealthProfessionalReference").
 
 zib-AddressInformation:
@@ -80,19 +80,19 @@ zib-AllergyIntolerance:
 zib-BloodPressure:
   ignored issues:
     Observation.component:*BP:
-      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+      - message: "Rule sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
         reason: The slices "SystolicBP" and "DiastolicBP" start with an uppercase letter to align with the HL7 Vital Signs profile.
 
 zib-BodyTemperature:
   ignored issues:
     Observation.code.coding:BodyTempCode:
-      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+      - message: "Rule sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
         reason: The slice name "BodyTempCode" is chosen to align with the Vital Signs profile for BodyTemperature.
 
 zib-CareTeam:
   ignored issues:
     CareTeam.participant:*.member:
-      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     CareTeam.name:
@@ -134,7 +134,7 @@ zib-ContactPerson:
 zib-Encounter:
   ignored issues:
     Encounter.reasonReference:*:
-      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     Encounter.class:
@@ -209,7 +209,7 @@ zib-HealthProfessional-PractitionerRole:
 zib-HearingFunction.HearingAid:
   ignored issues:
     DeviceUseStatement.reasonReference:*:
-      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     DeviceUseStatement:
@@ -225,7 +225,7 @@ zib-HearingFunction.HearingAid:
 zib-HearingFunction.HearingAid.Product:
   ignored issues:
     Device.type:
-      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias for ProductType is already present in the base profile where this profile is derived from. It should not be added twice to silence this issue.
   zib deviations:
     Device.identifier:*ProductID:
@@ -275,10 +275,10 @@ zib-LaboratoryTestResult.Specimen:
 zib-MedicalDevice:
   ignored issues:
     DeviceUseStatement.derivedFrom:*:
-      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
     DeviceUseStatement.reasonReference:*:
-      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     DeviceUseStatement.bodySite:
@@ -341,10 +341,10 @@ zib-NursingIntervention:
         reason: The value of the extension can only occur once, but the use of the extension itself is unlimited, making the effective cardinality 0..* as required by the zib.
   ignored issues:
     CarePlan.contributor:requester:
-      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice.
     CarePlan.activity.detail.performer:*:
-      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice. 
 
 zib-Patient:
@@ -429,7 +429,7 @@ zib-Problem:
 zib-Procedure-event:
   ignored issues:
     Procedure.report:textResult:
-      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
         
   zib deviations:
@@ -476,7 +476,7 @@ zib-Vaccination-request:
 zib-VisualFunction.VisualAid:
   ignored issues:
     DeviceUseStatement.reasonReference:*:
-      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     DeviceUseStatement:
@@ -492,7 +492,7 @@ zib-VisualFunction.VisualAid:
 zib-VisualFunction.VisualAid.Product:
   ignored issues:
     Device.type:
-      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias for ProductType is already present in the base profile where this profile is derived from. It should not be added twice to silence this issue.
   zib deviations:
     Device.identifier:*ProductID:
@@ -593,19 +593,19 @@ zib-*Function.*Aid:
 zib-Alert:
   ignored issues:
     Flag:
-      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias "Alert" is already defined in the base profile, so it doesn't need to be defined again in the differential.
 
 zib-Patient:
   ignored issues:
     Patient.address:
-      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+      - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.
     Patient.contact.name:
-      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+      - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.
     Patient.contact.address:
-      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+      - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.
 
 zib-Vaccination-event:
