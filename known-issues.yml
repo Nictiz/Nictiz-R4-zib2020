@@ -20,6 +20,21 @@ ext-Procedure.ProcedureMethod:
       - cardinality: 1..1
         reason: The used extension uses a cardinality of 1..1 on the value[x] element. However, the extension itself is added with a cardinality of 0..1. 
 
+nl-core-PharmaceuticalProduct-randomCode-invalid:
+  ignored issues:
+    Medication.code:
+      - message: None of the codings provided are in the value set 'ProductCodeCodelijsten'
+        reason: This is an example of a resource that purposely contains an invalid code system and code
+    Medication.code.coding[0]:
+      - message: Code System URI 'urn:oid:2.16.840.1.113883.2.4.4.9999' is unknown so the code cannot be validated
+        reason: This is an example of a resource that purposely contains an invalid code system and code
+
+nl-core-PharmaceuticalProduct-INV-invalid:
+  ignored issues:
+    Medication.code:
+      - message: None of the codings provided are in the value set 'ProductCodeCodelijsten'
+        reason: This is an example of a resource that purposely contains an invalid code
+
 pattern-GstdSimpleQuantity:
   ignored issues:
     StructureDefinition:
@@ -537,6 +552,21 @@ nl-core-*:
     "*.code":
       - message: None of the codings provided are in the value set 'VerrichtingTypeCodelijsten'
         reason: The current version of the Validator incorrectly raises an error on combined ValueSets.
+    "*.telecom[*].system.extension[*].value.ofType(CodeableConcept).coding[*]":
+      - message: Display Name for http://terminology.hl7.org/CodeSystem/v3-AddressUse#MC should be one of 'mobile contact)' instead of 'Mobile Phone' for 'http://terminology.hl7.org/CodeSystem/v3-AddressUse#MC'
+        reason: This core display value is redefined by the ValueSet, but this isn't properly recognized by the Validator
+    Condition.code:
+      - message: None of the codings provided are in the value set 'ProbleemNaamCodelijst'
+        reason: This ValueSet contains two SNOMED refset. The terminology servers are unable to determine if a code is part of this refset.
+
+nl-core-AllergyIntolerance*:
+  ignored issues:
+    AllergyIntolerance.code:
+      - message: "None of the codings provided are in the value set 'VeroorzakendeStofCodelijsten'"
+        reason: The terminology servers cannot handle the refset specified in the ValueSet.
+    "AllergyIntolerance.reaction[*].substance":
+      - message: None of the codings provided are in the value set 'SpecifiekeStofCodelijsten'
+        reason: The terminology servers cannot handle the refset specified in the ValueSet.
         
 nl-core-CareTeam-01:
   ignored issues:
@@ -577,14 +607,27 @@ nl-core-Mobility-*:
       - message: Slicing cannot be evaluated
         reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
 
-nl-core-PharmaceuticalProduct-randomCode-invalid:
+nl-core-PharmaceuticalProduct-01:
   ignored issues:
     Medication.code:
       - message: None of the codings provided are in the value set 'ProductCodeCodelijsten'
-        reason: This is an example of a resource that purposely contains an invalid code system and code
-    Medication.code.coding[0]:
-      - message: Code System URI 'urn:oid:2.16.840.1.113883.2.4.4.9999' is unknown so the code cannot be validated
-        reason: This is an example of a resource that purposely contains an invalid code system and code
+        reason: The terminology servers used don't know this code system and wrongly conclude that this is an invalid code.
+      - message: Code System URI 'urn:oid:2.16.840.1.113883.2.4.4.1' is unknown so the code cannot be validated
+        reason: The terminology servers used don't know this code system
+
+nl-core-PharmaceuticalProduct-02:
+  ignored issues:
+    Medication.code:
+      - message: None of the codings provided are in the value set 'ProductCodeCodelijsten'
+        reason: The terminology servers used don't know this code system and wrongly conclude that this is an invalid code.
+      - message: Code System URI 'urn:oid:2.16.840.1.113883.2.4.4.1' is unknown so the code cannot be validated
+        reason: The terminology servers used don't know this code system
+
+nl-core-Vaccination-event-03:
+  ignored issues:
+    Immunization.reasonCode[0]:
+      - message: Profile http://nictiz.nl/fhir/StructureDefinition/nl-core-Vaccination-event, Element matches more than one slice - vaccinationIndication, vaccinationMotive
+        reason: This seems to be caused by the Validator not recognizing the terminology used.
         
 nl-core-VisualFunction.VisualAid-*:
   ignored issues:
