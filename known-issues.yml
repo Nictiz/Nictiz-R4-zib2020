@@ -372,6 +372,9 @@ zib-NursingIntervention:
 
 zib-Patient:
   zib deviations:
+    Patient.extension:nationality.extension:code.value[x]:
+      - cardinality: 1..1
+        reason: Zib Nationality is implemented using the complex core extension patient-nationality. The value[x] element representing the concept Nationality has a 1..1 cardinality, but the "code" part of the extension itself is 0..1, which combines to 0..1 overall.
     Patient.name*:
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
