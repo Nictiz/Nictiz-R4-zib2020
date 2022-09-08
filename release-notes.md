@@ -101,7 +101,8 @@ This document contains release notes per zib, indicating differences with their 
 * Relaxed cardinality of `value[x]` to 0..1 of the conceptual cardinalities of the zib.
 
 ## zib-HelpFromOthers
-* 
+* The mapping on `CarePlan.identifier` has been removed.
+* The SNOMED code on `CarePlan.category.coding:helpFromOthersCode` has been moved to `CarePlan.category`.
 
 ## zib-LaboratoryTestResult
 * In the 2017 implementation, five different profiles were used. This has been reduced to two profiles in the current implementation:
