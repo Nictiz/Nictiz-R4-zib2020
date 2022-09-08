@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="ext-Stoma" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-Stoma" />
-  <name value="ExtStoma" />
-  <title value="ext Stoma" />
+  <id value="ext-StomaReference" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-StomaReference" />
+  <name value="ExtStomaReference" />
+  <title value="ext StomaReference" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -29,13 +29,14 @@
   <differential>
     <element id="Extension.url">
       <path value="Extension.url" />
-      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-Stoma" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-StomaReference" />
     </element>
     <element id="Extension.value[x]">
       <path value="Extension.value[x]" />
       <alias value="Stoma" />
       <type>
         <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Stoma" />
       </type>
     </element>
   </differential>
