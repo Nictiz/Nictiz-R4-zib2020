@@ -528,7 +528,11 @@ zib-VisualFunction.VisualAid.Product:
 unmapped zib concepts:
   - NL-CM:17.2.10: HealthcareProvider.LocationNumber
     reason: This zib concept is problematic to map cleanly to FHIR and it has been deemed too uncommon in practice to warrant an extension.
-
+  - NL-CM:13.1.30: LaboratoryTestResult.InterpretationMethod
+    reason: This zib concept is deemed unneeded and will be removed in the future. See https://bits.nictiz.nl/browse/ZIB-1292 for details.
+  - NL-CM:13.1.34: LaboratoryTestResult.Requester::HealthProfessional
+    reason: This concept is deemed unimplementable and will be removed in the future. See https://bits.nictiz.nl/browse/ZIB-1269 for details.
+    
 ---
 # The following issues are not "real" deviations stemming from design choices, but rather problems that pop up due to
 # shortcomings in tooling, the used terminology server, etc.
