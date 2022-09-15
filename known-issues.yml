@@ -20,6 +20,18 @@ ext-Procedure.ProcedureMethod:
       - cardinality: 1..1
         reason: The used extension uses a cardinality of 1..1 on the value[x] element. However, the extension itself is added with a cardinality of 0..1. 
 
+pattern-GstdSimpleQuantity:
+  ignored issues:
+    StructureDefinition:
+      - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
+        reason: The title is shown in the hosting profiles as the name of the datatype. "G-Standaard SimpleQuantity" is more descriptive than the title according to the profiling guidelines ("pattern GstdSimpleQuantity").
+
+pattern-GstdQuantity: 
+  ignored issues:
+    StructureDefinition:
+      - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
+        reason: The title is shown in the hosting profiles as the name of the datatype. "G-Standaard Quantity" is more descriptive than the title according to the profiling guidelines ("pattern GstdQuantity").
+
 pattern-NlCoreHealthProfessionalReference:
   ignored issues:
     StructureDefinition:
@@ -118,6 +130,31 @@ zib-ContactPerson:
     RelatedPerson.telecom:emailAddresses:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
+
+zib-Encounter:
+  ignored issues:
+    Encounter.reasonReference:*:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+  zib deviations:
+    Encounter.class:
+      - cardinality: 1..1
+        reason: Encounter.class is manadatory by FHIR. The cardinality matches the cardinality of the zib, however, it does not match with the conceptual cardinality concept. This should not be a major problem.
+    Encounter.participant:healthProfessional.individual:
+      - cardinality: 0..1
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent participant element that may exists 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+    Encounter.reasonReference:*:
+      - cardinality: 0..*
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing ContactReason container in FHIR. This container may exists 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+    Encounter.reasonReference:deviatingResult:    
+      - datatype: Reference
+        reason: The datatype mismatch between the zib (string) and FHIR (Reference) is explained by an error in the zib. DeviatingResult is captured with a reference to the zib-LaboratoryTestResult instead of a string value as the zib 2020 incorrectly states. This will be fixed in a future version of the zib (https://bits.nictiz.nl/browse/ZIB-1427).
+    Encounter.reasonReference.extension:comment.value[x]:
+      - cardinality: 0..*
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*, effective) is explained by the missing ContactReason container in FHIR. This container may exists 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+    Encounter.location.location:
+      - cardinality: 0..*
+        reason: The zib has a restricted cardinality of 0..1 for the Location concept (NL-CM:15.1.8). However, this cardianlity is propably too restricted (see <https://bits.nictiz.nl/browse/ZIB-1632> for discussion) and would prevent some practical use cases. Therefore, the cardinality has been left on 0..* in this profile.
         
 zib-FLACCpainScale:
   zib deviations:
@@ -204,8 +241,48 @@ zib-HearingFunction.HearingAid.Product:
       - datatype: string
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
 
+zib-LaboratoryTestResult:
+  ignored issues:
+    Observation.performer:performer:
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+  zib deviations:
+    Observation.status:
+      - cardinality: 1..1
+        reason: Although the equivalent concept is optional in the zib, this element is required in FHIR.
+    Observation.code:
+      - cardinality: 1..1
+        reason: This element is mapped to the concepts PanelOrBattery and TestCode at the same time. PanelOrBattery is marked as optional in the zib, but this is strictly not true; it must be absent if the zib instantiates a singular laboratory test, but is required if the zib instantiates a panel. Therefore, both mappings to this element are in fact required.
+    Observation.value[x]:
+      - datatype: Quantity
+        reason: In FHIR there's no datatype ANY. All stated datatypes in the description can be accommodated using this element (Quantity and CodeableConcept are in fact both supported).
+    Observation.referenceRange.*:
+      - datatype: Quantity
+        reason: The zib concepts ReferenceRangeUpperLimit and ReferenceRangeLowerLimit are defined as datatype ANY, but it is unclear how these concepts should work for anything that is not a Quantity. In addition, there's no obvious way in FHIR to support reference values other than of type Quantity (with the possible exception of String). Until this issue is resolved, support for reference ranges in the profile has been restricted to Quantity. See https://bits.nictiz.nl/browse/ZIB-1703 
+        
+zib-LaboratoryTestResult.Specimen:
+  zib deviations:
+    Specimen.identifier:
+      - cardinality: 0..*
+        reason: Although a single SpecimenId is allowed according to the zib, .identifier is often used for additional identifiers outside the scope of the zib. It's not possible to create a slice or pattern specifically for SpecimenId without further formal requirements by the zib.
+    Specimen.collection.bodySite:
+      - datatype: CodeableConcept
+        reason: Zib AnatomicalLocation is implemented as a datatype profile on CodeableConcept, so the datatype is not a Reference.
+    Specimen.collection.collected[x]:collectedPeriod:
+      - datatype: Period
+        reason: Zib TimeInterval is directly mapped onto Specimen.collection.collectedPeriod and Speciment.collection.duration, as this matches the way these concepts are used in FHIR. 
+    Specimen.collection.duration:
+      - datatype: Duration
+        reason: Zib TimeInterval is directly mapped onto Specimen.collection.collectedPeriod and Speciment.collection.duration, as this matches the way these concepts are used in FHIR.
+    Specimen.container.extension:specimenNumberExtension.value[x]:
+      - cardinality: 1..1
+        reason: The value in the extension is 1..1, but the extension itself is 0..1, effectively matching the zib cardinality.
+        
 zib-MedicalDevice:
   ignored issues:
+    DeviceUseStatement.derivedFrom:*:
+      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
     DeviceUseStatement.reasonReference:*:
       - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
@@ -215,7 +292,7 @@ zib-MedicalDevice:
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
     DeviceUseStatement.reasonReference:zibMedicalDeviceReference:
       - short: zib MedicalDevice reference
-        reason: This is a special slice that represent all situations where zib MedicalDevice is referenced from another zib. Because this reference is reversed in FHIR, this profile needs to contain the mappings for the references in _all_ these zibs. A common slice is defined with an indicative name rather than the name of all the targets. 
+        reason: This is a special slice that represents situations where zib MedicalDevice is referenced from another zib through the reasonReference element. Because this reference is reversed in FHIR, this profile needs to contain the mappings for the references in _all_ these zibs. A common slice is defined with an indicative name rather than the name of all the targets. 
     DeviceUseStatement.timing[x]:timingPeriod.end:
       - short: EndDate
         reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
@@ -337,6 +414,18 @@ zib-Patient:
       - cardinality: 0..*
         reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
 
+zib-PharmaceuticalProduct:
+  zib deviations:
+    Medication.ingredient:
+      - datatype: BackboneElement
+        reason: The appropriate representation of ingredient in FHIR is Medication.ingredient. The container can be properly mapped to this BackboneElement.
+    Medication.ingredient.strength:
+      - datatype: Ratio
+        reason: The `ingredient.strenght` acts as a container for the two child elements and can the be correclty mapped to the zib Concentration container. 
+    Medication.ingredient.item[x]:
+      - cardinality: 1..1
+        reason: There is a known cardinality mismatch between FHIR (1..1) and the zib (0..1) for the .ingredient.item element which is nested in the optional .ingredient container. This constraint was already in place for the STU3 profile. Moreover this does not seem to be a concern for the Medication Proces information standard will use this profile as they will make this element required in their dataset.
+
 zib-Problem:
   zib deviations:
     Condition.bodySite:
@@ -438,9 +527,24 @@ issues should occur: false
       - message: None of the codings provided are in the value set 'Consent Scope Codes' (http://hl7.org/fhir/ValueSet/consent-scope), and a coding should come from this value set unless it has no suitable code
         reason: see above
 
+nl-core-*:
+  ignored issues:
+    "*.address*.country.extension[0].value*":
+      - message: None of the codings provided are in the value set 'LandCodelijsten' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.10--20200901000000), and a coding from this value set is required) (codes = urn:oid:2.16.840.1.113883.2.4.4.16.34#6030)
+        reason: The current version of the Validator incorrectly raises an error on combined ValueSets.
+    "*.code":
+      - message: None of the codings provided are in the value set 'VerrichtingTypeCodelijsten'
+        reason: The current version of the Validator incorrectly raises an error on combined ValueSets.
+        
 nl-core-CareTeam-01:
   ignored issues:
     CareTeam.participant[*]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+
+nl-core-Encounter-01:
+  ignored issues:
+    Encounter.participant[*]:
       - message: Slicing cannot be evaluated
         reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
 
@@ -456,12 +560,30 @@ nl-core-MedicalDevice-*:
       - message: Slicing cannot be evaluated
         reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
 
+nl-core-*-DeviceUseStatement-*:
+  ignored issues:
+    DeviceUseStatement.derivedFrom[*]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+    DeviceUseStatement.reasonReference[*]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+
 nl-core-Mobility-*:
   ignored issues:
     DeviceUseStatement.reasonReference[*]:
       - message: Slicing cannot be evaluated
         reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
 
+nl-core-PharmaceuticalProduct-randomCode-invalid:
+  ignored issues:
+    Medication.code:
+      - message: None of the codings provided are in the value set 'ProductCodeCodelijsten'
+        reason: This is an example of a resource that purposely contains an invalid code system and code
+    Medication.code.coding[0]:
+      - message: Code System URI 'urn:oid:2.16.840.1.113883.2.4.4.9999' is unknown so the code cannot be validated
+        reason: This is an example of a resource that purposely contains an invalid code system and code
+        
 nl-core-VisualFunction.VisualAid-*:
   ignored issues:
     DeviceUseStatement.reasonReference[*]:
@@ -491,3 +613,9 @@ zib-Patient:
     Patient.contact.address:
       - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.
+
+zib-Vaccination-event:
+  zib deviations:
+    Immunization.performer:administrator.actor:
+      - cardinality: 1..1
+        reason: The actor as part of the performer is required, but the performer itself optional. The profile is therefore still zib compliant.

@@ -61,6 +61,14 @@ This document contains release notes per zib, indicating differences with their 
 * The code on `Observation.component:drugOrMedicationType.code` has changed to 105590001
 * The code on `Observation.component:amount.code` has changed to 363908000
 
+## zib-Encounter
+* ContactWith is mapped on a slice of `Encounter.participant`.
+* `Encounter.participant.type` now honours the maximum cardinality of HealthProfessionalRole. 
+* `Encounter.period.start` changed to cardinality 0 .. 1 due to the zibs conceptual cardinalities concept.
+* The mapping of concepts Problem, Procedure and DeviatingResult is moved to `Encounter.reasonReference`.
+* The mapping of Location is moved to `Encounter.location.location`.
+* Reference to other profiles not accounted for by the zib have been removed.
+
 ## zib-EpisodeOfCare
 * New zib in 2020. However, in the zib2017 package the nl-core-episodeofcare profile exists, which is not based on a zib but included some use case concepts. This zib profile supersedes this profile.
 * The extension EpisodOfCare-Title has been replaced by ext-EpisodeOfCare.EpisodeOfCareName because this zib concept is functionally equivalent.
@@ -95,6 +103,13 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-HearingFunction
 * Changed fixed slice on `.code.coding` to a pattern on `.code`.
 * Relaxed cardinality of `value[x]` to 0..1 of the conceptual cardinalities of the zib.
+
+## zib-LaboratoryTestResult
+* In the 2017 implementation, five different profiles were used. This has been reduced to two profiles in the current implementation:
+  * The profile HCIM LaboratoryTestResult DiagnosticReport was designed to capture conclusions from zib LaboratoryTestResult, but this has never been used and is not explicitly defined by the zib.
+  * The profile HCIM LaboratoryTestResult Specimen Isolate was used to represent the Specimen container which instantiates a microorganism from a specimen (that is, the Microorganism concept is used). However, it has been found that a single Specimen profile is sufficient to represent both the specimen itself and any isolate from it. To represent both a specimen and the material from which it came, two instances of this profile are needed.
+  * The profile HCIM LaboratoryTestResult Substance was used to represent the Microorganism concept as well.
+* The concept Performer was added, mapped onto `Observation.performer`.
 
 ## zib-LivingSituation
 * Added two new concepts and modelled them on `Observation.component:homeAdaption` and `Observation.component:livingCondition`.
