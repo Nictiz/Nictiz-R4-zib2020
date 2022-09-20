@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="ext-CopyIndicator" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator" />
-  <name value="ExtCopyIndicator" />
-  <title value="ext CopyIndicator" />
+  <id value="ext-EdifactReferenceNumber" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber" />
+  <name value="ExtEdifactReferenceNumber" />
+  <title value="ext EdifactReferenceNumber" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -14,7 +14,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="This extension provides an indication whether the resource is original (false) or a copy from a different source (true)." />
+  <description value="This extension can be used to register the reference number of the Edifact message from which (a part of) this healthcare information originates." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -26,23 +26,7 @@
   <abstract value="false" />
   <context>
     <type value="element" />
-    <expression value="MedicationStatement" />
-  </context>
-  <context>
-    <type value="element" />
-    <expression value="MedicationDispense" />
-  </context>
-  <context>
-    <type value="element" />
     <expression value="Observation" />
-  </context>
-  <context>
-    <type value="element" />
-    <expression value="Specimen" />
-  </context>
-  <context>
-    <type value="element" />
-    <expression value="Device" />
   </context>
   <type value="Extension" />
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
@@ -54,20 +38,21 @@
     </element>
     <element id="Extension.url">
       <path value="Extension.url" />
-      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber" />
     </element>
     <element id="Extension.value[x]">
       <path value="Extension.value[x]" />
-      <short value="CopyIndicator" />
-      <definition value="An indication whether the resource is original (false) or a copy from a different source (true)." />
-      <alias value="KopieIndicator" />
+      <short value="EdifactReferenceNumber" />
+      <definition value="A reference number of the Edifact message from which (a part of) this healthcare information originates." />
+      <comment value="Edifact MEDLAB 1.0 has the intended reference number in segment IDE 'Identificatie materiaal/aanvraag' field 2 Identificatienummer" />
+      <alias value="EdifactReferentienummer" />
       <type>
-        <code value="boolean" />
+        <code value="string" />
       </type>
       <mapping>
         <identity value="lu-dataset-laboratory-exchange-20210222" />
-        <map value="lu-concept-v2-4297" />
-        <comment value="CopyIndicator" />
+        <map value="lu-concept-v2-4409" />
+        <comment value="EdifactReferenceNumber" />
       </mapping>
     </element>
   </differential>
