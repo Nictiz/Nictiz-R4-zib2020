@@ -455,12 +455,9 @@ zib-PharmaceuticalProduct:
       - cardinality: 1..1
         reason: There is a known cardinality mismatch between FHIR (1..1) and the zib (0..1) for the .ingredient.item element which is nested in the optional .ingredient container. This constraint was already in place for the STU3 profile. Moreover this does not seem to be a concern for the Medication Proces information standard will use this profile as they will make this element required in their dataset.
 
-zib-Payer:
+zib-Payer.PayerPerson:
   zib deviations:
-    Coverage.identifier:insurantNumber:
-      - datatype: Identifier
-        reason: The value of an Identifier has datatype string, which corresponds to the string datatype of zib concept InsurantNumber.
-    Coverage.payor:payerPerson.extension:bankInformation:
+    Coverage.extension:bankInformation:
       - datatype: Extension
         reason: The (complex) extension acts as a container for three subextensions that each contain a zib subconcept.
 
@@ -723,9 +720,17 @@ zib-Patient:
       - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.
         
+zib-Payer.InsuranceCompany:
+  ignored issues:
+    Coverage.payor:
+      - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
+        reason: The definition of the zib concept 'InsuranceCompany', which is the root of a container, does not contain a meaningful definition. 
+
 zib-Payer-Organization:
   ignored issues:
     Organization.address:
+      - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
+        reason: The short description is defined on the datatype profile and not repeated in the differential.
       - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined on the datatype profile and not repeated in the differential. 
 
