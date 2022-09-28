@@ -32,21 +32,19 @@
     <element id="Consent">
       <path value="Consent" />
       <short value="TreatmentDirective" />
-      <comment value="A straightforward and fitting mapping of zib TreatmentDirective2 to FHIR was not possible. The main considerations were between mapping to the Consent and CarePlan resource. Unfortunately, the Consent resource does not have full support for treatment directives yet as its main focus was modelling Patient's privacy consents. However, it seems to be the most fitting resource for the zib intention. The zib describes a mutual agreement about treatments, not necessarily the direct actions or policy for treatments. The latter would be more fitting in the CarePlan resource. Future migration to a higher version of FHIR or the zib will result in the reevaluation of the mapping." />
+      <comment value="A straightforward and accurate mapping of zib TreatmentDirective2 to FHIR is not possible. The main consideration is to choose between the Consent and CarePlan resource. Unfortunately, the Consent resource does not have full support for treatment directives yet as its main focus is to model Patient's privacy consents. Regardless, it seems to be the best match to represent the intention of the zib, as both the resource and the zib cover a mutual agreement about treatments and not per se the resulting actions or policy for treatments, which would better be handled using the CarePlan resource. Future migration to a laterversion of FHIR or the zib will result in the reevaluation of the mapping." />
       <alias value="BehandelAanwijzing" />
       <constraint>
         <key value="zib-TreatmentDirective2-1" />
         <severity value="error" />
         <human value="`extension.additionalAdvanceDirective` may only be used for AdvanceDirective references in addition to first reference in `.source[x]`." />
         <expression value="extension.where(url = 'http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.AdvanceDirective').empty() or source.exists()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective2" />
       </constraint>
       <constraint>
         <key value="zib-TreatmentDirective2-2" />
         <severity value="error" />
         <human value="If the specificationOther extension is used, `.provision.type` MUST be absent and vice versa" />
         <expression value="(extension.where(url = 'http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.SpecificitionOther').exists() and provision.type.exists()).not()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective2" />
       </constraint>
       <mapping>
         <identity value="zib-treatmentdirective2-v1.0-2020EN" />
@@ -97,6 +95,7 @@
     </element>
     <element id="Consent.extension:additionalAdvanceDirective.value[x]">
       <path value="Consent.extension.value[x]" />
+      <comment value="`Consent.source:sourceReference` is the primary target for referencing zib AdvanceDirective (zib concept NL-CM:2.2.8). However, the cardinality of `Consent.source[x]` is restricted to 0..1 If more than one AdvanceDirective needs to be referenced, the _additional_ references can be communicated using this extension. If this extension is used, `Consent.source:sourceReference` SHALL be populated and it SHALL not contain the same reference as this extension." />
       <condition value="zib-TreatmentDirective2-1" />
     </element>
     <element id="Consent.modifierExtension">
@@ -182,6 +181,7 @@
       <sliceName value="sourceReference" />
       <short value="AdvanceDirective" />
       <definition value="A (written) statement in which a person indicates wishes concerning future medical action, in the event that this person is at that point no longer (deemed) capable of taking decisions on the matter." />
+      <comment value="The cardinality of this `Consent.source[x]` element is restricted to 0..1, which is narrower than AdvanceDirective concept (NL-CM:2.2.8) specified in the HCIM TreatmentDirective2. If additional AdvanceDirective references are needed, the additionalAdvanceDirective extension can be used _in addition to_ this element. If the additionalAdvanceDirective extension is used, this element SHALL be populated and it SHALL not contain a refence that is also present in the extension." />
       <alias value="Wilsverklaring" />
       <type>
         <code value="Reference" />
@@ -224,7 +224,7 @@
     <element id="Consent.provision.type">
       <path value="Consent.provision.type" />
       <short value="TreatmentDecision" />
-      <definition value="The joint decision taken with regard to the desirability of performing the indicated treatment. If the agreement is 'Other', 'Specification Other' shall contain the instructions for whether or not to carry out the treatment. Implementers SHALL support the SpecificationOther extension on `.provision.type` for this." />
+      <definition value="The joint decision taken with regard to the desirability of performing the indicated treatment. If the agreement is 'Other', 'Specification Other' shall contain the instructions for whether or not to carry out the treatment. Implementers SHALL support the SpecificationOther modifier extension on `.provision.type` for this." />
       <alias value="BehandelBesluit" />
       <condition value="zib-TreatmentDirective2-2" />
       <binding>
@@ -337,6 +337,10 @@
         <map value="NL-CM:2.2.3" />
         <comment value="Treatment" />
       </mapping>
+    </element>
+    <element id="Consent.provision.provision">
+      <path value="Consent.provision.provision" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Consent#Consent.provision" />
     </element>
   </differential>
 </StructureDefinition>
