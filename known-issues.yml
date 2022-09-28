@@ -141,14 +141,16 @@ zib-ContactPerson:
     RelatedPerson.telecom:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
-      - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
     RelatedPerson.telecom:telephoneNumbers:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
     RelatedPerson.telecom:emailAddresses:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
+  additional notes:
+    RelatedPerson.telecom:
+      - cardinality: 0..*
+        reason: There's a cardinality mismatch between zib ContactPerson (0..1) and FHIR (0..*), although for the mapping of zib Payer in the ContactPerson profile the cardinalities match. The mismatch is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
 
 zib-Encounter:
   ignored issues:
@@ -396,9 +398,6 @@ zib-Patient:
     Patient.telecom*:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
-    Patient.telecom:
-      - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
     Patient.address:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
@@ -442,6 +441,10 @@ zib-Patient:
         reason: The mapping is placed on the extension and not on the value[x] because of the nature of this extension. The extension itself contains a valueCoding that gets the zibs value. This datatype matches the zib CD type.
       - cardinality: 0..*
         reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
+  additional notes:
+    Patient.telecom:
+      - cardinality: 0..*
+        reason: There's a cardinality mismatch between zib Patient (0..1) and FHIR (0..*), although for the mapping of zib Payer in the Patient profile the cardinalities match. The mismatch is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
 
 zib-PharmaceuticalProduct:
   zib deviations:
@@ -455,11 +458,20 @@ zib-PharmaceuticalProduct:
       - cardinality: 1..1
         reason: There is a known cardinality mismatch between FHIR (1..1) and the zib (0..1) for the .ingredient.item element which is nested in the optional .ingredient container. This constraint was already in place for the STU3 profile. Moreover this does not seem to be a concern for the Medication Proces information standard will use this profile as they will make this element required in their dataset.
 
+zib-Payer.InsuranceCompany:
+  zib deviations:
+    Coverage.payor:
+      - cardinality: 1..1
+        reason: The cardinality of the zib-concept InsuranceCompany (0..1) mismatches FHIR (1..1). Between the zib concepts InsuranceCompany and PayerPerson, a minimum of 1 must be selected. If one uses the zib-Payer.InsuranceCompany profile, the choice has been made to apply the InsuranceCompany concept, therefore a cardinality of 1..1 can be used.
+
 zib-Payer.PayerPerson:
   zib deviations:
     Coverage.extension:bankInformation:
       - datatype: Extension
         reason: The (complex) extension acts as a container for three subextensions that each contain a zib subconcept.
+    Coverage.payor:
+      - cardinality: 1..1
+        reason: The cardinality of the zib-concept PayerPerson (0..1) mismatches FHIR (1..1). Between the zib concepts InsuranceCompany and PayerPerson, a minimum of 1 must be selected. If one uses the zib-Payer.PayerPerson profile, the choice has been made to apply the PayerPerson concept, therefore a cardinality of 1..1 can be used.
 
 zib-Payer-Organization:
   zib deviations:
@@ -475,8 +487,6 @@ zib-Payer-Organization:
     Organization.address:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
-      - cardinality: 0..*
-        reason: The zib AddressInformation may be represented using multiple FHIR Address instances, hence the cardinality is wider.
 
 zib-Problem:
   zib deviations:
