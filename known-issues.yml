@@ -350,13 +350,7 @@ zib-NameInformation:
     HumanName.family.extension:*.value[x]:
       - cardinality: 1..1
         reason: The value of the extension is required, but the extension itself is optional, making the effective cardinality 0..1 as required by the zib.
-        
-zib-MUSTScore:
-  zib deviations:
-    Observation.note.text:
-      - cardinality: 1..1
-        reason: Observation.note has cardinality 0..1, making the cardinality of Observation.note.text effectively 0..1 as required by the zib.
-        
+                
 zib-NameInformation.GivenName:
   zib deviations:
     HumanName.given:
