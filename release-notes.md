@@ -122,7 +122,7 @@ This document contains release notes per zib, indicating differences with their 
 * The comment element is mapped on `Observation.note.text` instead of `Observation.comment`.
 
 ## zib-MUSTScore
-* The datatype of `Observation.value[x]` (zib concept TotalScore) element has been changed from Quantity to Integer, and minimum and maximum allowed values of 0 and 5 respectively are applied.
+* The datatype of `Observation.value[x]` (zib concept TotalScore) element has been changed from Quantity to Integer, and minimum and maximum allowed values of 0 and 6 respectively are applied.
 * The code on `Observation.component:bmiScore.code` has changed to 4005003 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
 * The code on `Observation.component:weightLossScore.code` has changed to 4005004 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
 * The code on `Observation.component:illnessScore.code` has changed to 4005005 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
