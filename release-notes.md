@@ -186,9 +186,9 @@ This document contains release notes per zib, indicating differences with their 
 * The datatype for PackYears has been changed from Quantity to integer to align with the functional definition and the Quantity datatype does not bring additional benefits to justify not aligning with the zib.
 
 ## zib-TreatmentDirective2
-* This is a new zib loosely based on the previous zib TreatmentDirective. Below are the most relevant changes compared to the previous zib and the STU3 profile are described.
-* Removed the modifier extension `treatmentPermitted`, which is now mapped to `Consent.provision.type`.
-* Added a modifierExtension on `Consent.provision.type` to capture zib concept SpecificationOther.
+* This is a new zib loosely based on the previous zib TreatmentDirective. Below the most relevant changes compared to the previous zib and the STU3 profile are described.
+* Removed the modifierExtension `treatmentPermitted`, which is now mapped to `Consent.provision.type`.
+* Added a modifierExtension to capture zib concept SpecificationOther.
 * Removed `treatment` extension, which is now mapped to `Consent.provision.code`.
 * Removed `verification` extension because the related functional concept has been removed in the zib.
 * Added guidance for mandatory elements `Consent.status`, `Consent.scope` and `Consent.policy` or `Consent.policyRule`.
