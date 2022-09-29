@@ -142,7 +142,7 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-NutritionAdvice
 * References not accounted for by the zib have been removed on `NutritionOrder.allergyIntolerance`, `NutritionOrder.encounter` and `NutritionOrder.orderer`.
 * The incorrect mapping of Consistency to `NutritionOrder.oralDiet.texture.foodType.text` has been removed. This concept is not used to provide information on the consistency of nutrition.
-* Added a new zib element Indication::Problem (id: NL-CM:7.11.5) on the extension `NutritionOrder.extension:problem`
+* New concept Indication mapped on the extension `NutritionOrder.extension:indication`.
 * The comment extension has been replaced by a mapping to `NutritionOrder.note.text`.
 
 ## zib-Patient

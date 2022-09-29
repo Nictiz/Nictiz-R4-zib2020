@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -37,12 +37,14 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
-    <element id="NutritionOrder.extension:problem">
+    <element id="NutritionOrder.extension:indication">
       <path value="NutritionOrder.extension" />
-      <sliceName value="problem" />
+      <sliceName value="indication" />
+      <min value="0" />
     </element>
-    <element id="NutritionOrder.extension:problem.value[x]">
+    <element id="NutritionOrder.extension:indication.value[x]">
       <path value="NutritionOrder.extension.value[x]" />
       <type>
         <code value="Reference" />
