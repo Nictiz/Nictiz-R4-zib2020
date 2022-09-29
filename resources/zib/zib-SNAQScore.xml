@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -38,14 +38,12 @@
         <severity value="error" />
         <human value="If one of the component codes is present, all SHALL be present." />
         <expression value="component.where(code.coding.system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1' and code.coding.code.subsetOf('4006003'|'4006004'|'4006005')).count().subsetOf(0|3)" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-SNAQScore" />
       </constraint>
       <constraint>
         <key value="zib-SNAQScore-2" />
         <severity value="error" />
         <human value="If the component codes are not all present, the value SHALL be present." />
         <expression value="value.empty().not() or component.where(code.coding.system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1' and code.coding.code.subsetOf('4006003'|'4006004'|'4006005')).count()=3" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-SNAQScore" />
       </constraint>
       <mapping>
         <identity value="zib-snaqscore-v3.2-2020EN" />
@@ -98,7 +96,7 @@
       </slicing>
     </element>
     <element id="Observation.value[x]:valueInteger">
-      <path value="Observation.valueInteger" />
+      <path value="Observation.value[x]" />
       <sliceName value="valueInteger" />
       <short value="TotalScore" />
       <definition value="The total score is the sum of all the individual scores. The total score has a range from 0 - 5." />
@@ -174,6 +172,10 @@
         <comment value="WeightLossScore" />
       </mapping>
     </element>
+    <element id="Observation.component:weightLossScore.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
+    </element>
     <element id="Observation.component:appetiteScore">
       <path value="Observation.component" />
       <sliceName value="appetiteScore" />
@@ -208,6 +210,10 @@
         <comment value="AppetiteScore" />
       </mapping>
     </element>
+    <element id="Observation.component:appetiteScore.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
+    </element>
     <element id="Observation.component:nutritionScore">
       <path value="Observation.component" />
       <sliceName value="nutritionScore" />
@@ -241,6 +247,10 @@
         <map value="NL-CM:4.6.5" />
         <comment value="NutritionScore" />
       </mapping>
+    </element>
+    <element id="Observation.component:nutritionScore.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
   </differential>
 </StructureDefinition>
