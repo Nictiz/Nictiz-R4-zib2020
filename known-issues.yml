@@ -379,12 +379,6 @@ zib-NursingIntervention:
       - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice.  
 
-zib-NutritionAdvice:
-     zib deviations:
-      NutritionOrder.note.text:
-      - cardinality: 1..1
-        reason: The mapped element has a cardinality of 1..1. However, the parent element, .note, has a cardinality of 0..1, effectively resulting in a cardinality of 0..1 for this element.
-
 zib-Patient:
   zib deviations:
     Patient.extension:nationality.extension:code.value[x]:
