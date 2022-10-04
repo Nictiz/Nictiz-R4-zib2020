@@ -3,11 +3,12 @@
    <meta>
       <profile value="http://hl7.org/fhir/StructureDefinition/shareablecodesystem"/>
       <!--<profile value="http://hl7.org/fhir/4.0/StructureDefinition/CodeSystem"/>-->
+
    </meta>
    <language value="nl-NL"/>
    <extension url="http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod">
       <valuePeriod>
-         <start value="2020-11-11T00:00:00+00:00"/>
+         <start value="2022-07-07T00:00:00+02:00"/>
       </valuePeriod>
    </extension>
    <url value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
@@ -16,7 +17,7 @@
       <system value="urn:ietf:rfc:3986"/>
       <value value="urn:oid:2.16.840.1.113883.2.4.15.1060"/>
    </identifier>
-   <version value="2020-11-11T00:00:00"/>
+   <version value="2022-07-07T00:00:00"/>
    <name value="RoleCodeNLZorgaanbiederType"/>
    <title value="RoleCodeNL - zorgaanbiedertype (organisaties)"/>
    <status value="active"/>
@@ -29,38 +30,55 @@
          <value value="https://www.nictiz.nl"/>
       </telecom>
    </contact>
-   <description value="Dit codesysteem bevat concepten die het roltype bepaalt van een organisatie die als zorgaanbieder optreedt. Het is een invulling van het HL7v3 vocabulairedomein “RoleCode” en wel specifiek het concept “AssignedRoleType”. &#xD;&#xA;* 2017-02-08: Toegevoegd BRA (Brandwondencentrum) en DIA (Dialysecentrum) op verzoek RIVM.&#xD;&#xA;* 2017-12-20 Level van Openbare apotheek gecorrigeerd van 1 naar 2&#xD;&#xA;* 2018-03-21 Na wijzigingsverzoek codes A1 voor Apotheekinstelling en H1 voor Huisartsinstelling van A (Astract) naar S (Specializable) omgezet zodat deze toepasbaar worden op dit niveau&#xD;&#xA;* 2020-05-18 Toegevoegd code K4 voor Kraamzorg na wijzigingsverzoek (https://bits.nictiz.nl/browse/ZIB-1171)&#xD;&#xA;* 2020-07-16 Toegevoegd code H2 voor Hospice na wijzigingsverzoek van zib-centrum (https://bits.nictiz.nl/browse/ZIB-1171)&#xD;&#xA;* 2020-11-11 Toegevoegd code GC voor Geboortecentrum na wijzigingsverzoek van Geboortezorg&#xA;          (https://bits.nictiz.nl/browse/GZ-333)&#xD;&#xA;&#xD;&#xA;"/>
+   <description
+      value="Dit codesysteem bevat concepten die het roltype bepaalt van een organisatie die als zorgaanbieder optreedt. Het is een invulling van het HL7v3 vocabulairedomein “RoleCode” en wel specifiek het concept “AssignedRoleType”. &#xD;&#xA;* 2017-02-08: Toegevoegd BRA (Brandwondencentrum) en DIA (Dialysecentrum) op verzoek RIVM.&#xD;&#xA;* 2017-12-20 Level van Openbare apotheek gecorrigeerd van 1 naar 2&#xD;&#xA;* 2018-03-21 Na wijzigingsverzoek codes A1 voor Apotheekinstelling en H1 voor Huisartsinstelling van A (Astract) naar S (Specializable) omgezet zodat deze toepasbaar worden op dit niveau&#xD;&#xA;* 2020-05-18 Toegevoegd code K4 voor Kraamzorg na wijzigingsverzoek (https://bits.nictiz.nl/browse/ZIB-1171)&#xD;&#xA;* 2020-07-16 Toegevoegd code H2 voor Hospice na wijzigingsverzoek van zib-centrum (https://bits.nictiz.nl/browse/ZIB-1171)&#xD;&#xA;* 2020-11-11 Toegevoegd code GC voor Geboortecentrum na wijzigingsverzoek van Geboortezorg (https://bits.nictiz.nl/browse/GZ-333)&#xD;&#xA;* 2022-04-25 Toegevoegd code JZ voor Jeugdzorg, G1 voor Verslavingszorg, en F1 voor Fysiotherapiepraktijk na wijzigingsverzoek van Zibcentrum (https://bits.nictiz.nl/browse/ZIB-1559)&#xD;&#xA;* 2022-06-30 Toegevoegd code TD voor Trombosedienst na wijzigingsverzoek van Laboratoriumuitwisseling&#xD;&#xA;* 2022-07-07 Toegevoegd code TA1, TA2 voor Tandartspraktijken, ZG Zorggroep en SC Specialistisch Centrum na wijzigingsverzoeken van VZVZ&#xD;&#xA;&#xD;&#xA;&#xA;            "/>
    <copyright value="Nictiz"/>
    <caseSensitive value="false"/>
    <content value="complete"/>
-   <count value="32"/>
+   <count value="40"/>
+   <property>
+      <code value="status"/>
+      <uri value="http://hl7.org/fhir/concept-properties"/>
+      <description
+         value="A code that indicates the status of the concept. Values found in this version of the code system are: active"/>
+      <type value="code"/>
+   </property>
    <property>
       <code value="effectiveDate"/>
       <uri value="http://hl7.org/fhir/concept-properties"/>
-      <description value="The date at which the concept was status was last changed. This is calculated based on the highest of 'creation date', 'expiration date', and 'official release date'"/>
+      <description
+         value="The date at which the concept was status was last changed. This is calculated based on the highest of 'creation date', 'expiration date', and 'official release date'"/>
       <type value="dateTime"/>
    </property>
    <property>
       <code value="notSelectable"/>
       <uri value="http://hl7.org/fhir/concept-properties"/>
-      <description value="The concept is not intended to be chosen by the user - only intended to be used as a selector for other concepts. Note, though, that the interpretation of this is highly contextual; all concepts are selectable in some context. Property type is boolean"/>
+      <description
+         value="The concept is not intended to be chosen by the user - only intended to be used as a selector for other concepts. Note, though, that the interpretation of this is highly contextual; all concepts are selectable in some context. Property type is boolean"/>
       <type value="boolean"/>
    </property>
    <property>
       <code value="parent"/>
       <uri value="http://hl7.org/fhir/concept-properties"/>
-      <description value="The concept identified in this property is a parent of the concept on which it is a property. The property type will be 'code'. The meaning of 'parent' is defined by the hierarchyMeaning attribute"/>
+      <description
+         value="The concept identified in this property is a parent of the concept on which it is a property. The property type will be 'code'. The meaning of 'parent' is defined by the hierarchyMeaning attribute"/>
       <type value="code"/>
    </property>
    <property>
       <code value="child"/>
       <uri value="http://hl7.org/fhir/concept-properties"/>
-      <description value="The concept identified in this property is a child of the concept on which it is a property. The property type will be 'code'. The meaning of 'child' is defined by the hierarchyMeaning attribute"/>
+      <description
+         value="The concept identified in this property is a child of the concept on which it is a property. The property type will be 'code'. The meaning of 'child' is defined by the hierarchyMeaning attribute"/>
       <type value="code"/>
    </property>
    <concept>
       <code value="AssignedRoleType"/>
-      <display value="Een roltype wordt gebruikt om een entiteit verder aan te duiden, die een rol speelt met AssignedEntity als modelattribuut RoleClass."/>
+      <display
+         value="Een roltype wordt gebruikt om een entiteit verder aan te duiden, die een rol speelt met AssignedEntity als modelattribuut RoleClass."/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="notSelectable"/>
          <valueBoolean value="true"/>
@@ -107,6 +125,10 @@
       </property>
       <property>
          <code value="child"/>
+         <valueCode value="G1"/>
+      </property>
+      <property>
+         <code value="child"/>
          <valueCode value="G6"/>
       </property>
       <property>
@@ -137,10 +159,38 @@
          <code value="child"/>
          <valueCode value="DIA"/>
       </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="TD"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="JZ"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="F1"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="SC"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="TA1"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="ZG"/>
+      </property>
    </concept>
    <concept>
       <code value="V4"/>
       <display value="Ziekenhuis"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
@@ -162,6 +212,10 @@
       <code value="V5"/>
       <display value="Universitair Medisch Centrum"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="V4"/>
       </property>
@@ -170,6 +224,10 @@
       <code value="V6"/>
       <display value="Algemeen ziekenhuis"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="V4"/>
       </property>
@@ -177,6 +235,10 @@
    <concept>
       <code value="BRA"/>
       <display value="Brandwondencentrum"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="effectiveDate"/>
          <valueDateTime value="2017-02-08"/>
@@ -190,6 +252,10 @@
       <code value="Z4"/>
       <display value="Zelfstandig behandelcentrum"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
       </property>
@@ -202,6 +268,10 @@
       <code value="Z5"/>
       <display value="Diagnostisch centrum"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="V4"/>
       </property>
@@ -213,6 +283,10 @@
    <concept>
       <code value="B1"/>
       <display value="Beeldvormende diagnostiek"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="notSelectable"/>
          <valueBoolean value="true"/>
@@ -230,6 +304,10 @@
       <code value="B2"/>
       <display value="Echocentrum"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="B1"/>
       </property>
@@ -237,6 +315,10 @@
    <concept>
       <code value="X3"/>
       <display value="Verplegings- of verzorgingsinstelling"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
@@ -254,6 +336,10 @@
       <code value="R5"/>
       <display value="Verpleeghuis"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="V4"/>
       </property>
@@ -262,6 +348,10 @@
       <code value="M1"/>
       <display value="Verzorgingstehuis"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="V4"/>
       </property>
@@ -269,6 +359,10 @@
    <concept>
       <code value="A1"/>
       <display value="Apotheekinstelling"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
@@ -286,6 +380,10 @@
       <code value="J8"/>
       <display value="Openbare apotheek"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="V4"/>
       </property>
@@ -294,6 +392,10 @@
       <code value="K9"/>
       <display value="Zelfstandig opererende ziekenhuisapotheek"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="V4"/>
       </property>
@@ -301,6 +403,10 @@
    <concept>
       <code value="H1"/>
       <display value="Huisartsinstelling"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
@@ -318,6 +424,10 @@
       <code value="Z3"/>
       <display value="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="V4"/>
       </property>
@@ -330,6 +440,10 @@
       <code value="K3"/>
       <display value="Apotheekhoudende huisartspraktijk"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="V5"/>
       </property>
@@ -337,6 +451,10 @@
    <concept>
       <code value="N6"/>
       <display value="Huisartsenpost (t.b.v. dienstwaarneming)"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="parent"/>
          <valueCode value="V4"/>
@@ -346,6 +464,10 @@
       <code value="L1"/>
       <display value="Laboratorium"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
       </property>
@@ -353,6 +475,10 @@
    <concept>
       <code value="P4"/>
       <display value="Polikliniek (als onderdeel van een ziekenhuis)"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
@@ -362,6 +488,10 @@
       <code value="R8"/>
       <display value="Revalidatiecentrum"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
       </property>
@@ -369,6 +499,10 @@
    <concept>
       <code value="P6"/>
       <display value="Preventieve gezondheidszorg (waaronder Bevolkingsonderzoek)"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
@@ -378,6 +512,22 @@
       <code value="G5"/>
       <display value="Geestelijke Gezondheidszorg"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="G1"/>
+      <display value="Verslavingszorg"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
       </property>
@@ -385,6 +535,10 @@
    <concept>
       <code value="G6"/>
       <display value="Verstandelijk gehandicaptenzorg"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
@@ -394,6 +548,10 @@
       <code value="T2"/>
       <display value="Thuiszorg"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
       </property>
@@ -401,6 +559,10 @@
    <concept>
       <code value="K4"/>
       <display value="Kraamzorg"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="effectiveDate"/>
          <valueDateTime value="2020-05-18"/>
@@ -414,6 +576,10 @@
       <code value="H2"/>
       <display value="Hospice"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="effectiveDate"/>
          <valueDateTime value="2020-07-16"/>
       </property>
@@ -426,6 +592,10 @@
       <code value="JGZ"/>
       <display value="Jeugdgezondheidszorg"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
       </property>
@@ -434,6 +604,10 @@
       <code value="G3"/>
       <display value="Verloskundigenpraktijk"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
       </property>
@@ -441,6 +615,10 @@
    <concept>
       <code value="GC"/>
       <display value="Geboortecentrum"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="effectiveDate"/>
          <valueDateTime value="2020-11-11"/>
@@ -453,6 +631,126 @@
    <concept>
       <code value="DIA"/>
       <display value="Dialysecentrum"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="TD"/>
+      <display value="Trombosedienst"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-06-30"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="JZ"/>
+      <display value="Jeugdzorg"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-04-25"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="F1"/>
+      <display value="Fysiotherapiepraktijk"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="SC"/>
+      <display value="Specialistisch Centrum"/>
+      <definition
+         value="Categorale instellingen/ziekenhuizen (MSZ-instellingen voor een specifieke diagnose/ziekte of patiëntengroep). Het zijn geen (algemene) ziekenhuizen en ook geen zelfstandige klinieken (ZBC’s). Voorbeelden: St Maartenskliniek: behandelt patiënten met aandoeningen aan het bewegingsapparaat&#xA;                            Antonie van Leeuwenziekenhuis: behandelt kankerpatiënten&#xA;                            Princes Maxima Centrum: behandelt kinderen met kanker&#xA;                            SEIN: behandelt patiënten met epilepsie"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-07-07"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="TA1"/>
+      <display value="Tandartsinstelling"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-07-07"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="TA2"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="TA2"/>
+      <display value="Tandartspraktijk (zelfstandig of groepspraktijk)"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-07-07"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="ZG"/>
+      <display value="Zorggroep"/>
+      <definition
+         value="Zorggroep &#xA;                            Organisaties die met zorgverzekeraars contracten sluiten om de chronische zorg in een bepaalde regio te coördineren en uit te voeren met als doelstelling de kwaliteit van zorg te verbeteren (definitie van LVG).&#xA;                            Organisatie met rechtspersoonlijkheid waarin zorgaanbieders zijn verenigd. Met de term ‘zorggroep’ wordt de hoofdcontractant van het keten-DBC-contract bedoeld en niet het team van zorgverleners dat de feitelijke zorg verleent (definitie van ZonMw)."/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-07-07"/>
+      </property>
       <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
