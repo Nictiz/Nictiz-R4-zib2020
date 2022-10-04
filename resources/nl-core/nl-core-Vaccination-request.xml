@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-Vaccination-request" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Vaccination-request" />
+  <name value="NlcoreVaccinationrequest" />
+  <title value="nl core Vaccination request" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Immunization can be defined as “Generating natural immunity against pathogens by means of vaccination (active immunization) or by administering immunoglobulins (passive immunization)”.&#xD;&#xA;&#xD;&#xA;Only the (administered and planned) vaccinations are included in this information model. Administering immunoglobulins is part of the medication overview. Vaccinations have lifelong relevance.&#xD;&#xA;&#xD;&#xA;Most vaccinations are carried out in the Netherlands as part of the RVP (Rijksvaccinatieprogramma, National Immunisation Program). RVP information is especially important for children.&#xD;&#xA;&#xD;&#xA;Vaccinations are also relevant for adult patients such as transplant patients, dialysis patients and patients with a post-splenectomy status. In addition, there are specific indications for the vaccination of risk groups, such as travelers, professionals who come into contact with blood or patients with wounds, weakened immune systems or heightened risk." />
+  <purpose value="A derived profile from [zib-Vaccination-request](http://nictiz.nl/fhir/StructureDefinition/zib-Vaccination-request) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="ImmunizationRecommendation" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-Vaccination-request" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="ImmunizationRecommendation">
+      <path value="ImmunizationRecommendation" />
+      <comment value="The zib Vaccination is mapped to this ImmunizationRecommendation profile and a profile on Immunization (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-Vaccination-event&gt;). All administered vaccinations are covered using the Immunization profile, while all planned vaccinations are covered in this ImmunizationRecommendation profile. The zib concepts Dose (NL-CM:11.1.4) and Administrator (NL-CM:11.1.6) are not suitable for planned vaccinations based on their current definitions and are therefore not mapped in this ImmunizationRecommendation profile.&#xA;&#xA;Please note that the ImmunizationRecommendation profile has been aligned as much as possible with the zib Vaccination by setting the cardinalities of `.recommendation` ,`.vaccineCode` and `.dateCriterion` to x..1. This results in the removal of the ability to exchange a vaccination schema. Moreover, ImmunizationRecommendation has more mandatory elements that are not represented in the zib, such as `.date` and `.recomendation.forecastStatus`. Implementers will need to take these requirements into account when implementing future vaccinations." />
+      <alias value="nl-core-Vaccination-request" />
+    </element>
+    <element id="ImmunizationRecommendation.patient">
+      <path value="ImmunizationRecommendation.patient" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-AdvanceDirective" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdvanceDirective" />
+  <name value="NlcoreAdvanceDirective" />
+  <title value="nl core AdvanceDirective" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A living will is a verbal or written description of the patient’s wishes with regard to future medical action or end of their life. A living will is mainly used for situations in which the patient is no longer able to speak about these decisions with their healthcare provider." />
+  <purpose value="A derived profile from [zib-AdvanceDirective](http://nictiz.nl/fhir/StructureDefinition/zib-AdvanceDirective) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Consent" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-AdvanceDirective" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Consent">
+      <path value="Consent" />
+      <alias value="nl-core-AdvanceDirective" />
+    </element>
+    <element id="Consent.extension">
+      <path value="Consent.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Consent.extension:disorder">
+      <path value="Consent.extension" />
+      <sliceName value="disorder" />
+      <min value="0" />
+    </element>
+    <element id="Consent.extension:disorder.value[x]">
+      <path value="Consent.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
+      </type>
+    </element>
+    <element id="Consent.patient">
+      <path value="Consent.patient" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Consent.provision.actor:representative">
+      <path value="Consent.provision.actor" />
+      <sliceName value="representative" />
+    </element>
+    <element id="Consent.provision.actor:representative.reference">
+      <path value="Consent.provision.actor.reference" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/CareTeam" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
