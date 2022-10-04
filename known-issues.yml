@@ -141,6 +141,10 @@ zib-ContactPerson:
     RelatedPerson.telecom:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
+      - cardinality: 0..*
+        for: NL-CM:3.1.6 (ContactPerson.Contactinformation)
+        reason: The mismatch is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
+
     RelatedPerson.telecom:telephoneNumbers:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
@@ -398,6 +402,9 @@ zib-Patient:
     Patient.telecom*:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
+      - cardinality: 0..*
+        for: NL-CM:0.1.5 (Patient.Contactinformation)
+        reason: The mismatch is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
     Patient.address:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
@@ -441,10 +448,6 @@ zib-Patient:
         reason: The mapping is placed on the extension and not on the value[x] because of the nature of this extension. The extension itself contains a valueCoding that gets the zibs value. This datatype matches the zib CD type.
       - cardinality: 0..*
         reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
-  additional notes:
-    Patient.telecom:
-      - cardinality: 0..*
-        reason: There's a cardinality mismatch between zib Patient (0..1) and FHIR (0..*), although for the mapping of zib Payer in the Patient profile the cardinalities match. The mismatch is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
 
 zib-PharmaceuticalProduct:
   zib deviations:
