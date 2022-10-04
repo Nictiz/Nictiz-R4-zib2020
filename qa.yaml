@@ -6,9 +6,9 @@ script dir: util/qa
 
 patterns:
   zib profiles: resources/zib/zib-*.xml
-  zib extensions: resources/zib/ext-*.xml
+  zib extensions: resources/zib/ext-*.*.xml
   nl-core profiles: resources/nl-core/nl-core-*.xml
-  nl-core extensions: resources/nl-core/ext-*.xml
+  nl-core extensions: resources/nl-core/ext-*.*.xml
   other profiles:
   - resources/zib/*.xml
   - resources/nl-core/*.xml
@@ -42,8 +42,8 @@ steps:
     patterns: conceptmaps
     profile: "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-ConceptMaps"
   validate other terminology:
-    description: Validate the other terminology resources using the profile for terminology
-    patterns: conceptmaps
+    description: Validate the other terminology resources
+    patterns: terminology
   validate examples:
     description: Validate examples using the generic FHIR validation rules
     patterns: examples
