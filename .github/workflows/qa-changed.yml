@@ -1,36 +1,19 @@
 name: Profile QA - changed files
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
-  validate-changed:
+  nictiz-r4-qa-changed:
+    name: Strict QA on changed materials
     runs-on: ubuntu-latest
-    continue-on-error: true
-    outputs:
-      markdown_report: ${{ steps.collect-statistics.outputs.markdown_report }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
-      - name: Get changed profiles and extensions
-        id: get-resources
-        run: |
-          changed_only=1
-          source util/qaAutomation/getresources.sh
-          echo "::set-output name=zib_profiles::"$zib_profiles
-          echo "::set-output name=zib_extensions::"$zib_extensions
-          echo "::set-output name=nlcore_profiles::"$nlcore_profiles
-          echo "::set-output name=nlcore_extensions::"$nlcore_extensions
-          echo "::set-output name=other_profiles::"$other_profiles
-          echo "::set-output name=conceptmaps::"$conceptmaps
-          echo "::set-output name=other_terminology::"$other_terminology
-          echo "::set-output name=searchparameters::"$searchparameters
-          echo "::set-output name=examples::"$examples
-
-      - name: Restore validator cache
-        uses: actions/cache@v2
+      - name: Zib2020 QA
+        uses: Nictiz/Nictiz-R4-QA@main
         with:
+<<<<<<< HEAD
           path: ~/.fhir/packages
           key: fhir-cache
 
@@ -280,3 +263,7 @@ jobs:
             ${{ needs.zib-compliance-changed.outputs.markdown_report }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           repo-token-user-login: 'github-actions[bot]'
+=======
+          changed-only: true
+          fail-at: "warning"
+>>>>>>> main

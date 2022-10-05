@@ -1,33 +1,19 @@
 name: Profile QA - full repository
-on: pull_request
+on: [pull_request]
 
 jobs:
-  validate-all:
+  nictiz-r4-qa-full:
+    name: Loose QA on the entire repo
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
-      - name: Get profiles and extensions
-        id: get-resources
-        run: |
-          changed_only=0
-          source util/qaAutomation/getresources.sh
-          echo "::set-output name=zib_profiles::"$zib_profiles
-          echo "::set-output name=zib_extensions::"$zib_extensions
-          echo "::set-output name=nlcore_profiles::"$nlcore_profiles
-          echo "::set-output name=nlcore_extensions::"$nlcore_extensions
-          echo "::set-output name=other_profiles::"$other_profiles
-          echo "::set-output name=conceptmaps::"$conceptmaps
-          echo "::set-output name=other_terminology::"$other_terminology
-          echo "::set-output name=searchparameters::"$searchparameters
-          echo "::set-output name=examples::"$examples
-
-      - name: Restore validator cache
-        uses: actions/cache@v2
+      - name: Zib2020 QA
+        uses: Nictiz/Nictiz-R4-QA@main
         with:
+<<<<<<< HEAD
           path: ~/.fhir/packages
           key: fhir-cache
 
@@ -250,3 +236,7 @@ jobs:
         run: |
           echo "${{ steps.collect-statistics.outputs.github_report }}"
           exit ${{ steps.collect-statistics.outputs.result_status }}
+=======
+          changed-only: false
+          no-tx: true
+>>>>>>> main
