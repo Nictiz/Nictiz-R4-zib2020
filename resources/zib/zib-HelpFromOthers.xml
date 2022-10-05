@@ -39,8 +39,34 @@
         <comment value="HelpFromOthers" />
       </mapping>
     </element>
+    <element id="CarePlan.status">
+      <path value="CarePlan.status" />
+      <comment value="This element has no functional counterpart in the zib and cannot be implicitly mapped to other concepts. Unless a more appropriate status is recorded, it is assumed that only active CarePlan resources will be exchanged." />
+    </element>
+    <element id="CarePlan.intent">
+      <path value="CarePlan.intent" />
+      <definition value="For zib HelpFromOthers, this will normally be plan, but the context may specify a more suitable intent." />
+    </element>
     <element id="CarePlan.category">
       <path value="CarePlan.category" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="coding" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="1" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="243114000" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="CarePlan.category:helpFromOthers">
+      <path value="CarePlan.category" />
+      <sliceName value="helpFromOthers" />
       <min value="1" />
       <max value="1" />
       <patternCodeableConcept>
@@ -49,6 +75,10 @@
           <code value="243114000" />
         </coding>
       </patternCodeableConcept>
+    </element>
+    <element id="CarePlan.activity">
+      <path value="CarePlan.activity" />
+      <max value="1" />
     </element>
     <element id="CarePlan.activity.detail.code">
       <path value="CarePlan.activity.detail.code" />
@@ -92,11 +122,79 @@
     </element>
     <element id="CarePlan.activity.detail.performer">
       <path value="CarePlan.activity.detail.performer" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
       <short value="CareAid" />
-      <definition value="An CareAid can be a health professional such as nurses, carers and helpers but also a caregiver or healthcare provider such as a home care organization. Either a reference to details of the health professional involved in the patient’s care, the details of the caregiver involved in the patient’s support or the details of the organization the health professional/careaid works for in the event that it is not entered as a person." />
+      <definition value="A care aid can be a health professional such as nurses, carers and helpers but also a caregiver or healthcare provider such as a home care organization." />
       <alias value="Hulpverlener" />
+      <max value="1" />
+      <mapping>
+        <identity value="zib-helpfromothers-v3.01-2020EN" />
+        <map value="NL-CM:3.2.5" />
+        <comment value="CareAid" />
+      </mapping>
+    </element>
+    <element id="CarePlan.activity.detail.performer:healthProfessional">
+      <path value="CarePlan.activity.detail.performer" />
+      <sliceName value="healthProfessional" />
+      <short value="HealthProfessional" />
+      <definition value="Details of the health professional involved in the patient’s care." />
       <alias value="Zorgverlener" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-ZibHealthProfessionalReference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/CareTeam" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/HealthcareService" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
+      </type>
+      <mapping>
+        <identity value="zib-helpfromothers-v3.01-2020EN" />
+        <map value="NL-CM:3.2.6" />
+        <comment value="HealthProfessional" />
+      </mapping>
+    </element>
+    <element id="CarePlan.activity.detail.performer:caregiver">
+      <path value="CarePlan.activity.detail.performer" />
+      <sliceName value="caregiver" />
+      <short value="Caregiver" />
+      <definition value="Details of the caregiver involved in the patient’s support." />
       <alias value="Mantelzorger" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/CareTeam" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/HealthcareService" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson" />
+      </type>
+      <mapping>
+        <identity value="zib-helpfromothers-v3.01-2020EN" />
+        <map value="NL-CM:3.2.7" />
+        <comment value="Caregiver" />
+      </mapping>
+    </element>
+    <element id="CarePlan.activity.detail.performer:healthcareProvider">
+      <path value="CarePlan.activity.detail.performer" />
+      <sliceName value="healthcareProvider" />
+      <short value="HealthcareProvider" />
+      <definition value="Details of the organization the health professional/aid works for in the event that it is not entered as a person." />
       <alias value="Zorgaanbieder" />
       <max value="1" />
       <type>
@@ -109,25 +207,8 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/CareTeam" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/HealthcareService" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider-Organization" />
       </type>
-      <mapping>
-        <identity value="zib-helpfromothers-v3.01-2020EN" />
-        <map value="NL-CM:3.2.5" />
-        <comment value="CareAid" />
-      </mapping>
-      <mapping>
-        <identity value="zib-helpfromothers-v3.01-2020EN" />
-        <map value="NL-CM:3.2.6" />
-        <comment value="HealthProfessional" />
-      </mapping>
-      <mapping>
-        <identity value="zib-helpfromothers-v3.01-2020EN" />
-        <map value="NL-CM:3.2.7" />
-        <comment value="Caregiver" />
-      </mapping>
       <mapping>
         <identity value="zib-helpfromothers-v3.01-2020EN" />
         <map value="NL-CM:3.2.8" />
