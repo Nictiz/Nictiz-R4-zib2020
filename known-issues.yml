@@ -20,6 +20,12 @@ ext-Procedure.ProcedureMethod:
       - cardinality: 1..1
         reason: The used extension uses a cardinality of 1..1 on the value[x] element. However, the extension itself is added with a cardinality of 0..1. 
 
+ext-TreatmentDirective2.AdvanceDirective:
+  zib deviations:
+    Extension.value[x]:
+      - cardinality: 0..1
+        reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension should be added 0..* in the hosting element.
+
 nl-core-PharmaceuticalProduct-randomCode-invalid:
   ignored issues:
     Medication.code:
@@ -350,7 +356,7 @@ zib-NameInformation:
     HumanName.family.extension:*.value[x]:
       - cardinality: 1..1
         reason: The value of the extension is required, but the extension itself is optional, making the effective cardinality 0..1 as required by the zib.
-
+                
 zib-NameInformation.GivenName:
   zib deviations:
     HumanName.given:
@@ -495,6 +501,18 @@ zib-TextResult.VisualResult:
     Media.content:
       - cardinality: 1..1
         reason: The use of the Media resource referenced in zib-TextResult DiagnosticReport.media.link is optional (0..*), but if the Media resource is used, Media.content should be present (1..1).
+        
+zib-TreatmentDirective2:
+  zib deviations:
+    Consent.source[x]:sourceReference:
+      - cardinality: 0..1
+        reason: This element is the logical representation of the AdvanceDirective concept (NL-CM:2.2.8) specified in HCIM TreatmentDirective2, but FHIR restricts the cardinality to 0..1. For this reason, an extension is added that can be used to provide additional AdvanceDirective references.
+    Consent.provision.actor:agreementParty:
+      - datatype: BackboneElement
+        reason: The zib container AgreementParty can be mapped correctly to the actor's BackboneElement.
+    Consent.provision.actor:agreementParty.reference:
+      - cardinality: 1..1
+        reason: The .reference element cannot be used without sibling .role to represent the concepts NL-CM:2.2.10,  NL-CM:2.2.11 and  NL-CM:2.2.12, so these two elements have to be used together. The container itself is optional.
 
 zib-Vaccination-event:
   zib deviations:
@@ -552,7 +570,7 @@ unmapped zib concepts:
 
 issues should occur: false
 
-"*-AdvanceDirective*":
+"*":
   ignored issues:
     Consent.scope*:
       - message: Unknown Code http://terminology.hl7.org/CodeSystem/consentscope#adr in http://terminology.hl7.org/CodeSystem/consentscope
