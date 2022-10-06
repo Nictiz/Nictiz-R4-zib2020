@@ -146,7 +146,7 @@ This document contains release notes per zib, indicating differences with their 
 * Note: although the zib has changed quite dramatically since release 2017, the previous version of the profile was based on a pre-adopt of zib pre-release 2018, which is the same as release 2020.
 
 ## zib-Patient
-* Includes Nationality, MaritalStatus, LanguageProficiency.
+* Includes Nationality, MaritalStatus, LanguageProficiency, LifeStance.
 * Cardinality of `Patient.extension:nationality` left at 0..* due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time).
 * Cardinality of `Patient.name` left at 0..* to allow including several name elements with a different `name.use` each.
 * Cardinality of `Patient.telecom` left at 0..* to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not.
