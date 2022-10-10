@@ -483,6 +483,9 @@ zib-Procedure-request:
 
 zib-SOAPReport:
   zib deviations:
+    Composition.author:
+      - cardinality: 1..1
+        reason: This is a known difference with the zib. FHIR mandates an author for the Compositions. It seems like a requirement systems can honour.
     Composition.date:
       - cardinality: 1..1
         reason: This is a known difference with the zib. FHIR mandates a date for the Compositions. It seems like a requirement systems can honour.
