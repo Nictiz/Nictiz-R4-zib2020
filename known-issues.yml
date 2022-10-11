@@ -123,9 +123,15 @@ zib-CareAgreement:
     CarePlan.author:
       - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice.
+    CarePlan.contributor:
+      - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
+        reason: The mapping is to a zib container, which doesn't have a useful description if implemented in a profile.
     CarePlan.contributor:*:
       - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice.   
+        reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice.
+    CarePlan.activity.detail.performer:
+      - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
+        reason: The mapping is to a zib container, which doesn't have a useful description if implemented in a profile.        
     CarePlan.activity.detail.performer:*:
       - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice.   
