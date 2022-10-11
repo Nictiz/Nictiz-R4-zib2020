@@ -626,6 +626,12 @@ nl-core-HearingFunction.HearingAid-*:
       - message: Slicing cannot be evaluated
         reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
 
+nl-core-HelpFromOthers-*:
+  ignored issues:
+    CarePlan.activity[0].detail.performer[0]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+
 nl-core-MedicalDevice-*:
   ignored issues:
     DeviceUseStatement.reasonReference[*]:
