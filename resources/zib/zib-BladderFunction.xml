@@ -39,6 +39,68 @@
         <comment value="BladderFunction" />
       </mapping>
     </element>
+    <element id="Observation.extension">
+      <path value="Observation.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Observation.extension:urinaryStoma">
+      <path value="Observation.extension" />
+      <sliceName value="urinaryStoma" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-StomaReference" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Observation.extension:urinaryStoma.value[x]">
+      <path value="Observation.extension.value[x]" />
+      <short value="UrinaryStoma" />
+      <definition value="UrinaryStoma describes the presence of an unnatural, surgically created opening. If the patient has a urinary stoma, the date of placement, location of the stoma and any stoma pouches and an comment can be entered. The type of stoma is automatically a urinary stoma in this case." />
+      <alias value="Urostoma" />
+      <mapping>
+        <identity value="zib-bladderfunction-v3.2-2020EN" />
+        <map value="NL-CM:4.14.3" />
+        <comment value="UrinaryStoma" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueCodeableConcept">
+      <path value="Observation.value[x]" />
+      <sliceName value="valueCodeableConcept" />
+      <short value="UrineContinence" />
+      <definition value="Urine continence describes control over urine discharge. This includes disorders such as stress incontinence, urge incontinence, reflex incontinence, constant incontinence and mixed incontinence." />
+      <alias value="UrineContinentie" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.14.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-bladderfunction-v3.2-2020EN" />
+        <map value="NL-CM:4.14.2" />
+        <comment value="UrineContinence" />
+      </mapping>
+    </element>
     <element id="Observation.note">
       <path value="Observation.note" />
       <max value="1" />
