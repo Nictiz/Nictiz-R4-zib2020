@@ -39,6 +39,39 @@
         <comment value="BowelFunction" />
       </mapping>
     </element>
+    <element id="Observation.extension">
+      <path value="Observation.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Observation.extension:stoma">
+      <path value="Observation.extension" />
+      <sliceName value="stoma" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-StomaReference" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Observation.extension:stoma.value[x]">
+      <path value="Observation.extension.value[x]" />
+      <short value="Stoma" />
+      <definition value="Stoma describes the presence of an unnatural, surgically created opening. If the patient has a stoma, the type of stoma must be entered along with the date on and location at which the stoma and any stoma pouches were placed. An comment can also be entered." />
+      <alias value="Stoma" />
+      <mapping>
+        <identity value="zib-bowelfunction-v3.1.1-2020EN" />
+        <map value="NL-CM:4.15.3" />
+        <comment value="Stoma" />
+      </mapping>
+    </element>
     <element id="Observation.code">
       <path value="Observation.code" />
       <patternCodeableConcept>
