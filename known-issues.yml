@@ -139,6 +139,7 @@ zib-ContactPerson:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
       - cardinality: 0..* instead of 0..1
+        for: NL-CM:3.1.6 (ContactPerson.Contactinformation)
         reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby this mapping is still honoring the cardinality requirements of the zib.
     RelatedPerson.telecom:telephoneNumbers:
       - datatype: ContactPoint
@@ -146,6 +147,10 @@ zib-ContactPerson:
     RelatedPerson.telecom:emailAddresses:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
+  additional notes:
+    RelatedPerson.telecom:
+      - cardinality: 0..*
+        reason: There's a cardinality mismatch between zib ContactPerson (0..1) and FHIR (0..*), although for the mapping of zib Payer in the ContactPerson profile the cardinalities match. The mismatch is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
 
 zib-Encounter:
   ignored issues:
@@ -389,6 +394,7 @@ zib-Patient:
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
     Patient.telecom:
       - cardinality: 0..* instead of 0..1
+        for: NL-CM:0.1.5 (Patient.Contactinformation)
         reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby this mapping is still honoring the cardinality requirements of the zib.
     Patient.address:
       - datatype: Address
@@ -438,6 +444,36 @@ zib-PharmaceuticalProduct:
     Medication.ingredient.strength:
       - datatype: Ratio
         reason: The `ingredient.strength` acts as a container for the two child elements and can the be correctly mapped to the zib Concentration container. 
+
+zib-Payer.InsuranceCompany:
+  zib deviations:
+    Coverage.payor:
+      - cardinality: 1..1
+        reason: The cardinality of the zib-concept InsuranceCompany (0..1) mismatches FHIR (1..1). Between the zib concepts InsuranceCompany and PayerPerson, a minimum of 1 must be selected. If one uses the zib-Payer.InsuranceCompany profile, the choice has been made to apply the InsuranceCompany concept, therefore a cardinality of 1..1 can be used.
+
+zib-Payer.PayerPerson:
+  zib deviations:
+    Coverage.extension:bankInformation:
+      - datatype: Extension
+        reason: The (complex) extension acts as a container for three subextensions that each contain a zib subconcept.
+    Coverage.payor:
+      - cardinality: 1..1
+        reason: The cardinality of the zib-concept PayerPerson (0..1) mismatches FHIR (1..1). Between the zib concepts InsuranceCompany and PayerPerson, a minimum of 1 must be selected. If one uses the zib-Payer.PayerPerson profile, the choice has been made to apply the PayerPerson concept, therefore a cardinality of 1..1 can be used.
+
+zib-Payer-Organization:
+  zib deviations:
+    Organization.telecom:
+      - datatype: ContactPoint
+        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consists of two parts the rootconcept of the ContactInformation is mapped on .telecom.
+    Organization.telecom:telephoneNumbers:
+      - datatype: ContactPoint
+        reason: See Organization.telecom.
+    Organization.telecom:emailAddresses:
+      - datatype: ContactPoint
+        reason: See Organization.telecom.
+    Organization.address:
+      - datatype: Address
+        reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
 
 zib-Problem:
   zib deviations:
@@ -690,6 +726,20 @@ zib-Patient:
       - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.
     Patient.contact.address:
+      - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
+        reason: The short description is defined on the datatype profile and not repeated in the differential.
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias is defined on the datatype profile and not repeated in the differential.
+        
+zib-Payer.InsuranceCompany:
+  ignored issues:
+    Coverage.payor:
+      - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
+        reason: The definition of the zib concept 'InsuranceCompany', which is the root of a container, does not contain a meaningful definition. 
+
+zib-Payer-Organization:
+  ignored issues:
+    Organization.address:
       - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
         reason: The short description is defined on the datatype profile and not repeated in the differential.
       - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
