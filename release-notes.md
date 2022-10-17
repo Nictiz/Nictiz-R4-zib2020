@@ -152,6 +152,10 @@ This document contains release notes per zib, indicating differences with their 
 * Cardinality of `Patient.telecom` left at 0..* to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not.
 * Added a comment to `deceased[x]`: When exporting the data, if `deceasedDateTime` (DateOfDeath) is present and has a value, DeathIndicator may be set to 'true', since DeathIndicator and DateOfDeath cannot both be represented at the same time.
 
+## zib-Payer
+* The STU3 version of the profile mapped part of the InsuranceCompany concept in the nl-core-organization profile, while these types of organizations do not necessarily have anything in common with HealthcareProviders, and it also did not allow for the situation where PayerPerson is an organization. To fix this, two separate profiles have been created for the situations where the Payer is a PayerPerson or an InsuranceCompany. These profiles could not be combined because slicing on .type with a maximum cardinality of 1 is not allowed.
+* Both InsuranceCompany and 'PayerPerson as Organization' have been mapped in the profile Payer-Organization.
+
 ## zib-Problem
 * ProblemType has been added on a slice of `Condition.category` allowing the category element to be used for other purposes too.
 * FurtherSpecificationProblemName has been added with an extension on `Condition.code`.
