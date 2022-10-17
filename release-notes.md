@@ -69,6 +69,9 @@ This document contains release notes per zib, indicating differences with their 
 * The mapping of Location is moved to `Encounter.location.location`.
 * Reference to other profiles not accounted for by the zib have been removed.
 
+## zib-Education
+* There is no previous profile for Education in STU3 and therefore no diff.
+
 ## zib-EpisodeOfCare
 * New zib in 2020. However, in the zib2017 package the nl-core-episodeofcare profile exists, which is not based on a zib but included some use case concepts. This zib profile supersedes this profile.
 * The extension EpisodOfCare-Title has been replaced by ext-EpisodeOfCare.EpisodeOfCareName because this zib concept is functionally equivalent.
