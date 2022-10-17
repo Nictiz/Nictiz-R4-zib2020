@@ -2,7 +2,7 @@
 
 This repository contains HL7 FHIR R4 compliant profiles and related conformance materials for the Release 2020 of the Dutch [zibs](https://zibs.nl/wiki/Zorginformatiebouwstenen) (_Zorginformatiebouwstenen_, i.e. Clinical Information Models, also known as Clinical Building Blocks or Health and Care Information Models).
 
-This repository is maintained by the Dutch National Intitute for ICT in Healthcare (Nictiz).
+This repository is maintained by the Dutch National Institute for ICT in Healthcare (Nictiz).
 ## Releases
 
 Note: _Resources in this repository should be considered unstable and not suited for immediate implementation._
@@ -15,13 +15,13 @@ At the moment, Nictiz publishes packages in beta status to test out implementati
 
 ## Validation by HL7 Netherlands
 
-All of the conformance resources representing the zibs are vetted by HL7 Netherlands. For some of the materials in the beta packages, this proces already has been completed. This is documented in the `StructureDefinition.description` of the relevant profiles.
+All of the conformance resources representing the zibs are vetted by HL7 Netherlands. For some of the materials in the beta packages, this process already has been completed. This is documented in the `StructureDefinition.description` of the relevant profiles.
 
 ## Changes in this repository
 
 Bugs and other issues are tracked using the (BITS MM project)[https://bits.nictiz.nl/projects/MM/].
 
-Note 1: It is a bit of a misnomer to use this project, but this has been chosen for pragmatic reasons).
+Note 1: It is a bit of a misnomer to use this project, but this has been chosen for pragmatic reasons.
 
 Note 2: Changes affecting the published packages are guaranteed to be tracked using a change request in this issue tracker. Unpublished materials might change for a variety of reasons.
 
