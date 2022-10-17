@@ -9,8 +9,8 @@
    <contact>
       <name value="Nictiz"/>
       <telecom>
-         <system value="url" />
-         <value value="https://www.nictiz.nl" />
+         <system value="url"/>
+         <value value="https://www.nictiz.nl"/>
          <use value="work"/>
       </telecom>
    </contact>
@@ -27,6 +27,11 @@
       <identity value="zib-contactinformation-v1.2-2020EN"/>
       <uri value="https://zibs.nl/wiki/ContactInformation-v1.2(2020EN)"/>
       <name value="zib ContactInformation-v1.2(2020EN)"/>
+   </mapping>
+   <mapping>
+      <identity value="zib-payer-v3.1.1-2020EN"/>
+      <uri value="https://zibs.nl/wiki/Payer-v3.1.1(2020EN)"/>
+      <name value="zib Payer-v3.1.1(2020EN)"/>
    </mapping>
    <kind value="resource"/>
    <abstract value="true"/>
@@ -106,13 +111,19 @@
             </discriminator>
             <rules value="open"/>
          </slicing>
-         <short value="NameInformation"/>
+         <short value="NameInformation / PayerName"/>
          <definition value="Full name of the contact."/>
          <alias value="Naamgegevens"/>
+         <alias value="BetalerNaam"/>
          <mapping>
             <identity value="zib-contactperson-v3.4-2020EN"/>
             <map value="NL-CM:3.1.4"/>
             <comment value="NameInformation"/>
+         </mapping>
+         <mapping>
+            <identity value="zib-payer-v3.1.1-2020EN"/>
+            <map value="NL-CM:1.1.5"/>
+            <comment value="PayerName"/>
          </mapping>
       </element>
       <element id="RelatedPerson.name:nameInformation">
@@ -155,6 +166,11 @@
             <map value="NL-CM:20.6.1"/>
             <comment value="ContactInformation"/>
          </mapping>
+         <mapping>
+            <identity value="zib-payer-v3.1.1-2020EN"/>
+            <map value="NL-CM:1.1.12"/>
+            <comment value="ContactInformation"/>
+         </mapping>
       </element>
       <element id="RelatedPerson.telecom:telephoneNumbers">
          <path value="RelatedPerson.telecom"/>
@@ -184,6 +200,11 @@
          <mapping>
             <identity value="zib-contactperson-v3.4-2020EN"/>
             <map value="NL-CM:3.1.5"/>
+            <comment value="AddressInformation"/>
+         </mapping>
+         <mapping>
+            <identity value="zib-payer-v3.1.1-2020EN"/>
+            <map value="NL-CM:1.1.17"/>
             <comment value="AddressInformation"/>
          </mapping>
       </element>
