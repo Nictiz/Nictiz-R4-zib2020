@@ -348,7 +348,7 @@ zib-MedicationContraIndication:
   zib deviations:
     Flag.code:
       - cardinality: 1..1
-        reason: The zib profiles should relax the minimum cardinality from the zibs because of the conceptual cardinality concept. However, FHIR requires Flag.code to be 1..1. The case can be made that zib MedicationContraIndicationName will never be conceptual, because it is the defining factor for MedicationContraIndication. 
+        reason: Flag.code is manadatory in FHIR. The cardinality matches the cardinality of the zib. However, it does not match with the conceptual cardinality concept. This should not be a major problem.
 
 zib-NameInformation:
   zib deviations:
