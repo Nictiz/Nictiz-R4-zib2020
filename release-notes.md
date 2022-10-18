@@ -41,6 +41,7 @@ This document contains release notes per zib, indicating differences with their 
 
 ## zib-BowelFunction
 * The mapping of NL-CM:4.15.3 is mapped at profile level instead of extension level.
+* MedicalDevice extension has been removed because the reference is reversed in FHIR. The MedicalDevice profile refers to this profile.
 
 ## zib-CareTeam
 * CareTeam is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
