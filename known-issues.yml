@@ -703,6 +703,20 @@ zib-*Function.*Aid.Product:
       - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The short description is the same as that of the base profile, so it is absent from the differential.
 
+zib-Alert:
+  ignored issues:
+    Flag:
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias "Alert" is already defined in the base profile, so it doesn't need to be defined again in the differential.
+
+zib-ContactPerson:
+  ignored issues:
+    RelatedPerson.address:
+      - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
+        reason: The short description is defined on the datatype profile and not repeated in the differential.
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias is defined on the datatype profile and not repeated in the differential.
+
 zib-HealthcareProvider:
   ignored issues:
     Location.address:
@@ -711,11 +725,13 @@ zib-HealthcareProvider:
       - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The required alias is given by the datatype profile, so it is absent from the differential.
 
-zib-Alert:
+zib-HealthProfessional-Practitioner:
   ignored issues:
-    Flag:
+    Practitioner.address:
+      - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
+        reason: The short description is defined on the datatype profile and not repeated in the differential.
       - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
-        reason: The alias "Alert" is already defined in the base profile, so it doesn't need to be defined again in the differential.
+        reason: The alias is defined on the datatype profile and not repeated in the differential.
 
 zib-Patient:
   ignored issues:
