@@ -20,6 +20,12 @@ ext-Procedure.ProcedureMethod:
       - cardinality: 1..1
         reason: The used extension uses a cardinality of 1..1 on the value[x] element. However, the extension itself is added with a cardinality of 0..1. 
 
+ext-TreatmentDirective2.AdvanceDirective:
+  zib deviations:
+    Extension.value[x]:
+      - cardinality: 0..1
+        reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension should be added 0..* in the hosting element.
+
 nl-core-PharmaceuticalProduct-randomCode-invalid:
   ignored issues:
     Medication.code:
@@ -142,13 +148,19 @@ zib-ContactPerson:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
       - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
+        for: NL-CM:3.1.6 (ContactPerson.Contactinformation)
+        reason: The mismatch is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
+
     RelatedPerson.telecom:telephoneNumbers:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
     RelatedPerson.telecom:emailAddresses:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
+  additional notes:
+    RelatedPerson.telecom:
+      - cardinality: 0..*
+        reason: There's a cardinality mismatch between zib ContactPerson (0..1) and FHIR (0..*), although for the mapping of zib Payer in the ContactPerson profile the cardinalities match. The mismatch is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
 
 zib-Encounter:
   ignored issues:
@@ -350,7 +362,7 @@ zib-NameInformation:
     HumanName.family.extension:*.value[x]:
       - cardinality: 1..1
         reason: The value of the extension is required, but the extension itself is optional, making the effective cardinality 0..1 as required by the zib.
-
+                
 zib-NameInformation.GivenName:
   zib deviations:
     HumanName.given:
@@ -396,9 +408,9 @@ zib-Patient:
     Patient.telecom*:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
-    Patient.telecom:
       - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
+        for: NL-CM:0.1.5 (Patient.Contactinformation)
+        reason: The mismatch is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
     Patient.address:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
@@ -455,6 +467,36 @@ zib-PharmaceuticalProduct:
       - cardinality: 1..1
         reason: There is a known cardinality mismatch between FHIR (1..1) and the zib (0..1) for the .ingredient.item element which is nested in the optional .ingredient container. This constraint was already in place for the STU3 profile. Moreover this does not seem to be a concern for the Medication Proces information standard will use this profile as they will make this element required in their dataset.
 
+zib-Payer.InsuranceCompany:
+  zib deviations:
+    Coverage.payor:
+      - cardinality: 1..1
+        reason: The cardinality of the zib-concept InsuranceCompany (0..1) mismatches FHIR (1..1). Between the zib concepts InsuranceCompany and PayerPerson, a minimum of 1 must be selected. If one uses the zib-Payer.InsuranceCompany profile, the choice has been made to apply the InsuranceCompany concept, therefore a cardinality of 1..1 can be used.
+
+zib-Payer.PayerPerson:
+  zib deviations:
+    Coverage.extension:bankInformation:
+      - datatype: Extension
+        reason: The (complex) extension acts as a container for three subextensions that each contain a zib subconcept.
+    Coverage.payor:
+      - cardinality: 1..1
+        reason: The cardinality of the zib-concept PayerPerson (0..1) mismatches FHIR (1..1). Between the zib concepts InsuranceCompany and PayerPerson, a minimum of 1 must be selected. If one uses the zib-Payer.PayerPerson profile, the choice has been made to apply the PayerPerson concept, therefore a cardinality of 1..1 can be used.
+
+zib-Payer-Organization:
+  zib deviations:
+    Organization.telecom:
+      - datatype: ContactPoint
+        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consists of two parts the rootconcept of the ContactInformation is mapped on .telecom.
+    Organization.telecom:telephoneNumbers:
+      - datatype: ContactPoint
+        reason: See Organization.telecom.
+    Organization.telecom:emailAddresses:
+      - datatype: ContactPoint
+        reason: See Organization.telecom.
+    Organization.address:
+      - datatype: Address
+        reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
+
 zib-Problem:
   zib deviations:
     Condition.bodySite:
@@ -495,6 +537,18 @@ zib-TextResult.VisualResult:
     Media.content:
       - cardinality: 1..1
         reason: The use of the Media resource referenced in zib-TextResult DiagnosticReport.media.link is optional (0..*), but if the Media resource is used, Media.content should be present (1..1).
+        
+zib-TreatmentDirective2:
+  zib deviations:
+    Consent.source[x]:sourceReference:
+      - cardinality: 0..1
+        reason: This element is the logical representation of the AdvanceDirective concept (NL-CM:2.2.8) specified in HCIM TreatmentDirective2, but FHIR restricts the cardinality to 0..1. For this reason, an extension is added that can be used to provide additional AdvanceDirective references.
+    Consent.provision.actor:agreementParty:
+      - datatype: BackboneElement
+        reason: The zib container AgreementParty can be mapped correctly to the actor's BackboneElement.
+    Consent.provision.actor:agreementParty.reference:
+      - cardinality: 1..1
+        reason: The .reference element cannot be used without sibling .role to represent the concepts NL-CM:2.2.10,  NL-CM:2.2.11 and  NL-CM:2.2.12, so these two elements have to be used together. The container itself is optional.
 
 zib-Vaccination-event:
   zib deviations:
@@ -552,7 +606,7 @@ unmapped zib concepts:
 
 issues should occur: false
 
-"*-AdvanceDirective*":
+"*":
   ignored issues:
     Consent.scope*:
       - message: Unknown Code http://terminology.hl7.org/CodeSystem/consentscope#adr in http://terminology.hl7.org/CodeSystem/consentscope
@@ -696,6 +750,20 @@ zib-Patient:
         reason: The short description is defined on the datatype profile and not repeated in the differential.
       - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.
+        
+zib-Payer.InsuranceCompany:
+  ignored issues:
+    Coverage.payor:
+      - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
+        reason: The definition of the zib concept 'InsuranceCompany', which is the root of a container, does not contain a meaningful definition. 
+
+zib-Payer-Organization:
+  ignored issues:
+    Organization.address:
+      - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
+        reason: The short description is defined on the datatype profile and not repeated in the differential.
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias is defined on the datatype profile and not repeated in the differential. 
 
 zib-Vaccination-event:
   zib deviations:
