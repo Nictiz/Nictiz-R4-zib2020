@@ -149,8 +149,8 @@ zib-ContactPerson:
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
   additional notes:
     RelatedPerson.telecom:
-      - cardinality: 0..* instead of 0..1
-        reason: There's a cardinality mismatch between zib ContactPerson (0..1) and FHIR (0..*), although for the mapping of zib Payer in the ContactPerson profile the cardinalities match. The mismatch is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
+      - cardinality: 0..*
+        reason: Although there is a cardinality mismatch for the mapping of zib concept ContactPerson.ContactInformation on this element (as pointed out above), the cardinalities between zib and FHIR do match for the mapping of zib concept Payer.ContactInformation (NL-CM:1.1.12), as these are both 0..*.
 
 zib-Encounter:
   ignored issues:
@@ -437,8 +437,8 @@ zib-Patient:
         reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
   additional notes:
     Patient.telecom:
-      - cardinality: 0..* instead of 0..1
-        reason: There's a cardinality mismatch between zib Patient (0..1) and FHIR (0..*), although for the mapping of zib Payer in the Patient profile the cardinalities match. The mismatch is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
+      - cardinality: 0..*
+        reason: Although there is a cardinality mismatch for the mapping of zib concept Patient.ContactInformation on this element (as pointed out above), the cardinalities between zib and FHIR do match for the mapping of zib concept Payer.ContactInformation (NL-CM:1.1.12), as these are both 0..*.
 
 zib-PharmaceuticalProduct:
   zib deviations:
