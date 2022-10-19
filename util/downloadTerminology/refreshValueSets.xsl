@@ -27,7 +27,7 @@
                 <xsl:value-of select="concat(iri-to-uri($inputdir),'terminology/')"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:value-of select="concat(iri-to-uri($inputdir),'/terminoloy/')"/>
+                <xsl:value-of select="concat(iri-to-uri($inputdir),'/terminology/')"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:param>
