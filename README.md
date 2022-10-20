@@ -19,7 +19,7 @@ All of the conformance resources representing the zibs are vetted by HL7 Netherl
 
 ## Changes in this repository
 
-Bugs and other issues are tracked using the (BITS MM project)[https://bits.nictiz.nl/projects/MM/].
+Bugs and other issues are tracked using the [BITS MM project](https://bits.nictiz.nl/projects/MM/).
 
 Note 1: It is a bit of a misnomer to use this project, but this has been chosen for pragmatic reasons.
 
