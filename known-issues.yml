@@ -101,6 +101,14 @@ zib-AllergyIntolerance:
     AllergyIntolerance.reaction:
       - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
         reason: The mapping is to a zib container, which doesn't have a useful description if implemented in a profile.
+        
+zib-BladderFunction.UrineCatheter.Product:
+  ignored issues:
+    Device.type:
+      - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
+        reason: The short is the same as that of the base profile, so it is absent from the differential.
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias is the same as that of the base profile, so it is absent from the differential.
 
 zib-BloodPressure:
   ignored issues:
