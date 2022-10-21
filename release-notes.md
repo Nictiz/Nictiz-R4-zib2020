@@ -122,7 +122,7 @@ This document contains release notes per zib, indicating differences with their 
 * Provided documentation on how to populate mandatory `.status` element.
 
 ## zib-MedicationContraIndication
-* MedicationContraIndication is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
+* MedicationContraIndication is a newly added zib in the 2020 release. It has no corresponding profile in the previous version.
 
 ## zib-Mobility
 * The comment element is mapped on `Observation.note.text` instead of `Observation.comment`.
