@@ -507,7 +507,7 @@ zib-Procedure-request:
 zib-Stoma:
   zib deviations:
     Condition.code:
-      - cardinality: 1..1
+      - cardinality: 1..1 instead of 0..1
         reason: The FHIR profiles are expected to implement zib cardinalities as conceptual cardinalities, but StomaType is essential to identify the Stoma. This aligns with the intention of the zib, as the StomaType concept is required for zib Stoma to make sense.
     Condition.bodySite:
       - datatype: CodeableConcept
