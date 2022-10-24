@@ -28,7 +28,7 @@ if [[ ! -f $tools_dir/zib-compliance-fhir/index.js ]]; then
     echo -e "\033[1;37mDownloading zib compliance tool\033[0m"
   fi
 
-  git clone -b action --depth 1 https://github.com/pieter-edelman-nictiz/zib-compliance-fhir.git $tools_dir/zib-compliance-fhir
+  git clone -b UpdateGithubTooling --depth 1 https://github.com/pieter-edelman-nictiz/zib-compliance-fhir.git $tools_dir/zib-compliance-fhir
   cd $tools_dir/zib-compliance-fhir
   npm install
 
