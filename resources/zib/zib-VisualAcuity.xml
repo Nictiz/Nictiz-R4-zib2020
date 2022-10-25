@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -65,6 +65,9 @@
       <definition value="The device used measuring the visual acuity." />
       <alias value="VisusMeetHulpmiddel" />
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="DeviceCode" />
+        </extension>
         <strength value="extensible" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.19.4--20200901000000" />
       </binding>
@@ -233,6 +236,10 @@
         <comment value="VisualAcuityType" />
       </mapping>
     </element>
+    <element id="Observation.component:visualAcuityType.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
+    </element>
     <element id="Observation.component:visualAcuityMeasurementChart">
       <path value="Observation.component" />
       <sliceName value="visualAcuityMeasurementChart" />
@@ -265,6 +272,10 @@
         <comment value="VisualAcuityMeasurementChart" />
       </mapping>
     </element>
+    <element id="Observation.component:visualAcuityMeasurementChart.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
+    </element>
     <element id="Observation.component:distanceFromChart">
       <path value="Observation.component" />
       <sliceName value="distanceFromChart" />
@@ -296,6 +307,10 @@
         <map value="NL-CM:12.19.8" />
         <comment value="DistanceFromChart" />
       </mapping>
+    </element>
+    <element id="Observation.component:distanceFromChart.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
   </differential>
 </StructureDefinition>
