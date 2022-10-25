@@ -165,6 +165,33 @@ This document contains release notes per zib, indicating differences with their 
 * The STU3 version of the profile mapped part of the InsuranceCompany concept in the nl-core-organization profile, while these types of organizations do not necessarily have anything in common with HealthcareProviders, and it also did not allow for the situation where PayerPerson is an organization. To fix this, two separate profiles have been created for the situations where the Payer is a PayerPerson or an InsuranceCompany. These profiles could not be combined because slicing on .type with a maximum cardinality of 1 is not allowed.
 * Both InsuranceCompany and 'PayerPerson as Organization' have been mapped in the profile Payer-Organization.
 
+## zib-Pregnancy.DateLastMenstruation
+* The zib-Pregnancy extension has been moved to 'Observation.focus'.
+
+## zib-Pregnancy.EstimatedDateOfDelivery
+* The profile name has now been changed from "zib-Pregnancy-TermDate" to "zib-Pregnancy.EstimatedDateOfDelivery".
+* The value of 'Condition.code' has now been changed from 11778-8 to 161714006.
+* The system of 'Condition.code' has now been changed from 'http://loinc.org' to 'http://snomed.info/sct'.
+* The zib-Pregnancy extension has been moved to 'Observation.focus'.
+
+## zib-Pregnancy.Gravidity
+* The value of 'Condition.code' has now been changed from 11996-6 to 161732006.
+* The system of 'Condition.code' has now been changed from 'http://loinc.org' to 'http://snomed.info/sct'.
+* The datatype on 'Observation.value[x]' has now been changed from 'valueQuantity' to 'valueInteger'.
+* The zib-Pregnancy extension has been moved to 'Observation.focus'.
+
+## zib-Pregnancy.Parity
+* The value of 'Condition.code' has now been changed from 11977-6 to 364325004.
+* The system of 'Condition.code' has now been changed from 'http://loinc.org' to 'http://snomed.info/sct'.
+* The datatype on 'Observation.value[x]' has now been changed from 'valueQuantity' to 'valueInteger'.
+* The zib-Pregnancy extension has been moved to 'Observation.focus'.
+
+## zib-Pregnancy.PregnancyDuration
+* The zib-Pregnancy extension has been moved to 'Observation.focus'.
+
+## zib-Pregnancy
+* The value of 'Condition.code' has now been changed from 118185001 to 364320009.
+
 ## zib-Problem
 * ProblemType has been added on a slice of `Condition.category` allowing the category element to be used for other purposes too.
 * FurtherSpecificationProblemName has been added with an extension on `Condition.code`.
