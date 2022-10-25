@@ -148,6 +148,12 @@ This document contains release notes per zib, indicating differences with their 
 * Because there's a better match with CarePlan, the five custom extensions are removed. One custom extension is added to mark a `CarePlan.contributor` as the zib Requester, and another one to define the materials used.
 * Note: although the zib has changed quite dramatically since release 2017, the previous version of the profile was based on a pre-adopt of zib pre-release 2018, which is the same as release 2020.
 
+## zib-NutritionAdvice
+* References not accounted for by the zib have been removed on `NutritionOrder.allergyIntolerance`, `NutritionOrder.encounter` and `NutritionOrder.orderer`.
+* The incorrect mapping of Consistency to `NutritionOrder.oralDiet.texture.foodType.text` has been removed. This concept is not used to provide information on the consistency of nutrition.
+* New concept Indication mapped on the extension `NutritionOrder.extension:indication`.
+* The comment extension has been replaced by a mapping to `NutritionOrder.note.text`.
+
 ## zib-Patient
 * Includes Nationality, MaritalStatus, LanguageProficiency.
 * Cardinality of `Patient.extension:nationality` left at 0..* due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time).
