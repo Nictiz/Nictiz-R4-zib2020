@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -36,11 +36,20 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
       </type>
     </element>
-    <element id="RelatedPerson.name">
+    <element id="RelatedPerson.name:nameInformation">
       <path value="RelatedPerson.name" />
+      <sliceName value="nameInformation" />
       <type>
         <code value="HumanName" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NameInformation" />
+      </type>
+    </element>
+    <element id="RelatedPerson.name:nameInformation-GivenName">
+      <path value="RelatedPerson.name" />
+      <sliceName value="nameInformation-GivenName" />
+      <type>
+        <code value="HumanName" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NameInformation.GivenName" />
       </type>
     </element>
     <element id="RelatedPerson.telecom:telephoneNumbers">

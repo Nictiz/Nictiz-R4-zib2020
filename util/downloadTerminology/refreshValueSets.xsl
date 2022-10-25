@@ -3,6 +3,7 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:f="http://hl7.org/fhir"
+    xmlns="http://hl7.org/fhir"
     exclude-result-prefixes="#all"
     version="2.0">
     <xd:doc scope="stylesheet">
@@ -14,6 +15,7 @@
     </xd:doc>
     
     <xsl:output omit-xml-declaration="yes"/>
+    <xsl:include href="rewriteTerminologyResource.xsl"/>
     
     <xsl:param name="inputdir">../../resources/zib/</xsl:param>
     <xsl:param name="outputdir">
@@ -25,7 +27,7 @@
                 <xsl:value-of select="concat(iri-to-uri($inputdir),'terminology/')"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:value-of select="concat(iri-to-uri($inputdir),'/terminoloy/')"/>
+                <xsl:value-of select="concat(iri-to-uri($inputdir),'/terminology/')"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:param>
@@ -49,7 +51,9 @@
         <xsl:for-each-group select="$valueSetURIs" group-by=".">
             <xsl:variable name="valueSetURI" select="replace(., '^http(s?)://decor.nictiz.nl/fhir/ValueSet', 'http$1://decor.nictiz.nl/fhir/4.0/public/ValueSet')"/>
             <xsl:variable name="valueSetURIExpand" select="concat($valueSetURI, '/$expand')"/>
-            <xsl:variable name="valueSet" select="doc($valueSetURI)/*" as="element()?"/>
+            <xsl:variable name="valueSet" as="element()?">
+                <xsl:apply-templates mode="rewrite" select="doc($valueSetURI)/*"/>
+            </xsl:variable>
             <xsl:variable name="valueSetExpand" as="element()?">
               <!--<xsl:if test="empty($valueSet//f:include[not(f:concept)])">
                 <xsl:copy-of select="doc($valueSetURIExpand)/*"/>
