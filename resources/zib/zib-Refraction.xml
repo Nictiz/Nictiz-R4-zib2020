@@ -14,7 +14,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="The refraction measurement is a measurement with which the refractive error of the eye is determined. During the refraction measurement, the necessary correction is established: the spherical power (in diopter), the cylindrical power (in diopter), the axis direction(in degrees) for any cylindrical correction, the prism (in diopter)and any additional power of the reading area (in diopter), the so-called reading addition" />
+  <description value="The refraction measurement is a measurement with which the refractive error of the eye is determined. During the refraction measurement, the necessary correction is established: the spherical power (in diopter), the cylindrical power (in diopter), the axis direction (in degrees) for any cylindrical correction, the prism (in diopter) and any additional power of the reading area (in diopter), the so-called reading addition." />
   <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Refraction-v1.0(2020EN)](https://zibs.nl/wiki/Refraction-v1.0(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
@@ -76,7 +76,7 @@
     <element id="Observation.bodySite">
       <path value="Observation.bodySite" />
       <short value="AnatomicalLocation" />
-      <definition value="The laterality of the eye whose of which the refraction has been measured." />
+      <definition value="The laterality of the eye of which the refraction has been measured." />
       <alias value="AnatomischeLocatie" />
       <type>
         <code value="CodeableConcept" />
@@ -156,31 +156,31 @@
       <constraint>
         <key value="zib-Refraction-1" />
         <severity value="error" />
-        <human value="When component:cilindricRefractionAxis is present, component:cylindricalRefractionValue should also be present." />
-        <expression value="$this.code.coding.where(system = 'http://snomed.info/sct' and code = '251799001').exists() implies $this.code.coding.where(system = 'http://snomed.info/sct' and code = '251797004').exists()" />
+        <human value="When component:cylindricalRefractionValue is present, component:cylindricalRefractionAxis should also be present." />
+        <expression value="$this.code.coding.where(system = 'http://snomed.info/sct' and code = '251797004').exists() implies $this.code.coding.where(system = 'http://snomed.info/sct' and code = '251799001').exists()" />
       </constraint>
       <constraint>
         <key value="zib-Refraction-2" />
         <severity value="error" />
-        <human value="When component:cilindricRefractionAxis is present, component:cylindricalRefractionValue should also be present." />
+        <human value="When component:cylindricalRefractionAxis is present, component:cylindricalRefractionValue should also be present." />
         <expression value="$this.code.coding.where(system = 'http://snomed.info/sct' and code = '251799001').exists() implies $this.code.coding.where(system = 'http://snomed.info/sct' and code = '251797004').exists()" />
       </constraint>
       <constraint>
         <key value="zib-Refraction-3" />
         <severity value="error" />
-        <human value="When component:prismaValue is present, component:prismaBase should also be present." />
+        <human value="When component:prismValue is present, component:prismBase should also be present." />
         <expression value="$this.code.coding.where(system = 'http://snomed.info/sct' and code = '251762001').exists() implies $this.code.coding.where(system = 'http://snomed.info/sct' and code = '246223004').exists()" />
       </constraint>
       <constraint>
         <key value="zib-Refraction-4" />
         <severity value="error" />
-        <human value="When component:prismaBase is present, component:prismaValue should also be present." />
-        <expression value="$this.code.coding.where(system = 'http://snomed.info/sct' and code = '251799001').exists() implies $this.code.coding.where(system = 'http://snomed.info/sct' and code = '246223004').exists()" />
+        <human value="When component:prismBase is present, component:prismValue should also be present." />
+        <expression value="$this.code.coding.where(system = 'http://snomed.info/sct' and code = '246223004').exists() implies $this.code.coding.where(system = 'http://snomed.info/sct' and code = '251762001').exists()" />
       </constraint>
       <constraint>
         <key value="zib-Refraction-5" />
         <severity value="error" />
-        <human value="When component:sfericalEquivalent is present, component:sfericRefractionValue should also be present." />
+        <human value="When component:sphericalEquivalent is present, component:sphericalRefractionValue should also be present." />
         <expression value="$this.code.coding.where(system = 'http://snomed.info/sct' and code = '112881000146107').exists() implies $this.code.coding.where(system = 'http://snomed.info/sct' and code = '251795007').exists()" />
       </constraint>
     </element>
@@ -236,14 +236,14 @@
       <path value="Observation.component.referenceRange" />
       <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
-    <element id="Observation.component:ciilindricRefractionAxis">
+    <element id="Observation.component:cylindricalRefractionAxis">
       <path value="Observation.component" />
-      <sliceName value="ciilindricRefractionAxis" />
+      <sliceName value="cylindricalRefractionAxis" />
       <max value="1" />
       <condition value="zib-Refraction-1" />
       <condition value="zib-Refraction-2" />
     </element>
-    <element id="Observation.component:ciilindricRefractionAxis.code">
+    <element id="Observation.component:cylindricalRefractionAxis.code">
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
@@ -254,9 +254,9 @@
       <condition value="zib-Refraction-1" />
       <condition value="zib-Refraction-2" />
     </element>
-    <element id="Observation.component:ciilindricRefractionAxis.value[x]">
+    <element id="Observation.component:cylindricalRefractionAxis.value[x]">
       <path value="Observation.component.value[x]" />
-      <short value="CilindricRefractionAxis" />
+      <short value="CylindricalRefractionAxis" />
       <definition value="The axis direction of the cylindrical refraction value expressed in degrees." />
       <alias value="CilindrischeRefractieAs" />
       <type>
@@ -284,18 +284,18 @@
         <comment value="CilindricRefractionAxis" />
       </mapping>
     </element>
-    <element id="Observation.component:ciilindricRefractionAxis.referenceRange">
+    <element id="Observation.component:cylindricalRefractionAxis.referenceRange">
       <path value="Observation.component.referenceRange" />
       <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
-    <element id="Observation.component:prismaValue">
+    <element id="Observation.component:prismValue">
       <path value="Observation.component" />
-      <sliceName value="prismaValue" />
+      <sliceName value="prismValue" />
       <max value="1" />
       <condition value="zib-Refraction-3" />
       <condition value="zib-Refraction-4" />
     </element>
-    <element id="Observation.component:prismaValue.code">
+    <element id="Observation.component:prismValue.code">
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
@@ -306,9 +306,9 @@
       <condition value="zib-Refraction-3" />
       <condition value="zib-Refraction-4" />
     </element>
-    <element id="Observation.component:prismaValue.value[x]">
+    <element id="Observation.component:prismValue.value[x]">
       <path value="Observation.component.value[x]" />
-      <short value="PrismaValue" />
+      <short value="PrismValue" />
       <definition value="The power of the prism, expressed in diopters." />
       <alias value="PrismaWaarde" />
       <type>
@@ -336,18 +336,18 @@
         <comment value="PrismaValue" />
       </mapping>
     </element>
-    <element id="Observation.component:prismaValue.referenceRange">
+    <element id="Observation.component:prismValue.referenceRange">
       <path value="Observation.component.referenceRange" />
       <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
-    <element id="Observation.component:prismaBase">
+    <element id="Observation.component:prismBase">
       <path value="Observation.component" />
-      <sliceName value="prismaBase" />
+      <sliceName value="prismBase" />
       <max value="1" />
       <condition value="zib-Refraction-3" />
       <condition value="zib-Refraction-4" />
     </element>
-    <element id="Observation.component:prismaBase.code">
+    <element id="Observation.component:prismBase.code">
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
@@ -358,9 +358,9 @@
       <condition value="zib-Refraction-3" />
       <condition value="zib-Refraction-4" />
     </element>
-    <element id="Observation.component:prismaBase.value[x]">
+    <element id="Observation.component:prismBase.value[x]">
       <path value="Observation.component.value[x]" />
-      <short value="PrismaBase" />
+      <short value="PrismBase" />
       <definition value="The base of the prism, expressed in degrees." />
       <alias value="PrismaBasis" />
       <type>
@@ -388,17 +388,17 @@
         <comment value="PrismaBase" />
       </mapping>
     </element>
-    <element id="Observation.component:prismaBase.referenceRange">
+    <element id="Observation.component:prismBase.referenceRange">
       <path value="Observation.component.referenceRange" />
       <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
-    <element id="Observation.component:sfericRefractionValue">
+    <element id="Observation.component:sphericalRefractionValue">
       <path value="Observation.component" />
-      <sliceName value="sfericRefractionValue" />
+      <sliceName value="sphericalRefractionValue" />
       <max value="1" />
       <condition value="zib-Refraction-5" />
     </element>
-    <element id="Observation.component:sfericRefractionValue.code">
+    <element id="Observation.component:sphericalRefractionValue.code">
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
@@ -408,9 +408,9 @@
       </patternCodeableConcept>
       <condition value="zib-Refraction-5" />
     </element>
-    <element id="Observation.component:sfericRefractionValue.value[x]">
+    <element id="Observation.component:sphericalRefractionValue.value[x]">
       <path value="Observation.component.value[x]" />
-      <short value="SfericRefractionValue" />
+      <short value="SphericalRefractionValue" />
       <definition value="The spherical spectacle strength power needed to correct nearsightedness (myopia) or farsightedness (hyperopia), expressed in diopters, ascending by 0.25D." />
       <alias value="SferischeRefractieWaarde" />
       <type>
@@ -437,17 +437,17 @@
         <comment value="SfericRefractionValue" />
       </mapping>
     </element>
-    <element id="Observation.component:sfericRefractionValue.referenceRange">
+    <element id="Observation.component:sphericalRefractionValue.referenceRange">
       <path value="Observation.component.referenceRange" />
       <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
-    <element id="Observation.component:sfericalEquivalent">
+    <element id="Observation.component:sphericalEquivalent">
       <path value="Observation.component" />
-      <sliceName value="sfericalEquivalent" />
+      <sliceName value="sphericalEquivalent" />
       <max value="1" />
       <condition value="zib-Refraction-5" />
     </element>
-    <element id="Observation.component:sfericalEquivalent.code">
+    <element id="Observation.component:sphericalEquivalent.code">
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
@@ -457,9 +457,9 @@
       </patternCodeableConcept>
       <condition value="zib-Refraction-5" />
     </element>
-    <element id="Observation.component:sfericalEquivalent.value[x]">
+    <element id="Observation.component:sphericalEquivalent.value[x]">
       <path value="Observation.component.value[x]" />
-      <short value="SfericalEquivalent" />
+      <short value="SphericalEquivalent" />
       <definition value="The spherical power added to half of the cylindrical power. Expressed in diopters, ascending by 0.1D. Some equipment automatically calculates the spherical equivalent automatically." />
       <alias value="SferischEquivalent" />
       <type>
@@ -486,7 +486,7 @@
         <comment value="SfericalEquivalent" />
       </mapping>
     </element>
-    <element id="Observation.component:sfericalEquivalent.referenceRange">
+    <element id="Observation.component:sphericalEquivalent.referenceRange">
       <path value="Observation.component.referenceRange" />
       <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
