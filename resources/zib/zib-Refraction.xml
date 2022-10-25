@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -132,6 +132,9 @@
       <definition value="The method used to measure the refraction." />
       <alias value="RefractieMeetMethode" />
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ObservationMethod" />
+        </extension>
         <strength value="extensible" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.20.1--20200901000000" />
       </binding>
@@ -155,35 +158,30 @@
         <severity value="error" />
         <human value="When component:cilindricRefractionAxis is present, component:cylindricalRefractionValue should also be present." />
         <expression value="$this.code.coding.where(system = 'http://snomed.info/sct' and code = '251799001').exists() implies $this.code.coding.where(system = 'http://snomed.info/sct' and code = '251797004').exists()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-Refraction" />
       </constraint>
       <constraint>
         <key value="zib-Refraction-2" />
         <severity value="error" />
         <human value="When component:cilindricRefractionAxis is present, component:cylindricalRefractionValue should also be present." />
         <expression value="$this.code.coding.where(system = 'http://snomed.info/sct' and code = '251799001').exists() implies $this.code.coding.where(system = 'http://snomed.info/sct' and code = '251797004').exists()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-Refraction" />
       </constraint>
       <constraint>
         <key value="zib-Refraction-3" />
         <severity value="error" />
         <human value="When component:prismaValue is present, component:prismaBase should also be present." />
         <expression value="$this.code.coding.where(system = 'http://snomed.info/sct' and code = '251762001').exists() implies $this.code.coding.where(system = 'http://snomed.info/sct' and code = '246223004').exists()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-Refraction" />
       </constraint>
       <constraint>
         <key value="zib-Refraction-4" />
         <severity value="error" />
         <human value="When component:prismaBase is present, component:prismaValue should also be present." />
         <expression value="$this.code.coding.where(system = 'http://snomed.info/sct' and code = '251799001').exists() implies $this.code.coding.where(system = 'http://snomed.info/sct' and code = '246223004').exists()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-Refraction" />
       </constraint>
       <constraint>
         <key value="zib-Refraction-5" />
         <severity value="error" />
         <human value="When component:sfericalEquivalent is present, component:sfericRefractionValue should also be present." />
         <expression value="$this.code.coding.where(system = 'http://snomed.info/sct' and code = '112881000146107').exists() implies $this.code.coding.where(system = 'http://snomed.info/sct' and code = '251795007').exists()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-Refraction" />
       </constraint>
     </element>
     <element id="Observation.component:cylindricalRefractionValue">
@@ -234,6 +232,10 @@
         <comment value="CylindricalRefractionValue" />
       </mapping>
     </element>
+    <element id="Observation.component:cylindricalRefractionValue.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
+    </element>
     <element id="Observation.component:ciilindricRefractionAxis">
       <path value="Observation.component" />
       <sliceName value="ciilindricRefractionAxis" />
@@ -281,6 +283,10 @@
         <map value="NL-CM:12.20.13" />
         <comment value="CilindricRefractionAxis" />
       </mapping>
+    </element>
+    <element id="Observation.component:ciilindricRefractionAxis.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
     <element id="Observation.component:prismaValue">
       <path value="Observation.component" />
@@ -330,6 +336,10 @@
         <comment value="PrismaValue" />
       </mapping>
     </element>
+    <element id="Observation.component:prismaValue.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
+    </element>
     <element id="Observation.component:prismaBase">
       <path value="Observation.component" />
       <sliceName value="prismaBase" />
@@ -378,6 +388,10 @@
         <comment value="PrismaBase" />
       </mapping>
     </element>
+    <element id="Observation.component:prismaBase.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
+    </element>
     <element id="Observation.component:sfericRefractionValue">
       <path value="Observation.component" />
       <sliceName value="sfericRefractionValue" />
@@ -422,6 +436,10 @@
         <map value="NL-CM:12.20.9" />
         <comment value="SfericRefractionValue" />
       </mapping>
+    </element>
+    <element id="Observation.component:sfericRefractionValue.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
     <element id="Observation.component:sfericalEquivalent">
       <path value="Observation.component" />
@@ -468,6 +486,10 @@
         <comment value="SfericalEquivalent" />
       </mapping>
     </element>
+    <element id="Observation.component:sfericalEquivalent.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
+    </element>
     <element id="Observation.component:readAddition">
       <path value="Observation.component" />
       <sliceName value="readAddition" />
@@ -509,6 +531,10 @@
         <map value="NL-CM:12.20.8" />
         <comment value="ReadAddition" />
       </mapping>
+    </element>
+    <element id="Observation.component:readAddition.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
   </differential>
 </StructureDefinition>
