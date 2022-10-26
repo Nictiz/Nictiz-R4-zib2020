@@ -33,6 +33,36 @@
       <path value="Observation" />
       <short value="Refraction" />
       <alias value="Refractie" />
+      <constraint>
+        <key value="zib-Refraction-1" />
+        <severity value="error" />
+        <human value="When component:cylindricalRefractionValue is present, component:cylindricalRefractionAxis should also be present." />
+        <expression value="component.code.coding.where(system = 'http://snomed.info/sct' and code = '251797004').exists() implies component.code.coding.where(system = 'http://snomed.info/sct' and code = '251799001').exists()" />
+      </constraint>
+      <constraint>
+        <key value="zib-Refraction-2" />
+        <severity value="error" />
+        <human value="When component:cylindricalRefractionAxis is present, component:cylindricalRefractionValue should also be present." />
+        <expression value="component.code.coding.where(system = 'http://snomed.info/sct' and code = '251799001').exists() implies component.code.coding.where(system = 'http://snomed.info/sct' and code = '251797004').exists()" />
+      </constraint>
+      <constraint>
+        <key value="zib-Refraction-3" />
+        <severity value="error" />
+        <human value="When component:prismValue is present, component:prismBase should also be present." />
+        <expression value="component.code.coding.where(system = 'http://snomed.info/sct' and code = '251762001').exists() implies component.code.coding.where(system = 'http://snomed.info/sct' and code = '246223004').exists()" />
+      </constraint>
+      <constraint>
+        <key value="zib-Refraction-4" />
+        <severity value="error" />
+        <human value="When component:prismBase is present, component:prismValue should also be present." />
+        <expression value="component.code.coding.where(system = 'http://snomed.info/sct' and code = '246223004').exists() implies component.code.coding.where(system = 'http://snomed.info/sct' and code = '251762001').exists()" />
+      </constraint>
+      <constraint>
+        <key value="zib-Refraction-5" />
+        <severity value="error" />
+        <human value="When component:sphericalEquivalent is present, component:sphericalRefractionValue should also be present." />
+        <expression value="component.code.coding.where(system = 'http://snomed.info/sct' and code = '112881000146107').exists() implies component.code.coding.where(system = 'http://snomed.info/sct' and code = '251795007').exists()" />
+      </constraint>
       <mapping>
         <identity value="zib-refraction-v1.0-2020EN" />
         <map value="NL-CM:12.20.1" />
@@ -153,36 +183,6 @@
         </discriminator>
         <rules value="open" />
       </slicing>
-      <constraint>
-        <key value="zib-Refraction-1" />
-        <severity value="error" />
-        <human value="When component:cylindricalRefractionValue is present, component:cylindricalRefractionAxis should also be present." />
-        <expression value="$this.code.coding.where(system = 'http://snomed.info/sct' and code = '251797004').exists() implies $this.code.coding.where(system = 'http://snomed.info/sct' and code = '251799001').exists()" />
-      </constraint>
-      <constraint>
-        <key value="zib-Refraction-2" />
-        <severity value="error" />
-        <human value="When component:cylindricalRefractionAxis is present, component:cylindricalRefractionValue should also be present." />
-        <expression value="$this.code.coding.where(system = 'http://snomed.info/sct' and code = '251799001').exists() implies $this.code.coding.where(system = 'http://snomed.info/sct' and code = '251797004').exists()" />
-      </constraint>
-      <constraint>
-        <key value="zib-Refraction-3" />
-        <severity value="error" />
-        <human value="When component:prismValue is present, component:prismBase should also be present." />
-        <expression value="$this.code.coding.where(system = 'http://snomed.info/sct' and code = '251762001').exists() implies $this.code.coding.where(system = 'http://snomed.info/sct' and code = '246223004').exists()" />
-      </constraint>
-      <constraint>
-        <key value="zib-Refraction-4" />
-        <severity value="error" />
-        <human value="When component:prismBase is present, component:prismValue should also be present." />
-        <expression value="$this.code.coding.where(system = 'http://snomed.info/sct' and code = '246223004').exists() implies $this.code.coding.where(system = 'http://snomed.info/sct' and code = '251762001').exists()" />
-      </constraint>
-      <constraint>
-        <key value="zib-Refraction-5" />
-        <severity value="error" />
-        <human value="When component:sphericalEquivalent is present, component:sphericalRefractionValue should also be present." />
-        <expression value="$this.code.coding.where(system = 'http://snomed.info/sct' and code = '112881000146107').exists() implies $this.code.coding.where(system = 'http://snomed.info/sct' and code = '251795007').exists()" />
-      </constraint>
     </element>
     <element id="Observation.component:cylindricalRefractionValue">
       <path value="Observation.component" />
