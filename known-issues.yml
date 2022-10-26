@@ -787,3 +787,13 @@ zib-Payer-Organization:
         reason: The short description is defined on the datatype profile and not repeated in the differential.
       - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.
+
+zib-Refraction:
+  ignored issues:
+    Observation.bodySite.extension:laterality.value[x]:
+      - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
+        reason: The required short description is given by the datatype profile, so it is absent from the differential.
+      - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
+        reason: The required definition is given by the datatype profile, so it is absent from the differential.
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The required alias is given by the datatype profile, so it is absent from the differential.
