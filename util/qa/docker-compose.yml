@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  nictiz-r4-qa:
+    build: https://github.com/Nictiz/Nictiz-R4-QA.git#main
+    image: nictiz/nictiz-r4-qa
+    container_name: nictiz-r4-qa-zib2020
+    volumes:
+      - type: bind
+        source: ../..
+        target: /repo
+        read_only: true
+    environment:
+      - NTS_USER
+      - NTS_PASS
+      - MENU_PORT=9000
+      - TX_MENU_PORT=9001
+    ports:
+      - 8081:8081
+      - 9000:9000
+      - 9001:9001
