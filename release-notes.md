@@ -5,6 +5,9 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-AbilityToDressOneself
 * The ValueSet binding strength has changed from 'extensible' to 'required' on `Observation.component:bodyPartToBeDressed.value[x]`.
 
+## zib-AbilityToWashOneself
+* The ValueSet binding strength has changed from 'extensible' to 'required' on `Observation.component:bodyPartToBeBathed.value[x]`.
+
 ## zib-AddressInformation
 * Added extra comments on the history of the mapping in relation to v3.
 * Removed mapping to BRP.
