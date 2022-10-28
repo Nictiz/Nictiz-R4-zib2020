@@ -77,6 +77,12 @@ zib-AbilityToWashOneself:
       - cardinality: 0..1
         reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent .component element that may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
 
+zib-AbilityToDressOneself:
+  zib deviations:
+   Observation.component:bodyPartToBeDressed.value[x]:
+      - cardinality: 0..1
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent .component element that may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+
 zib-AddressInformation:
   zib deviations:
     Address.line.extension:houseNumberIndication.value[x]:
