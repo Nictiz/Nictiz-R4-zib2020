@@ -79,12 +79,23 @@
         <comment value="Patient" />
       </mapping>
     </element>
+    <element id="Immunization.location">
+      <path value="Immunization.location" />
+      <definition value="The healthcare center where the vaccination is or or will be carried out." />
+      <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc.). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository.&#xD;&#xA;&#xD;&#xA;The zib concept 'HealthcareProvider' is referenced from 'performer.actor' and '.location'. This is a reference for the location of the HealthcareProvider, nl-core-HealthcareProvider." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider" />
+      </type>
+    </element>
     <element id="Immunization.performer:administrator">
       <path value="Immunization.performer" />
       <sliceName value="administrator" />
     </element>
     <element id="Immunization.performer:administrator.actor">
       <path value="Immunization.performer.actor" />
+      <comment value="Each occurrence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [nl-core-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [nl-core-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner)). The Practitioner resource is referenced from the PractitionerRole instance. For this reason, sending systems should fill the reference to the PractitionerRole instance here, and not the Practitioner resource. Receiving systems can then retrieve the reference to the Practitioner resource from that PractitionerRole instance.&#xD;&#xA;&#xD;&#xA;In rare circumstances, there is only a Practitioner instance, in which case it is that instance which will be referenced here. However, since this should be the exception, the zib-HealthProfessional-Practitioner profile is not explicitly mentioned as a target profile.&#xD;&#xA;&#xD;&#xA;The zib concept 'HealthcareProvider' is referenced from 'performer.actor' and '.location'. This is a reference for the organization of the HealthcareProvider, nl-core-HealthcareProvider-Organization." />
       <type>
         <code value="Reference" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
