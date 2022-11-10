@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-Vaccination.AnatomicalLocation" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-Vaccination.AnatomicalLocation" />
+  <version value="0.0.1" />
+  <name value="ExtVaccinationAnatomicalLocation" />
+  <title value="ext Vaccination.AnatomicalLocation" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="An extension to refer to zib AnatomicalLocation from an Immunization resource." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="imm-immunisatie-20211118" />
+    <uri value="https://decor.nictiz.nl/ad/#/imm-/datasets/dataset/2.16.840.1.113883.2.4.3.11.60.131.1.1/2021-11-18T10:06:34" />
+    <name value="ART-DECOR Dataset Immunisatie 20211118T10:06:34" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="Immunization" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-Vaccination.AnatomicalLocation" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="AnatomicalLocation" />
+      <alias value="FarmaceutischProduct" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation" />
+      </type>
+      <mapping>
+        <identity value="imm-immunisatie-20211118" />
+        <map value="imm-dataelement-140" />
+        <comment value="AnatomicalLocation" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
