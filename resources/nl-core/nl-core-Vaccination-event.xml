@@ -64,11 +64,6 @@
       <path value="Immunization.extension.value[x]" />
       <definition value="The pharmaceutical product of the administered vaccination." />
       <comment value="If this reference to zib PharmaceuticalProduct is used, the MedicationCode (`Medication.code`) in the referenced resource SHALL be the same as `Immunization.vaccineCode` of the current resource." />
-      <mapping>
-        <identity value="imm-immunisatie-20211118" />
-        <map value="imm-dataelement-11" />
-        <comment value="PharmaceuticalProduct" />
-      </mapping>
     </element>
     <element id="Immunization.extension:anatomicalLocation">
       <path value="Immunization.extension" />
@@ -80,6 +75,10 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Vaccination.AnatomicalLocation" />
       </type>
       <isModifier value="false" />
+    </element>
+    <element id="Immunization.extension:anatomicalLocation.value[x]">
+      <path value="Immunization.extension.value[x]" />
+      <definition value="The anatomical location of where the vaccination is administered." />
     </element>
     <element id="Immunization.identifier">
       <path value="Immunization.identifier" />
