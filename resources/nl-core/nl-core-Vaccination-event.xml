@@ -23,6 +23,11 @@
     <uri value="https://decor.nictiz.nl/ad/#/imm-/datasets/dataset/2.16.840.1.113883.2.4.3.11.60.131.1.1/2021-11-18T10:06:34" />
     <name value="ART-DECOR Dataset Immunisatie 20211118T10:06:34" />
   </mapping>
+  <mapping>
+    <identity value="zib-pharmaceuticalproduct-v2.1.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/PharmaceuticalProduct-v2.1.2(2020EN)" />
+    <name value="zib PharmaceuticalProduct-v2.1.2(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="Immunization" />
@@ -89,15 +94,15 @@
       <mapping>
         <identity value="imm-immunisatie-20211118" />
         <map value="imm-dataelement-144" />
-        <comment value="StatusToediening" />
+        <comment value="Status" />
       </mapping>
     </element>
     <element id="Immunization.vaccineCode">
       <path value="Immunization.vaccineCode" />
-      <comment value="It is possible to use a reference to zib PharmaceuticalProduct to identify the used vaccine, using `Immunization.extension:pharmaceuticalProduct'. If this reference is used, the MedicationCode (`Medication.code`) in the referenced resource SHALL be the same as 'Immunization.vaccineCode'." />
+      <comment value="It is possible to use a reference to zib PharmaceuticalProduct to identify the used vaccine, using `Immunization.extension:pharmaceuticalProduct`. If this reference is used, the MedicationCode (`Medication.code`) in the referenced resource SHALL be the same as `Immunization.vaccineCode`." />
       <mapping>
-        <identity value="imm-immunisatie-20211118" />
-        <map value="imm-dataelement-112" />
+        <identity value="zib-pharmaceuticalproduct-v2.1.2-2020EN" />
+        <map value="NL-CM:9.7.19927" />
         <comment value="MedicationCode" />
       </mapping>
     </element>
@@ -116,15 +121,6 @@
         <comment value="Patient" />
       </mapping>
     </element>
-    <element id="Immunization.occurrence[x]:occurrenceDateTime">
-      <path value="Immunization.occurrence[x]" />
-      <sliceName value="occurrenceDateTime" />
-      <mapping>
-        <identity value="imm-immunisatie-20211118" />
-        <map value="imm-dataelement-129" />
-        <comment value="VaccinationDate" />
-      </mapping>
-    </element>
     <element id="Immunization.location">
       <path value="Immunization.location" />
       <definition value="The healthcare center where the vaccination is or or will be carried out." />
@@ -136,16 +132,8 @@
       </type>
       <mapping>
         <identity value="imm-immunisatie-20211118" />
-        <map value="imm-dataelement-261" />
-        <comment value="Location" />
-      </mapping>
-    </element>
-    <element id="Immunization.lotNumber">
-      <path value="Immunization.lotNumber" />
-      <mapping>
-        <identity value="imm-immunisatie-20211118" />
-        <map value="imm-dataelement-145" />
-        <comment value="Batch/lotNumber" />
+        <map value="imm-dataelement-262" />
+        <comment value="HealthcareProvider" />
       </mapping>
     </element>
     <element id="Immunization.route">
@@ -154,14 +142,6 @@
         <identity value="imm-immunisatie-20211118" />
         <map value="imm-dataelement-143" />
         <comment value="RouteOfAdministration" />
-      </mapping>
-    </element>
-    <element id="Immunization.doseQuantity">
-      <path value="Immunization.doseQuantity" />
-      <mapping>
-        <identity value="imm-immunisatie-20211118" />
-        <map value="imm-dataelement-128" />
-        <comment value="Dose" />
       </mapping>
     </element>
     <element id="Immunization.performer:administrator">
@@ -182,16 +162,13 @@
       </type>
       <mapping>
         <identity value="imm-immunisatie-20211118" />
-        <map value="imm-dataelement-120" />
-        <comment value="Administrator" />
+        <map value="imm-dataelement-163" />
+        <comment value="HealthcareProvider" />
       </mapping>
-    </element>
-    <element id="Immunization.note.text">
-      <path value="Immunization.note.text" />
       <mapping>
         <identity value="imm-immunisatie-20211118" />
-        <map value="imm-dataelement-132" />
-        <comment value="Comment" />
+        <map value="imm-dataelement-192" />
+        <comment value="HealthProfessional" />
       </mapping>
     </element>
     <element id="Immunization.reasonCode">
