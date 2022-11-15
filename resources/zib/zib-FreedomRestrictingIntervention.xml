@@ -72,7 +72,7 @@
     </element>
     <element id="Procedure.status">
       <path value="Procedure.status" />
-      <comment value="This element is implictly mapped to the zib concepts NL-CM:14.6.9 (Start) and NL-CM:14.6.9 (End). Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When Start is in the future, `.status` will usually be set to _preparation_.&#xD;&#xA;* When Start is in the past and End is present and in the future, `.status` will usually be set to _in-progress_.&#xD;&#xA;* When End is present and in the past, `.status` will usually be set to _completed_.&#xD;&#xA;* When End is not present, this means it was a point-in-time procedure and `.status` will usually be set to _completed_.&#xD;&#xA;* When a system is unable to infer the status from the Start and End, `.status` will be set to _unknown_.&#xD;&#xA;&#xD;&#xA;The _unknown_ code is not to be used to convey other statuses.  The _unknown_ code should be used when one of the statuses applies, but the authoring system doesn't know the current state of the procedure.&#xA;&#xA;This element is labeled as a modifier because the status contains codes that mark the resource as not currently valid." />
+      <comment value="This element is implictly mapped to the zib concepts NL-CM:14.6.8 (Start) and NL-CM:14.6.9 (End). Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When Start is in the future, `.status` will usually be set to _preparation_.&#xD;&#xA;* When Start is in the past and End is present and in the future, `.status` will usually be set to _in-progress_.&#xD;&#xA;* When End is present and in the past, `.status` will usually be set to _completed_.&#xD;&#xA;* When End is not present, this means it was a point-in-time procedure and `.status` will usually be set to _completed_.&#xD;&#xA;* When a system is unable to infer the status from the Start and End, `.status` will be set to _unknown_.&#xD;&#xA;&#xD;&#xA;The _unknown_ code is not to be used to convey other statuses.  The _unknown_ code should be used when one of the statuses applies, but the authoring system doesn't know the current state of the procedure.&#xA;&#xA;This element is labeled as a modifier because the status contains codes that mark the resource as not currently valid." />
       <mapping>
         <identity value="zib-freedomrestrictingintervention-v1.0-2020EN" />
         <map value="NL-CM:14.6.8" />
@@ -101,6 +101,9 @@
       <alias value="SoortInterventie" />
       <min value="1" />
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ProcedureCode" />
+        </extension>
         <strength value="extensible" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.20--20200901000000" />
       </binding>
@@ -171,6 +174,9 @@
       <alias value="RedenVanToepassen" />
       <max value="1" />
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ProcedureReason" />
+        </extension>
         <strength value="extensible" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.20.5.4--20200901000000" />
       </binding>
