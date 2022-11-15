@@ -179,10 +179,7 @@ zib-Encounter:
     Encounter.reasonReference:*:
       - cardinality: 0..* instead of 0..1 
         reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing ContactReason container in FHIR. This container may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
-    Encounter.reasonReference:deviatingResult:
-      - datatype: Reference
-        reason: The datatype mismatch between the zib (string) and FHIR (Reference) is explained by an error in the zib. DeviatingResult is captured with a reference to the zib-LaboratoryTestResult instead of a string value as the zib 2020 incorrectly states. This will be fixed in a future version of the zib (https://bits.nictiz.nl/browse/ZIB-1427).
-    Encounter.reasonReference.extension:comment.value[x]:
+    Encounter.reasonReference.extension:commentContactReason.value[x]:
       - cardinality: 0..* instead of 0..1
         reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*, effective) is explained by the missing ContactReason container in FHIR. This container may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
     Encounter.location.location:
