@@ -14,7 +14,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="This nl core profile contains preadopted concepts from the prepublished zib Vaccinatie-v5.0(2022NL).&#xD;&#xA;&#xD;&#xA;Immunization can be defined as “Generating natural immunity against pathogens by means of vaccination (active immunization) or by administering immunoglobulins (passive immunization)”.&#xD;&#xA;&#xD;&#xA;Only the (administered and planned) vaccinations are included in this information model. Administering immunoglobulins is part of the medication overview. Vaccinations have lifelong relevance.&#xD;&#xA;&#xD;&#xA;Most vaccinations are carried out in the Netherlands as part of the RVP (Rijksvaccinatieprogramma, National Immunisation Program). RVP information is especially important for children.&#xD;&#xA;&#xD;&#xA;Vaccinations are also relevant for adult patients such as transplant patients, dialysis patients and patients with a post-splenectomy status. In addition, there are specific indications for the vaccination of risk groups, such as travelers, professionals who come into contact with blood or patients with wounds, weakened immune systems or heightened risk." />
+  <description value="Immunization can be defined as “Generating natural immunity against pathogens by means of vaccination (active immunization) or by administering immunoglobulins (passive immunization)”.&#xD;&#xA;&#xD;&#xA;Only the (administered and planned) vaccinations are included in this information model. Administering immunoglobulins is part of the medication overview. Vaccinations have lifelong relevance.&#xD;&#xA;&#xD;&#xA;Most vaccinations are carried out in the Netherlands as part of the RVP (Rijksvaccinatieprogramma, National Immunisation Program). RVP information is especially important for children.&#xD;&#xA;&#xD;&#xA;Vaccinations are also relevant for adult patients such as transplant patients, dialysis patients and patients with a post-splenectomy status. In addition, there are specific indications for the vaccination of risk groups, such as travelers, professionals who come into contact with blood or patients with wounds, weakened immune systems or heightened risk." />
   <purpose value="A derived profile from [zib-Vaccination-event](http://nictiz.nl/fhir/StructureDefinition/zib-Vaccination-event) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
@@ -36,7 +36,6 @@
   <differential>
     <element id="Immunization">
       <path value="Immunization" />
-      <comment value="The zib Vaccination is mapped to this Immunization profile and a profile on ImmunizationRecommendation (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-Vaccination-request&gt;). All administered vaccinations are covered using this Immunization profile, while all planned vaccinations are covered in the ImmunizationRecommendation profile. &#xD;&#xA;&#xD;&#xA;This Immunization profile contains components that are not part of the current zib Vaccination. These components are added to this profile as they are likely to a part of a the future zib Vaccination. &#xD;&#xA;&#xD;&#xA;Please note that, contrary to the related zib concepts, `.vaccineCode` and `.occurrence[x]` are mandatory in FHIR and need to be recorded to exchange Immunization resources." />
       <alias value="nl-core-Vaccination-event" />
     </element>
     <element id="Immunization.extension">
@@ -83,7 +82,7 @@
     </element>
     <element id="Immunization.vaccineCode">
       <path value="Immunization.vaccineCode" />
-      <comment value="It is possible to use a reference to zib PharmaceuticalProduct to identify the used vaccine, using `Immunization.extension:pharmaceuticalProduct`. If this reference is used, the MedicationCode (`Medication.code`) in the referenced resource SHALL be the same as `Immunization.vaccineCode`." />
+      <comment value="It is possible to use a reference to zib PharmaceuticalProduct to identify the used vaccine, using `Immunization.extension:pharmaceuticalProduct`. If this reference is used, `Immunization.vaccineCode` SHALL contain the same value as the MedicationCode (`Medication.code`) in the referenced resource." />
       <mapping>
         <identity value="zib-pharmaceuticalproduct-v2.1.2-2020EN" />
         <map value="NL-CM:9.7.19927" />
@@ -108,7 +107,7 @@
     <element id="Immunization.location">
       <path value="Immunization.location" />
       <definition value="The healthcare center where the vaccination is or or will be carried out." />
-      <comment value="The zib concept 'HealthcareProvider' is referenced at 'performer.actor' and '.location'. This is a reference for the location of the HealthcareProvider, with the nl-core-HealthcareProvider FHIR &quot;Location&quot; profile.&#xD;&#xA;&#xD;&#xA;References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc.). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
+      <comment value="Concept HealthcareProvider (imm-dataelement-262) is mapped to both `.location` and `.performer:administrator.actor` respectively, respectively to represent the location where the vaccination was delivered (using [nl-core-HealthcareProvider](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider)) and the organization that delivered the vaccination (using [nl-core-HealthcareProvider-Organization](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization))." />
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
@@ -126,6 +125,13 @@
         <code value="CodeableConcept" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation" />
       </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ImmunizationSite" />
+        </extension>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000" />
+      </binding>
     </element>
     <element id="Immunization.route">
       <path value="Immunization.route" />
@@ -141,7 +147,7 @@
     </element>
     <element id="Immunization.performer:administrator.actor">
       <path value="Immunization.performer.actor" />
-      <comment value="Each occurrence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [nl-core-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [nl-core-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner)). The Practitioner resource is referenced from the PractitionerRole instance. For this reason, sending systems should fill the reference to the PractitionerRole instance here, and not the Practitioner resource. Receiving systems can then retrieve the reference to the Practitioner resource from that PractitionerRole instance.&#xD;&#xA;&#xD;&#xA;In rare circumstances, there is only a Practitioner instance, in which case it is that instance which will be referenced here. However, since this should be the exception, the zib-HealthProfessional-Practitioner profile is not explicitly mentioned as a target profile.&#xD;&#xA;&#xD;&#xA;The zib concept 'HealthcareProvider' is referenced at 'performer.actor' and '.location'. In this element the HealthcareProvider is the performer of the vaccination. This is a reference for the organization of the HealthcareProvider, nl-core-HealthcareProvider-Organization with the FHIR &quot;Organization&quot; profile." />
+      <comment value="Each occurrence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [nl-core-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [nl-core-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner)). The Practitioner resource is referenced from the PractitionerRole instance. For this reason, sending systems should fill the reference to the PractitionerRole instance here, and not the Practitioner resource. Receiving systems can then retrieve the reference to the Practitioner resource from that PractitionerRole instance.&#xD;&#xA;&#xD;&#xA;In rare circumstances, there is only a Practitioner instance, in which case it is that instance which will be referenced here. However, since this should be the exception, the zib-HealthProfessional-Practitioner profile is not explicitly mentioned as a target profile.&#xD;&#xA;&#xD;&#xA;Concept HealthcareProvider (imm-dataelement-262) is mapped to both `.location` and `.performer:administrator.actor` respectively, respectively to represent the location where the vaccination was delivered (using [nl-core-HealthcareProvider](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider)) and the organization that delivered the vaccination (using [nl-core-HealthcareProvider-Organization](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization))." />
       <type>
         <code value="Reference" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
