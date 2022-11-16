@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-HealthProfessional-Practitioner" />
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner" />
@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -87,19 +87,38 @@
     </element>
     <element id="Practitioner.name">
       <path value="Practitioner.name" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="use" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
       <short value="NameInformation" />
       <definition value="Health professional’s full name. If a health professional identification number is entered, it will be the name as listed in UZI, AGB or by the healthcare center." />
-      <comment value="The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the presence of the `HumanName.use` element. A full name can be broken into parts using multiple instances of _HumanName_ that have its own value for use." />
       <alias value="Naamgegevens" />
-      <type>
-        <code value="HumanName" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
-      </type>
       <mapping>
         <identity value="zib-healthprofessional-v3.5-2020EN" />
         <map value="NL-CM:17.1.3" />
         <comment value="NameInformation" />
       </mapping>
+    </element>
+    <element id="Practitioner.name:nameInformation">
+      <path value="Practitioner.name" />
+      <sliceName value="nameInformation" />
+      <max value="2" />
+      <type>
+        <code value="HumanName" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
+      </type>
+    </element>
+    <element id="Practitioner.name:nameInformation-GivenName">
+      <path value="Practitioner.name" />
+      <sliceName value="nameInformation-GivenName" />
+      <type>
+        <code value="HumanName" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation.GivenName" />
+      </type>
     </element>
     <element id="Practitioner.telecom">
       <path value="Practitioner.telecom" />
@@ -112,6 +131,7 @@
       </slicing>
       <short value="ContactInformation" />
       <definition value="Health professional’s telephone number(s) or e-mail address(es)." />
+      <comment value="The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers." />
       <alias value="Contactgegevens" />
       <mapping>
         <identity value="zib-healthprofessional-v3.5-2020EN" />
@@ -142,9 +162,7 @@
     </element>
     <element id="Practitioner.address">
       <path value="Practitioner.address" />
-      <short value="AddressInformation" />
       <definition value="Health professional’s address information." />
-      <alias value="Adresgegevens" />
       <type>
         <code value="Address" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation" />
@@ -184,10 +202,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="Practitioner.gender.extension:genderCodelist">
       <path value="Practitioner.gender.extension" />
       <sliceName value="genderCodelist" />
+      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification" />
