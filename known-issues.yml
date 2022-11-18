@@ -5,38 +5,83 @@
 ext-AdvanceDirective.Disorder:
   zib deviations:
     Extension.value[x]:
-      - cardinality: 0..1
+      - cardinality: 0..1 instead of 0..*
         reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension is added 0..* in the hosting element.
 
 ext-LanguageProficiency.CommunicationDetails:
   zib deviations:
     Extension.value[x]:
-      - cardinality: 0..1
-        reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension should be added 0..* in the hosting element.
+      - cardinality: 0..1 instead of 0..*
+        reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension is added 0..* in the hosting element.
 
 ext-Procedure.ProcedureMethod:
   zib deviations:
     Extension.value[x]:
-      - cardinality: 1..1
-        reason: The used extension uses a cardinality of 1..1 on the value[x] element. However, the extension itself is added with a cardinality of 0..1. 
+      - cardinality: 0..1 instead of 0..*
+        reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension is added 0..* in the hosting element. 
+
+ext-TreatmentDirective2.AdvanceDirective:
+  zib deviations:
+    Extension.value[x]:
+      - cardinality: 0..1 instead of 0..*
+        reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension is added 0..* in the hosting element.
+
+nl-core-PharmaceuticalProduct-randomCode-invalid:
+  ignored issues:
+    Medication.code:
+      - message: None of the codings provided are in the value set 'ProductCodeCodelijsten'
+        reason: This is an example of a resource that purposely contains an invalid code system and code.
+    Medication.code.coding[0]:
+      - message: Code System URI 'urn:oid:2.16.840.1.113883.2.4.4.9999' is unknown so the code cannot be validated
+        reason: This is an example of a resource that purposely contains an invalid code system and code.
+
+nl-core-PharmaceuticalProduct-INV-invalid:
+  ignored issues:
+    Medication.code:
+      - message: None of the codings provided are in the value set 'ProductCodeCodelijsten'
+        reason: This is an example of a resource that purposely contains an invalid code.
+
+pattern-GstdSimpleQuantity:
+  ignored issues:
+    StructureDefinition:
+      - message: "Rule sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
+        reason: The title is shown in the hosting profiles as the name of the datatype. "G-Standaard SimpleQuantity" is more descriptive than the title according to the profiling guidelines ("pattern GstdSimpleQuantity").
+
+pattern-GstdQuantity: 
+  ignored issues:
+    StructureDefinition:
+      - message: "Rule sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
+        reason: The title is shown in the hosting profiles as the name of the datatype. "G-Standaard Quantity" is more descriptive than the title according to the profiling guidelines ("pattern GstdQuantity").
 
 pattern-NlCoreHealthProfessionalReference:
   ignored issues:
     StructureDefinition:
-      - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
+      - message: "Rule sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
         reason: The title is shown in the hosting profiles as the name of the datatype. "zib HealthProfessional Reference" is more descriptive than the title according to the profiling guidelines ("pattern NlCoreHealthProfessionalReference").
 
 pattern-VitalSigns:
   ignored issues:
     Observation.category:VSCat:
-      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+      - message: "Rule sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
         reason: This slice name is adopted from the Vital Signs profile.
         
 pattern-ZibHealthProfessionalReference:
   ignored issues:
     StructureDefinition:
-      - message: "sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
+      - message: "Rule sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
         reason: The title is shown in the hosting profiles as the name of the datatype. "zib HealthProfessional Reference" is more descriptive than the title according to the profiling guidelines ("pattern ZibHealthProfessionalReference").
+        
+zib-AbilityToWashOneself:
+  zib deviations:
+   Observation.component:bodyPartToBeBathed.value[x]:
+      - cardinality: 0..1
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent .component element that may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+
+zib-AbilityToDressOneself:
+  zib deviations:
+   Observation.component:bodyPartToBeDressed.value[x]:
+      - cardinality: 0..1
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent .component element that may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
 
 zib-AddressInformation:
   zib deviations:
@@ -44,43 +89,41 @@ zib-AddressInformation:
       - datatype: string
         reason: The mapping of zib AddressInformation on the FHIR Address datatype is the result of compatibility with HL7v3, which is the format that a lot of healthcare data in the Netherlands is stored in.  As a result of this, the zib HouseNumberIndication concept with CD datatype is mapped to a FHIR string datatype with a constraint added (the value can only be 'by' or 'to').
     Address.line.extension:*.value[x]:
-      - cardinality: 1..1
+      - cardinality: 1..1 instead of 0..1
         reason: The value of the extension is required, but the extension itself is optional, making the effective cardinality 0..1 as required by the zib.
 
 zib-AdvanceDirective:
   zib deviations:
     Consent.provision.actor:representative.reference:
-      - cardinality: 1..1
-        reason: Consent.provision.actor has cardinality 0..1, making the cardinality of Consent.provision.actor:representative.reference effectively 0..1 as required by the zib.
-
-zib-Alert:
-  zib deviations:
-    Flag.code:
-      - cardinality: 1..1
-        reason: The cardinality of FHIR is 1..1, where the zib (AlertName) is 0..1. Because of a constraint in the zib (a choice should be made between AlertName and Condition::Concern), the profile provides guidance on a code that should be used in case of absent data.
+      - cardinality: 1..1 instead of 0..1
+        reason: Consent.provision.actor:representative has cardinality 0..1, making the cardinality of Consent.provision.actor:representative.reference effectively 0..1 as required by the zib.
 
 zib-AllergyIntolerance:
   zib deviations:
     AllergyIntolerance.reaction.manifestation:
-      - cardinality: 1..*
-        reason: The FHIR profiles are expected to implement zib cardinalities as conceptual cardinalities, but FHIR requires the manifestation element to be present. This aligns with the intention of the zib, as the Symptom concept is required for the container Reaction to make sense.
+      - cardinality: 1..* instead of 0..*
+        reason: The FHIR profiles are expected to implement zib cardinalities as conceptual cardinalities, but FHIR requires the .manifestation element to be present. This aligns with the intention of the zib, as the Symptom concept is required for the container Reaction to make sense.
+  ignored issues:
+    AllergyIntolerance.reaction:
+      - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
+        reason: The mapping is to a zib container, which doesn't have a useful description if implemented in a profile.
 
 zib-BloodPressure:
   ignored issues:
     Observation.component:*BP:
-      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+      - message: "Rule sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
         reason: The slices "SystolicBP" and "DiastolicBP" start with an uppercase letter to align with the HL7 Vital Signs profile.
 
 zib-BodyTemperature:
   ignored issues:
     Observation.code.coding:BodyTempCode:
-      - message: "sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+      - message: "Rule sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
         reason: The slice name "BodyTempCode" is chosen to align with the Vital Signs profile for BodyTemperature.
 
 zib-CareTeam:
   ignored issues:
     CareTeam.participant:*.member:
-      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     CareTeam.name:
@@ -90,7 +133,7 @@ zib-CareTeam:
 zib-ContactInformation-TelephoneNumbers:
   zib deviations:
     ContactPoint.system:
-      - cardinality: 1..1
+      - cardinality: 1..1 instead of 0..1
         reason: Although TelecomType and NumberType are optional in the zib, ContactPoint.system is used to identify the TelephoneNumbers concept itself when this datatype is added to a profile. If only a telephone number is given without TelecomType and NumberType, this will fall in the default slice of the profile.
 
 zib-ContactPerson:
@@ -99,36 +142,63 @@ zib-ContactPerson:
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
     RelatedPerson.name:
-      - cardinality: 0..*
-        reason: The name information according to zib NameInformation may be split up over multiple instances of RelatedPerson.name
-    RelatedPerson.name:nameInformation:
-      - cardinality: 0..2
-        reason: The name information according to zib NameInformation may be split up over multiple instances of RelatedPerson.name  
+      - cardinality: 0..* instead of 0..1
+        reason: The name information according to zib NameInformation may be split up over multiple instances of RelatedPerson.name.
     RelatedPerson.address:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
     RelatedPerson.telecom:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
-      - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
+      - cardinality: 0..* instead of 0..1
+        for: NL-CM:3.1.6 (ContactPerson.ContactInformation)
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby this mapping is still honoring the cardinality requirements of the zib.
     RelatedPerson.telecom:telephoneNumbers:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
     RelatedPerson.telecom:emailAddresses:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
+  additional notes:
+    RelatedPerson.telecom:
+      - cardinality: 0..*
+        reason: Although there is a cardinality mismatch for the mapping of zib concept ContactPerson.ContactInformation on this element (as pointed out above), the cardinalities between zib and FHIR do match for the mapping of zib concept Payer.ContactInformation (NL-CM:1.1.12), as these are both 0..*.
+
+zib-Encounter:
+  ignored issues:
+    Encounter.reasonReference:*:
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+  zib deviations:
+    Encounter.class:
+      - cardinality: 1..1 instead of 0..1
+        reason: Encounter.class is mandatory in FHIR. The cardinality matches the cardinality in the zib, however, it does not match with the conceptual cardinality concept. This should not be a major problem.
+    Encounter.participant:healthProfessional.individual:
+      - cardinality: 0..1 instead of 0..*
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent participant element that may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+    Encounter.reasonReference:*:
+      - cardinality: 0..* instead of 0..1 
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing ContactReason container in FHIR. This container may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+    Encounter.reasonReference:deviatingResult:
+      - datatype: Reference
+        reason: The datatype mismatch between the zib (string) and FHIR (Reference) is explained by an error in the zib. DeviatingResult is captured with a reference to the zib-LaboratoryTestResult instead of a string value as the zib 2020 incorrectly states. This will be fixed in a future version of the zib (https://bits.nictiz.nl/browse/ZIB-1427).
+    Encounter.reasonReference.extension:comment.value[x]:
+      - cardinality: 0..* instead of 0..1
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*, effective) is explained by the missing ContactReason container in FHIR. This container may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+    Encounter.location.location:
+      - cardinality: 0..* instead of 0..1
+        reason: The zib has a restricted cardinality of 0..1 for the Location concept (NL-CM:15.1.8). However, this cardinality is probably too restricted (see https://bits.nictiz.nl/browse/ZIB-1632 for discussion) and would prevent some practical use cases. Therefore, the cardinality has been left on 0..* in this profile.
 
 zib-FreedomRestrictingIntervention:
     zib deviations:
         Procedure.code:
             - cardinality: 1..1
               reason: Although the concept TypeOfIntervention should be interpreted as conceptual and thus optional, Procedure.code is required by FHIR -- it doesn't make much sense to communicate a Procedure without communicating _which_ procedure, and the same applies to a FreedomRestrictingIntervention (procedure). 
-       
+
 zib-FunctionalOrMentalStatus:
   zib deviations:
     Observation.code:
-      - cardinality: 1..1
+      - cardinality: 1..1 instead of 0..1
         reason: The FHIR profiles are expected to implement zib cardinalities as conceptual cardinalities, but FHIR requires the Observation.code element to be present. This aligns with the intention of the zib, as the StatusName concept is required for zib FunctionalOrMentalStatus to make sense. 
 
 zib-HealthcareProvider:
@@ -136,14 +206,14 @@ zib-HealthcareProvider:
     Location.address:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
-      - cardinality: 0..1
-        reason: The cardinality mismatch with the zib (0..1 versus 0..*) is explained by the restriction of FHIR to limit the Location.address to a physical address while the zib allows for other types of addresses (e.g. a postal address). Other types of addresses than a physical address are given in Organization.address which is referenced by Location.managingOrganization. More documentation can be found at https://github.com/Nictiz/Nictiz-R4-zib2020/issues/38
+      - cardinality: 0..1 instead of 0..*
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the restriction of FHIR to limit the Location.address to a physical address while the zib allows for other types of addresses (e.g. a postal address). Other types of addresses than a physical address are given in Organization.address which is referenced by Location.managingOrganization. More documentation can be found at https://github.com/Nictiz/Nictiz-R4-zib2020/issues/38.
     Location.telecom:
-      - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby still honoring the cardinality requirements of the zib.
+      - cardinality: 0..* instead of 0..1
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby this mapping is still honoring the cardinality requirements of the zib.
     Location.telecom*:
       - datatype: ContactPoint
-        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consits of two parts the rootconcept of the ContactInformation is mapped on .telecom.
+        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consists of two parts the root concept of the ContactInformation is mapped on .telecom.
 
 zib-HealthProfessional-Practitioner:
   zib deviations:
@@ -151,17 +221,14 @@ zib-HealthProfessional-Practitioner:
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
     Practitioner.name:
-      - cardinality: 0..*
-        reason: The name information according to zib NameInformation may be split up over multiple instances of Practitioner.name
-    Practitioner.name:nameInformation:
-      - cardinality: 0..2
-        reason: The name information according to zib NameInformation may be split up over multiple instances of Practitioner.name  
+      - cardinality: 0..* instead of 0..1
+        reason: The name information according to zib NameInformation may be split up over multiple instances of Practitioner.name. 
     Practitioner.telecom:
-      - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby still honoring the cardinality requirements of the zib.
+      - cardinality: 0..* instead of 0..1
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby this mapping is still honoring the cardinality requirements of the zib.
     Practitioner.telecom*:
       - datatype: ContactPoint
-        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consits of two parts the rootconcept of the ContactInformation is mapped on .telecom.
+        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consists of two parts the root concept of the ContactInformation is mapped on .telecom.
     Practitioner.address:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
@@ -169,16 +236,16 @@ zib-HealthProfessional-Practitioner:
 zib-HealthProfessional-PractitionerRole:
   zib deviations:
     PractitionerRole.telecom:
-      - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby still honoring the cardinality requirements of the zib.
+      - cardinality: 0..* instead of 0..1
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby this mapping is still honoring the cardinality requirements of the zib.
     PractitionerRole.telecom*:
       - datatype: ContactPoint
-        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consits of two parts the rootconcept of the ContactInformation is mapped on .telecom.
+        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consists of two parts the root concept of the ContactInformation is mapped on .telecom.
 
 zib-HearingFunction.HearingAid:
   ignored issues:
     DeviceUseStatement.reasonReference:*:
-      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     DeviceUseStatement:
@@ -189,12 +256,12 @@ zib-HearingFunction.HearingAid:
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
     DeviceUseStatement.timing[x]:timingPeriod.end:
       - short: EndDate
-        reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
+        reason: Incorrect short in zib definition. This is reported in https://bits.nictiz.nl/browse/ZIB-1534.
 
 zib-HearingFunction.HearingAid.Product:
   ignored issues:
     Device.type:
-      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias for ProductType is already present in the base profile where this profile is derived from. It should not be added twice to silence this issue.
   zib deviations:
     Device.identifier:*ProductID:
@@ -204,10 +271,59 @@ zib-HearingFunction.HearingAid.Product:
       - datatype: string
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
 
+zib-LaboratoryTestResult:
+  ignored issues:
+    Observation.performer:performer:
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+  zib deviations:
+    Observation.status:
+      - cardinality: 1..1 instead of 0..1
+        reason: Although the equivalent concept is optional in the zib, this element is required in FHIR.
+    Observation.code:
+      - cardinality: 1..1 instead of 0..1
+        reason: This element is mapped to the concepts PanelOrBattery and TestCode at the same time. PanelOrBattery is marked as optional in the zib, but this is strictly not true; it must be absent if the zib instantiates a singular laboratory test, but is required if the zib instantiates a panel. Therefore, both mappings to this element are in fact required.
+    Observation.value[x]:
+      - datatype: Quantity
+        reason: In FHIR there's no datatype ANY. All stated datatypes in the description can be accommodated using this element (Quantity and CodeableConcept are in fact both supported).
+    Observation.referenceRange.*:
+      - datatype: Quantity
+        reason: The zib concepts ReferenceRangeUpperLimit and ReferenceRangeLowerLimit are defined as datatype ANY, but it is unclear how these concepts should work for anything that is not a Quantity. In addition, there's no obvious way in FHIR to support reference values other than of type Quantity (with the possible exception of String). Until this issue is resolved, support for reference ranges in the profile has been restricted to Quantity. See https://bits.nictiz.nl/browse/ZIB-1703.
+
+zib-LaboratoryTestResult.Specimen:
+  zib deviations:
+    Specimen.identifier:
+      - cardinality: 0..* instead of 0..1
+        reason: Although a single SpecimenId is allowed according to the zib, .identifier is often used for additional identifiers outside the scope of the zib. It's not possible to create a slice or pattern specifically for SpecimenId without further formal requirements by the zib.
+    Specimen.subject:
+      - datatype: Reference
+        reason: The zib concept SpecimenSource is communicated using a string within the profile zib-LaboratoryTestResult.Specimen.Source, which is referenced here.
+    Specimen.collection.bodySite:
+      - datatype: CodeableConcept
+        reason: Zib AnatomicalLocation is implemented as a datatype profile on CodeableConcept, so the datatype is not a Reference.
+    Specimen.collection.collected[x]:collectedPeriod:
+      - datatype: Period
+        reason: Zib TimeInterval is directly mapped onto Specimen.collection.collectedPeriod and Speciment.collection.duration, as this matches the way these concepts are used in FHIR. 
+    Specimen.collection.duration:
+      - datatype: Duration
+        reason: Zib TimeInterval is directly mapped onto Specimen.collection.collectedPeriod and Speciment.collection.duration, as this matches the way these concepts are used in FHIR.
+    Specimen.container.extension:specimenNumberExtension.value[x]:
+      - cardinality: 1..1 instead of 0..1
+        reason: The value in the extension is 1..1, but the extension itself is 0..1, effectively matching the zib cardinality.
+
+zib-LaboratoryTestResult.Specimen.Source:
+  zib deviations:
+    Device.deviceName.name:
+      - cardinality: 1..1 instead of 0..1
+        reason: The zib concept SpecimenSource is represented using a reference to this profile from zib-LaboratoryTestResult.Specimen, so this element represents just part of the mapping. Overall, the use of this concept is optional, but when this profile is used, Device.deviceName.name must be given.
+
 zib-MedicalDevice:
   ignored issues:
+    DeviceUseStatement.derivedFrom:*:
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
     DeviceUseStatement.reasonReference:*:
-      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     DeviceUseStatement.bodySite:
@@ -215,10 +331,10 @@ zib-MedicalDevice:
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
     DeviceUseStatement.reasonReference:zibMedicalDeviceReference:
       - short: zib MedicalDevice reference
-        reason: This is a special slice that represent all situations where zib MedicalDevice is referenced from another zib. Because this reference is reversed in FHIR, this profile needs to contain the mappings for the references in _all_ these zibs. A common slice is defined with an indicative name rather than the name of all the targets. 
+        reason: This is a special slice that represents situations where zib MedicalDevice is referenced from another zib through the reasonReference element. Because this reference is reversed in FHIR, this profile needs to contain the mappings for the references in _all_ these zibs. A common slice is defined with an indicative name rather than the name of all the targets. 
     DeviceUseStatement.timing[x]:timingPeriod.end:
       - short: EndDate
-        reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
+        reason: Incorrect short in zib definition. This is reported in https://bits.nictiz.nl/browse/ZIB-1534.
 
 zib-MedicalDevice.Product:
   zib deviations:
@@ -228,30 +344,34 @@ zib-MedicalDevice.Product:
     Device.udiCarrier:*UdiCarrier.carrierHRF:
       - datatype: string
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
+  ignored issues:
+    Device.udiCarrier:*.carrierHRF:
+      - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
+        reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the definition of the ProductID concept is not suited for all mapped elements.
 
 zib-NameInformation:
   zib deviations:
     HumanName.prefix:
-      - cardinality: 0..*
+      - cardinality: 0..* instead of 0..1
         reason: prefix and suffix are mapped to the "titles" concept from the zib. There's a mismatch however in the way this information is represented in the zib and in FHIR. The mapping is documented in the profile.
     HumanName.suffix:
-      - cardinality: 0..*
+      - cardinality: 0..* instead of 0..1
         reason: prefix and suffix are mapped to the "titles" concept from the zib. There's a mismatch however in the way this information is represented in the zib and in FHIR. The mapping is documented in the profile.
     HumanName.given:
       - short: FirstName / Initial
         reason: The zib defines both the complete list of first names and of initals as a single string. In FHIR this is done fundamentally different, by using separate names. Hence, the short has been changed to the singular form.
       - alias: first name,middle name,Voornaam,Initiaal
         reason: The first two initials are provided by FHIR. For the singular form of the latter two, see the remark above.
-      - cardinality: 0..*
-        reason: See the remark above
+      - cardinality: 0..* instead of 0..1
+        reason: See the remark above.
     HumanName.family.extension:*.value[x]:
-      - cardinality: 1..1
+      - cardinality: 1..1 instead of 0..1
         reason: The value of the extension is required, but the extension itself is optional, making the effective cardinality 0..1 as required by the zib.
 
 zib-NameInformation.GivenName:
   zib deviations:
     HumanName.given:
-      - cardinality: 1..*
+      - cardinality: 1..* instead of 0..1
         reason: The GivenName is optional according to the zib, but when this datatype profile is used, a name should be provided.
 
 zib-NursingIntervention:
@@ -266,33 +386,34 @@ zib-NursingIntervention:
       - datatype: code
         reason: zib concepts Interval and Frequency are represented by a combination of .frequency, .period and .periodUnit, not by a single element of Quantity datatype.
     CarePlan.activity.detail.extension:medicalDevice.value[x]:
-      - cardinality: 0..1
+      - cardinality: 0..1 instead of 0..*
         reason: The value of the extension can only occur once, but the use of the extension itself is unlimited, making the effective cardinality 0..* as required by the zib.
   ignored issues:
     CarePlan.contributor:requester:
-      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice.
     CarePlan.activity.detail.performer:*:
-      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice. 
 
 zib-Patient:
   zib deviations:
+    Patient.extension:nationality.extension:code.value[x]:
+      - cardinality: 1..1 instead of 0..1
+        reason: Zib Nationality is implemented using the complex core extension patient-nationality. The value[x] element representing the concept Nationality has a 1..1 cardinality, but the "code" part of the extension itself is 0..1, making the cardinality effectively 0..1 as required by the zib.
     Patient.name*:
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
     Patient.name:
-      - cardinality: 0..*
-        reason: The name information according to zib NameInformation may be split up over multiple instances of Patient.name
-    Patient.name:nameInformation:
-      - cardinality: 0..2
-        reason: The name information according to zib NameInformation may be split up over multiple instances of Patient.name  
+      - cardinality: 0..* instead of 0..1
+        reason: The name information according to zib NameInformation may be split up over multiple instances of Patient.name.
     Patient.telecom*:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
     Patient.telecom:
-      - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
+      - cardinality: 0..* instead of 0..1
+        for: NL-CM:0.1.5 (Patient.ContactInformation)
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby this mapping is still honoring the cardinality requirements of the zib.
     Patient.address:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
@@ -304,11 +425,9 @@ zib-Patient:
     Patient.contact:
       - datatype: BackboneElement
         reason: The zib ContactPerson _may_ be represented as Patient.contact. There is a different use case as well, where the ContactPerson is implemented using a RelatedPerson resource.
-      - cardinality: 0..*
-        reason: A patient may have multiple contacts. The expected cardinality of 0..1 stems from the root concept of zib ContactPerson, but this cardinality is essentially without meaning.
     Patient.contact.extension:contactPerson.value[x]:
       - datatype: Reference
-        reason: This is an additional reference to a separate zib-ContactPerson (RelatedPerson) instance, next to the information in Pateint.contact. Patient.contact and RelatedPerson can both be used to capture the information from zib-ContactPerson, but each are used within a different context. Information may therefore be duplicated; this is the recommended way.
+        reason: This is an additional reference to a separate zib-ContactPerson (RelatedPerson) instance, next to the information in Patient.contact. Patient.contact and RelatedPerson can both be used to capture the information from zib-ContactPerson, but each are used within a different context. Information may therefore be duplicated; this is the recommended way.
     Patient.contact.name:
       - datatype: HumanName
         reason: A name in FHIR is represented using the HumanName datatype, not as a separate resource.
@@ -316,26 +435,67 @@ zib-Patient:
       - datatype: ContactPoint
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
     Patient.contact.telecom:
-      - cardinality: 0..*
-        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers.
+      - cardinality: 0..* instead of 0..1
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing root element of zib part ContactInformation in FHIR. Instead, the two containers of the zib (TelephoneNumbers and EmailAddresses), which both have a cardinality of 0..*, are mapped directly into the resource. Thereby this mapping is still honoring the cardinality requirements of the zib.
     Patient.contact.address:
       - datatype: Address
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
-      - cardinality: 0..1
+      - cardinality: 0..1 instead of 0..*
         reason: Patient.contact is a restricted representation of contact persons containing only information needed to contact a contact person. The full address information should be captured using an instance of the zib-ContactPerson profile on RelatedPerson, which can be linked using an extension. This is explained in the profile.  
     Patient.communication:
       - datatype: BackboneElement
         reason: The appropriate representation of zib LanguageProficiency in FHIR is Patient.communication, not a separate resource.
-      - cardinality: 0..*
-        reason: A patient may be proficient in multiple languages. The expected cardinality of 0..1 stems from the root concept of zib LanguageProficiency, but this cardinality is essentially without meaning.
     Patient.communication.language:
-      - cardinality: 1..1
-        reason: The FHIR profiles are expected to implement zib cardinalities as conceptual cardinalities, but FHIR requires the language element to be present. This aligns with the intention of the zib, as the Language concept is required for zib LanguageProficiency to make sense.
+      - cardinality: 1..1 instead of 0..1
+        reason: The FHIR profiles are expected to implement zib cardinalities as conceptual cardinalities, but FHIR requires the .language element to be present. This aligns with the intention of the zib, as the Language concept is required for zib LanguageProficiency to make sense.
     Patient.communication.extension:languageControl:
       - datatype: Extension
         reason: The mapping is placed on the extension and not on the value[x] because of the nature of this extension. The extension itself contains a valueCoding that gets the zibs value. This datatype matches the zib CD type.
-      - cardinality: 0..*
+      - cardinality: 0..* instead of 0..1
         reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
+  additional notes:
+    Patient.telecom:
+      - cardinality: 0..*
+        reason: Although there is a cardinality mismatch for the mapping of zib concept Patient.ContactInformation on this element (as pointed out above), the cardinalities between zib and FHIR do match for the mapping of zib concept Payer.ContactInformation (NL-CM:1.1.12), as these are both 0..*.
+
+zib-PharmaceuticalProduct:
+  zib deviations:
+    Medication.ingredient:
+      - datatype: BackboneElement
+        reason: The appropriate representation of ingredient in FHIR is Medication.ingredient. The container can be properly mapped to this BackboneElement.
+    Medication.ingredient.strength:
+      - datatype: Ratio
+        reason: The `ingredient.strength` acts as a container for the two child elements and can the be correctly mapped to the zib Concentration container. 
+
+zib-Payer.InsuranceCompany:
+  zib deviations:
+    Coverage.payor:
+      - cardinality: 1..1 instead of 0..1
+        reason: The cardinality of the zib concept InsuranceCompany (0..1) mismatches FHIR (1..1). Between the zib concepts InsuranceCompany and PayerPerson, a minimum of 1 must be selected. If one uses the zib-Payer.InsuranceCompany profile, the choice has been made to apply the InsuranceCompany concept, therefore a cardinality of 1..1 can be used.
+
+zib-Payer.PayerPerson:
+  zib deviations:
+    Coverage.extension:bankInformation:
+      - datatype: Extension
+        reason: The (complex) extension acts as a container for three subextensions that each contain a zib subconcept.
+    Coverage.payor:
+      - cardinality: 1..1 instead of 0..1
+        reason: The cardinality of the zib concept PayerPerson (0..1) mismatches FHIR (1..1). Between the zib concepts InsuranceCompany and PayerPerson, a minimum of 1 must be selected. If one uses the zib-Payer.PayerPerson profile, the choice has been made to apply the PayerPerson concept, therefore a cardinality of 1..1 can be used.
+
+zib-Payer-Organization:
+  zib deviations:
+    Organization.telecom:
+      - datatype: ContactPoint
+        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consists of two parts the rootconcept of the ContactInformation is mapped on .telecom.
+    Organization.telecom:telephoneNumbers:
+      - datatype: ContactPoint
+        reason: See Organization.telecom.
+    Organization.telecom:emailAddresses:
+      - datatype: ContactPoint
+        reason: See Organization.telecom.
+    Organization.address:
+      - datatype: Address
+        reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
 
 zib-Problem:
   zib deviations:
@@ -346,9 +506,8 @@ zib-Problem:
 zib-Procedure-event:
   ignored issues:
     Procedure.report:textResult:
-      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
-        
   zib deviations:
     Procedure.bodySite:
       - datatype: CodeableConcept
@@ -360,40 +519,55 @@ zib-Procedure-request:
       - datatype: CodeableConcept
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
     ServiceRequest.requester:
-      - cardinality: 0..1
-        reason: It seems that the zib may have an error in the cardinality for this concept and the cardinality should acctually be 0..1 rather than 0..*. This issue is being tracked here https://bits.nictiz.nl/browse/ZIB-1488
+      - cardinality: 0..1 instead of 0..*
+        reason: It seems that the zib may have an error in the cardinality for this concept and the cardinality should actually be 0..1 rather than 0..*. This issue is being tracked at https://bits.nictiz.nl/browse/ZIB-1488.
 
 zib-TextResult:
   zib deviations:
     DiagnosticReport.status:
-      - cardinality: 1..1
-        reason: TextResultStatus (0..1) is mapped to mandatory status element which should not be a problem because implementers shall have to support status one way or another. When TextResultStatus is absent, other codes may be used than from the zib. The _unknown_ code can be used as a fallback.
+      - cardinality: 1..1 instead of 0..1
+        reason: TextResultStatus (0..1) is mapped to mandatory .status element which should not be a problem because implementers shall have to support .status one way or another. When TextResultStatus is absent, other codes may be used than from the zib. The _unknown_ code can be used as a fallback.
     DiagnosticReport.code:
-      - cardinality: 1..1
-        reason: The cardinality of both zib and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected. In case of absent data, the profiling guidelines provide guidance.
-        
+      - cardinality: 1..1 instead of 0..1
+        reason: The cardinality in both zib and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected. In case of absent data, the profiling guidelines provide guidance.
+
 zib-TextResult.VisualResult:
   zib deviations:
     Media.content:
-      - cardinality: 1..1
+      - cardinality: 1..1 instead of 0..*
         reason: The use of the Media resource referenced in zib-TextResult DiagnosticReport.media.link is optional (0..*), but if the Media resource is used, Media.content should be present (1..1).
+
+zib-TreatmentDirective2:
+  zib deviations:
+    Consent.source[x]:sourceReference:
+      - cardinality: 0..1 instead of 0..*
+        reason: This element is the logical representation of the AdvanceDirective concept (NL-CM:2.2.8) specified in HCIM TreatmentDirective2, but FHIR restricts the cardinality to 0..1. For this reason, an extension is added that can be used to provide additional AdvanceDirective references.
+    Consent.provision.actor:agreementParty:
+      - datatype: BackboneElement
+        reason: The zib container AgreementParty can be mapped correctly to the actor's BackboneElement.
+    Consent.provision.actor:agreementParty.reference:
+      - cardinality: 1..1 instead of 0..1
+        reason: The .reference element cannot be used without sibling .role to represent the concepts NL-CM:2.2.10, NL-CM:2.2.11 and NL-CM:2.2.12, so these two elements have to be used together. The container itself is optional.
 
 zib-Vaccination-event:
   zib deviations:
     Immunization.vaccineCode:
-      - cardinality: 1..1
-        reason: This is a known difference between the zib (0..*) and FHIR (1..1). The mandatory element by FHIR seems legit. If an immunization event has taken place the vaccine code should be known. Otherwise, the value of the whole Immunization resource will be strongly diminished.
+      - cardinality: 1..1 instead of 0..1
+        reason: This is a known difference between the zib (0..*) and FHIR (1..1). The mandatory element in FHIR seems legit. If an immunization event has taken place the vaccine code should be known. Otherwise, the value of the whole Immunization resource will be strongly diminished.
+    Immunization.performer:administrator.actor:
+      - cardinality: 1..1 instead of 0..1
+        reason: Immunization.performer:administrator has cardinality 0..1, making the cardinality of Immunization.performer:administrator.actor effectively 0..1 as required by the zib.
 
 zib-Vaccination-request:
   zib deviations:
     ImmunizationRecommendation.recommendation.dateCriterion.value:
-      - cardinality: 1..1
+      - cardinality: 1..1 instead of 0..1
         reason: ImmunizationRecommendation.recommendation.dateCriterion has cardinality 0..1, making the cardinality of ImmunizationRecommendation.recommendation.dateCriterion.value effectively 0..1 as required by the zib.
 
 zib-VisualFunction.VisualAid:
   ignored issues:
     DeviceUseStatement.reasonReference:*:
-      - message: "sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     DeviceUseStatement:
@@ -404,12 +578,12 @@ zib-VisualFunction.VisualAid:
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
     DeviceUseStatement.timing[x]:timingPeriod.end:
       - short: EndDate
-        reason: Incorrect short in zib definition. This is reported in ticket ZIB-1534.
+        reason: Incorrect short in zib definition. This is reported in https://bits.nictiz.nl/browse/ZIB-1534.
 
 zib-VisualFunction.VisualAid.Product:
   ignored issues:
     Device.type:
-      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias for ProductType is already present in the base profile where this profile is derived from. It should not be added twice to silence this issue.
   zib deviations:
     Device.identifier:*ProductID:
@@ -422,6 +596,10 @@ zib-VisualFunction.VisualAid.Product:
 unmapped zib concepts:
   - NL-CM:17.2.10: HealthcareProvider.LocationNumber
     reason: This zib concept is problematic to map cleanly to FHIR and it has been deemed too uncommon in practice to warrant an extension.
+  - NL-CM:13.1.30: LaboratoryTestResult.InterpretationMethod
+    reason: This zib concept is deemed unneeded and will be removed in the future. See https://bits.nictiz.nl/browse/ZIB-1292 for details.
+  - NL-CM:13.1.34: LaboratoryTestResult.Requester::HealthProfessional
+    reason: This concept is deemed unimplementable and will be removed in the future. See https://bits.nictiz.nl/browse/ZIB-1269 for details.
 
 ---
 # The following issues are not "real" deviations stemming from design choices, but rather problems that pop up due to
@@ -430,17 +608,47 @@ unmapped zib concepts:
 
 issues should occur: false
 
-"*-AdvanceDirective*":
+"*":
   ignored issues:
     Consent.scope*:
-      - message: Unknown Code http://terminology.hl7.org/CodeSystem/consentscope#adr in http://terminology.hl7.org/CodeSystem/consentscope for 'http://terminology.hl7.org/CodeSystem/consentscope#adr'
-        reason: This concerns an error in the FHIR terminology server. The adr code has been removed for R5 and the terminology server was updated for it too soon. They will fix it according to this zulip chat "https://chat.fhir.org/#narrow/stream/179166-implementers/topic/Consent.2Escope.3A.20diff.20in.20codes.20shown.20on.20FHIR.20vs.20Tx.20server"
+      - message: Unknown Code http://terminology.hl7.org/CodeSystem/consentscope#adr in http://terminology.hl7.org/CodeSystem/consentscope
+        reason: This concerns an error in the FHIR terminology server. The adr code has been removed for R5 and the terminology server was updated for it too soon. They will fix it according to zulip chat https://chat.fhir.org/#narrow/stream/179166-implementers/topic/Consent.2Escope.3A.20diff.20in.20codes.20shown.20on.20FHIR.20vs.20Tx.20server.
       - message: None of the codings provided are in the value set 'Consent Scope Codes' (http://hl7.org/fhir/ValueSet/consent-scope), and a coding should come from this value set unless it has no suitable code
-        reason: see above
+        reason: See above.
 
+nl-core-*:
+  ignored issues:
+    "*.address*.country.extension[0].value*":
+      - message: None of the codings provided are in the value set 'LandCodelijsten' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.10--20200901000000), and a coding from this value set is required) (codes = urn:oid:2.16.840.1.113883.2.4.4.16.34#6030)
+        reason: The current version of the Validator incorrectly raises an error on combined ValueSets.
+    "*.code":
+      - message: None of the codings provided are in the value set 'VerrichtingTypeCodelijsten'
+        reason: The current version of the Validator incorrectly raises an error on combined ValueSets.
+    "*.telecom[*].system.extension[*].value.ofType(CodeableConcept).coding[*]":
+      - message: Display Name for http://terminology.hl7.org/CodeSystem/v3-AddressUse#MC should be one of 'mobile contact)' instead of 'Mobile Phone' for 'http://terminology.hl7.org/CodeSystem/v3-AddressUse#MC'
+        reason: This core display value is redefined by the ValueSet, but this isn't properly recognized by the Validator
+    Condition.code:
+      - message: None of the codings provided are in the value set 'ProbleemNaamCodelijst'
+        reason: This ValueSet contains two SNOMED refsets. The terminology servers are unable to determine if a code is part of this refset.
+
+nl-core-AllergyIntolerance*:
+  ignored issues:
+    AllergyIntolerance.code:
+      - message: "None of the codings provided are in the value set 'VeroorzakendeStofCodelijsten'"
+        reason: The terminology servers cannot handle the refset specified in the ValueSet.
+    "AllergyIntolerance.reaction[*].substance":
+      - message: None of the codings provided are in the value set 'SpecifiekeStofCodelijsten'
+        reason: The terminology servers cannot handle the refset specified in the ValueSet.
+        
 nl-core-CareTeam-01:
   ignored issues:
     CareTeam.participant[*]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+
+nl-core-Encounter-01:
+  ignored issues:
+    Encounter.participant[*]:
       - message: Slicing cannot be evaluated
         reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
 
@@ -456,11 +664,42 @@ nl-core-MedicalDevice-*:
       - message: Slicing cannot be evaluated
         reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
 
+nl-core-*-DeviceUseStatement-*:
+  ignored issues:
+    DeviceUseStatement.derivedFrom[*]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+    DeviceUseStatement.reasonReference[*]:
+      - message: Slicing cannot be evaluated
+        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+
 nl-core-Mobility-*:
   ignored issues:
     DeviceUseStatement.reasonReference[*]:
       - message: Slicing cannot be evaluated
         reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+
+nl-core-PharmaceuticalProduct-01:
+  ignored issues:
+    Medication.code:
+      - message: None of the codings provided are in the value set 'ProductCodeCodelijsten'
+        reason: The terminology servers used don't know this code system and wrongly conclude that this is an invalid code.
+      - message: Code System URI 'urn:oid:2.16.840.1.113883.2.4.4.1' is unknown so the code cannot be validated
+        reason: The terminology servers used don't know this code system.
+
+nl-core-PharmaceuticalProduct-02:
+  ignored issues:
+    Medication.code:
+      - message: None of the codings provided are in the value set 'ProductCodeCodelijsten'
+        reason: The terminology servers used don't know this code system and wrongly conclude that this is an invalid code.
+      - message: Code System URI 'urn:oid:2.16.840.1.113883.2.4.4.1' is unknown so the code cannot be validated
+        reason: The terminology servers used don't know this code system.
+
+nl-core-Vaccination-event-03:
+  ignored issues:
+    Immunization.reasonCode[0]:
+      - message: Profile http://nictiz.nl/fhir/StructureDefinition/nl-core-Vaccination-event, Element matches more than one slice - vaccinationIndication, vaccinationMotive
+        reason: This seems to be caused by the Validator not recognizing the terminology used.
 
 nl-core-VisualFunction.VisualAid-*:
   ignored issues:
@@ -473,21 +712,73 @@ zib-*Function.*Aid:
     DeviceUseStatement.reasonReference:zibMedicalDeviceReference:
       - short: zib MedicalDevice reference
         reason: The profiles zib-HearingFunction.HearingAid and zib-VisualFunction.VisualAid are derived from zib-MedicalDevice, where this slice is defined, but this slice is disabled in these derived profiles. However, the mapping still ends up in the snapshot, resulting in a warning here.
-        
+
+zib-*Function.*Aid.Product:
+  ignored issues:
+    Device.type:
+      - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
+        reason: The short description is the same as that of the base profile, so it is absent from the differential.
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The short description is the same as that of the base profile, so it is absent from the differential.
+
 zib-Alert:
   ignored issues:
     Flag:
-      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias "Alert" is already defined in the base profile, so it doesn't need to be defined again in the differential.
+
+zib-ContactPerson:
+  ignored issues:
+    RelatedPerson.address:
+      - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
+        reason: The short description is defined on the datatype profile and not repeated in the differential.
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias is defined on the datatype profile and not repeated in the differential.
+
+zib-HealthcareProvider:
+  ignored issues:
+    Location.address:
+      - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
+        reason: The required short description is given by the datatype profile, so it is absent from the differential.
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The required alias is given by the datatype profile, so it is absent from the differential.
+
+zib-HealthProfessional-Practitioner:
+  ignored issues:
+    Practitioner.address:
+      - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
+        reason: The short description is defined on the datatype profile and not repeated in the differential.
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias is defined on the datatype profile and not repeated in the differential.
 
 zib-Patient:
   ignored issues:
     Patient.address:
-      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+      - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
+        reason: The short description is defined on the datatype profile and not repeated in the differential.
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.
     Patient.contact.name:
-      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+      - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
+        reason: The short description is defined on the datatype profile and not repeated in the differential.
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.
     Patient.contact.address:
-      - message: "sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+      - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
+        reason: The short description is defined on the datatype profile and not repeated in the differential.
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias is defined on the datatype profile and not repeated in the differential.
+        
+zib-Payer.InsuranceCompany:
+  ignored issues:
+    Coverage.payor:
+      - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
+        reason: The definition of the zib concept InsuranceCompany, which is the root of a container, does not contain a meaningful definition. 
+
+zib-Payer-Organization:
+  ignored issues:
+    Organization.address:
+      - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
+        reason: The short description is defined on the datatype profile and not repeated in the differential.
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.

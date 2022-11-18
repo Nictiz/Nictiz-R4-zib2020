@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -72,6 +72,8 @@
         <rules value="open" />
       </slicing>
       <short value="ContactInformation" />
+      <definition value="The information needed to contact the healthcare organization via telephone and/or e-mail." />
+      <comment value="The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers." />
       <alias value="Contactgegevens" />
       <mapping>
         <identity value="zib-healthcareprovider-v3.4-2020EN" />
@@ -102,10 +104,8 @@
     </element>
     <element id="Location.address">
       <path value="Location.address" />
-      <short value="AddressInformation" />
       <definition value="The physical address of the healthcare provider’s location." />
       <comment value="The cardinality mismatch with the zib (0..1 versus 0..*) is explained by the restriction of FHIR to limit the `Location.address` to a physical address while the zib allows for other types of addresses (e.g. a postal address). Other types of addresses than a physical address are given in `Organization.address` which is referenced by `Location.managingOrganization`." />
-      <alias value="Adresgegevens" />
       <type>
         <code value="Address" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation" />
