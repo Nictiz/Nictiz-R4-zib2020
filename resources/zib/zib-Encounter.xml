@@ -64,6 +64,9 @@
       <definition value="The type of contact." />
       <alias value="ContactType" />
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="EncounterClass" />
+        </extension>
         <strength value="extensible" />
         <description value="Use ConceptMap ContactTypeCodeLijst-to-ActEncounterCode to translate zib terminology to profile terminology in ValueSet ActEncounterCode." />
         <valueSet value="http://terminology.hl7.org/ValueSet/v3-ActEncounterCode">
@@ -123,14 +126,11 @@
         <comment value="ContactWith" />
       </mapping>
     </element>
-    <element id="Encounter.period">
-      <path value="Encounter.period" />
-      <comment value="If only a single point in time is known for the encounter rather than a period, both `period.start` and `period.end` are populated with this value (populating just `period.start` would indicate an ongoing period)." />
-    </element>
     <element id="Encounter.period.start">
       <path value="Encounter.period.start" />
       <short value="StartDateTime" />
       <definition value="The date and time at which the contact took or will take place." />
+      <comment value="If only a single moment in time is known for the encounter rather than a period, both `period.start` and `period.end` are populated with this value (populating just `period.start` would indicate an ongoing period)." />
       <alias value="BeginDatumTijd" />
       <mapping>
         <identity value="zib-encounter-v4.0.1-2020EN" />
@@ -142,6 +142,7 @@
       <path value="Encounter.period.end" />
       <short value="EndDateTime" />
       <definition value="The date and time at which the contact ended or will end. If the contact takes place over a period of time, this indicates the end of the period, in the case of an admission, for example." />
+      <comment value="If only a single moment in time is known for the encounter rather than a period, both `period.start` and `period.end` are populated with this value (populating just `period.start` would indicate an ongoing period)." />
       <alias value="EindDatumTijd" />
       <mapping>
         <identity value="zib-encounter-v4.0.1-2020EN" />
@@ -246,6 +247,9 @@
       <definition value="Location from which the patient comes before the encounter. In most cases this will only be used when the patient is admitted." />
       <alias value="Herkomst" />
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="AdmitSource" />
+        </extension>
         <strength value="extensible" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.15.1.2--20200901000000" />
       </binding>
@@ -261,6 +265,9 @@
       <definition value="Location to which the patient will go after the encounter. In most cases this will only be used when the patient is discharged." />
       <alias value="Bestemming" />
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="DischargeDisp" />
+        </extension>
         <strength value="extensible" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.15.1.3--20200901000000" />
       </binding>
