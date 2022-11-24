@@ -40,7 +40,7 @@ fi
 exit_code=0
 
 echo "Generating snapshots"
-source $script_dir/generatezibsnapshots.sh $@
+source $script_dir/generatesnapshots.sh $@
 
 if [ $? == 0 ]; then
     if [[ $changed_only == 0 ]]; then
