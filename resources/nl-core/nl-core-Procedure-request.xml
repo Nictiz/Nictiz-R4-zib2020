@@ -26,6 +26,7 @@
   <differential>
     <element id="ServiceRequest">
       <path value="ServiceRequest" />
+      <comment value="The zib Procedure is mapped both to this ServiceRequest profile and a profile on Procedure (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event&gt;) to align with the intention of FHIR. All past procedures are covered using this Procedure resource, while all future procedures, including the advised procedures, are covered in the ServiceRequest resource. Both resources contain the zib mappings.&#xD;&#xA;&#xD;&#xA;The planned and performed procedures can be linked using `Procedure.basedOn`." />
       <alias value="nl-core-Procedure-request" />
     </element>
     <element id="ServiceRequest.subject">
@@ -77,6 +78,24 @@
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider" />
+      </type>
+    </element>
+    <element id="ServiceRequest.reasonReference">
+      <path value="ServiceRequest.reasonReference" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DiagnosticReport" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
+      </type>
+    </element>
+    <element id="ServiceRequest.bodySite">
+      <path value="ServiceRequest.bodySite" />
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation" />
       </type>
     </element>
   </differential>

@@ -26,6 +26,7 @@
   <differential>
     <element id="Procedure">
       <path value="Procedure" />
+      <comment value="The zib Procedure is mapped both to this Procedure profile and a profile on ServiceRequest (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request&gt;) to align with the intention of FHIR. All past procedures are covered using this Procedure resource, while all future procedures, including the advised procedures, are covered in the ServiceRequest resource. Both resources contain the zib mappings, with the exception of the Requester concept; this is not relevant for past procedures and has only been mapped to the ServiceRequest profile.&#xD;&#xA;&#xD;&#xA;The planned and performed procedures can be linked using `Procedure.basedOn`." />
       <alias value="nl-core-Procedure-event" />
     </element>
     <element id="Procedure.basedOn">
