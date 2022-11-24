@@ -18,6 +18,12 @@
   <purpose value="A derived profile from [zib-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="ART-DECOR-hg" />
+    <uri value="https://decor.nictiz.nl/ad/#/hg-/datasets/dataset/2.16.840.1.113883.2.4.3.11.60.103.1.1/2020-10-19T17:52:39" />
+    <name value="Huisarts- en paramedische overdrachten" />
+    <comment value="This is a preliminary mapping that should not be used for immediate implementation." />
+  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="PractitionerRole" />
@@ -44,6 +50,26 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization" />
       </type>
+    </element>
+    <element id="PractitionerRole.specialty:thirdPartyType">
+      <path value="PractitionerRole.specialty" />
+      <sliceName value="thirdPartyType" />
+      <short value="ThirdPartyType" />
+      <definition value="NHG-Tabel 12 Soort derde heeft tot doel bij de zorg betrokken specialismen of organisaties te registreren in het HIS, meer specifiek om inkomende of uitgaande correspondentie en verwijzingen te categoriseren." />
+      <alias value="SoortDerde" />
+      <max value="1" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="PractitionerSpecialty" />
+        </extension>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.4.30.12--20201104000000" />
+      </binding>
+      <mapping>
+        <identity value="ART-DECOR-hg" />
+        <map value="hg-dataelement-56" />
+        <comment value="Specialisme" />
+      </mapping>
     </element>
     <element id="PractitionerRole.location">
       <path value="PractitionerRole.location" />
