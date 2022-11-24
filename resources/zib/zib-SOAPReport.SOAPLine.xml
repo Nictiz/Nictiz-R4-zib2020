@@ -32,7 +32,7 @@
     <element id="Observation">
       <path value="Observation" />
       <short value="SOAPLine" />
-      <comment value="Zib SOAPReport is implemented using two profiles: this profile implements the SOAPLine concept of the zib, while &amp;lt;http://nictiz.nl/fhir/StructureDefinition/zib-SOAPReport&amp;gt; represents the SOAPReport concept of the zib." />
+      <comment value="Zib SOAPReport is implemented using two profiles: this profile implements the SOAPLine concept of the zib, while &lt;http://nictiz.nl/fhir/StructureDefinition/zib-SOAPReport&gt; represents the SOAPReport concept of the zib." />
       <alias value="SOEPRegel" />
       <constraint>
         <key value="zib-SOAPReport-1" />
@@ -70,6 +70,10 @@
     <element id="Observation.extension:soapLineCode.value[x]">
       <path value="Observation.extension.value[x]" />
       <condition value="zib-SOAPReport-1" />
+    </element>
+    <element id="Observation.status">
+      <path value="Observation.status" />
+      <comment value="Unless explicitly recorded, a value of _final_ would be expected." />
     </element>
     <element id="Observation.code">
       <path value="Observation.code" />

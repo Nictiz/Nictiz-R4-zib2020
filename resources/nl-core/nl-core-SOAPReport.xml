@@ -26,6 +26,7 @@
   <differential>
     <element id="Composition">
       <path value="Composition" />
+      <comment value="Zib SOAPReport is implemented using two profiles: this profile implements the SOAPReport concept of the zib, while &lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-SOAPReport.SOAPLine&gt; represents the SOAPLine concept of the zib which is referenced by `.section.entry`. &#xD;&#xA;The Composition resource SHOULD hold a summary in the `.section.text` elements of the information found in the referenced SOAPReport.SOAPLine profile." />
       <alias value="nl-core-SOAPReport" />
     </element>
     <element id="Composition.subject">
@@ -65,6 +66,10 @@
     <element id="Composition.section:soapLine">
       <path value="Composition.section" />
       <sliceName value="soapLine" />
+    </element>
+    <element id="Composition.section:soapLine.text">
+      <path value="Composition.section.text" />
+      <comment value="This element SHOULD hold the information as found in the referenced [nl-core-SOAPReport.SOAPLine](http://nictiz.nl/StructureDefinition/nl-core-SOAPReport.SOAPLine) profile to provide a human-readable narrative of the Composition." />
     </element>
     <element id="Composition.section:soapLine.entry">
       <path value="Composition.section.entry" />

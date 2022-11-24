@@ -484,17 +484,17 @@ zib-Procedure-request:
 zib-SOAPReport:
   zib deviations:
     Composition.author:
-      - cardinality: 1..1
+      - cardinality: 1..1 instead of 0..1
         reason: This is a known difference with the zib. FHIR mandates an author for the Compositions. It seems like a requirement systems can honour.
     Composition.date:
-      - cardinality: 1..1
+      - cardinality: 1..1 instead of 0..1
         reason: This is a known difference with the zib. FHIR mandates a date for the Compositions. It seems like a requirement systems can honour.
     Composition.section:soapLine:
-      - datatype: BackboneElement
-        reason: This is a proper mapping.
+      - datatype: BackboneElement instead of Container
+        reason: Zib container concept SOAPLine corresponds to a Composition.section, which is a BackboneElement. 
     Composition.section:soapLine.code:
-      - cardinality: 1..1
-        reason: The cardinality of both zib (SOAPLineHeader) and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected. In case of absent data, the profiling guidelines provide guidance.
+      - cardinality: 1..1 instead of 0..1
+        reason: The cardinality of both zib (SOAPLineHeader) and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected.
 
 zib-SOAPReport.SOAPLine:
   zib deviations:
