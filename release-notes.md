@@ -46,7 +46,7 @@ This document contains release notes per zib, indicating differences with their 
 * New partial zib. The anatomical location in FHIR is usually mapped on `.bodySite` (CodeableConcept with example binding). This zib has therefore been mapped onto a data type profile that can be used for `.bodySite`.
 
 ## zib-BowelFunction
-* The mapping of NL-CM:4.15.3 is mapped at profile level instead of extension level.
+* The mapping of the Stoma concept has been moved from extension to profile level.
 * MedicalDevice extension has been removed because the reference is reversed in FHIR. The MedicalDevice profile refers to this profile.
 
 ## zib-CareTeam
