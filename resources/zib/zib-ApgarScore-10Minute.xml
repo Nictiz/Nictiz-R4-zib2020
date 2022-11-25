@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="zib-ApgarScore.5Minute" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-ApgarScore.5Minute" />
-  <name value="ZibApgarScore5Minute" />
-  <title value="zib ApgarScore.5Minute" />
+  <id value="zib-ApgarScore-10Minute" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-ApgarScore-10Minute" />
+  <name value="ZibApgarScore10Minute" />
+  <title value="zib ApgarScore 10Minute" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -44,7 +44,7 @@
       <patternCodeableConcept>
         <coding>
           <system value="http://loinc.org" />
-          <code value="9274-2" />
+          <code value="9271-8" />
         </coding>
       </patternCodeableConcept>
     </element>
@@ -92,6 +92,8 @@
       <type>
         <code value="integer" />
       </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="10" />
       <mapping>
         <identity value="zib-apgarscore-v1.0.1-2020EN" />
         <map value="NL-CM:12.16.2" />
@@ -133,7 +135,7 @@
       <patternCodeableConcept>
         <coding>
           <system value="http://loinc.org" />
-          <code value="32410-3" />
+          <code value="32405-3" />
         </coding>
       </patternCodeableConcept>
     </element>
@@ -155,6 +157,10 @@
         <comment value="RespiratoryScore" />
       </mapping>
     </element>
+    <element id="Observation.component:respiratoryScore.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
+    </element>
     <element id="Observation.component:appearanceScore">
       <path value="Observation.component" />
       <sliceName value="appearanceScore" />
@@ -165,7 +171,7 @@
       <patternCodeableConcept>
         <coding>
           <system value="http://loinc.org" />
-          <code value="32411-1" />
+          <code value="32401-2" />
         </coding>
       </patternCodeableConcept>
     </element>
@@ -187,6 +193,10 @@
         <comment value="AppearanceScore" />
       </mapping>
     </element>
+    <element id="Observation.component:appearanceScore.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
+    </element>
     <element id="Observation.component:pulseScore">
       <path value="Observation.component" />
       <sliceName value="pulseScore" />
@@ -196,7 +206,7 @@
       <path value="Observation.component.code" />
       <code>
         <system value="http://loinc.org" />
-        <code value="32412-9" />
+        <code value="32402-0" />
       </code>
     </element>
     <element id="Observation.component:pulseScore.value[x]">
@@ -217,6 +227,10 @@
         <comment value="PulseScore" />
       </mapping>
     </element>
+    <element id="Observation.component:pulseScore.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
+    </element>
     <element id="Observation.component:grimaceScore">
       <path value="Observation.component" />
       <sliceName value="grimaceScore" />
@@ -227,7 +241,7 @@
       <patternCodeableConcept>
         <coding>
           <system value="http://loinc.org" />
-          <code value="32414-5" />
+          <code value="32404-6" />
         </coding>
       </patternCodeableConcept>
     </element>
@@ -249,21 +263,25 @@
         <comment value="GrimaceScore" />
       </mapping>
     </element>
-    <element id="Observation.component:musleToneScore">
+    <element id="Observation.component:grimaceScore.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
+    </element>
+    <element id="Observation.component:muscleToneScore">
       <path value="Observation.component" />
-      <sliceName value="musleToneScore" />
+      <sliceName value="muscleToneScore" />
       <max value="1" />
     </element>
-    <element id="Observation.component:musleToneScore.code">
+    <element id="Observation.component:muscleToneScore.code">
       <path value="Observation.component.code" />
       <code>
         <system value="http://loinc.org" />
-        <code value="32413-7" />
+        <code value="32403-8" />
       </code>
     </element>
-    <element id="Observation.component:musleToneScore.value[x]">
+    <element id="Observation.component:muscleToneScore.value[x]">
       <path value="Observation.component.value[x]" />
-      <short value="MusleToneScore" />
+      <short value="MuscleToneScore" />
       <definition value="The Apgar subscore for activity/muscle tone." />
       <alias value="SpierspanningScore" />
       <type>
@@ -276,8 +294,12 @@
       <mapping>
         <identity value="zib-apgarscore-v1.0.1-2020EN" />
         <map value="NL-CM:12.16.6" />
-        <comment value="MusleToneScore" />
+        <comment value="MuscleToneScore" />
       </mapping>
+    </element>
+    <element id="Observation.component:muscleToneScore.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
   </differential>
 </StructureDefinition>
