@@ -1,0 +1,100 @@
+<CodeSystem xmlns="http://hl7.org/fhir">
+   <id value="2.16.840.1.113883.2.4.3.11.60.40.4.4.1"/>
+   <meta>
+      <profile value="http://hl7.org/fhir/StructureDefinition/shareablecodesystem"/>
+      <!--<profile value="http://hl7.org/fhir/4.0/StructureDefinition/CodeSystem"/>-->
+   </meta>
+   <language value="nl-NL"/>
+   <extension url="http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod">
+      <valuePeriod>
+         <start value="2020-09-01T00:00:00+00:00"/>
+      </valuePeriod>
+   </extension>
+   <url value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.4.1"/>
+   <identifier>
+      <use value="official"/>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.4.1"/>
+   </identifier>
+   <version value="2020-09-01T00:00:00"/>
+   <name value="MUST_BMI"/>
+   <title value="MUST_BMI"/>
+   <status value="active"/>
+   <experimental value="false"/>
+   <publisher value="Registratie aan de bron"/>
+   <contact>
+      <name value="Registratie aan de bron"/>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.registratieaandebron.nl"/>
+      </telecom>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.zibs.nl"/>
+      </telecom>
+   </contact>
+   <description value="MUST_BMI"/>
+   <caseSensitive value="false"/>
+   <content value="complete"/>
+   <count value="3"/>
+   <property>
+      <code value="ordinal-value"/>
+      <uri value="http://hl7.org/fhir/StructureDefinition/ordinalValue"/>
+      <description value="A numeric value that allows the comparison (less than, greater than) or other numerical manipulation of a concept (e.g. Adding up components of a score). Scores are usually a whole number, but occasionally decimals are encountered in scores."/>
+      <type value="integer"/>
+   </property>
+   <property>
+      <code value="status"/>
+      <uri value="http://hl7.org/fhir/concept-properties"/>
+      <description value="A code that indicates the status of the concept. Values found in this version of the code system are: active"/>
+      <type value="code"/>
+   </property>
+   <concept>
+      <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
+         <valueDecimal value="0"/>
+      </extension>
+      <code value="B0"/>
+      <display value="BMIHigh"/>
+      <definition value="BMI &gt;20 kg/m2"/>
+      <property>
+         <code value="ordinal-value"/>
+         <valueInteger value="0"/>
+      </property>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+   </concept>
+   <concept>
+      <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
+         <valueDecimal value="1"/>
+      </extension>
+      <code value="B1"/>
+      <display value="BMIAverage"/>
+      <definition value="BMI tussen 18,5-20 kg/m2"/>
+      <property>
+         <code value="ordinal-value"/>
+         <valueInteger value="1"/>
+      </property>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+   </concept>
+   <concept>
+      <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
+         <valueDecimal value="2"/>
+      </extension>
+      <code value="B2"/>
+      <display value="BMILow"/>
+      <definition value="BMI &lt; 18,5 kg/m2"/>
+      <property>
+         <code value="ordinal-value"/>
+         <valueInteger value="2"/>
+      </property>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+   </concept>
+</CodeSystem>
