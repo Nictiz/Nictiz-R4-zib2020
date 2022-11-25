@@ -81,7 +81,7 @@
       <path value="Immunization.occurrence[x]" />
       <sliceName value="occurrenceDateTime" />
       <short value="VaccinationDate" />
-      <definition value="Date (and if possible time) that the vaccine was or will be administered. In the case of a planned re-vaccination, a vague date (month, year) is allowed (Clinical reminder). If a planned vaccination cannot be administered before a certain date, the date stated (vague or not) must indicate this." />
+      <definition value="Date (and if possible time) that the vaccine was administered." />
       <alias value="VaccinatieDatum" />
       <type>
         <code value="dateTime" />
@@ -95,12 +95,11 @@
     <element id="Immunization.doseQuantity">
       <path value="Immunization.doseQuantity" />
       <short value="Dose" />
-      <definition value="The amount of product administered shown in milliliters. In most cases, the entire product is administered; in some cases, a described part of the product is administered." />
+      <definition value="The amount of product administered expressed in UCUM, often mL. In most cases, the entire product is administered; in some cases, a described part of the product is administered." />
+      <comment value="The definition of Dose deviates slightly from the zib 2020 vaccination definition; The unit of measure is not limited to mL. This difference is according to the planned vaccination zib modifications (https://bits.nictiz.nl/browse/ZIB-1654)." />
       <alias value="Dosis" />
       <patternQuantity>
-        <unit value="mL" />
         <system value="http://unitsofmeasure.org" />
-        <code value="mL" />
       </patternQuantity>
       <mapping>
         <identity value="zib-vaccination-v4.0-2020EN" />
@@ -136,7 +135,7 @@
     <element id="Immunization.performer:administrator.actor">
       <path value="Immunization.performer.actor" />
       <short value="Administrator" />
-      <definition value="The healthcare provider and/or organization where or by whom the immunization was done or will be done." />
+      <definition value="The healthcare provider and/or organization where or by whom the immunization was done." />
       <alias value="Toediener" />
       <type>
         <code value="Reference" />
