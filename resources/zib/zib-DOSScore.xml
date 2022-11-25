@@ -87,7 +87,7 @@
       <path value="Observation.value[x]" />
       <sliceName value="valueInteger" />
       <short value="DOSScoreTotal" />
-      <definition value="Per shift a total score is calculated (minimum 0 and maximum 13). The total scores of three shifts (day, evening and night shifts) are summed to the total score of the day (minimum 0 and maximum 39).&#xD;&#xA;&#xD;&#xA;The DOS scale final score is calculated by dividing the total score of the day by 3 (minimum 0 and maximum 13).&#xD;&#xA;&#xD;&#xA;A DOS scale final score &lt; 3 means that the patient is probably not delirious. A DOS scale final score &gt; 3 means that the patiënt is probably delirious." />
+      <definition value="Per shift a total score is calculated (minimum 0 and maximum 13). The total scores of three shifts (day, evening and night shifts) are summed to the total score of the day (minimum 0 and maximum 39).&#xD;&#xA;&#xD;&#xA;The DOS scale final score is calculated by dividing the total score of the day by 3 (minimum 0 and maximum 13).&#xD;&#xA;&#xD;&#xA;A DOS scale final score &lt; 3 means that the patient is probably not delirious. A DOS scale final score &gt; 3 means that the patient is probably delirious." />
       <alias value="DOSScoreTotaal" />
       <type>
         <code value="integer" />
@@ -134,7 +134,7 @@
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
           <code value="18007006" />
         </coding>
       </patternCodeableConcept>
@@ -147,6 +147,8 @@
       <type>
         <code value="integer" />
       </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
       <mapping>
         <identity value="zib-dosscore-v1.0-2020EN" />
         <map value="NL-CM:18.7.6" />
@@ -166,7 +168,7 @@
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
           <code value="18007007" />
         </coding>
       </patternCodeableConcept>
@@ -179,6 +181,8 @@
       <type>
         <code value="integer" />
       </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
       <mapping>
         <identity value="zib-dosscore-v1.0-2020EN" />
         <map value="NL-CM:18.7.7" />
@@ -189,21 +193,21 @@
       <path value="Observation.component.referenceRange" />
       <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
-    <element id="Observation.component:maintainAttention">
+    <element id="Observation.component:maintainsAttention">
       <path value="Observation.component" />
-      <sliceName value="maintainAttention" />
+      <sliceName value="maintainsAttention" />
       <max value="1" />
     </element>
-    <element id="Observation.component:maintainAttention.code">
+    <element id="Observation.component:maintainsAttention.code">
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
           <code value="18007008" />
         </coding>
       </patternCodeableConcept>
     </element>
-    <element id="Observation.component:maintainAttention.value[x]">
+    <element id="Observation.component:maintainsAttention.value[x]">
       <path value="Observation.component.value[x]" />
       <short value="MaintainsAttention" />
       <definition value="DOS observation: patient maintains attention to conversation or action.&#xD;&#xA;&#xD;&#xA;Someone is maintaining attention to a conversation or action if he/she verbally or non-verbally shows that they are following the conversation or action.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;1: never&#xD;&#xA;0: sometimes-always&#xD;&#xA;-: don't know" />
@@ -211,31 +215,33 @@
       <type>
         <code value="integer" />
       </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
       <mapping>
         <identity value="zib-dosscore-v1.0-2020EN" />
         <map value="NL-CM:18.7.8" />
         <comment value="MaintainsAttention" />
       </mapping>
     </element>
-    <element id="Observation.component:maintainAttention.referenceRange">
+    <element id="Observation.component:maintainsAttention.referenceRange">
       <path value="Observation.component.referenceRange" />
       <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
-    <element id="Observation.component:unfinishedQuestionAndAnswer">
+    <element id="Observation.component:unfinishedQuestionAnswer">
       <path value="Observation.component" />
-      <sliceName value="unfinishedQuestionAndAnswer" />
+      <sliceName value="unfinishedQuestionAnswer" />
       <max value="1" />
     </element>
-    <element id="Observation.component:unfinishedQuestionAndAnswer.code">
+    <element id="Observation.component:unfinishedQuestionAnswer.code">
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
           <code value="18007009" />
         </coding>
       </patternCodeableConcept>
     </element>
-    <element id="Observation.component:unfinishedQuestionAndAnswer.value[x]">
+    <element id="Observation.component:unfinishedQuestionAnswer.value[x]">
       <path value="Observation.component.value[x]" />
       <short value="UnfinishedQuestionAnswer" />
       <definition value="DOS observation: patient does not finish question or answer.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;0: never&#xD;&#xA;1: sometimes-always&#xD;&#xA;-: don't know" />
@@ -243,13 +249,15 @@
       <type>
         <code value="integer" />
       </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
       <mapping>
         <identity value="zib-dosscore-v1.0-2020EN" />
         <map value="NL-CM:18.7.9" />
         <comment value="UnfinishedQuestionAnswer" />
       </mapping>
     </element>
-    <element id="Observation.component:unfinishedQuestionAndAnswer.referenceRange">
+    <element id="Observation.component:unfinishedQuestionAnswer.referenceRange">
       <path value="Observation.component.referenceRange" />
       <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
@@ -262,7 +270,7 @@
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
           <code value="18007010" />
         </coding>
       </patternCodeableConcept>
@@ -275,6 +283,8 @@
       <type>
         <code value="integer" />
       </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
       <mapping>
         <identity value="zib-dosscore-v1.0-2020EN" />
         <map value="NL-CM:18.7.10" />
@@ -294,7 +304,7 @@
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
           <code value="18007011" />
         </coding>
       </patternCodeableConcept>
@@ -307,6 +317,8 @@
       <type>
         <code value="integer" />
       </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
       <mapping>
         <identity value="zib-dosscore-v1.0-2020EN" />
         <map value="NL-CM:18.7.11" />
@@ -326,7 +338,7 @@
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
           <code value="18007012" />
         </coding>
       </patternCodeableConcept>
@@ -339,6 +351,8 @@
       <type>
         <code value="integer" />
       </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
       <mapping>
         <identity value="zib-dosscore-v1.0-2020EN" />
         <map value="NL-CM:18.7.12" />
@@ -358,7 +372,7 @@
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
           <code value="18007013" />
         </coding>
       </patternCodeableConcept>
@@ -371,6 +385,8 @@
       <type>
         <code value="integer" />
       </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
       <mapping>
         <identity value="zib-dosscore-v1.0-2020EN" />
         <map value="NL-CM:18.7.13" />
@@ -390,7 +406,7 @@
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
           <code value="18007014" />
         </coding>
       </patternCodeableConcept>
@@ -403,6 +419,8 @@
       <type>
         <code value="integer" />
       </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
       <mapping>
         <identity value="zib-dosscore-v1.0-2020EN" />
         <map value="NL-CM:18.7.14" />
@@ -422,7 +440,7 @@
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
           <code value="18007015" />
         </coding>
       </patternCodeableConcept>
@@ -435,6 +453,8 @@
       <type>
         <code value="integer" />
       </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
       <mapping>
         <identity value="zib-dosscore-v1.0-2020EN" />
         <map value="NL-CM:18.7.15" />
@@ -454,7 +474,7 @@
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
           <code value="18007016" />
         </coding>
       </patternCodeableConcept>
@@ -467,6 +487,8 @@
       <type>
         <code value="integer" />
       </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
       <mapping>
         <identity value="zib-dosscore-v1.0-2020EN" />
         <map value="NL-CM:18.7.16" />
@@ -486,7 +508,7 @@
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
           <code value="18007017" />
         </coding>
       </patternCodeableConcept>
@@ -499,6 +521,8 @@
       <type>
         <code value="integer" />
       </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
       <mapping>
         <identity value="zib-dosscore-v1.0-2020EN" />
         <map value="NL-CM:18.7.17" />
@@ -518,7 +542,7 @@
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
           <code value="18007018" />
         </coding>
       </patternCodeableConcept>
@@ -531,6 +555,8 @@
       <type>
         <code value="integer" />
       </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
       <mapping>
         <identity value="zib-dosscore-v1.0-2020EN" />
         <map value="NL-CM:18.7.18" />
