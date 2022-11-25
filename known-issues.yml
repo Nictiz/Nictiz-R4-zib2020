@@ -108,6 +108,12 @@ zib-AllergyIntolerance:
       - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
         reason: The mapping is to a zib container, which doesn't have a useful description if implemented in a profile.
 
+zib-ApgarScore-*Minute:
+  zib deviations:
+    Observation.component:muscleToneScore.value[x]:
+      - short: MuscleToneScore
+        reason: The zib concept name "MusleToneScore" is an incorrect translation of the Dutch name into English.
+
 zib-BloodPressure:
   ignored issues:
     Observation.component:*BP:
