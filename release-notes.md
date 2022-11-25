@@ -2,6 +2,12 @@
 
 This document contains release notes per zib, indicating differences with their [STU3 versions](https://simplifier.net/packages/nictiz.fhir.nl.stu3.zib2017/), deviations from the [profiling guidelines](https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4) and other points of interest.
 
+## zib-AbilityToDressOneself
+* The ValueSet binding strength has changed from 'extensible' to 'required' on `Observation.component:bodyPartToBeDressed.value[x]`.
+
+## zib-AbilityToWashOneself
+* The ValueSet binding strength has changed from 'extensible' to 'required' on `Observation.component:bodyPartToBeBathed.value[x]`.
+
 ## zib-AddressInformation
 * Added extra comments on the history of the mapping in relation to v3.
 * Removed mapping to BRP.
@@ -72,6 +78,9 @@ This document contains release notes per zib, indicating differences with their 
 * The mapping of Location is moved to `Encounter.location.location`.
 * Reference to other profiles not accounted for by the zib have been removed.
 
+## zib-Education
+* There is no previous profile for Education in STU3 and therefore no diff.
+
 ## zib-EpisodeOfCare
 * New zib in 2020. However, in the zib2017 package the nl-core-episodeofcare profile exists, which is not based on a zib but included some use case concepts. This zib profile supersedes this profile.
 * The extension EpisodOfCare-Title has been replaced by ext-EpisodeOfCare.EpisodeOfCareName because this zib concept is functionally equivalent.
@@ -124,6 +133,12 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-Mobility
 * The comment element is mapped on `Observation.note.text` instead of `Observation.comment`.
 
+## zib-MUSTScore
+* The datatype of `Observation.value[x]` (zib concept TotalScore) element has been changed from Quantity to Integer, and minimum and maximum allowed values of 0 and 6 respectively are applied.
+* The code on `Observation.component:bmiScore.code` has changed to 4005003 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The code on `Observation.component:weightLossScore.code` has changed to 4005004 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The code on `Observation.component:illnessScore.code` has changed to 4005005 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+
 ## zib-NameInformation
 * The way this partial zib has been modelled on the HumanName datatype has been overhauled to properly accommodate the way first names are handled. In the STU3 version, official first names, initials of this first name, and the given name (nickname, roepnaam) were all added to a `.given` element in the same HumanName instance, with a annotation of the type using an extension. This turned out to be the wrong approach, as all `.given` names are to be concatenated to the complete list of first names. So instead, there are now different instances of HumanName used to communicate the official names and the given name, indicated by `.use` -- resulting in two profiles. Communicating initials is now only done for names where the full name is not known (this deviates from the zib model).   
 * `.use` has been made mandatory (instead of discouraged).
@@ -142,12 +157,22 @@ This document contains release notes per zib, indicating differences with their 
 * Because there's a better match with CarePlan, the five custom extensions are removed. One custom extension is added to mark a `CarePlan.contributor` as the zib Requester, and another one to define the materials used.
 * Note: although the zib has changed quite dramatically since release 2017, the previous version of the profile was based on a pre-adopt of zib pre-release 2018, which is the same as release 2020.
 
+## zib-NutritionAdvice
+* References not accounted for by the zib have been removed on `NutritionOrder.allergyIntolerance`, `NutritionOrder.encounter` and `NutritionOrder.orderer`.
+* The incorrect mapping of Consistency to `NutritionOrder.oralDiet.texture.foodType.text` has been removed. This concept is not used to provide information on the consistency of nutrition.
+* New concept Indication mapped on the extension `NutritionOrder.extension:indication`.
+* The comment extension has been replaced by a mapping to `NutritionOrder.note.text`.
+
 ## zib-Patient
 * Includes Nationality, MaritalStatus, LanguageProficiency.
 * Cardinality of `Patient.extension:nationality` left at 0..* due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time).
 * Cardinality of `Patient.name` left at 0..* to allow including several name elements with a different `name.use` each.
 * Cardinality of `Patient.telecom` left at 0..* to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not.
 * Added a comment to `deceased[x]`: When exporting the data, if `deceasedDateTime` (DateOfDeath) is present and has a value, DeathIndicator may be set to 'true', since DeathIndicator and DateOfDeath cannot both be represented at the same time.
+
+## zib-Payer
+* The STU3 version of the profile mapped part of the InsuranceCompany concept in the nl-core-organization profile, while these types of organizations do not necessarily have anything in common with HealthcareProviders, and it also did not allow for the situation where PayerPerson is an organization. To fix this, two separate profiles have been created for the situations where the Payer is a PayerPerson or an InsuranceCompany. These profiles could not be combined because slicing on .type with a maximum cardinality of 1 is not allowed.
+* Both InsuranceCompany and 'PayerPerson as Organization' have been mapped in the profile Payer-Organization.
 
 ## zib-Problem
 * ProblemType has been added on a slice of `Condition.category` allowing the category element to be used for other purposes too.
@@ -181,6 +206,16 @@ This document contains release notes per zib, indicating differences with their 
 * TobaccoUseStatus is placed on a type slice of `Observation.value[x]` adhering to the open world modelling principle.
 * The comment element is moved to `Observation.note.text` instead of `Observation.comment`
 * The datatype for PackYears has been changed from Quantity to integer to align with the functional definition and the Quantity datatype does not bring additional benefits to justify not aligning with the zib.
+
+## zib-TreatmentDirective2
+* This is a new zib loosely based on the previous zib TreatmentDirective. Below the most relevant changes compared to the previous zib and the STU3 profile are described.
+* Removed the modifierExtension `treatmentPermitted`, which is now mapped to `Consent.provision.type`.
+* Added a modifierExtension to capture zib concept SpecificationOther.
+* Removed `treatment` extension, which is now mapped to `Consent.provision.code`.
+* Removed `verification` extension because the related functional concept has been removed in the zib.
+* Added guidance for mandatory elements `Consent.status`, `Consent.scope` and `Consent.policy` or `Consent.policyRule`.
+* Moved AdvanceDirective from `Consent.source[x]` to `Consent.source[x]:sourceReference` to be more specific.
+* Removed references that are not defined by the zib (e.g. `Consent.organization` and `Consent.actor`).
 
 ## zib-Vaccination
 * Renamed profiles names: zib-Vaccination to zib-Vaccination-event and zib-VaccinationRecommendation to zib-Vaccination-request conform new profiling guidelines.
