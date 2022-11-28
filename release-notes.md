@@ -163,7 +163,7 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-OutcomeOfCare
 * The code on `DiagnosticReport.code` has been changed to 423100009 and the system value to http://snomed.info/sct.
 * Removed MeasurementValue mapping because this element does not exist anymore.
-* Element HealthCondition::FunctionalOrMentalStatus with ID NL-CM:13.4.3 is mapped on `DiagnosticReport.result`	instead on it's own slice.
+* Element HealthCondition::FunctionalOrMentalStatus with ID NL-CM:13.4.3 is mapped on `DiagnosticReport.result` instead of on its own slice.
 * Intervention extension has been removed because the reference is reversed in FHIR. The NursingIntervention profile refers to this profile.
 
 ## zib-Patient
