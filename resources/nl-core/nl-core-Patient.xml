@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -27,12 +27,6 @@
     <element id="Patient">
       <path value="Patient" />
       <alias value="nl-core-Patient" />
-    </element>
-    <element id="Patient.name">
-      <path value="Patient.name" />
-      <type>
-        <code value="HumanName" />
-      </type>
     </element>
     <element id="Patient.name:nameInformation">
       <path value="Patient.name" />
@@ -72,6 +66,10 @@
         <code value="Address" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AddressInformation" />
       </type>
+    </element>
+    <element id="Patient.contact">
+      <path value="Patient.contact" />
+      <comment value="Whereas the zib ContactPerson includes all (non-healthcare professional) persons that are involved in the care for a patient, FHIR distinguishes two use cases for these persons:&#xD;&#xA;&#xD;&#xA;* The RelatedPerson resource is used to capture information about any person that is related to the patient, using the profile &lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson&gt;.&#xD;&#xA;* Information about persons that should be _contacted_ regarding the care for the patient is captured using the `Patient.contact` resource.&#xD;&#xA;&#xD;&#xA;If a person is both a related person and a contact person, then some data duplication is inevitable. The nl-core-ContactPerson can be referenced using the extension in `contact:contactPerson`." />
     </element>
     <element id="Patient.contact.extension">
       <path value="Patient.contact.extension" />
