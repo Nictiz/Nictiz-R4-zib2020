@@ -203,12 +203,23 @@
     </element>
     <element id="CarePlan.activity.outcomeReference">
       <path value="CarePlan.activity.outcomeReference" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="CarePlan.activity.outcomeReference:zibOutcomeOfCareReference">
+      <path value="CarePlan.activity.outcomeReference" />
+      <sliceName value="zibOutcomeOfCareReference" />
       <short value="zib OutcomeOfCare reference" />
       <definition value="A description of the nursing intervention of which the effectivity is evaluated with the healthcare result." />
+      <comment value="Please note that on a functional level, zib OutcomeOfCare references zib NursingIntervention, but in FHIR this direction is reversed." />
       <alias value="UitkomstVanZorg" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-OutcomeOfCare" />
       </type>
       <mapping>
