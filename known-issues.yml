@@ -340,6 +340,12 @@ zib-MedicalDevice.Product:
       - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the definition of the ProductID concept is not suited for all mapped elements.
 
+zib-MedicationContraIndication:
+  zib deviations:
+    Flag.code:
+      - cardinality: 1..1 instead of 0..1
+        reason: Flag.code is manadatory in FHIR. The cardinality matches the cardinality of the zib, but not the conceptual cardinality. This should not be a major problem, as a contraindication is useless without specifying what it pertains to. 
+
 zib-NameInformation:
   zib deviations:
     HumanName.prefix:
