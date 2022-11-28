@@ -367,6 +367,9 @@ zib-NameInformation.GivenName:
 
 zib-NursingIntervention:
   zib deviations:
+    CarePlan.activity.outcomeReference:zibOutcomeOfCareReference:
+      - short: zib OutcomeOfCare reference
+        reason: Because this reference is reversed in FHIR, this profile needs to contain the mapping for the reference.
     CarePlan.activity.detail.scheduled[x]:scheduledTiming.repeat.frequency:
       - datatype: positiveInt
         reason: zib concepts Interval and Frequency are represented by a combination of .frequency, .period and .periodUnit, not by a single element of Quantity datatype.
@@ -380,15 +383,15 @@ zib-NursingIntervention:
       - cardinality: 0..1 instead of 0..*
         reason: The value of the extension can only occur once, but the use of the extension itself is unlimited, making the effective cardinality 0..* as required by the zib.
   ignored issues:
-    CarePlan.activity.outcomeReference:
-      - short: zib OutcomeOfCare reference
-        reason: Because this reference is reversed in FHIR, this profile needs to contain the mappings for the references in _all_ these zibs.
+    CarePlan.activity.outcomeReference:zibOutcomeOfCareReference:
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
     CarePlan.contributor:requester:
       - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice.
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
     CarePlan.activity.detail.performer:*:
       - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice. 
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
 
 zib-Patient:
   zib deviations:
