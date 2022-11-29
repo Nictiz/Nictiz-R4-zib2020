@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-MedicalDevice.Product" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice.Product" />
+  <name value="ZibMedicalDeviceProduct" />
+  <title value="zib MedicalDevice.Product" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Medical devices are any internally implanted and external devices and/or aids used by the patient (in the past) to reduce the effects of functional limitations in organ systems or to facilitate the treatment of a disease." />
+  <purpose value="This Device resource represents the Product container of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) MedicalDevice v3.3.1 (2020)](https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN))" />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-medicaldevice-v3.3.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN)" />
+    <name value="zib MedicalDevice-v3.3.1(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Device" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Device" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Device">
+      <path value="Device" />
+      <short value="Product" />
+      <definition value="The medical device (internally or externally)." />
+      <comment value="Frequently used coding systems to identify devices are Health Industry Bar Code (HIBC) or GS1's Global Trade Item Number (GTIN). If one of these systems is used, the device identification happens on the basis of a UDI. Next to these two, other systems to identify devices are allowed by the zib, as long as such a system allows for unique identification of the device.&#xD;&#xA;&#xD;&#xA;In all cases the full identifier will be populated in `.identifier`. If the identifier is a UDI in particular, it should also be populated in `udiCarrier.carrierHRF`, and the element `udiCarrier.issuer` is used to indicate which 'coding system' is used. Moreover the identifier may be broken down into several parts in that case, namely `.udiCarrier.deviceIdentifier`, `.manufactureDate`, `.expirationDate`, `.lotNumber` and `.serialNumber`. For GTIN, guidance is given at the respective elements in this profile and is based on &lt;https://www.gs1.org/industries/healthcare/udi&gt;. For HIBC please consult the the Supplier Labeling Standard that can be found at &lt;https://www.hibcc.org/udi-labeling-standards/barcode-standards/&gt;, as conversion into the several parts is less straightforward." />
+      <alias value="Product" />
+      <mapping>
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
+        <map value="NL-CM:10.1.2" />
+        <comment value="Product" />
+      </mapping>
+    </element>
+    <element id="Device.identifier">
+      <path value="Device.identifier" />
+      <slicing>
+        <discriminator>
+          <type value="pattern" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <max value="1" />
+    </element>
+    <element id="Device.identifier:gs1ProductID">
+      <path value="Device.identifier" />
+      <sliceName value="gs1ProductID" />
+      <short value="ProductID" />
+      <definition value="Unique identification of the product, such as the serial number. The `identifier` may only be used if it also identifies the resource." />
+      <alias value="ProductID" />
+      <max value="1" />
+      <patternIdentifier>
+        <system value="https://www.gs1.org/gtin" />
+      </patternIdentifier>
+      <mapping>
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
+        <map value="NL-CM:10.1.4" />
+        <comment value="ProductID" />
+      </mapping>
+    </element>
+    <element id="Device.identifier:hibcProductID">
+      <path value="Device.identifier" />
+      <sliceName value="hibcProductID" />
+      <short value="ProductID" />
+      <definition value="Unique identification of the product, such as the serial number. The `identifier` may only be used if it also identifies the resource." />
+      <alias value="ProductID" />
+      <max value="1" />
+      <patternIdentifier>
+        <system value="urn:oid:2.16.840.1.113883.6.40" />
+      </patternIdentifier>
+      <mapping>
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
+        <map value="NL-CM:10.1.4" />
+        <comment value="ProductID" />
+      </mapping>
+    </element>
+    <element id="Device.udiCarrier">
+      <path value="Device.udiCarrier" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="issuer" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <definition value="Unique device identifier (UDI) assigned to device label or package. Note that a udiCarrier is only applicable if the zib concept ProductID actually contains a UDI, e.g. an ID according to GTIN or HIBC." />
+      <max value="1" />
+    </element>
+    <element id="Device.udiCarrier:gs1UdiCarrier">
+      <path value="Device.udiCarrier" />
+      <sliceName value="gs1UdiCarrier" />
+      <max value="1" />
+    </element>
+    <element id="Device.udiCarrier:gs1UdiCarrier.deviceIdentifier">
+      <path value="Device.udiCarrier.deviceIdentifier" />
+      <definition value="The device identifier (DI) is a mandatory, fixed portion of a UDI that identifies the labeler and the specific version or model of a device.&#xD;&#xA;In the GS1 standard this element represents the GTIN itself - e.g. 01234567891234 - as part of the Application Identifier (AI), namely AI(01)." />
+    </element>
+    <element id="Device.udiCarrier:gs1UdiCarrier.issuer">
+      <path value="Device.udiCarrier.issuer" />
+      <definition value="Organization that is charged with issuing UDIs for devices. For the zib this would be GS1's Global Trade Item Number (GTIN) or Health Industry Bar Code (HIBC). Note that the issuer must match the issuer implicitly contained in the ProductID." />
+      <fixedUri value="https://www.gs1.org/gtin" />
+    </element>
+    <element id="Device.udiCarrier:gs1UdiCarrier.carrierHRF">
+      <path value="Device.udiCarrier.carrierHRF" />
+      <short value="ProductID" />
+      <alias value="ProductID" />
+      <mapping>
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
+        <map value="NL-CM:10.1.4" />
+        <comment value="ProductID" />
+      </mapping>
+    </element>
+    <element id="Device.udiCarrier:hibcUdiCarrier">
+      <path value="Device.udiCarrier" />
+      <sliceName value="hibcUdiCarrier" />
+      <max value="1" />
+    </element>
+    <element id="Device.udiCarrier:hibcUdiCarrier.issuer">
+      <path value="Device.udiCarrier.issuer" />
+      <definition value="Organization that is charged with issuing UDIs for devices. For the zib this would be GS1's Global Trade Item Number (GTIN) or Health Industry Bar Code (HIBC). Note that the issuer must match the issuer implicitly contained in the ProductID." />
+      <fixedUri value="urn:oid:2.16.840.1.113883.6.40" />
+    </element>
+    <element id="Device.udiCarrier:hibcUdiCarrier.carrierHRF">
+      <path value="Device.udiCarrier.carrierHRF" />
+      <short value="ProductID" />
+      <alias value="ProductID" />
+      <mapping>
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
+        <map value="NL-CM:10.1.4" />
+        <comment value="ProductID" />
+      </mapping>
+    </element>
+    <element id="Device.manufactureDate">
+      <path value="Device.manufactureDate" />
+      <definition value="The date a specific device was manufactured - which is a component of the production identifier (PI), a conditional, variable portion of a UDI. &#xD;&#xA;In the GS1 standard this element represents the Manufacture date - e.g. 250717 - as part of the Application Identifier (AI), namely AI(11)." />
+    </element>
+    <element id="Device.expirationDate">
+      <path value="Device.expirationDate" />
+      <definition value="The expiration date of a specific device - which is a component of the production identifier (PI), a conditional, variable portion of a UDI.&#xD;&#xA;In the GS1 standard this element represents the Expiration date - e.g. 141120 - as part of the Application Identifier (AI), namely AI(17)." />
+    </element>
+    <element id="Device.lotNumber">
+      <path value="Device.lotNumber" />
+      <definition value="The lot or batch number within which a device was manufactured - which is a component of the production identifier (PI), a conditional, variable portion of a UDI.&#xD;&#xA;In the GS1 standard this element represents the Lot/batch number - e.g. 1234AB - as part of the Application Identifier (AI), namely AI(10)." />
+    </element>
+    <element id="Device.serialNumber">
+      <path value="Device.serialNumber" />
+      <definition value="The serial number assigned by the organization when the device was manufactured.&#xD;&#xA;In the GS1 standard this element represents the Serial number - e.g. 12345XYZ - as part of the Application Identifier (AI), namely AI(21)." />
+    </element>
+    <element id="Device.type">
+      <path value="Device.type" />
+      <short value="ProductType" />
+      <definition value="The code of the type of product." />
+      <alias value="ProductType" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.10.1.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
+        <map value="NL-CM:10.1.3" />
+        <comment value="ProductType" />
+      </mapping>
+    </element>
+    <element id="Device.note">
+      <path value="Device.note" />
+      <max value="1" />
+    </element>
+    <element id="Device.note.text">
+      <path value="Device.note.text" />
+      <short value="ProductDescription" />
+      <definition value="Textual description of the product." />
+      <alias value="ProductOmschrijving" />
+      <mapping>
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
+        <map value="NL-CM:10.1.13" />
+        <comment value="ProductDescription" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
