@@ -11,6 +11,9 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-AbilityToDrink
 * No specific changes have been made to this profile other than the generic changes for the Observation resource
 
+## zib-AbilityToEat
+* No specific changes have been made to this profile other than the generic changes for the Observation resource.
+
 ## zib-AddressInformation
 * Added extra comments on the history of the mapping in relation to v3.
 * Removed mapping to BRP.
