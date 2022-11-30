@@ -145,9 +145,7 @@ zib-ContactPerson:
       - datatype: ContactPoint instead of a reference
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource.
   additional notes:
-    RelatedPerson.telecom:
-      - cardinality: 0..*
-        reason: Although there is a cardinality mismatch for the mapping of zib concept ContactPerson.ContactInformation on this element (as pointed out above), the cardinalities between zib and FHIR do match for the mapping of zib concept Payer.ContactInformation (NL-CM:1.1.12), as these are both 0..*.
+    RelatedPerson.telecom: Although there is a cardinality mismatch for the mapping of zib concept ContactPerson.ContactInformation on this element (as pointed out above), the cardinalities between zib and FHIR do match for the mapping of zib concept Payer.ContactInformation (NL-CM:1.1.12), as these are both 0..*.
 
 zib-Encounter:
   ignored issues:
@@ -241,10 +239,10 @@ zib-HearingFunction.HearingAid.Product:
         reason: The alias for ProductType is already present in the base profile where this profile is derived from. It should not be added twice to silence this issue.
   zib deviations:
     Device.identifier:*ProductID:
-      - datatype: Identifier instead of CD
+      - datatype: Identifier instead of CD compatible datatype
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
     Device.udiCarrier:*UdiCarrier.carrierHRF:
-      - datatype: string instead of CD
+      - datatype: string instead of CD compatible datatype
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
 
 zib-LaboratoryTestResult:
@@ -315,10 +313,10 @@ zib-MedicalDevice:
 zib-MedicalDevice.Product:
   zib deviations:
     Device.identifier:*ProductID:
-      - datatype: Identifier instead of CD
+      - datatype: Identifier instead of CD compatible datatype
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
     Device.udiCarrier:*UdiCarrier.carrierHRF:
-      - datatype: string instead of CD
+      - datatype: string instead of CD compatible datatype
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
   ignored issues:
     Device.udiCarrier:*.carrierHRF:
@@ -400,15 +398,15 @@ zib-Patient:
       - datatype: Address instead of a reference
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
     Patient.deceased[x]:deceasedDateTime:
-      - short: DateOfDeath
-        reason: This element is mapped to two zib concepts, DateOfDeath and DeathIndicator. However, the latter is implicit -- although the zib recognizes both concepts, FHIR supports populating just one of them, thus DeathIndicator is assumed to be true when DateOfDeath is populated. For clarity reasons, the metadata of deceasedDateTime is only mapped to DateOfDeath.
+      - short: DateOfDeath instead of DateOfDeath / DeathIndicator
+        reason: This element is mapped to two zib concepts, DateOfDeath and DeathIndicator. However, the latter is implicit -- although the zib recognizes both concepts, FHIR supports populating just one of them, thus DeathIndicator is assumed to be true when DateOfDeath is populated. For clarity reasons, the .deceasedDateTime slice has only DateOfDeath mapped to it.
       - datatype: dateTime instead of boolean
         reason: The boolean expected by DeathIndicator is only assumed; see the explanation above.
     Patient.contact:
       - datatype: BackboneElement instead of a reference
         reason: The zib ContactPerson _may_ be represented as Patient.contact. There is a different use case as well, where the ContactPerson is implemented using a RelatedPerson resource.
     Patient.contact.extension:contactPerson.value[x]:
-      - datatype: Reference
+      - datatype: Reference instead of rootconcept of zib ContactPerson
         reason: This is an additional reference to a separate zib-ContactPerson (RelatedPerson) instance, next to the information in Patient.contact. Patient.contact and RelatedPerson can both be used to capture the information from zib-ContactPerson, but each are used within a different context. Information may therefore be duplicated; this is the recommended way.
     Patient.contact.name:
       - datatype: HumanName instead of a reference
@@ -431,22 +429,20 @@ zib-Patient:
       - cardinality: 1..1 instead of 0..1
         reason: The FHIR profiles are expected to implement zib cardinalities as conceptual cardinalities, but FHIR requires the .language element to be present. This aligns with the intention of the zib, as the Language concept is required for zib LanguageProficiency to make sense.
     Patient.communication.extension:languageControl:
-      - datatype: Extension instead of CD
+      - datatype: Extension instead of CD compatible datatype
         reason: The mapping is placed on the extension and not on the value[x] because of the nature of this extension. The extension itself contains a valueCoding that gets the zibs value. This datatype matches the zib CD type.
       - cardinality: 0..* instead of 0..1
         reason: Because of the nature of this extension the cardinality has a mismatch. Three zib concepts are mapped to this extension. Therefore the extension cannot be 0..1, but should be able to repeat.
-  additional notes:
-    Patient.telecom:
-      - cardinality: 0..*
-        reason: Although there is a cardinality mismatch for the mapping of zib concept Patient.ContactInformation on this element (as pointed out above), the cardinalities between zib and FHIR do match for the mapping of zib concept Payer.ContactInformation (NL-CM:1.1.12), as these are both 0..*.
+  additional notes: 
+    Patient.telecom: Although there is a cardinality mismatch for the mapping of zib concept Patient.ContactInformation on this element (as pointed out above), the cardinalities between zib and FHIR do match for the mapping of zib concept Payer.ContactInformation (NL-CM:1.1.12), as these are both 0..*.
 
 zib-PharmaceuticalProduct:
   zib deviations:
     Medication.ingredient:
-      - datatype: BackboneElement
+      - datatype: BackboneElement instead of Container
         reason: The appropriate representation of Ingredient in FHIR is Medication.ingredient. The container can be properly mapped to this BackboneElement.
     Medication.ingredient.strength:
-      - datatype: Ratio
+      - datatype: Ratio instead of Container
         reason: The `ingredient.strength` acts as a container for the two child elements and can the be correctly mapped to the zib Concentration container. 
 
 zib-Payer.InsuranceCompany:
@@ -458,7 +454,7 @@ zib-Payer.InsuranceCompany:
 zib-Payer.PayerPerson:
   zib deviations:
     Coverage.extension:bankInformation:
-      - datatype: Extension
+      - datatype: Extension instead of Container
         reason: The (complex) extension acts as a container for three subextensions that each contain a zib subconcept.
     Coverage.payor:
       - cardinality: 1..1 instead of 0..1
@@ -516,7 +512,7 @@ zib-SOAPReport:
 zib-SOAPReport.SOAPLine:
   zib deviations:
     Observation.code:
-      - cardinality: 1..1
+      - cardinality: 1..1 instead of 0..1
         reason: The cardinality of both zib (SOAPLineHeader) and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected. In case of absent data, the profiling guidelines provide guidance.
 
 zib-TextResult:
@@ -540,7 +536,7 @@ zib-TreatmentDirective2:
       - cardinality: 0..1 instead of 0..*
         reason: This element is the logical representation of the AdvanceDirective concept (NL-CM:2.2.8) specified in HCIM TreatmentDirective2, but FHIR restricts the cardinality to 0..1. For this reason, an extension is added that can be used to provide additional AdvanceDirective references.
     Consent.provision.actor:agreementParty:
-      - datatype: BackboneElement
+      - datatype: BackboneElement instead of Container
         reason: The zib container AgreementParty can be mapped correctly to the actor's BackboneElement.
     Consent.provision.actor:agreementParty.reference:
       - cardinality: 1..1 instead of 0..1
@@ -584,10 +580,10 @@ zib-VisualFunction.VisualAid.Product:
         reason: The alias for ProductType is already present in the base profile where this profile is derived from. It should not be added twice to silence this issue.
   zib deviations:
     Device.identifier:*ProductID:
-      - datatype: Identifier instead of CD
+      - datatype: Identifier instead of CD compatible datatype
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
     Device.udiCarrier:*UdiCarrier.carrierHRF:
-      - datatype: string instead of CD
+      - datatype: string instead of CD compatible datatype
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
 
 unmapped zib concepts:
