@@ -71,18 +71,6 @@ pattern-ZibHealthProfessionalReference:
       - message: "Rule sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
         reason: The title is shown in the hosting profiles as the name of the datatype. "zib HealthProfessional Reference" is more descriptive than the title according to the profiling guidelines ("pattern ZibHealthProfessionalReference").
 
-zib-AbilityToWashOneself:
-  zib deviations:
-   Observation.component:bodyPartToBeBathed.value[x]:
-      - cardinality: 0..1 instead of 0..*
-        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent .component element that may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
-
-zib-AbilityToDressOneself:
-  zib deviations:
-   Observation.component:bodyPartToBeDressed.value[x]:
-      - cardinality: 0..1 instead of 0..*
-        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent .component element that may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
-
 zib-AddressInformation:
   zib deviations:
     Address.line.extension:houseNumberIndication.value[x]:
@@ -736,6 +724,18 @@ zib-Alert:
       - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias "Alert" is already defined in the base profile, so it doesn't need to be defined again in the differential.
 
+zib-AbilityToWashOneself:
+  zib deviations:
+   Observation.component:bodyPartToBeBathed.value[x]:
+      - cardinality: 0..1 instead of 0..*
+        reason: The effective cardinality is 0..*, but the mysterious introduction by Forge of referenceRange.contentReference prevents the tool from reasoning about this.
+
+zib-AbilityToDressOneself:
+  zib deviations:
+   Observation.component:bodyPartToBeDressed.value[x]:
+      - cardinality: 0..1 instead of 0..*
+        reason: The effective cardinality is 0..*, but the mysterious introduction by Forge of referenceRange.contentReference prevents the tool from reasoning about this.
+        
 zib-ContactPerson:
   ignored issues:
     RelatedPerson.address:
