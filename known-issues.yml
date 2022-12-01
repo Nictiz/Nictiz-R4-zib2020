@@ -186,6 +186,14 @@ zib-Encounter:
       - cardinality: 0..* instead of 0..1
         reason: The zib has a restricted cardinality of 0..1 for the Location concept (NL-CM:15.1.8). However, this cardinality is probably too restricted (see https://bits.nictiz.nl/browse/ZIB-1632 for discussion) and would prevent some practical use cases. Therefore, the cardinality has been left on 0..* in this profile.
 
+zib-FeedingTubeSystem.FeedingTube.Product:
+  ignored issues:
+    Device.type:
+      - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
+        reason: The short description is the same as that of the base profile, so it is absent from the differential.
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The short description is the same as that of the base profile, so it is absent from the differential.
+
 zib-FunctionalOrMentalStatus:
   zib deviations:
     Observation.code:
