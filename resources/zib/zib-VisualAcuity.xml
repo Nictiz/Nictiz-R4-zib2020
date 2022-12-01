@@ -130,19 +130,11 @@
       <type>
         <code value="Quantity" />
       </type>
-      <patternQuantity>
-        <system value="http://unitsofmeasure.org" />
-        <code value="{decimal}" />
-      </patternQuantity>
       <minValueQuantity>
         <value value="0" />
-        <system value="http://unitsofmeasure.org" />
-        <code value="{decimal}" />
       </minValueQuantity>
       <maxValueQuantity>
         <value value="2" />
-        <system value="http://unitsofmeasure.org" />
-        <code value="{decimal}" />
       </maxValueQuantity>
       <mapping>
         <identity value="zib-visualacuity-v1.0-2020EN" />
@@ -150,8 +142,17 @@
         <comment value="VisualAcuity" />
       </mapping>
     </element>
+    <element id="Observation.value[x]:valueQuantity.system">
+      <path value="Observation.value[x].system" />
+      <max value="0" />
+    </element>
+    <element id="Observation.value[x]:valueQuantity.code">
+      <path value="Observation.value[x].code" />
+      <max value="0" />
+    </element>
     <element id="Observation.bodySite">
       <path value="Observation.bodySite" />
+      <comment value="The code on this element is added to make explicit what is implicit in the zib. See [ZIB-1442](https://bits.nictiz.nl/browse/ZIB-1442) for details." />
       <type>
         <code value="CodeableConcept" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
@@ -211,10 +212,11 @@
     </element>
     <element id="Observation.component:visualAcuityType.code">
       <path value="Observation.component.code" />
+      <comment value="The DefintionCodes for the concepts VisualAcuity and VisualAcuityType are identical in the zib VisualAcuity. This is recognized and fixed in future publications in [ZIB-1445](https://bits.nictiz.nl/browse/ZIB-1445). In this profile, the codes are as defined in the 2020 publication." />
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
-          <code value="16830007" />
+          <code value="363983007" />
         </coding>
       </patternCodeableConcept>
     </element>
@@ -283,6 +285,7 @@
     </element>
     <element id="Observation.component:distanceFromChart.code">
       <path value="Observation.component.code" />
+      <comment value="This code aligns with the future version of this zib. See [ZIB-1441](https://bits.nictiz.nl/browse/ZIB-1441) for details." />
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
