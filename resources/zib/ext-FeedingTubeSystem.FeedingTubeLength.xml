@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-FeedingTubeSystem.FeedingTubeLength" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-FeedingTubeSystem.FeedingTubeLength" />
+  <name value="ExtFeedingTubeSystemFeedingTubeLength" />
+  <title value="ext FeedingTubeSystem.FeedingTubeLength" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="An extension in cm for the feeding tube's input length." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-feedingtubesystem-v3.3-2020EN" />
+    <uri value="https://zibs.nl/wiki/FeedingTubeSystem-v3.3(2020EN)" />
+    <name value="zib FeedingTubeSystem-v3.3(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="DeviceUseStatement" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-FeedingTubeSystem.FeedingTubeLength" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="FeedingTubeLength" />
+      <definition value="The input length of the feeding tube in cm for the patient in question as determined by formulas based on for example the NEX i.e. nosepoint-earlobe-xyphoid distance (adults) or body length (children)." />
+      <alias value="SondeLengte" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <mapping>
+        <identity value="zib-feedingtubesystem-v3.3-2020EN" />
+        <map value="NL-CM:10.3.8" />
+        <comment value="FeedingTubeLength" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
