@@ -107,6 +107,7 @@
       <path value="Observation.bodySite" />
       <short value="AnatomicalLocation" />
       <definition value="The laterality of the eye of which the refraction has been measured." />
+      <comment value="The code on this element is added to make explicit what is implicit in the zib. See [ZIB-1442](https://bits.nictiz.nl/browse/ZIB-1442) for details." />
       <alias value="AnatomischeLocatie" />
       <type>
         <code value="CodeableConcept" />
@@ -499,11 +500,11 @@
     </element>
     <element id="Observation.component:readAddition.code">
       <path value="Observation.component.code" />
-      <comment value="This code aligns with the future version of this zib. See [ZIB-1443](https://bits.nictiz.nl/browse/ZIB-1443) for details." />
+      <comment value="The DefintionCodes for the concepts Refraction and ReadAddition are identical in the zib Refraction. This is recognized and fixed in future publications in [ZIB-1443](https://bits.nictiz.nl/browse/ZIB-1443). In this profile, the codes are as defined in the 2020 publication." />
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
-          <code value="251796008" />
+          <code value="251718005" />
         </coding>
       </patternCodeableConcept>
     </element>
