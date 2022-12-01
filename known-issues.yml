@@ -71,6 +71,18 @@ pattern-ZibHealthProfessionalReference:
       - message: "Rule sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
         reason: The title is shown in the hosting profiles as the name of the datatype. "zib HealthProfessional Reference" is more descriptive than the title according to the profiling guidelines ("pattern ZibHealthProfessionalReference").
 
+zib-AbilityToWashOneself:
+  zib deviations:
+   Observation.component:bodyPartToBeBathed.value[x]:
+      - cardinality: 0..1
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent .component element that may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+
+zib-AbilityToDressOneself:
+  zib deviations:
+   Observation.component:bodyPartToBeDressed.value[x]:
+      - cardinality: 0..1
+        reason: The cardinality mismatch between the zib (0..*) and FHIR (0..1) is explained by the parent .component element that may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+
 zib-AddressInformation:
   zib deviations:
     Address.line.extension:houseNumberIndication.value[x]:
@@ -167,10 +179,7 @@ zib-Encounter:
     Encounter.reasonReference:*:
       - cardinality: 0..* instead of 0..1 
         reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the missing ContactReason container in FHIR. This container may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
-    Encounter.reasonReference:deviatingResult:
-      - datatype: Reference
-        reason: The datatype mismatch between the zib (string) and FHIR (Reference) is explained by an error in the zib. DeviatingResult is captured with a reference to the zib-LaboratoryTestResult instead of a string value as the zib 2020 incorrectly states. This will be fixed in a future version of the zib (https://bits.nictiz.nl/browse/ZIB-1427).
-    Encounter.reasonReference.extension:comment.value[x]:
+    Encounter.reasonReference.extension:commentContactReason.value[x]:
       - cardinality: 0..* instead of 0..1
         reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*, effective) is explained by the missing ContactReason container in FHIR. This container may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
     Encounter.location.location:
@@ -330,6 +339,12 @@ zib-MedicalDevice.Product:
     Device.udiCarrier:*.carrierHRF:
       - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the definition of the ProductID concept is not suited for all mapped elements.
+
+zib-MedicationContraIndication:
+  zib deviations:
+    Flag.code:
+      - cardinality: 1..1 instead of 0..1
+        reason: Flag.code is manadatory in FHIR. The cardinality matches the cardinality of the zib, but not the conceptual cardinality. This should not be a major problem, as a contraindication is useless without specifying what it pertains to. 
 
 zib-NameInformation:
   zib deviations:
@@ -503,6 +518,27 @@ zib-Procedure-request:
     ServiceRequest.requester:
       - cardinality: 0..1 instead of 0..*
         reason: It seems that the zib may have an error in the cardinality for this concept and the cardinality should actually be 0..1 rather than 0..*. This issue is being tracked at https://bits.nictiz.nl/browse/ZIB-1488.
+
+zib-SOAPReport:
+  zib deviations:
+    Composition.author:
+      - cardinality: 1..1 instead of 0..1
+        reason: This is a known difference with the zib. FHIR mandates an author for the Compositions. It seems like a requirement systems can honour.
+    Composition.date:
+      - cardinality: 1..1 instead of 0..1
+        reason: This is a known difference with the zib. FHIR mandates a date for the Compositions. It seems like a requirement systems can honour.
+    Composition.section:soapLine:
+      - datatype: BackboneElement instead of Container
+        reason: Zib container concept SOAPLine corresponds to a Composition.section, which is a BackboneElement. 
+    Composition.section:soapLine.code:
+      - cardinality: 1..1 instead of 0..1
+        reason: The cardinality of both zib (SOAPLineHeader) and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected.
+
+zib-SOAPReport.SOAPLine:
+  zib deviations:
+    Observation.code:
+      - cardinality: 1..1
+        reason: The cardinality of both zib (SOAPLineHeader) and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected. In case of absent data, the profiling guidelines provide guidance.
 
 zib-TextResult:
   zib deviations:
