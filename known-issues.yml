@@ -75,7 +75,7 @@ zib-AddressInformation:
   zib deviations:
     Address.line.extension:houseNumberIndication.value[x]:
       - datatype: string instead of CD
-        reason: The mapping of zib AddressInformation on the FHIR Address datatype is the result of compatibility with HL7v3, which is the format that a lot of healthcare data in the Netherlands is stored in. As a result of this, the zib HouseNumberIndication concept with CD datatype is mapped to a FHIR string datatype with a constraint added (the value can only be 'by' or 'to').
+        reason: The mapping of zib AddressInformation on the FHIR Address datatype is the result of compatibility with HL7v3, which is the format that a lot of healthcare data in the Netherlands is stored in. As a result of this, the zib concept HouseNumberIndication with CD datatype is mapped to a FHIR string datatype with a constraint added (the value can only be 'by' or 'to').
     Address.line.extension:*.value[x]:
       - cardinality: 1..1 instead of 0..1
         reason: The value of the extension is required, but the extension itself is optional, making the effective cardinality 0..1 as required by the zib.
