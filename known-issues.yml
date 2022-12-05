@@ -406,7 +406,7 @@ zib-Patient:
       - datatype: BackboneElement instead of a reference
         reason: The zib ContactPerson _may_ be represented as Patient.contact. There is a different use case as well, where the ContactPerson is implemented using a RelatedPerson resource.
     Patient.contact.extension:contactPerson.value[x]:
-      - datatype: Reference instead of rootconcept of zib ContactPerson
+      - datatype: Reference instead of the root concept of zib ContactPerson
         reason: This is an additional reference to a separate zib-ContactPerson (RelatedPerson) instance, next to the information in Patient.contact. Patient.contact and RelatedPerson can both be used to capture the information from zib-ContactPerson, but each are used within a different context. Information may therefore be duplicated; this is the recommended way.
     Patient.contact.name:
       - datatype: HumanName instead of a reference
@@ -464,7 +464,7 @@ zib-Payer-Organization:
   zib deviations:
     Organization.telecom*:
       - datatype: ContactPoint instead of a reference
-        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consists of two parts the rootconcept of the ContactInformation is mapped on .telecom.
+        reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consists of two parts, the root concept of the ContactInformation is mapped on .telecom.
     Organization.address:
       - datatype: Address instead of a reference
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
