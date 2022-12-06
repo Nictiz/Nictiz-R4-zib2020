@@ -198,6 +198,9 @@ This document contains release notes per zib, indicating differences with their 
 * The `Procedure.performer` only references the zib HealthProfessional represented in a PractitionerRole resource. Other references not dictated by the zib are removed.
 * `ServiceRequest.performer` contains a reference to the zib CareTeam because the FHIR definition deviates from the zib Performer concept when multiple references are provided. This is described in the element's comment.
 
+## zib-PulseRate
+* The binding strength of the PulseRegularityCodelist is 'required.'
+
 ## zib-Range
 * There is no profile for this partial zib because the relevant parts can be modelled directly in the profiles where this zib is used.
 
