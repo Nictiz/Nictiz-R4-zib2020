@@ -64,6 +64,9 @@
       <definition value="The name of the procedure. Choices are the DHD procedure thesaurus, the procedures file (CBV), the Care activities file (NZa), the Dutch Mental Health and Addiction Care procedures list (GGZ) and the procedures list of the Dutch College of General Practitioners (NHG)." />
       <alias value="VerrichtingType" />
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ServiceRequestCode" />
+        </extension>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.19--20200901000000" />
       </binding>
@@ -90,6 +93,9 @@
       <definition value="The method or technique that will be used to perform the procedure, e.g. approach, lavage, pressuring, etc." />
       <alias value="VerrichtingMethode" />
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="OrderDetail" />
+        </extension>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.14.1.4--20200901000000" />
       </binding>
@@ -108,21 +114,6 @@
         </discriminator>
         <rules value="open" />
       </slicing>
-      <short value="ProcedureStartDate / ProcedureEndDate" />
-      <definition value="*   The (desired) start date (and if possible start time) of the procedure. A ‘vague’ date, such as only the year, is permitted. &#xD;&#xA;&#xD;&#xA;    The element offers the option to indicate the start of the period of a series of related procedures. &#xD;&#xA;&#xD;&#xA;*   The end date (and if possible end time) of the procedure. A ‘vague’ date, such as only the year, is permitted. &#xD;&#xA;&#xD;&#xA;    The element offers the option to indicate the end of the period of a series of related procedures. The end date element is only used for a procedures that takes some time and is then always applied. If the procedure still continues, the value is left empty. For instantaneous or very short lasting procedures the element is omitted." />
-      <comment value="The `.occurrencePeriod.start` and `.occurrencePeriod.end` are used for ProcedureStartDate and ProcedureEndDate if the zib Procedure concerns a period. For instantaneous or very short lasting procedures the `.occurrenceDateTime` is used." />
-      <alias value="VerrichtingStartDatum" />
-      <alias value="VerrichtingEindDatum" />
-      <mapping>
-        <identity value="zib-procedure-v5.2-2020EN" />
-        <map value="NL-CM:14.1.2" />
-        <comment value="ProcedureStartDate" />
-      </mapping>
-      <mapping>
-        <identity value="zib-procedure-v5.2-2020EN" />
-        <map value="NL-CM:14.1.3" />
-        <comment value="ProcedureEndDate" />
-      </mapping>
     </element>
     <element id="ServiceRequest.occurrence[x]:occurrencePeriod">
       <path value="ServiceRequest.occurrence[x]" />
@@ -135,6 +126,7 @@
       <path value="ServiceRequest.occurrence[x].start" />
       <short value="ProcedureStartDate" />
       <definition value="The (desired) start date (and if possible start time) of the procedure. A ‘vague’ date, such as only the year, is permitted. The element offers the option to indicate the start of the period of a series of related procedures." />
+      <comment value="If the zib Procedure concerns a procedure performed over a period, `ServiceRequest.occurencePeriod.start` and `ServiceRequest.occurencePeriod.end` are used to represent zib concepts ProcedureStartDate and ProcedureEndDate. For instantaneous or very short lasting procedures, `ServiceRequest.occurrenceDateTime` is used for ProcedureStartDate (ProcedureEndDate doesn't have a meaning in this case; ProcedureStartDate is the moment the procedure is performed)." />
       <alias value="VerrichtingStartDatum" />
       <mapping>
         <identity value="zib-procedure-v5.2-2020EN" />
@@ -145,7 +137,8 @@
     <element id="ServiceRequest.occurrence[x]:occurrencePeriod.end">
       <path value="ServiceRequest.occurrence[x].end" />
       <short value="ProcedureEndDate" />
-      <definition value="The end date (and if possible end time) of the procedure. A ‘vague’ date, such as only the year, is permitted. The element offers the option to indicate the end of the period of a series of related procedures. The end date element is only used for a procedures that takes some time and is then always applied. If the procedure still continues, the value is left empty. For instantaneous or very short lasting procedures the `occurrenceDateTime` is used." />
+      <definition value="The end date (and if possible end time) of the procedure. A ‘vague’ date, such as only the year, is permitted. The element offers the option to indicate the end of the period of a series of related procedures. The end date element is only used for a procedures that takes some time and is then always applied. If the procedure still continues, the value is left empty." />
+      <comment value="If the zib Procedure concerns a procedure performed over a period, `ServiceRequest.occurencePeriod.start` and `ServiceRequest.occurencePeriod.end` are used to represent zib concepts ProcedureStartDate and ProcedureEndDate. For instantaneous or very short lasting procedures, `ServiceRequest.occurrenceDateTime` is used for ProcedureStartDate (ProcedureEndDate doesn't have a meaning in this case; ProcedureStartDate is the moment the procedure is performed)." />
       <alias value="VerrichtingEindDatum" />
       <mapping>
         <identity value="zib-procedure-v5.2-2020EN" />
@@ -157,7 +150,8 @@
       <path value="ServiceRequest.occurrence[x]" />
       <sliceName value="occurrenceDateTime" />
       <short value="ProcedureStartDate" />
-      <definition value="The (desired) start date (and if possible start time) of the procedure. A ‘vague’ date, such as only the year, is permitted. The element offers the option to indicate the start of the period of a series of related procedures." />
+      <definition value="The (desired) start date (and if possible start time) of the procedure. A ‘vague’ date, such as only the year, is permitted." />
+      <comment value="If the zib Procedure concerns a procedure performed over a period, `ServiceRequest.occurencePeriod.start` and `ServiceRequest.occurencePeriod.end` are used to represent zib concepts ProcedureStartDate and ProcedureEndDate. For instantaneous or very short lasting procedures, `ServiceRequest.occurrenceDateTime` is used for ProcedureStartDate (ProcedureEndDate doesn't have a meaning in this case; ProcedureStartDate is the moment the procedure is performed)." />
       <alias value="VerrichtingStartDatum" />
       <type>
         <code value="dateTime" />
@@ -264,6 +258,9 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
       </type>
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="BodySite" />
+        </extension>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000" />
       </binding>

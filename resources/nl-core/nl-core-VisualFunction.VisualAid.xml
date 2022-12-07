@@ -26,6 +26,7 @@
   <differential>
     <element id="DeviceUseStatement">
       <path value="DeviceUseStatement" />
+      <comment value="This is a specialization of the profile for zib MedicalDevice to represent VisualAid devices within the context of zib VisualFunction.&#xD;&#xA;&#xD;&#xA;Note: because of the way derivation works in FHIR, this profile is not based on the [nl-core-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice) profile but derived from a specialization in the zib layer." />
       <alias value="nl-core-VisualFunction.VisualAid" />
     </element>
     <element id="DeviceUseStatement.extension">
@@ -73,6 +74,15 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
       </type>
     </element>
+    <element id="DeviceUseStatement.derivedFrom:procedure">
+      <path value="DeviceUseStatement.derivedFrom" />
+      <sliceName value="procedure" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request" />
+      </type>
+    </element>
     <element id="DeviceUseStatement.device">
       <path value="DeviceUseStatement.device" />
       <type>
@@ -89,12 +99,28 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
       </type>
     </element>
+    <element id="DeviceUseStatement.reasonReference:zibMedicalDeviceReference">
+      <path value="DeviceUseStatement.reasonReference" />
+      <sliceName value="zibMedicalDeviceReference" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FunctionalOrMentalStatus" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility" />
+      </type>
+    </element>
     <element id="DeviceUseStatement.reasonReference:visualFunction">
       <path value="DeviceUseStatement.reasonReference" />
       <sliceName value="visualFunction" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualFunction" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.bodySite">
+      <path value="DeviceUseStatement.bodySite" />
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation" />
       </type>
     </element>
   </differential>
