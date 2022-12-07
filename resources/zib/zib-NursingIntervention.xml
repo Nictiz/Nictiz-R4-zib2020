@@ -23,6 +23,11 @@
     <uri value="https://zibs.nl/wiki/NursingIntervention-v3.2(2020EN)" />
     <name value="zib NursingIntervention-v3.2(2020EN)" />
   </mapping>
+  <mapping>
+    <identity value="zib-outcomeofcare-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/OutcomeOfCare-v3.2(2020EN)" />
+    <name value="zib OutcomeOfCare-v3.2(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="true" />
   <type value="CarePlan" />
@@ -38,7 +43,6 @@
         <severity value="error" />
         <human value="The start and/or end date of a repeating schedule should be communicated in CarePlan.encounter as well." />
         <expression value="activity.detail.scheduledTiming.repeat.boundsPeriod.exists() implies (period = activity.detail.scheduledTiming.repeat.boundsPeriod)" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-NursingIntervention" />
       </constraint>
       <mapping>
         <identity value="zib-nursingintervention-v3.2-2020EN" />
@@ -196,6 +200,33 @@
       <comment value="A nursing intervention in the Dutch realm always consists of a single activity. For this reason, the cardinality of `.activity` is restricted to 0..1." />
       <max value="1" />
     </element>
+    <element id="CarePlan.activity.outcomeReference">
+      <path value="CarePlan.activity.outcomeReference" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="CarePlan.activity.outcomeReference:zibOutcomeOfCareReference">
+      <path value="CarePlan.activity.outcomeReference" />
+      <sliceName value="zibOutcomeOfCareReference" />
+      <short value="zib OutcomeOfCare reference" />
+      <definition value="A description of the nursing intervention of which the effectivity is evaluated with the healthcare result." />
+      <comment value="Please note that on a functional level, zib OutcomeOfCare references zib NursingIntervention, but in FHIR this direction is reversed." />
+      <alias value="UitkomstVanZorg" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-OutcomeOfCare" />
+      </type>
+      <mapping>
+        <identity value="zib-outcomeofcare-v3.2-2020EN" />
+        <map value="NL-CM:13.4.4" />
+        <comment value="Reversed reference for zib OutcomeOfCare.Intervention" />
+      </mapping>
+    </element>
     <element id="CarePlan.activity.detail.extension">
       <path value="CarePlan.activity.detail.extension" />
       <slicing>
@@ -238,6 +269,9 @@
       <definition value="A nursing intervention is a treatment carried out by a nurse based on an expert opinion and clinical knowledge for the benefit of the person requesting healthcare. The intervention is targeted towards a certain problem (diagnosis) and has a predetermined healthcare result. It is possible to build a hierarchy of nursing interventions (where one intervention is part of another)." />
       <alias value="Interventie" />
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="CarePlanActivityType" />
+        </extension>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.18--20200901000000" />
       </binding>

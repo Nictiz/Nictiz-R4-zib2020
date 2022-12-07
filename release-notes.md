@@ -169,6 +169,12 @@ This document contains release notes per zib, indicating differences with their 
 * New concept Indication mapped on the extension `NutritionOrder.extension:indication`.
 * The comment extension has been replaced by a mapping to `NutritionOrder.note.text`.
 
+## zib-OutcomeOfCare
+* The code on `DiagnosticReport.code` has been changed to 423100009 and the system value to http://snomed.info/sct.
+* Removed MeasurementValue mapping because this element does not exist anymore.
+* Element HealthCondition::FunctionalOrMentalStatus with ID NL-CM:13.4.3 is mapped on `DiagnosticReport.result` instead of on its own slice.
+* Intervention extension has been removed because the reference is reversed in FHIR. The NursingIntervention profile refers to this profile.
+
 ## zib-Patient
 * Includes Nationality, MaritalStatus, LanguageProficiency.
 * Cardinality of `Patient.extension:nationality` left at 0..* due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time).
