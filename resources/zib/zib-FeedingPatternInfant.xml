@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -42,6 +42,7 @@
     <element id="Observation.basedOn">
       <path value="Observation.basedOn" />
       <short value="NutritionAdvice" />
+      <definition value="This is a reference to the rootconcept DietaryRecommendations of information model DietaryRecommendations." />
       <alias value="Voedingsadvies" />
       <max value="1" />
       <type>
@@ -147,6 +148,10 @@
         <comment value="FeedingSupplement" />
       </mapping>
     </element>
+    <element id="Observation.component:feedingSupplement.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
+    </element>
     <element id="Observation.component:feedingFrequency">
       <path value="Observation.component" />
       <sliceName value="feedingFrequency" />
@@ -172,6 +177,10 @@
         <map value="NL-CM:4.31.5" />
         <comment value="FeedingFrequency" />
       </mapping>
+    </element>
+    <element id="Observation.component:feedingFrequency.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
     <element id="Observation.component:feedingType">
       <path value="Observation.component" />
@@ -203,6 +212,10 @@
         <comment value="FeedingType" />
       </mapping>
     </element>
+    <element id="Observation.component:feedingType.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
+    </element>
     <element id="Observation.component:feedingMethod">
       <path value="Observation.component" />
       <sliceName value="feedingMethod" />
@@ -232,6 +245,10 @@
         <map value="NL-CM:4.31.4" />
         <comment value="FeedingMethod" />
       </mapping>
+    </element>
+    <element id="Observation.component:feedingMethod.referenceRange">
+      <path value="Observation.component.referenceRange" />
+      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
   </differential>
 </StructureDefinition>
