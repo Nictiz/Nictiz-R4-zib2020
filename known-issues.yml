@@ -630,44 +630,11 @@ nl-core-AllergyIntolerance*:
       - message: None of the codings provided are in the value set 'SpecifiekeStofCodelijsten'
         reason: The terminology servers cannot handle the refset specified in the ValueSet.
         
-nl-core-CareTeam-01:
-  ignored issues:
-    CareTeam.participant[*]:
-      - message: Slicing cannot be evaluated
-        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
-
-nl-core-Encounter-01:
-  ignored issues:
-    Encounter.participant[*]:
-      - message: Slicing cannot be evaluated
-        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
-
 nl-core-HearingFunction.HearingAid-*:
   ignored issues:
-    DeviceUseStatement.reasonReference[*]:
-      - message: Slicing cannot be evaluated
-        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
-
-nl-core-MedicalDevice-*:
-  ignored issues:
-    DeviceUseStatement.reasonReference[*]:
-      - message: Slicing cannot be evaluated
-        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
-
-nl-core-*-DeviceUseStatement-*:
-  ignored issues:
-    DeviceUseStatement.derivedFrom[*]:
-      - message: Slicing cannot be evaluated
-        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
-    DeviceUseStatement.reasonReference[*]:
-      - message: Slicing cannot be evaluated
-        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
-
-nl-core-Mobility-*:
-  ignored issues:
-    DeviceUseStatement.reasonReference[*]:
-      - message: Slicing cannot be evaluated
-        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+    DeviceUseStatement:
+      - message: 'DeviceUseStatement.reasonReference:zibMedicalDeviceReference: max allowed = 0, but found 1'
+        reason: The Validator cannot actually inspect the referenced resources, and falsely assumes the reference is a reference to the offending profile.
 
 nl-core-PharmaceuticalProduct-01:
   ignored issues:
@@ -690,12 +657,15 @@ nl-core-Vaccination-event-03:
     Immunization.reasonCode[0]:
       - message: Profile http://nictiz.nl/fhir/StructureDefinition/nl-core-Vaccination-event, Element matches more than one slice - vaccinationIndication, vaccinationMotive
         reason: This seems to be caused by the Validator not recognizing the terminology used.
+    Immunization.reasonCode[*].coding[*]:
+      - message: 'Local Error: Resolved system http://snomed.info/sct, but the definition is not complete. Server Error: Unable to find code 159731000146104 in http://snomed.info/sct'
+        reason: This is a Dutch SNOMED extension which is not present yet on the international terminology server.
 
 nl-core-VisualFunction.VisualAid-*:
   ignored issues:
-    DeviceUseStatement.reasonReference[*]:
-      - message: Slicing cannot be evaluated
-        reason: To check slicing in instances, the referenced resources need to be inspected, but this is not supported by the HL7 Validator.
+    DeviceUseStatement:
+      - message: 'DeviceUseStatement.reasonReference:zibMedicalDeviceReference: max allowed = 0, but found 1'
+        reason: The Validator cannot actually inspect the referenced resources, and falsely assumes the reference is a reference to the offending profile.
 
 zib-*Function.*Aid:
   zib deviations:
