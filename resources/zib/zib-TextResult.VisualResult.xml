@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-TextResult.VisualResult" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-TextResult.VisualResult" />
+  <name value="ZibTextResultVisualResult" />
+  <title value="zib TextResult.VisualResult" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Visual examination results that are the starting point and reason for the textual report as represented by the zib TextResult. These results include visual material - e.g. radiological images, scopy images, medical photos and videos - as well as graphic recordings - e.g. ECGs, EEGs etc." />
+  <purpose value="This Media resource represents the VisualResult concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) TextResult v4.4 (2020)](https://zibs.nl/wiki/TextResult-v4.4(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-textresult-v4.4-2020EN" />
+    <uri value="https://zibs.nl/wiki/TextResult-v4.4(2020EN)" />
+    <name value="zib TextResult-v4.4(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Media" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Media" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Media.content">
+      <path value="Media.content" />
+      <short value="VisualResult" />
+      <definition value="Visual examination results that are the starting point and reason for the textual report. These results include visual material - e.g. radiological images, scopy images, medical photos and videos - as well as graphic recordings - e.g. ECGs, EEGs etc." />
+      <alias value="VisueelResultaat" />
+      <mapping>
+        <identity value="zib-textresult-v4.4-2020EN" />
+        <map value="NL-CM:13.2.7" />
+        <comment value="VisualResult" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
