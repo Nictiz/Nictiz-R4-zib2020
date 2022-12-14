@@ -71,6 +71,12 @@ pattern-ZibHealthProfessionalReference:
       - message: "Rule sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
         reason: The title is shown in the hosting profiles as the name of the datatype. "zib HealthProfessional Reference" is more descriptive than the title according to the profiling guidelines ("pattern ZibHealthProfessionalReference").
 
+zib-AbilityToGroom:
+  zib deviations:
+    Observation:
+      - short: AbilityToGroom
+        reason: The root of the zib is still called AbilityToGroome (which is incorrect), even though the zib itself has been renamed. 
+
 zib-AddressInformation:
   zib deviations:
     Address.line.extension:houseNumberIndication.value[x]:
