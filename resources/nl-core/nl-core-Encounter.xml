@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-Encounter" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Encounter" />
+  <name value="NlcoreEncounter" />
+  <title value="nl core Encounter" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A contact is any interaction, regardless of the situation, between a patient and the healthcare provider, in which the healthcare provider has primary responsibility for diagnosing, evaluating and treating the patient’s condition and informing the patient. These can be visits, appointments or non face-to-face interactions.&#xD;&#xA;&#xD;&#xA;Contacts can be visits to the general practitioner or other practices, home visits, admissions (in hospitals, nursing homes or care homes, psychiatric institutions or convalescent homes) or other relevant contacts. This includes past and future contacts." />
+  <purpose value="A derived profile from [zib-Encounter](http://nictiz.nl/fhir/StructureDefinition/zib-Encounter) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Encounter" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Encounter">
+      <path value="Encounter" />
+      <alias value="nl-core-Encounter" />
+    </element>
+    <element id="Encounter.subject">
+      <path value="Encounter.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Encounter.participant:healthProfessional">
+      <path value="Encounter.participant" />
+      <sliceName value="healthProfessional" />
+    </element>
+    <element id="Encounter.participant:healthProfessional.individual">
+      <path value="Encounter.participant.individual" />
+      <type>
+        <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
+      </type>
+    </element>
+    <element id="Encounter.reasonReference:problem">
+      <path value="Encounter.reasonReference" />
+      <sliceName value="problem" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
+      </type>
+    </element>
+    <element id="Encounter.reasonReference:procedure">
+      <path value="Encounter.reasonReference" />
+      <sliceName value="procedure" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event" />
+      </type>
+    </element>
+    <element id="Encounter.location.location">
+      <path value="Encounter.location.location" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
