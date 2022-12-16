@@ -2,6 +2,21 @@
 
 This document contains release notes per zib, indicating differences with their [STU3 versions](https://simplifier.net/packages/nictiz.fhir.nl.stu3.zib2017/), deviations from the [profiling guidelines](https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4) and other points of interest.
 
+## zib-AbilityToDressOneself
+* The ValueSet binding strength has changed from 'extensible' to 'required' on `Observation.component:bodyPartToBeDressed.value[x]`.
+
+## zib-AbilityToWashOneself
+* The ValueSet binding strength has changed from 'extensible' to 'required' on `Observation.component:bodyPartToBeBathed.value[x]`.
+
+## zib-AbilityToDrink
+* No specific changes have been made to this profile other than the generic changes for the Observation resource
+
+## zib-AbilityToEat
+* No specific changes have been made to this profile other than the generic changes for the Observation resource.
+
+## zib-AbilityToGroom
+* No specific changes have been made to this profile other than the generic changes for the Observation resource.
+
 ## zib-AddressInformation
 * Added extra comments on the history of the mapping in relation to v3.
 * Removed mapping to BRP.
@@ -125,6 +140,9 @@ This document contains release notes per zib, indicating differences with their 
 * Removed references on `.source` because those are not accounted for by the zib.
 * Provided documentation on how to populate mandatory `.status` element.
 
+## zib-MedicationContraIndication
+* MedicationContraIndication is a newly added zib in the 2020 release. It has no corresponding profile in the previous version.
+
 ## zib-Mobility
 * The comment element is mapped on `Observation.note.text` instead of `Observation.comment`.
 
@@ -151,6 +169,12 @@ This document contains release notes per zib, indicating differences with their 
 * The resource to represent this zib has been changed from Procedure to CarePlan. This aligns better with the meaning of the zib: a statement of a plan (which may or not may have been completed) rather than the record of a procedure that has been carried out. The profile for the current version is created from scratch.
 * Because there's a better match with CarePlan, the five custom extensions are removed. One custom extension is added to mark a `CarePlan.contributor` as the zib Requester, and another one to define the materials used.
 * Note: although the zib has changed quite dramatically since release 2017, the previous version of the profile was based on a pre-adopt of zib pre-release 2018, which is the same as release 2020.
+
+## zib-NutritionAdvice
+* References not accounted for by the zib have been removed on `NutritionOrder.allergyIntolerance`, `NutritionOrder.encounter` and `NutritionOrder.orderer`.
+* The incorrect mapping of Consistency to `NutritionOrder.oralDiet.texture.foodType.text` has been removed. This concept is not used to provide information on the consistency of nutrition.
+* New concept Indication mapped on the extension `NutritionOrder.extension:indication`.
+* The comment extension has been replaced by a mapping to `NutritionOrder.note.text`.
 
 ## zib-Patient
 * Includes Nationality, MaritalStatus, LanguageProficiency.
@@ -183,6 +207,16 @@ This document contains release notes per zib, indicating differences with their 
 
 ## zib-Range
 * There is no profile for this partial zib because the relevant parts can be modelled directly in the profiles where this zib is used.
+
+## zib-SOAPReport
+This is a newly added zib but had profiles that preceded the zib, namely gp-EncounterReport and gp-JournalEntry.
+* Removed constraints not accounted for by the zib.
+* Placed SOAPLine on a slice of `Composition.section` with a max cardinality of 4 conform the zib.
+* Removed min cardinality of `Composition.section.text`.
+* Removed min cardinality of `Observation.valueString` and moved mapping to a string type slice.
+* Removed fixed value of `Observation.status`
+* In the SOAPLineCode extension the fixed value on `.valueCodeableConcept.coding.system` has been removed because it is now covered by a required binding.
+* Moved mapping of SOAPLineCode from `Observation.component`s to a custom extension because of lacking terminology codes to provide definiton ot the component.
 
 ## zib-TimeInterval
 * In the previous release, the concepts of this partial zib were mapped directly in the profiles where they are used. In this release the usage of this partial zib has been expanded and profiles have been created to aid the usage in profiles in the various situations that might occur.
