@@ -38,7 +38,6 @@
         <severity value="error" />
         <human value="The start and/or end date of a repeating schedule should be communicated in CarePlan.encounter as well." />
         <expression value="activity.detail.scheduledTiming.repeat.boundsPeriod.exists() implies (period = activity.detail.scheduledTiming.repeat.boundsPeriod)" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-NursingIntervention" />
       </constraint>
       <mapping>
         <identity value="zib-nursingintervention-v3.2-2020EN" />
@@ -69,7 +68,7 @@
       <slicing>
         <discriminator>
           <type value="value" />
-          <path value="coding" />
+          <path value="$this" />
         </discriminator>
         <rules value="open" />
       </slicing>
@@ -238,6 +237,9 @@
       <definition value="A nursing intervention is a treatment carried out by a nurse based on an expert opinion and clinical knowledge for the benefit of the person requesting healthcare. The intervention is targeted towards a certain problem (diagnosis) and has a predetermined healthcare result. It is possible to build a hierarchy of nursing interventions (where one intervention is part of another)." />
       <alias value="Interventie" />
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="CarePlanActivityType" />
+        </extension>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.18--20200901000000" />
       </binding>
