@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -40,7 +40,6 @@
         <severity value="warning" />
         <human value="If the patient is not legally capable, an explanation must be provided" />
         <expression value="extension.where(url='legallyCapable').value = false implies extension.where(url='legallyCapableComment').value.exists()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.LegallyCapable" />
       </constraint>
     </element>
     <element id="Extension.extension">
