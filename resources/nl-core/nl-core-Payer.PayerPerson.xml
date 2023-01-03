@@ -29,6 +29,7 @@
   <differential>
     <element id="Coverage">
       <path value="Coverage" />
+      <comment value="The zib Payer is split into two focal profiles on Coverage based on the PayerPerson and InsuranceCompany containers. These two containers cannot be profiled within one profile because they both require mapping different concepts on elements such as `.payor` and `.type`.&#xD;&#xA;&#xD;&#xA;The zib container Payer.PayerPerson is mapped to this Coverage profile and uses the profiles nl-core-Patient, nl-core-ContactPerson and nl-core-Payer-Organization to capture the PayerName, AddressInformation and ContactInformation. These profiles are referenced using the `.payor` element." />
       <alias value="nl-core-Payer.PayerPerson" />
     </element>
     <element id="Coverage.beneficiary">
