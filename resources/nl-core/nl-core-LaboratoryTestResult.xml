@@ -65,7 +65,6 @@
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber" />
       </type>
-      <isModifier value="false" />
     </element>
     <element id="Observation.extension:edifactReferenceNumber.value[x]">
       <path value="Observation.extension.value[x]" />
@@ -83,7 +82,6 @@
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator" />
       </type>
-      <isModifier value="false" />
     </element>
     <element id="Observation.extension:copyIndicator.value[x]">
       <path value="Observation.extension.value[x]" />
@@ -131,6 +129,16 @@
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Specimen" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen" />
+      </type>
+    </element>
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MolecularSequence" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefnition/nl-core-LaboratoryTestResult" />
       </type>
     </element>
   </differential>
