@@ -6,14 +6,14 @@
    </meta>
    <extension url="http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod">
       <valuePeriod>
-         <start value="2020-09-01T00:00:00+02:00"/>
+         <start value="2020-09-01T00:00:00+00:00"/>
       </valuePeriod>
    </extension>
    <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.14.6.3--20200901000000"/>
    <identifier>
       <use value="official"/>
-      <system value="http://art-decor.org/ns/oids/vs"/>
-      <value value="2.16.840.1.113883.2.4.3.11.60.40.2.14.6.3"/>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.14.6.3"/>
    </identifier>
    <version value="2020-09-01T00:00:00"/>
    <name value="SoortInterventieWzdCodelijst"/>
@@ -43,7 +43,7 @@
                <valueString value="Toedienen van vocht en voeding"/>
             </extension>
             <code value="37041007"/>
-            <display value="Forced feeding of patient"/>
+            <display value="geforceerd toedienen van voeding bij patiënt"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -60,7 +60,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Geforceerd toedienen van voeding bij patiënt"/>
+               <value value="geforceerd toedienen van voeding bij patiënt"/>
             </designation>
          </concept>
          <concept>
@@ -68,7 +68,7 @@
                <valueString value="Toedienen van medicatie"/>
             </extension>
             <code value="29211000146105"/>
-            <display value="Forced medication"/>
+            <display value="gedwongen toedienen van medicatie"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -78,20 +78,47 @@
                </use>
                <value value="Forced medication"/>
             </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="gedwongen toedienen van medicatie"/>
+            </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
                <valueString value="Het verrichten van medische controles en handelingen"/>
             </extension>
             <code value="123881000146109"/>
-            <display value="Forced procedure"/>
+            <display value="gedwongen handeling"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Forced procedure"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="gedwongen handeling"/>
+            </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
                <valueString value="Fysieke fixatie"/>
             </extension>
             <code value="225212001"/>
-            <display value="Holding procedure"/>
+            <display value="vasthouden"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -108,7 +135,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Vasthouden"/>
+               <value value="vasthouden"/>
             </designation>
          </concept>
          <concept>
@@ -116,7 +143,7 @@
                <valueString value="Mechanische fixatie"/>
             </extension>
             <code value="68894007"/>
-            <display value="Placing restraint"/>
+            <display value="aanbrengen van middel voor fysieke beperking"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -133,7 +160,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Aanbrengen van middel voor fysieke beperking"/>
+               <value value="aanbrengen van middel voor fysieke beperking"/>
             </designation>
          </concept>
          <concept>
@@ -141,7 +168,7 @@
                <valueString value="Plaatsing op een gesloten afdeling"/>
             </extension>
             <code value="225210009"/>
-            <display value="Locked door procedure"/>
+            <display value="geslotendeurprocedure"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -158,7 +185,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Geslotendeurprocedure"/>
+               <value value="geslotendeurprocedure"/>
             </designation>
          </concept>
          <concept>
@@ -166,35 +193,107 @@
                <valueString value="Overige beperking van de bewegingsvrijheid"/>
             </extension>
             <code value="130201000146105"/>
-            <display value="Forced restriction of movement"/>
+            <display value="met dwang beperken van bewegingsvrijheid"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Forced restriction of movement"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="met dwang beperken van bewegingsvrijheid"/>
+            </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
                <valueString value="Insluiten in een separeerverblijf"/>
             </extension>
             <code value="124061000146109"/>
-            <display value="Seclusion in seclusion room"/>
+            <display value="separeren in separeerverblijf"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Seclusion in seclusion room"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="separeren in separeerverblijf"/>
+            </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
                <valueString value="Insluiten in een afzonderingsruimte"/>
             </extension>
             <code value="124071000146103"/>
-            <display value="Seclusion in separate area"/>
+            <display value="separeren in afzonderingsruimte"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Seclusion in separate area"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="separeren in afzonderingsruimte"/>
+            </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
                <valueString value="Insluiten in de eigen kamer"/>
             </extension>
             <code value="124051000146106"/>
-            <display value="Seclusion in own residence"/>
+            <display value="separeren in verblijfsruimte van patiënt"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Seclusion in own acommodation"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="separeren in verblijfsruimte van patiënt"/>
+            </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
                <valueString value="Overige vormen van insluiten"/>
             </extension>
             <code value="90278001"/>
-            <display value="Secluding patient"/>
+            <display value="separeren van patiënt"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -211,7 +310,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Separeren van patiënt"/>
+               <value value="separeren van patiënt"/>
             </designation>
          </concept>
          <concept>
@@ -219,21 +318,57 @@
                <valueString value="Cameramonitoring"/>
             </extension>
             <code value="121411000146104"/>
-            <display value="Constant supervision of patient with camera"/>
+            <display value="constante supervisie met camera"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Constant supervision of patient with camera"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="constante supervisie met camera"/>
+            </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
                <valueString value="Toezicht met elektronische traceringsmiddelen"/>
             </extension>
             <code value="121451000146100"/>
-            <display value="Constant supervision of patient with tracking system"/>
+            <display value="constante supervisie met elektronisch traceringsmiddel"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Constant supervision of patient with tracking system"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="constante supervisie met elektronisch traceringsmiddel"/>
+            </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
                <valueString value="Toezicht met andere elektronische middelen"/>
             </extension>
             <code value="225309002"/>
-            <display value="Constant supervision"/>
+            <display value="constante supervisie"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -250,7 +385,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Constante supervisie"/>
+               <value value="constante supervisie"/>
             </designation>
          </concept>
          <concept>
@@ -258,14 +393,32 @@
                <valueString value="Onderzoek aan kleding of lichaam"/>
             </extension>
             <code value="121631000146108"/>
-            <display value="Searching clothes and/or body"/>
+            <display value="onderzoek aan kleding en/of lichaam"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Searching clothes and/or body"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="onderzoek aan kleding en/of lichaam"/>
+            </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
                <valueString value="Onderzoek van woon-/verblijfruimte op gedrag-beïnvloedende middelen en gevaarlijke voorwerpen"/>
             </extension>
             <code value="62407006"/>
-            <display value="Search for dangerous objects"/>
+            <display value="opsporen van gevaarlijk object"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -282,7 +435,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Opsporen van gevaarlijk object"/>
+               <value value="opsporen van gevaarlijk object"/>
             </designation>
          </concept>
          <concept>
@@ -290,28 +443,100 @@
                <valueString value="Controleren op de aanwezigheid van gedrag-beïnvloedende middelen"/>
             </extension>
             <code value="121621000146106"/>
-            <display value="Detection of behavioral influencing agents"/>
+            <display value="controle op aanwezigheid van gedragsbeïnvloedende middelen"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Detection of agents that influence behaviour"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="controle op aanwezigheid van gedragsbeïnvloedende middelen"/>
+            </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
                <valueString value="Beperking in gebruik communicatiemiddelen"/>
             </extension>
             <code value="121471000146108"/>
-            <display value="Restriction of using communication systems"/>
+            <display value="beperken van gebruik van communicatiemiddelen"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Restriction of using communication systems"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="beperken van gebruik van communicatiemiddelen"/>
+            </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
                <valueString value="Overige beperkingen eigen leven in te richten"/>
             </extension>
             <code value="121461000146102"/>
-            <display value="Procedures relating to control the organization of patients life"/>
+            <display value="handelingen met betrekking tot het beperken van inrichten van eigen leven"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Restrictions to organize one's life"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="handelingen met betrekking tot het beperken van inrichten van eigen leven"/>
+            </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
                <valueString value="Beperken van het recht op het ontvangen van bezoek"/>
             </extension>
             <code value="121601000146103"/>
-            <display value="Restriction to the right to receive visitors"/>
+            <display value="beperken van recht op ontvangen van bezoek"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Restriction to receive visitors"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="beperken van recht op ontvangen van bezoek"/>
+            </designation>
          </concept>
       </include>
    </compose>
