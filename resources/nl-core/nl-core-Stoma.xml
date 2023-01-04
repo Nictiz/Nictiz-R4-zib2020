@@ -29,6 +29,13 @@
       <comment value="Please note that on a functional level, zib Stoma references zib MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept StomaMaterial (NL-CM:5.2.3) is mapped on `DeviceUseStatement.reasonReference` in profile [nl-core-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice) instead of in this profile." />
       <alias value="nl-core-Stoma" />
     </element>
+    <element id="Condition.bodySite">
+      <path value="Condition.bodySite" />
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation" />
+      </type>
+    </element>
     <element id="Condition.subject">
       <path value="Condition.subject" />
       <type>
