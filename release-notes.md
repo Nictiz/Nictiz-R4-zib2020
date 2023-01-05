@@ -93,7 +93,11 @@ This document contains release notes per zib, indicating differences with their 
 * The extensions EpisodeOfCare-DateFirstEncounter and EpisodeOfCare-DateLastEncounter from the previous profile are not inherited because no functional backing exists.
 
 ## zib-FreedomRistrictingIntervention
-* This concerns a newly added zib.
+* This is a new zib loosely based on the previous zib FreedomRestrictingMeasures. Below the most relevant changes compared to the previous zib and the STU3 profile are described.
+* Added guidance for mandatory element `Procedure.status`.
+* The `Procedure.category` code has been changed to the definition code of the TypeOfIntervention concept.
+* Added mapping on `Procedure.performedDateTime`.
+* The zib-patient-legalstatus extension has been removed and is (more or less) replaced by references added on `Procedure.reasonReference` (in line with the 'replacement' of the LegalStatus concept by the LegalSituation concept).
 
 ## zib-FunctionalOrMentalStatus
 * MedicalDevice extension has been removed because the reference is reversed in FHIR. The MedicalDevice profile refers to this profile.
