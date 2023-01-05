@@ -47,6 +47,21 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen.Source" />
       </type>
     </element>
+    <element id="Specimen.parent">
+      <path value="Specimen.parent" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Specimen" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen" />
+      </type>
+    </element>
+    <element id="Specimen.collection.bodySite">
+      <path value="Specimen.collection.bodySite" />
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation" />
+      </type>
+    </element>
     <element id="Specimen.container.type">
       <path value="Specimen.container.type" />
       <binding>

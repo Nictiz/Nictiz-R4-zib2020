@@ -38,6 +38,11 @@
     <uri value="https://zibs.nl/wiki/Mobility-v3.3(2020EN)" />
     <name value="zib Mobility-v3.3(2020EN)" />
   </mapping>
+  <mapping>
+    <identity value="zib-stoma-v3.3-2020EN" />
+    <uri value="https://zibs.nl/wiki/Stoma-v3.3(2020EN)" />
+    <name value="zib Stoma-v3.3(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="true" />
   <type value="DeviceUseStatement" />
@@ -206,10 +211,12 @@
       <comment value="There are several zibs that reference zib MedicalDevice on a functional level, but for which the direction of the reference in FHIR is reversed. Consult the mappings on this element for an overview of which zib concepts are mapped to this element. &#xD;&#xA;&#xD;&#xA;Note that some zibs have a reference to MedicalDevice that is further constrained (e.g. with additional constraints on ProductType or AnatomicalLocation), such as HearingFunction and VisualFunction. For these zibs separate DeviceUseStatement profiles have been created (based on this profile) which also include a specific slice on which their respective MedicalDevice concept mapping is present." />
       <alias value="FunctioneleOfMentaleStatus" />
       <alias value="Mobiliteit" />
+      <alias value="Stoma" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Stoma" />
       </type>
       <mapping>
         <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
@@ -220,6 +227,11 @@
         <identity value="zib-mobility-v3.3-2020EN" />
         <map value="NL-CM:4.3.4" />
         <comment value="Reversed reference for zib Mobility.MedicalDevice" />
+      </mapping>
+      <mapping>
+        <identity value="zib-stoma-v3.3-2020EN" />
+        <map value="NL-CM:5.2.3" />
+        <comment value="Reversed reference for zib Stoma.StomaMaterial" />
       </mapping>
     </element>
     <element id="DeviceUseStatement.bodySite">
