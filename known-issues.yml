@@ -172,6 +172,19 @@ zib-Encounter:
       - cardinality: 0..* instead of 0..1
         reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*, effective) is explained by the missing ContactReason container in FHIR. This container may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
 
+zib-FreedomRestrictingIntervention:
+  ignored issues:
+    Procedure.reasonReference:legalSituation:
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+  zib deviations:
+    Procedure:
+      - short: FreedomRestrictingIntervention instead of FreedomrestrictingIntervention
+        reason: The root of the zib is called FreedomrestrictingIntervention (which is incorrect), even though the zib itself is called FreedomRestrictingIntervention.
+    Procedure.code:
+      - cardinality: 1..1
+        reason: Although the concept TypeOfIntervention should be interpreted as conceptual and thus optional, it doesn't make much sense to communicate a Procedure without communicating _which_ procedure, and the same applies to a FreedomRestrictingIntervention (procedure).
+
 zib-FunctionalOrMentalStatus:
   zib deviations:
     Observation.code:
