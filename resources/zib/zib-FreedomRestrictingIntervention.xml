@@ -188,17 +188,23 @@
     </element>
     <element id="Procedure.reasonReference">
       <path value="Procedure.reasonReference" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Procedure.reasonReference:legalSituation">
+      <path value="Procedure.reasonReference" />
+      <sliceName value="legalSituation" />
       <short value="LegalSituation" />
       <definition value="The legal situation that applies to the patient during the intervention." />
       <alias value="JuridischeSituatie" />
       <max value="1" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Procedure" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DiagnosticReport" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-LegalSituation-LegalStatus" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-LegalSituation-Representation" />
       </type>
