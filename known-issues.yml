@@ -523,12 +523,7 @@ zib-Procedure-request:
         reason: It seems that the zib may have an error in the cardinality for this concept and the cardinality should actually be 0..1 rather than 0..*. This issue is being tracked at https://bits.nictiz.nl/browse/ZIB-1488.
 
 zib-Refraction:
-  zib deviations:
-    Observation.bodySite:
-      - short: AnatomicalLocation
-        reason: The zib has both a reference to AnatomicalLocation and a mapping on AnatomicalLocation::Laterality, while it seems only the latter is important. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442.
-      - datatype: CodeableConcept
-        reason: The zib has both a reference to AnatomicalLocation and a mapping on AnatomicalLocation::Laterality, while it seems only the latter is important. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442.
+  ignored issues:
     Observation.bodySite.extension:laterality.value[x]:
       - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
         reason: The short description is defined in the extension profile and therefore not defined in the differential.
@@ -536,6 +531,12 @@ zib-Refraction:
         reason: The definition is defined in the extension profile and therefore not defined in the differential.
       - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined in the extension profile and therefore not defined in the differential.
+  zib deviations:
+    Observation.bodySite:
+      - short: AnatomicalLocation
+        reason: The zib has both a reference to AnatomicalLocation and a mapping on AnatomicalLocation::Laterality, while it seems only the latter is important. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442.
+      - datatype: CodeableConcept
+        reason: The zib has both a reference to AnatomicalLocation and a mapping on AnatomicalLocation::Laterality, while it seems only the latter is important. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442.
     Observation.component:cylindricalRefractionAxis.value[x]:
       - short: CylindricalRefractionAxis
         reason: The zib concept name "CilindricRefractionAxis" contains a typo which is corrected in a later release of the zibs.
