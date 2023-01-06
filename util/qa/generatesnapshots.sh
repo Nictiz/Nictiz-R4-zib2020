@@ -43,6 +43,7 @@ cd $flattened
 cp $work_dir/resources/zib/package.json .
 cp $work_dir/resources/zib/fhirpkg.lock.json .
 cp $work_dir/resources/zib/*.xml .
+cp $work_dir/resources/nl-core/*.xml .
 
 # Make sure dependencies are in place
 echo "> initializing Firely Terminal"

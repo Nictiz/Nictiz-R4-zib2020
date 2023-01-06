@@ -50,6 +50,11 @@
     <uri value="https://zibs.nl/wiki/ContactPerson-v3.4(2020EN)" />
     <name value="zib ContactPerson-v3.4(2020EN)" />
   </mapping>
+  <mapping>
+    <identity value="zib-payer-v3.1.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/Payer-v3.1.1(2020EN)" />
+    <name value="zib Payer-v3.1.1(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="true" />
   <type value="Patient" />
@@ -163,13 +168,19 @@
         </discriminator>
         <rules value="open" />
       </slicing>
-      <short value="NameInformation" />
+      <short value="NameInformation / PayerName" />
       <definition value="Patient's full name." />
       <alias value="Naamgegevens" />
+      <alias value="BetalerNaam" />
       <mapping>
         <identity value="zib-patient-v3.2-2020EN" />
         <map value="NL-CM:0.1.6" />
         <comment value="NameInformation" />
+      </mapping>
+      <mapping>
+        <identity value="zib-payer-v3.1.1-2020EN" />
+        <map value="NL-CM:1.1.5" />
+        <comment value="PayerName" />
       </mapping>
     </element>
     <element id="Patient.name:nameInformation">
@@ -200,7 +211,7 @@
       </slicing>
       <short value="ContactInformation" />
       <definition value="Patient’s telephone number(s) or e-mail address(es)." />
-      <comment value="The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers inside the ContactInformation model which are 0..*. FHIR ContactPoint does not have these containers." />
+      <comment value="The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers." />
       <alias value="Contactgegevens" />
       <mapping>
         <identity value="zib-patient-v3.2-2020EN" />
@@ -210,6 +221,11 @@
       <mapping>
         <identity value="zib-contactinformation-v1.2-2020EN" />
         <map value="NL-CM:20.6.1" />
+        <comment value="ContactInformation" />
+      </mapping>
+      <mapping>
+        <identity value="zib-payer-v3.1.1-2020EN" />
+        <map value="NL-CM:1.1.12" />
         <comment value="ContactInformation" />
       </mapping>
     </element>
@@ -354,6 +370,11 @@
       <mapping>
         <identity value="zib-patient-v3.2-2020EN" />
         <map value="NL-CM:0.1.4" />
+        <comment value="AddressInformation" />
+      </mapping>
+      <mapping>
+        <identity value="zib-payer-v3.1.1-2020EN" />
+        <map value="NL-CM:1.1.17" />
         <comment value="AddressInformation" />
       </mapping>
     </element>
