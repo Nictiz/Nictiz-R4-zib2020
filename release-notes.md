@@ -96,6 +96,13 @@ This document contains release notes per zib, indicating differences with their 
 * The semantic codes on the `Observation.component.code` elements have changed from LOINC to codes from the ScoreObservaties code system (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1).
 * The system value on `Observation.code` has changed from http://loinc.org to http://snomed.info/sct and the code value has changed from 38213-5 to 108291000146105.
 
+## zib-FreedomRistrictingIntervention
+* This is a new zib loosely based on the previous zib FreedomRestrictingMeasures. Below the most relevant changes compared to the previous zib and the STU3 profile are described.
+* Added guidance for mandatory element `Procedure.status`.
+* The `Procedure.category` code has been changed to the definition code of the TypeOfIntervention concept.
+* Added mapping on `Procedure.performedDateTime`.
+* The zib-patient-legalstatus extension has been removed and is (more or less) replaced by references added on `Procedure.reasonReference` (in line with the 'replacement' of the LegalStatus concept by the LegalSituation concept).
+
 ## zib-FunctionalOrMentalStatus
 * MedicalDevice extension has been removed because the reference is reversed in FHIR. The MedicalDevice profile refers to this profile.
 * Moved the fixed functional status finding and mental status finding to slices on `Observation.category` instead of `.category.coding`, discriminated by a pattern, and strengthened by an invariant to check if one of the fixed terminology codes is present.
@@ -128,6 +135,9 @@ This document contains release notes per zib, indicating differences with their 
   * The profile HCIM LaboratoryTestResult Specimen Isolate was used to represent the Specimen container which instantiates a microorganism from a specimen (that is, the Microorganism concept is used). However, it has been found that a single Specimen profile is sufficient to represent both the specimen itself and any isolate from it. To represent both a specimen and the material from which it came, two instances of this profile are needed.
   * The profile HCIM LaboratoryTestResult Substance was used to represent the Microorganism concept as well.
 * The concept Performer was added, mapped onto `Observation.performer`.
+
+## zib-LegalSituation
+* New zib in 2020. However, in the zib2017 package the zib-patient-legalstatus extension exists, which corresponds to the LegalStatus concept of the zib FreedomRestrictingMeasures (withdrawn in the 2020 release). This new zib profile expands on that LegalStatus concept.
 
 ## zib-LivingSituation
 * Added two new concepts and modelled them on `Observation.component:homeAdaption` and `Observation.component:livingCondition`.
@@ -217,6 +227,12 @@ This is a newly added zib but had profiles that preceded the zib, namely gp-Enco
 * Removed fixed value of `Observation.status`
 * In the SOAPLineCode extension the fixed value on `.valueCodeableConcept.coding.system` has been removed because it is now covered by a required binding.
 * Moved mapping of SOAPLineCode from `Observation.component`s to a custom extension because of lacking terminology codes to provide definiton ot the component.
+
+## zib-Stoma
+* The resource to represent this zib has been changed from Observation to Condition. This aligns better with the meaning of the zib, as a stoma requires long term management. 
+* The general code of a Stoma has been added as a pattern to `Condition.category` allowing the category element to be used for other purposes too.
+* `Condition.bodySite` is now based on the zib AnatomicalLocation profile.
+* `Condition.note` now honours the max cardinality of zib Comment.
 
 ## zib-TimeInterval
 * In the previous release, the concepts of this partial zib were mapped directly in the profiles where they are used. In this release the usage of this partial zib has been expanded and profiles have been created to aid the usage in profiles in the various situations that might occur.

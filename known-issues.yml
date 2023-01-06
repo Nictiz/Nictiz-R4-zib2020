@@ -178,6 +178,19 @@ zib-FLACCpainScale:
       - short: FLACCpainScale
         reason: The root concept name 'FLACCpainScore' is a mistake in the zib and will be fixed in the next pre-publication.
 
+zib-FreedomRestrictingIntervention:
+  ignored issues:
+    Procedure.reasonReference:legalSituation:
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+  zib deviations:
+    Procedure:
+      - short: FreedomRestrictingIntervention instead of FreedomrestrictingIntervention
+        reason: The root of the zib is called FreedomrestrictingIntervention (which is incorrect), even though the zib itself is called FreedomRestrictingIntervention.
+    Procedure.code:
+      - cardinality: 1..1
+        reason: Although the concept TypeOfIntervention should be interpreted as conceptual and thus optional, it doesn't make much sense to communicate a Procedure without communicating _which_ procedure, and the same applies to a FreedomRestrictingIntervention (procedure).
+
 zib-FunctionalOrMentalStatus:
   zib deviations:
     Observation.code:
@@ -331,6 +344,18 @@ zib-MedicalDevice.Product:
     Device.udiCarrier:*.carrierHRF:
       - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the definition of the ProductID concept is not suited for all mapped elements.
+
+zib-LegalSituation-LegalStatus:
+  zib deviations:
+    Condition.code:
+      - cardinality: 1..1 instead of 0..1
+        reason: The zib requires either a LegalStatus or a Representation to be present. This profile represents the former concept, so the LegalStatus (in Condition.code) is required.
+
+zib-LegalSituation-Representation:
+  zib deviations:
+    Condition.code:
+      - cardinality: 1..1 instead of 0..1
+        reason: The zib requires either a LegalStatus or a Representation to be present. This profile represents the latter concept, so the Representation (in Condition.code) is required.
 
 zib-MedicationContraIndication:
   zib deviations:
@@ -523,6 +548,15 @@ zib-SOAPReport.SOAPLine:
     Observation.code:
       - cardinality: 1..1 instead of 0..1
         reason: The cardinality of both zib (SOAPLineHeader) and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected. In case of absent data, the profiling guidelines provide guidance.
+
+zib-Stoma:
+  zib deviations:
+    Condition.code:
+      - cardinality: 1..1 instead of 0..1
+        reason: The FHIR profiles are expected to implement zib cardinalities as conceptual cardinalities, but StomaType is essential to identify the Stoma. This aligns with the intention of the zib, as the StomaType concept is required for zib Stoma to make sense.
+    Condition.bodySite:
+      - datatype: CodeableConcept
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
 
 zib-TextResult:
   zib deviations:
