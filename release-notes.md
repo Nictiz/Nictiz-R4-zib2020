@@ -66,6 +66,16 @@ This document contains release notes per zib, indicating differences with their 
 * The extension zib-ContactInformation-TelecomType, which replaced the generic code-specification extensions from release 2.x of the zib2017 package onwards, has been deprecated again in favor of code-specication, as the mapping is now much more straightforward.
 * The element TelephoneNumbers/Comment was introduced. This is represented using the ext-Comment extension in the profile for TelephoneNumbers.
 
+## zib-ComfortScale
+* The datatype of `Observation.value[x]` (zib concept TotalScore) element has been changed from Quantity to Integer, and minimum and maximum allowed values of 0 and 35 respectively are applied.
+* The code on `Observation.component:alertness.code` has changed from 12.12.3 to 12012003.
+* The code on `Observation.component:calmnessAgitation.code` has changed from 12.12.4 to 12012004.
+* The code on `Observation.component:respiratoryResponse.code` has changed from 12.12.5 to 12012005.
+* The code on `Observation.component:crying.code` has changed from 12.12.6 to 12012006.
+* The code on `Observation.component:bodyMovement.code` has changed from 12.12.8 to 12012008.
+* The code on `Observation.component:facialTone.code` has changed from 12.12.9 to 12012009.
+* The code on `Observation.component:bodyMuscleTone.code` has changed from 12.12.10 to 120120010.
+
 ## zib-ContactPerson
 * Added textual guidance on the root to guide usage of RelatedPerson versus Patient.
 * Removed the role extension (http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role) because `RelatedPerson.relationship` has changed from 0..1 to 0..*. The zib concept role is now mapped to a slice on relationship.
