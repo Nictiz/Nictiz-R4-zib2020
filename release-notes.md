@@ -8,6 +8,15 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-AbilityToWashOneself
 * The ValueSet binding strength has changed from 'extensible' to 'required' on `Observation.component:bodyPartToBeBathed.value[x]`.
 
+## zib-AbilityToDrink
+* No specific changes have been made to this profile other than the generic changes for the Observation resource
+
+## zib-AbilityToEat
+* No specific changes have been made to this profile other than the generic changes for the Observation resource.
+
+## zib-AbilityToGroom
+* No specific changes have been made to this profile other than the generic changes for the Observation resource.
+
 ## zib-AddressInformation
 * Added extra comments on the history of the mapping in relation to v3.
 * Removed mapping to BRP.
@@ -61,6 +70,16 @@ This document contains release notes per zib, indicating differences with their 
 * The extension zib-ContactInformation-TelecomType, which replaced the generic code-specification extensions from release 2.x of the zib2017 package onwards, has been deprecated again in favor of code-specication, as the mapping is now much more straightforward.
 * The element TelephoneNumbers/Comment was introduced. This is represented using the ext-Comment extension in the profile for TelephoneNumbers.
 
+## zib-ComfortScale
+* The datatype of `Observation.value[x]` (zib concept TotalScore) element has been changed from Quantity to Integer, and minimum and maximum allowed values of 0 and 35 respectively are applied.
+* The code on `Observation.component:alertness.code` has changed from 12.12.3 to 12012003.
+* The code on `Observation.component:calmnessAgitation.code` has changed from 12.12.4 to 12012004.
+* The code on `Observation.component:respiratoryResponse.code` has changed from 12.12.5 to 12012005.
+* The code on `Observation.component:crying.code` has changed from 12.12.6 to 12012006.
+* The code on `Observation.component:bodyMovement.code` has changed from 12.12.8 to 12012008.
+* The code on `Observation.component:facialTone.code` has changed from 12.12.9 to 12012009.
+* The code on `Observation.component:bodyMuscleTone.code` has changed from 12.12.10 to 120120010.
+
 ## zib-ContactPerson
 * Added textual guidance on the root to guide usage of RelatedPerson versus Patient.
 * Removed the role extension (http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role) because `RelatedPerson.relationship` has changed from 0..1 to 0..*. The zib concept role is now mapped to a slice on relationship.
@@ -86,6 +105,17 @@ This document contains release notes per zib, indicating differences with their 
 * New zib in 2020. However, in the zib2017 package the nl-core-episodeofcare profile exists, which is not based on a zib but included some use case concepts. This zib profile supersedes this profile.
 * The extension EpisodOfCare-Title has been replaced by ext-EpisodeOfCare.EpisodeOfCareName because this zib concept is functionally equivalent.
 * The extensions EpisodeOfCare-DateFirstEncounter and EpisodeOfCare-DateLastEncounter from the previous profile are not inherited because no functional backing exists.
+
+# zib-FLACCpainScale
+* The semantic codes on the `Observation.component.code` elements have changed from LOINC to codes from the ScoreObservaties code system (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1).
+* The system value on `Observation.code` has changed from http://loinc.org to http://snomed.info/sct and the code value has changed from 38213-5 to 108291000146105.
+
+## zib-FreedomRistrictingIntervention
+* This is a new zib loosely based on the previous zib FreedomRestrictingMeasures. Below the most relevant changes compared to the previous zib and the STU3 profile are described.
+* Added guidance for mandatory element `Procedure.status`.
+* The `Procedure.category` code has been changed to the definition code of the TypeOfIntervention concept.
+* Added mapping on `Procedure.performedDateTime`.
+* The zib-patient-legalstatus extension has been removed and is (more or less) replaced by references added on `Procedure.reasonReference` (in line with the 'replacement' of the LegalStatus concept by the LegalSituation concept).
 
 ## zib-FunctionalOrMentalStatus
 * MedicalDevice extension has been removed because the reference is reversed in FHIR. The MedicalDevice profile refers to this profile.
@@ -120,6 +150,9 @@ This document contains release notes per zib, indicating differences with their 
   * The profile HCIM LaboratoryTestResult Substance was used to represent the Microorganism concept as well.
 * The concept Performer was added, mapped onto `Observation.performer`.
 
+## zib-LegalSituation
+* New zib in 2020. However, in the zib2017 package the zib-patient-legalstatus extension exists, which corresponds to the LegalStatus concept of the zib FreedomRestrictingMeasures (withdrawn in the 2020 release). This new zib profile expands on that LegalStatus concept.
+
 ## zib-LivingSituation
 * Added two new concepts and modelled them on `Observation.component:homeAdaption` and `Observation.component:livingCondition`.
 * Concept 'HouseType' has been moved to its own valueCodeableConcept slice.
@@ -130,6 +163,9 @@ This document contains release notes per zib, indicating differences with their 
 * Provided more documenation on how to exchange ProductID in FHIR.
 * Removed references on `.source` because those are not accounted for by the zib.
 * Provided documentation on how to populate mandatory `.status` element.
+
+## zib-MedicationContraIndication
+* MedicationContraIndication is a newly added zib in the 2020 release. It has no corresponding profile in the previous version.
 
 ## zib-Mobility
 * The comment element is mapped on `Observation.note.text` instead of `Observation.comment`.
@@ -195,6 +231,25 @@ This document contains release notes per zib, indicating differences with their 
 
 ## zib-Range
 * There is no profile for this partial zib because the relevant parts can be modelled directly in the profiles where this zib is used.
+
+## zib-Refraction
+* Refraction is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
+
+## zib-SOAPReport
+This is a newly added zib but had profiles that preceded the zib, namely gp-EncounterReport and gp-JournalEntry.
+* Removed constraints not accounted for by the zib.
+* Placed SOAPLine on a slice of `Composition.section` with a max cardinality of 4 conform the zib.
+* Removed min cardinality of `Composition.section.text`.
+* Removed min cardinality of `Observation.valueString` and moved mapping to a string type slice.
+* Removed fixed value of `Observation.status`
+* In the SOAPLineCode extension the fixed value on `.valueCodeableConcept.coding.system` has been removed because it is now covered by a required binding.
+* Moved mapping of SOAPLineCode from `Observation.component`s to a custom extension because of lacking terminology codes to provide definiton ot the component.
+
+## zib-Stoma
+* The resource to represent this zib has been changed from Observation to Condition. This aligns better with the meaning of the zib, as a stoma requires long term management. 
+* The general code of a Stoma has been added as a pattern to `Condition.category` allowing the category element to be used for other purposes too.
+* `Condition.bodySite` is now based on the zib AnatomicalLocation profile.
+* `Condition.note` now honours the max cardinality of zib Comment.
 
 ## zib-TimeInterval
 * In the previous release, the concepts of this partial zib were mapped directly in the profiles where they are used. In this release the usage of this partial zib has been expanded and profiles have been created to aid the usage in profiles in the various situations that might occur.
