@@ -228,6 +228,9 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-Range
 * There is no profile for this partial zib because the relevant parts can be modelled directly in the profiles where this zib is used.
 
+## zib-Refraction
+* Refraction is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
+
 ## zib-SOAPReport
 This is a newly added zib but had profiles that preceded the zib, namely gp-EncounterReport and gp-JournalEntry.
 * Removed constraints not accounted for by the zib.
