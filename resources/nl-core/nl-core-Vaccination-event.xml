@@ -18,6 +18,16 @@
   <purpose value="A derived profile from [zib-Vaccination-event](http://nictiz.nl/fhir/StructureDefinition/zib-Vaccination-event) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="imm-Vaccination-Immunization-20211118" />
+    <uri value="https://decor.nictiz.nl/ad/#/imm-/datasets/dataset/2.16.840.1.113883.2.4.3.11.60.131.1.1/2021-11-18T10:06:34" />
+    <name value="ART-DECOR Dataset Vaccination-Immunization 20211118T10:06:34" />
+  </mapping>
+  <mapping>
+    <identity value="zib-pharmaceuticalproduct-v2.1.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/PharmaceuticalProduct-v2.1.2(2020EN)" />
+    <name value="zib PharmaceuticalProduct-v2.1.2(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="Immunization" />
@@ -55,17 +65,82 @@
       <definition value="The pharmaceutical product of the administered vaccination." />
       <comment value="If this reference to zib PharmaceuticalProduct is used, the MedicationCode (`Medication.code`) in the referenced resource SHALL be the same as `Immunization.vaccineCode` of the current resource." />
     </element>
+    <element id="Immunization.identifier">
+      <path value="Immunization.identifier" />
+      <mapping>
+        <identity value="imm-Vaccination-Immunization-20211118" />
+        <map value="imm-dataelement-135" />
+        <comment value="IdentificationNumber" />
+      </mapping>
+    </element>
+    <element id="Immunization.status">
+      <path value="Immunization.status" />
+      <mapping>
+        <identity value="imm-Vaccination-Immunization-20211118" />
+        <map value="imm-dataelement-144" />
+        <comment value="Status" />
+      </mapping>
+    </element>
     <element id="Immunization.vaccineCode">
       <path value="Immunization.vaccineCode" />
-      <comment value="It is possible to use a reference to zib PharmaceuticalProduct to identify the used vaccine, using `Immunization.extension:pharmaceuticalProduct'. If this reference is used, the MedicationCode (`Medication.code`) in the referenced resource SHALL be the same as 'Immunization.vaccineCode'." />
+      <comment value="It is possible to use a reference to zib PharmaceuticalProduct to identify the used vaccine, using `Immunization.extension:pharmaceuticalProduct`. If this reference is used, `Immunization.vaccineCode` SHALL contain the same value as the MedicationCode (`Medication.code`) in the referenced resource." />
+      <mapping>
+        <identity value="zib-pharmaceuticalproduct-v2.1.2-2020EN" />
+        <map value="NL-CM:9.7.19927" />
+        <comment value="MedicationCode" />
+      </mapping>
     </element>
     <element id="Immunization.patient">
       <path value="Immunization.patient" />
+      <short value="Patient" />
+      <alias value="Patient" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
       </type>
+      <mapping>
+        <identity value="imm-Vaccination-Immunization-20211118" />
+        <map value="imm-dataelement-71" />
+        <comment value="Patient" />
+      </mapping>
+    </element>
+    <element id="Immunization.location">
+      <path value="Immunization.location" />
+      <definition value="The healthcare center where the vaccination is or or will be carried out." />
+      <comment value="Concept HealthcareProvider (imm-dataelement-262) is mapped to both `.location` and `.performer:administrator.actor` respectively, respectively to represent the location where the vaccination was delivered (using [nl-core-HealthcareProvider](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider)) and the organization that delivered the vaccination (using [nl-core-HealthcareProvider-Organization](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization))." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider" />
+      </type>
+      <mapping>
+        <identity value="imm-Vaccination-Immunization-20211118" />
+        <map value="imm-dataelement-262" />
+        <comment value="HealthcareProvider" />
+      </mapping>
+    </element>
+    <element id="Immunization.site">
+      <path value="Immunization.site" />
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation" />
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ImmunizationSite" />
+        </extension>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000" />
+      </binding>
+    </element>
+    <element id="Immunization.route">
+      <path value="Immunization.route" />
+      <mapping>
+        <identity value="imm-Vaccination-Immunization-20211118" />
+        <map value="imm-dataelement-143" />
+        <comment value="RouteOfAdministration" />
+      </mapping>
     </element>
     <element id="Immunization.performer:administrator">
       <path value="Immunization.performer" />
@@ -73,7 +148,7 @@
     </element>
     <element id="Immunization.performer:administrator.actor">
       <path value="Immunization.performer.actor" />
-      <min value="1" />
+      <comment value="Each occurrence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [nl-core-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [nl-core-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner)). The Practitioner resource is referenced from the PractitionerRole instance. For this reason, sending systems should fill the reference to the PractitionerRole instance here, and not the Practitioner resource. Receiving systems can then retrieve the reference to the Practitioner resource from that PractitionerRole instance.&#xD;&#xA;&#xD;&#xA;In rare circumstances, there is only a Practitioner instance, in which case it is that instance which will be referenced here. However, since this should be the exception, the zib-HealthProfessional-Practitioner profile is not explicitly mentioned as a target profile.&#xD;&#xA;&#xD;&#xA;Concept HealthcareProvider (imm-dataelement-262) is mapped to both `.location` and `.performer:administrator.actor` respectively, respectively to represent the location where the vaccination was delivered (using [nl-core-HealthcareProvider](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider)) and the organization that delivered the vaccination (using [nl-core-HealthcareProvider-Organization](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization))." />
       <type>
         <code value="Reference" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
@@ -83,6 +158,16 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization" />
       </type>
+      <mapping>
+        <identity value="imm-Vaccination-Immunization-20211118" />
+        <map value="imm-dataelement-163" />
+        <comment value="HealthcareProvider" />
+      </mapping>
+      <mapping>
+        <identity value="imm-Vaccination-Immunization-20211118" />
+        <map value="imm-dataelement-192" />
+        <comment value="HealthProfessional" />
+      </mapping>
     </element>
     <element id="Immunization.reasonCode">
       <path value="Immunization.reasonCode" />
@@ -101,9 +186,17 @@
       <definition value="Describes the person-specific characteristics why the immunization is administered to this patient (e.g. asplenia, immunosuppression or diabetes), net immunization advice." />
       <alias value="VaccinatieIndicatie" />
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ImmunizationReason" />
+        </extension>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.131.11.4--20220301181306" />
       </binding>
+      <mapping>
+        <identity value="imm-Vaccination-Immunization-20211118" />
+        <map value="imm-dataelement-160" />
+        <comment value="VaccinationIndication" />
+      </mapping>
     </element>
     <element id="Immunization.reasonCode:vaccinationMotive">
       <path value="Immunization.reasonCode" />
@@ -112,9 +205,17 @@
       <definition value="Displays the trigger based on what the vaccine was administered." />
       <alias value="VaccinatieAanleiding" />
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ImmunizationReason" />
+        </extension>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.131.11.2--20220301153357" />
       </binding>
+      <mapping>
+        <identity value="imm-Vaccination-Immunization-20211118" />
+        <map value="imm-dataelement-158" />
+        <comment value="VaccinationMotive" />
+      </mapping>
     </element>
     <element id="Immunization.protocolApplied.targetDisease">
       <path value="Immunization.protocolApplied.targetDisease" />
@@ -126,16 +227,24 @@
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Immunization.protocolApplied.targetDisease:vaccinationPathogen">
+    <element id="Immunization.protocolApplied.targetDisease:targetDisease">
       <path value="Immunization.protocolApplied.targetDisease" />
-      <sliceName value="vaccinationPathogen" />
+      <sliceName value="targetDisease" />
       <short value="VaccinationPathogen" />
       <definition value="The diseases or pathogens against which the vaccination is primarily given." />
       <alias value="VaccinatiePathogeen" />
       <binding>
-        <strength value="extensible" />
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="TargetDisease" />
+        </extension>
+        <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.131.11.3--20220301175614" />
       </binding>
+      <mapping>
+        <identity value="imm-Vaccination-Immunization-20211118" />
+        <map value="imm-dataelement-159" />
+        <comment value="VaccinationPathogen" />
+      </mapping>
     </element>
     <element id="Immunization.protocolApplied.doseNumber[x]">
       <path value="Immunization.protocolApplied.doseNumber[x]" />

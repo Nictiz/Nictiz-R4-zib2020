@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -27,7 +27,7 @@
   <abstract value="false" />
   <context>
     <type value="element" />
-    <expression value="Coverage.payor" />
+    <expression value="Coverage" />
   </context>
   <type value="Extension" />
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
@@ -35,13 +35,12 @@
   <differential>
     <element id="Extension">
       <path value="Extension" />
-            <short value="BankInformation"/>
-            <definition value="Container of the BankInformation concept. This container contains all data elements of the BankInformation concept."/>
-            <alias value="Bankgegevens"/>
+      <short value="BankInformation" />
+      <alias value="Bankgegevens" />
       <mapping>
         <identity value="zib-payer-v3.1.1-2020EN" />
         <map value="NL-CM:1.1.4" />
-                <comment value="BankInformation"/>
+        <comment value="BankInformation" />
       </mapping>
     </element>
     <element id="Extension.extension">
@@ -53,10 +52,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="Extension.extension:bankName">
       <path value="Extension.extension" />
       <sliceName value="bankName" />
+      <min value="0" />
       <max value="1" />
     </element>
     <element id="Extension.extension:bankName.url">
@@ -65,21 +66,22 @@
     </element>
     <element id="Extension.extension:bankName.value[x]">
       <path value="Extension.extension.value[x]" />
-            <short value="BankName"/>
-            <definition value="Name of the financial organization."/>
-            <alias value="BankNaam"/>
+      <short value="BankName" />
+      <definition value="Name of the financial organization." />
+      <alias value="BankNaam" />
       <type>
         <code value="string" />
       </type>
       <mapping>
         <identity value="zib-payer-v3.1.1-2020EN" />
         <map value="NL-CM:1.1.9" />
-                <comment value="BankName"/>
+        <comment value="BankName" />
       </mapping>
     </element>
     <element id="Extension.extension:bankCode">
       <path value="Extension.extension" />
       <sliceName value="bankCode" />
+      <min value="0" />
       <max value="1" />
     </element>
     <element id="Extension.extension:bankCode.url">
@@ -88,21 +90,22 @@
     </element>
     <element id="Extension.extension:bankCode.value[x]">
       <path value="Extension.extension.value[x]" />
-            <short value="BankCode"/>
-            <definition value="Code indicating the bank and branch. For European countries, this is the organization’s BIC or SWIFT code."/>
-            <alias value="Bankcode"/>
+      <short value="BankCode" />
+      <definition value="Code indicating the bank and branch. For European countries, this is the organization’s BIC or SWIFT code." />
+      <alias value="Bankcode" />
       <type>
         <code value="string" />
       </type>
       <mapping>
         <identity value="zib-payer-v3.1.1-2020EN" />
         <map value="NL-CM:1.1.10" />
-                <comment value="BankCode"/>
+        <comment value="BankCode" />
       </mapping>
     </element>
     <element id="Extension.extension:accountNumber">
       <path value="Extension.extension" />
       <sliceName value="accountNumber" />
+      <min value="0" />
       <max value="1" />
     </element>
     <element id="Extension.extension:accountNumber.url">
@@ -111,16 +114,16 @@
     </element>
     <element id="Extension.extension:accountNumber.value[x]">
       <path value="Extension.extension.value[x]" />
-            <short value="AccountNumber"/>
-            <definition value="The payer’s bank account number at the listed organization. For European countries, this is the IBAN."/>
-            <alias value="Rekeningnummer"/>
+      <short value="AccountNumber" />
+      <definition value="The payer’s bank account number at the listed organization. For European countries, this is the IBAN." />
+      <alias value="Rekeningnummer" />
       <type>
         <code value="string" />
       </type>
       <mapping>
         <identity value="zib-payer-v3.1.1-2020EN" />
         <map value="NL-CM:1.1.11" />
-                <comment value="AccountNumber"/>
+        <comment value="AccountNumber" />
       </mapping>
     </element>
     <element id="Extension.url">

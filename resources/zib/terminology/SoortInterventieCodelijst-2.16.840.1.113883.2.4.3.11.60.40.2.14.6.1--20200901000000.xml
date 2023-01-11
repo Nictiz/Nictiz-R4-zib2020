@@ -6,14 +6,14 @@
    </meta>
    <extension url="http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod">
       <valuePeriod>
-         <start value="2020-09-01T00:00:00+02:00"/>
+         <start value="2020-09-01T00:00:00+00:00"/>
       </valuePeriod>
    </extension>
    <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.14.6.1--20200901000000"/>
    <identifier>
       <use value="official"/>
-      <system value="http://art-decor.org/ns/oids/vs"/>
-      <value value="2.16.840.1.113883.2.4.3.11.60.40.2.14.6.1"/>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.14.6.1"/>
    </identifier>
    <version value="2020-09-01T00:00:00"/>
    <name value="SoortInterventieCodelijst"/>
@@ -43,7 +43,7 @@
                <valueString value="Toedienen van vocht en voeding"/>
             </extension>
             <code value="37041007"/>
-            <display value="Forced feeding of patient"/>
+            <display value="geforceerd toedienen van voeding bij patiënt"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -60,7 +60,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Geforceerd toedienen van voeding bij patiënt"/>
+               <value value="geforceerd toedienen van voeding bij patiënt"/>
             </designation>
          </concept>
          <concept>
@@ -68,7 +68,7 @@
                <valueString value="Toedienen van medicatie"/>
             </extension>
             <code value="29211000146105"/>
-            <display value="Forced medication"/>
+            <display value="gedwongen toedienen van medicatie"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -78,160 +78,499 @@
                </use>
                <value value="Forced medication"/>
             </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="gedwongen toedienen van medicatie"/>
+            </designation>
          </concept>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Arm- en beenspalk"/>
-            </extension>
             <code value="123941000146105"/>
-            <display value="Placing restraint using limb restraint"/>
+            <display value="mechanische fixatie met arm- en beenspalk"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Placing restraint using limb restraint"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="mechanische fixatie met arm- en beenspalk"/>
+            </designation>
          </concept>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Veiligheidshandschoen"/>
-            </extension>
             <code value="123971000146100"/>
-            <display value="Placing restraint using protective glove"/>
+            <display value="mechanische fixatie met veiligheidshandschoen"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Placing restraint using protective glove"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="mechanische fixatie met veiligheidshandschoen"/>
+            </designation>
          </concept>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Enkelbanden"/>
-            </extension>
             <code value="123891000146106"/>
-            <display value="Placing restraint using ankle restraint"/>
+            <display value="mechanische fixatie met polsband"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Placing restraint using ankle restraint"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="mechanische fixatie met polsband"/>
+            </designation>
          </concept>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Polsbanden"/>
-            </extension>
             <code value="124031000146100"/>
-            <display value="Placing restraint using wrist restraint"/>
+            <display value="mechanische fixatie met enkelband"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Placing restraint using wrist restraint"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="mechanische fixatie met enkelband"/>
+            </designation>
          </concept>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Onrustband"/>
-            </extension>
             <code value="123961000146106"/>
-            <display value="Placing restraint using pinel restraint"/>
+            <display value="mechanische fixatie met onrustband"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Placing restraint using pinel restraint"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="mechanische fixatie met onrustband"/>
+            </designation>
          </concept>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Stoelfixatie"/>
-            </extension>
             <code value="123901000146107"/>
-            <display value="Placing restraint using chair that prevents rising"/>
+            <display value="mechanische fixatie met stoelfixatie"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Placing restraint using chair that prevents rising"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="mechanische fixatie met stoelfixatie"/>
+            </designation>
          </concept>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Verpleegdeken"/>
-            </extension>
             <code value="123951000146108"/>
-            <display value="Placing restraint using nursing blanket"/>
+            <display value="mechanische fixatie met verpleegdeken"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Placing restraint using nursing blanket"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="mechanische fixatie met verpleegdeken"/>
+            </designation>
          </concept>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Extra laag bed"/>
-            </extension>
             <code value="124001000146105"/>
-            <display value="Placing restraint using ultra-low bed"/>
+            <display value="mechanische fixatie met extra laag bed"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Placing restraint using ultra-low bed"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="mechanische fixatie met extra laag bed"/>
+            </designation>
          </concept>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Onvrijwillige halve bedhekken"/>
-            </extension>
             <code value="123931000146102"/>
-            <display value="Placing restraint using involuntary half bed rails"/>
+            <display value="mechanische fixatie met onvrijwillige halve bedhekken"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Placing restraint with forced use of half bed rails"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="mechanische fixatie met onvrijwillige halve bedhekken"/>
+            </designation>
          </concept>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Rolkussen/bedpositioneringskussen"/>
-            </extension>
             <code value="123991000146101"/>
-            <display value="Placing restraint using roll pillow"/>
+            <display value="mechanische fixatie met rolkussen"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Placing restraint using roll pillow"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="mechanische fixatie met rolkussen"/>
+            </designation>
          </concept>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Wigvormig kussen/kantelkussen"/>
-            </extension>
             <code value="124011000146107"/>
-            <display value="Placing restraint using wedge-like pillow"/>
+            <display value="mechanische fixatie met wigvormig kussen"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Placing restraint using wedge-like pillow"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="mechanische fixatie met wigvormig kussen"/>
+            </designation>
          </concept>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Onvrijwillige hele bedhekken"/>
-            </extension>
             <code value="123921000146104"/>
-            <display value="Placing restraint using involuntary full bed rails"/>
+            <display value="mechanische fixatie met onvrijwillige hele bedhekken"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Placing restraint with forced use of full bed rails"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="mechanische fixatie met onvrijwillige hele bedhekken"/>
+            </designation>
          </concept>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Beschermhelm"/>
-            </extension>
             <code value="123981000146103"/>
-            <display value="Placing restraint using protective helmet"/>
+            <display value="mechanische fixatie met beschermhelm"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Placing restraint using protective helmet"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="mechanische fixatie met beschermhelm"/>
+            </designation>
          </concept>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Tentbed"/>
-            </extension>
             <code value="123911000146109"/>
-            <display value="Placing restraint using enclosure bed"/>
+            <display value="mechanische fixatie met tentbed"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Placing restraint using enclosure bed"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="mechanische fixatie met tentbed"/>
+            </designation>
          </concept>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Tafelblad/rolstoelblad"/>
-            </extension>
             <code value="124021000146102"/>
-            <display value="Placing restraint using wheelchair lap tray"/>
+            <display value="mechanische fixatie met rolstoelblad"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Placing restraint using wheelchair lap tray"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="mechanische fixatie met rolstoelblad"/>
+            </designation>
          </concept>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Cameramonitoring"/>
-            </extension>
             <code value="121411000146104"/>
-            <display value="Constant supervision of patient with camera"/>
+            <display value="constante supervisie met camera"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Constant supervision of patient with camera"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="constante supervisie met camera"/>
+            </designation>
          </concept>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Belmat/bedsensor"/>
-            </extension>
             <code value="121401000146101"/>
-            <display value="Constant supervision of patient with bedsensor"/>
+            <display value="constante supervisie met bedsensor"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Constant supervision of patient with bedsensor"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="constante supervisie met bedsensor"/>
+            </designation>
          </concept>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Bewegingsalarm/bewegingssensor"/>
-            </extension>
             <code value="121431000146106"/>
-            <display value="Constant supervision of patient with motion sensor"/>
+            <display value="constante supervisie met bewegingssensor"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Constant supervision of patient with motion sensor"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="constante supervisie met bewegingssensor"/>
+            </designation>
          </concept>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Opsta alarm"/>
-            </extension>
             <code value="121441000146103"/>
-            <display value="Constant supervision of patient with standing up alarm"/>
+            <display value="constante supervisie met opsta-alarm"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Constant supervision of patient with standing up alarm"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="constante supervisie met opsta-alarm"/>
+            </designation>
          </concept>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Verlaten kamer alarm"/>
-            </extension>
             <code value="121421000146109"/>
-            <display value="Constant supervision of patient with leaving room alarm"/>
+            <display value="constante supervisie met verlaten-kameralarm"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Constant supervision of patient with leaving room alarm"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="constante supervisie met verlaten-kameralarm"/>
+            </designation>
          </concept>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Akoestische bewaking"/>
-            </extension>
             <code value="121391000146104"/>
-            <display value="Constant supervision of patient with acoustic monitoring"/>
+            <display value="constante supervisie met akoestische bewaking"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Constant supervision of patient with acoustic monitoring"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="constante supervisie met akoestische bewaking"/>
+            </designation>
          </concept>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Beperking in gebruik communicatiemiddelen"/>
-            </extension>
             <code value="121471000146108"/>
-            <display value="Restriction of using communication systems"/>
+            <display value="beperken van gebruik van communicatiemiddelen"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Restriction of using communication systems"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="beperken van gebruik van communicatiemiddelen"/>
+            </designation>
          </concept>
       </include>
    </compose>

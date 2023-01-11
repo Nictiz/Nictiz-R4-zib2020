@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -18,6 +18,11 @@
   <purpose value="A derived profile from [zib-LaboratoryTestResult](http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="lu-dataset-laboratory-exchange-20210222" />
+    <uri value="https://decor.nictiz.nl/ad/#/lu-/datasets/dataset/2.16.840.1.113883.2.4.3.11.60.25.1.2/2021-02-22T00:00:00" />
+    <name value="ART-DECOR Dataset Lab Exchange 20210222T00:00:00" />
+  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="Observation" />
@@ -27,6 +32,77 @@
     <element id="Observation">
       <path value="Observation" />
       <alias value="nl-core-LaboratoryTestResult" />
+    </element>
+    <element id="Observation.extension">
+      <path value="Observation.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Observation.extension:sequelTo">
+      <path value="Observation.extension" />
+      <sliceName value="sequelTo" />
+      <min value="0" />
+    </element>
+    <element id="Observation.extension:sequelTo.value[x]">
+      <path value="Observation.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult" />
+      </type>
+    </element>
+    <element id="Observation.extension:edifactReferenceNumber">
+      <path value="Observation.extension" />
+      <sliceName value="edifactReferenceNumber" />
+      <min value="0" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber" />
+      </type>
+    </element>
+    <element id="Observation.extension:edifactReferenceNumber.value[x]">
+      <path value="Observation.extension.value[x]" />
+      <mapping>
+        <identity value="lu-dataset-laboratory-exchange-20210222" />
+        <map value="lu-concept-v2-4409" />
+        <comment value="EdifactReferenceNumber" />
+      </mapping>
+    </element>
+    <element id="Observation.extension:copyIndicator">
+      <path value="Observation.extension" />
+      <sliceName value="copyIndicator" />
+      <min value="0" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator" />
+      </type>
+    </element>
+    <element id="Observation.extension:copyIndicator.value[x]">
+      <path value="Observation.extension.value[x]" />
+      <mapping>
+        <identity value="lu-dataset-laboratory-exchange-20210222" />
+        <map value="lu-concept-v2-4297" />
+        <comment value="CopyIndicator" />
+      </mapping>
+    </element>
+    <element id="Observation.identifier">
+      <path value="Observation.identifier" />
+      <mapping>
+        <identity value="lu-dataset-laboratory-exchange-20210222" />
+        <map value="lu-concept-v2-4296" />
+        <comment value="LaboratoriumUitslagIdentificatie" />
+      </mapping>
+      <mapping>
+        <identity value="lu-dataset-laboratory-exchange-20210222" />
+        <map value="lu-concept-v2-4298" />
+        <comment value="TestIdentificatie" />
+      </mapping>
     </element>
     <element id="Observation.subject">
       <path value="Observation.subject" />
@@ -44,9 +120,7 @@
       <sliceName value="performer" />
       <type>
         <code value="Reference" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization" />
       </type>
     </element>
     <element id="Observation.specimen">
@@ -55,6 +129,16 @@
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Specimen" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen" />
+      </type>
+    </element>
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MolecularSequence" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefnition/nl-core-LaboratoryTestResult" />
       </type>
     </element>
   </differential>

@@ -13,42 +13,16 @@
   <contact>
     <name value="Nictiz"/>
     <telecom>
-      <system value="email"/>
-      <value value="info@nictiz.nl"/>
+      <system value="url"/>
+      <value value="https://www.nictiz.nl"/>
       <use value="work"/>
     </telecom>
   </contact>
-  <description value="Maps test result status codes as found in the Dutch zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) [LaboratoryTestResult v4.6 (2020)](https://zibs.nl/wiki/LaboratoryTestResult-v4.6(2020EN)) to &lt;http://hl7.org/fhir/r4/valueset-observation-status&gt; as found in `Observation.status` in FHIR R4. TODO: Map to both TestResult and LaboratoryTestResult"/>
+  <description value="Maps (test) result status codes as found in the Dutch zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) [LaboratoryTestResult v4.6 (2020)](https://zibs.nl/wiki/LaboratoryTestResult-v4.6(2020EN)) to &lt;http://hl7.org/fhir/r4/valueset-observation-status&gt; as found in `Observation.status` in FHIR R4. This ConceptMap can be used for both the ResultStatusCodelist and TestResultStatusCodelist, which have the same content."/>
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
-  <targetCanonical value="http://hl7.org/fhir/ValueSet/administrative-gender"/>
+  <sourceCanonical value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.15--20200901000000"/>
+  <targetCanonical value="http://hl7.org/fhir/ValueSet/observation-status"/>
   <group>
-    <source value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.15--20200901000000"/>
-    <target value="http://hl7.org/fhir/ValueSet/observation-status"/>
-    <element>
-      <code value="M"/>
-      <target>
-        <code value="male"/>
-        <equivalence value="equal"/>
-      </target>
-    </element>
-    <element>
-      <code value="F"/>
-      <target>
-        <code value="female"/>
-        <equivalence value="equal"/>
-      </target>
-    </element>
-    <element>
-      <code value="UN"/>
-      <target>
-        <code value="other"/>
-        <equivalence value="narrower"/>
-        <comment value="Undifferentiated: The gender of a person could not be uniquely defined as male or female, such as hermaphrodite. Other: 'neither male nor female and not unknown'"/>
-      </target>
-    </element>
-  </group>
-  <group>
-    <!-- 2.16.840.1.113883.5.1008 -->
     <source value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
     <target value="http://hl7.org/fhir/observation-status"/>
     <element>

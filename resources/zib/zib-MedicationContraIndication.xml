@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -32,6 +32,7 @@
     <element id="Flag">
       <path value="Flag" />
       <short value="MedicationContraIndication" />
+      <comment value="Although a medication contra-indication could be represented using both the Flag or the DetectedIssue resource, the latter is an _event_ from the FHIR workflow perspective and associated with a specific action. For this reason, it is not a proper representation of zib MedicationContraIndication and this zib has been mapped onto the Flag resource." />
       <alias value="MedicatieContraIndicatie" />
       <mapping>
         <identity value="zib-medicationcontraindication-v1.0-2020EN" />
@@ -48,10 +49,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="Flag.extension:comment">
       <path value="Flag.extension" />
       <sliceName value="comment" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -72,6 +75,7 @@
     <element id="Flag.extension:reasonClosure">
       <path value="Flag.extension" />
       <sliceName value="reasonClosure" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -80,7 +84,12 @@
     </element>
     <element id="Flag.status">
       <path value="Flag.status" />
-      <comment value="The zib MedicationContraIndication doesn't define a status, which is required in the Flag resource. However, the presence of the concepts ReasonClosure and EndDate relate to the Flag status. It is expected that `Flag.status` is set to _inactive_ if ReasonClosure is present or the EndDate is in the past." />
+      <comment value="This element is implictly mapped to the zib concept NL-CM:9.14.3 (EndDate). Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When EndDateTime is present and in the past, `.status` will usually be set to _inactive_.&#xD;&#xA;* In all other situations, `.status` will usually be set to _active_.&#xD;&#xA;This element is labeled as a modifier because the status contains codes that mark the resource as entered in error." />
+      <mapping>
+        <identity value="zib-medicationcontraindication-v1.0-2020EN" />
+        <map value="NL-CM:9.14.3" />
+        <comment value="EndDate (implicit, main mapping is on `Flag.period.end`)" />
+      </mapping>
     </element>
     <element id="Flag.category">
       <path value="Flag.category" />
@@ -111,6 +120,9 @@
       <definition value="The name and code of the contraindication from the Dutch National Contra-indication list (G-standard Thesaurus 40)." />
       <alias value="MedicatieContraIndicatieNaam" />
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="FlagCode" />
+        </extension>
         <strength value="required" />
         <description value="MedicatieContraIndicatieNaamCodelijst" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.14.1--20200901000000" />

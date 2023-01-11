@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -28,12 +28,47 @@
       <path value="Consent" />
       <alias value="nl-core-TreatmentDirective2" />
     </element>
+    <element id="Consent.extension">
+      <path value="Consent.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Consent.extension:additionalAdvanceDirective">
+      <path value="Consent.extension" />
+      <sliceName value="additionalAdvanceDirective" />
+      <min value="0" />
+    </element>
+    <element id="Consent.extension:additionalAdvanceDirective.value[x]">
+      <path value="Consent.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdvanceDirective" />
+      </type>
+    </element>
     <element id="Consent.patient">
       <path value="Consent.patient" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Consent.source[x]:sourceReference">
+      <path value="Consent.source[x]" />
+      <sliceName value="sourceReference" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Consent" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Contract" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdvanceDirective" />
       </type>
     </element>
     <element id="Consent.provision.actor:agreementParty">
