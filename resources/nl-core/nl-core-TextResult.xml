@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -26,6 +26,7 @@
   <differential>
     <element id="DiagnosticReport">
       <path value="DiagnosticReport" />
+      <comment value="Zib TextResult is mapped to this DiagnosticReport profile and a profile on Media (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-TextResult.VisualResult&gt;). This DiagnosticReport profile acts as the focal resource of zib TextResult. This profile references the Media resouce through `.media.link` that holds the VisualResult information.&#xD;&#xA;&#xD;&#xA;Please note that on a functional level, zib TextResult references zib Procedure, but in FHIR this direction is reversed. Therefore, the concept Procedure (NL-CM:13.2.5) is mapped on `Procedure.report` in profile [nl-core-Procedure-event](http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event) instead of in this profile." />
       <alias value="nl-core-TextResult" />
     </element>
     <element id="DiagnosticReport.subject">

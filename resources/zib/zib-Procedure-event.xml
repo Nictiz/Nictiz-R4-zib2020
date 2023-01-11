@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -95,6 +95,9 @@
       <definition value="The name of the procedure. Choices are the DHD procedure thesaurus, the procedures file (CBV), the Care activities file (NZa), the Dutch Mental Health and Addiction Care procedures list (GGZ) and the procedures list of the Dutch College of General Practitioners (NHG)." />
       <alias value="VerrichtingType" />
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ProcedureCode" />
+        </extension>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.19--20200901000000" />
       </binding>
@@ -125,6 +128,7 @@
       <path value="Procedure.performed[x].start" />
       <short value="ProcedureStartDate" />
       <definition value="The start date (and if possible start time) of the procedure. A ‘vague’ date, such as only the year, is permitted. The element offers the option to indicate the start of the period of a series of related procedures." />
+      <comment value="If the zib Procedure concerns a procedure performed over a period, `Procedure.performedPeriod.start` and `Procedure.performedPeriod.end` are used to represent zib concepts ProcedureStartDate and ProcedureEndDate. For instantaneous or very short lasting procedures, `Procedure.performedDateTime` is used for ProcedureStartDate (ProcedureEndDate doesn't have a meaning in this case; ProcedureStartDate is the moment the procedure is performed)." />
       <alias value="VerrichtingStartDatum" />
       <mapping>
         <identity value="zib-procedure-v5.2-2020EN" />
@@ -135,7 +139,8 @@
     <element id="Procedure.performed[x]:performedPeriod.end">
       <path value="Procedure.performed[x].end" />
       <short value="ProcedureEndDate" />
-      <definition value="The end date (and if possible end time) of the procedure. A ‘vague’ date, such as only the year, is permitted. The element offers the option to indicate the end of the period of a series of related procedures. The end date element is only used for a procedures that takes some time and is then always applied. If the procedure still continues, the value is left empty. For instantaneous or very short lasting procedures the `performedDateTime` is used." />
+      <definition value="The end date (and if possible end time) of the procedure. A ‘vague’ date, such as only the year, is permitted. The element offers the option to indicate the end of the period of a series of related procedures. The end date element is only used for a procedures that takes some time and is then always applied. If the procedure still continues, the value is left empty." />
+      <comment value="If the zib Procedure concerns a procedure performed over a period, `Procedure.performedPeriod.start` and `Procedure.performedPeriod.end` are used to represent zib concepts ProcedureStartDate and ProcedureEndDate. For instantaneous or very short lasting procedures, `Procedure.performedDateTime` is used for ProcedureStartDate (ProcedureEndDate doesn't have a meaning in this case; ProcedureStartDate is the moment the procedure is performed)." />
       <alias value="VerrichtingEindDatum" />
       <mapping>
         <identity value="zib-procedure-v5.2-2020EN" />
@@ -148,6 +153,7 @@
       <sliceName value="performedDateTime" />
       <short value="ProcedureStartDate" />
       <definition value="The (desired) start date (and if possible start time) of the procedure. A ‘vague’ date, such as only the year, is permitted. `performedDateTime` is used for instantaneous or very short lasting procedures." />
+      <comment value="If the zib Procedure concerns a procedure performed over a period, `Procedure.performedPeriod.start` and `Procedure.performedPeriod.end` are used to represent zib concepts ProcedureStartDate and ProcedureEndDate. For instantaneous or very short lasting procedures, `Procedure.performedDateTime` is used for ProcedureStartDate (ProcedureEndDate doesn't have a meaning in this case; ProcedureStartDate is the moment the procedure is performed)." />
       <alias value="VerrichtingStartDatum" />
       <type>
         <code value="dateTime" />
@@ -227,6 +233,9 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
       </type>
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="BodySite" />
+        </extension>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000" />
       </binding>
@@ -260,22 +269,6 @@
         <identity value="zib-textresult-v4.4-2020EN" />
         <map value="NL-CM:13.2.5" />
         <comment value="Reversed reference for zib TextResult.Procedure" />
-      </mapping>
-    </element>
-    <element id="Procedure.focalDevice.manipulated">
-      <path value="Procedure.focalDevice.manipulated" />
-      <short value="MedicalDevice" />
-      <definition value="The product, the placing of which in or on the body is the purpose of the procedure, for example placing an implant." />
-      <alias value="MedischHulpmiddel" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice.Product" />
-      </type>
-      <mapping>
-        <identity value="zib-procedure-v5.2-2020EN" />
-        <map value="NL-CM:14.1.7" />
-        <comment value="MedicalDevice" />
       </mapping>
     </element>
   </differential>
