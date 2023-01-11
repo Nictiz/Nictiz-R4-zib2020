@@ -50,9 +50,9 @@
       </slicing>
       <min value="0" />
     </element>
-    <element id="Condition.extension:problem">
+    <element id="Condition.extension:cause">
       <path value="Condition.extension" />
-      <sliceName value="problem" />
+      <sliceName value="cause" />
       <min value="0" />
       <max value="1" />
       <type>
@@ -60,7 +60,7 @@
         <profile value="http://hl7.org/fhir/StructureDefinition/condition-dueTo" />
       </type>
     </element>
-    <element id="Condition.extension:problem.value[x]">
+    <element id="Condition.extension:cause.value[x]">
       <path value="Condition.extension.value[x]" />
       <short value="Cause" />
       <definition value="The cause of the problem underlying the skin disorder." />
@@ -83,12 +83,28 @@
         <comment value="Cause" />
       </mapping>
     </element>
-    <element id="Condition.category.coding">
-      <path value="Condition.category.coding" />
-      <patternCoding>
-        <system value="http://snomed.info/sct" />
-        <code value="95320005" />
-      </patternCoding>
+    <element id="Condition.category">
+      <path value="Condition.category" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="1" />
+    </element>
+    <element id="Condition.category:skinDisorderCode">
+      <path value="Condition.category" />
+      <sliceName value="skinDisorderCode" />
+      <min value="1" />
+      <max value="1" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="95320005" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Condition.code">
       <path value="Condition.code" />
