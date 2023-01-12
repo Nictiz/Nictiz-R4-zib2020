@@ -82,8 +82,8 @@
                     <contact>
                         <name value="Nictiz" />
                         <telecom>
-                            <system value="email" />
-                            <value value="info@nictiz.nl" />
+                            <system value="url" />
+                            <value value="https://www.nictiz.nl" />
                             <use value="work" />
                         </telecom>
                     </contact>
@@ -145,7 +145,7 @@
             
             <xsl:apply-templates select="f:derivation"/>
             
-            <!-- Add id as alias to root of nl-core profile if no differential or snapshot is fount -->
+            <!-- Add id as alias to root of nl-core profile if no differential or snapshot is found -->
             <xsl:choose>
                 <xsl:when test="not(f:differential) and not(f:snapshot) and starts-with($id, 'nl-core-')">
                     <differential>

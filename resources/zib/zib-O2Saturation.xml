@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -107,6 +107,10 @@
       <path value="Observation.value[x].system" />
       <fixedUri value="http://unitsofmeasure.org" />
     </element>
+    <element id="Observation.note">
+      <path value="Observation.note" />
+      <max value="1" />
+    </element>
     <element id="Observation.note.text">
       <path value="Observation.note.text" />
       <short value="Comment" />
@@ -131,6 +135,7 @@
     <element id="Observation.component:extraOxygenAdministration">
       <path value="Observation.component" />
       <sliceName value="extraOxygenAdministration" />
+      <max value="1" />
     </element>
     <element id="Observation.component:extraOxygenAdministration.code">
       <path value="Observation.component.code" />

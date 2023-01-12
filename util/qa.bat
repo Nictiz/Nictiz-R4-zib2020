@@ -1,4 +1,9 @@
 @echo off
 
-docker-compose --env-file qaAutomation/nts-credentials.env -f qaAutomation/docker-compose.yml run --rm -p 8081:8081 qa-zib2020-r4 --menu --changed-only %*
+SET ntsCredentialsFlag=
+if exist qa/nts-credentials.env (
+  SET ntsCredentialsFlag=--env-file qa/nts-credentials.env
+)
+
+docker-compose %ntsCredentialsFlag% -f qa/docker-compose.yml up %*
 pause
