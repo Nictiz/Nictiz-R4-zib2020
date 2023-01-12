@@ -172,6 +172,22 @@ zib-Encounter:
       - cardinality: 0..* instead of 0..1
         reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*, effective) is explained by the missing ContactReason container in FHIR. This container may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
 
+zib-FLACCpainScale:
+  zib deviations:
+   Observation:
+      - short: FLACCpainScale
+        reason: The root concept name 'FLACCpainScore' is a mistake in the zib and will be fixed in the next pre-publication.
+
+zib-FreedomRestrictingIntervention:
+  ignored issues:
+    Procedure.reasonReference:legalSituation:
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+  zib deviations:
+    Procedure:
+      - short: FreedomRestrictingIntervention instead of FreedomrestrictingIntervention
+        reason: The root of the zib is called FreedomrestrictingIntervention (which is incorrect), even though the zib itself is called FreedomRestrictingIntervention.
+
 zib-FunctionalOrMentalStatus:
   zib deviations:
     Observation.code:
@@ -331,6 +347,18 @@ zib-MedicalDevice.Product:
     Device.udiCarrier:*.carrierHRF:
       - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the definition of the ProductID concept is not suited for all mapped elements.
+
+zib-LegalSituation-LegalStatus:
+  zib deviations:
+    Condition.code:
+      - cardinality: 1..1 instead of 0..1
+        reason: The zib requires either a LegalStatus or a Representation to be present. This profile represents the former concept, so the LegalStatus (in Condition.code) is required.
+
+zib-LegalSituation-Representation:
+  zib deviations:
+    Condition.code:
+      - cardinality: 1..1 instead of 0..1
+        reason: The zib requires either a LegalStatus or a Representation to be present. This profile represents the latter concept, so the Representation (in Condition.code) is required.
 
 zib-MedicationContraIndication:
   zib deviations:
@@ -503,6 +531,37 @@ zib-Procedure-request:
       - cardinality: 0..1 instead of 0..*
         reason: It seems that the zib may have an error in the cardinality for this concept and the cardinality should actually be 0..1 rather than 0..*. This issue is being tracked at https://bits.nictiz.nl/browse/ZIB-1488.
 
+zib-Refraction:
+  ignored issues:
+    Observation.bodySite.extension:laterality.value[x]:
+      - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
+        reason: The short description is defined in the extension profile and therefore not defined in the differential.
+      - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
+        reason: The definition is defined in the extension profile and therefore not defined in the differential.
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias is defined in the extension profile and therefore not defined in the differential.
+  zib deviations:
+    Observation.bodySite:
+      - short: AnatomicalLocation
+        reason: The zib has both a reference to AnatomicalLocation and a mapping on AnatomicalLocation::Laterality, while it seems only the latter is important. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442.
+      - datatype: CodeableConcept
+        reason: The zib has both a reference to AnatomicalLocation and a mapping on AnatomicalLocation::Laterality, while it seems only the latter is important. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442.
+    Observation.component:cylindricalRefractionAxis.value[x]:
+      - short: CylindricalRefractionAxis
+        reason: The zib concept name "CilindricRefractionAxis" contains a typo which is corrected in a later release of the zibs.
+    Observation.component:prismValue.value[x]:
+      - short: PrismValue
+        reason: The zib concept name "PrismaValue" contains a typo which is corrected in a later release of the zibs.
+    Observation.component:prismBase.value[x]:
+      - short: PrismBase
+        reason: The zib concept name "PrismaBase" contains a typo which is corrected in a later release of the zibs.
+    Observation.component:sphericalRefractionValue.value[x]:
+      - short: SphericalRefractionValue
+        reason: The zib concept name "SfericRefractionValue" contains a typo which is corrected in a later release of the zibs.
+    Observation.component:sphericalEquivalent.value[x]:
+      - short: SphericalEquivalent
+        reason: The zib concept name "SfericalEquivalent" contains a typo which is corrected in a later release of the zibs.
+
 zib-SOAPReport:
   zib deviations:
     Composition.author:
@@ -523,6 +582,15 @@ zib-SOAPReport.SOAPLine:
     Observation.code:
       - cardinality: 1..1 instead of 0..1
         reason: The cardinality of both zib (SOAPLineHeader) and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected. In case of absent data, the profiling guidelines provide guidance.
+
+zib-Stoma:
+  zib deviations:
+    Condition.code:
+      - cardinality: 1..1 instead of 0..1
+        reason: The FHIR profiles are expected to implement zib cardinalities as conceptual cardinalities, but StomaType is essential to identify the Stoma. This aligns with the intention of the zib, as the StomaType concept is required for zib Stoma to make sense.
+    Condition.bodySite:
+      - datatype: CodeableConcept
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
 
 zib-TextResult:
   zib deviations:
