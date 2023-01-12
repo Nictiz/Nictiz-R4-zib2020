@@ -264,6 +264,12 @@ zib-HearingFunction.HearingAid.Product:
       - datatype: string instead of CD compatible datatype
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
 
+zib-HelpFromOthers:
+  ignored issues:
+    CarePlan.activity.detail.performer:*:
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice. 
+
 zib-LaboratoryTestResult:
   ignored issues:
     Observation.performer:performer:
