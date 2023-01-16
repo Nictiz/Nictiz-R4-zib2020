@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -38,14 +38,12 @@
         <severity value="error" />
         <human value="maxValue of 10 if method is VAS10 or NRS or 100 if VAS100" />
         <expression value="((method.coding.code = 'VAS10' or method.coding.code = 'NRS') and valueQuantity.value &lt;= 10) or (method.coding.code='VAS100' and valueQuantity.value &lt;= 100)" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-PainScore" />
       </constraint>
       <constraint>
         <key value="zib-PainScore-2" />
         <severity value="error" />
         <human value="minValue of 1 if method is NRS or 0 if VAS" />
         <expression value="((method.coding.code = 'VAS10' or method.coding.code = 'VAS100') and valueQuantity.value &gt;= 0) or (method.coding.code='NRS' and valueQuantity.value &gt;= 1)" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-PainScore" />
       </constraint>
       <mapping>
         <identity value="zib-painscore-v4.0-2020EN" />
