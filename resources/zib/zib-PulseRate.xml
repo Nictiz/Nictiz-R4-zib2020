@@ -75,23 +75,16 @@
     </element>
     <element id="Observation.value[x]">
       <path value="Observation.value[x]" />
-      <slicing>
-        <discriminator>
-          <type value="type" />
-          <path value="$this" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Observation.value[x]:valueQuantity">
-      <path value="Observation.value[x]" />
-      <sliceName value="valueQuantity" />
       <short value="PulseRateValue" />
       <definition value="The element contains the value of the pulse rate measured. The pulse rate is expressed in the number of tangible pulsations of an artery per minute, usually the a. radialis, a. carotis or a. femoralis." />
       <alias value="PolsfrequentieWaarde" />
       <type>
         <code value="Quantity" />
       </type>
+      <patternQuantity>
+        <system value="http://unitsofmeasure.org" />
+        <code value="/min" />
+      </patternQuantity>
       <mapping>
         <identity value="zib-pulserate-v3.3-2020EN" />
         <map value="NL-CM:12.7.2" />
