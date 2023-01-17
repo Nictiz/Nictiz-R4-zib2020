@@ -58,19 +58,19 @@ This document contains release notes per zib, indicating differences with their 
 * CareTeam is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
 
 ## zib-ChecklistPainBehaviour
-* The datatype of `Observation.value[x]` (zib concept TotalScore) element has been changed from Quantity to Integer, and minimum and maximum allowed values of 0 and 10 respectively are applied.
-* The system value on the `Observation.component.code` slices has changed from http://loinc.org to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
-* The datatype of `Obversation.component.value[x]` slices has changed from Quantity to Integer. 
-* The code on `Observation.component:face.code` has changed from *12.17.3* to *12017003*.
-* The code on `Observation.component:mouth.code` has changed from *12.17.4* to *12017004*.
-* The code on `Observation.component:grimace.code` has changed from *12.17.5* to *12017005*.
-* The code on `Observation.component:lookingSad.code` has changed from *12.17.6* to *12017006*.
-* The code on `Observation.component:eyes.code` has changed from *12.17.7* to *12017007*.
-* The code on `Observation.component:panic.code` has changed from *12.17.8* to *12017008*.
-* The code on `Observation.component:moaning.code` has changed from *12.17.9* to *12017009*.
-* The code on `Observation.component:cry.code` has changed from *12.17.10* to *12017010*.
-* The code on `Observation.component:soundsOfRestlessness.code` has changed from *12.17.11* to *12017011*.
-* The code on `Observation.component:tears.code` has changed from *12.17.12* to *12017012*.
+* The data type of `Observation.value[x]` (zib concept TotalScore) has been changed from Quantity to Integer, and minimum and maximum allowed values of 0 and 10 respectively are applied.
+* The system value on the `Observation.component.code` slices has changed from 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0' to 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1'.
+* The data type of the `Observation.component.value[x]` slices has changed from Quantity to Integer. 
+* The code on `Observation.component:face.code` has changed from '12.17.3' to '12017003'.
+* The code on `Observation.component:mouth.code` has changed from '12.17.4' to '12017004'.
+* The code on `Observation.component:grimace.code` has changed from '12.17.5' to '12017005'.
+* The code on `Observation.component:lookingSad.code` has changed from '12.17.6' to '12017006'.
+* The code on `Observation.component:eyes.code` has changed from '12.17.7' to '12017007'.
+* The code on `Observation.component:panic.code` has changed from '12.17.8' to '12017008'.
+* The code on `Observation.component:moaning.code` has changed from '12.17.9' to '12017009'.
+* The code on `Observation.component:cry.code` has changed from '12.17.10' to '12017010'.
+* The code on `Observation.component:soundsOfRestlessness.code` has changed from '12.17.11' to '12017011'.
+* The code on `Observation.component:tears.code` has changed from '12.17.12' to '12017012'.
 
 ## zib-ContactInformation
 * zib ContactInformation is mapped onto two profiles: one for the concept TelephoneNumbers and one for the concept E-mailAddresses. Both are added to the hosting profile.
