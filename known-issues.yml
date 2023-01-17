@@ -766,19 +766,7 @@ zib-Alert:
     Flag:
       - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias "Alert" is already defined in the base profile, so it doesn't need to be defined again in the differential.
-
-zib-AbilityToWashOneself:
-  zib deviations:
-   Observation.component:bodyPartToBeBathed.value[x]:
-      - cardinality: 0..1 instead of 0..*
-        reason: The effective cardinality is 0..*, but the mysterious introduction by Forge of referenceRange.contentReference prevents the tool from reasoning about this.
-
-zib-AbilityToDressOneself:
-  zib deviations:
-   Observation.component:bodyPartToBeDressed.value[x]:
-      - cardinality: 0..1 instead of 0..*
-        reason: The effective cardinality is 0..*, but the mysterious introduction by Forge of referenceRange.contentReference prevents the tool from reasoning about this.
-        
+       
 zib-ContactPerson:
   ignored issues:
     RelatedPerson.address:
