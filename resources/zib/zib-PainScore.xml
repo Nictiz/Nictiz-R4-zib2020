@@ -36,14 +36,14 @@
       <constraint>
         <key value="zib-PainScore-1" />
         <severity value="error" />
-        <human value="maxValue of 10 if method is VAS10 or NRS or 100 if VAS100" />
-        <expression value="((method.coding.code = 'VAS10' or method.coding.code = 'NRS') and valueQuantity.value &lt;= 10) or (method.coding.code='VAS100' and valueQuantity.value &lt;= 100)" />
+        <human value="The maximum value is 10 if method is VAS10 or NRS, or 100 if method is VAS100" />
+        <expression value="((method.coding.code = 'VAS10' or method.coding.code = 'NRS') and valueInteger.value &lt;= 10) or (method.coding.code = 'VAS100' and valueInteger.value &lt;= 100)" />
       </constraint>
       <constraint>
         <key value="zib-PainScore-2" />
         <severity value="error" />
-        <human value="minValue of 1 if method is NRS or 0 if VAS" />
-        <expression value="((method.coding.code = 'VAS10' or method.coding.code = 'VAS100') and valueQuantity.value &gt;= 0) or (method.coding.code='NRS' and valueQuantity.value &gt;= 1)" />
+        <human value="The minimum value is 0 if method is VAS10 or VAS100, or 1 if method is NRS" />
+        <expression value="((method.coding.code = 'VAS10' or method.coding.code = 'VAS100') and valueInteger.value &gt;= 0) or (method.coding.code = 'NRS' and valueInteger.value &gt;= 1)" />
       </constraint>
       <mapping>
         <identity value="zib-painscore-v4.0-2020EN" />
@@ -104,6 +104,8 @@
       <type>
         <code value="integer" />
       </type>
+      <condition value="zib-PainScore-1" />
+      <condition value="zib-PainScore-2" />
       <mapping>
         <identity value="zib-painscore-v4.0-2020EN" />
         <map value="NL-CM:12.9.2" />
@@ -130,6 +132,8 @@
       <short value="PainMeasuringMethod" />
       <definition value="The measuring method describes the method used to determine the pain score. The measurement involves a visualization of the pain scale." />
       <alias value="PijnMeetmethode" />
+      <condition value="zib-PainScore-1" />
+      <condition value="zib-PainScore-2" />
       <binding>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.9.1--20200901000000" />

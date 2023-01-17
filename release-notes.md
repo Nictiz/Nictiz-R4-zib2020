@@ -203,10 +203,10 @@ This document contains release notes per zib, indicating differences with their 
 * The comment extension has been replaced by a mapping to `NutritionOrder.note.text`.
 
 ## zib-PainScore
-* Removed `Observation.bodySite` mapping because AnatomicalLocation concept does not exist anymore.
+* Removed mapping on `Observation.bodySite` because the AnatomicalLocation concept has been removed from the zib.
+* Removed laterality extension because the Laterality concept has been removed from the zib.
 * Cardinality of `Observation.method` has changed from 1..1 to 0..1. 
 * The datatype of `Observation.value[x]` (zib concept PainScoreValue) element has been changed from Quantity to Integer.
-* Removed laterality extension because Laterality concept does not exist anymore.
 
 ## zib-Patient
 * Includes Nationality, MaritalStatus, LanguageProficiency, LifeStance.
