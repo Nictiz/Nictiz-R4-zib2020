@@ -143,6 +143,12 @@ This document contains release notes per zib, indicating differences with their 
 * Changed fixed slice on `.code.coding` to a pattern on `.code`.
 * Relaxed cardinality of `value[x]` to 0..1 of the conceptual cardinalities of the zib.
 
+## zib-HelpFromOthers
+* The mappings on `CarePlan.identifier`, `CarePlan.subject`, `CarePlan.author` and `CarePlan.careTeam` have been removed.
+* The mapping on `CarePlan.activity.detail.category` has been moved to `CarePlan.activity.detail.code`.
+* The mapping on `CarePlan.activity.detail.code` has been moved to `CarePlan.activity.detail.description`.
+* The mapping on `CarePlan.activity.detail.description` has been moved to `CarePlan.note.text`.
+
 ## zib-LaboratoryTestResult
 * In the 2017 implementation, five different profiles were used. This has been reduced to two profiles in the current implementation:
   * The profile HCIM LaboratoryTestResult DiagnosticReport was designed to capture conclusions from zib LaboratoryTestResult, but this has never been used and is not explicitly defined by the zib.
@@ -201,7 +207,7 @@ This document contains release notes per zib, indicating differences with their 
 * The comment extension has been replaced by a mapping to `NutritionOrder.note.text`.
 
 ## zib-Patient
-* Includes Nationality, MaritalStatus, LanguageProficiency.
+* Includes Nationality, MaritalStatus, LanguageProficiency, LifeStance.
 * Cardinality of `Patient.extension:nationality` left at 0..* due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time).
 * Cardinality of `Patient.name` left at 0..* to allow including several name elements with a different `name.use` each.
 * Cardinality of `Patient.telecom` left at 0..* to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not.
