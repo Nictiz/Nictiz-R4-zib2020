@@ -14,6 +14,7 @@
     </xd:doc>
     
     <xsl:output omit-xml-declaration="yes"/>
+    <xsl:include href="rewriteTerminologyResource.xsl"/>
     
     <xsl:param name="inputdir">../../resources/zib/</xsl:param>
     <xsl:param name="outputdir">
@@ -31,8 +32,9 @@
     </xsl:param>
     
     <xsl:variable name="resourceIds" select="collection(concat($inputdir, '?select=*.xml;recurse=yes'))//f:id/@value" as="attribute()*"/>
-    <xsl:variable name="codeSystemURIs" select="collection(concat($inputdir, '?select=*.xml;recurse=yes'))//f:system[starts-with(@value, 'http') or starts-with(@value, 'urn:')][not(parent::f:identifier or parent::f:patternIdentifier or contains(@value, 'urn:iso') or contains(@value, 'loinc.org') or contains(@value, 'snomed.info') or contains(@value, 'terminology.hl7.org') or @value = 'http://hl7.org/fhir/contact-point-system' or @value = 'http://hl7.org/fhir/contact-point-use' )]/@value" as="attribute()*"/>
-    <!-- contact-point-system and contact-point-use are added as hardcoded exemptions, because we do reference them from ValueSets that restrict core ValueSets, but there is no need to include them in our package since they are already included in the core package -->
+    <xsl:variable name="codeSystemURIs" select="collection(concat($inputdir, '?select=*.xml;recurse=yes'))//f:system[starts-with(@value, 'http') or starts-with(@value, 'urn:')][not(parent::f:identifier or parent::f:patternIdentifier or contains(@value, 'urn:iso') or contains(@value, 'loinc.org') or contains(@value, 'snomed.info') or contains(@value, 'terminology.hl7.org') or @value = 'http://hl7.org/fhir/contact-point-system' or @value = 'http://hl7.org/fhir/contact-point-use' or @value = 'http://www.nanda.org/' or @value = 'https://nursing.uiowa.edu/cncce/nursing-interventions-classification-overview')]/@value" as="attribute()*"/>
+    <!-- contact-point-system and contact-point-use are added as hardcoded exemptions, because we do reference them from ValueSets that restrict core ValueSets, but there is no need to include them in our package since they are already included in the core package,
+    Nanda and NIC are added as hardcoded exemptions, because their URLs have changed in the latest release of HL7 Terminology to not start with 'terminology.hl7.org' anymore, but we still do not have to include them-->
     
     <xd:doc>
         <xd:desc/>
@@ -51,14 +53,16 @@
             <xsl:variable name="codeSystemURI">
                 <xsl:choose>
                     <xsl:when test="starts-with(., 'urn:oid:')">
-                        <xsl:value-of select="concat('http://decor.nictiz.nl/fhir/4.0/public/CodeSystem/', substring-after(., 'urn:oid:'))"/>
+                        <xsl:value-of select="concat('https://decor.nictiz.nl/fhir/4.0/public/CodeSystem/', substring-after(., 'urn:oid:'))"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:value-of select="concat('http://decor.nictiz.nl/fhir/4.0/public/CodeSystem?url=', encode-for-uri(.))"/>
+                        <xsl:value-of select="concat('https://decor.nictiz.nl/fhir/4.0/public/CodeSystem?url=', encode-for-uri(.))"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
-            <xsl:variable name="codeSystem" select="doc($codeSystemURI)//f:CodeSystem" as="element()?"/>
+            <xsl:variable name="codeSystem" as="element()?">
+                <xsl:apply-templates select="doc($codeSystemURI)//f:CodeSystem" mode="rewrite"/>
+            </xsl:variable> 
             <xsl:variable name="codeSystemName" select="$codeSystem/descendant-or-self::f:CodeSystem/f:name/@value"/>
             
             <xsl:variable name="codeSystemIdExists" select="$resourceIds[. = $codeSystem/descendant-or-self::f:CodeSystem/f:id/@value]"/>
@@ -68,7 +72,7 @@
                 <xsl:for-each select="$codeSystemIdExists">
                     <xsl:variable name="fileName" select="tokenize(document-uri(.), '/')[last()]"/>
                     <xsl:if test="not($fileName = $codeSystemName)">
-                        <xsl:message>WARNING: This code system id <xsl:value-of select="."/> already exists as <xsl:value-of select="$fileName"/>. Please remove older files. The value set may have been renamed since previous download.</xsl:message>
+                        <xsl:message>         WARNING: This code system id <xsl:value-of select="."/> already exists as <xsl:value-of select="$fileName"/>. Please remove older files. The code system may have been renamed since previous download.</xsl:message>
                     </xsl:if>
                 </xsl:for-each>
             </xsl:if>
@@ -82,7 +86,7 @@
                     </xsl:result-document>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:message>WARNING: Could not retrieve CodeSystem id <xsl:value-of select="$codeSystemIDVersion"/>.</xsl:message>
+                    <xsl:message>         WARNING: Could not retrieve CodeSystem id <xsl:value-of select="$codeSystemIDVersion"/>.</xsl:message>
                     <xsl:result-document href="{concat($outputdir,'unknown-codesystem-',$codeSystemIDVersion,'.xml')}" indent="yes" method="xml" omit-xml-declaration="yes">
                         <CodeSystem xmlns="http://hl7.org/fhir">
                             <id value="{$codeSystemIDVersion}"/>
