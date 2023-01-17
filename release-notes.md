@@ -206,7 +206,7 @@ This document contains release notes per zib, indicating differences with their 
 * Removed mapping on `Observation.bodySite` because the AnatomicalLocation concept has been removed from the zib.
 * Removed laterality extension because the Laterality concept has been removed from the zib.
 * Cardinality of `Observation.method` has changed from 1..1 to 0..1. 
-* The datatype of `Observation.value[x]` (zib concept PainScoreValue) element has been changed from Quantity to Integer.
+* The data type of `Observation.value[x]` (zib concept PainScoreValue) has been changed from Quantity to Integer.
 
 ## zib-Patient
 * Includes Nationality, MaritalStatus, LanguageProficiency, LifeStance.
