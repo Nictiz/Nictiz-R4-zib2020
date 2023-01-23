@@ -657,11 +657,11 @@ nl-core-AllergyIntolerance*:
       - message: None of the codings provided are in the value set 'SpecifiekeStofCodelijsten'
         reason: The terminology servers cannot handle the refset specified in the ValueSet.
 
-nl-core-DOSScore-01.xml:
+nl-core-DOSScore-01:
   ignored issues:
-    Observation.code.coding[*]:
-  - message: 'Local Error: Resolved system http://snomed.info/sct, but the definition is not complete. Server Error: Unable to find code 160591000146109 in http://snomed.info/sct (version http://snomed.info/sct/11000146104/version/20210930); The code "160591000146109" is not valid in the system http://snomed.info/sct; The code provided (http://snomed.info/sct#160591000146109) is not valid in the value set 'All codes known to the system' (from http://tx.fhir.org/r4) for 'http://snomed.info/sct#160591000146109' '
-  reason: This is a Dutch SNOMED extension which is not present yet on the international terminology server.
+    Observation.code.coding[0]:
+      - message: 'Local Error: Resolved system http://snomed.info/sct, but the definition is not complete. Server Error: Unable to find code 160591000146109 in http://snomed.info/sct'
+        reason: This is a Dutch SNOMED extension which is not present yet on the international terminology server.
 
 nl-core-HearingFunction.HearingAid-*:
   ignored issues:
