@@ -1,585 +1,533 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-    <id value="zib-DOSScore" />
-    <url value="http://nictiz.nl/fhir/StructureDefinition/zib-DOSScore" />
-    <name value="ZibDOSScore" />
-    <title value="zib DOSScore" />
-    <status value="draft" />
-    <publisher value="Nictiz" />
-    <contact>
-        <name value="Nictiz" />
-        <telecom>
-            <system value="url" />
-            <value value="https://www.nictiz.nl" />
-            <use value="work" />
-        </telecom>
-    </contact>
-    <description value="The Delirium Observation Screening Scale is a tool to determine whether a patient has delirium. The DOSS includes 13 observations of behavior (verbal and non-verbal) which represent the symptoms of a delirium. These observations can be performed during regular contact with the patient." />
-    <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) DOSScore-v1.0(2020EN)](https://zibs.nl/wiki/DOSScore-v1.0(2020EN))." />
-    <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
-    <fhirVersion value="4.0.1" />
-    <mapping>
+  <id value="zib-DOSScore" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-DOSScore" />
+  <name value="ZibDOSScore" />
+  <title value="zib DOSScore" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The Delirium Observation Screening Scale is a tool to determine whether a patient has delirium. The DOSS includes 13 observations of behavior (verbal and non-verbal) which represent the symptoms of a delirium. These observations can be performed during regular contact with the patient." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) DOSScore-v1.0(2020EN)](https://zibs.nl/wiki/DOSScore-v1.0(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-dosscore-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/DOSScore-v1.0(2020EN)" />
+    <name value="zib DOSScore-v1.0(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="DOSScore" />
+      <alias value="DOSScore" />
+      <mapping>
         <identity value="zib-dosscore-v1.0-2020EN" />
-        <uri value="https://zibs.nl/wiki/DOSScore-v1.0(2020EN)" />
-        <name value="zib DOSScore-v1.0(2020EN)" />
-    </mapping>
-    <kind value="resource" />
-    <abstract value="true" />
-    <type value="Observation" />
-    <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
-    <derivation value="constraint" />
-    <differential>
-        <element id="Observation">
-            <path value="Observation" />
-            <short value="DOSScore" />
-            <alias value="DOSScore" />
-            <mapping>
-                <identity value="zib-dosscore-v1.0-2020EN" />
-                <map value="NL-CM:18.7.1" />
-                <comment value="DOSScore" />
-            </mapping>
-        </element>
-        <element id="Observation.code">
-            <path value="Observation.code" />
-            <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
-            <patternCodeableConcept>
-                <coding>
-                    <system value="http://snomed.info/sct" />
-                    <code value="160591000146109" />
-                </coding>
-            </patternCodeableConcept>
-        </element>
-        <element id="Observation.effective[x]">
-            <path value="Observation.effective[x]" />
-            <slicing>
-                <discriminator>
-                    <type value="type" />
-                    <path value="$this" />
-                </discriminator>
-                <rules value="open" />
-            </slicing>
-        </element>
-        <element id="Observation.effective[x]:effectiveDateTime">
-            <path value="Observation.effective[x]" />
-            <sliceName value="effectiveDateTime" />
-            <short value="DOSScoreDateTime" />
-            <definition value="The date on which the DOS score is registered." />
-            <alias value="DOSScoreDatumTijd" />
-            <type>
-                <code value="dateTime" />
-            </type>
-            <mapping>
-                <identity value="zib-dosscore-v1.0-2020EN" />
-                <map value="NL-CM:18.7.5" />
-                <comment value="DOSScoreDateTime" />
-            </mapping>
-        </element>
-        <element id="Observation.value[x]">
-            <path value="Observation.value[x]" />
-            <slicing>
-                <discriminator>
-                    <type value="type" />
-                    <path value="$this" />
-                </discriminator>
-                <rules value="open" />
-            </slicing>
-        </element>
-        <element id="Observation.value[x]:valueInteger">
-            <path value="Observation.value[x]" />
-            <sliceName value="valueInteger" />
-            <short value="DOSScoreTotal" />
-            <definition value="Per shift a total score is calculated (minimum 0 and maximum 13). The total scores of three shifts (day, evening and night shifts) are summed to the total score of the day (minimum 0 and maximum 39).&#xD;&#xA;&#xD;&#xA;The DOS scale final score is calculated by dividing the total score of the day by 3 (minimum 0 and maximum 13).&#xD;&#xA;&#xD;&#xA;A DOS scale final score &lt; 3 means that the patient is probably not delirious. A DOS scale final score &gt; 3 means that the patient is probably delirious." />
-            <alias value="DOSScoreTotaal" />
-            <type>
-                <code value="integer" />
-            </type>
-            <minValueInteger value="0" />
-            <maxValueInteger value="13" />
-            <mapping>
-                <identity value="zib-dosscore-v1.0-2020EN" />
-                <map value="NL-CM:18.7.3" />
-                <comment value="DOSScoreTotal" />
-            </mapping>
-        </element>
-        <element id="Observation.note">
-            <path value="Observation.note" />
-            <max value="1" />
-        </element>
-        <element id="Observation.note.text">
-            <path value="Observation.note.text" />
-            <short value="Comment" />
-            <definition value="Comment on the DOS score." />
-            <alias value="Toelichting" />
-            <mapping>
-                <identity value="zib-dosscore-v1.0-2020EN" />
-                <map value="NL-CM:18.7.2" />
-                <comment value="Comment" />
-            </mapping>
-        </element>
-        <element id="Observation.component">
-            <path value="Observation.component" />
-            <slicing>
-                <discriminator>
-                    <type value="value" />
-                    <path value="code" />
-                </discriminator>
-                <rules value="open" />
-            </slicing>
-        </element>
-        <element id="Observation.component:dozesOff">
-            <path value="Observation.component" />
-            <sliceName value="dozesOff" />
-            <max value="1" />
-        </element>
-        <element id="Observation.component:dozesOff.code">
-            <path value="Observation.component.code" />
-            <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
-            <patternCodeableConcept>
-                <coding>
-                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
-                    <code value="18007006" />
-                </coding>
-            </patternCodeableConcept>
-        </element>
-        <element id="Observation.component:dozesOff.value[x]">
-            <path value="Observation.component.value[x]" />
-            <short value="DozesOff" />
-            <definition value="DOS observation: patient dozes off during conversation or activities.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;0: never&#xD;&#xA;1: sometimes-always&#xD;&#xA;-: don't know" />
-            <alias value="ZaktWeg" />
-            <type>
-                <code value="integer" />
-            </type>
-            <minValueInteger value="0" />
-            <maxValueInteger value="1" />
-            <mapping>
-                <identity value="zib-dosscore-v1.0-2020EN" />
-                <map value="NL-CM:18.7.6" />
-                <comment value="DozesOff" />
-            </mapping>
-        </element>
-        <element id="Observation.component:dozesOff.referenceRange">
-            <path value="Observation.component.referenceRange" />
-            <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
-        </element>
-        <element id="Observation.component:easilyDistracted">
-            <path value="Observation.component" />
-            <sliceName value="easilyDistracted" />
-            <max value="1" />
-        </element>
-        <element id="Observation.component:easilyDistracted.code">
-            <path value="Observation.component.code" />
-            <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
-            <patternCodeableConcept>
-                <coding>
-                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
-                    <code value="18007007" />
-                </coding>
-            </patternCodeableConcept>
-        </element>
-        <element id="Observation.component:easilyDistracted.value[x]">
-            <path value="Observation.component.value[x]" />
-            <short value="EasilyDistracted" />
-            <definition value="DOS observation: patient is easily distracted by stimuli from the environment.&#xD;&#xA;&#xD;&#xA;Someone is easily distracted by stimuli from the environment when he/she responds verbally or non-verbally to sounds or movements that have no relation to him/her and the nature of which does not make you expect a reaction from him/her.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;0: never&#xD;&#xA;1: sometimes-always&#xD;&#xA;-: don't know" />
-            <alias value="SnelAfgeleid" />
-            <type>
-                <code value="integer" />
-            </type>
-            <minValueInteger value="0" />
-            <maxValueInteger value="1" />
-            <mapping>
-                <identity value="zib-dosscore-v1.0-2020EN" />
-                <map value="NL-CM:18.7.7" />
-                <comment value="EasilyDistracted" />
-            </mapping>
-        </element>
-        <element id="Observation.component:easilyDistracted.referenceRange">
-            <path value="Observation.component.referenceRange" />
-            <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
-        </element>
-        <element id="Observation.component:maintainsAttention">
-            <path value="Observation.component" />
-            <sliceName value="maintainsAttention" />
-            <max value="1" />
-        </element>
-        <element id="Observation.component:maintainsAttention.code">
-            <path value="Observation.component.code" />
-            <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
-            <patternCodeableConcept>
-                <coding>
-                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
-                    <code value="18007008" />
-                </coding>
-            </patternCodeableConcept>
-        </element>
-        <element id="Observation.component:maintainsAttention.value[x]">
-            <path value="Observation.component.value[x]" />
-            <short value="MaintainsAttention" />
-            <definition value="DOS observation: patient maintains attention to conversation or action.&#xD;&#xA;&#xD;&#xA;Someone is maintaining attention to a conversation or action if he/she verbally or non-verbally shows that they are following the conversation or action.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;1: never&#xD;&#xA;0: sometimes-always&#xD;&#xA;-: don't know" />
-            <alias value="HeeftAandacht" />
-            <type>
-                <code value="integer" />
-            </type>
-            <minValueInteger value="0" />
-            <maxValueInteger value="1" />
-            <mapping>
-                <identity value="zib-dosscore-v1.0-2020EN" />
-                <map value="NL-CM:18.7.8" />
-                <comment value="MaintainsAttention" />
-            </mapping>
-        </element>
-        <element id="Observation.component:maintainsAttention.referenceRange">
-            <path value="Observation.component.referenceRange" />
-            <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
-        </element>
-        <element id="Observation.component:unfinishedQuestionAnswer">
-            <path value="Observation.component" />
-            <sliceName value="unfinishedQuestionAnswer" />
-            <max value="1" />
-        </element>
-        <element id="Observation.component:unfinishedQuestionAnswer.code">
-            <path value="Observation.component.code" />
-            <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
-            <patternCodeableConcept>
-                <coding>
-                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
-                    <code value="18007009" />
-                </coding>
-            </patternCodeableConcept>
-        </element>
-        <element id="Observation.component:unfinishedQuestionAnswer.value[x]">
-            <path value="Observation.component.value[x]" />
-            <short value="UnfinishedQuestionAnswer" />
-            <definition value="DOS observation: patient does not finish question or answer.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;0: never&#xD;&#xA;1: sometimes-always&#xD;&#xA;-: don't know" />
-            <alias value="VraagAntwoordNietAf" />
-            <type>
-                <code value="integer" />
-            </type>
-            <minValueInteger value="0" />
-            <maxValueInteger value="1" />
-            <mapping>
-                <identity value="zib-dosscore-v1.0-2020EN" />
-                <map value="NL-CM:18.7.9" />
-                <comment value="UnfinishedQuestionAnswer" />
-            </mapping>
-        </element>
-        <element id="Observation.component:unfinishedQuestionAnswer.referenceRange">
-            <path value="Observation.component.referenceRange" />
-            <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
-        </element>
-        <element id="Observation.component:answersNoFit">
-            <path value="Observation.component" />
-            <sliceName value="answersNoFit" />
-            <max value="1" />
-        </element>
-        <element id="Observation.component:answersNoFit.code">
-            <path value="Observation.component.code" />
-            <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
-            <patternCodeableConcept>
-                <coding>
-                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
-                    <code value="18007010" />
-                </coding>
-            </patternCodeableConcept>
-        </element>
-        <element id="Observation.component:answersNoFit.value[x]">
-            <path value="Observation.component.value[x]" />
-            <short value="AnswersNoFit" />
-            <definition value="DOS observation: patient gives answers that do not fit the question.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;0: never&#xD;&#xA;1: sometimes-always&#xD;&#xA;-: don't know" />
-            <alias value="AntwoordenNietPassend" />
-            <type>
-                <code value="integer" />
-            </type>
-            <minValueInteger value="0" />
-            <maxValueInteger value="1" />
-            <mapping>
-                <identity value="zib-dosscore-v1.0-2020EN" />
-                <map value="NL-CM:18.7.10" />
-                <comment value="AnswersNoFit" />
-            </mapping>
-        </element>
-        <element id="Observation.component:answersNoFit.referenceRange">
-            <path value="Observation.component.referenceRange" />
-            <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
-        </element>
-        <element id="Observation.component:reactsSlowly">
-            <path value="Observation.component" />
-            <sliceName value="reactsSlowly" />
-            <max value="1" />
-        </element>
-        <element id="Observation.component:reactsSlowly.code">
-            <path value="Observation.component.code" />
-            <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
-            <patternCodeableConcept>
-                <coding>
-                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
-                    <code value="18007011" />
-                </coding>
-            </patternCodeableConcept>
-        </element>
-        <element id="Observation.component:reactsSlowly.value[x]">
-            <path value="Observation.component.value[x]" />
-            <short value="ReactsSlowly" />
-            <definition value="DOS observation: patient reacts slowly to instructions.&#xD;&#xA;&#xD;&#xA;Someone reacts slowly to instructions when acting is delayed and/or there are moments of stillness/inactivity before moving into action.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;0: never&#xD;&#xA;1: sometimes-always&#xD;&#xA;-: don't know" />
-            <alias value="ReageertTraag" />
-            <type>
-                <code value="integer" />
-            </type>
-            <minValueInteger value="0" />
-            <maxValueInteger value="1" />
-            <mapping>
-                <identity value="zib-dosscore-v1.0-2020EN" />
-                <map value="NL-CM:18.7.11" />
-                <comment value="ReactsSlowly" />
-            </mapping>
-        </element>
-        <element id="Observation.component:reactsSlowly.referenceRange">
-            <path value="Observation.component.referenceRange" />
-            <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
-        </element>
-        <element id="Observation.component:thinksSomewhereElse">
-            <path value="Observation.component" />
-            <sliceName value="thinksSomewhereElse" />
-            <max value="1" />
-        </element>
-        <element id="Observation.component:thinksSomewhereElse.code">
-            <path value="Observation.component.code" />
-            <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
-            <patternCodeableConcept>
-                <coding>
-                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
-                    <code value="18007012" />
-                </coding>
-            </patternCodeableConcept>
-        </element>
-        <element id="Observation.component:thinksSomewhereElse.value[x]">
-            <path value="Observation.component.value[x]" />
-            <short value="ThinksSomewhereElse" />
-            <definition value="DOS observation: patient thinks they are somewhere else.&#xD;&#xA;&#xD;&#xA;Someone thinks they are somewhere else when he/she shows this in words or actions.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;0: never&#xD;&#xA;1: sometimes-always&#xD;&#xA;-: don't know" />
-            <alias value="DenktErgensAnders" />
-            <type>
-                <code value="integer" />
-            </type>
-            <minValueInteger value="0" />
-            <maxValueInteger value="1" />
-            <mapping>
-                <identity value="zib-dosscore-v1.0-2020EN" />
-                <map value="NL-CM:18.7.12" />
-                <comment value="ThinksSomewhereElse" />
-            </mapping>
-        </element>
-        <element id="Observation.component:thinksSomewhereElse.referenceRange">
-            <path value="Observation.component.referenceRange" />
-            <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
-        </element>
-        <element id="Observation.component:knowsPartDay">
-            <path value="Observation.component" />
-            <sliceName value="knowsPartDay" />
-            <max value="1" />
-        </element>
-        <element id="Observation.component:knowsPartDay.code">
-            <path value="Observation.component.code" />
-            <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
-            <patternCodeableConcept>
-                <coding>
-                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
-                    <code value="18007013" />
-                </coding>
-            </patternCodeableConcept>
-        </element>
-        <element id="Observation.component:knowsPartDay.value[x]">
-            <path value="Observation.component.value[x]" />
-            <short value="KnowsPartDay" />
-            <definition value="DOS observation: patient knows which part of the day it is.&#xD;&#xA;&#xD;&#xA;Someone knows what part of the day it is when he/she shows such in words or actions.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;1: never&#xD;&#xA;0: sometimes-always&#xD;&#xA;-: don't know" />
-            <alias value="BeseftDagdeel" />
-            <type>
-                <code value="integer" />
-            </type>
-            <minValueInteger value="0" />
-            <maxValueInteger value="1" />
-            <mapping>
-                <identity value="zib-dosscore-v1.0-2020EN" />
-                <map value="NL-CM:18.7.13" />
-                <comment value="KnowsPartDay" />
-            </mapping>
-        </element>
-        <element id="Observation.component:knowsPartDay.referenceRange">
-            <path value="Observation.component.referenceRange" />
-            <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
-        </element>
-        <element id="Observation.component:remembersRecent">
-            <path value="Observation.component" />
-            <sliceName value="remembersRecent" />
-            <max value="1" />
-        </element>
-        <element id="Observation.component:remembersRecent.code">
-            <path value="Observation.component.code" />
-            <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
-            <patternCodeableConcept>
-                <coding>
-                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
-                    <code value="18007014" />
-                </coding>
-            </patternCodeableConcept>
-        </element>
-        <element id="Observation.component:remembersRecent.value[x]">
-            <path value="Observation.component.value[x]" />
-            <short value="RemembersRecent" />
-            <definition value="DOS observation: patient remembers recent events.&#xD;&#xA;&#xD;&#xA;Someone remembers recent events when he/she can for example tell whether they had visitors or what he/she ate.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;1: never&#xD;&#xA;0: sometimes-always&#xD;&#xA;-: don't know" />
-            <alias value="HerinnertRecent" />
-            <type>
-                <code value="integer" />
-            </type>
-            <minValueInteger value="0" />
-            <maxValueInteger value="1" />
-            <mapping>
-                <identity value="zib-dosscore-v1.0-2020EN" />
-                <map value="NL-CM:18.7.14" />
-                <comment value="RemembersRecent" />
-            </mapping>
-        </element>
-        <element id="Observation.component:remembersRecent.referenceRange">
-            <path value="Observation.component.referenceRange" />
-            <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
-        </element>
-        <element id="Observation.component:restless">
-            <path value="Observation.component" />
-            <sliceName value="restless" />
-            <max value="1" />
-        </element>
-        <element id="Observation.component:restless.code">
-            <path value="Observation.component.code" />
-            <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
-            <patternCodeableConcept>
-                <coding>
-                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
-                    <code value="18007015" />
-                </coding>
-            </patternCodeableConcept>
-        </element>
-        <element id="Observation.component:restless.value[x]">
-            <path value="Observation.component.value[x]" />
-            <short value="Restless" />
-            <definition value="DOS observation: patient is picking, disorderly, restless.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;0: never&#xD;&#xA;1: sometimes-always&#xD;&#xA;-: don't know" />
-            <alias value="Rusteloos" />
-            <type>
-                <code value="integer" />
-            </type>
-            <minValueInteger value="0" />
-            <maxValueInteger value="1" />
-            <mapping>
-                <identity value="zib-dosscore-v1.0-2020EN" />
-                <map value="NL-CM:18.7.15" />
-                <comment value="Restless" />
-            </mapping>
-        </element>
-        <element id="Observation.component:restless.referenceRange">
-            <path value="Observation.component.referenceRange" />
-            <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
-        </element>
-        <element id="Observation.component:pullsWires">
-            <path value="Observation.component" />
-            <sliceName value="pullsWires" />
-            <max value="1" />
-        </element>
-        <element id="Observation.component:pullsWires.code">
-            <path value="Observation.component.code" />
-            <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
-            <patternCodeableConcept>
-                <coding>
-                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
-                    <code value="18007016" />
-                </coding>
-            </patternCodeableConcept>
-        </element>
-        <element id="Observation.component:pullsWires.value[x]">
-            <path value="Observation.component.value[x]" />
-            <short value="PullsWires" />
-            <definition value="DOS observation: patient pulls IV tubing, feeding tubes, catheters, etc.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;0: never&#xD;&#xA;1: sometimes-always&#xD;&#xA;-: don't know" />
-            <alias value="TrektDraden" />
-            <type>
-                <code value="integer" />
-            </type>
-            <minValueInteger value="0" />
-            <maxValueInteger value="1" />
-            <mapping>
-                <identity value="zib-dosscore-v1.0-2020EN" />
-                <map value="NL-CM:18.7.16" />
-                <comment value="PullsWires" />
-            </mapping>
-        </element>
-        <element id="Observation.component:pullsWires.referenceRange">
-            <path value="Observation.component.referenceRange" />
-            <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
-        </element>
-        <element id="Observation.component:easilyEmotional">
-            <path value="Observation.component" />
-            <sliceName value="easilyEmotional" />
-            <max value="1" />
-        </element>
-        <element id="Observation.component:easilyEmotional.code">
-            <path value="Observation.component.code" />
-            <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
-            <patternCodeableConcept>
-                <coding>
-                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
-                    <code value="18007017" />
-                </coding>
-            </patternCodeableConcept>
-        </element>
-        <element id="Observation.component:easilyEmotional.value[x]">
-            <path value="Observation.component.value[x]" />
-            <short value="EasilyEmotional" />
-            <definition value="DOS observation: patient is easily or suddenly emotional.&#xD;&#xA;&#xD;&#xA;Someone is easily or suddenly emotional when he/she responds with a fierce emotion without provocation or when the fierceness of the emotion does not seem to match the provocation.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;0: never&#xD;&#xA;1: sometimes-always&#xD;&#xA;-: don't know" />
-            <alias value="SnelGeemotioneerd" />
-            <type>
-                <code value="integer" />
-            </type>
-            <minValueInteger value="0" />
-            <maxValueInteger value="1" />
-            <mapping>
-                <identity value="zib-dosscore-v1.0-2020EN" />
-                <map value="NL-CM:18.7.17" />
-                <comment value="EasilyEmotional" />
-            </mapping>
-        </element>
-        <element id="Observation.component:easilyEmotional.referenceRange">
-            <path value="Observation.component.referenceRange" />
-            <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
-        </element>
-        <element id="Observation.component:hallucinations">
-            <path value="Observation.component" />
-            <sliceName value="hallucinations" />
-            <max value="1" />
-        </element>
-        <element id="Observation.component:hallucinations.code">
-            <path value="Observation.component.code" />
-            <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
-            <patternCodeableConcept>
-                <coding>
-                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
-                    <code value="18007018" />
-                </coding>
-            </patternCodeableConcept>
-        </element>
-        <element id="Observation.component:hallucinations.value[x]">
-            <path value="Observation.component.value[x]" />
-            <short value="Hallucinations" />
-            <definition value="DOS observation: patient sees/hears things which are not there.&#xD;&#xA;&#xD;&#xA;Someone sees/hears things which are not there when he/she shows this verbally (ask!) or non-verbally.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;0: never&#xD;&#xA;1: sometimes-always&#xD;&#xA;-: don't know" />
-            <alias value="Hallucinaties" />
-            <type>
-                <code value="integer" />
-            </type>
-            <minValueInteger value="0" />
-            <maxValueInteger value="1" />
-            <mapping>
-                <identity value="zib-dosscore-v1.0-2020EN" />
-                <map value="NL-CM:18.7.18" />
-                <comment value="Hallucinations" />
-            </mapping>
-        </element>
-        <element id="Observation.component:hallucinations.referenceRange">
-            <path value="Observation.component.referenceRange" />
-            <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
-        </element>
-    </differential>
+        <map value="NL-CM:18.7.1" />
+        <comment value="DOSScore" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="160591000146109" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effective[x]" />
+      <sliceName value="effectiveDateTime" />
+      <short value="DOSScoreDateTime" />
+      <definition value="The date on which the DOS score is registered." />
+      <alias value="DOSScoreDatumTijd" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-dosscore-v1.0-2020EN" />
+        <map value="NL-CM:18.7.5" />
+        <comment value="DOSScoreDateTime" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueInteger">
+      <path value="Observation.value[x]" />
+      <sliceName value="valueInteger" />
+      <short value="DOSScoreTotal" />
+      <definition value="Per shift a total score is calculated (minimum 0 and maximum 13). The total scores of three shifts (day, evening and night shifts) are summed to the total score of the day (minimum 0 and maximum 39).&#xD;&#xA;&#xD;&#xA;The DOS scale final score is calculated by dividing the total score of the day by 3 (minimum 0 and maximum 13).&#xD;&#xA;&#xD;&#xA;A DOS scale final score &lt; 3 means that the patient is probably not delirious. A DOS scale final score &gt; 3 means that the patient is probably delirious." />
+      <alias value="DOSScoreTotaal" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="13" />
+      <mapping>
+        <identity value="zib-dosscore-v1.0-2020EN" />
+        <map value="NL-CM:18.7.3" />
+        <comment value="DOSScoreTotal" />
+      </mapping>
+    </element>
+    <element id="Observation.note">
+      <path value="Observation.note" />
+      <max value="1" />
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
+      <short value="Comment" />
+      <definition value="Comment on the DOS score." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-dosscore-v1.0-2020EN" />
+        <map value="NL-CM:18.7.2" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:dozesOff">
+      <path value="Observation.component" />
+      <sliceName value="dozesOff" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:dozesOff.code">
+      <path value="Observation.component.code" />
+      <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="18007006" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:dozesOff.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="DozesOff" />
+      <definition value="DOS observation: patient dozes off during conversation or activities.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;0: never&#xD;&#xA;1: sometimes-always&#xD;&#xA;-: don't know" />
+      <alias value="ZaktWeg" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-dosscore-v1.0-2020EN" />
+        <map value="NL-CM:18.7.6" />
+        <comment value="DozesOff" />
+      </mapping>
+    </element>
+    <element id="Observation.component:easilyDistracted">
+      <path value="Observation.component" />
+      <sliceName value="easilyDistracted" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:easilyDistracted.code">
+      <path value="Observation.component.code" />
+      <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="18007007" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:easilyDistracted.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="EasilyDistracted" />
+      <definition value="DOS observation: patient is easily distracted by stimuli from the environment.&#xD;&#xA;&#xD;&#xA;Someone is easily distracted by stimuli from the environment when he/she responds verbally or non-verbally to sounds or movements that have no relation to him/her and the nature of which does not make you expect a reaction from him/her.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;0: never&#xD;&#xA;1: sometimes-always&#xD;&#xA;-: don't know" />
+      <alias value="SnelAfgeleid" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-dosscore-v1.0-2020EN" />
+        <map value="NL-CM:18.7.7" />
+        <comment value="EasilyDistracted" />
+      </mapping>
+    </element>
+    <element id="Observation.component:maintainsAttention">
+      <path value="Observation.component" />
+      <sliceName value="maintainsAttention" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:maintainsAttention.code">
+      <path value="Observation.component.code" />
+      <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="18007008" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:maintainsAttention.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="MaintainsAttention" />
+      <definition value="DOS observation: patient maintains attention to conversation or action.&#xD;&#xA;&#xD;&#xA;Someone is maintaining attention to a conversation or action if he/she verbally or non-verbally shows that they are following the conversation or action.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;1: never&#xD;&#xA;0: sometimes-always&#xD;&#xA;-: don't know" />
+      <alias value="HeeftAandacht" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-dosscore-v1.0-2020EN" />
+        <map value="NL-CM:18.7.8" />
+        <comment value="MaintainsAttention" />
+      </mapping>
+    </element>
+    <element id="Observation.component:unfinishedQuestionAnswer">
+      <path value="Observation.component" />
+      <sliceName value="unfinishedQuestionAnswer" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:unfinishedQuestionAnswer.code">
+      <path value="Observation.component.code" />
+      <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="18007009" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:unfinishedQuestionAnswer.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="UnfinishedQuestionAnswer" />
+      <definition value="DOS observation: patient does not finish question or answer.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;0: never&#xD;&#xA;1: sometimes-always&#xD;&#xA;-: don't know" />
+      <alias value="VraagAntwoordNietAf" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-dosscore-v1.0-2020EN" />
+        <map value="NL-CM:18.7.9" />
+        <comment value="UnfinishedQuestionAnswer" />
+      </mapping>
+    </element>
+    <element id="Observation.component:answersNoFit">
+      <path value="Observation.component" />
+      <sliceName value="answersNoFit" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:answersNoFit.code">
+      <path value="Observation.component.code" />
+      <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="18007010" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:answersNoFit.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="AnswersNoFit" />
+      <definition value="DOS observation: patient gives answers that do not fit the question.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;0: never&#xD;&#xA;1: sometimes-always&#xD;&#xA;-: don't know" />
+      <alias value="AntwoordenNietPassend" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-dosscore-v1.0-2020EN" />
+        <map value="NL-CM:18.7.10" />
+        <comment value="AnswersNoFit" />
+      </mapping>
+    </element>
+    <element id="Observation.component:reactsSlowly">
+      <path value="Observation.component" />
+      <sliceName value="reactsSlowly" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:reactsSlowly.code">
+      <path value="Observation.component.code" />
+      <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="18007011" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:reactsSlowly.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="ReactsSlowly" />
+      <definition value="DOS observation: patient reacts slowly to instructions.&#xD;&#xA;&#xD;&#xA;Someone reacts slowly to instructions when acting is delayed and/or there are moments of stillness/inactivity before moving into action.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;0: never&#xD;&#xA;1: sometimes-always&#xD;&#xA;-: don't know" />
+      <alias value="ReageertTraag" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-dosscore-v1.0-2020EN" />
+        <map value="NL-CM:18.7.11" />
+        <comment value="ReactsSlowly" />
+      </mapping>
+    </element>
+    <element id="Observation.component:thinksSomewhereElse">
+      <path value="Observation.component" />
+      <sliceName value="thinksSomewhereElse" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:thinksSomewhereElse.code">
+      <path value="Observation.component.code" />
+      <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="18007012" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:thinksSomewhereElse.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="ThinksSomewhereElse" />
+      <definition value="DOS observation: patient thinks they are somewhere else.&#xD;&#xA;&#xD;&#xA;Someone thinks they are somewhere else when he/she shows this in words or actions.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;0: never&#xD;&#xA;1: sometimes-always&#xD;&#xA;-: don't know" />
+      <alias value="DenktErgensAnders" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-dosscore-v1.0-2020EN" />
+        <map value="NL-CM:18.7.12" />
+        <comment value="ThinksSomewhereElse" />
+      </mapping>
+    </element>
+    <element id="Observation.component:knowsPartDay">
+      <path value="Observation.component" />
+      <sliceName value="knowsPartDay" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:knowsPartDay.code">
+      <path value="Observation.component.code" />
+      <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="18007013" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:knowsPartDay.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="KnowsPartDay" />
+      <definition value="DOS observation: patient knows which part of the day it is.&#xD;&#xA;&#xD;&#xA;Someone knows what part of the day it is when he/she shows such in words or actions.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;1: never&#xD;&#xA;0: sometimes-always&#xD;&#xA;-: don't know" />
+      <alias value="BeseftDagdeel" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-dosscore-v1.0-2020EN" />
+        <map value="NL-CM:18.7.13" />
+        <comment value="KnowsPartDay" />
+      </mapping>
+    </element>
+    <element id="Observation.component:remembersRecent">
+      <path value="Observation.component" />
+      <sliceName value="remembersRecent" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:remembersRecent.code">
+      <path value="Observation.component.code" />
+      <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="18007014" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:remembersRecent.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="RemembersRecent" />
+      <definition value="DOS observation: patient remembers recent events.&#xD;&#xA;&#xD;&#xA;Someone remembers recent events when he/she can for example tell whether they had visitors or what he/she ate.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;1: never&#xD;&#xA;0: sometimes-always&#xD;&#xA;-: don't know" />
+      <alias value="HerinnertRecent" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-dosscore-v1.0-2020EN" />
+        <map value="NL-CM:18.7.14" />
+        <comment value="RemembersRecent" />
+      </mapping>
+    </element>
+    <element id="Observation.component:restless">
+      <path value="Observation.component" />
+      <sliceName value="restless" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:restless.code">
+      <path value="Observation.component.code" />
+      <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="18007015" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:restless.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Restless" />
+      <definition value="DOS observation: patient is picking, disorderly, restless.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;0: never&#xD;&#xA;1: sometimes-always&#xD;&#xA;-: don't know" />
+      <alias value="Rusteloos" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-dosscore-v1.0-2020EN" />
+        <map value="NL-CM:18.7.15" />
+        <comment value="Restless" />
+      </mapping>
+    </element>
+    <element id="Observation.component:pullsWires">
+      <path value="Observation.component" />
+      <sliceName value="pullsWires" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:pullsWires.code">
+      <path value="Observation.component.code" />
+      <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="18007016" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:pullsWires.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="PullsWires" />
+      <definition value="DOS observation: patient pulls IV tubing, feeding tubes, catheters, etc.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;0: never&#xD;&#xA;1: sometimes-always&#xD;&#xA;-: don't know" />
+      <alias value="TrektDraden" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-dosscore-v1.0-2020EN" />
+        <map value="NL-CM:18.7.16" />
+        <comment value="PullsWires" />
+      </mapping>
+    </element>
+    <element id="Observation.component:easilyEmotional">
+      <path value="Observation.component" />
+      <sliceName value="easilyEmotional" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:easilyEmotional.code">
+      <path value="Observation.component.code" />
+      <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="18007017" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:easilyEmotional.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="EasilyEmotional" />
+      <definition value="DOS observation: patient is easily or suddenly emotional.&#xD;&#xA;&#xD;&#xA;Someone is easily or suddenly emotional when he/she responds with a fierce emotion without provocation or when the fierceness of the emotion does not seem to match the provocation.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;0: never&#xD;&#xA;1: sometimes-always&#xD;&#xA;-: don't know" />
+      <alias value="SnelGeemotioneerd" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-dosscore-v1.0-2020EN" />
+        <map value="NL-CM:18.7.17" />
+        <comment value="EasilyEmotional" />
+      </mapping>
+    </element>
+    <element id="Observation.component:hallucinations">
+      <path value="Observation.component" />
+      <sliceName value="hallucinations" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:hallucinations.code">
+      <path value="Observation.component.code" />
+      <comment value="This code aligns with the future version of this zib. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for details." />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="18007018" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:hallucinations.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Hallucinations" />
+      <definition value="DOS observation: patient sees/hears things which are not there.&#xD;&#xA;&#xD;&#xA;Someone sees/hears things which are not there when he/she shows this verbally (ask!) or non-verbally.&#xD;&#xA;&#xD;&#xA;Score:&#xD;&#xA;0: never&#xD;&#xA;1: sometimes-always&#xD;&#xA;-: don't know" />
+      <alias value="Hallucinaties" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-dosscore-v1.0-2020EN" />
+        <map value="NL-CM:18.7.18" />
+        <comment value="Hallucinations" />
+      </mapping>
+    </element>
+  </differential>
 </StructureDefinition>
