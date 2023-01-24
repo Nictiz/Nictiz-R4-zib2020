@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-BowelFunction" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction" />
+  <name value="NlcoreBowelFunction" />
+  <title value="nl core BowelFunction" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="An important function of the rectum in particular is the temporary storage and excretion of feces, at the moment there is cause to do so. Disrupting the bowel functions can lead to fecal incontinence and constipation." />
+  <purpose value="A derived profile from [zib-BowelFunction](http://nictiz.nl/fhir/StructureDefinition/zib-BowelFunction) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Observation" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-BowelFunction" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <comment value="Please note that on a functional level, zib BowelFunction references zib MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept IncontinenceMaterial (NL-CM:4.15.6) is mapped on `DeviceUseStatement.reasonReference` in profile [nl-core-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice) instead of in this profile." />
+      <alias value="nl-core-BowelFunction" />
+    </element>
+    <element id="Observation.extension">
+      <path value="Observation.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Observation.extension:stoma">
+      <path value="Observation.extension" />
+      <sliceName value="stoma" />
+      <min value="0" />
+    </element>
+    <element id="Observation.extension:stoma.value[x]">
+      <path value="Observation.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Stoma" />
+      </type>
+    </element>
+    <element id="Observation.subject">
+      <path value="Observation.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>

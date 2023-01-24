@@ -29,6 +29,11 @@
     <name value="zib Procedure-v5.2(2020EN)" />
   </mapping>
   <mapping>
+    <identity value="zib-bowelfunction-v3.1.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/BowelFunction-v3.1.1(2020EN)" />
+    <name value="zib BowelFunction-v3.1.1(2020EN)" />
+  </mapping>
+  <mapping>
     <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
     <uri value="https://zibs.nl/wiki/FunctionalOrMentalStatus-v3.2(2020EN)" />
     <name value="zib FunctionalOrMentalStatus-v3.2(2020EN)" />
@@ -209,15 +214,22 @@
       <short value="zib MedicalDevice reference" />
       <definition value="The association between a zib MedicalDevice and another zib or other functional model." />
       <comment value="There are several zibs that reference zib MedicalDevice on a functional level, but for which the direction of the reference in FHIR is reversed. Consult the mappings on this element for an overview of which zib concepts are mapped to this element. &#xD;&#xA;&#xD;&#xA;Note that some zibs have a reference to MedicalDevice that is further constrained (e.g. with additional constraints on ProductType or AnatomicalLocation), such as HearingFunction and VisualFunction. For these zibs separate DeviceUseStatement profiles have been created (based on this profile) which also include a specific slice on which their respective MedicalDevice concept mapping is present." />
+      <alias value="Darmfunctie" />
       <alias value="FunctioneleOfMentaleStatus" />
       <alias value="Mobiliteit" />
       <alias value="Stoma" />
       <type>
         <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-BowelFunction" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Stoma" />
       </type>
+      <mapping>
+        <identity value="zib-bowelfunction-v3.1.1-2020EN" />
+        <map value="NL-CM:4.15.6" />
+        <comment value="Reversed reference for zib BowelFunction.IncontinenceMaterial" />
+      </mapping>
       <mapping>
         <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
         <map value="NL-CM:4.26.5" />
@@ -244,6 +256,9 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
       </type>
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="BodySite" />
+        </extension>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000" />
       </binding>
