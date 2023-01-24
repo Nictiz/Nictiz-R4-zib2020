@@ -14,7 +14,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="Information on the development and growth of a child is important in determining the kind of care that should be provided to the child and the family. When the child is being transferred, continuity of care can be achieved . Information can provide insight in the process of development and whether the child has a developmental delay." />
+  <description value="Information on the development and growth of a child is important in determining the kind of care that should be provided to the child and the family. When the child is being transferred, continuity of care can be achieved. Information can provide insight in the process of development and whether the child has a developmental delay." />
   <purpose value="A derived profile from [zib-DevelopmentChild](http://nictiz.nl/fhir/StructureDefinition/zib-DevelopmentChild) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
@@ -27,6 +27,17 @@
     <element id="Observation">
       <path value="Observation" />
       <alias value="nl-core-DevelopmentChild" />
+    </element>
+    <element id="Observation.subject">
+      <path value="Observation.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
     </element>
   </differential>
 </StructureDefinition>
