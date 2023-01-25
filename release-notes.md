@@ -105,9 +105,12 @@ This document contains release notes per zib, indicating differences with their 
 * The extension EpisodOfCare-Title has been replaced by ext-EpisodeOfCare.EpisodeOfCareName because this zib concept is functionally equivalent.
 * The extensions EpisodeOfCare-DateFirstEncounter and EpisodeOfCare-DateLastEncounter from the previous profile are not inherited because no functional backing exists.
 
-# zib-FLACCpainScale
+## zib-FLACCpainScale
 * The semantic codes on the `Observation.component.code` elements have changed from LOINC to codes from the ScoreObservaties code system (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1).
 * The system value on `Observation.code` has changed from http://loinc.org to http://snomed.info/sct and the code value has changed from 38213-5 to 108291000146105.
+
+## zib-FluidBalance
+* Changed `Observation.code` from 364396009 to 710853006#http://snomed.info/sct.
 
 ## zib-FreedomRistrictingIntervention
 * This is a new zib loosely based on the previous zib FreedomRestrictingMeasures. Below the most relevant changes compared to the previous zib and the STU3 profile are described.
@@ -120,9 +123,6 @@ This document contains release notes per zib, indicating differences with their 
 * MedicalDevice extension has been removed because the reference is reversed in FHIR. The MedicalDevice profile refers to this profile.
 * Moved the fixed functional status finding and mental status finding to slices on `Observation.category` instead of `.category.coding`, discriminated by a pattern, and strengthened by an invariant to check if one of the fixed terminology codes is present.
 * The comment element is mapped on `Observation.note.text` instead of `Observation.comment`.
-
-## zib-FluidBalance
-* Changed `Observation.code` from 364396009 to 710853006#http://snomed.info/sct.
 
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.
