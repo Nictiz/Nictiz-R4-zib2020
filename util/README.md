@@ -2,13 +2,14 @@
 
 This folder contains some utilities for zib2020 profiling.
 
-## qaAutomation
+## qa
 
-This folders contains the pieces to run the automated QA tools. These tools are used in the configured Github actions (configured in `.github/actions/*.yml` from the root of this repo) but can also be used manually. See the README in that folder for more information.
+This folders contains the pieces to run the automated QA tools. These tools are used in the configured Github actions (configured in `.github/actions/*.yml` from the root of this repo). To use them manually:
+* Make sure Docker is running.
+* Start the batch scripts "qa.bat" (this might take a while if you run this for the first time).
+* Point your webbrowser at http://localhost:9000. This will give you a menu of the checks that you can perform.
 
-Assuming Docker is running, the workflow can be started using the batch scripts "qa.bat". Ik will provide you with a menu to pick what to do.
-
-To use the Nationale Terminologieserver for validation, you need to place a file called "nts-credentials.env" in the "qaAutomation" folder, containing the following content:
+To use the Nationale Terminologieserver for validation, you need to place a file called "nts-credentials.env" in the "qa" folder, containing the following content:
 
 ```
 NTS_USER=xxx
@@ -17,9 +18,12 @@ NTS_PASS=yyy
 
 Where `xxx` and `yyy` are your username and password for the Nationale Terminologieserver.
 
+### Rebuilding the Docker image
+When encountering problems with running the qa tooling, rebuilding the Docker image is a good start. Run `docker-compose build --no-cache` from `util/qa` to perform a full rebuild.
+
 ## addDataFromZib
 
-Metadata (`url`, `name`, `title`, `status`, `publisher`, `contact`, `purpose`, `copyright`, `abstract`) following the profiling guidelines is added if not present or edited when containing Forge's default values for both zib and nl-core profiles. An `id` (in both zib and nl-core profiles) and a `mapping` to a zib (only in zib profiles) following the guidelines should be present for this to work. If a non-default value is already present, the XSLT does not modify it, allowing for overruling the default value when profiling.
+Based on the definitions from ART-DECOR, metadata (`url`, `name`, `title`, `status`, `publisher`, `contact`, `purpose`, `copyright`, `abstract`) following the profiling guidelines is added if not present or edited when containing Forge's default values for both zib and nl-core profiles. An `id` (in both zib and nl-core profiles) and a `mapping` to a zib (only in zib profiles) following the guidelines should be present for this to work. If a non-default value is already present, the XSLT does not modify it, allowing for overruling the default value when profiling.
 
 Notable exception to this is `definition` - this will not be added automatically and should still be added by hand.
 
@@ -31,6 +35,9 @@ Exception: no `.definition` is added to the root concept of a zib following 10.2
 
 The XSLT allows for multiple mappings on one element (combining `.short` and `.definition`, adding multiple `.alias`, adding the right `.mapping.comment`), but testing has been limited.
 
+### Update ART-DECOR definitions
+
+To update the ART-DECOR definitions file (zib2020bbr-decor.xml), the refreshDecorDefinition style sheet can be used. This scripts is a standalone XSL file that operates without an XML source. It can be executed by selecting the XSL file as the XML source within Oxygen, or by calling the XSL using Saxon and using the `-it` flag with the name (refreshDecorDefinition) of the template.
 ## downloadTerminology
 
 This folder contains two xslt scripts that loop through all resources in the `resources` folder, find relevant canonicals for ValueSets and systems for CodeSystems and download these terminology resources from ART-DECOR to `resources/terminology`.

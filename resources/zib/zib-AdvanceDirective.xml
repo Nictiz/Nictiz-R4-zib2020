@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-AdvanceDirective" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-AdvanceDirective" />
+  <name value="ZibAdvanceDirective" />
+  <title value="zib AdvanceDirective" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A living will is a verbal or written description of the patient’s wishes with regard to future medical action or end of their life. A living will is mainly used for situations in which the patient is no longer able to speak about these decisions with their healthcare provider." />
+  <purpose value="This Consent resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) AdvanceDirective-v3.1.1(2020EN)](https://zibs.nl/wiki/AdvanceDirective-v3.1.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-advancedirective-v3.1.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/AdvanceDirective-v3.1.1(2020EN)" />
+    <name value="zib AdvanceDirective-v3.1.1(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Consent" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Consent" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Consent">
+      <path value="Consent" />
+      <short value="AdvanceDirective" />
+      <alias value="Wilsverklaring" />
+      <mapping>
+        <identity value="zib-advancedirective-v3.1.1-2020EN" />
+        <map value="NL-CM:7.15.1" />
+        <comment value="AdvanceDirective" />
+      </mapping>
+    </element>
+    <element id="Consent.extension">
+      <path value="Consent.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Consent.extension:disorder">
+      <path value="Consent.extension" />
+      <sliceName value="disorder" />
+      <min value="0" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-AdvanceDirective.Disorder" />
+      </type>
+    </element>
+    <element id="Consent.extension:comment">
+      <path value="Consent.extension" />
+      <sliceName value="comment" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Comment" />
+      </type>
+    </element>
+    <element id="Consent.extension:comment.value[x]">
+      <path value="Consent.extension.value[x]" />
+      <short value="Comment" />
+      <definition value="Comment on the living will: the form, such as a medallion, tattoo, etc., or where the living will can be found." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-advancedirective-v3.1.1-2020EN" />
+        <map value="NL-CM:7.15.6" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Consent.status">
+      <path value="Consent.status" />
+      <comment value="This element has no functional counterpart in the zib and cannot be implicitly mapped to other concepts. Unless a more appropriate status is recorded, it is assumed that only _active_ Consent resources will be exchanged." />
+    </element>
+    <element id="Consent.scope">
+      <path value="Consent.scope" />
+      <comment value="At the moment of writing (02-11-2021) the _adr_ code is incorrectly removed from the ConsentScopeCodes CodeSystem (http://terminology.hl7.org/CodeSystem/consentscope). This will be corrected within the R4 release of FHIR based on this tracker item: &lt;https://jira.hl7.org/browse/FHIR-34215&gt;." />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://terminology.hl7.org/CodeSystem/consentscope" />
+          <code value="adr" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Consent.category">
+      <path value="Consent.category" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://terminology.hl7.org/CodeSystem/consentcategorycodes" />
+          <code value="acd" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Consent.dateTime">
+      <path value="Consent.dateTime" />
+      <short value="LivingWillDate" />
+      <definition value="The date on which the living will was recorded." />
+      <alias value="WilsverklaringDatum" />
+      <mapping>
+        <identity value="zib-advancedirective-v3.1.1-2020EN" />
+        <map value="NL-CM:7.15.7" />
+        <comment value="LivingWillDate" />
+      </mapping>
+    </element>
+    <element id="Consent.source[x]">
+      <path value="Consent.source[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Consent.source[x]:sourceAttachment">
+      <path value="Consent.source[x]" />
+      <sliceName value="sourceAttachment" />
+      <type>
+        <code value="Attachment" />
+      </type>
+    </element>
+    <element id="Consent.source[x]:sourceAttachment.data">
+      <path value="Consent.source[x].data" />
+      <short value="LivingWillDocument" />
+      <definition value="Scanned source document with the living will and the patient's signature, such as a PDF." />
+      <alias value="WilsverklaringDocument" />
+      <mapping>
+        <identity value="zib-advancedirective-v3.1.1-2020EN" />
+        <map value="NL-CM:7.15.5" />
+        <comment value="LivingWillDocument" />
+      </mapping>
+    </element>
+    <element id="Consent.policy.uri">
+      <path value="Consent.policy.uri" />
+      <comment value="Either `.policy` or `.policyRule` should exist following core constraint ppc-1. If no explicit value is recorded, a fallback is to populate `.policy.uri` with &lt;https://wetten.overheid.nl/&gt; if the advance directive is recorded following Dutch law and regulations." />
+    </element>
+    <element id="Consent.provision.actor">
+      <path value="Consent.provision.actor" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="role" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Consent.provision.actor:representative">
+      <path value="Consent.provision.actor" />
+      <sliceName value="representative" />
+      <max value="1" />
+    </element>
+    <element id="Consent.provision.actor:representative.role">
+      <path value="Consent.provision.actor.role" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode" />
+          <code value="RESPRSN" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Consent.provision.actor:representative.reference">
+      <path value="Consent.provision.actor.reference" />
+      <short value="Representative" />
+      <definition value="The person who is the legal representative or is appointed as the authorized representative in the signed authorization." />
+      <alias value="Vertegenwoordiger" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/CareTeam" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson" />
+      </type>
+      <mapping>
+        <identity value="zib-advancedirective-v3.1.1-2020EN" />
+        <map value="NL-CM:7.15.3" />
+        <comment value="Representative" />
+      </mapping>
+    </element>
+    <element id="Consent.provision.code">
+      <path value="Consent.provision.code" />
+      <short value="LivingWillType" />
+      <definition value="List of the different types of living wills." />
+      <alias value="WilsverklaringType" />
+      <max value="1" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.15.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-advancedirective-v3.1.1-2020EN" />
+        <map value="NL-CM:7.15.2" />
+        <comment value="LivingWillType" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
