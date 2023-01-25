@@ -123,7 +123,7 @@ zib-CareTeam:
     CareTeam.name:
       - short: CareTeamName instead of CareTeamNaam
         reason: The zib concept name "CareTeamNaam" is an incorrect translation of the Dutch name into English.
-    CareTeam.participant:*.member:
+    CareTeam.participant:healthcareProfessional.member:
       - cardinality: 1..1 instead of 0..1
         reason: The cardinality of each CareTeamMember option is defined by the cardinality of the slices on participant and thus the cardinality requirements of the zib are honored. Because .member is required to discriminate the slices, its cardinality is 1..1. 
 
