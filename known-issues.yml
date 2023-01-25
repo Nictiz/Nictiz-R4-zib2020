@@ -715,7 +715,13 @@ nl-core-AllergyIntolerance*:
     "AllergyIntolerance.reaction[*].substance":
       - message: None of the codings provided are in the value set 'SpecifiekeStofCodelijsten'
         reason: The terminology servers cannot handle the refset specified in the ValueSet.
-        
+
+nl-core-DOSScore-01:
+  ignored issues:
+    Observation.code.coding[0]:
+      - message: 'Local Error: Resolved system http://snomed.info/sct, but the definition is not complete. Server Error: Unable to find code 160591000146109 in http://snomed.info/sct'
+        reason: This is a Dutch SNOMED extension which is not present yet on the international terminology server.
+
 nl-core-HearingFunction.HearingAid-*:
   ignored issues:
     DeviceUseStatement:
@@ -772,19 +778,7 @@ zib-Alert:
     Flag:
       - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias "Alert" is already defined in the base profile, so it doesn't need to be defined again in the differential.
-
-zib-AbilityToWashOneself:
-  zib deviations:
-   Observation.component:bodyPartToBeBathed.value[x]:
-      - cardinality: 0..1 instead of 0..*
-        reason: The effective cardinality is 0..*, but the mysterious introduction by Forge of referenceRange.contentReference prevents the tool from reasoning about this.
-
-zib-AbilityToDressOneself:
-  zib deviations:
-   Observation.component:bodyPartToBeDressed.value[x]:
-      - cardinality: 0..1 instead of 0..*
-        reason: The effective cardinality is 0..*, but the mysterious introduction by Forge of referenceRange.contentReference prevents the tool from reasoning about this.
-        
+       
 zib-ContactPerson:
   ignored issues:
     RelatedPerson.address:
@@ -792,6 +786,12 @@ zib-ContactPerson:
         reason: The short description is defined on the datatype profile and not repeated in the differential.
       - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.
+
+zib-DOSScore:
+  ignored issues:
+    StructureDefinition.differential.element[1].pattern.ofType(CodeableConcept).coding[0]:
+      - message: 'Local Error: Resolved system http://snomed.info/sct, but the definition is not complete. Server Error: Unable to find code 160591000146109 in http://snomed.info/sct'
+        reason: This is a Dutch SNOMED extension which is not present yet on the international terminology server.
 
 zib-HealthcareProvider:
   ignored issues:
