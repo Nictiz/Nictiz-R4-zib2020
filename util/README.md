@@ -18,6 +18,9 @@ NTS_PASS=yyy
 
 Where `xxx` and `yyy` are your username and password for the Nationale Terminologieserver.
 
+### Rebuilding the Docker image
+When encountering problems with running the qa tooling, rebuilding the Docker image is a good start. Run `docker-compose build --no-cache` from `util/qa` to perform a full rebuild.
+
 ## addDataFromZib
 
 Based on the definitions from ART-DECOR, metadata (`url`, `name`, `title`, `status`, `publisher`, `contact`, `purpose`, `copyright`, `abstract`) following the profiling guidelines is added if not present or edited when containing Forge's default values for both zib and nl-core profiles. An `id` (in both zib and nl-core profiles) and a `mapping` to a zib (only in zib profiles) following the guidelines should be present for this to work. If a non-default value is already present, the XSLT does not modify it, allowing for overruling the default value when profiling.
