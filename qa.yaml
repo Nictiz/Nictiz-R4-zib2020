@@ -17,6 +17,18 @@ patterns:
   examples: examples/*.xml
 
 steps:
+  check id:
+    description: Check if the .id matches the name of the file
+    patterns:
+      - zib profiles
+      - zib extensions
+      - nl-core profiles
+      - nl-core extensions
+      - other profiles
+      - conceptmaps
+      - terminology
+      - examples
+    script: check-id.sh
   validate zib profiles:
     description: Validate the zib profiles using the profile for zib profiles
     patterns: zib profiles
