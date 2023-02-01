@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+    <id value="ext-Category" />
+    <url value="http://nictiz.nl/fhir/StructureDefinition/ext-Category" />
+    <name value="ExtCategory" />
+    <title value="ext Category" />
+    <status value="draft" />
+    <publisher value="Nictiz" />
+    <contact>
+        <name value="Nictiz" />
+        <telecom>
+            <system value="email" />
+            <value value="info@nictiz.nl" />
+            <use value="work" />
+        </telecom>
+    </contact>
+    <description value="An extension that mimics the default FHIR `MedicationAdministration.category`, `MedicationDispense.category` and `MedicationStatement.category` elements that can be used if multiple categories need to be captured. The mp-profiles fix a zib definition code to each `.category` thereby denying the use for other purposes because of their 0..1 cardinality." />
+    <purpose value="This extension represents the `.category` element of the FHIR R4 MedicationAdministration, MedicationDispense and MedicationStatement resources. This extension is needed because `.category` has a cardinality of 0..1 in each of these resource types and the mp-profiles use `.category` with a fixed code, thereby denying the use of `.category` for other purposes. A future version of FHIR will relax the cardinality to 0...* and the binding strength to _example_. In addition to using this extension, a binding should be added to `extension.valueCodeableConcept` to the ValueSet of its respective resource type category and with a binding strength that matches the FHIR core binding strength., along with an appropriate definition and short." />
+    <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+    <fhirVersion value="4.0.1" />
+    <kind value="complex-type" />
+    <abstract value="false" />
+    <context>
+        <type value="element" />
+        <expression value="MedicationAdministration.category" />
+    </context>
+    <context>
+        <type value="element" />
+        <expression value="MedicationDispense.category" />
+    </context>
+    <context>
+        <type value="element" />
+        <expression value="MedicationStatement.category" />
+    </context>
+    <type value="Extension" />
+    <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+    <derivation value="constraint" />
+    <differential>
+        <element id="Extension">
+            <path value="Extension" />
+            <max value="1" />
+        </element>
+        <element id="Extension.url">
+            <path value="Extension.url" />
+            <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-Category" />
+        </element>
+        <element id="Extension.value[x]">
+            <path value="Extension.value[x]" />
+            <short value="Category" />
+            <type>
+                <code value="CodeableConcept" />
+            </type>
+        </element>
+    </differential>
+</StructureDefinition>
