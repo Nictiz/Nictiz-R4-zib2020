@@ -17,6 +17,10 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-AbilityToGroom
 * No specific changes have been made to this profile other than the generic changes for the Observation resource.
 
+
+## zib-AbilityToUseToilet
+* No specific changes have been made to this profile other than the generic changes for the Observation resource.
+
 ## zib-AddressInformation
 * Added extra comments on the history of the mapping in relation to v3.
 * Removed mapping to BRP.
@@ -53,6 +57,9 @@ This document contains release notes per zib, indicating differences with their 
 
 ## zib-AnatomicalLocation
 * New partial zib. The anatomical location in FHIR is usually mapped on `.bodySite` (CodeableConcept with example binding). This zib has therefore been mapped onto a data type profile that can be used for `.bodySite`.
+
+## zib-ApgarScore
+* ApgarScore is now divided into 3 profiles with their own time unit. Each profile also has its own terminology codes that correspond to the minutes.
 
 ## zib-CareTeam
 * CareTeam is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
@@ -110,9 +117,12 @@ This document contains release notes per zib, indicating differences with their 
 * The extension EpisodOfCare-Title has been replaced by ext-EpisodeOfCare.EpisodeOfCareName because this zib concept is functionally equivalent.
 * The extensions EpisodeOfCare-DateFirstEncounter and EpisodeOfCare-DateLastEncounter from the previous profile are not inherited because no functional backing exists.
 
-# zib-FLACCpainScale
+## zib-FLACCpainScale
 * The semantic codes on the `Observation.component.code` elements have changed from LOINC to codes from the ScoreObservaties code system (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1).
 * The system value on `Observation.code` has changed from http://loinc.org to http://snomed.info/sct and the code value has changed from 38213-5 to 108291000146105.
+
+## zib-FluidBalance
+* Changed `Observation.code` from 364396009 to 710853006#http://snomed.info/sct.
 
 ## zib-FreedomRistrictingIntervention
 * This is a new zib loosely based on the previous zib FreedomRestrictingMeasures. Below the most relevant changes compared to the previous zib and the STU3 profile are described.
@@ -209,6 +219,9 @@ This document contains release notes per zib, indicating differences with their 
 * The incorrect mapping of Consistency to `NutritionOrder.oralDiet.texture.foodType.text` has been removed. This concept is not used to provide information on the consistency of nutrition.
 * New concept Indication mapped on the extension `NutritionOrder.extension:indication`.
 * The comment extension has been replaced by a mapping to `NutritionOrder.note.text`.
+
+## zib-ParticipationInSociety
+* No specific changes have been made to this profile other than the generic changes for the Observation resource
 
 ## zib-Patient
 * Includes Nationality, MaritalStatus, LanguageProficiency, LifeStance.

@@ -70,6 +70,12 @@ pattern-ZibHealthProfessionalReference:
     StructureDefinition:
       - message: "Rule sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
         reason: The title is shown in the hosting profiles as the name of the datatype. "zib HealthProfessional Reference" is more descriptive than the title according to the profiling guidelines ("pattern ZibHealthProfessionalReference").
+        
+zib-AbilityToUseToilet:
+  zib deviations:
+      Observation:
+      - short: AbilityToUseToilet
+        reason: The root concept name 'ToiletUseAbility' is a mistake in the zib and will be fixed in the next prepublication.
 
 zib-AbilityToGroom:
   zib deviations:
@@ -102,6 +108,12 @@ zib-AllergyIntolerance:
       - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
         reason: The mapping is to a zib container, which doesn't have a useful description if implemented in a profile.
 
+zib-ApgarScore-*Minute:
+  zib deviations:
+    Observation.component:muscleToneScore.value[x]:
+      - short: MuscleToneScore
+        reason: The zib concept name "MusleToneScore" is an incorrect translation of the Dutch name into English.
+
 zib-BloodPressure:
   ignored issues:
     Observation.component:*BP:
@@ -123,6 +135,9 @@ zib-CareTeam:
     CareTeam.name:
       - short: CareTeamName instead of CareTeamNaam
         reason: The zib concept name "CareTeamNaam" is an incorrect translation of the Dutch name into English.
+    CareTeam.participant:healthcareProfessional.member:
+      - cardinality: 1..1 instead of 0..1
+        reason: The cardinality of each CareTeamMember option is defined by the cardinality of the slices on participant and thus the cardinality requirements of the zib are honored. Because .member is required to discriminate the slices, its cardinality is 1..1. 
 
 zib-ContactInformation-TelephoneNumbers:
   zib deviations:
@@ -412,7 +427,7 @@ zib-NursingIntervention:
     CarePlan.activity.detail.performer:*:
       - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice. 
-
+        
 zib-Patient:
   zib deviations:
     Patient.extension:nationality.extension:code.value[x]:
