@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-NursingIntervention-event" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-NursingIntervention-event" />
+  <name value="ZibNursingInterventionevent" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A nursing intervention is the care and/or treatment carried out by a nurse based on an expert opinion and clinical knowledge. It is part of the nursing process; interventions are determined as a result of indexed healthcare problems (nursing diagnoses) and based on treatment goals. Following the NEN-EN-ISO 18104 norm, it is possible to structure nursing interventions (or actions) in a hierarchy, where one intervention can be part of another intervention.&#xD;&#xA;&#xD;&#xA;In a home care situation some actions can also be performed by the patient or a caregiver after a relevant instruction." />
+  <purpose value="This Procedure resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) NursingIntervention-v3.2(2020EN)](https://zibs.nl/wiki/NursingIntervention-v3.2(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-nursingintervention-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/NursingIntervention-v3.2(2020EN)" />
+    <name value="zib NursingIntervention-v3.2(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Procedure" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Procedure" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Procedure">
+      <path value="Procedure" />
+      <short value="NursingIntervention" />
+      <definition value="Describes the intention of how one or more practitioners intend to deliver care for a particular patient, group or community for a period of time, possibly limited to care for a specific condition or set of conditions." />
+      <alias value="VerpleegkundigeInterventie" />
+      <mapping>
+        <identity value="zib-nursingintervention-v3.2-2020EN" />
+        <map value="NL-CM:14.2.1" />
+        <comment value="NursingIntervention" />
+      </mapping>
+    </element>
+    <element id="Procedure.code">
+      <path value="Procedure.code" />
+      <short value="Intervention" />
+      <definition value="A nursing intervention is a treatment carried out by a nurse based on an expert opinion and clinical knowledge for the benefit of the person requesting healthcare. The intervention is targeted towards a certain problem (diagnosis) and has a predetermined healthcare result. It is possible to build a hierarchy of nursing interventions (where one intervention is part of another)." />
+      <alias value="Interventie" />
+      <mapping>
+        <identity value="zib-nursingintervention-v3.2-2020EN" />
+        <map value="NL-CM:14.2.2" />
+        <comment value="Intervention" />
+      </mapping>
+    </element>
+    <element id="Procedure.performed[x]">
+      <path value="Procedure.performed[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Procedure.performed[x]:performedPeriod">
+      <path value="Procedure.performed[x]" />
+      <sliceName value="performedPeriod" />
+      <type>
+        <code value="Period" />
+      </type>
+    </element>
+    <element id="Procedure.performed[x]:performedPeriod.start">
+      <path value="Procedure.performed[x].start" />
+      <short value="ProcedureStartDateTime" />
+      <definition value="The start date (and if possible start time) of the procedure. The concept offers the option to indicate the start of the period of a series of repeating procedures." />
+      <alias value="ActieStartDatumTijd" />
+      <mapping>
+        <identity value="zib-nursingintervention-v3.2-2020EN" />
+        <map value="NL-CM:14.2.11" />
+        <comment value="ProcedureStartDateTime" />
+      </mapping>
+    </element>
+    <element id="Procedure.performed[x]:performedPeriod.end">
+      <path value="Procedure.performed[x].end" />
+      <short value="ProcedureEndDateTime" />
+      <definition value="The end date (and if possible end time) of the procedure. The concept offers the option to indicate the end of the period of a series of repeating procedures." />
+      <alias value="ActieEindDatumTijd" />
+      <mapping>
+        <identity value="zib-nursingintervention-v3.2-2020EN" />
+        <map value="NL-CM:14.2.12" />
+        <comment value="ProcedureEndDateTime" />
+      </mapping>
+    </element>
+    <element id="Procedure.performer">
+      <path value="Procedure.performer" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <max value="1" />
+    </element>
+    <element id="Procedure.performer:healthcareProvider">
+      <path value="Procedure.performer" />
+      <sliceName value="healthcareProvider" />
+      <max value="1" />
+    </element>
+    <element id="Procedure.performer:healthcareProvider.actor">
+      <path value="Procedure.performer.actor" />
+      <short value="HealthcareProvider" />
+      <definition value="The health professional carrying out the nursing procedure." />
+      <alias value="Zorgverlener" />
+      <type>
+        <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-ZibHealthProfessionalReference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
+      </type>
+      <mapping>
+        <identity value="zib-nursingintervention-v3.2-2020EN" />
+        <map value="NL-CM:14.2.7" />
+        <comment value="HealthcareProvider" />
+      </mapping>
+    </element>
+    <element id="Procedure.performer:careGiver">
+      <path value="Procedure.performer" />
+      <sliceName value="careGiver" />
+      <max value="1" />
+    </element>
+    <element id="Procedure.performer:careGiver.actor">
+      <path value="Procedure.performer.actor" />
+      <short value="Caregiver" />
+      <definition value="The caregiver carrying out the nursing procedure." />
+      <alias value="Verzorger" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson" />
+      </type>
+      <mapping>
+        <identity value="zib-nursingintervention-v3.2-2020EN" />
+        <map value="NL-CM:14.2.16" />
+        <comment value="Caregiver" />
+      </mapping>
+    </element>
+    <element id="Procedure.performer:patient">
+      <path value="Procedure.performer" />
+      <sliceName value="patient" />
+      <max value="1" />
+    </element>
+    <element id="Procedure.performer:patient.actor">
+      <path value="Procedure.performer.actor" />
+      <short value="Patient" />
+      <definition value="The patient carrying out the nursing procedure." />
+      <alias value="Patient" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient" />
+      </type>
+      <mapping>
+        <identity value="zib-nursingintervention-v3.2-2020EN" />
+        <map value="NL-CM:14.2.17" />
+        <comment value="Patient" />
+      </mapping>
+    </element>
+    <element id="Procedure.reasonReference">
+      <path value="Procedure.reasonReference" />
+      <short value="Indication" />
+      <definition value="The nursing-related problem (indication) providing cause for the intervention." />
+      <alias value="Indicatie" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Procedure" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DiagnosticReport" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem" />
+      </type>
+      <mapping>
+        <identity value="zib-nursingintervention-v3.2-2020EN" />
+        <map value="NL-CM:14.2.6" />
+      </mapping>
+    </element>
+    <element id="Procedure.note">
+      <path value="Procedure.note" />
+      <max value="1" />
+    </element>
+    <element id="Procedure.note.text">
+      <path value="Procedure.note.text" />
+      <short value="Comment" />
+      <definition value="Comment on the nursing intervention." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-nursingintervention-v3.2-2020EN" />
+        <map value="NL-CM:14.2.5" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
