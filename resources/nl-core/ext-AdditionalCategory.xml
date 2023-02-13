@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="ext-Category" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-Category" />
-  <name value="ExtCategory" />
-  <title value="ext Category" />
+  <id value="ext-AdditionalCategory" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-AdditionalCategory" />
+  <name value="ExtAdditionalCategory" />
+  <title value="ext AdditionalCategory" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -14,7 +14,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="An extension that mimics the default FHIR `Resource.category` element that can be used if multiple categories need to be captured, when the cardinality of the core element is 0..1. Resource types where this is the case are for example MedicationAdministration, MedicationDispense, MedicationStatement and Procedure. Note that in the current FHIR R5 build of these resource types, the cardinality of `.category` has been changed to 0..*." />
+  <description value="An extension that mimics the default FHIR `Resource.category` element that can be used if multiple categories need to be captured, while the cardinality of the core element is 0..1. Resource types where this is the case are for example MedicationAdministration, MedicationDispense, MedicationStatement and Procedure. Note that in the current FHIR R5 build of these resource types, the cardinality of `.category` has been changed to 0..*." />
   <purpose value="In addition to using this extension, a binding should be added to `extension.valueCodeableConcept` referring to the ValueSet of its respective resource type category and with a binding strength that matches the FHIR core binding strength, along with an appropriate definition and short." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
@@ -34,7 +34,7 @@
     </element>
     <element id="Extension.url">
       <path value="Extension.url" />
-      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-Category" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-AdditionalCategory" />
     </element>
     <element id="Extension.value[x]">
       <path value="Extension.value[x]" />
