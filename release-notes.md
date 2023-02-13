@@ -17,6 +17,10 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-AbilityToGroom
 * No specific changes have been made to this profile other than the generic changes for the Observation resource.
 
+
+## zib-AbilityToUseToilet
+* No specific changes have been made to this profile other than the generic changes for the Observation resource.
+
 ## zib-AddressInformation
 * Added extra comments on the history of the mapping in relation to v3.
 * Removed mapping to BRP.
@@ -54,6 +58,9 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-AnatomicalLocation
 * New partial zib. The anatomical location in FHIR is usually mapped on `.bodySite` (CodeableConcept with example binding). This zib has therefore been mapped onto a data type profile that can be used for `.bodySite`.
 
+## zib-ApgarScore
+* ApgarScore is now divided into 3 profiles with their own time unit. Each profile also has its own terminology codes that correspond to the minutes.
+
 ## zib-CareTeam
 * CareTeam is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
 
@@ -86,6 +93,9 @@ This document contains release notes per zib, indicating differences with their 
 * The code on `Observation.component:drugOrMedicationType.code` has changed to 105590001
 * The code on `Observation.component:amount.code` has changed to 363908000
 
+## zib-DOSScore
+* DOSScore is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
+
 ## zib-Encounter
 * ContactWith is mapped on a slice of `Encounter.participant`.
 * `Encounter.participant.type` now honours the maximum cardinality of HealthProfessionalRole. 
@@ -102,9 +112,12 @@ This document contains release notes per zib, indicating differences with their 
 * The extension EpisodOfCare-Title has been replaced by ext-EpisodeOfCare.EpisodeOfCareName because this zib concept is functionally equivalent.
 * The extensions EpisodeOfCare-DateFirstEncounter and EpisodeOfCare-DateLastEncounter from the previous profile are not inherited because no functional backing exists.
 
-# zib-FLACCpainScale
+## zib-FLACCpainScale
 * The semantic codes on the `Observation.component.code` elements have changed from LOINC to codes from the ScoreObservaties code system (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1).
 * The system value on `Observation.code` has changed from http://loinc.org to http://snomed.info/sct and the code value has changed from 38213-5 to 108291000146105.
+
+## zib-FluidBalance
+* Changed `Observation.code` from 364396009 to 710853006#http://snomed.info/sct.
 
 ## zib-FreedomRistrictingIntervention
 * This is a new zib loosely based on the previous zib FreedomRestrictingMeasures. Below the most relevant changes compared to the previous zib and the STU3 profile are described.
@@ -138,6 +151,12 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-HearingFunction
 * Changed fixed slice on `.code.coding` to a pattern on `.code`.
 * Relaxed cardinality of `value[x]` to 0..1 of the conceptual cardinalities of the zib.
+
+## zib-HelpFromOthers
+* The mappings on `CarePlan.identifier`, `CarePlan.subject`, `CarePlan.author` and `CarePlan.careTeam` have been removed.
+* The mapping on `CarePlan.activity.detail.category` has been moved to `CarePlan.activity.detail.code`.
+* The mapping on `CarePlan.activity.detail.code` has been moved to `CarePlan.activity.detail.description`.
+* The mapping on `CarePlan.activity.detail.description` has been moved to `CarePlan.note.text`.
 
 ## zib-LaboratoryTestResult
 * In the 2017 implementation, five different profiles were used. This has been reduced to two profiles in the current implementation:
@@ -196,8 +215,11 @@ This document contains release notes per zib, indicating differences with their 
 * New concept Indication mapped on the extension `NutritionOrder.extension:indication`.
 * The comment extension has been replaced by a mapping to `NutritionOrder.note.text`.
 
+## zib-ParticipationInSociety
+* No specific changes have been made to this profile other than the generic changes for the Observation resource
+
 ## zib-Patient
-* Includes Nationality, MaritalStatus, LanguageProficiency.
+* Includes Nationality, MaritalStatus, LanguageProficiency, LifeStance.
 * Cardinality of `Patient.extension:nationality` left at 0..* due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time).
 * Cardinality of `Patient.name` left at 0..* to allow including several name elements with a different `name.use` each.
 * Cardinality of `Patient.telecom` left at 0..* to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not.
