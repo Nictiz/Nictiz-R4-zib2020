@@ -64,24 +64,24 @@ pattern-VitalSigns:
     Observation.category:VSCat:
       - message: "Rule sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
         reason: This slice name is adopted from the Vital Signs profile.
-        
+
 pattern-ZibHealthProfessionalReference:
   ignored issues:
     StructureDefinition:
       - message: "Rule sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
         reason: The title is shown in the hosting profiles as the name of the datatype. "zib HealthProfessional Reference" is more descriptive than the title according to the profiling guidelines ("pattern ZibHealthProfessionalReference").
-        
+
 zib-AbilityToUseToilet:
   zib deviations:
       Observation:
-      - short: AbilityToUseToilet
-        reason: The root concept name 'ToiletUseAbility' is a mistake in the zib and will be fixed in the next prepublication.
+      - short: AbilityToUseToilet instead of ToiletUseAbility
+        reason: The root of the zib is called "ToiletUseAbility" (which is incorrect), even though the zib itself is called "AbilityToUseToilet".
 
 zib-AbilityToGroom:
   zib deviations:
     Observation:
       - short: AbilityToGroom instead of AbilityToGroome
-        reason: The root of the zib is still called AbilityToGroome (which is incorrect), even though the zib itself has been renamed. 
+        reason: The root of the zib is called "AbilityToGroome" (which is incorrect), even though the zib itself is called "AbilityToGroom".
 
 zib-AddressInformation:
   zib deviations:
@@ -111,7 +111,7 @@ zib-AllergyIntolerance:
 zib-ApgarScore-*Minute:
   zib deviations:
     Observation.component:muscleToneScore.value[x]:
-      - short: MuscleToneScore
+      - short: MuscleToneScore instead of MusleToneScore
         reason: The zib concept name "MusleToneScore" is an incorrect translation of the Dutch name into English.
 
 zib-BloodPressure:
@@ -190,8 +190,8 @@ zib-Encounter:
 zib-FLACCpainScale:
   zib deviations:
    Observation:
-      - short: FLACCpainScale
-        reason: The root concept name 'FLACCpainScore' is a mistake in the zib and will be fixed in the next pre-publication.
+      - short: FLACCpainScale instead of FLACCpainScore
+        reason: The root of the zib is called "FLACCpainScore" (which is incorrect), even though the zib itself is called "FLACCpainScale".
 
 zib-FreedomRestrictingIntervention:
   ignored issues:
@@ -201,7 +201,7 @@ zib-FreedomRestrictingIntervention:
   zib deviations:
     Procedure:
       - short: FreedomRestrictingIntervention instead of FreedomrestrictingIntervention
-        reason: The root of the zib is called FreedomrestrictingIntervention (which is incorrect), even though the zib itself is called FreedomRestrictingIntervention.
+        reason: The root of the zib is called "FreedomrestrictingIntervention" (which is incorrect), even though the zib itself is called "FreedomRestrictingIntervention".
 
 zib-FunctionalOrMentalStatus:
   zib deviations:
@@ -264,7 +264,7 @@ zib-HearingFunction.HearingAid:
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
     DeviceUseStatement.timing[x]:timingPeriod.end:
       - short: EndDate instead of EindDatum
-        reason: Incorrect short in zib definition. This is reported in https://bits.nictiz.nl/browse/ZIB-1534.
+        reason: The zib concept name "EindDatum" has not been translated into English.
 
 zib-HearingFunction.HearingAid.Product:
   ignored issues:
@@ -348,7 +348,7 @@ zib-MedicalDevice:
         reason: This is a special slice that represents situations where zib MedicalDevice is referenced from another zib through the reasonReference element. Because this reference is reversed in FHIR, this profile needs to contain the mappings for the references in _all_ these zibs. A common slice is defined with an indicative name rather than the name of all the targets. 
     DeviceUseStatement.timing[x]:timingPeriod.end:
       - short: EndDate instead of EindDatum
-        reason: Incorrect short in zib definition. This is reported in https://bits.nictiz.nl/browse/ZIB-1534.
+        reason: The zib concept name "EindDatum" has not been translated into English.
 
 zib-MedicalDevice.Product:
   zib deviations:
@@ -427,7 +427,7 @@ zib-NursingIntervention:
     CarePlan.activity.detail.performer:*:
       - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice. 
-        
+
 zib-Patient:
   zib deviations:
     Patient.extension:nationality.extension:code.value[x]:
@@ -562,20 +562,20 @@ zib-Refraction:
       - datatype: CodeableConcept
         reason: The zib has both a reference to AnatomicalLocation and a mapping on AnatomicalLocation::Laterality, while it seems only the latter is important. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442.
     Observation.component:cylindricalRefractionAxis.value[x]:
-      - short: CylindricalRefractionAxis
-        reason: The zib concept name "CilindricRefractionAxis" contains a typo which is corrected in a later release of the zibs.
+      - short: CylindricalRefractionAxis instead of CilindricRefractionAxis
+        reason: The zib concept name "CilindricRefractionAxis" is an incorrect translation of the Dutch name into English.
     Observation.component:prismValue.value[x]:
-      - short: PrismValue
-        reason: The zib concept name "PrismaValue" contains a typo which is corrected in a later release of the zibs.
+      - short: PrismValue instead of PrismaValue
+        reason: The zib concept name "PrismaValue" is an incorrect translation of the Dutch name into English.
     Observation.component:prismBase.value[x]:
-      - short: PrismBase
-        reason: The zib concept name "PrismaBase" contains a typo which is corrected in a later release of the zibs.
+      - short: PrismBase instead of PrismaBase
+        reason: The zib concept name "PrismaBase" is an incorrect translation of the Dutch name into English.
     Observation.component:sphericalRefractionValue.value[x]:
-      - short: SphericalRefractionValue
-        reason: The zib concept name "SfericRefractionValue" contains a typo which is corrected in a later release of the zibs.
+      - short: SphericalRefractionValue instead of SfericRefractionValue
+        reason: The zib concept name "SfericRefractionValue" is an incorrect translation of the Dutch name into English.
     Observation.component:sphericalEquivalent.value[x]:
-      - short: SphericalEquivalent
-        reason: The zib concept name "SfericalEquivalent" contains a typo which is corrected in a later release of the zibs.
+      - short: SphericalEquivalent instead of SfericalEquivalent
+        reason: The zib concept name "SfericalEquivalent" is an incorrect translation of the Dutch name into English.
 
 zib-SOAPReport:
   zib deviations:
@@ -604,7 +604,7 @@ zib-Stoma:
       - cardinality: 1..1 instead of 0..1
         reason: The FHIR profiles are expected to implement zib cardinalities as conceptual cardinalities, but StomaType is essential to identify the Stoma. This aligns with the intention of the zib, as the StomaType concept is required for zib Stoma to make sense.
     Condition.bodySite:
-      - datatype: CodeableConcept
+      - datatype: CodeableConcept instead of a reference
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
 
 zib-TextResult:
@@ -663,7 +663,7 @@ zib-VisualFunction.VisualAid:
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
     DeviceUseStatement.timing[x]:timingPeriod.end:
       - short: EndDate instead of EindDatum
-        reason: Incorrect short in zib definition. This is reported in https://bits.nictiz.nl/browse/ZIB-1534.
+        reason: The zib concept name "EindDatum" has not been translated into English.
 
 zib-VisualFunction.VisualAid.Product:
   ignored issues:
