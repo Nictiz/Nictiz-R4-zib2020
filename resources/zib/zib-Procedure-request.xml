@@ -14,7 +14,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="Therapeutic or diagnostic procedure the patient will undergo (the complementary profile [zib-Procedure-request](http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-request) can be used for therapeutic or diagnostics procedures that the has undergone). A procedure can be a simple blood pressure measurement, but also a complex heart surgery.&#xD;&#xA;In some care settings, the term treatment is used instead of the term procedure." />
+  <description value="Therapeutic or diagnostic procedure the patient will undergo (the complementary profile [zib-Procedure-event](http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-event) can be used for therapeutic or diagnostic procedures that the patient has undergone). A procedure can be a simple blood pressure measurement, but also a complex heart surgery.&#xD;&#xA;In some care settings, the term treatment is used instead of the term procedure." />
   <purpose value="This ServiceRequest resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Procedure v5.2 (2020)](https://zibs.nl/wiki/Procedure-v5.2(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
@@ -42,16 +42,16 @@
     </element>
     <element id="ServiceRequest.status">
       <path value="ServiceRequest.status" />
-      <definition value="This element is implictly mapped to the zib concepts ProcedureStartDate (NL-CM:14.1.2) and ProcedureEndDate  (NL-CM:14.1.3). Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When the ProcedureStartDate is in the future, `.status` will usually be set to _active_.&#xD;&#xA;* When the ProcedureStartDate is in the past, `.status` will usually be set to _completed_.&#xD;&#xA;* When ProcedureEndDate is in the past, `.status` will usually be set to _completed_.&#xD;&#xA;* When a system is unable to infer the status from the ProcedureStartDate and ProcedureEndDate , `.status` will be set to _unknown_. The _unknown_ code is not to be used to convey other statuses. The _unknown_ code should be used when one of the statuses applies, but the authoring system doesn't know the current state of the ProcedureRequest." />
+      <definition value="This element is implictly mapped to the zib concepts ProcedureStartDate (NL-CM:14.1.2) and ProcedureEndDate (NL-CM:14.1.3). Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When the ProcedureStartDate is in the future, `.status` will usually be set to _active_.&#xD;&#xA;* When the ProcedureStartDate is in the past, `.status` will usually be set to _completed_.&#xD;&#xA;* When ProcedureEndDate is in the past, `.status` will usually be set to _completed_.&#xD;&#xA;* When a system is unable to infer the status from the ProcedureStartDate and ProcedureEndDate , `.status` will be set to _unknown_. The _unknown_ code is not to be used to convey other statuses. The _unknown_ code should be used when one of the statuses applies, but the authoring system doesn't know the current state of the ProcedureRequest." />
       <mapping>
         <identity value="zib-procedure-v5.2-2020EN" />
         <map value="NL-CM:14.1.2" />
-        <comment value="ProcedureStartDate (implicit, main mapping is on ServiceRequest.occurencePeriod.start and ServiceRequest.occurenceDateTime)" />
+        <comment value="ProcedureStartDate (implicit, main mapping is on ServiceRequest.occurrencePeriod.start and ServiceRequest.occurrenceDateTime)" />
       </mapping>
       <mapping>
         <identity value="zib-procedure-v5.2-2020EN" />
         <map value="NL-CM:14.1.3" />
-        <comment value="ProcedureEndDate (implicit, main mapping is on ServiceRequest.occurencePeriod.end)" />
+        <comment value="ProcedureEndDate (implicit, main mapping is on ServiceRequest.occurrencePeriod.end)" />
       </mapping>
     </element>
     <element id="ServiceRequest.intent">
@@ -87,7 +87,7 @@
       <path value="ServiceRequest.orderDetail" />
       <sliceName value="procedureMethod" />
       <short value="ProcedureMethod" />
-      <definition value="The method or technique that will be used to perform the procedure, e.g. approach, lavage, pressuring, ets." />
+      <definition value="The method or technique that will be used to perform the procedure, e.g. approach, lavage, pressuring, etc." />
       <alias value="VerrichtingMethode" />
       <binding>
         <strength value="required" />
@@ -160,7 +160,7 @@
       <path value="ServiceRequest.requester" />
       <short value="Requester" />
       <definition value="The healthcare provider who requested the procedure." />
-      <comment value="The zib mapping contains a known cardinality difference (0..* versus 0..1). The zib will be aligned in a future version with the cardinality of FHIR, therefore this profile pre adopts the 0..1 cardinality for the requester. &#xD;&#xA;&#xD;&#xA;Each occurence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [zib-HealthProfessional-PractitioneThe zib mapping contains a known cardinality mismatch (0..* versus 0..1). The zib will be aligned in a future version with the cardinality of FHIR, therefore this profile preadopts the 0..1 cardinality for requester. rRole](http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [zib-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner)). The reference to the Practitioner resource is referenced from the PractitionerRole instance. For this reason, sending systems should fill the reference to the PractitionerRole instance here, and not the Practitioner resource.&#xD;&#xA;&#xD;&#xA;In rare circumstances, there is only a Practitioner instance, in which case it is that instance which will be referenced here. However, since this should be the exception, the zib-HealthProfessional-Practitioner profile is not explicitly mentioned as a target profile." />
+      <comment value="The zib mapping contains a known cardinality difference (0..* versus 0..1). The zib will be aligned in a future version with the cardinality of FHIR, therefore this profile pre-adopts the 0..1 cardinality for the requester. &#xD;&#xA;&#xD;&#xA;Each occurrence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [zib-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [zib-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner)). The Practitioner resource is referenced from the PractitionerRole instance. For this reason, sending systems should fill the reference to the PractitionerRole instance here, and not the Practitioner resource. Receiving systems can then retrieve the reference to the Practitioner resource from that PractitionerRole instance.&#xD;&#xA;&#xD;&#xA;In rare circumstances, there is only a Practitioner instance, in which case it is that instance which will be referenced here. However, since this should be the exception, the zib-HealthProfessional-Practitioner profile is not explicitly mentioned as a target profile." />
       <alias value="Aanvrager" />
       <type>
         <code value="Reference" />
