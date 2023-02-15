@@ -311,7 +311,7 @@ zib-LaboratoryTestResult.Specimen:
         reason: Although a single SpecimenId is allowed according to the zib, .identifier is often used for additional identifiers outside the scope of the zib. It's not possible to create a slice or pattern specifically for SpecimenId without further formal requirements by the zib.
     Specimen.subject:
       - datatype: Reference instead of string
-        reason: The zib concept SpecimenSource is communicated using a string within the profile zib-LaboratoryTestResult.Specimen.Source, which is referenced here.
+        reason: The zib concept SpecimenSource is communicated using a string within the profile zib-LaboratoryTestResult.SpecimenSource, which is referenced here.
     Specimen.collection.bodySite:
       - datatype: CodeableConcept instead of a reference
         reason: Zib AnatomicalLocation is implemented as a datatype profile on CodeableConcept, so the datatype is not a Reference.
@@ -325,7 +325,7 @@ zib-LaboratoryTestResult.Specimen:
       - cardinality: 1..1 instead of 0..1
         reason: The value in the extension is 1..1, but the extension itself is 0..1, effectively matching the zib cardinality.
 
-zib-LaboratoryTestResult.Specimen.Source:
+zib-LaboratoryTestResult.SpecimenSource:
   zib deviations:
     Device.deviceName.name:
       - cardinality: 1..1 instead of 0..1
