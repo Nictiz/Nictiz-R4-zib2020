@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-BodyWeight" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight" />
+  <name value="ZibBodyWeight" />
+  <title value="zib BodyWeight" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Body weight is the common name for (human) body mass." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) BodyWeight-v3.2(2020EN)](https://zibs.nl/wiki/BodyWeight-v3.2(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-bodyweight-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/BodyWeight-v3.2(2020EN)" />
+    <name value="zib BodyWeight-v3.2(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/pattern-VitalSigns" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="BodyWeight" />
+      <comment value="**HL7 Vital Signs compatibility**&#xD;&#xA;&#xD;&#xA;Although this profile represents a vital signs measurement, it is *not* directly based on the HL7 Vital Signs profile because of two issues in its current version that prevent it from being used for the exchange of zibs (see below). However, an effort has been made to make this profile functionally equivalent to (a profile derived from) the [HL7 Vital Signs BodyWeight profile](http://hl7.org/fhir/StructureDefinition/bodyweight). Instances for both profiles should be highly compatible.&#xD;&#xA;&#xD;&#xA;This means that it should be possible to mostly validate an instance for this profile against the HL7 Vital Signs counterpart, _except_ for references on `Observation.hasMember` and `Observation.derivedFrom`. The base HL7 Vital Signs profile restricts the targets of these element to itself, which is a requirement that can never be satisfied for instances of profiles that are not directly derived from it.&#xD;&#xA;&#xD;&#xA;Please note that this profile implements the zib and can therefore be more restricted than its HL7 counterpart. It should be regarded as a derived profile rather than a direct recreation of the HL7 version.&#xD;&#xA;&#xD;&#xA;**Differences with the HL7 Vital Signs counterpart**&#xD;&#xA;&#xD;&#xA;* The _required_ terminology binding on `Observation.component` to the [Vital Signs Units](http://hl7.org/fhir/ValueSet/ucum-vitals-common) dataset makes it impossible to use `.component` for representing anything else than a Quantity (like a CodeableConcept or a boolean). This binding has therefore been omitted in the current profile.&#xD;&#xA;* The `mustSupport` = _true_ flag found on numerous elements isn't further specified in the HL7 Vital Signs IG, as is required by FHIR. This flag has therefore been omitted from the current profile.&#xD;&#xA;* The target restriction on `Observation.hasMember` and `Observation.derivedFrom` to the HL7 Vital Signs profile cannot be fulfilled. This restriction has therefore been omitted from the current profile.&#xD;&#xA;&#xD;&#xA;It might happen that for some concepts, the zib uses a different (but compatible) way than what is recommended by the [HL7 Vital Signs IG](http://hl7.org/fhir/r4/observation-vitalsigns.html). This is described in the comments for these concepts. There are also some differences in the profiling approach between the current and the HL7 profile, like the use of patterns rather than slices with fixed systems and codes to enforce the inclusion of some coding (for reasons of consistency with other zib profiles, the former approach has been chosen here). Apart from what is mentioned above, constraints, invariants and terminology bindings have been copied from the HL7 Vital Signs profile, but some textual descriptions have been omitted.&#xD;&#xA;&#xD;&#xA;Note: No equivalent for the HL7 Vital Signs base profile has been created to implement the zib profiles. The profile for this zib has been directly modelled onto its HL7 Vital Signs counterpart." />
+      <alias value="Lichaamsgewicht" />
+      <mapping>
+        <identity value="zib-bodyweight-v3.2-2020EN" />
+        <map value="NL-CM:12.1.1" />
+        <comment value="BodyWeight" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://loinc.org" />
+          <code value="29463-7" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effective[x]" />
+      <sliceName value="effectiveDateTime" />
+      <short value="WeightDateTime" />
+      <definition value="Date and (if possible) time that the weight was measured or estimated." />
+      <alias value="GewichtDatumTijd" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-bodyweight-v3.2-2020EN" />
+        <map value="NL-CM:12.1.4" />
+        <comment value="WeightDateTime" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <short value="WeightValue" />
+      <definition value="The patient’s body weight. Body weight is expressed in kilograms (kg). For infants under 3kg, body weight is often expressed in grams.&#xD;&#xA;&#xD;&#xA;This concept can also be used to determine an estimated body weight in the event that measuring the exact body weight is not possible - such as for example weighing a resistant child, or in the case of having to estimate the weight of an unborn child." />
+      <alias value="GewichtWaarde" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://nictiz.nl/fhir/ValueSet/zib-BodyWeight-units" />
+      </binding>
+      <mapping>
+        <identity value="zib-bodyweight-v3.2-2020EN" />
+        <map value="NL-CM:12.1.2" />
+        <comment value="WeightValue" />
+      </mapping>
+    </element>
+    <element id="Observation.note">
+      <path value="Observation.note" />
+      <max value="1" />
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
+      <short value="Comment" />
+      <definition value="Comment on the weight measurement, such as any problems or factors that may influence body weight at that time, such as timing within the menstrual cycle, timing of recent bowel movement or a note on any amputations." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-bodyweight-v3.2-2020EN" />
+        <map value="NL-CM:12.1.3" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:clothing">
+      <path value="Observation.component" />
+      <sliceName value="clothing" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:clothing.code">
+      <path value="Observation.component.code" />
+      <comment value="LOINC code _8352-7_ (Clothing worn during measure) may be used here as well, as suggested by the HL7 Vital Signs IG." />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="248159006" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:clothing.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Clothing" />
+      <definition value="The clothes the patient was wearing at the time of the measurement." />
+      <alias value="Kleding" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.1.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-bodyweight-v3.2-2020EN" />
+        <map value="NL-CM:12.1.5" />
+        <comment value="Clothing" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

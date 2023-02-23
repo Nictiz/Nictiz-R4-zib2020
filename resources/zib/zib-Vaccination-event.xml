@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-Vaccination-event" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Vaccination-event" />
+  <name value="ZibVaccinationevent" />
+  <title value="zib Vaccination event" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Immunization can be defined as “Generating natural immunity against pathogens by means of vaccination (active immunization) or by administering immunoglobulins (passive immunization)”.&#xD;&#xA;&#xD;&#xA;Only the (administered and planned) vaccinations are included in this information model. Administering immunoglobulins is part of the medication overview. Vaccinations have lifelong relevance.&#xD;&#xA;&#xD;&#xA;Most vaccinations are carried out in the Netherlands as part of the RVP (Rijksvaccinatieprogramma, National Immunisation Program). RVP information is especially important for children.&#xD;&#xA;&#xD;&#xA;Vaccinations are also relevant for adult patients such as transplant patients, dialysis patients and patients with a post-splenectomy status. In addition, there are specific indications for the vaccination of risk groups, such as travelers, professionals who come into contact with blood or patients with wounds, weakened immune systems or heightened risk." />
+  <purpose value="This Immunization resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Vaccination-v4.0(2020EN)](https://zibs.nl/wiki/Vaccination-v4.0(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-vaccination-v4.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/Vaccination-v4.0(2020EN)" />
+    <name value="zib Vaccination-v4.0(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Immunization" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Immunization" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Immunization">
+      <path value="Immunization" />
+      <short value="Vaccination" />
+      <comment value="The zib Vaccination is mapped to this Immunization profile and a profile on ImmunizationRecommendation (&lt;http://nictiz.nl/fhir/StructureDefinition/zib-Vaccination-request&gt;). All administered vaccinations are covered using this Immunization profile, while all planned vaccinations are covered in the ImmunizationRecommendation profile. &#xD;&#xA;&#xD;&#xA;Please note that, contrary to the related zib concepts, `.vaccineCode` and `.occurrence[x]` are mandatory in FHIR and need to be recorded to exchange Immunization resources." />
+      <alias value="Vaccinatie" />
+      <mapping>
+        <identity value="zib-vaccination-v4.0-2020EN" />
+        <map value="NL-CM:11.1.1" />
+        <comment value="Vaccination" />
+      </mapping>
+    </element>
+    <element id="Immunization.status">
+      <path value="Immunization.status" />
+      <comment value="This element has no functional counterpart in the zib and cannot be implicitly mapped to other concepts. Unless a more appropriate status is recorded, it is assumed that only _completed_ Immunization resources will be exchanged." />
+    </element>
+    <element id="Immunization.vaccineCode">
+      <path value="Immunization.vaccineCode" />
+      <short value="ProductCode" />
+      <definition value="The product code of the vaccine administered.&#xD;&#xA;There are several possible code systems for documenting the product code. If the vaccination data is registered based on an anamnesis, coding with the ATC code is preferred. In all cases it concerns those products that fall under ATC group J07 (vaccines)." />
+      <alias value="ProductCode" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.17--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-vaccination-v4.0-2020EN" />
+        <map value="NL-CM:11.1.2" />
+        <comment value="ProductCode" />
+      </mapping>
+    </element>
+    <element id="Immunization.occurrence[x]">
+      <path value="Immunization.occurrence[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Immunization.occurrence[x]:occurrenceDateTime">
+      <path value="Immunization.occurrence[x]" />
+      <sliceName value="occurrenceDateTime" />
+      <short value="VaccinationDate" />
+      <definition value="Date (and if possible time) that the vaccine was administered." />
+      <alias value="VaccinatieDatum" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-vaccination-v4.0-2020EN" />
+        <map value="NL-CM:11.1.3" />
+        <comment value="VaccinationDate" />
+      </mapping>
+    </element>
+    <element id="Immunization.doseQuantity">
+      <path value="Immunization.doseQuantity" />
+      <short value="Dose" />
+      <definition value="The amount of product administered expressed in UCUM, often mL. In most cases, the entire product is administered; in some cases, a described part of the product is administered." />
+      <comment value="The definition of Dose deviates slightly from the zib 2020 vaccination definition; The unit of measure is not limited to mL. This difference is according to the planned vaccination zib modifications (https://bits.nictiz.nl/browse/ZIB-1654)." />
+      <alias value="Dosis" />
+      <patternQuantity>
+        <system value="http://unitsofmeasure.org" />
+      </patternQuantity>
+      <mapping>
+        <identity value="zib-vaccination-v4.0-2020EN" />
+        <map value="NL-CM:11.1.4" />
+        <comment value="Dose" />
+      </mapping>
+    </element>
+    <element id="Immunization.performer">
+      <path value="Immunization.performer" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="function" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Immunization.performer:administrator">
+      <path value="Immunization.performer" />
+      <sliceName value="administrator" />
+      <max value="1" />
+    </element>
+    <element id="Immunization.performer:administrator.function">
+      <path value="Immunization.performer.function" />
+      <min value="1" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://terminology.hl7.org/CodeSystem/v2-0443" />
+          <code value="AP" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Immunization.performer:administrator.actor">
+      <path value="Immunization.performer.actor" />
+      <short value="Administrator" />
+      <definition value="The healthcare provider and/or organization where or by whom the immunization was done." />
+      <alias value="Toediener" />
+      <type>
+        <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-ZibHealthProfessionalReference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
+      </type>
+      <mapping>
+        <identity value="zib-vaccination-v4.0-2020EN" />
+        <map value="NL-CM:11.1.6" />
+        <comment value="Administrator" />
+      </mapping>
+    </element>
+    <element id="Immunization.note">
+      <path value="Immunization.note" />
+      <max value="1" />
+    </element>
+    <element id="Immunization.note.text">
+      <path value="Immunization.note.text" />
+      <short value="Comment" />
+      <definition value="Free text explanation.  &#xD;&#xA; &#xD;&#xA;Examples of commonly used explanations are:  &#xD;&#xA;* &quot;Vaccination according to the National Immunisation Program&quot;.  &#xD;&#xA;* &quot;Not according to the National Immunisation Program&quot;, followed by further explanation. &#xD;&#xA;* &quot;Unknown&quot;" />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-vaccination-v4.0-2020EN" />
+        <map value="NL-CM:11.1.7" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

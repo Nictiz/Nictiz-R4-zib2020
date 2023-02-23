@@ -82,8 +82,8 @@
                     <contact>
                         <name value="Nictiz" />
                         <telecom>
-                            <system value="email" />
-                            <value value="info@nictiz.nl" />
+                            <system value="url" />
+                            <value value="https://www.nictiz.nl" />
                             <use value="work" />
                         </telecom>
                     </contact>
@@ -145,7 +145,7 @@
             
             <xsl:apply-templates select="f:derivation"/>
             
-            <!-- Add id as alias to root of nl-core profile if no differential or snapshot is fount -->
+            <!-- Add id as alias to root of nl-core profile if no differential or snapshot is found -->
             <xsl:choose>
                 <xsl:when test="not(f:differential) and not(f:snapshot) and starts-with($id, 'nl-core-')">
                     <differential>
@@ -190,7 +190,12 @@
             </xsl:for-each>
         </xsl:variable>
         <xsl:choose>
-            <xsl:when test="count($maps) = 0"/> <!-- When all maps turn out to be implicit, $maps is empty and we shouldn't do anything -->
+            <xsl:when test="count($maps) = 0">
+                <!-- When all maps turn out to be implicit, $maps is empty and we shouldn't do anything, just copy -->
+                <xsl:copy>
+                    <xsl:apply-templates select="node()|@*"/>
+                </xsl:copy>
+            </xsl:when> 
             <xsl:when test="not($concepts)">
                 <xsl:message>Could not find a concept with map '<xsl:value-of select="$maps[1]/@value"/>'</xsl:message>
                 <xsl:copy>

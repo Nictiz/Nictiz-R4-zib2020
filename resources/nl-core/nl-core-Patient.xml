@@ -9,15 +9,50 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
-  <description value="A person who receives medical, psychological, paramedical or nursing care. In some care settings, the term client or participant is used instead of the term patient.&#xD;&#xA;Nationality is used as an indication of the country of citizenship. &#xD;&#xA;Marital status is a person’s formal position as defined by the Dutch civil code. There is a distinction between marriage and civil union." />
+  <description value="A person who receives medical, psychological, paramedical or nursing care. In some care settings, the term client or participant is used instead of the term patient.&#xD;&#xA;Nationality is used as an indication of the country of citizenship. &#xD;&#xA;Marital status is a person’s formal position as defined by the Dutch civil code. There is a distinction between marriage and civil union.&#xD;&#xA;Linguistic proficiency is the ability to express oneself in a certain language and understand statements made in that language. This includes both oral and written communication." />
   <purpose value="A derived profile from [zib-Patient](http://nictiz.nl/fhir/StructureDefinition/zib-Patient) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-patient-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/Patient-v3.2(2020EN)" />
+    <name value="zib Patient-v3.2(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-nationality-v3.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/Nationality-v3.0(2020EN)" />
+    <name value="zib Nationality-v3.0(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-maritalstatus-v3.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/MaritalStatus-v3.1(2020EN)" />
+    <name value="zib MaritalStatus-v3.1(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-languageproficiency-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/LanguageProficiency-v3.2(2020EN)" />
+    <name value="zib LanguageProficiency-v3.2(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-contactinformation-v1.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/ContactInformation-v1.2(2020EN)" />
+    <name value="zib ContactInformation-v1.2(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-contactperson-v3.4-2020EN" />
+    <uri value="https://zibs.nl/wiki/ContactPerson-v3.4(2020EN)" />
+    <name value="zib ContactPerson-v3.4(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-payer-v3.1.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/Payer-v3.1.1(2020EN)" />
+    <name value="zib Payer-v3.1.1(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="Patient" />
@@ -28,11 +63,20 @@
       <path value="Patient" />
       <alias value="nl-core-Patient" />
     </element>
-    <element id="Patient.name">
+    <element id="Patient.name:nameInformation">
       <path value="Patient.name" />
+      <sliceName value="nameInformation" />
       <type>
         <code value="HumanName" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NameInformation" />
+      </type>
+    </element>
+    <element id="Patient.name:nameInformation-GivenName">
+      <path value="Patient.name" />
+      <sliceName value="nameInformation-GivenName" />
+      <type>
+        <code value="HumanName" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NameInformation.GivenName" />
       </type>
     </element>
     <element id="Patient.telecom:telephoneNumbers">
@@ -58,6 +102,10 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AddressInformation" />
       </type>
     </element>
+    <element id="Patient.contact">
+      <path value="Patient.contact" />
+      <comment value="Whereas the zib ContactPerson includes all (non-healthcare professional) persons that are involved in the care for a patient, FHIR distinguishes two use cases for these persons:&#xD;&#xA;&#xD;&#xA;* The RelatedPerson resource is used to capture information about any person that is related to the patient, using the profile &lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson&gt;.&#xD;&#xA;* Information about persons that should be _contacted_ regarding the care for the patient is captured using the `Patient.contact` resource.&#xD;&#xA;&#xD;&#xA;If a person is both a related person and a contact person, then some data duplication is inevitable. The nl-core-ContactPerson can be referenced using the extension in `contact:contactPerson`." />
+    </element>
     <element id="Patient.contact.extension">
       <path value="Patient.contact.extension" />
       <slicing>
@@ -67,10 +115,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="Patient.contact.extension:contactPerson">
       <path value="Patient.contact.extension" />
       <sliceName value="contactPerson" />
+      <min value="0" />
     </element>
     <element id="Patient.contact.extension:contactPerson.value[x]">
       <path value="Patient.contact.extension.value[x]" />

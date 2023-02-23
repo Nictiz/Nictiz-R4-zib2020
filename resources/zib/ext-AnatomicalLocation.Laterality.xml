@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-AnatomicalLocation.Laterality" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality" />
+  <name value="ExtAnatomicalLocationLaterality" />
+  <title value="ext AnatomicalLocation.Laterality" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The Laterality concept of zib AnatomicalLocation." />
+  <purpose value="This extension represents the Laterality concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) AnatomicalLocation v1.0 (2020)](https://zibs.nl/wiki/AnatomicalLocation-v1.0(2020EN)). It is to be used together with the &lt;http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation&gt; datatype profile." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-anatomicallocation-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/AnatomicalLocation-v1.0(2020EN)" />
+    <name value="zib AnatomicalLocation-v1.0(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="CodeableConcept" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="Laterality" />
+      <definition value="Laterality adds information about body site to the anatomic location, e.g. left." />
+      <alias value="Lateraliteit" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.20.7.2--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-anatomicallocation-v1.0-2020EN" />
+        <map value="NL-CM:20.7.3" />
+        <comment value="Laterality" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

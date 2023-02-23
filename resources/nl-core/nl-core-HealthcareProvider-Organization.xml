@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -18,6 +18,11 @@
   <purpose value="A derived profile from [zib-HealthcareProvider-Organization](http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider-Organization) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-healthcareprovider-v3.4-2020EN" />
+    <uri value="https://zibs.nl/wiki/HealthcareProvider-v3.4(2020EN)" />
+    <name value="zib HealthcareProvider-v3.4(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="Organization" />
@@ -26,6 +31,7 @@
   <differential>
     <element id="Organization">
       <path value="Organization" />
+      <comment value="The zib HealthcareProvider is mapped to this Organization profile and a profile on Location (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider&gt;). The Location profile acts as the focal resource of the HealthcareProvider because most references to this zib are concerned about the recording of the physical location where the care to patient/client takes place rather than the organizational information. Often there's no clear distinction between an organizational structure and a physical location. As a rule of thumb, locations are always used for recording where a service occurs, and hence where encounters and observations take place.&#xD;&#xA;&#xD;&#xA;Healthcare providers usually consist of multiple organizational levels and physical locations. The hierarchical structure may be captured by using multiple instances of this profile, using the `Organization.partOf` element to refer to their parent organization. The physical location is captured using the nl-core-HealthcareProvider profile, which refers this profile at the appropriate level in the hierarchy." />
       <alias value="nl-core-HealthcareProvider-Organization" />
     </element>
     <element id="Organization.telecom">
