@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-ComfortScale" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-ComfortScale" />
+  <name value="ZibComfortScale" />
+  <title value="zib ComfortScale" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The Comfort Behaviour scale/ComfortNeo scale is an assessment tool, that is used to assess the pain behaviour of neonates (newborn).&#xD;&#xA;The Comfort Behaviour scale has 7 observation points that need to be addressed. For each observation a value is assigned from a 5-point scale, the final score indicates whether the observed child suffers pain and 'how much'. The score is combined with an NRS score that is completed by the nurses on basis of clinical experience." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) ComfortScale-v1.1(2020EN)](https://zibs.nl/wiki/ComfortScale-v1.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-comfortscale-v1.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/ComfortScale-v1.1(2020EN)" />
+    <name value="zib ComfortScale-v1.1(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="ComfortScale" />
+      <alias value="ComfortScore" />
+      <mapping>
+        <identity value="zib-comfortscale-v1.1-2020EN" />
+        <map value="NL-CM:12.12.1" />
+        <comment value="ComfortScale" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="108301000146109" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effective[x]" />
+      <sliceName value="effectiveDateTime" />
+      <short value="ScoreDateTime" />
+      <definition value="The date and time at which the Comfort Behaviour scale/ComfortNeo scale was determined." />
+      <alias value="ScoreDatumTijd" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-comfortscale-v1.1-2020EN" />
+        <map value="NL-CM:12.12.11" />
+        <comment value="ScoreDateTime" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueInteger">
+      <path value="Observation.value[x]" />
+      <sliceName value="valueInteger" />
+      <short value="TotalScore" />
+      <definition value="The total score is the sum of all the individual scores. The total score has a range from 0 - 35." />
+      <alias value="TotaalScore" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="35" />
+      <mapping>
+        <identity value="zib-comfortscale-v1.1-2020EN" />
+        <map value="NL-CM:12.12.2" />
+        <comment value="TotalScore" />
+      </mapping>
+    </element>
+    <element id="Observation.note">
+      <path value="Observation.note" />
+      <max value="1" />
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
+      <short value="Comment" />
+      <definition value="A comment on the circumstances during the measurement." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-comfortscale-v1.1-2020EN" />
+        <map value="NL-CM:12.12.12" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:alertness">
+      <path value="Observation.component" />
+      <sliceName value="alertness" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:alertness.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="12012003" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:alertness.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Alertness" />
+      <definition value="Observation Alertness" />
+      <alias value="Alertheid" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.12.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-comfortscale-v1.1-2020EN" />
+        <map value="NL-CM:12.12.3" />
+        <comment value="Alertness" />
+      </mapping>
+    </element>
+    <element id="Observation.component:calmnessAgitation">
+      <path value="Observation.component" />
+      <sliceName value="calmnessAgitation" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:calmnessAgitation.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="12012004" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:calmnessAgitation.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Calmness_Agitation" />
+      <definition value="Observation Calmness/agitation" />
+      <alias value="Kalmte_Agitatie" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.12.2--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-comfortscale-v1.1-2020EN" />
+        <map value="NL-CM:12.12.4" />
+        <comment value="Calmness_Agitation" />
+      </mapping>
+    </element>
+    <element id="Observation.component:respiratoryResponse">
+      <path value="Observation.component" />
+      <sliceName value="respiratoryResponse" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:respiratoryResponse.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="12012005" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:respiratoryResponse.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="RespiratoryResponse" />
+      <definition value="Observation Respiratory response (only in mechanically ventilated children)" />
+      <alias value="Ademhalingsreactie" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.12.3--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-comfortscale-v1.1-2020EN" />
+        <map value="NL-CM:12.12.5" />
+        <comment value="RespiratoryResponse" />
+      </mapping>
+    </element>
+    <element id="Observation.component:crying">
+      <path value="Observation.component" />
+      <sliceName value="crying" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:crying.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="12012006" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:crying.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Crying" />
+      <definition value="Observation Crying (only in spontaneously breathing children)" />
+      <alias value="Huilen" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.12.4--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-comfortscale-v1.1-2020EN" />
+        <map value="NL-CM:12.12.6" />
+        <comment value="Crying" />
+      </mapping>
+    </element>
+    <element id="Observation.component:bodyMovement">
+      <path value="Observation.component" />
+      <sliceName value="bodyMovement" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:bodyMovement.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="12012008" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:bodyMovement.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="BodyMovement" />
+      <definition value="Observation Physical movement" />
+      <alias value="Lichaamsbeweging" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.12.5--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-comfortscale-v1.1-2020EN" />
+        <map value="NL-CM:12.12.8" />
+        <comment value="BodyMovement" />
+      </mapping>
+    </element>
+    <element id="Observation.component:facialTone">
+      <path value="Observation.component" />
+      <sliceName value="facialTone" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:facialTone.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="12012009" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:facialTone.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="FacialTone" />
+      <definition value="Observation Facial tension" />
+      <alias value="Gezichtsspanning" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.12.6--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-comfortscale-v1.1-2020EN" />
+        <map value="NL-CM:12.12.9" />
+        <comment value="FacialTone" />
+      </mapping>
+    </element>
+    <element id="Observation.component:bodyMuscleTone">
+      <path value="Observation.component" />
+      <sliceName value="bodyMuscleTone" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:bodyMuscleTone.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="12012010" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:bodyMuscleTone.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="BodyMuscleTone" />
+      <definition value="Observation Muscle tone" />
+      <alias value="Spierspanning" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.12.7--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-comfortscale-v1.1-2020EN" />
+        <map value="NL-CM:12.12.10" />
+        <comment value="BodyMuscleTone" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
