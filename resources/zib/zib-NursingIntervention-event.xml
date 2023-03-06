@@ -39,6 +39,28 @@
         <comment value="NursingIntervention" />
       </mapping>
     </element>
+    <element id="Procedure.extension">
+      <path value="Procedure.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Procedure.extension:treatmentObjective">
+      <path value="Procedure.extension" />
+      <sliceName value="treatmentObjective" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-NursingIntervention.TreatmentObjective" />
+      </type>
+      <isModifier value="false" />
+    </element>
     <element id="Procedure.code">
       <path value="Procedure.code" />
       <short value="Intervention" />
