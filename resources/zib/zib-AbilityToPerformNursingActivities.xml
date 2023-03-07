@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -39,6 +39,22 @@
         <comment value="AbilityToPerformNursingActivities" />
       </mapping>
     </element>
+    <element id="Observation.basedOn">
+      <path value="Observation.basedOn" />
+      <short value="NursingIntervention" />
+      <definition value="Specification of nursing interventions where the skills relate to." />
+      <alias value="VerpleegkundigeInterventie" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-NursingIntervention" />
+      </type>
+      <mapping>
+        <identity value="zib-abilitytoperformnursingactivities-v1.0.1-2020EN" />
+        <map value="NL-CM:4.34.3" />
+        <comment value="NursingIntervention" />
+      </mapping>
+    </element>
     <element id="Observation.code">
       <path value="Observation.code" />
       <patternCodeableConcept>
@@ -59,7 +75,7 @@
       </slicing>
     </element>
     <element id="Observation.value[x]:valueCodeableConcept">
-      <path value="Observation.valueCodeableConcept" />
+      <path value="Observation.value[x]" />
       <sliceName value="valueCodeableConcept" />
       <short value="PerformNursingActivity" />
       <definition value="The informationQualification of the degree of independence when performing  certain (nursing) interventions. determined as a result of making the observation, if the information has a simple value." />
