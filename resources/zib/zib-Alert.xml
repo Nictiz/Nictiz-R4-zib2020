@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -32,20 +32,18 @@
     <element id="Flag">
       <path value="Flag" />
       <short value="Alert" />
-      <comment value="One of the zib concepts Condition::Concern and AlertName must be selected. If `.code` contains a code from AlertNaamCodelijst, `.extension:concern` SHALL not exist. On the other hand, if `.extension:concern` is populated, `.code` SHALL contain code _not-applicable_ from system _http://hl7.org/fhir/ValueSet/data-absent-reason_." />
+      <comment value="One of the zib concepts Condition::Concern and AlertName must be selected. If `.code` contains a code from AlertNaamCodelijst, `.extension:concern` SHALL not exist. On the other hand, if `.extension:concern` is populated, `.code` SHALL contain code _not-applicable_ from system _http://terminology.hl7.org/CodeSystem/data-absent-reason_." />
       <constraint>
         <key value="zib-Alert-1" />
         <severity value="error" />
         <human value="One concept from Condition::Concern and AlertName must be selected. If Flag.code contains a code from AlertNaamCodelijst, Flag.extension:concern SHALL not exist." />
         <expression value="code.memberOf('http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.8.3.2--20200901000000') implies extension.where(url = 'http://hl7.org/fhir/StructureDefinition/flag-detail').exists().not()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-Alert" />
       </constraint>
       <constraint>
         <key value="zib-Alert-2" />
         <severity value="error" />
         <human value="One concept from Condition::Concern and AlertName must be selected. If Flag.extension:concern is filled, Flag.code SHALL contain code 'not-applicable' from system 'http://terminology.hl7.org/CodeSystem/data-absent-reason'." />
         <expression value="extension('http://hl7.org/fhir/StructureDefinition/flag-detail').exists() implies code.coding.where($this.system = 'http://terminology.hl7.org/CodeSystem/data-absent-reason' and $this.code = 'not-applicable').exists()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-Alert" />
       </constraint>
       <mapping>
         <identity value="zib-alert-v4.1-2020EN" />
@@ -191,21 +189,6 @@
         <system value="http://terminology.hl7.org/CodeSystem/data-absent-reason" />
         <code value="not-applicable" />
       </patternCoding>
-    </element>
-    <element id="Flag.subject">
-      <path value="Flag.subject" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PlanDefinition" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Medication" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Procedure" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient" />
-      </type>
     </element>
     <element id="Flag.period.start">
       <path value="Flag.period.start" />

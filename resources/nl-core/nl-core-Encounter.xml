@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -18,6 +18,16 @@
   <purpose value="A derived profile from [zib-Encounter](http://nictiz.nl/fhir/StructureDefinition/zib-Encounter) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-encounter-v4.0.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/Encounter-v4.0.1(2020EN)" />
+    <name value="zib Encounter-v4.0.1(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-healthprofessional-v3.5-2020EN" />
+    <uri value="https://zibs.nl/wiki/HealthProfessional-v3.5(2020EN)" />
+    <name value="zib HealthProfessional-v3.5(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="Encounter" />
@@ -65,20 +75,11 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event" />
       </type>
     </element>
-    <element id="Encounter.reasonReference:deviatingResult">
-      <path value="Encounter.reasonReference" />
-      <sliceName value="deviatingResult" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult" />
-      </type>
-    </element>
     <element id="Encounter.location.location">
       <path value="Encounter.location.location" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider" />
       </type>
     </element>
