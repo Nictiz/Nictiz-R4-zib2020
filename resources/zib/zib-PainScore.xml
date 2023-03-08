@@ -37,13 +37,13 @@
         <key value="zib-PainScore-1" />
         <severity value="error" />
         <human value="The maximum value is 10 if method is VAS10 or NRS, or 100 if method is VAS100" />
-        <expression value="((method.coding.code = 'VAS10' or method.coding.code = 'NRS') and valueInteger.value &lt;= 10) or (method.coding.code = 'VAS100' and valueInteger.value &lt;= 100)" />
+        <expression value="((method.coding.code = 'VAS10' or method.coding.code = 'NRS') and value &lt;= 10) or (method.coding.code = 'VAS100' and value &lt;= 100)" />
       </constraint>
       <constraint>
         <key value="zib-PainScore-2" />
         <severity value="error" />
         <human value="The minimum value is 0 if method is VAS10 or VAS100, or 1 if method is NRS" />
-        <expression value="((method.coding.code = 'VAS10' or method.coding.code = 'VAS100') and valueInteger.value &gt;= 0) or (method.coding.code = 'NRS' and valueInteger.value &gt;= 1)" />
+        <expression value="((method.coding.code = 'VAS10' or method.coding.code = 'VAS100') and value &gt;= 0) or (method.coding.code = 'NRS' and value &gt;= 1)" />
       </constraint>
       <mapping>
         <identity value="zib-painscore-v4.0-2020EN" />
