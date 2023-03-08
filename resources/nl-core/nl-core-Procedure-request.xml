@@ -18,6 +18,11 @@
   <purpose value="A derived profile from [zib-Procedure-ServiceRequest](http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-request) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-procedure-v5.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/Procedure-v5.2(2020EN)" />
+    <name value="zib Procedure-v5.2(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="ServiceRequest" />
@@ -42,7 +47,7 @@
     </element>
     <element id="ServiceRequest.requester">
       <path value="ServiceRequest.requester" />
-      <comment value="The zib mapping contains a known cardinality difference (0..* versus 0..1). The zib will be aligned in a future version with the cardinality of FHIR, therefore this profile pre adopts the 0..1 cardinality for the requester.&#xD;&#xA;&#xD;&#xA;Each occurence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [nl-core-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [nl-core-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner)). Sending systems should only fill the reference to the PractitionerRole instance here. Recieving systems can retrieve the reference to the Practitioner resource from that PractitionerRole instance.&#xD;&#xA;&#xD;&#xA;In rare circumstances, there is only a Practitioner instance, in which case it is that instance which will be referenced here. However, since this should be the exception, the nl-core-HealthProfessional-Practitioner profile is not explicitly mentioned as a target profile." />
+      <comment value="The zib mapping contains a known cardinality difference (0..* versus 0..1). The zib will be aligned in a future version with the cardinality of FHIR, therefore this profile pre-adopts the 0..1 cardinality for the requester.&#xD;&#xA;&#xD;&#xA;Each occurrence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [nl-core-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [nl-core-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner)). The Practitioner resource is referenced from the PractitionerRole instance. For this reason, sending systems should fill the reference to the PractitionerRole instance here, and not the Practitioner resource. Receiving systems can then retrieve the reference to the Practitioner resource from that PractitionerRole instance.&#xD;&#xA;&#xD;&#xA;In rare circumstances, there is only a Practitioner instance, in which case it is that instance which will be referenced here. However, since this should be the exception, the zib-HealthProfessional-Practitioner profile is not explicitly mentioned as a target profile." />
       <type>
         <code value="Reference" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
