@@ -90,7 +90,7 @@ This document contains release notes per zib, indicating differences with their 
 
 ## zib-DevelopmentChild
 * The binding strength of all ValueSets has changed from 'extensible' to 'required'.
-* The data type for AgeFirstMenstruation has been changed from dateTime to Quantity, and the UCUM unit has been added.
+* The data type for AgeFirstMenstruation has been changed from dateTime to Quantity, and the UCUM unit for 'year' (a) has been added.
 * The code on `Observation.component:developmentCognition.code` has been changed from 364644000 to 311465003.
 
 ## zib-DrugUse
