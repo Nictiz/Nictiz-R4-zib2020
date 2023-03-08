@@ -230,31 +230,31 @@ This document contains release notes per zib, indicating differences with their 
 * Both InsuranceCompany and 'PayerPerson as Organization' have been mapped in the profile Payer-Organization.
 
 ## zib-Pregnancy.DateLastMenstruation
-* The zib-Pregnancy extension has been moved to 'Observation.focus'.
+* The zib-Pregnancy extension has moved from 'Observation.extension' to 'Observation.focus'.
 
 ## zib-Pregnancy.EstimatedDateOfDelivery
-* The profile name has now been changed from "zib-Pregnancy-TermDate" to "zib-Pregnancy.EstimatedDateOfDelivery".
-* The value of 'Condition.code' has now been changed from 11778-8 to 161714006.
-* The system of 'Condition.code' has now been changed from 'http://loinc.org' to 'http://snomed.info/sct'.
-* The zib-Pregnancy extension has been moved to 'Observation.focus'.
+* The profile name has changed from "zib-Pregnancy-TermDate" to "zib-Pregnancy.EstimatedDateOfDelivery".
+* The value of 'Condition.code' has changed from 11778-8 (LOINC) to 161714006 (SNOMED CT).
+* The system of 'Condition.code' has changed from 'http://loinc.org' to 'http://snomed.info/sct'.
+* The zib-Pregnancy extension has moved from 'Observation.extension' to 'Observation.focus'.
 
 ## zib-Pregnancy.Gravidity
-* The value of 'Condition.code' has now been changed from 11996-6 to 161732006.
-* The system of 'Condition.code' has now been changed from 'http://loinc.org' to 'http://snomed.info/sct'.
-* The datatype on 'Observation.value[x]' has now been changed from 'valueQuantity' to 'valueInteger'.
-* The zib-Pregnancy extension has been moved to 'Observation.focus'.
+* The value of 'Condition.code' has changed from 11996-6 (LOINC) to 161732006 (SNOMED CT).
+* The system of 'Condition.code' has changed from 'http://loinc.org' to 'http://snomed.info/sct'.
+* The datatype on 'Observation.value' has changed from 'valueQuantity' to 'valueInteger'.
+* The zib-Pregnancy extension has moved from 'Observation.extension' to 'Observation.focus'.
 
 ## zib-Pregnancy.Parity
-* The value of 'Condition.code' has now been changed from 11977-6 to 364325004.
-* The system of 'Condition.code' has now been changed from 'http://loinc.org' to 'http://snomed.info/sct'.
-* The datatype on 'Observation.value[x]' has now been changed from 'valueQuantity' to 'valueInteger'.
-* The zib-Pregnancy extension has been moved to 'Observation.focus'.
+* The value of 'Condition.code' has changed from 11977-6 (LOINC) to 364325004 (SNOMED CT).
+* The system of 'Condition.code' has  changed from 'http://loinc.org' to 'http://snomed.info/sct'.
+* The datatype on 'Observation.value' has changed from 'valueQuantity' to 'valueInteger'.
+* The zib-Pregnancy extension has moved from 'Observation.extension' to 'Observation.focus'.
 
 ## zib-Pregnancy.PregnancyDuration
-* The zib-Pregnancy extension has been moved to 'Observation.focus'.
+* The zib-Pregnancy extension has moved from 'Observation.extension' to 'Observation.focus'.
 
 ## zib-Pregnancy
-* The value of 'Condition.code' has now been changed from 118185001 to 364320009.
+* The value of 'Condition.code' has changed from 118185001 to 364320009.
 
 ## zib-Problem
 * ProblemType has been added on a slice of `Condition.category` allowing the category element to be used for other purposes too.
