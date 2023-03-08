@@ -2,7 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-Payer.InsuranceCompany" />
   <meta>
-    <lastUpdated value="2021-12-08T16:12:01.9657167+00:00" />
+    <lastUpdated value="2023-02-02T12:14:47.6056628+00:00" />
   </meta>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Payer.InsuranceCompany" />
   <name value="ZibPayerInsuranceCompany" />
@@ -35,7 +35,7 @@
     <element id="Coverage">
       <path value="Coverage" />
       <short value="Payer / Insurance" />
-      <comment value="The zib Payer is split into two focal profiles on Coverage based on the PayerPerson and InsuranceCompany containers. These two containers cannot be profiled within one profile because they both require mapping different concepts on elements such as `.payor` and `.type`.&#xD;&#xA;&#xD;&#xA;The zib container Payer.InsuranceCompany is mapped to this Coverage profile and uses the profile zib-Payer-Organization (&amp;lt;http://nictiz.nl/fhir/StructureDefinition/zib-Payer-Organization&amp;gt;) to capture the OrganizationName, IdentificationNumber, AddressInformation and ContactInformation. The zib-Payer-Organization profile is referenced using the `.payor` element." />
+      <comment value="The zib Payer is split into two focal profiles on Coverage based on the PayerPerson and InsuranceCompany containers. These two containers cannot be profiled within one profile because they both require mapping different concepts on elements such as `.payor` and `.type`.&#xD;&#xA;&#xD;&#xA;The zib container Payer.InsuranceCompany is mapped to this Coverage profile and uses the profile zib-Payer-Organization (&lt;http://nictiz.nl/fhir/StructureDefinition/zib-Payer-Organization&gt;) to capture the OrganizationName, IdentificationNumber, AddressInformation and ContactInformation. The zib-Payer-Organization profile is referenced using the `.payor` element." />
       <alias value="Betaler" />
       <alias value="Verzekering" />
       <mapping>
@@ -88,14 +88,6 @@
         <map value="NL-CM:1.1.6" />
         <comment value="InsurantNumber" />
       </mapping>
-    </element>
-    <element id="Coverage.beneficiary">
-      <path value="Coverage.beneficiary" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient" />
-      </type>
     </element>
     <element id="Coverage.period.start">
       <path value="Coverage.period.start" />
