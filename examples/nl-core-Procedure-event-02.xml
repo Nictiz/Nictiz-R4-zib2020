@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ServiceRequest xmlns="http://hl7.org/fhir">
-   <id value="nl-core-Procedure-request-02"/>
+<Procedure xmlns="http://hl7.org/fhir">
+   <id value="nl-core-Procedure-event-02"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event"/>
    </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Procedure.ProcedureMethod">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="129284003"/>
+            <display value="chirurgische handeling"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <basedOn>
+      <reference value="ServiceRequest/nl-core-Procedure-request-02"/>
+      <type value="ServiceRequest"/>
+      <display value="Procedure, type: Prothese implantatie kniegewricht, method: chirurgische handeling"/>
+   </basedOn>
    <status value="completed"/>
-   <intent value="order"/>
    <code>
       <coding>
          <system value="urn:oid:2.16.840.1.113883.2.4.3.120.5.2"/>
@@ -13,37 +26,27 @@
          <display value="Prothese implantatie kniegewricht"/>
       </coding>
    </code>
-   <orderDetail>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="129284003"/>
-         <display value="chirurgische handeling"/>
-      </coding>
-   </orderDetail>
    <subject>
       <reference value="Patient/nl-core-Patient-01"/>
       <type value="Patient"/>
       <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
    </subject>
-   <occurrencePeriod>
+   <performedPeriod>
       <start value="2022-06-05"/>
       <end value="2022-06-06"/>
-   </occurrencePeriod>
-   <requester>
-      <reference value="PractitionerRole/nl-core-Procedure-01-PractitionerRole-09"/>
-      <type value="PractitionerRole"/>
-      <display value="Healthcare professional (role), Orthoptisten"/>
-   </requester>
+   </performedPeriod>
    <performer>
-      <reference value="PractitionerRole/nl-core-Procedure-01-PractitionerRole-09"/>
-      <type value="PractitionerRole"/>
-      <display value="Healthcare professional (role), Orthoptisten"/>
+      <actor>
+         <reference value="PractitionerRole/nl-core-Procedure-01-PractitionerRole-09"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), Orthoptisten"/>
+      </actor>
    </performer>
-   <locationReference>
+   <location>
       <reference value="Location/nl-core-Procedure-01-Location-01"/>
       <type value="Location"/>
       <display value="Healthcare provider (location), UMCG"/>
-   </locationReference>
+   </location>
    <reasonReference>
       <reference value="Condition/nl-core-Procedure-02-Condition-01"/>
       <type value="Condition"/>
@@ -65,4 +68,4 @@
          <display value="structuur van knieregio"/>
       </coding>
    </bodySite>
-</ServiceRequest>
+</Procedure>
