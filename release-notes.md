@@ -17,6 +17,9 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-AbilityToGroom
 * No specific changes have been made to this profile other than the generic changes for the Observation resource.
 
+## zib-AbilityToPerformNursingActivities
+* The "focus" extension has been removed.
+* The "NursingIntervention" extension has been removed, and this concept is now mapped on `Observation.basedOn`.
 
 ## zib-AbilityToUseToilet
 * No specific changes have been made to this profile other than the generic changes for the Observation resource.
