@@ -1,0 +1,67 @@
+main branch: origin/main
+ignored issues: known-issues.yml
+igs:
+  - resources
+script dir: util/qa
+
+patterns:
+  zib profiles: resources/zib/zib-*.xml
+  zib extensions: resources/zib/ext-*.*.xml
+  nl-core profiles: resources/nl-core/nl-core-*.xml
+  nl-core extensions: resources/nl-core/ext-*.*.xml
+  other profiles:
+  - resources/zib/*.xml
+  - resources/nl-core/*.xml
+  conceptmaps: resources/**/conceptmap-*.xml
+  terminology: resources/**/terminology/*.xml
+  examples: examples/*.xml
+
+steps:
+  validate zib profiles:
+    description: Validate the zib profiles using the profile for zib profiles
+    patterns: zib profiles
+    profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Profiles
+  validate zib extensions:
+    description: Validate the zib specific extensions using the profile for zib extensions
+    patterns: zib extensions
+    profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Extensions
+  validate nl-core profiles:
+    description: Validate the nl-core profiles using the profile for nl-core extensions
+    patterns: nl-core profiles
+    profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore-Profiles
+  validate nl-core extensions:
+    description: Validate the nl-core layer specific profiles using the profile for nl-core extensions
+    patterns: nl-core extensions
+    profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-NlCore-Extensions
+  validate other profiles:
+    description: Validate the remaining profiles using the generic profile for Nictiz FHIR R4 StructureDefinitions
+    patterns: other profiles
+    profile: "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions"
+  validate ConceptMaps:
+    description: Validate the ConceptMaps using the profile for ConceptMaps
+    patterns: conceptmaps
+    profile: "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-ConceptMaps"
+  validate other terminology:
+    description: Validate the other terminology resources
+    patterns: terminology
+  validate examples:
+    description: Validate examples using the generic FHIR validation rules
+    patterns: examples
+  check zib compliance:
+    patterns:
+      - zib profiles
+      - zib extensions
+    script: zib-compliance.sh
+  check resource ids:
+    description: Check if the .id matches the name of the file
+    patterns:
+      - zib profiles
+      - zib extensions
+      - nl-core profiles
+      - nl-core extensions
+      - other profiles
+      - examples
+    script: check-id.sh
+  check nl-core overrides:
+    patterns: nl-core profiles
+    script: nl-core-overrides.sh

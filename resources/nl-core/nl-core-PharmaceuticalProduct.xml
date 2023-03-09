@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-PharmaceuticalProduct" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct" />
+  <name value="NlcorePharmaceuticalProduct" />
+  <title value="nl core PharmaceuticalProduct" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The prescribed substance is usually medication. However, medical aids and bandages can also be prescribed and supplied via the pharmacy. Food and blood products do not strictly belong in the medication category, but can be prescribed and supplied by a pharmacy as well.&#xD;&#xA;&#xD;&#xA;A type of medication can be indicated with **a single code**. That code can be chosen from several possible coding systems (concretely: GPK, PRK, HPK or article numbers). Correct use of these codes in the software systems will sufficiently record the composition of the product used, making a complete product specification unnecessary.&#xD;&#xA;&#xD;&#xA;In addition to a primary code, **alternative codes** from other coding systems can also be entered (so that the GPK can be sent along in the event that the patient was registered based on PRK, for example).&#xD;&#xA;&#xD;&#xA;Entering multiple ingredients will enable you to display a compound product. If one of the composite parts is liquid, the dosage will be given in milliliters; otherwise it will be given in ‘units’.&#xD;&#xA;&#xD;&#xA;In that case, the **composition of the medication** can be specified implicitly (with the use of a medication code) or explicitly, for example by listing the (active) ingredient(s) of the medication.&#xD;&#xA;&#xD;&#xA;**Magistral prescriptions** can be entered as well. This can be done by means of the option listed above to enter coded ingredients and/or by entering the composition and preparation method as free text.&#xD;&#xA;This is a partial information model." />
+  <purpose value="A derived profile from [zib-PharmaceuticalProduct](http://nictiz.nl/fhir/StructureDefinition/zib-PharmaceuticalProduct) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-pharmaceuticalproduct-v2.1.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/PharmaceuticalProduct-v2.1.2(2020EN)" />
+    <name value="zib PharmaceuticalProduct-v2.1.2(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="imm-Vaccination-Immunization-20211118" />
+    <uri value="https://decor.nictiz.nl/ad/#/imm-/datasets/dataset/2.16.840.1.113883.2.4.3.11.60.131.1.1/2021-11-18T10:06:34" />
+    <name value="ART-DECOR Dataset Vaccination-Immunization 20211118T10:06:34" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Medication" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-PharmaceuticalProduct" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Medication">
+      <path value="Medication" />
+      <alias value="nl-core-PharmaceuticalProduct" />
+    </element>
+    <element id="Medication.identifier">
+      <path value="Medication.identifier" />
+      <mapping>
+        <identity value="imm-Vaccination-Immunization-20211118" />
+        <map value="imm-dataelement-146" />
+        <comment value="SerialNumber" />
+      </mapping>
+    </element>
+    <element id="Medication.batch.lotNumber">
+      <path value="Medication.batch.lotNumber" />
+      <mapping>
+        <identity value="imm-Vaccination-Immunization-20211118" />
+        <map value="imm-dataelement-145" />
+        <comment value="Batch/lotNumber" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

@@ -6,14 +6,14 @@
    </meta>
    <extension url="http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod">
       <valuePeriod>
-         <start value="2020-09-01T00:00:00+02:00"/>
+         <start value="2020-09-01T00:00:00+00:00"/>
       </valuePeriod>
    </extension>
    <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.3.1.2--20200901000000"/>
    <identifier>
       <use value="official"/>
-      <system value="http://art-decor.org/ns/oids/vs"/>
-      <value value="2.16.840.1.113883.2.4.3.11.60.40.2.3.1.2"/>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.3.1.2"/>
    </identifier>
    <version value="2020-09-01T00:00:00"/>
    <name value="RolCodelijst"/>
@@ -32,124 +32,9 @@
          <value value="https://www.zibs.nl"/>
       </telecom>
    </contact>
-   <description value="RolCodelijst"/>
+   <description value="[ZIB-1378 Erratum](https://bits.nictiz.nl/browse/ZIB-1378) 2021-06-21 codes 1-9 were not conformant to [Vektis source](https://www.vektis.nl/standaardisatie/codelijsten/COD821-VEKT). These have been changed to codes 01-09 hence with a leading zero"/>
    <immutable value="false"/>
    <compose>
-      <include>
-         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Eerste relatie/contactpersoon"/>
-            </extension>
-            <code value="1"/>
-            <display value="Eerste relatie/contactpersoon"/>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Tweede relatie/contactpersoon"/>
-            </extension>
-            <code value="2"/>
-            <display value="Tweede relatie/contactpersoon"/>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Curator (juridisch)"/>
-            </extension>
-            <code value="3"/>
-            <display value="Curator (juridisch)"/>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Financieel (gemachtigd)"/>
-            </extension>
-            <code value="4"/>
-            <display value="Financieel (gemachtigd)"/>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Financieel (toetsing)"/>
-            </extension>
-            <code value="5"/>
-            <display value="Financieel (toetsing)"/>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Leefeenheid"/>
-            </extension>
-            <code value="6"/>
-            <display value="Leefeenheid"/>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Hulpverlener"/>
-            </extension>
-            <code value="7"/>
-            <display value="Hulpverlener"/>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Anders"/>
-            </extension>
-            <code value="9"/>
-            <display value="Anders"/>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Voogd"/>
-            </extension>
-            <code value="11"/>
-            <display value="Voogd"/>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Bewindvoerder"/>
-            </extension>
-            <code value="14"/>
-            <display value="Bewindvoerder"/>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Mentor"/>
-            </extension>
-            <code value="15"/>
-            <display value="Mentor"/>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Buur"/>
-            </extension>
-            <code value="19"/>
-            <display value="Buur"/>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Vriend(in)/kennis"/>
-            </extension>
-            <code value="20"/>
-            <display value="Vriend(in)/kennis"/>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Cliëntondersteuner"/>
-            </extension>
-            <code value="21"/>
-            <display value="Cliëntondersteuner"/>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Contactpersoon"/>
-            </extension>
-            <code value="23"/>
-            <display value="Contactpersoon"/>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Wettelijke vertegenwoordiger"/>
-            </extension>
-            <code value="24"/>
-            <display value="Wettelijke vertegenwoordiger"/>
-         </concept>
-      </include>
       <include>
          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.23.1"/>
          <concept>
@@ -214,6 +99,217 @@
                   <display value="Synonym"/>
                </use>
                <value value="Advocaat"/>
+            </designation>
+         </concept>
+      </include>
+      <include>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
+         <concept>
+            <code value="01"/>
+            <display value="Eerste relatie/contactpersoon"/>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Eerste relatie/contactpersoon"/>
+            </designation>
+         </concept>
+         <concept>
+            <code value="02"/>
+            <display value="Tweede relatie/contactpersoon"/>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Tweede relatie/contactpersoon"/>
+            </designation>
+         </concept>
+         <concept>
+            <code value="03"/>
+            <display value="Curator (juridisch)"/>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Curator (juridisch)"/>
+            </designation>
+         </concept>
+         <concept>
+            <code value="04"/>
+            <display value="Financieel (gemachtigd)"/>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Financieel (gemachtigd)"/>
+            </designation>
+         </concept>
+         <concept>
+            <code value="05"/>
+            <display value="Financieel (toetsing)"/>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Financieel (toetsing)"/>
+            </designation>
+         </concept>
+         <concept>
+            <code value="06"/>
+            <display value="Leefeenheid"/>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Leefeenheid"/>
+            </designation>
+         </concept>
+         <concept>
+            <code value="07"/>
+            <display value="Hulpverlener"/>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Hulpverlener"/>
+            </designation>
+         </concept>
+         <concept>
+            <code value="09"/>
+            <display value="Anders"/>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Anders"/>
+            </designation>
+         </concept>
+         <concept>
+            <code value="11"/>
+            <display value="Voogd"/>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Voogd"/>
+            </designation>
+         </concept>
+         <concept>
+            <code value="14"/>
+            <display value="Bewindvoerder"/>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Bewindvoerder"/>
+            </designation>
+         </concept>
+         <concept>
+            <code value="15"/>
+            <display value="Mentor"/>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Mentor"/>
+            </designation>
+         </concept>
+         <concept>
+            <code value="19"/>
+            <display value="Buur"/>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Buur"/>
+            </designation>
+         </concept>
+         <concept>
+            <code value="20"/>
+            <display value="Vriend(in)/kennis"/>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Vriend(in)/kennis"/>
+            </designation>
+         </concept>
+         <concept>
+            <code value="21"/>
+            <display value="Cliëntondersteuner"/>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Cliëntondersteuner"/>
+            </designation>
+         </concept>
+         <concept>
+            <code value="23"/>
+            <display value="Contactpersoon"/>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Contactpersoon"/>
+            </designation>
+         </concept>
+         <concept>
+            <code value="24"/>
+            <display value="Wettelijke vertegenwoordiger"/>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Wettelijke vertegenwoordiger"/>
             </designation>
          </concept>
       </include>
