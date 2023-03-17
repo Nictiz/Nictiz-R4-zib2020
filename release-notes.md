@@ -271,6 +271,12 @@ This document contains release notes per zib, indicating differences with their 
 * In the SOAPLineCode extension the fixed value on `.valueCodeableConcept.coding.system` has been removed because it is now covered by a required binding.
 * Moved mapping of SOAPLineCode from `Observation.component`s to a custom extension because of lacking terminology codes to provide definiton ot the component.
 
+## zib-SkinDisorder
+* Renamed `extension:dueTo` to `extension:cause` to match its functional counterpart.
+* Changed fixed slice on `.category.coding` to a pattern on `.category`.
+* `Condition.bodySite` is now based on the zib AnatomicalLocation profile.
+* `Condition.note` now honours the max cardinality of zib Comment.
+
 ## zib-Stoma
 * The resource to represent this zib has been changed from Observation to Condition. This aligns better with the meaning of the zib, as a stoma requires long term management. 
 * The general code of a Stoma has been added as a pattern to `Condition.category` allowing the category element to be used for other purposes too.
