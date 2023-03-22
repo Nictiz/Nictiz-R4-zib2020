@@ -46,5 +46,250 @@
         </coding>
       </patternCodeableConcept>
     </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:m_NumberOfPrimaryTumors">
+      <path value="Observation.component" />
+      <sliceName value="m_NumberOfPrimaryTumors" />
+    </element>
+    <element id="Observation.component:m_NumberOfPrimaryTumors.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="133641000146103" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:m_NumberOfPrimaryTumors.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="m_NumberOfPrimaryTumors" />
+      <definition value="The number of existing primary tumors. In the case of multiple primary tumors in one organ, the tumor with the highest T category should be classified and the multiplicity or the number of tumors should be indicated in parenthesis If multiple primary tumors are present, this is expressed in an addition to the T category in the form of (m) or a (number), e.g. T2 (m) or T2 (2). In case of one primary tumor, m is omitted from the &quot;IntegratedTNMValueoverall TNM Classification&quot;." />
+      <alias value="m_AantalPrimaireTumoren" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.13" />
+        <comment value="m_NumberOfPrimaryTumors" />
+      </mapping>
+    </element>
+    <element id="Observation.component:t_PrimaryTumor">
+      <path value="Observation.component" />
+      <sliceName value="t_PrimaryTumor" />
+    </element>
+    <element id="Observation.component:t_PrimaryTumor.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="78873005" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:t_PrimaryTumor.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="T_PrimaryTumor" />
+      <definition value="Staging result of the size extension of the primary tumor, the T-category of the TNM classification including the prefix and suffix." />
+      <alias value="T_PrimaireTumor" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.14" />
+      </mapping>
+    </element>
+    <element id="Observation.component:m_DistantMetastasis">
+      <path value="Observation.component" />
+      <sliceName value="m_DistantMetastasis" />
+    </element>
+    <element id="Observation.component:m_DistantMetastasis.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="277208005" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:m_DistantMetastasis.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="M_DistantMetastasis" />
+      <definition value="Staging result of the presence or absence of distant metastasis, the M-category of the TNM classification." />
+      <alias value="M_AfstandsMetastasen" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.26" />
+      </mapping>
+    </element>
+    <element id="Observation.component:n_RegionalLymphnodes">
+      <path value="Observation.component" />
+      <sliceName value="n_RegionalLymphnodes" />
+    </element>
+    <element id="Observation.component:n_RegionalLymphnodes.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="277206009" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:n_RegionalLymphnodes.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="N_RegionalLymphnodes" />
+      <definition value="Staging result of the presence or absence of regional lymph nodes metastasis, the N-category of the TNM classification." />
+      <alias value="N_RegionaleLymfeklieren" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.22" />
+      </mapping>
+    </element>
+    <element id="Observation.component:tl_LymphaticInvasion">
+      <path value="Observation.component" />
+      <sliceName value="tl_LymphaticInvasion" />
+    </element>
+    <element id="Observation.component:tl_LymphaticInvasion.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="395715009" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:tl_LymphaticInvasion.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="TL_LymphaticInvasion" />
+      <definition value="Presence or absence of tissue invasion absence of lymphatic invasion, the L-category. It concerns an additional description within the TNM classification that is determined by a pathologist." />
+      <alias value="L_LymfatischeInvasie" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.6" />
+      </mapping>
+    </element>
+    <element id="Observation.component:pn_PerineuralInvasion">
+      <path value="Observation.component" />
+      <sliceName value="pn_PerineuralInvasion" />
+    </element>
+    <element id="Observation.component:pn_PerineuralInvasion.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="371513001" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:pn_PerineuralInvasion.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Pn_PerineuralInvasion" />
+      <definition value="Presence or absence of perineural invasion, the Pn-category. It concerns an additional description within the TNM classification that is determined by a pathologist." />
+      <alias value="Pn_PerineuraleInvasie" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.7" />
+      </mapping>
+    </element>
+    <element id="Observation.component:v_VenousInvasion">
+      <path value="Observation.component" />
+      <sliceName value="v_VenousInvasion" />
+    </element>
+    <element id="Observation.component:v_VenousInvasion.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="371493002" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:v_VenousInvasion.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="V_VenousInvasion" />
+      <definition value="Presence or absence of venous invasion, the V-category. It concerns an additional description within the TNM classification that is determined by a pathologist." />
+      <alias value="V_VeneuzeInvasie" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.8" />
+      </mapping>
+    </element>
+    <element id="Observation.component:anatomicalStage">
+      <path value="Observation.component" />
+      <sliceName value="anatomicalStage" />
+    </element>
+    <element id="Observation.component:anatomicalStage.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="399390009" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:anatomicalStage.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="AnatomicalStage" />
+      <definition value="The stage of the disease is the grouping based on the anatomical extent of the disease." />
+      <alias value="AnatomischStadium" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.9" />
+      </mapping>
+    </element>
+    <element id="Observation.component:prognosticStage">
+      <path value="Observation.component" />
+      <sliceName value="prognosticStage" />
+    </element>
+    <element id="Observation.component:prognosticStage.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="399390009" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:prognosticStage.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="PrognosticStage" />
+      <definition value="The Prognostic Stage group of the disease. Next to the anatomic extent of the disease additional prognostic factors are included in the grouping." />
+      <alias value="PrognostischStadium" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.10" />
+      </mapping>
+    </element>
   </differential>
 </StructureDefinition>
