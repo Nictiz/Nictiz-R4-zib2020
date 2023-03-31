@@ -123,14 +123,11 @@
         <comment value="ContactWith" />
       </mapping>
     </element>
-    <element id="Encounter.period">
-      <path value="Encounter.period" />
-      <comment value="If only a single point in time is known for the encounter rather than a period, both `period.start` and `period.end` are populated with this value (populating just `period.start` would indicate an ongoing period)." />
-    </element>
     <element id="Encounter.period.start">
       <path value="Encounter.period.start" />
       <short value="StartDateTime" />
       <definition value="The date and time at which the contact took or will take place." />
+      <comment value="If only a single moment in time is known for the encounter rather than a period, both `period.start` and `period.end` are populated with this value (populating just `period.start` would indicate an ongoing period)." />
       <alias value="BeginDatumTijd" />
       <mapping>
         <identity value="zib-encounter-v4.0.1-2020EN" />
@@ -142,11 +139,74 @@
       <path value="Encounter.period.end" />
       <short value="EndDateTime" />
       <definition value="The date and time at which the contact ended or will end. If the contact takes place over a period of time, this indicates the end of the period, in the case of an admission, for example." />
+      <comment value="If only a single moment in time is known for the encounter rather than a period, both `period.start` and `period.end` are populated with this value (populating just `period.start` would indicate an ongoing period)." />
       <alias value="EindDatumTijd" />
       <mapping>
         <identity value="zib-encounter-v4.0.1-2020EN" />
         <map value="NL-CM:15.1.4" />
         <comment value="EndDateTime" />
+      </mapping>
+    </element>
+    <element id="Encounter.reasonCode">
+      <path value="Encounter.reasonCode" />
+      <slicing>
+        <discriminator>
+          <type value="exists" />
+          <path value="coding" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Encounter.reasonCode:deviatingResult">
+      <path value="Encounter.reasonCode" />
+      <sliceName value="deviatingResult" />
+    </element>
+    <element id="Encounter.reasonCode:deviatingResult.extension">
+      <path value="Encounter.reasonCode.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Encounter.reasonCode:deviatingResult.extension:commentContactReason">
+      <path value="Encounter.reasonCode.extension" />
+      <sliceName value="commentContactReason" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Comment" />
+      </type>
+    </element>
+    <element id="Encounter.reasonCode:deviatingResult.extension:commentContactReason.value[x]">
+      <path value="Encounter.reasonCode.extension.value[x]" />
+      <short value="CommentContactReason" />
+      <definition value="Explanation of the reason for the contact" />
+      <alias value="ToelichtingRedenContact" />
+      <mapping>
+        <identity value="zib-encounter-v4.0.1-2020EN" />
+        <map value="NL-CM:15.1.17" />
+        <comment value="CommentContactReason" />
+      </mapping>
+    </element>
+    <element id="Encounter.reasonCode:deviatingResult.coding">
+      <path value="Encounter.reasonCode.coding" />
+      <max value="0" />
+    </element>
+    <element id="Encounter.reasonCode:deviatingResult.text">
+      <path value="Encounter.reasonCode.text" />
+      <short value="DeviatingResult" />
+      <definition value="A deviating result or other textual explanation which serves as the reason for the contact." />
+      <comment value="Note that this definition is wider than the zib concept DeviatingResult (NL-CM:15.1.12); although the zib concept deals only with deviating results as reason for the encounter, this element could be populated with _any_ reason for the encounter, including but not limited to deviating results. Implementers should be aware of the usage context of this profile to understand if this element is limited to a deviating result." />
+      <alias value="AfwijkendeUitslag" />
+      <mapping>
+        <identity value="zib-encounter-v4.0.1-2020EN" />
+        <map value="NL-CM:15.1.12" />
+        <comment value="DeviatingResult" />
       </mapping>
     </element>
     <element id="Encounter.reasonReference">
@@ -170,9 +230,9 @@
       </slicing>
       <min value="0" />
     </element>
-    <element id="Encounter.reasonReference.extension:comment">
+    <element id="Encounter.reasonReference.extension:commentContactReason">
       <path value="Encounter.reasonReference.extension" />
-      <sliceName value="comment" />
+      <sliceName value="commentContactReason" />
       <min value="0" />
       <max value="1" />
       <type>
@@ -180,7 +240,7 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Comment" />
       </type>
     </element>
-    <element id="Encounter.reasonReference.extension:comment.value[x]">
+    <element id="Encounter.reasonReference.extension:commentContactReason.value[x]">
       <path value="Encounter.reasonReference.extension.value[x]" />
       <short value="CommentContactReason" />
       <definition value="Explanation of the reason for the contact" />
@@ -223,23 +283,6 @@
         <comment value="Procedure" />
       </mapping>
     </element>
-    <element id="Encounter.reasonReference:deviatingResult">
-      <path value="Encounter.reasonReference" />
-      <sliceName value="deviatingResult" />
-      <short value="DeviatingResult" />
-      <definition value="A deviating result which serves as the reason for the contact." />
-      <comment value="DeviatingResult is captured with a reference to the zib LaboratoryTestResult instead of a string value as the zib 2020 incorrectly states. This will be fixed in a future version of the zib. At time of writing (November 2021), the proposed change can be followed in this BITS ticket: &lt;https://bits.nictiz.nl/browse/ZIB-1427&gt;." />
-      <alias value="AfwijkendeUitslag" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult" />
-      </type>
-      <mapping>
-        <identity value="zib-encounter-v4.0.1-2020EN" />
-        <map value="NL-CM:15.1.12" />
-        <comment value="DeviatingResult" />
-      </mapping>
-    </element>
     <element id="Encounter.hospitalization.admitSource">
       <path value="Encounter.hospitalization.admitSource" />
       <short value="Origin" />
@@ -272,7 +315,7 @@
     </element>
     <element id="Encounter.location">
       <path value="Encounter.location" />
-      <comment value="The zib has a restricted cardinality of 0..1 for the Location concept (NL-CM:15.1.8). However, this cardianlity is propably too restricted (see &lt;https://bits.nictiz.nl/browse/ZIB-1632&gt; for discussion) and would prevent some practical use cases. Therefore, the cardinality has been left on 0..* in this profile." />
+      <max value="1" />
     </element>
     <element id="Encounter.location.location">
       <path value="Encounter.location.location" />
