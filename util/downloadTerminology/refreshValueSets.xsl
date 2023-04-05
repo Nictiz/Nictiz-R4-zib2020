@@ -49,7 +49,7 @@
         </xsl:for-each-group>
         
         <xsl:for-each-group select="$valueSetURIs" group-by=".">
-            <xsl:variable name="valueSetURI" select="replace(., '^http(s?)://decor.nictiz.nl/fhir/ValueSet', 'http$1://decor.nictiz.nl/fhir/4.0/public/ValueSet')"/>
+            <xsl:variable name="valueSetURI" select="replace(., '^http(s?)://decor.nictiz.nl/fhir/ValueSet', 'https://decor.nictiz.nl/fhir/4.0/public/ValueSet')"/>
             <xsl:variable name="valueSetURIExpand" select="concat($valueSetURI, '/$expand')"/>
             <xsl:variable name="valueSet" as="element()?">
                 <xsl:apply-templates mode="rewrite" select="doc($valueSetURI)/*"/>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-LegalSituation-LegalStatus" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LegalSituation-LegalStatus" />
+  <name value="NlcoreLegalSituationLegalStatus" />
+  <title value="nl core LegalSituation LegalStatus" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A legal situation can concern a legal status and/or representation.&#xD;&#xA;&#xD;&#xA;The legal status indicates the basis on which the patient is staying in a healthcare organization. This can be either voluntary or involuntary, however the legal status is always determined by a judge." />
+  <purpose value="A derived profile from [zib-LegalSituation-LegalStatus](http://nictiz.nl/fhir/StructureDefinition/zib-LegalSituation-LegalStatus) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-legalsituation-v2.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/LegalSituation-v2.0(2020EN)" />
+    <name value="zib LegalSituation-v2.0(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Condition" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-LegalSituation-LegalStatus" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Condition">
+      <path value="Condition" />
+      <comment value="Zib LegalSituation is implemented using two profiles: this profile implements the LegalStatus concept of the zib, while &lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-LegalSituation-Representation&gt; represents the Representation concept of the zib." />
+      <alias value="nl-core-LegalSituation-LegalStatus" />
+    </element>
+    <element id="Condition.subject">
+      <path value="Condition.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
