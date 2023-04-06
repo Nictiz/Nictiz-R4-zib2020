@@ -285,6 +285,10 @@ This document contains release notes per zib, indicating differences with their 
 * `Condition.bodySite` is now based on the zib AnatomicalLocation profile.
 * `Condition.note` now honours the max cardinality of zib Comment.
 
+## zib-StrongKidsScore
+* The datatype of Observation.value[x] (zib concept TotalScore) element has been changed from Quantity to Integer, and minimum and maximum allowed values of 0 and 5 respectively are applied.
+* The system value of the Observation.component.code elements is changed to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+
 ## zib-TimeInterval
 * In the previous release, the concepts of this partial zib were mapped directly in the profiles where they are used. In this release the usage of this partial zib has been expanded and profiles have been created to aid the usage in profiles in the various situations that might occur.
 
