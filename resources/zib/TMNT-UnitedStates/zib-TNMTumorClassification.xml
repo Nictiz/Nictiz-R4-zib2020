@@ -274,5 +274,97 @@
         <comment value="PrognostischStadium" />
       </mapping>
     </element>
+    <element id="Observation.component:distantMetastasisLocalization">
+      <path value="Observation.component" />
+      <sliceName value="distantMetastasisLocalization" />
+    </element>
+    <element id="Observation.component:distantMetastasisLocalization.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="385421009" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:distantMetastasisLocalization.value[x].extension">
+      <path value="Observation.component.value[x].extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Observation.component:distantMetastasisLocalization.value[x].extension:anatomicalLocation">
+      <path value="Observation.component.value[x].extension" />
+      <sliceName value="anatomicalLocation" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TNMTumorClassification.AnatomicalLocation" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Observation.component:distantMetastasisLocalization.value[x].extension:anatomicalLocation.value[x]">
+      <path value="Observation.component.value[x].extension.value[x]" />
+      <short value="AnatomicalLocation" />
+      <definition value="Contains the localization(s) of distant metastasis, caused by the primary tumor." />
+      <alias value="Lymfeklieren" />
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.28" />
+        <comment value="AnatomicalLocation" />
+      </mapping>
+    </element>
+    <element id="Observation.component:regionalLymphNodesLocalization">
+      <path value="Observation.component" />
+      <sliceName value="regionalLymphNodesLocalization" />
+    </element>
+    <element id="Observation.component:regionalLymphNodesLocalization.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="397440000" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:regionalLymphNodesLocalization.value[x].extension">
+      <path value="Observation.component.value[x].extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Observation.component:regionalLymphNodesLocalization.value[x].extension:anatomicalLocation">
+      <path value="Observation.component.value[x].extension" />
+      <sliceName value="anatomicalLocation" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TNMTumorClassification.AnatomicalLocation" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Observation.component:regionalLymphNodesLocalization.value[x].extension:anatomicalLocation.value[x]">
+      <path value="Observation.component.value[x].extension.value[x]" />
+      <short value="AnatomicalLocation" />
+      <definition value="Contains the localization(s) of distant metastasis, caused by the primary tumor." />
+      <alias value="Lymfeklieren" />
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.24" />
+        <comment value="AnatomicalLocation" />
+      </mapping>
+    </element>
   </differential>
 </StructureDefinition>
