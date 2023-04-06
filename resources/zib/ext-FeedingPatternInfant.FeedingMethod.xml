@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-FeedingPatternInfant.FeedingMethod" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-FeedingPatternInfant.FeedingMethod" />
+  <name value="ExtFeedingPatternInfantFeedingMethod" />
+  <title value="ext FeedingPatternInfant.FeedingMethod" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The FeedingMethod concept of zib FeedingPatternInfant." />
+  <purpose value="This extension represents the FeedingMethod concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) FeedingPatternInfant-v1.1(2020EN)](https://zibs.nl/wiki/FeedingPatternInfant-v1.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-feedingpatterninfant-v1.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/FeedingPatternInfant-v1.1(2020EN)" />
+    <name value="zib FeedingPatternInfant-v1.1(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="Observation.component" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-FeedingPatternInfant.FeedingMethod" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="FeedingMethod" />
+      <definition value="The method how the feeding is given to the infant." />
+      <alias value="VoedingMethode" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mapping>
+        <identity value="zib-feedingpatterninfant-v1.1-2020EN" />
+        <map value="NL-CM:4.31.4" />
+        <comment value="FeedingMethod" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

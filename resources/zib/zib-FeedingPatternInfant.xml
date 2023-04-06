@@ -148,10 +148,6 @@
         <comment value="FeedingSupplement" />
       </mapping>
     </element>
-    <element id="Observation.component:feedingSupplement.referenceRange">
-      <path value="Observation.component.referenceRange" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
-    </element>
     <element id="Observation.component:feedingFrequency">
       <path value="Observation.component" />
       <sliceName value="feedingFrequency" />
@@ -178,14 +174,32 @@
         <comment value="FeedingFrequency" />
       </mapping>
     </element>
-    <element id="Observation.component:feedingFrequency.referenceRange">
-      <path value="Observation.component.referenceRange" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
-    </element>
     <element id="Observation.component:feedingType">
       <path value="Observation.component" />
       <sliceName value="feedingType" />
       <max value="1" />
+    </element>
+    <element id="Observation.component:feedingType.extension">
+      <path value="Observation.component.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Observation.component:feedingType.extension:feedingMethod">
+      <path value="Observation.component.extension" />
+      <sliceName value="feedingMethod" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-FeedingPatternInfant.FeedingMethod" />
+      </type>
+      <isModifier value="false" />
     </element>
     <element id="Observation.component:feedingType.code">
       <path value="Observation.component.code" />
@@ -211,44 +225,6 @@
         <map value="NL-CM:4.31.3" />
         <comment value="FeedingType" />
       </mapping>
-    </element>
-    <element id="Observation.component:feedingType.referenceRange">
-      <path value="Observation.component.referenceRange" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
-    </element>
-    <element id="Observation.component:feedingMethod">
-      <path value="Observation.component" />
-      <sliceName value="feedingMethod" />
-      <max value="1" />
-    </element>
-    <element id="Observation.component:feedingMethod.code">
-      <path value="Observation.component.code" />
-      <code>
-        <system value="http://snomed.info/sct" />
-        <code value="169740003" />
-      </code>
-    </element>
-    <element id="Observation.component:feedingMethod.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="FeedingMethod" />
-      <definition value="The method how the feeding is given to the infant." />
-      <alias value="VoedingMethode" />
-      <type>
-        <code value="CodeableConcept" />
-      </type>
-      <binding>
-        <strength value="extensible" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.31.2--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-feedingpatterninfant-v1.1-2020EN" />
-        <map value="NL-CM:4.31.4" />
-        <comment value="FeedingMethod" />
-      </mapping>
-    </element>
-    <element id="Observation.component:feedingMethod.referenceRange">
-      <path value="Observation.component.referenceRange" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
   </differential>
 </StructureDefinition>
