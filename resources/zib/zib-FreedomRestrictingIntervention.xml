@@ -189,9 +189,9 @@
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Procedure.reasonReference:legalSituation">
+    <element id="Procedure.reasonReference:legalSituation-LegalStatus">
       <path value="Procedure.reasonReference" />
-      <sliceName value="legalSituation" />
+      <sliceName value="legalSituation-LegalStatus" />
       <short value="LegalSituation" />
       <definition value="The legal situation that applies to the patient during the intervention." />
       <alias value="JuridischeSituatie" />
@@ -199,13 +199,20 @@
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-LegalSituation-LegalStatus" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-LegalSituation-Representation" />
       </type>
       <mapping>
         <identity value="zib-freedomrestrictingintervention-v1.0-2020EN" />
         <map value="NL-CM:14.6.4" />
         <comment value="LegalSituation" />
       </mapping>
+    </element>
+    <element id="Procedure.reasonReference:legalSituation-Representation">
+      <path value="Procedure.reasonReference" />
+      <sliceName value="legalSituation-Representation" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-LegalSituation-Representation" />
+      </type>
     </element>
   </differential>
 </StructureDefinition>
