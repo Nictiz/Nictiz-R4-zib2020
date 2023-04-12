@@ -26,7 +26,7 @@
   <kind value="resource" />
   <abstract value="true" />
   <type value="Observation" />
-  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/pattern-ScoreProfile" />
   <derivation value="constraint" />
   <differential>
     <element id="Observation">
@@ -38,14 +38,12 @@
         <severity value="error" />
         <human value="If one of the component codes is present, all SHALL be present." />
         <expression value="component.where(code.coding.system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1' and code.coding.code.subsetOf('4028003'|'4028004'|'4028005'|'4028008')).count().subsetOf(0|4)" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-StrongKidsScore" />
       </constraint>
       <constraint>
         <key value="zib-StrongKidsScore-2" />
         <severity value="error" />
         <human value="If the component codes are not all present, the value SHALL be present." />
         <expression value="value.empty().not() or component.where(code.coding.system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1' and code.coding.code.subsetOf('4028003'|'4028004'|'4028005'|'4028008')).count()=4" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-StrongKidsScore" />
       </constraint>
       <mapping>
         <identity value="zib-strongkidsscore-v1.1-2020EN" />
@@ -62,50 +60,24 @@
         </coding>
       </patternCodeableConcept>
     </element>
-    <element id="Observation.effective[x]">
-      <path value="Observation.effective[x]" />
-      <slicing>
-        <discriminator>
-          <type value="type" />
-          <path value="$this" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
     <element id="Observation.effective[x]:effectiveDateTime">
       <path value="Observation.effective[x]" />
       <sliceName value="effectiveDateTime" />
       <short value="ScoreDateTime" />
       <definition value="The date and time at which the StrongKids score was determined." />
       <alias value="ScoreDatumTijd" />
-      <type>
-        <code value="dateTime" />
-      </type>
       <mapping>
         <identity value="zib-strongkidsscore-v1.1-2020EN" />
         <map value="NL-CM:4.28.6" />
         <comment value="ScoreDateTime" />
       </mapping>
     </element>
-    <element id="Observation.value[x]">
-      <path value="Observation.value[x]" />
-      <slicing>
-        <discriminator>
-          <type value="type" />
-          <path value="$this" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
     <element id="Observation.value[x]:valueInteger">
-      <path value="Observation.valueInteger" />
+      <path value="Observation.value[x]" />
       <sliceName value="valueInteger" />
       <short value="TotalScore" />
       <definition value="The total score is the sum of all the individual scores. The total score has a range from 0 - 5." />
       <alias value="TotaalScore" />
-      <type>
-        <code value="integer" />
-      </type>
       <minValueInteger value="0" />
       <maxValueInteger value="5" />
       <condition value="zib-StrongKidsScore-2" />
@@ -129,16 +101,6 @@
         <map value="NL-CM:4.28.7" />
         <comment value="Comment" />
       </mapping>
-    </element>
-    <element id="Observation.component">
-      <path value="Observation.component" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="code" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
     </element>
     <element id="Observation.component:weightLossScore">
       <path value="Observation.component" />

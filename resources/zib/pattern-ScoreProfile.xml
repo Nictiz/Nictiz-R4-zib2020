@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="pattern-ScoreProfile" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/pattern-ScoreProfile" />
+  <name value="PatternScoreProfile" />
+  <title value="pattern ScoreProfile" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A pattern profile unifying the common content of the different profiles for the score zibs." />
+  <purpose value="The different score zibs like ApgarScore, ComfortScale, FLACCpainScale, MUSTScore and StrongKidsStore are modelled in a highly similar way and, as a result, are profiled a highly similar way in FHIR. This pattern profile is created to abstract the boiler plate content away from these zib profiles.&#xD;&#xA;&#xD;&#xA;It should be noted that this is an &quot;ad-hoc&quot; collection of common content. The fact that a common base profile exists DOES NOT imply that score zibs are based on the same functional model and DOES NOT guarantee that all score zibs or score profiles will follow this approach." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effective[x]" />
+      <sliceName value="effectiveDateTime" />
+      <type>
+        <code value="dateTime" />
+      </type>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueInteger">
+      <path value="Observation.value[x]" />
+      <sliceName value="valueInteger" />
+      <comment value="The individual scores are communicated using the different `Observation.component` slices. The ordinal values of these indivdual scores, which are used to calculate the total score, are defined by the underlying code system and are registered in the bound ValueSet resources using the [ordinalValue](http://hl7.org/fhir/StructureDefinition/ordinalValue) extension." />
+      <type>
+        <code value="integer" />
+      </type>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <comment value="These `Observation.component` slices contain the individual scores which make up the total score. The ordinal values of these indivdual scores are defined by the underlying code system and are registered in the bound ValueSet resources using the [ordinalValue](http://hl7.org/fhir/StructureDefinition/ordinalValue) extension." />
+    </element>
+  </differential>
+</StructureDefinition>
