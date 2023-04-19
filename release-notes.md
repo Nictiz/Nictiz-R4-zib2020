@@ -17,7 +17,6 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-AbilityToGroom
 * No specific changes have been made to this profile other than the generic changes for the Observation resource.
 
-
 ## zib-AbilityToUseToilet
 * No specific changes have been made to this profile other than the generic changes for the Observation resource.
 
@@ -116,6 +115,10 @@ This document contains release notes per zib, indicating differences with their 
 * New zib in 2020. However, in the zib2017 package the nl-core-episodeofcare profile exists, which is not based on a zib but included some use case concepts. This zib profile supersedes this profile.
 * The extension EpisodOfCare-Title has been replaced by ext-EpisodeOfCare.EpisodeOfCareName because this zib concept is functionally equivalent.
 * The extensions EpisodeOfCare-DateFirstEncounter and EpisodeOfCare-DateLastEncounter from the previous profile are not inherited because no functional backing exists.
+
+## zib-FamilySituation
+* The code on `Observation.component:careResponsibility.code` has changed to 270111000146104.
+* A new extension commentChild has been added on `Observation.component:child`.
 
 ## zib-FLACCpainScale
 * The semantic codes on the `Observation.component.code` elements have changed from LOINC to codes from the ScoreObservaties code system (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1).
