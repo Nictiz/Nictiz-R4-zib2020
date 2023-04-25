@@ -2,6 +2,7 @@ main branch: origin/main
 ignored issues: known-issues.yml
 igs:
   - resources
+  - test
 script dir: util/qa
 
 patterns:
@@ -14,6 +15,7 @@ patterns:
   - resources/nl-core/*.xml
   conceptmaps: resources/**/conceptmap-*.xml
   terminology: resources/**/terminology/*.xml
+  SearchParameters: SearchParameters/*.xml
   examples: examples/*.xml
 
 steps:
@@ -44,6 +46,10 @@ steps:
   validate other terminology:
     description: Validate the other terminology resources
     patterns: terminology
+  validate SearchParameters:
+    description: Validate SearchParameters
+    patterns: SearchParameters
+    profile: "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-SearchParameters-test"
   validate examples:
     description: Validate examples using the generic FHIR validation rules
     patterns: examples
