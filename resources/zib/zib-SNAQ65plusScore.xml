@@ -88,6 +88,7 @@
       <sliceName value="valueInteger" />
       <short value="TotalScore" />
       <definition value="The total score is the sum of all the individual scores. The total score has a range from 0 - 5. The relation between the value of the total score and the color outcome of the score tool is:&lt;br /&gt;0-1 = green&lt;br /&gt;2= orange&lt;br /&gt;3 and higher = red." />
+      <comment value="The individual scores are communicated using the different `Observation.component` slices. The ordinal values of these indivdual scores, which are used to calculate the total score, are defined by the underlying code system and are registered in the ValueSet resources bound on these slices, using the [ordinalValue](http://hl7.org/fhir/StructureDefinition/ordinalValue) extension." />
       <alias value="TotaalScore" />
       <type>
         <code value="integer" />
@@ -157,10 +158,6 @@
         <comment value="WeightLossScore" />
       </mapping>
     </element>
-    <element id="Observation.component:weightLossScore.referenceRange">
-      <path value="Observation.component.referenceRange" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
-    </element>
     <element id="Observation.component:upperarmCircumference">
       <path value="Observation.component" />
       <sliceName value="upperarmCircumference" />
@@ -192,10 +189,6 @@
         <map value="NL-CM:4.30.8" />
         <comment value="UpperarmCircumference" />
       </mapping>
-    </element>
-    <element id="Observation.component:upperarmCircumference.referenceRange">
-      <path value="Observation.component.referenceRange" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
     <element id="Observation.component:appetiteScore">
       <path value="Observation.component" />
@@ -229,10 +222,6 @@
         <comment value="AppetiteScore" />
       </mapping>
     </element>
-    <element id="Observation.component:appetiteScore.referenceRange">
-      <path value="Observation.component.referenceRange" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
-    </element>
     <element id="Observation.component:exerciseScore">
       <path value="Observation.component" />
       <sliceName value="exerciseScore" />
@@ -264,10 +253,6 @@
         <map value="NL-CM:4.30.5" />
         <comment value="ExerciseScore" />
       </mapping>
-    </element>
-    <element id="Observation.component:exerciseScore.referenceRange">
-      <path value="Observation.component.referenceRange" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
   </differential>
 </StructureDefinition>
