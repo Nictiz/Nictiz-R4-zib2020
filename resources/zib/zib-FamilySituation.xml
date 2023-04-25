@@ -32,6 +32,7 @@
     <element id="Observation">
       <path value="Observation" />
       <short value="FamilySituation" />
+      <comment value="The MaritalStatus concept of zib FamilySituation can be found in the instance of zib-Patient referenced in `.subject`." />
       <alias value="Gezinssituatie" />
       <mapping>
         <identity value="zib-familysituation-v3.2-2020EN" />
@@ -47,6 +48,17 @@
           <code value="365470003" />
         </coding>
       </patternCodeableConcept>
+    </element>
+    <element id="Observation.subject">
+      <path value="Observation.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient" />
+      </type>
     </element>
     <element id="Observation.note">
       <path value="Observation.note" />
