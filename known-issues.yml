@@ -743,10 +743,22 @@ nl-core-DOSScore-01:
       - message: 'Local Error: Resolved system http://snomed.info/sct, but the definition is not complete. Server Error: Unable to find code 160591000146109 in http://snomed.info/sct'
         reason: This is a Dutch SNOMED extension which is not present yet on the international terminology server.
 
-nl-core-HearingFunction.HearingAid-*:
+nl-core-*Function.*Aid-*:
   ignored issues:
     DeviceUseStatement:
-      - message: 'DeviceUseStatement.reasonReference:zibMedicalDeviceReference: max allowed = 0, but found 1'
+      - message: 'DeviceUseStatement.reasonReference:functionalOrMentalStatus: max allowed = 0, but found 1'
+        reason: The Validator cannot actually inspect the referenced resources, and falsely assumes the reference is a reference to the offending profile.
+
+nl-core-HearingFunction.HearingAid-*:
+  ignored issues:
+    DeviceUseStatement.reasonReference[*]:
+      - message: 'Profile http://nictiz.nl/fhir/StructureDefinition/nl-core-HearingFunction.HearingAid, Element matches more than one slice'
+        reason: The Validator cannot actually inspect the referenced resources, and falsely assumes the reference is a reference to the offending profile.
+
+nl-core-VisualFunction.VisualAid-*:
+  ignored issues:
+    DeviceUseStatement.reasonReference[*]:
+      - message: 'Profile http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualFunction.VisualAid, Element matches more than one slice'
         reason: The Validator cannot actually inspect the referenced resources, and falsely assumes the reference is a reference to the offending profile.
 
 nl-core-PharmaceuticalProduct-01:
@@ -773,18 +785,6 @@ nl-core-Vaccination-event-03:
     Immunization.reasonCode[*].coding[*]:
       - message: 'Local Error: Resolved system http://snomed.info/sct, but the definition is not complete. Server Error: Unable to find code 159731000146104 in http://snomed.info/sct'
         reason: This is a Dutch SNOMED extension which is not present yet on the international terminology server.
-
-nl-core-VisualFunction.VisualAid-*:
-  ignored issues:
-    DeviceUseStatement:
-      - message: 'DeviceUseStatement.reasonReference:zibMedicalDeviceReference: max allowed = 0, but found 1'
-        reason: The Validator cannot actually inspect the referenced resources, and falsely assumes the reference is a reference to the offending profile.
-
-zib-*Function.*Aid:
-  zib deviations:
-    DeviceUseStatement.reasonReference:zibMedicalDeviceReference:
-      - short: zib MedicalDevice reference
-        reason: The profiles zib-HearingFunction.HearingAid and zib-VisualFunction.VisualAid are derived from zib-MedicalDevice, where this slice is defined, but this slice is disabled in these derived profiles. However, the mapping still ends up in the snapshot, resulting in a warning here.
 
 zib-*Function.*Aid.Product:
   ignored issues:
