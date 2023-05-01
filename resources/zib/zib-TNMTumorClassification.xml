@@ -150,6 +150,70 @@
         <comment value="m_NumberOfPrimaryTumors" />
       </mapping>
     </element>
+    <element id="Observation.component:abnormality">
+      <path value="Observation.component" />
+      <sliceName value="abnormality" />
+    </element>
+    <element id="Observation.component:abnormality.extension">
+      <path value="Observation.component.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Observation.component:abnormality.extension:abnormalityNumber">
+      <path value="Observation.component.extension" />
+      <sliceName value="abnormalityNumber" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TNMTumorClassification.AbnormalityNumber" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Observation.component:abnormality.extension:morphology">
+      <path value="Observation.component.extension" />
+      <sliceName value="morphology" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TNMTumorClassification.Morphology" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Observation.component:abnormality.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="108369006" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:abnormality.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="G_HistopathologicalGrading" />
+      <definition value="Staging result of the histopathological grading, the G-category of theTNM classification. The differentiation grade of a tumor is determined by a pathologist." />
+      <alias value="G_DifferentiatiegraadTumor" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.27.17--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.18" />
+        <comment value="G_HistopathologicalGrading" />
+      </mapping>
+    </element>
     <element id="Observation.component:t_PrimaryTumor">
       <path value="Observation.component" />
       <sliceName value="t_PrimaryTumor" />
