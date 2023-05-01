@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-TNMTumorClassification" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-TNMTumorClassification" />
+  <name value="ZibTNMTumorClassification" />
+  <title value="zib TNMTumorClassification" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="TNM Classification of Malignant Tumors (TNM) is the cancer staging system developed and is maintained by the Union for International Cancer Control (UICC). It is also used by the American Joint Committee on Cancer (AJCC) and the International Federation of Gynecology and Obstetrics (FIGO). In 1987, the UICC and AJCC staging systems were unified into the single TNM staging system. Nevertheless, there are still some differences between the two systems.&#xD;&#xA;The TNM-classification is developed for solid tumors. TNM is a notation system that describes the stage of a cancer, which originates from a solid tumor, using alphanumeric codes; T describes the size of the original (primary) tumor and whether it has invaded nearby tissue, N describes nearby (regional) lymph nodes that are involved, and M describes distant metastasis (spread of cancer from one part of the body to another). In addition to T, N and M, the classification also contains other parameters that may be relevant." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) TNMTumorClassification-1.0(2020)](https://zibs.nl/wiki/TNMTumorClassification-v1.0(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/TNMTumorClassification-v1.0(2020EN)" />
+    <name value="zib TNMTumorClassification-v1.0(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="TNMTumorClassification" />
+      <alias value="TNMTumorClassificatie" />
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.1" />
+        <comment value="TNMTumorClassification" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="385379008" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effective[x]" />
+      <sliceName value="effectiveDateTime" />
+      <short value="DateOfTNMClassification" />
+      <definition value="The date at which the TNM Classification (the value) has been assigned." />
+      <alias value="DatumTNMClassificatie" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.2" />
+        <comment value="DateOfTNMClassification" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueString">
+      <path value="Observation.value[x]" />
+      <sliceName value="valueString" />
+      <short value="TNMVersion" />
+      <definition value="TNM classification version (AJCC or UICC) and edition used (7th, 8th etc.)." />
+      <alias value="TNMVersie" />
+      <type>
+        <code value="string" />
+      </type>
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.27.6--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.3" />
+        <comment value="TNMVersion" />
+      </mapping>
+    </element>
+    <element id="Observation.note">
+      <path value="Observation.note" />
+      <max value="1" />
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
+      <short value="Explanation" />
+      <definition value="Remark regarding interpretation of the integrated TNM value as is classified." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.5" />
+        <comment value="Explanation" />
+      </mapping>
+    </element>
+    <element id="Observation.method">
+      <path value="Observation.method" />
+      <short value="TNMVersion" />
+      <definition value="TNM classification version (AJCC or UICC) and edition used (7th, 8th etc.)." />
+      <alias value="TNMVersie" />
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.3" />
+        <comment value="TNMVersion" />
+      </mapping>
+    </element>
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.hasMember:t_PrimaryTumor">
+      <path value="Observation.hasMember" />
+      <sliceName value="t_PrimaryTumor" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MolecularSequence" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-TNMTumorClassification-UnitedStates.T_PrimaryTumor" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:pn_PerineuralInvasion">
+      <path value="Observation.hasMember" />
+      <sliceName value="pn_PerineuralInvasion" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MolecularSequence" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-TNMTumorClassification-UnitedStates.Pn_PerineuralInvasion" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:r_ResidualTumor">
+      <path value="Observation.hasMember" />
+      <sliceName value="r_ResidualTumor" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MolecularSequence" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-TNMTumorClassification-UnitedStates.R_ResidualTumor" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:m_DistantMetastasis">
+      <path value="Observation.hasMember" />
+      <sliceName value="m_DistantMetastasis" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MolecularSequence" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-TNMTumorClassification-UnitedStates.M_DistantMetastasis" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:n_RegionalLymphnodes">
+      <path value="Observation.hasMember" />
+      <sliceName value="n_RegionalLymphnodes" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MolecularSequence" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-TNMTumorClassification-UnitedStates.N_RegionalLymphnodes" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:v_VenousInvasion">
+      <path value="Observation.hasMember" />
+      <sliceName value="v_VenousInvasion" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MolecularSequence" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-TNMTumorClassification-UnitedStates.V_VenousInvasion" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:g_HistopathologicalGrading">
+      <path value="Observation.hasMember" />
+      <sliceName value="g_HistopathologicalGrading" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MolecularSequence" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-TNMTumorClassification.GHistopathologicalGrading" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:m_NumberOfPrimaryTumors">
+      <path value="Observation.hasMember" />
+      <sliceName value="m_NumberOfPrimaryTumors" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MolecularSequence" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-TNMTumorClassification.mNumberOfPrimaryTumors" />
+      </type>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:anatomicalStage">
+      <path value="Observation.component" />
+      <sliceName value="anatomicalStage" />
+      <alias value="AnatomischStadium" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:anatomicalStage.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="399390009" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:anatomicalStage.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="AnatomicalStage" />
+      <definition value="The stage of the disease is the grouping based on the anatomical extent of the disease." />
+      <alias value="AnatomischStadium" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.27.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.9" />
+        <comment value="AnatomicalStage" />
+      </mapping>
+    </element>
+    <element id="Observation.component:prognosticStage">
+      <path value="Observation.component" />
+      <sliceName value="prognosticStage" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:prognosticStage.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="399390009" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:prognosticStage.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="PrognosticStage" />
+      <definition value="The Prognostic Stage group of the disease. Next to the anatomic extent of the disease additional prognostic factors are included in the grouping." />
+      <alias value="PrognostischStadium" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.27.4--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.10" />
+        <comment value="PrognostischStadium" />
+      </mapping>
+    </element>
+    <element id="Observation.component:distantMetastasisLocalization">
+      <path value="Observation.component" />
+      <sliceName value="distantMetastasisLocalization" />
+    </element>
+    <element id="Observation.component:distantMetastasisLocalization.extension">
+      <path value="Observation.component.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Observation.component:distantMetastasisLocalization.extension:anatomicalLocation">
+      <path value="Observation.component.extension" />
+      <sliceName value="anatomicalLocation" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TNMTumorClassification.AnatomicalLocation" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Observation.component:distantMetastasisLocalization.extension:anatomicalLocation.value[x]">
+      <path value="Observation.component.extension.value[x]" />
+      <short value="AnatomischeLocatie" />
+      <definition value="Contains the localization(s) of distant metastasis, caused by the primary tumor." />
+      <alias value="AnatomicalLocation" />
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.28" />
+        <comment value="AnatomicalLocation" />
+      </mapping>
+    </element>
+    <element id="Observation.component:distantMetastasisLocalization.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="385421009" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:regionalLymphNodesLocalization">
+      <path value="Observation.component" />
+      <sliceName value="regionalLymphNodesLocalization" />
+    </element>
+    <element id="Observation.component:regionalLymphNodesLocalization.extension">
+      <path value="Observation.component.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Observation.component:regionalLymphNodesLocalization.extension:anatomicalLocation">
+      <path value="Observation.component.extension" />
+      <sliceName value="anatomicalLocation" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TNMTumorClassification.AnatomicalLocation" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Observation.component:regionalLymphNodesLocalization.extension:anatomicalLocation.value[x]">
+      <path value="Observation.component.extension.value[x]" />
+      <short value="AnatomicalLocation" />
+      <definition value="Contains the localization(s) of the positive regional lymph nodes, caused by the primary tumor." />
+      <alias value="AnatomischeLocatie" />
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.24" />
+        <comment value="AnatomicalLocation" />
+      </mapping>
+    </element>
+    <element id="Observation.component:regionalLymphNodesLocalization.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="397440000" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+  </differential>
+</StructureDefinition>
