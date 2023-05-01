@@ -15,7 +15,7 @@
     </telecom>
   </contact>
   <description value="Pregnancy or gravidity is the condition in which a woman carries a fertilized egg, which grows into an embryo and then a fetus. A pregnancy of between 37 and 42 weeks is considered normal. “Term pregnancy” is 37 to 42 weeks. The term gravidity is also used for the number of times a woman has been pregnant. This and parity - the number of times a woman has given birth - provides insight into the patient’s obstetric history." />
-  <purpose value="A derived profile from [zib-Pregnancy](http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <purpose value="A derived profile from [zib-Pregnancy.Parity](http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy.Parity) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -31,6 +31,7 @@
   <differential>
     <element id="Observation">
       <path value="Observation" />
+      <comment value="This profile on the Observation resource represents the Parity concept (NL-CM:7.14.6) of zib Pregnancy. It can be used together with the [nl-core-Pregnancy](http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy) profile on the Condition resource, which can be referenced using `Observation.focus`." />
       <alias value="nl-core-Pregnancy.Parity" />
     </element>
     <element id="Observation.subject">
