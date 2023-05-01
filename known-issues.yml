@@ -170,6 +170,9 @@ zib-ContactPerson:
 
 zib-Encounter:
   ignored issues:
+    Encounter.participant:healthProfessional.individual:
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
     Encounter.reasonReference:*:
       - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
@@ -290,6 +293,9 @@ zib-LaboratoryTestResult:
     Observation.performer:performer:
       - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+    Observation.hasMember:laboratoryTest:
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     Observation.status:
       - cardinality: 1..1 instead of 0..1
@@ -302,7 +308,7 @@ zib-LaboratoryTestResult:
         reason: In FHIR there's no datatype ANY. All stated datatypes in the description can be accommodated using this element (Quantity and CodeableConcept are in fact both supported).
     Observation.referenceRange.*:
       - datatype: Quantity instead of ANY
-        reason: The zib concepts ReferenceRangeUpperLimit and ReferenceRangeLowerLimit are defined as datatype ANY, but it is unclear how these concepts should work for anything that is not a Quantity. In addition, there's no obvious way in FHIR to support reference values other than of type Quantity (with the possible exception of String). Until this issue is resolved, support for reference ranges in the profile has been restricted to Quantity. See https://bits.nictiz.nl/browse/ZIB-1703.
+        reason: The zib concepts ReferenceRangeUpperLimit and ReferenceRangeLowerLimit are defined as datatype ANY, but these concepts only have meaning when they apply to a Quantity. See https://bits.nictiz.nl/browse/ZIB-1703.
 
 zib-LaboratoryTestResult.Specimen:
   zib deviations:
