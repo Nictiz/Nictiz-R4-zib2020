@@ -92,6 +92,11 @@ This document contains release notes per zib, indicating differences with their 
 * Removed the role extension (http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role) because `RelatedPerson.relationship` has changed from 0..1 to 0..*. The zib concept role is now mapped to a slice on relationship.
 * Updated to new zib-NameInformation, zib-AddressInformation and zib-ContactInformation profiles.
 
+## zib-DevelopmentChild
+* The binding strength of all ValueSets has changed from 'extensible' to 'required'.
+* The data type for AgeFirstMenstruation has been changed from dateTime to Quantity, and the UCUM unit for 'year' (a) has been added.
+* The code on `Observation.component:developmentCognition.code` has been changed from 364644000 to 311465003.
+
 ## zib-DrugUse
 * The drugUseCode is mapped to `Observation.code` and is based on a pattern.
 * The code on `Observation.component:drugOrMedicationType.code` has changed to 105590001.
@@ -251,6 +256,9 @@ This document contains release notes per zib, indicating differences with their 
 * The `Procedure.performer` only references the zib HealthProfessional represented in a PractitionerRole resource. Other references not dictated by the zib are removed.
 * `ServiceRequest.performer` contains a reference to the zib CareTeam because the FHIR definition deviates from the zib Performer concept when multiple references are provided. This is described in the element's comment.
 
+## zib-PulseRate
+* The binding strength of the PulseRegularityCodelist has been changed from 'extensible' to 'required'.
+
 ## zib-Range
 * There is no profile for this partial zib because the relevant parts can be modelled directly in the profiles where this zib is used.
 
@@ -267,11 +275,21 @@ This document contains release notes per zib, indicating differences with their 
 * In the SOAPLineCode extension the fixed value on `.valueCodeableConcept.coding.system` has been removed because it is now covered by a required binding.
 * Moved mapping of SOAPLineCode from `Observation.component`s to a custom extension because of lacking terminology codes to provide definiton ot the component.
 
+## zib-SkinDisorder
+* Renamed `extension:dueTo` to `extension:cause` to match its functional counterpart.
+* Changed fixed slice on `.category.coding` to a pattern on `.category`.
+* `Condition.bodySite` is now based on the zib AnatomicalLocation profile.
+* `Condition.note` now honours the max cardinality of zib Comment.
+
 ## zib-Stoma
 * The resource to represent this zib has been changed from Observation to Condition. This aligns better with the meaning of the zib, as a stoma requires long term management. 
 * The general code of a Stoma has been added as a pattern to `Condition.category` allowing the category element to be used for other purposes too.
 * `Condition.bodySite` is now based on the zib AnatomicalLocation profile.
 * `Condition.note` now honours the max cardinality of zib Comment.
+
+## zib-StrongKidsScore
+* The datatype of Observation.value[x] (zib concept TotalScore) element has been changed from Quantity to Integer, and minimum and maximum allowed values of 0 and 5 respectively are applied.
+* The system value of the Observation.component.code elements is changed to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
 
 ## zib-TimeInterval
 * In the previous release, the concepts of this partial zib were mapped directly in the profiles where they are used. In this release the usage of this partial zib has been expanded and profiles have been created to aid the usage in profiles in the various situations that might occur.
