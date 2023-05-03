@@ -730,7 +730,7 @@ issues should occur: false
 "*":
   ignored issues:
     Consent.scope*:
-      - message: Unknown Code http://terminology.hl7.org/CodeSystem/consentscope#adr in http://terminology.hl7.org/CodeSystem/consentscope
+      - message: Unknown Code 'adr' in the system 'http://terminology.hl7.org/CodeSystem/consentscope'
         reason: This concerns an error in the FHIR terminology server. The adr code has been removed for R5 and the terminology server was updated for it too soon. They will fix it according to zulip chat https://chat.fhir.org/#narrow/stream/179166-implementers/topic/Consent.2Escope.3A.20diff.20in.20codes.20shown.20on.20FHIR.20vs.20Tx.20server.
       - message: None of the codings provided are in the value set 'Consent Scope Codes' (http://hl7.org/fhir/ValueSet/consent-scope), and a coding should come from this value set unless it has no suitable code
         reason: See above.
@@ -746,6 +746,9 @@ nl-core-*:
     "*.telecom[*].system.extension[*].value.ofType(CodeableConcept).coding[*]":
       - message: Display Name for http://terminology.hl7.org/CodeSystem/v3-AddressUse#MC should be one of 'mobile contact)' instead of 'Mobile Phone' for 'http://terminology.hl7.org/CodeSystem/v3-AddressUse#MC'
         reason: This core display value is redefined by the ValueSet, but this isn't properly recognized by the Validator
+    "*.contentType":
+      - message: The value provided ('application/octet-stream') is not in the value set 'MimeType'
+        reason: The Validator is unable to check mime types in absence of a terminology server.
     Condition.code:
       - message: None of the codings provided are in the value set 'ProbleemNaamCodelijst'
         reason: This ValueSet contains two SNOMED refsets. The terminology servers are unable to determine if a code is part of this refset.
@@ -759,6 +762,11 @@ nl-core-AllergyIntolerance*:
       - message: None of the codings provided are in the value set 'SpecifiekeStofCodelijsten'
         reason: The terminology servers cannot handle the refset specified in the ValueSet.
 
+nl-core-BodyHeight-*:
+  ignored issues:
+    Observation.value.ofType(Quantity).code:
+      - message: The value provided ('cm') is not in the value set 'Body Length Units'
+        reason: In absence of a terminology server, the Validator cannot check if 'cm' is a valid UCUM unit and raises an error.
 nl-core-DOSScore-01:
   ignored issues:
     Observation.code.coding[0]:
