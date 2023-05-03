@@ -633,6 +633,24 @@ zib-TextResult.VisualResult:
     Media.content:
       - cardinality: 1..1 instead of 0..*
         reason: The use of the Media resource referenced in zib-TextResult DiagnosticReport.media.link is optional (0..*), but if the Media resource is used, Media.content should be present (1..1).
+        
+zib-TNMTumorClassification:
+  zib deviations:
+    Observation.component:distantMetastasisLocalization.extension:anatomicalLocation.value[x]:
+      - cardinality: 0..* instead of 0..1
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*, effective) is explained by the missing DistantMetastasisLocalization container in FHIR. This container may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+      - datatype: CodeableConcept instead of a reference
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+    Observation.component:regionalLymphNodesLocalization.extension:anatomicalLocation.value[x]:
+      - cardinality: 0..* instead of 0..1
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*, effective) is explained by the missing RegionalLymphNodesLocalization container in FHIR. This container may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+      - datatype: CodeableConcept instead of a reference
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+    Observation.component:tumorLocalization.extension:anatomicalLocation.value[x]:
+      - cardinality: 0..* instead of 0..1
+        reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*, effective) is explained by the missing TumorLocalization container in FHIR. This container may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
+      - datatype: CodeableConcept instead of a reference
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.         
 
 zib-TreatmentDirective2:
   zib deviations:
