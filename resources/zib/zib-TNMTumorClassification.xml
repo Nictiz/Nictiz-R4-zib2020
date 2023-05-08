@@ -123,6 +123,162 @@
         <rules value="open" />
       </slicing>
     </element>
+    <element id="Observation.component:m_DistantMetastasis">
+      <path value="Observation.component" />
+      <sliceName value="m_DistantMetastasis" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:m_DistantMetastasis.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="277208005" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:m_DistantMetastasis.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="M_DistantMetastasis" />
+      <definition value="Staging result of the presence or absence of distant metastasis, the M-category of the TNM classification." />
+      <alias value="M_AfstandsMetastasen" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.16--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.26" />
+        <comment value="M_DistantMetastasis" />
+      </mapping>
+    </element>
+    <element id="Observation.component:distantMetastasisLocalization">
+      <path value="Observation.component" />
+      <sliceName value="distantMetastasisLocalization" />
+    </element>
+    <element id="Observation.component:distantMetastasisLocalization.extension">
+      <path value="Observation.component.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Observation.component:distantMetastasisLocalization.extension:anatomicalLocation">
+      <path value="Observation.component.extension" />
+      <sliceName value="anatomicalLocation" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TNMTumorClassification.AnatomicalLocation" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Observation.component:distantMetastasisLocalization.extension:anatomicalLocation.value[x]">
+      <path value="Observation.component.extension.value[x]" />
+      <short value="Location / AnatomicalLocation" />
+      <definition value="Contains the localization(s) of distant metastasis, caused by the primary tumor." />
+      <alias value="Metastasen" />
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.28" />
+        <comment value="AnatomicalLocation" />
+      </mapping>
+    </element>
+    <element id="Observation.component:distantMetastasisLocalization.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="385421009" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:n_RegionalLymphnodes">
+      <path value="Observation.component" />
+      <sliceName value="n_RegionalLymphnodes" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:n_RegionalLymphnodes.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="277206009" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:n_RegionalLymphnodes.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="N_RegionalLymphnodes" />
+      <definition value="Staging result of the presence or absence of regional lymph nodes metastasis, the N-category of the TNM classification." />
+      <alias value="N_RegionaleLymfeklieren" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.15--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.22" />
+        <comment value="N_RegionalLymphnodes" />
+      </mapping>
+    </element>
+    <element id="Observation.component:regionalLymphNodesLocalization">
+      <path value="Observation.component" />
+      <sliceName value="regionalLymphNodesLocalization" />
+    </element>
+    <element id="Observation.component:regionalLymphNodesLocalization.extension">
+      <path value="Observation.component.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Observation.component:regionalLymphNodesLocalization.extension:anatomicalLocation">
+      <path value="Observation.component.extension" />
+      <sliceName value="anatomicalLocation" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TNMTumorClassification.AnatomicalLocation" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Observation.component:regionalLymphNodesLocalization.extension:anatomicalLocation.value[x]">
+      <path value="Observation.component.extension.value[x]" />
+      <short value="Location / AnatomicalLocation" />
+      <definition value="Contains the localization(s) of the positive regional lymph nodes, caused by the primary tumor." />
+      <alias value="Lymfeklieren" />
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.24" />
+        <comment value="AnatomicalLocation" />
+      </mapping>
+    </element>
+    <element id="Observation.component:regionalLymphNodesLocalization.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="397440000" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
     <element id="Observation.component:m_NumberOfPrimaryTumors">
       <path value="Observation.component" />
       <sliceName value="m_NumberOfPrimaryTumors" />
@@ -153,6 +309,38 @@
         <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
         <map value="NL-CM:4.27.13" />
         <comment value="m_NumberOfPrimaryTumors" />
+      </mapping>
+    </element>
+    <element id="Observation.component:t_PrimaryTumor">
+      <path value="Observation.component" />
+      <sliceName value="t_PrimaryTumor" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:t_PrimaryTumor.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="78873005" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:t_PrimaryTumor.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="T_PrimaryTumor" />
+      <definition value="Staging result of the size extension of the primary tumor, the T-category of the TNM classification including the prefix and suffix." />
+      <alias value="T_PrimaireTumor" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.14--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.14" />
+        <comment value="T_PrimaryTumor" />
       </mapping>
     </element>
     <element id="Observation.component:abnormality">
@@ -217,102 +405,6 @@
         <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
         <map value="NL-CM:4.27.18" />
         <comment value="G_HistopathologicalGrading" />
-      </mapping>
-    </element>
-    <element id="Observation.component:t_PrimaryTumor">
-      <path value="Observation.component" />
-      <sliceName value="t_PrimaryTumor" />
-      <max value="1" />
-    </element>
-    <element id="Observation.component:t_PrimaryTumor.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="78873005" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:t_PrimaryTumor.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="T_PrimaryTumor" />
-      <definition value="Staging result of the size extension of the primary tumor, the T-category of the TNM classification including the prefix and suffix." />
-      <alias value="T_PrimaireTumor" />
-      <type>
-        <code value="CodeableConcept" />
-      </type>
-      <binding>
-        <strength value="extensible" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.14--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
-        <map value="NL-CM:4.27.14" />
-        <comment value="T_PrimaryTumor" />
-      </mapping>
-    </element>
-    <element id="Observation.component:m_DistantMetastasis">
-      <path value="Observation.component" />
-      <sliceName value="m_DistantMetastasis" />
-      <max value="1" />
-    </element>
-    <element id="Observation.component:m_DistantMetastasis.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="277208005" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:m_DistantMetastasis.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="M_DistantMetastasis" />
-      <definition value="Staging result of the presence or absence of distant metastasis, the M-category of the TNM classification." />
-      <alias value="M_AfstandsMetastasen" />
-      <type>
-        <code value="CodeableConcept" />
-      </type>
-      <binding>
-        <strength value="extensible" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.16--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
-        <map value="NL-CM:4.27.26" />
-        <comment value="M_DistantMetastasis" />
-      </mapping>
-    </element>
-    <element id="Observation.component:n_RegionalLymphnodes">
-      <path value="Observation.component" />
-      <sliceName value="n_RegionalLymphnodes" />
-      <max value="1" />
-    </element>
-    <element id="Observation.component:n_RegionalLymphnodes.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="277206009" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:n_RegionalLymphnodes.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="N_RegionalLymphnodes" />
-      <definition value="Staging result of the presence or absence of regional lymph nodes metastasis, the N-category of the TNM classification." />
-      <alias value="N_RegionaleLymfeklieren" />
-      <type>
-        <code value="CodeableConcept" />
-      </type>
-      <binding>
-        <strength value="extensible" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.15--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
-        <map value="NL-CM:4.27.22" />
-        <comment value="N_RegionalLymphnodes" />
       </mapping>
     </element>
     <element id="Observation.component:tl_LymphaticInvasion">
@@ -474,98 +566,6 @@
         <map value="NL-CM:4.27.10" />
         <comment value="PrognosticStage" />
       </mapping>
-    </element>
-    <element id="Observation.component:distantMetastasisLocalization">
-      <path value="Observation.component" />
-      <sliceName value="distantMetastasisLocalization" />
-    </element>
-    <element id="Observation.component:distantMetastasisLocalization.extension">
-      <path value="Observation.component.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
-    <element id="Observation.component:distantMetastasisLocalization.extension:anatomicalLocation">
-      <path value="Observation.component.extension" />
-      <sliceName value="anatomicalLocation" />
-      <min value="0" />
-      <max value="1" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TNMTumorClassification.AnatomicalLocation" />
-      </type>
-      <isModifier value="false" />
-    </element>
-    <element id="Observation.component:distantMetastasisLocalization.extension:anatomicalLocation.value[x]">
-      <path value="Observation.component.extension.value[x]" />
-      <short value="Location / AnatomicalLocation" />
-      <definition value="Contains the localization(s) of distant metastasis, caused by the primary tumor." />
-      <alias value="Metastasen" />
-      <mapping>
-        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
-        <map value="NL-CM:4.27.28" />
-        <comment value="AnatomicalLocation" />
-      </mapping>
-    </element>
-    <element id="Observation.component:distantMetastasisLocalization.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="385421009" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:regionalLymphNodesLocalization">
-      <path value="Observation.component" />
-      <sliceName value="regionalLymphNodesLocalization" />
-    </element>
-    <element id="Observation.component:regionalLymphNodesLocalization.extension">
-      <path value="Observation.component.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
-    <element id="Observation.component:regionalLymphNodesLocalization.extension:anatomicalLocation">
-      <path value="Observation.component.extension" />
-      <sliceName value="anatomicalLocation" />
-      <min value="0" />
-      <max value="1" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TNMTumorClassification.AnatomicalLocation" />
-      </type>
-      <isModifier value="false" />
-    </element>
-    <element id="Observation.component:regionalLymphNodesLocalization.extension:anatomicalLocation.value[x]">
-      <path value="Observation.component.extension.value[x]" />
-      <short value="Location / AnatomicalLocation" />
-      <definition value="Contains the localization(s) of the positive regional lymph nodes, caused by the primary tumor." />
-      <alias value="Lymfeklieren" />
-      <mapping>
-        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
-        <map value="NL-CM:4.27.24" />
-        <comment value="AnatomicalLocation" />
-      </mapping>
-    </element>
-    <element id="Observation.component:regionalLymphNodesLocalization.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="397440000" />
-        </coding>
-      </patternCodeableConcept>
     </element>
     <element id="Observation.component:tumorLocalization">
       <path value="Observation.component" />
