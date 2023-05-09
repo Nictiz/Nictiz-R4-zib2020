@@ -79,13 +79,20 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
       </type>
     </element>
-    <element id="DeviceUseStatement.derivedFrom:procedure">
+    <element id="DeviceUseStatement.derivedFrom:procedure-request">
       <path value="DeviceUseStatement.derivedFrom" />
-      <sliceName value="procedure" />
+      <sliceName value="procedure-request" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.derivedFrom:procedure-event">
+      <path value="DeviceUseStatement.derivedFrom" />
+      <sliceName value="procedure-event" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request" />
       </type>
     </element>
     <element id="DeviceUseStatement.device">
@@ -102,15 +109,6 @@
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
-      </type>
-    </element>
-    <element id="DeviceUseStatement.reasonReference:zibMedicalDeviceReference">
-      <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="zibMedicalDeviceReference" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FunctionalOrMentalStatus" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility" />
       </type>
     </element>
     <element id="DeviceUseStatement.reasonReference:visualFunction">
