@@ -170,6 +170,9 @@ zib-ContactPerson:
 
 zib-Encounter:
   ignored issues:
+    Encounter.participant:healthProfessional.individual:
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
     Encounter.reasonReference:*:
       - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
@@ -195,7 +198,7 @@ zib-FLACCpainScale:
 
 zib-FreedomRestrictingIntervention:
   ignored issues:
-    Procedure.reasonReference:legalSituation:
+    Procedure.reasonReference:legalSituation-*:
       - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
@@ -290,6 +293,9 @@ zib-LaboratoryTestResult:
     Observation.performer:performer:
       - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+    Observation.hasMember:laboratoryTest:
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     Observation.status:
       - cardinality: 1..1 instead of 0..1
@@ -302,7 +308,7 @@ zib-LaboratoryTestResult:
         reason: In FHIR there's no datatype ANY. All stated datatypes in the description can be accommodated using this element (Quantity and CodeableConcept are in fact both supported).
     Observation.referenceRange.*:
       - datatype: Quantity instead of ANY
-        reason: The zib concepts ReferenceRangeUpperLimit and ReferenceRangeLowerLimit are defined as datatype ANY, but it is unclear how these concepts should work for anything that is not a Quantity. In addition, there's no obvious way in FHIR to support reference values other than of type Quantity (with the possible exception of String). Until this issue is resolved, support for reference ranges in the profile has been restricted to Quantity. See https://bits.nictiz.nl/browse/ZIB-1703.
+        reason: The zib concepts ReferenceRangeUpperLimit and ReferenceRangeLowerLimit are defined as datatype ANY, but these concepts only have meaning when they apply to a Quantity. See https://bits.nictiz.nl/browse/ZIB-1703.
 
 zib-LaboratoryTestResult.Specimen:
   zib deviations:
@@ -705,7 +711,7 @@ issues should occur: false
 "*":
   ignored issues:
     Consent.scope*:
-      - message: Unknown Code http://terminology.hl7.org/CodeSystem/consentscope#adr in http://terminology.hl7.org/CodeSystem/consentscope
+      - message: Unknown Code 'adr' in the system 'http://terminology.hl7.org/CodeSystem/consentscope'
         reason: This concerns an error in the FHIR terminology server. The adr code has been removed for R5 and the terminology server was updated for it too soon. They will fix it according to zulip chat https://chat.fhir.org/#narrow/stream/179166-implementers/topic/Consent.2Escope.3A.20diff.20in.20codes.20shown.20on.20FHIR.20vs.20Tx.20server.
       - message: None of the codings provided are in the value set 'Consent Scope Codes' (http://hl7.org/fhir/ValueSet/consent-scope), and a coding should come from this value set unless it has no suitable code
         reason: See above.
@@ -721,6 +727,9 @@ nl-core-*:
     "*.telecom[*].system.extension[*].value.ofType(CodeableConcept).coding[*]":
       - message: Display Name for http://terminology.hl7.org/CodeSystem/v3-AddressUse#MC should be one of 'mobile contact)' instead of 'Mobile Phone' for 'http://terminology.hl7.org/CodeSystem/v3-AddressUse#MC'
         reason: This core display value is redefined by the ValueSet, but this isn't properly recognized by the Validator
+    "*.contentType":
+      - message: The value provided ('application/octet-stream') is not in the value set 'MimeType'
+        reason: The Validator is unable to check mime types in absence of a terminology server.
     Condition.code:
       - message: None of the codings provided are in the value set 'ProbleemNaamCodelijst'
         reason: This ValueSet contains two SNOMED refsets. The terminology servers are unable to determine if a code is part of this refset.
@@ -734,16 +743,33 @@ nl-core-AllergyIntolerance*:
       - message: None of the codings provided are in the value set 'SpecifiekeStofCodelijsten'
         reason: The terminology servers cannot handle the refset specified in the ValueSet.
 
+nl-core-BodyHeight-*:
+  ignored issues:
+    Observation.value.ofType(Quantity).code:
+      - message: The value provided ('cm') is not in the value set 'Body Length Units'
+        reason: In absence of a terminology server, the Validator cannot check if 'cm' is a valid UCUM unit and raises an error.
 nl-core-DOSScore-01:
   ignored issues:
     Observation.code.coding[0]:
       - message: 'Local Error: Resolved system http://snomed.info/sct, but the definition is not complete. Server Error: Unable to find code 160591000146109 in http://snomed.info/sct'
         reason: This is a Dutch SNOMED extension which is not present yet on the international terminology server.
 
-nl-core-HearingFunction.HearingAid-*:
+nl-core-*Function.*Aid-*:
   ignored issues:
     DeviceUseStatement:
-      - message: 'DeviceUseStatement.reasonReference:zibMedicalDeviceReference: max allowed = 0, but found 1'
+      - message: 'DeviceUseStatement.reasonReference:functionalOrMentalStatus: max allowed = 0, but found 1'
+        reason: The Validator cannot actually inspect the referenced resources, and falsely assumes the reference is a reference to the offending profile.
+
+nl-core-HearingFunction.HearingAid-*:
+  ignored issues:
+    DeviceUseStatement.reasonReference[*]:
+      - message: 'Profile http://nictiz.nl/fhir/StructureDefinition/nl-core-HearingFunction.HearingAid, Element matches more than one slice'
+        reason: The Validator cannot actually inspect the referenced resources, and falsely assumes the reference is a reference to the offending profile.
+
+nl-core-VisualFunction.VisualAid-*:
+  ignored issues:
+    DeviceUseStatement.reasonReference[*]:
+      - message: 'Profile http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualFunction.VisualAid, Element matches more than one slice'
         reason: The Validator cannot actually inspect the referenced resources, and falsely assumes the reference is a reference to the offending profile.
 
 nl-core-PharmaceuticalProduct-01:
@@ -770,18 +796,6 @@ nl-core-Vaccination-event-03:
     Immunization.reasonCode[*].coding[*]:
       - message: 'Local Error: Resolved system http://snomed.info/sct, but the definition is not complete. Server Error: Unable to find code 159731000146104 in http://snomed.info/sct'
         reason: This is a Dutch SNOMED extension which is not present yet on the international terminology server.
-
-nl-core-VisualFunction.VisualAid-*:
-  ignored issues:
-    DeviceUseStatement:
-      - message: 'DeviceUseStatement.reasonReference:zibMedicalDeviceReference: max allowed = 0, but found 1'
-        reason: The Validator cannot actually inspect the referenced resources, and falsely assumes the reference is a reference to the offending profile.
-
-zib-*Function.*Aid:
-  zib deviations:
-    DeviceUseStatement.reasonReference:zibMedicalDeviceReference:
-      - short: zib MedicalDevice reference
-        reason: The profiles zib-HearingFunction.HearingAid and zib-VisualFunction.VisualAid are derived from zib-MedicalDevice, where this slice is defined, but this slice is disabled in these derived profiles. However, the mapping still ends up in the snapshot, resulting in a warning here.
 
 zib-*Function.*Aid.Product:
   ignored issues:

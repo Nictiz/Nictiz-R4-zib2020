@@ -38,14 +38,12 @@
         <severity value="error" />
         <human value="If one of the component codes is present, all SHALL be present." />
         <expression value="component.where(code.coding.system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1' and code.coding.code.subsetOf('4028003'|'4028004'|'4028005'|'4028008')).count().subsetOf(0|4)" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-StrongKidsScore" />
       </constraint>
       <constraint>
         <key value="zib-StrongKidsScore-2" />
         <severity value="error" />
         <human value="If the component codes are not all present, the value SHALL be present." />
         <expression value="value.empty().not() or component.where(code.coding.system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1' and code.coding.code.subsetOf('4028003'|'4028004'|'4028005'|'4028008')).count()=4" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-StrongKidsScore" />
       </constraint>
       <mapping>
         <identity value="zib-strongkidsscore-v1.1-2020EN" />
@@ -98,10 +96,11 @@
       </slicing>
     </element>
     <element id="Observation.value[x]:valueInteger">
-      <path value="Observation.valueInteger" />
+      <path value="Observation.value[x]" />
       <sliceName value="valueInteger" />
       <short value="TotalScore" />
       <definition value="The total score is the sum of all the individual scores. The total score has a range from 0 - 5." />
+      <comment value="The individual scores are communicated using the different `Observation.component` slices. The ordinal values of these indivdual scores, which are used to calculate the total score, are defined by the underlying code system and are registered in the ValueSet resources bound on these slices, using the [ordinalValue](http://hl7.org/fhir/StructureDefinition/ordinalValue) extension." />
       <alias value="TotaalScore" />
       <type>
         <code value="integer" />
