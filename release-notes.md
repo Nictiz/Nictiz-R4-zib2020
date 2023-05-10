@@ -173,6 +173,9 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-LegalSituation
 * New zib in 2020. However, in the zib2017 package the zib-patient-legalstatus extension exists, which corresponds to the LegalStatus concept of the zib FreedomRestrictingMeasures (withdrawn in the 2020 release). This new zib profile expands on that LegalStatus concept.
 
+## zib-LifeStance
+* This zib was previously represented as an extension in the Patient profile, but this has been changed to a profile on Observation in order to prevent custom extensions.
+  
 ## zib-LivingSituation
 * Added two new concepts and modelled them on `Observation.component:homeAdaption` and `Observation.component:livingCondition`.
 * Concept 'HouseType' has been moved to its own `.valueCodeableConcept` slice.
@@ -227,7 +230,7 @@ This document contains release notes per zib, indicating differences with their 
 * No specific changes have been made to this profile other than the generic changes for the Observation resource
 
 ## zib-Patient
-* Includes Nationality, MaritalStatus, LanguageProficiency, LifeStance.
+* Includes Nationality, MaritalStatus, LanguageProficiency.
 * Cardinality of `Patient.extension:nationality` left at 0..* due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time).
 * Cardinality of `Patient.name` left at 0..* to allow including several name elements with a different `name.use` each.
 * Cardinality of `Patient.telecom` left at 0..* to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not.
