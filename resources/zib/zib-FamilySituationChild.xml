@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-FamilySituationChild" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-FamilySituationChild" />
+  <name value="ZibFamilySituationChild" />
+  <title value="zib FamilySituationChild" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Traditionally, a family is defined as a group of people of one or more adults who carry responsibility for caring for and raising one or more children.&#xD;&#xA;Children can have multiple family situations when they live partly with their father and partly with their mother e.g. after a divorce.&#xD;&#xA;Currently, the term is used more broadly for all forms of cohabitation which form a recognizable social unit, of people who are or who are not related and who have long-lasting, affective bonds and provide each other with support and care." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) FamilySituationChild-v1.2(2020EN)](https://zibs.nl/wiki/FamilySituationChild-v1.2(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-familysituationchild-v1.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/FamilySituationChild-v1.2(2020EN)" />
+    <name value="zib FamilySituationChild-v1.2(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="FamilySituationChild" />
+      <alias value="GezinssituatieKind" />
+      <mapping>
+        <identity value="zib-familysituationchild-v1.2-2020EN" />
+        <map value="NL-CM:7.16.1" />
+        <comment value="FamilySituationChild" />
+      </mapping>
+    </element>
+    <element id="Observation.note">
+      <path value="Observation.note" />
+      <max value="1" />
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
+      <short value="Comment" />
+      <definition value="A comment on the childs family situation." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-familysituationchild-v1.2-2020EN" />
+        <map value="NL-CM:7.16.11" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:familyComposition">
+      <path value="Observation.component" />
+      <sliceName value="familyComposition" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:familyComposition.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="365481000" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:familyComposition.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="FamilyComposition" />
+      <definition value="The family composition describes the cjhild’s home situation and the form of cohabitation.  &#xD;&#xA;A family can consist of one or more people." />
+      <alias value="GezinssamenstellingKind" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.16.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-familysituationchild-v1.2-2020EN" />
+        <map value="NL-CM:7.16.2" />
+        <comment value="FamilyComposition" />
+      </mapping>
+    </element>
+    <element id="Observation.component:numberOfSiblings">
+      <path value="Observation.component" />
+      <sliceName value="numberOfSiblings" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:numberOfSiblings.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="224095004" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:numberOfSiblings.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="NumberOfSiblings" />
+      <definition value="The information Number of brothers and sisters of the child, living at the same house. Children in this context can be biological and adopted children, stepchildren and foster children.as a result of making the observation, if the information has a simple value." />
+      <alias value="AantalBroersEnZussen" />
+      <type>
+        <code value="integer" />
+      </type>
+      <mapping>
+        <identity value="zib-familysituationchild-v1.2-2020EN" />
+        <map value="NL-CM:7.16.7" />
+        <comment value="NumberOfSiblings" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
