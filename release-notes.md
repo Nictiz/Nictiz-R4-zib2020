@@ -61,6 +61,10 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-ApgarScore
 * ApgarScore is now divided into 3 profiles with their own time unit. Each profile also has its own terminology codes that correspond to the minutes.
 
+
+## zib-CareAgreement
+* CareAgreement is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
+
 ## zib-CareTeam
 * CareTeam is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
 
