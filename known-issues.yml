@@ -737,6 +737,12 @@ nl-core-HearingFunction.HearingAid-*:
       - message: 'DeviceUseStatement.reasonReference:zibMedicalDeviceReference: max allowed = 0, but found 1'
         reason: The Validator cannot actually inspect the referenced resources, and falsely assumes the reference is a reference to the offending profile.
 
+nl-core-PainScore-01:
+  ignored issues:
+    Observation.method:
+      - message: None of the codings provided are in the value set 'PijnMeetmethodeCodelijst'
+        reason: The terminology servers used don't know this code system and wrongly conclude that this is an invalid code.
+
 nl-core-PharmaceuticalProduct-01:
   ignored issues:
     Medication.code:
