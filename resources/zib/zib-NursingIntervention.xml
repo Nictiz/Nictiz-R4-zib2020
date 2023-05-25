@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -34,11 +34,10 @@
       <short value="NursingIntervention" />
       <alias value="VerpleegkundigeInterventie" />
       <constraint>
-        <key value="zib-NursingIntervention-01" />
+        <key value="zib-NursingIntervention-1" />
         <severity value="error" />
         <human value="The start and/or end date of a repeating schedule should be communicated in CarePlan.encounter as well." />
         <expression value="activity.detail.scheduledTiming.repeat.boundsPeriod.exists() implies (period = activity.detail.scheduledTiming.repeat.boundsPeriod)" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-NursingIntervention" />
       </constraint>
       <mapping>
         <identity value="zib-nursingintervention-v3.2-2020EN" />
@@ -62,7 +61,7 @@
     </element>
     <element id="CarePlan.intent">
       <path value="CarePlan.intent" />
-      <definition value="Indicates the level of authority/intentionality associated with the care plan and where the care plan fits into the workflow chain.&#xD;&#xA;&#xD;&#xA;For zib NursingIntervention, this will normally be _plan_, but the context may specify a more suitable intent." />
+      <comment value="For zib NursingIntervention, this will normally be _plan_, but the context may specify a more suitable intent." />
     </element>
     <element id="CarePlan.category">
       <path value="CarePlan.category" />
@@ -86,15 +85,6 @@
           <code value="9632001" />
         </coding>
       </patternCodeableConcept>
-    </element>
-    <element id="CarePlan.subject">
-      <path value="CarePlan.subject" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
-      </type>
     </element>
     <element id="CarePlan.period.start">
       <path value="CarePlan.period.start" />
@@ -133,12 +123,11 @@
       <sliceName value="requester" />
       <short value="Requester" />
       <definition value="The health professional who requested the nursing intervention. If desired, only the requester’s specialty can be entered." />
-      <comment value="Each occurence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [zib-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [zib-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner)). The reference to the Practitioner resource is referenced from the PractitionerRole instance. For this reason, sending systems should fill the reference to the PractitionerRole instance here, and not the Practitioner resource.&#xD;&#xA;&#xD;&#xA;In rare circumstances, there is only a Practitioner instance, in which case it is that instance which will be referenced here." />
       <alias value="Aanvrager" />
       <type>
         <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-ZibHealthProfessionalReference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner" />
       </type>
       <mapping>
         <identity value="zib-nursingintervention-v3.2-2020EN" />
@@ -383,13 +372,12 @@
       <sliceName value="healthcareProvider" />
       <short value="HealthcareProvider" />
       <definition value="The health professional carrying out the nursing procedure." />
-      <comment value="Each occurence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [zib-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [zib-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner)). The reference to the Practitioner resource is referenced from the PractitionerRole instance. For this reason, sending systems should fill the reference to the PractitionerRole instance here, and not the Practitioner resource.&#xD;&#xA;&#xD;&#xA;In rare circumstances, there is only a Practitioner instance, in which case it is that instance which will be referenced here." />
       <alias value="Zorgverlener" />
       <max value="1" />
       <type>
         <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-ZibHealthProfessionalReference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner" />
       </type>
       <mapping>
         <identity value="zib-nursingintervention-v3.2-2020EN" />
