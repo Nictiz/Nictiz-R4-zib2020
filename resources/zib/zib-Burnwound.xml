@@ -95,9 +95,10 @@
     </element>
     <element id="Condition.bodySite">
       <path value="Condition.bodySite" />
-      <short value="AnatomicalLocation" />
+      <short value="Location / AnatomicalLocation" />
       <definition value="The location of the burn wound on the body." />
       <alias value="AnatomischeLocatie" />
+      <max value="1" />
       <type>
         <code value="CodeableConcept" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
@@ -161,6 +162,10 @@
         <map value="NL-CM:19.4.3" />
         <comment value="DateOfOnset" />
       </mapping>
+    </element>
+    <element id="Condition.stage">
+      <path value="Condition.stage" />
+      <max value="1" />
     </element>
     <element id="Condition.stage.summary">
       <path value="Condition.stage.summary" />
