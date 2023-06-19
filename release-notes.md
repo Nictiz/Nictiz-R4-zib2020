@@ -57,7 +57,7 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-CareTeam
 * CareTeam is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
 
-## zib-ChecklistPainBehaviour
+## zib-ChecklistPainBehavior
 * The data type of `Observation.value[x]` (zib concept TotalScore) has been changed from Quantity to Integer, and minimum and maximum allowed values of 0 and 10 respectively are applied.
 * The system value on the `Observation.component.code` slices has changed from 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0' to 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1'.
 * The data type of the `Observation.component.value[x]` slices has changed from Quantity to Integer. 
