@@ -173,6 +173,9 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-LegalSituation
 * New zib in 2020. However, in the zib2017 package the zib-patient-legalstatus extension exists, which corresponds to the LegalStatus concept of the zib FreedomRestrictingMeasures (withdrawn in the 2020 release). This new zib profile expands on that LegalStatus concept.
 
+## zib-LifeStance
+* This zib was previously represented as an extension in the Patient profile, but this has been changed to a profile on Observation in order to prevent custom extensions.
+  
 ## zib-LivingSituation
 * Added two new concepts and modelled them on `Observation.component:homeAdaption` and `Observation.component:livingCondition`.
 * Concept 'HouseType' has been moved to its own `.valueCodeableConcept` slice.
@@ -195,6 +198,9 @@ This document contains release notes per zib, indicating differences with their 
 * The code on `Observation.component:bmiScore.code` has changed to 4005003 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
 * The code on `Observation.component:weightLossScore.code` has changed to 4005004 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
 * The code on `Observation.component:illnessScore.code` has changed to 4005005 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+
+## zib-IllnessPerception
+* The concept PatientIllnessInsight with ID NL-CM:18.5.3 has been moved to `Observation.value[x]:valueString`
 
 ## zib-NameInformation
 * The way this partial zib has been modelled on the HumanName data type has been overhauled to properly accommodate the way first names are handled. In the STU3 version, official first names, initials of this first name, and the given name (nickname, roepnaam) were all added to a `.given` element in the same HumanName instance, with an annotation of the type using an extension. This turned out to be the wrong approach, as all `.given` names are to be concatenated to the complete list of first names. So instead, there are now different instances of HumanName used to communicate the official names and the given name, indicated by `.use` -- resulting in two profiles. Communicating initials is now only done for names where the full name is not known (this deviates from the zib model).   
@@ -224,7 +230,7 @@ This document contains release notes per zib, indicating differences with their 
 * No specific changes have been made to this profile other than the generic changes for the Observation resource
 
 ## zib-Patient
-* Includes Nationality, MaritalStatus, LanguageProficiency, LifeStance.
+* Includes Nationality, MaritalStatus, LanguageProficiency.
 * Cardinality of `Patient.extension:nationality` left at 0..* due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time).
 * Cardinality of `Patient.name` left at 0..* to allow including several name elements with a different `name.use` each.
 * Cardinality of `Patient.telecom` left at 0..* to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not.
