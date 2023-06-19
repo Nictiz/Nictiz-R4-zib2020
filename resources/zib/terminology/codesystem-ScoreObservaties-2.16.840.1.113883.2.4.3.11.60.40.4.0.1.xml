@@ -7,7 +7,7 @@
    <language value="nl-NL"/>
    <extension url="http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod">
       <valuePeriod>
-         <start value="2020-09-01T00:00:00+00:00"/>
+         <start value="2023-03-06T00:00:00+00:00"/>
       </valuePeriod>
    </extension>
    <url value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
@@ -16,10 +16,10 @@
       <system value="urn:ietf:rfc:3986"/>
       <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
    </identifier>
-   <version value="2020-09-01T00:00:00"/>
+   <version value="2023.01.0"/>
    <name value="ScoreObservaties"/>
    <title value="ScoreObservaties"/>
-   <status value="active"/>
+   <status value="draft"/>
    <experimental value="false"/>
    <publisher value="Registratie aan de bron"/>
    <contact>
@@ -33,14 +33,14 @@
          <value value="https://www.zibs.nl"/>
       </telecom>
    </contact>
-   <description value="This zib code system serves to define definition codes for elements in zibs that describe a score instrument."/>
+   <description value="This zib code system serves to define definition codes for elements in zibs that describe a score instrument. Changes: &#xD;&#xA;* Version 2023-03-06T00:00:00: Added codes for BarthelADLIndex (ZIB-1692)&#xD;&#xA;* Version 2022-06-10T00:00:00: Added codes for DOSScore&#xD;&#xA;&#xD;&#xA;"/>
    <caseSensitive value="false"/>
    <content value="complete"/>
-   <count value="40"/>
+   <count value="63"/>
    <property>
       <code value="status"/>
       <uri value="http://hl7.org/fhir/concept-properties"/>
-      <description value="A code that indicates the status of the concept. Values found in this version of the code system are: active"/>
+      <description value="A code that indicates the status of the concept. Values found in this version of the code system are: active, draft"/>
       <type value="code"/>
    </property>
    <property>
@@ -490,6 +490,266 @@
       </property>
    </concept>
    <concept>
+      <code value="18007006"/>
+      <display value="DOSScore ZaktWeg"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="DOSScore DozesOff"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-06-10"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="18007007"/>
+      <display value="DOSScore SnelAfgeleid"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="DOSScore EasilyDistracted"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-06-10"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="18007008"/>
+      <display value="DOSScore HeeftAandacht"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="DOSScore MaintainsAttention"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-06-10"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="18007009"/>
+      <display value="DOSScore VraagAntwoordNietAf"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="DOSScore UnfinishedQuestionAnswer"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-06-10"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="18007010"/>
+      <display value="DOSScore AntwoordenNietPassend"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="DOSScore AnswersNoFit"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-06-10"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="18007011"/>
+      <display value="DOSScore ReageertTraag"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="DOSScore ReactsSlowly"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-06-10"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="18007012"/>
+      <display value="DOSScore DenktErgensAnders"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="DOSScore ThinksSomewhereElse"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-06-10"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="18007013"/>
+      <display value="DOSScore BeseftDagdeel"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="DOSScore KnowsPartDay"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-06-10"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="18007014"/>
+      <display value="DOSScore HerinnertRecent"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="DOSScore RemembersRecent"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-06-10"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="18007015"/>
+      <display value="DOSScore Rusteloos"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="DOSScore Restless"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-06-10"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="18007016"/>
+      <display value="DOSScore TrektDraden"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="DOSScore PullsWires"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-06-10"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="18007017"/>
+      <display value="DOSScore SnelGeemotioneerd"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="DOSScore EasilyEmotional"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-06-10"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="18007018"/>
+      <display value="DOSScore Hallucinaties"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="DOSScore Hallucinations"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-06-10"/>
+      </property>
+   </concept>
+   <concept>
       <code value="4005003"/>
       <display value="MUSTScore BMIScore"/>
       <designation>
@@ -847,6 +1107,206 @@
       <property>
          <code value="effectiveDate"/>
          <valueDateTime value="2020-09-01"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="4002010"/>
+      <display value="BarthelIndex AanUitkleden"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="BarthelADLIndex Dressing"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2023-03-06"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="4002012"/>
+      <display value="BarthelIndex BadenDouchen"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="BarthelADLIndex Bathing"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2023-03-06"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="4002003"/>
+      <display value="BarthelIndex Blaas"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="BarthelADLIndex Bladder"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2023-03-06"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="4002004"/>
+      <display value="BarthelIndex Darm"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="BarthelADLIndex Bowels"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2023-03-06"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="4002007"/>
+      <display value="BarthelIndex Eten"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="BarthelADLIndex Feeding"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2023-03-06"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="4002009"/>
+      <display value="BarthelIndex Mobiliteit"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="BarthelADLIndex Mobility"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2023-03-06"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="4002006"/>
+      <display value="BarthelIndex Toiletgebruik"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="BarthelADLIndex ToiletUse"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2023-03-06"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="4002008"/>
+      <display value="BarthelIndex Transfers"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="BarthelADLIndex Transfers"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2023-03-06"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="4002011"/>
+      <display value="BarthelIndex TrappenLopen"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="BarthelADLIndex ManagingStairs"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2023-03-06"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="4002005"/>
+      <display value="BarthelIndex UiterlijkeVerzorging"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="BarthelADLIndex Grooming"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2023-03-06"/>
       </property>
    </concept>
 </CodeSystem>

@@ -2,7 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-Payer.PayerPerson" />
   <meta>
-    <lastUpdated value="2021-12-08T16:12:26.0702403+00:00" />
+    <lastUpdated value="2023-02-02T12:27:18.5424261+00:00" />
   </meta>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Payer.PayerPerson" />
   <name value="ZibPayerPayerPerson" />
@@ -35,7 +35,7 @@
     <element id="Coverage">
       <path value="Coverage" />
       <short value="Payer" />
-      <comment value="The zib Payer is split into two focal profiles on Coverage based on the PayerPerson and InsuranceCompany containers. These two containers cannot be profiled within one profile because they both require mapping different concepts on elements such as `.payor` and `.type`.&#xD;&#xA;&#xD;&#xA;The zib container Payer.PayerPerson is mapped to this Coverage profile and uses the profiles zib-Patient, zib-ContactPerson and zib-Payer-Organization to capture the PayerName, AddressInformation and ContactInformation. These profiles are referenced using the `.payor` element." />
+      <comment value="The zib Payer is split into two focal profiles on Coverage based on the PayerPerson and InsuranceCompany containers. These two containers cannot be profiled within one profile because they both require mapping different concepts on elements such as `.payor` and `.type`.&#xD;&#xA;&#xD;&#xA;The zib container Payer.PayerPerson is mapped to this Coverage profile and uses the profile [zib-Patient](http://nictiz.nl/fhir/StructureDefinition/zib-Patient), [zib-ContactPerson](http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson) or [zib-Payer-Organization](http://nictiz.nl/fhir/StructureDefinition/zib-Payer-Organization) to capture the PayerName, AddressInformation and ContactInformation concepts. These profiles are referenced using the `.payor` element." />
       <alias value="Betaler" />
       <mapping>
         <identity value="zib-payer-v3.1.1-2020EN" />
@@ -76,14 +76,6 @@
           <code value="pay" />
         </coding>
       </patternCodeableConcept>
-    </element>
-    <element id="Coverage.beneficiary">
-      <path value="Coverage.beneficiary" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient" />
-      </type>
     </element>
     <element id="Coverage.payor">
       <path value="Coverage.payor" />

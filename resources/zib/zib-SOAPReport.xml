@@ -89,7 +89,7 @@
     </element>
     <element id="Composition.title">
       <path value="Composition.title" />
-      <definition value="Official human-readable label for the composition. Suggested value is the ICPC display name on the E-entry" />
+      <definition value="Official human-readable label for the composition. Suggested value is the ICPC display name on the A entry." />
     </element>
     <element id="Composition.section">
       <path value="Composition.section" />
@@ -105,7 +105,7 @@
       <path value="Composition.section" />
       <sliceName value="soapLine" />
       <short value="SOAPLine" />
-      <definition value="Container of the SOAPLine concept.This container contains all data elements of the SOAPLine concept." />
+      <definition value="Container of the SOAPLine concept. This container contains all data elements of the SOAPLine concept." />
       <alias value="SOEPRegel" />
       <max value="4" />
       <mapping>
@@ -117,13 +117,10 @@
     <element id="Composition.section:soapLine.code">
       <path value="Composition.section.code" />
       <short value="SOAPLineHeader" />
-      <definition value="The name of the SOAP line as an coded description. In a SOAP report this can be one of the following: subjective, objective, assessment or plan." />
+      <definition value="The name of the SOAP line as a coded description. In a SOAP report this can be one of the following: subjective, objective, assessment or plan." />
       <alias value="SOEPRegelNaam" />
       <min value="1" />
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="CompositionSectionType" />
-        </extension>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.6.2--20200901000000" />
       </binding>
@@ -146,10 +143,6 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-SOAPReport.SOAPLine" />
       </type>
-    </element>
-    <element id="Composition.section:soapLine.section">
-      <path value="Composition.section.section" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
     </element>
   </differential>
 </StructureDefinition>

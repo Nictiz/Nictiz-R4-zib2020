@@ -34,11 +34,10 @@
       <short value="NursingIntervention" />
       <alias value="VerpleegkundigeInterventie" />
       <constraint>
-        <key value="zib-NursingIntervention-01" />
+        <key value="zib-NursingIntervention-1" />
         <severity value="error" />
         <human value="The start and/or end date of a repeating schedule should be communicated in CarePlan.encounter as well." />
         <expression value="activity.detail.scheduledTiming.repeat.boundsPeriod.exists() implies (period = activity.detail.scheduledTiming.repeat.boundsPeriod)" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-NursingIntervention" />
       </constraint>
       <mapping>
         <identity value="zib-nursingintervention-v3.2-2020EN" />
@@ -62,7 +61,7 @@
     </element>
     <element id="CarePlan.intent">
       <path value="CarePlan.intent" />
-      <definition value="Indicates the level of authority/intentionality associated with the care plan and where the care plan fits into the workflow chain.&#xD;&#xA;&#xD;&#xA;For zib NursingIntervention, this will normally be _plan_, but the context may specify a more suitable intent." />
+      <comment value="For zib NursingIntervention, this will normally be _plan_, but the context may specify a more suitable intent." />
     </element>
     <element id="CarePlan.category">
       <path value="CarePlan.category" />
