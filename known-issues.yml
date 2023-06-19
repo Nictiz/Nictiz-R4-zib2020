@@ -139,12 +139,6 @@ zib-CareTeam:
       - cardinality: 1..1 instead of 0..1
         reason: The cardinality of each CareTeamMember option is defined by the cardinality of the slices on participant and thus the cardinality requirements of the zib are honored. Because .member is required to discriminate the slices, its cardinality is 1..1. 
 
-zib-ChecklistPainBehavior:
-  zib deviations:
-    Observation.component:lookingSad.value[x]:
-      - short: LookingSad instead of Looking sad
-        reason: The zib concept name "Looking sad" is incorrect, as it is not written in CamelCase.
-
 zib-ContactInformation-TelephoneNumbers:
   zib deviations:
     ContactPoint.system:
