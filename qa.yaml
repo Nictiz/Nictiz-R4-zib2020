@@ -14,6 +14,7 @@ patterns:
   - resources/nl-core/*.xml
   conceptmaps: resources/**/conceptmap-*.xml
   terminology: resources/**/terminology/*.xml
+  SearchParameters: SearchParameters/*.xml
   examples: examples/*.xml
 
 steps:
@@ -44,6 +45,10 @@ steps:
   validate other terminology:
     description: Validate the other terminology resources
     patterns: terminology
+  validate SearchParameters:
+    description: Validate SearchParameters
+    patterns: SearchParameters
+    profile: "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-SearchParameters"
   validate examples:
     description: Validate examples using the generic FHIR validation rules
     patterns: examples

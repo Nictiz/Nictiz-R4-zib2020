@@ -112,17 +112,33 @@
         <rules value="open" />
       </slicing>
     </element>
-    <element id="DeviceUseStatement.derivedFrom:procedure">
+    <element id="DeviceUseStatement.derivedFrom:procedure-request">
       <path value="DeviceUseStatement.derivedFrom" />
-      <sliceName value="procedure" />
+      <sliceName value="procedure-request" />
       <short value="Procedure" />
-      <definition value="The procedure which has the purpose if placing this product in or on the body." />
-      <comment value="Please note that on a functional level, zib Procedure references zib MedicalDevice, but in FHIR this direction is reversed." />
+      <definition value="The procedure which has the purpose of placing this product in or on the body." />
+      <comment value="* Note 1: on a functional level, zib Procedure references zib MedicalDevice, but in FHIR this direction is reversed.&#xD;&#xA;* Note 2: zib Procedure can represent a requested or (to be) performed procedure. This slice represents requested procedures, while slice `procedure-event` represents performed procedures." />
+      <alias value="Verrichting" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-request" />
+      </type>
+      <mapping>
+        <identity value="zib-procedure-v5.2-2020EN" />
+        <map value="NL-CM:14.1.7" />
+        <comment value="Reversed reference for zib Procedure.MedicalDevice" />
+      </mapping>
+    </element>
+    <element id="DeviceUseStatement.derivedFrom:procedure-event">
+      <path value="DeviceUseStatement.derivedFrom" />
+      <sliceName value="procedure-event" />
+      <short value="Procedure" />
+      <definition value="The procedure which has the purpose of placing this product in or on the body." />
+      <comment value="* Note 1: on a functional level, zib Procedure references zib MedicalDevice, but in FHIR this direction is reversed.&#xD;&#xA;* Note 2: zib Procedure can represent a requested or (to be) performed procedure. This slice represents performed procedures, while slice `procedure-request` represents requested procedures." />
       <alias value="Verrichting" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-event" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-request" />
       </type>
       <mapping>
         <identity value="zib-procedure-v5.2-2020EN" />
@@ -203,31 +219,48 @@
         <comment value="Indication" />
       </mapping>
     </element>
-    <element id="DeviceUseStatement.reasonReference:zibMedicalDeviceReference">
+    <element id="DeviceUseStatement.reasonReference:functionalOrMentalStatus">
       <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="zibMedicalDeviceReference" />
-      <short value="zib MedicalDevice reference" />
-      <definition value="The association between a zib MedicalDevice and another zib or other functional model." />
-      <comment value="There are several zibs that reference zib MedicalDevice on a functional level, but for which the direction of the reference in FHIR is reversed. Consult the mappings on this element for an overview of which zib concepts are mapped to this element. &#xD;&#xA;&#xD;&#xA;Note that some zibs have a reference to MedicalDevice that is further constrained (e.g. with additional constraints on ProductType or AnatomicalLocation), such as HearingFunction and VisualFunction. For these zibs separate DeviceUseStatement profiles have been created (based on this profile) which also include a specific slice on which their respective MedicalDevice concept mapping is present." />
+      <sliceName value="functionalOrMentalStatus" />
+      <short value="FunctionalOrMentalStatus" />
+      <comment value="Please note that on a functional level, zib FunctionalOrMentalStatus references zib MedicalDevice, but in FHIR this direction is reversed." />
       <alias value="FunctioneleOfMentaleStatus" />
-      <alias value="Mobiliteit" />
-      <alias value="Stoma" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Stoma" />
       </type>
       <mapping>
         <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
         <map value="NL-CM:4.26.5" />
         <comment value="Reversed reference for zib FunctionalOrMentalStatus.MedicalDevice" />
       </mapping>
+    </element>
+    <element id="DeviceUseStatement.reasonReference:mobility">
+      <path value="DeviceUseStatement.reasonReference" />
+      <sliceName value="mobility" />
+      <short value="Mobility" />
+      <comment value="Please note that on a functional level, zib Mobility references zib MedicalDevice, but in FHIR this direction is reversed." />
+      <alias value="Mobiliteit" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility" />
+      </type>
       <mapping>
         <identity value="zib-mobility-v3.3-2020EN" />
         <map value="NL-CM:4.3.4" />
         <comment value="Reversed reference for zib Mobility.MedicalDevice" />
       </mapping>
+    </element>
+    <element id="DeviceUseStatement.reasonReference:stoma">
+      <path value="DeviceUseStatement.reasonReference" />
+      <sliceName value="stoma" />
+      <short value="Stoma" />
+      <comment value="Please note that on a functional level, zib Stoma references zib MedicalDevice, but in FHIR this direction is reversed." />
+      <alias value="Stoma" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Stoma" />
+      </type>
       <mapping>
         <identity value="zib-stoma-v3.3-2020EN" />
         <map value="NL-CM:5.2.3" />
