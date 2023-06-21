@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-PainCharacteristics" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-PainCharacteristics" />
+  <name value="ZibPainCharacteristics" />
+  <title value="zib PainCharacteristics" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Pain characteristics describe specific, localized pain. They provide information on a number of  aspects of the pain the patient is experiencing. The aspects follow the ALTIS method (Quality, Localization, Duration, Intensity and Context). In this way, pain is always assessed in the same way." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) PainCharacteristics-v1.0 (2020)](https://zibs.nl/wiki/PainCharacteristics-v1.0(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-paincharacteristics-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/PainCharacteristics-v1.0(2020EN)" />
+    <name value="zib PainCharacteristics-v1.0(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="PainCharacteristics" />
+      <alias value="Pijnkenmerken" />
+      <mapping>
+        <identity value="zib-paincharacteristics-v1.0-2020EN" />
+        <map value="NL-CM:12.21.1" />
+        <comment value="PainCharacteristics" />
+      </mapping>
+    </element>
+    <element id="Observation.note">
+      <path value="Observation.note" />
+      <max value="1" />
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
+      <short value="Comment" />
+      <definition value="Comments on the described pain characteristics." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-paincharacteristics-v1.0-2020EN" />
+        <map value="NL-CM:12.21.10" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

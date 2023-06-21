@@ -240,6 +240,9 @@ This document contains release notes per zib, indicating differences with their 
 * New concept Indication mapped on the extension `NutritionOrder.extension:indication`.
 * The comment extension has been replaced by a mapping to `NutritionOrder.note.text`.
 
+## zib-PainCharacteristics
+* PainCharacteristics is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
+
 ## zib-ParticipationInSociety
 * No specific changes have been made to this profile other than the generic changes for the Observation resource
 
