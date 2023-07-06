@@ -722,7 +722,7 @@ nl-core-*:
       - message: None of the codings provided are in the value set 'VerrichtingTypeCodelijsten'
         reason: The current version of the Validator incorrectly raises an error on combined ValueSets.
     "*.telecom[*].system.extension[*].value.ofType(CodeableConcept).coding[*]":
-      - message: Display Name for http://terminology.hl7.org/CodeSystem/v3-AddressUse#MC should be one of 'mobile contact)' instead of 'Mobile Phone' for 'http://terminology.hl7.org/CodeSystem/v3-AddressUse#MC'
+      - message: Wrong Display Name 'Mobile Phone' for http://terminology.hl7.org/CodeSystem/v3-AddressUse#MC
         reason: This core display value is redefined by the ValueSet, but this isn't properly recognized by the Validator
     "*.contentType":
       - message: The value provided ('application/octet-stream') is not in the value set 'MimeType'
