@@ -45,13 +45,13 @@ pattern-GstdSimpleQuantity:
   ignored issues:
     StructureDefinition:
       - message: "Rule sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
-        reason: The title is shown in the hosting profiles as the name of the datatype. "G-Standaard SimpleQuantity" is more descriptive than the title according to the profiling guidelines ("pattern GstdSimpleQuantity").
+        reason: The title is shown in the hosting profiles as the name of the datatype. "G-Standard SimpleQuantity" is more descriptive than the title according to the profiling guidelines ("pattern GstdSimpleQuantity").
 
 pattern-GstdQuantity: 
   ignored issues:
     StructureDefinition:
       - message: "Rule sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
-        reason: The title is shown in the hosting profiles as the name of the datatype. "G-Standaard Quantity" is more descriptive than the title according to the profiling guidelines ("pattern GstdQuantity").
+        reason: The title is shown in the hosting profiles as the name of the datatype. "G-Standard Quantity" is more descriptive than the title according to the profiling guidelines ("pattern GstdQuantity").
 
 pattern-NlCoreHealthProfessionalReference:
   ignored issues:
@@ -722,7 +722,7 @@ nl-core-*:
       - message: None of the codings provided are in the value set 'VerrichtingTypeCodelijsten'
         reason: The current version of the Validator incorrectly raises an error on combined ValueSets.
     "*.telecom[*].system.extension[*].value.ofType(CodeableConcept).coding[*]":
-      - message: Display Name for http://terminology.hl7.org/CodeSystem/v3-AddressUse#MC should be one of 'mobile contact)' instead of 'Mobile Phone' for 'http://terminology.hl7.org/CodeSystem/v3-AddressUse#MC'
+      - message: Wrong Display Name 'Mobile Phone' for http://terminology.hl7.org/CodeSystem/v3-AddressUse#MC
         reason: This core display value is redefined by the ValueSet, but this isn't properly recognized by the Validator
     "*.contentType":
       - message: The value provided ('application/octet-stream') is not in the value set 'MimeType'
