@@ -1,84 +1,84 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="zib-TimeInterval"/>
-  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-TimeInterval"/>
-  <name value="ZibTimeInterval"/>
-  <title value="zib TimeInterval"/>
-  <status value="draft"/>
-  <publisher value="Nictiz"/>
+  <id value="zib-TimeInterval" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-TimeInterval" />
+  <name value="ZibTimeInterval" />
+  <title value="zib TimeInterval" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
   <contact>
-    <name value="Nictiz"/>
+    <name value="Nictiz" />
     <telecom>
-      <system value="email"/>
-      <value value="info@nictiz.nl"/>
-      <use value="work"/>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
     </telecom>
   </contact>
-  <description value="A time interval indicates the time between two moments in time. Interval can be defined by a start time and end time , start time and duration or duration and end time."/>
-  <purpose value="This Period datatype represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) TimeInterval-v1.0 (2020)]( https://zibs.nl/wiki/TimeInterval-v1.0(2020EN))."/>
-  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise."/>
-  <fhirVersion value="4.0.1"/>
+  <description value="A time interval indicates the time between two moments in time. Interval can be defined by a start time and end time, start time and duration or duration and end time." />
+  <purpose value="This Period data type represents the Dutch zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) [TimeInterval v1.0 (2020EN)](https://zibs.nl/wiki/TimeInterval-v1.0(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
   <mapping>
-    <identity value="zib-timeinterval-v1.0-2020EN"/>
-    <uri value="https://zibs.nl/wiki/TimeInterval-v1.0(2020EN)"/>
-    <name value="zib TimeInterval-v1.0(2020EN)"/>
+    <identity value="zib-timeinterval-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/TimeInterval-v1.0(2020EN)" />
+    <name value="zib TimeInterval-v1.0(2020EN)" />
   </mapping>
-  <kind value="complex-type"/>
-  <abstract value="true"/>
-  <type value="Period"/>
-  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Period"/>
-  <derivation value="constraint"/>
+  <kind value="complex-type" />
+  <abstract value="true" />
+  <type value="Period" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Period" />
+  <derivation value="constraint" />
   <differential>
-    <element id="Period.extension">
-      <path value="Period.extension"/>
-      <slicing>
-        <discriminator>
-          <type value="value"/>
-          <path value="url"/>
-        </discriminator>
-        <rules value="open"/>
-      </slicing>
-    </element>
-    <element id="Period.extension:duration">
-      <path value="Period.extension"/>
-      <sliceName value="duration"/>
-      <max value="1"/>
-      <type>
-        <code value="Extension"/>
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration"/>
-      </type>
-    </element>
-    <element id="Period.extension:duration.value[x]">
-      <path value="Period.extension.value[x]"/>
-      <short value="Duration"/>
-      <definition value="The duration of the interval in appropriate units of time (e.g. days or hours, etc."/>
-      <alias value="tijdsDuur"/>
+    <element id="Period">
+      <path value="Period" />
+      <short value="TimeInterval" />
+      <alias value="TijdsInterval" />
       <mapping>
-        <identity value="zib-timeinterval-v1.0-2020EN"/>
-        <map value="NL-CM:20.3.4"/>
-        <comment value="Duration"/>
+        <identity value="zib-timeinterval-v1.0-2020EN" />
+        <map value="NL-CM:20.3.1" />
+        <comment value="TimeInterval" />
       </mapping>
     </element>
+    <element id="Period.extension">
+      <path value="Period.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Period.extension:duration">
+      <path value="Period.extension" />
+      <sliceName value="duration" />
+      <min value="0" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration" />
+      </type>
+    </element>
     <element id="Period.start">
-      <path value="Period.start"/>
-      <short value="startDateTime"/>
-      <definition value="The start date and time of the interval"/>
-      <alias value="startDatumTijd"/>
+      <path value="Period.start" />
+      <short value="startDateTime" />
+      <definition value="The start date and time of the interval." />
+      <alias value="startDatumTijd" />
       <mapping>
-        <identity value="zib-timeinterval-v1.0-2020EN"/>
-        <map value="NL-CM:20.3.2"/>
-        <comment value="startDateTime"/>
+        <identity value="zib-timeinterval-v1.0-2020EN" />
+        <map value="NL-CM:20.3.2" />
+        <comment value="startDateTime" />
       </mapping>
     </element>
     <element id="Period.end">
-      <path value="Period.end"/>
-      <short value="endDateTime"/>
-      <definition value="The end date and time of the interval"/>
-      <alias value="eindDatumTijd"/>
+      <path value="Period.end" />
+      <short value="endDateTime" />
+      <definition value="The end date and time of the interval." />
+      <alias value="eindDatumTijd" />
       <mapping>
-        <identity value="zib-timeinterval-v1.0-2020EN"/>
-        <map value="NL-CM:20.3.3"/>
-        <comment value="endDateTime"/>
+        <identity value="zib-timeinterval-v1.0-2020EN" />
+        <map value="NL-CM:20.3.3" />
+        <comment value="endDateTime" />
       </mapping>
     </element>
   </differential>

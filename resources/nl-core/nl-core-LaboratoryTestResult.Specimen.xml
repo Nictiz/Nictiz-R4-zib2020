@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-LaboratoryTestResult.Specimen" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen" />
+  <name value="NlcoreLaboratoryTestResultSpecimen" />
+  <title value="nl core LaboratoryTestResult.Specimen" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Obtained specimen material or a microbial isolate that is used in a laboratory analysis." />
+  <purpose value="A derived profile from [zib-LaboratoryTestResult.Specimen](http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult.Specimen) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-laboratorytestresult-v5.1-2022EN" />
+    <uri value="https://zibs.nl/wiki/LaboratoryTestResult-v5.1(2022EN)" />
+    <name value="zib LaboratoryTestResult-v5.1(2022EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Specimen" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult.Specimen" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Specimen">
+      <path value="Specimen" />
+      <alias value="nl-core-LaboratoryTestResult.Specimen" />
+    </element>
+    <element id="Specimen.subject">
+      <path value="Specimen.subject" />
+      <comment value="If zib concept SpecimenSource (NL-CM:13.1.29) is used, it can be recorded here using a reference to an instance of the [nl-core-LaboratoryTestResult.SpecimenSource](http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.SpecimenSource) profile. In this case, the patient is communicated using `Device.patient` in the referenced resource." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Substance" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.SpecimenSource" />
+      </type>
+    </element>
+    <element id="Specimen.parent">
+      <path value="Specimen.parent" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Specimen" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen" />
+      </type>
+    </element>
+    <element id="Specimen.collection.bodySite">
+      <path value="Specimen.collection.bodySite" />
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation" />
+      </type>
+    </element>
+    <element id="Specimen.container.type">
+      <path value="Specimen.container.type" />
+      <comment value="Note: ValueSet is from Zib Release 2022-1. Adds &quot;is-a 706046003 | Specimen receptacle (physical object) | &quot;. See https://bits.nictiz.nl/browse/ZIB-1552 for more information." />
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.9--20220610000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-laboratorytestresult-v5.1-2022EN" />
+        <map value="NL-CM:13.1.21" />
+        <comment value="ContainerType" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
