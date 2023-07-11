@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-BarthelADLIndex" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-BarthelADLIndex" />
+  <name value="ZibBarthelADLIndex" />
+  <title value="zib BarthelADLIndex" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The Barthel ADL index is a validated scale used to measure and track patients’ activities of daily living (ADL) and indirectly, the extent to which they are dependent on help.&#xD;&#xA;The list comprises 10 variables: bowels, bladder, grooming, toilet use, feeding, transfers (from chair to bed and vice versa), mobility, dressing, climbing stairs and bathing, which are all given a score.&#xD;&#xA;The total score is the sum of the scores of the 10 variables." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) BarthelADLIndex-v3.1(2020EN)](https://zibs.nl/wiki/BarthelADLIndex-v3.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-bartheladlindex-v3.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/BarthelADLIndex-v3.1(2020EN)" />
+    <name value="zib BarthelADLIndex-v3.1(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="BarthelADLIndex" />
+      <alias value="BarthelIndex" />
+      <mapping>
+        <identity value="zib-bartheladlindex-v3.1-2020EN" />
+        <map value="NL-CM:4.2.1" />
+        <comment value="BarthelADLIndex" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="273302005" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueInteger">
+      <path value="Observation.value[x]" />
+      <sliceName value="valueInteger" />
+      <short value="TotalScore" />
+      <definition value="The Barthel ADL index is the sum of the scores of the individual variables. &#xD;&#xA;&#xD;&#xA;The interpretation of this total score is 0-9 for serious dependence, 10-19 for slight dependence and 20 for independence. Twenty is the maximum score." />
+      <comment value="The individual scores are communicated using the different `Observation.component` slices. The ordinal values of these indivdual scores, which are used to calculate the total score, are defined by the underlying code system and are registered in the ValueSet resources bound on these slices, using the [ordinalValue](http://hl7.org/fhir/StructureDefinition/ordinalValue) extension." />
+      <alias value="TotaalScore" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="20" />
+      <mapping>
+        <identity value="zib-bartheladlindex-v3.1-2020EN" />
+        <map value="NL-CM:4.2.2" />
+        <comment value="TotalScore" />
+      </mapping>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:bowels">
+      <path value="Observation.component" />
+      <sliceName value="bowels" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:bowels.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="4002004" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:bowels.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Bowels" />
+      <definition value="The bowel function describes the extent of fecal incontinence. &#xD;&#xA;&#xD;&#xA;The measurement takes the condition as measured in the preceding week. In this scale, the following interpretations are used: &#xD;&#xA;&#xD;&#xA;*  Incontinent: incontinent or enema required.&#xD;&#xA;*  Accident: max. 1 accident per week.&#xD;&#xA;*  Continent: continent for the entire week." />
+      <alias value="Darm" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.2.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-bartheladlindex-v3.1-2020EN" />
+        <map value="NL-CM:4.2.4" />
+        <comment value="Bowels" />
+      </mapping>
+    </element>
+    <element id="Observation.component:bladder">
+      <path value="Observation.component" />
+      <sliceName value="bladder" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:bladder.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="4002003" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:bladder.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Bladder" />
+      <definition value="The bladder function describes the extent of urinary incontinence. &#xD;&#xA;&#xD;&#xA;The measurement takes the condition as measured in the preceding week.  In this scale, the following interpretations are used: &#xD;&#xA;&#xD;&#xA;*  Incontinent: incontinent or catheter required.&#xD;&#xA;*  Accident: max. 1 accident per 24 hours.&#xD;&#xA;*  Continent: continent for the entire week or patients who can attend to their own catheter." />
+      <alias value="Blaas" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.2.2--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-bartheladlindex-v3.1-2020EN" />
+        <map value="NL-CM:4.2.3" />
+        <comment value="Bladder" />
+      </mapping>
+    </element>
+    <element id="Observation.component:grooming">
+      <path value="Observation.component" />
+      <sliceName value="grooming" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:grooming.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="4002005" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:grooming.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Grooming" />
+      <definition value="Grooming indicates the extent to which a patient is capable of maintaining their hygiene and appearance. This refers to personal hygiene such as brushing teeth, brushing hair, shaving and washing. &#xD;&#xA;&#xD;&#xA;The measurement takes the condition as measured in the preceding 24-48 hours.  In this scale, the following interpretations are used:&#xD;&#xA;&#xD;&#xA;*  Dependent: not capable of grooming independently.&#xD;&#xA;*  Independent: capable of brushing teeth, brushing hair, shaving and washing independently." />
+      <alias value="UiterlijkeVerzorging" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.2.3--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-bartheladlindex-v3.1-2020EN" />
+        <map value="NL-CM:4.2.5" />
+        <comment value="Grooming" />
+      </mapping>
+    </element>
+    <element id="Observation.component:toiletUse">
+      <path value="Observation.component" />
+      <sliceName value="toiletUse" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:toiletUse.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="4002006" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:toiletUse.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="ToiletUse" />
+      <definition value="Toilet use indicates the extent to which a patient is capable of using the toilet independently.  &#xD;&#xA;&#xD;&#xA;In this scale, the following interpretations are used:&#xD;&#xA;&#xD;&#xA;*  Dependent: dependent.&#xD;&#xA;*  Help: needs some help but can do certain things themselves, like wiping.&#xD;&#xA;*  Independent: capable of using the toilet, sufficiently undressing, cleaning, getting dressed and leaving." />
+      <alias value="Toiletgebruik" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.2.4--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-bartheladlindex-v3.1-2020EN" />
+        <map value="NL-CM:4.2.6" />
+        <comment value="ToiletUse" />
+      </mapping>
+    </element>
+    <element id="Observation.component:feeding">
+      <path value="Observation.component" />
+      <sliceName value="feeding" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:feeding.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="4002007" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:feeding.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Feeding" />
+      <definition value="Feeding indicates the extent to which a patient is capable of eating independently. &#xD;&#xA;&#xD;&#xA;In this scale, the following interpretations are used:&#xD;&#xA;&#xD;&#xA;*  Not independent: not capable of eating independently.&#xD;&#xA;*  Help: food is puréed; patient does feed themselves, but needs help cutting food, spreading butter, et cetera.&#xD;&#xA;*  Independent: capable of eating normal food (including hard food). The food can be cooked and served by others, but is not to be puréed." />
+      <alias value="Eten" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.2.5--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-bartheladlindex-v3.1-2020EN" />
+        <map value="NL-CM:4.2.7" />
+        <comment value="Feeding" />
+      </mapping>
+    </element>
+    <element id="Observation.component:transfers">
+      <path value="Observation.component" />
+      <sliceName value="transfers" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:transfers.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="4002008" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:transfers.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Transfers" />
+      <definition value="Transfers indicates the extent to which a patient is capable of independently getting from a chair to the bed and vice versa.&#xD;&#xA;&#xD;&#xA;In this scale, the following interpretations are used:&#xD;&#xA;&#xD;&#xA;*  Not independent: not capable of sitting up; the use of a patient hoist is required.&#xD;&#xA;*  Major help: help from a strong, trained individual or 2 regular individuals, but the patient can sit up by themselves.&#xD;&#xA;*  Minor help: a person to supervise or provide some help, either verbally or physically.&#xD;&#xA;*  Independent: does not need help." />
+      <alias value="Transfers" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.2.6--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-bartheladlindex-v3.1-2020EN" />
+        <map value="NL-CM:4.2.8" />
+        <comment value="Transfers" />
+      </mapping>
+    </element>
+    <element id="Observation.component:mobility">
+      <path value="Observation.component" />
+      <sliceName value="mobility" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:mobility.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="4002009" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:mobility.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Mobility" />
+      <definition value="Mobility indicates the extent to which a patient is capable of moving independently. &#xD;&#xA;&#xD;&#xA;In this scale, the following interpretations are used:&#xD;&#xA;&#xD;&#xA;*  Dependent: cannot move themselves.&#xD;&#xA;*  Independent with wheelchair: uses a wheelchair, with the ability to go around corners or open doors without help.&#xD;&#xA;*  Assisted walking: help from one person, for example verbally or physically.&#xD;&#xA;*  Independent: can move within the home or department; aids may be used." />
+      <alias value="Mobiliteit" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.2.7--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-bartheladlindex-v3.1-2020EN" />
+        <map value="NL-CM:4.2.9" />
+        <comment value="Mobility" />
+      </mapping>
+    </element>
+    <element id="Observation.component:dressing">
+      <path value="Observation.component" />
+      <sliceName value="dressing" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:dressing.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="4002010" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:dressing.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Dressing" />
+      <definition value="Dressing indicates the extent to which a patient is capable of dressing and undressing themselves independently.&#xD;&#xA;&#xD;&#xA;In this scale, the following interpretations are used:&#xD;&#xA;&#xD;&#xA;* Dependent: dependent.&#xD;&#xA;* Help: needs help but can do about half themselves, such as only needing help with buttons and/or zippers.&#xD;&#xA;* Independent: capable of selecting and putting on clothes." />
+      <alias value="AanUitkleden" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.2.8--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-bartheladlindex-v3.1-2020EN" />
+        <map value="NL-CM:4.2.10" />
+        <comment value="Dressing" />
+      </mapping>
+    </element>
+    <element id="Observation.component:managingStairs">
+      <path value="Observation.component" />
+      <sliceName value="managingStairs" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:managingStairs.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="4002011" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:managingStairs.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="ManagingStairs" />
+      <definition value="Managing stairs indicates the extent to which a patient is capable of going up and down stairs independently.&#xD;&#xA;&#xD;&#xA;In this scale, the following interpretations are used:&#xD;&#xA;&#xD;&#xA;*  Dependent: not capable of going up and down stairs.&#xD;&#xA;*  Help: needs help, for example verbally, physically or in the form of an aid.&#xD;&#xA;*  Independent: capable of going up and down stairs independently, and if necessary can carry their own aid." />
+      <alias value="TrappenLopen" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.2.9--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-bartheladlindex-v3.1-2020EN" />
+        <map value="NL-CM:4.2.11" />
+        <comment value="ManagingStairs" />
+      </mapping>
+    </element>
+    <element id="Observation.component:bathing">
+      <path value="Observation.component" />
+      <sliceName value="bathing" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:bathing.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="4002012" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:bathing.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Bathing" />
+      <definition value="Bathing indicates the extent to which a patient is capable of independently taking a bath or shower. &#xD;&#xA;&#xD;&#xA;In this scale, the following interpretations are used:&#xD;&#xA;&#xD;&#xA;*  Dependent: not capable of bathing independently.&#xD;&#xA;*  Independent: capable of getting in and out of the bath or shower and bathing without help or supervision." />
+      <alias value="BadenDouchen" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.2.10--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-bartheladlindex-v3.1-2020EN" />
+        <map value="NL-CM:4.2.12" />
+        <comment value="Bathing" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
