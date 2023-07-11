@@ -37,7 +37,7 @@
         <key value="zib-PainScore-1" />
         <severity value="error" />
         <human value="The maximum value is 10 if method is VAS10 or NRS, or 100 if method is VAS100" />
-        <expression value="((method.coding.code = 'VAS10' or method.coding.code = 'NRS') and value &lt;= 10) or (method.coding.code = 'VAS100' and value &lt;= 100)" />
+        <expression value="(method.coding.code in ('VAS10' | 'NRS') implies value &lt;= 10) and (method.coding.code = 'VAS100' implies value &lt;= 100)" />
       </constraint>
       <constraint>
         <key value="zib-PainScore-2" />
@@ -133,6 +133,7 @@
       <definition value="The measuring method describes the method used to determine the pain score. The measurement involves a visualization of the pain scale." />
       <alias value="PijnMeetmethode" />
       <condition value="zib-PainScore-1" />
+      <condition value="zib-PainScore-2" />
       <binding>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.9.1--20200901000000" />
