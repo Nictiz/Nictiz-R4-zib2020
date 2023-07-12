@@ -769,6 +769,12 @@ nl-core-VisualFunction.VisualAid-*:
       - message: 'Profile http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualFunction.VisualAid, Element matches more than one slice'
         reason: The Validator cannot actually inspect the referenced resources, and falsely assumes the reference is a reference to the offending profile.
 
+nl-core-PainScore-01:
+  ignored issues:
+    Observation.method:
+      - message: None of the codings provided are in the value set 'PijnMeetmethodeCodelijst'
+        reason: The terminology servers used don't know this code system and wrongly conclude that this is an invalid code.
+
 nl-core-Patient-01:
   ignored issues:
     Patient.communication[0].language:

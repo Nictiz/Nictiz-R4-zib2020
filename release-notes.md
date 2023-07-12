@@ -246,6 +246,12 @@ This document contains release notes per zib, indicating differences with their 
 * New concept Indication mapped on the extension `NutritionOrder.extension:indication`.
 * The comment extension has been replaced by a mapping to `NutritionOrder.note.text`.
 
+## zib-PainScore
+* Removed mapping on `Observation.bodySite` because the AnatomicalLocation concept has been removed from the zib.
+* Removed laterality extension because the Laterality concept has been removed from the zib.
+* Cardinality of `Observation.method` has changed from 1..1 to 0..1. 
+* The data type of `Observation.value[x]` (zib concept PainScoreValue) has been changed from Quantity to Integer.
+
 ## zib-ParticipationInSociety
 * No specific changes have been made to this profile other than the generic changes for the Observation resource
 
