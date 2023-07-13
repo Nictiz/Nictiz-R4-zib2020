@@ -60,6 +60,9 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-ApgarScore
 * ApgarScore is now divided into 3 profiles with their own time unit. Each profile also has its own terminology codes that correspond to the minutes.
 
+## zib-BarthelADLIndex
+* There was no profile in the STU3 version and therefore no diff.
+
 ## zib-CareTeam
 * CareTeam is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
 
@@ -130,6 +133,9 @@ This document contains release notes per zib, indicating differences with their 
 * New zib in 2020. However, in the zib2017 package the nl-core-episodeofcare profile exists, which is not based on a zib but included some use case concepts. This zib profile supersedes this profile.
 * The extension EpisodOfCare-Title has been replaced by ext-EpisodeOfCare.EpisodeOfCareName because this zib concept is functionally equivalent.
 * The extensions EpisodeOfCare-DateFirstEncounter and EpisodeOfCare-DateLastEncounter from the previous profile are not inherited because no functional backing exists.
+
+## zib-FeedingPatternInfant
+* No specific changes have been made to this profile other than the generic changes for the Observation resource.
 
 ## zib-FLACCpainScale
 * The semantic codes on the `Observation.component.code` elements have changed from LOINC to codes from the ScoreObservaties code system (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1).
@@ -239,6 +245,12 @@ This document contains release notes per zib, indicating differences with their 
 * The incorrect mapping of Consistency to `NutritionOrder.oralDiet.texture.foodType.text` has been removed. This concept is not used to provide information on the consistency of nutrition.
 * New concept Indication mapped on the extension `NutritionOrder.extension:indication`.
 * The comment extension has been replaced by a mapping to `NutritionOrder.note.text`.
+
+## zib-PainScore
+* Removed mapping on `Observation.bodySite` because the AnatomicalLocation concept has been removed from the zib.
+* Removed laterality extension because the Laterality concept has been removed from the zib.
+* Cardinality of `Observation.method` has changed from 1..1 to 0..1. 
+* The data type of `Observation.value[x]` (zib concept PainScoreValue) has been changed from Quantity to Integer.
 
 ## zib-ParticipationInSociety
 * No specific changes have been made to this profile other than the generic changes for the Observation resource
