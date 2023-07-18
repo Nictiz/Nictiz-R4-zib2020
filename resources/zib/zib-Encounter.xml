@@ -98,6 +98,10 @@
       <definition value="The role the health professional fulfils in the healthcare process. For health professionals, this could be for example attender, referrer or performer." />
       <alias value="ZorgverlenerRol" />
       <max value="1" />
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.1.5--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-healthprofessional-v3.5-2020EN" />
         <map value="NL-CM:17.1.5" />
@@ -108,13 +112,11 @@
       <path value="Encounter.participant.individual" />
       <short value="ContactWith" />
       <definition value="The health professional with whom the contact took or will take place. The specialty and role of the health professional can be entered in the HealthProfessional information model." />
+      <comment value="Each occurrence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [zib-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [zib-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner)). The Practitioner resource is referenced from the PractitionerRole instance. For this reason, sending systems should fill the reference to the PractitionerRole instance here, and not the Practitioner resource. Receiving systems can then retrieve the reference to the Practitioner resource from that PractitionerRole instance.&#xD;&#xA;&#xD;&#xA;In rare circumstances, there is only a Practitioner instance, in which case it is that instance which can be referenced on the `Encounter.participant` element (due to open slicing). Since this should be the exception, the zib-HealthProfessional-Practitioner profile is not explicitly mentioned as a target profile." />
       <alias value="ContactMet" />
       <type>
         <code value="Reference" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-ZibHealthProfessionalReference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
       </type>
       <mapping>
