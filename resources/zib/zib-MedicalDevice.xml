@@ -224,23 +224,32 @@
         <comment value="Indication" />
       </mapping>
     </element>
-    <element id="DeviceUseStatement.reasonReference:functionalOrMentalStatus">
+    <element id="DeviceUseStatement.reasonReference:bowelFunction">
       <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="functionalOrMentalStatus" />
-      <short value="FunctionalOrMentalStatus" />
-      <comment value="Please note that on a functional level, zib FunctionalOrMentalStatus references zib MedicalDevice, but in FHIR this direction is reversed." />
-      <alias value="FunctioneleOfMentaleStatus" />
+      <sliceName value="bowelFunction" />
+      <short value="BowelFunction" />
+      <comment value="Please note that on a functional level, zib BowelFunction references zib MedicalDevice, but in FHIR this direction is reversed." />
       <alias value="Darmfunctie" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-BowelFunction" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus" />
       </type>
       <mapping>
         <identity value="zib-bowelfunction-v3.1.1-2020EN" />
         <map value="NL-CM:4.15.6" />
         <comment value="Reversed reference for zib BowelFunction.IncontinenceMaterial" />
       </mapping>
+    </element>
+    <element id="DeviceUseStatement.reasonReference:functionalOrMentalStatus">
+      <path value="DeviceUseStatement.reasonReference" />
+      <sliceName value="functionalOrMentalStatus" />
+      <short value="FunctionalOrMentalStatus" />
+      <comment value="Please note that on a functional level, zib FunctionalOrMentalStatus references zib MedicalDevice, but in FHIR this direction is reversed." />
+      <alias value="FunctioneleOfMentaleStatus" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus" />
+      </type>
       <mapping>
         <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
         <map value="NL-CM:4.26.5" />
@@ -289,9 +298,6 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
       </type>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="BodySite" />
-        </extension>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000" />
       </binding>
