@@ -48,28 +48,30 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="1" />
     </element>
-    <element id="Condition.category:burnType">
+    <element id="Condition.category:burnWoundCode">
       <path value="Condition.category" />
-      <sliceName value="burnType" />
-      <short value="BurnType" />
-      <definition value="Indication of the kind of the burn wound, differentiated into the cause of the injury." />
-      <alias value="BrandwondSoort" />
+      <sliceName value="burnWoundCode" />
+      <min value="1" />
       <max value="1" />
-      <mapping>
-        <identity value="zib-burnwound-v3.4-2020EN" />
-        <map value="NL-CM:19.4.9" />
-        <comment value="BurnType" />
-      </mapping>
-    </element>
-    <element id="Condition.code">
-      <path value="Condition.code" />
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
           <code value="125666000" />
         </coding>
       </patternCodeableConcept>
+    </element>
+    <element id="Condition.code">
+      <path value="Condition.code" />
+      <short value="BurnType" />
+      <definition value="Indication of the kind of the burn wound, differentiated into the cause of the injury." />
+      <alias value="BrandwondSoort" />
+      <mapping>
+        <identity value="zib-burnwound-v3.4-2020EN" />
+        <map value="NL-CM:19.4.9" />
+        <comment value="BurnType" />
+      </mapping>
     </element>
     <element id="Condition.bodySite">
       <path value="Condition.bodySite" />
