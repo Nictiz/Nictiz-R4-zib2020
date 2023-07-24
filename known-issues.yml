@@ -850,6 +850,12 @@ zib-HealthProfessional-Practitioner:
       - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.
 
+zib-MultidisciplinaryTeamMeeting:
+  ignored issues:
+    Encounter.participant:
+      - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
+        reason: The definition of the zib concept Participant, which is the root of a container, does not contain a meaningful definition. 
+
 zib-Patient:
   ignored issues:
     Patient.address:
