@@ -293,6 +293,9 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-Pregnancy.PregnancyDuration
 * The zib-Pregnancy extension has moved from `Observation.extension` to `Observation.focus`.
 
+## zib-PressureUlcer
+* The concept of 'dateOfLastDressingChange' has been relocated to the Wound Characteristics profile.
+
 ## zib-Problem
 * ProblemType has been added on a slice of `Condition.category` allowing the category element to be used for other purposes too.
 * FurtherSpecificationProblemName has been added with an extension on `Condition.code`.
