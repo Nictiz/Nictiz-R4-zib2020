@@ -748,10 +748,17 @@ nl-core-BodyHeight-*:
     Observation.value.ofType(Quantity).code:
       - message: The value provided ('cm') is not in the value set 'Body Length Units'
         reason: In absence of a terminology server, the Validator cannot check if 'cm' is a valid UCUM unit and raises an error.
+
 nl-core-DOSScore-01:
   ignored issues:
     Observation.code.coding[0]:
       - message: 'Local Error: Resolved system http://snomed.info/sct, but the definition is not complete. Server Error: Unable to find code 160591000146109 in http://snomed.info/sct'
+        reason: This is a Dutch SNOMED extension which is not present yet on the international terminology server.
+
+nl-core-FamilySituation-01:
+  ignored issues:
+    Observation.component[3].code.coding[0]:
+      - message: 'Unable to find code 270111000146104 in http://snomed.info/sct'
         reason: This is a Dutch SNOMED extension which is not present yet on the international terminology server.
 
 nl-core-*Function.*Aid-*:
