@@ -57,7 +57,26 @@
         <code value="384682003" />
       </patternCoding>
     </element>
-    <element id="Encounter.type.text">
+    <element id="Encounter.type">
+      <path value="Encounter.type" />
+      <slicing>
+        <discriminator>
+          <type value="exists" />
+          <path value="coding" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Encounter.type:patientConsultationLabel">
+      <path value="Encounter.type" />
+      <sliceName value="patientConsultationLabel" />
+      <max value="1" />
+    </element>
+    <element id="Encounter.type:patientConsultationLabel.coding">
+      <path value="Encounter.type.coding" />
+      <max value="0" />
+    </element>
+    <element id="Encounter.type:patientConsultationLabel.text">
       <path value="Encounter.type.text" />
       <short value="PatientConsultationLabel" />
       <definition value="The name used to identify the particular patient consultation, e.g. MDC head and neck cancer." />

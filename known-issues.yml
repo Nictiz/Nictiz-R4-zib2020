@@ -387,6 +387,12 @@ zib-MedicationContraIndication:
       - cardinality: 1..1 instead of 0..1
         reason: Flag.code is mandatory in FHIR. The cardinality matches the cardinality of the zib, but not the conceptual cardinality. This should not be a major problem, as a contraindication is useless without specifying what it pertains to.
 
+zib-MultidisciplinaryTeamMeeting.Plan:
+  zib deviations:
+    CarePlan.encounter:
+      - datatype: Reference instead of the root concept of zib MultidisciplinaryTeamMeeting
+        reason: This is a Reference to the zib-MultidisciplinaryTeamMeeting profile instead of the concept itself.
+
 zib-NameInformation:
   zib deviations:
     HumanName.prefix:
