@@ -395,6 +395,10 @@ zib-MultidisciplinaryTeamMeeting:
     Encounter.participant.individual:
       - short: HealthProfessional / ContactPerson instead of HealthProfessional / Contactperson
         reason: The zib concept name "Contactperson" is not correctly translated into English (but this has been corrected in prerelease 2022-1).
+  ignored issues:
+    Encounter.reasonReference:disease:
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice.
 
 zib-MultidisciplinaryTeamMeeting.Plan:
   zib deviations:
