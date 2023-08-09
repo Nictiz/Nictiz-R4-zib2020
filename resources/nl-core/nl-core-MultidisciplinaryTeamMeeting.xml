@@ -55,12 +55,34 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson" />
       </type>
     </element>
+    <element id="Encounter.participant.individual.extension">
+      <path value="Encounter.participant.individual.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Encounter.participant.individual.extension:patient">
+      <path value="Encounter.participant.individual.extension" />
+      <sliceName value="patient" />
+      <min value="0" />
+    </element>
+    <element id="Encounter.participant.individual.extension:patient.value[x]">
+      <path value="Encounter.participant.individual.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
     <element id="Encounter.reasonReference:disease">
       <path value="Encounter.reasonReference" />
       <sliceName value="disease" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
       </type>
     </element>

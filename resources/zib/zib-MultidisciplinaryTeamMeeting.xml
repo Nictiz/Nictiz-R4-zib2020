@@ -104,7 +104,7 @@
     </element>
     <element id="Encounter.participant.type">
       <path value="Encounter.participant.type" />
-      <short value="RolDeelnemer" />
+      <short value="RoleParticipant" />
       <definition value="Role of the person in the patient meeting, for example chairman, expert, notifier, secretary." />
       <alias value="RolDeelnemer" />
       <binding>
@@ -114,13 +114,13 @@
       <mapping>
         <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
         <map value="NL-CM:15.2.14" />
-        <comment value="RolDeelnemer" />
+        <comment value="RoleParticipant" />
       </mapping>
     </element>
     <element id="Encounter.participant.individual">
       <path value="Encounter.participant.individual" />
-      <short value="HealthProfessional / Contactperson" />
-      <definition value="* Health professional as participant of the patient consultation.&#xD;&#xA;* Contactperson as participant of the patient consultation." />
+      <short value="HealthProfessional / ContactPerson" />
+      <definition value="* Health professional as participant of the patient consultation.&#xD;&#xA;* Contact person as participant of the patient consultation." />
       <alias value="Zorgverlener" />
       <alias value="Contactpersoon" />
       <type>
@@ -140,7 +140,7 @@
       <mapping>
         <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
         <map value="NL-CM:15.2.15" />
-        <comment value="Contactperson" />
+        <comment value="ContactPerson" />
       </mapping>
     </element>
     <element id="Encounter.participant.individual.extension">
@@ -177,7 +177,7 @@
     </element>
     <element id="Encounter.period">
       <path value="Encounter.period" />
-      <comment value="'PatientConsultationDateTime' is mapped to both `period.start` and `period.end`. When all is known is a single value, both `.start` and `.end` should be populated with this value, otherwise the `period`, and thus the MultidisciplinaryTeamMeeting, is considered 'ongoing'. In FHIR R4, the Period datatype has an invariant that inconsistently says in text that `Period.start` shall be lower than `Period.end`, but actually supports lower than or equal in its expression, which reflects the original intent. This has been fixed for FHIR R5; the text now reflects the expression. &#xD;&#xA;&#xD;&#xA;When a system is able to populate both `period.start` and `period.end`, the value of `.start` is leading when converting FHIR data to a zib instance." />
+      <comment value="The zib concept PatientConsultationDateTime is mapped to both `period.start` and `period.end`. When all is known is a single value, both `.start` and `.end` should be populated with this value, otherwise the `period`, and thus the MultidisciplinaryTeamMeeting, is considered 'ongoing'. In FHIR R4, the Period datatype has an invariant that inconsistently says in text that `Period.start` shall be lower than `Period.end`, but actually supports lower than or equal in its expression, which reflects the original intent. This has been fixed for FHIR R5; the text now reflects the expression. &#xD;&#xA;&#xD;&#xA;When a system is able to populate both `period.start` and `period.end`, the value of `.start` is leading when converting FHIR data to a zib instance." />
     </element>
     <element id="Encounter.period.start">
       <path value="Encounter.period.start" />
@@ -220,7 +220,6 @@
       <max value="1" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem" />
       </type>
       <mapping>
