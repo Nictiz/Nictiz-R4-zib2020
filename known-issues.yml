@@ -337,6 +337,18 @@ zib-LaboratoryTestResult.SpecimenSource:
       - cardinality: 1..1 instead of 0..1
         reason: The zib concept SpecimenSource is represented using a reference to this profile from zib-LaboratoryTestResult.Specimen, so this element represents just part of the mapping. Overall, the use of this concept is optional, but when this profile is used, Device.deviceName.name must be given.
 
+zib-LegalSituation-LegalStatus:
+  zib deviations:
+    Condition.code:
+      - cardinality: 1..1 instead of 0..1
+        reason: The zib requires either a LegalStatus or a Representation to be present. This profile represents the former concept, so the LegalStatus (in Condition.code) is required.
+
+zib-LegalSituation-Representation:
+  zib deviations:
+    Condition.code:
+      - cardinality: 1..1 instead of 0..1
+        reason: The zib requires either a LegalStatus or a Representation to be present. This profile represents the latter concept, so the Representation (in Condition.code) is required.
+
 zib-MedicalDevice:
   ignored issues:
     DeviceUseStatement.derivedFrom:*:
@@ -369,23 +381,20 @@ zib-MedicalDevice.Product:
       - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the definition of the ProductID concept is not suited for all mapped elements.
 
-zib-LegalSituation-LegalStatus:
-  zib deviations:
-    Condition.code:
-      - cardinality: 1..1 instead of 0..1
-        reason: The zib requires either a LegalStatus or a Representation to be present. This profile represents the former concept, so the LegalStatus (in Condition.code) is required.
-
-zib-LegalSituation-Representation:
-  zib deviations:
-    Condition.code:
-      - cardinality: 1..1 instead of 0..1
-        reason: The zib requires either a LegalStatus or a Representation to be present. This profile represents the latter concept, so the Representation (in Condition.code) is required.
-
 zib-MedicationContraIndication:
   zib deviations:
     Flag.code:
       - cardinality: 1..1 instead of 0..1
         reason: Flag.code is mandatory in FHIR. The cardinality matches the cardinality of the zib, but not the conceptual cardinality. This should not be a major problem, as a contraindication is useless without specifying what it pertains to.
+
+zib-MultidisciplinaryTeamMeeting:
+  zib deviations:
+    Encounter.participant.type:
+      - short: RoleParticipant instead of RolDeelnemer
+        reason: The zib concept name "RolDeelnemer" is not translated into English (but this has been corrected in prerelease 2022-1).
+    Encounter.participant.individual:
+      - short: HealthProfessional / ContactPerson instead of HealthProfessional / Contactperson
+        reason: The zib concept name "Contactperson" is not correctly translated into English (but this has been corrected in prerelease 2022-1).
 
 zib-MultidisciplinaryTeamMeeting.Plan:
   zib deviations:
