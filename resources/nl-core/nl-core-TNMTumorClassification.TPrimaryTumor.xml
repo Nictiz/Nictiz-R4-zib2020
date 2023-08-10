@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-TNMTumorClassification.TPrimaryTumor" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TNMTumorClassification.TPrimaryTumor" />
+  <name value="NlcoreTNMTumorClassificationTPrimaryTumor" />
+  <title value="nl core TNMTumorClassification.TPrimaryTumor" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="TNM Classification of Malignant Tumors (TNM) is the cancer staging system developed and is maintained by the Union for International Cancer Control (UICC). It is also used by the American Joint Committee on Cancer (AJCC) and the International Federation of Gynecology and Obstetrics (FIGO). In 1987, the UICC and AJCC staging systems were unified into the single TNM staging system. Nevertheless, there are still some differences between the two systems.&#xD;&#xA;The TNM-classification is developed for solid tumors. TNM is a notation system that describes the stage of a cancer, which originates from a solid tumor, using alphanumeric codes; T describes the size of the original (primary) tumor and whether it has invaded nearby tissue, N describes nearby (regional) lymph nodes that are involved, and M describes distant metastasis (spread of cancer from one part of the body to another). In addition to T, N and M, the classification also contains other parameters that may be relevant." />
+  <purpose value="A derived profile from [zib-TNMTumorClassification.TPrimaryTumor](http://nictiz.nl/fhir/StructureDefinition/zib-TNMTumorClassification.TPrimaryTumor) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/TNMTumorClassification-v1.0(2020EN)" />
+    <name value="zib TNMTumorClassification-v1.0(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Observation" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-TNMTumorClassification.T_PrimaryTumor" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <alias value="nl-core-TNMTumorClassification.TPrimaryTumor" />
+    </element>
+    <element id="Observation.subject">
+      <path value="Observation.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
