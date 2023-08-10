@@ -26,6 +26,34 @@ ext-TreatmentDirective2.AdvanceDirective:
       - cardinality: 0..1 instead of 0..*
         reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension is added 0..* in the hosting element.
 
+nl-core-HelpFromOthers:
+  ignored issues:
+    CarePlan:
+      - message: The slice definition for CarePlan.activity.detail.performer has a maximum of 1 but the slices add up to a maximum of 3. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+
+nl-core-HearingFunction.HearingAid.Product:
+  ignored issues:
+    Device:
+      - message: The slice definition for Device.identifier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+      - message: The slice definition for Device.udiCarrier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+
+nl-core-MedicalDevice.Product:
+  ignored issues:
+    Device:
+      - message: The slice definition for Device.identifier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+      - message: The slice definition for Device.udiCarrier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+
+nl-core-NursingIntervention:
+  ignored issues:
+    CarePlan:
+      - message: The slice definition for CarePlan.activity.detail.performer has a maximum of 1 but the slices add up to a maximum of 3. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+
 nl-core-PharmaceuticalProduct-randomCode-invalid:
   ignored issues:
     Medication.code:
@@ -34,6 +62,14 @@ nl-core-PharmaceuticalProduct-randomCode-invalid:
     Medication.code.coding[0]:
       - message: Code System URI 'urn:oid:2.16.840.1.113883.2.4.4.9999' is unknown so the code cannot be validated
         reason: This is an example of a resource that purposely contains an invalid code system and code.
+
+nl-core-VisualFunction.VisualAid.Product:
+  ignored issues:
+    Device:
+      - message: The slice definition for Device.identifier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+      - message: The slice definition for Device.udiCarrier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
 
 nl-core-PharmaceuticalProduct-INV-invalid:
   ignored issues:
@@ -271,6 +307,11 @@ zib-HearingFunction.HearingAid:
 
 zib-HearingFunction.HearingAid.Product:
   ignored issues:
+    Device:
+      - message: The slice definition for Device.identifier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+      - message: The slice definition for Device.udiCarrier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
     Device.type:
       - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias for ProductType is already present in the base profile where this profile is derived from. It should not be added twice to silence this issue.
@@ -284,9 +325,12 @@ zib-HearingFunction.HearingAid.Product:
 
 zib-HelpFromOthers:
   ignored issues:
+    CarePlan:
+      - message: The slice definition for CarePlan.activity.detail.performer has a maximum of 1 but the slices add up to a maximum of 3. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
     CarePlan.activity.detail.performer:*:
       - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice. 
+        reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice.
 
 zib-LaboratoryTestResult:
   ignored issues:
@@ -365,6 +409,11 @@ zib-MedicalDevice.Product:
       - datatype: string instead of CD compatible datatype
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
   ignored issues:
+    Device:
+      - message: The slice definition for Device.identifier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+      - message: The slice definition for Device.udiCarrier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
     Device.udiCarrier:*.carrierHRF:
       - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the definition of the ProductID concept is not suited for all mapped elements.
@@ -427,6 +476,9 @@ zib-NursingIntervention:
       - cardinality: 0..1 instead of 0..*
         reason: The value of the extension can only occur once, but the use of the extension itself is unlimited, making the effective cardinality 0..* as required by the zib.
   ignored issues:
+    CarePlan:
+      - message: The slice definition for CarePlan.activity.detail.performer has a maximum of 1 but the slices add up to a maximum of 3. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
     CarePlan.contributor:requester:
       - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice.
@@ -679,6 +731,11 @@ zib-VisualFunction.VisualAid:
 
 zib-VisualFunction.VisualAid.Product:
   ignored issues:
+    Device:
+      - message: The slice definition for Device.identifier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+      - message: The slice definition for Device.udiCarrier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
     Device.type:
       - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias for ProductType is already present in the base profile where this profile is derived from. It should not be added twice to silence this issue.
