@@ -12,10 +12,8 @@ if [[ $has_node != 0 || $has_npm != 0 ]]; then
     echo -e "\033[1;37mInstalling NodeJS and NPM.\033[0m"
   fi
     
-  apt-get update
-  apt-get -y upgrade
-  apt-get -y install nodejs npm
-
+  apk add nodejs npm
+  
   if [[ $write_github == 1 ]]; then
     echo "::endgroup::"
   fi
