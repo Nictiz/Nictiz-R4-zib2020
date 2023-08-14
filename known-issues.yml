@@ -633,6 +633,18 @@ zib-TextResult.VisualResult:
     Media.content:
       - cardinality: 1..1 instead of 0..*
         reason: The use of the Media resource referenced in zib-TextResult DiagnosticReport.media.link is optional (0..*), but if the Media resource is used, Media.content should be present (1..1).
+        
+zib-TNMTumorClassification.DistantMetastasisLocalization:
+  zib deviations:
+    Observation.bodySite:
+      - datatype: CodeableConcept instead of a reference
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+        
+zib-TNMTumorClassification.RegionalLymphNodesLocalization:
+  zib deviations:
+    Observation.bodySite:
+      - datatype: CodeableConcept instead of a reference
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
 
 zib-TreatmentDirective2:
   zib deviations:
