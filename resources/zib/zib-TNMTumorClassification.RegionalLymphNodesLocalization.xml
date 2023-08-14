@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="zib-TNMTumorClassification.TPrimaryTumor" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-TNMTumorClassification.T_PrimaryTumor" />
-  <name value="ZibTNMTumorClassificationTPrimaryTumor" />
-  <title value="zib TNMTumorClassification.TPrimaryTumor" />
+  <id value="zib-TNMTumorClassification.RegionalLymphNodesLocalization" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-TNMTumorClassification.RegionalLymphNodesLocalization" />
+  <name value="ZibTNMTumorClassificationRegionalLymphNodesLocalization" />
+  <title value="zib TNMTumorClassification.RegionalLymphNodesLocalization" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -15,7 +15,7 @@
     </telecom>
   </contact>
   <description value="TNM Classification of Malignant Tumors (TNM) is the cancer staging system developed and is maintained by the Union for International Cancer Control (UICC). It is also used by the American Joint Committee on Cancer (AJCC) and the International Federation of Gynecology and Obstetrics (FIGO). In 1987, the UICC and AJCC staging systems were unified into the single TNM staging system. Nevertheless, there are still some differences between the two systems.&#xD;&#xA;The TNM-classification is developed for solid tumors. TNM is a notation system that describes the stage of a cancer, which originates from a solid tumor, using alphanumeric codes; T describes the size of the original (primary) tumor and whether it has invaded nearby tissue, N describes nearby (regional) lymph nodes that are involved, and M describes distant metastasis (spread of cancer from one part of the body to another). In addition to T, N and M, the classification also contains other parameters that may be relevant." />
-  <purpose value="This Observation resource represents the T_PrimaryTumor concept of Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) TNMTumorClassification-v1.0(2020EN)](https://zibs.nl/wiki/TNMTumorClassification-v1.0(2020EN))." />
+  <purpose value="This Observation resource represents the RegionalLymphNodesLocalization concept of Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) TNMTumorClassification-v1.0(2020EN)](https://zibs.nl/wiki/TNMTumorClassification-v1.0(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -34,33 +34,23 @@
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
-          <code value="78873005" />
+          <code value="397440000" />
         </coding>
       </patternCodeableConcept>
     </element>
-    <element id="Observation.value[x]">
-      <path value="Observation.value[x]" />
-      <slicing>
-        <discriminator>
-          <type value="type" />
-          <path value="$this" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Observation.value[x]:valueCodeableConcept">
-      <path value="Observation.value[x]" />
-      <sliceName value="valueCodeableConcept" />
-      <short value="T_PrimaryTumor" />
-      <definition value="Staging result of the size extension of the primary tumor, the T-category of the TNM classification including the prefix and suffix." />
-      <alias value="T_PrimaireTumor" />
+    <element id="Observation.bodySite">
+      <path value="Observation.bodySite" />
+      <short value="AnatomicalLocation" />
+      <definition value="Contains the localization(s) of the positive regional lymph nodes, caused by the primary tumor." />
+      <alias value="Lymfeklieren" />
       <type>
         <code value="CodeableConcept" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
       </type>
       <mapping>
         <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
-        <map value="NL-CM:4.27.14" />
-        <comment value="T_PrimaryTumor" />
+        <map value="NL-CM:4.27.24" />
+        <comment value="AnatomicalLocation" />
       </mapping>
     </element>
   </differential>
