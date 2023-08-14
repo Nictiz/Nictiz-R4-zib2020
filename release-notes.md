@@ -352,6 +352,9 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-TextResult
 * New concept VisualResult mapped in additional profile zib-TextResult.VisualResult on `Media.content`. `DiagnosticReport.image.link` references this profile.
 
+# zib-TNMTumorClassification
+* There is no previous profile for Education in STU3 and therefore no diff.
+
 # zib-TobaccoUse
 * StartDate and EndDate are placed on a type slice of `Observation.effective[x]` adhering to the open world modelling principle.
 * TobaccoUseStatus is placed on a type slice of `Observation.value[x]` adhering to the open world modelling principle.
