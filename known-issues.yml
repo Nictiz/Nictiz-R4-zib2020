@@ -769,9 +769,21 @@ issues should occur: false
         reason: This concerns an error in the FHIR terminology server. The adr code has been removed for R5 and the terminology server was updated for it too soon. They will fix it according to zulip chat https://chat.fhir.org/#narrow/stream/179166-implementers/topic/Consent.2Escope.3A.20diff.20in.20codes.20shown.20on.20FHIR.20vs.20Tx.20server.
       - message: None of the codings provided are in the value set 'Consent Scope Codes' (http://hl7.org/fhir/ValueSet/consent-scope), and a coding should come from this value set unless it has no suitable code
         reason: See above.
+    ValueSet.compose.include[*].concept[*].designation[*].language:
+      - message: Resolved system urn:ietf:bcp:47, but the definition is not complete, so assuming value set include is correct
+        reason: This warning doesn't provide any feedback on the correctness of the materials. It originates when checking without a terminology server.
+    CodeSystem.language:
+      - message: Resolved system urn:ietf:bcp:47, but the definition is not complete, so assuming value set include is correct
+        reason: This warning doesn't provide any feedback on the correctness of the materials. It originates when checking without a terminology server.
+    CodeSystem.concept[*].designation[*].language:
+      - message: Resolved system urn:ietf:bcp:47, but the definition is not complete, so assuming value set include is correct
+        reason: This warning doesn't provide any feedback on the correctness of the materials. It originates when checking without a terminology server.
 
 nl-core-*:
   ignored issues:
+    "*":
+      - message: No valid Display Names found for
+        reason: This warning doesn't provide any feedback on the correctness of the materials, but only on the completeness of the terminology server used.
     "*.address*.country.extension[0].value*":
       - message: None of the codings provided are in the value set 'LandCodelijsten' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.10--20200901000000), and a coding from this value set is required) (codes = urn:oid:2.16.840.1.113883.2.4.4.16.34#6030)
         reason: The current version of the Validator incorrectly raises an error on combined ValueSets.
