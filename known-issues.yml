@@ -769,15 +769,18 @@ issues should occur: false
         reason: This concerns an error in the FHIR terminology server. The adr code has been removed for R5 and the terminology server was updated for it too soon. They will fix it according to zulip chat https://chat.fhir.org/#narrow/stream/179166-implementers/topic/Consent.2Escope.3A.20diff.20in.20codes.20shown.20on.20FHIR.20vs.20Tx.20server.
       - message: None of the codings provided are in the value set 'Consent Scope Codes' (http://hl7.org/fhir/ValueSet/consent-scope), and a coding should come from this value set unless it has no suitable code
         reason: See above.
+    ValueSet.compose.include[*].concept[*]:
+      - message: Unable to validate code without using server
+        reason: This warning doesn't provide any feedback on the correctness of the materials. In addition, there's little reason to fix this issue on the package level as it is unlikely that this ever results in problems in production (ValueSets are not typically validated in production).
     ValueSet.compose.include[*].concept[*].designation[*].language:
-      - message: Resolved system urn:ietf:bcp:47, but the definition is not complete, so assuming value set include is correct
-        reason: This warning doesn't provide any feedback on the correctness of the materials. It originates when checking without a terminology server.
+      - message: Unable to validate code without using server
+        reason: This warning doesn't provide any feedback on the correctness of the materials. In addition, there's little reason to fix this issue on the package level as it is unlikely that this ever results in problems in production (ValueSets are not typically validated in production).
     CodeSystem.language:
-      - message: Resolved system urn:ietf:bcp:47, but the definition is not complete, so assuming value set include is correct
-        reason: This warning doesn't provide any feedback on the correctness of the materials. It originates when checking without a terminology server.
+      - message: Unable to validate code without using server
+        reason: This warning doesn't provide any feedback on the correctness of the materials. In addition, there's little reason to fix this issue on the package level as it is unlikely that this ever results in problems in production (CodeSystems are not typically validated in production).
     CodeSystem.concept[*].designation[*].language:
-      - message: Resolved system urn:ietf:bcp:47, but the definition is not complete, so assuming value set include is correct
-        reason: This warning doesn't provide any feedback on the correctness of the materials. It originates when checking without a terminology server.
+      - message: Unable to validate code without using server
+        reason: This warning doesn't provide any feedback on the correctness of the materials. In addition, there's little reason to fix this issue on the package level as it is unlikely that this ever results in problems in production (CodeSystems are not typically validated in production).
 
 nl-core-*:
   ignored issues:
