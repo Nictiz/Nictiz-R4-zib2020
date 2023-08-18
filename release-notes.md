@@ -60,8 +60,26 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-ApgarScore
 * ApgarScore is now divided into 3 profiles with their own time unit. Each profile also has its own terminology codes that correspond to the minutes.
 
+## zib-BarthelADLIndex
+* There was no profile in the STU3 version and therefore no diff.
+
 ## zib-CareTeam
 * CareTeam is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
+
+## zib-ChecklistPainBehavior
+* The data type of `Observation.value[x]` (zib concept TotalScore) has been changed from Quantity to Integer, and minimum and maximum allowed values of 0 and 10 respectively are applied.
+* The system value on the `Observation.component.code` slices has changed from 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0' to 'urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1'.
+* The data type of the `Observation.component.value[x]` slices has changed from Quantity to Integer. 
+* The code on `Observation.component:face.code` has changed from '12.17.3' to '12017003'.
+* The code on `Observation.component:mouth.code` has changed from '12.17.4' to '12017004'.
+* The code on `Observation.component:grimace.code` has changed from '12.17.5' to '12017005'.
+* The code on `Observation.component:lookingSad.code` has changed from '12.17.6' to '12017006'.
+* The code on `Observation.component:eyes.code` has changed from '12.17.7' to '12017007'.
+* The code on `Observation.component:panic.code` has changed from '12.17.8' to '12017008'.
+* The code on `Observation.component:moaning.code` has changed from '12.17.9' to '12017009'.
+* The code on `Observation.component:cry.code` has changed from '12.17.10' to '12017010'.
+* The code on `Observation.component:soundsOfRestlessness.code` has changed from '12.17.11' to '12017011'.
+* The code on `Observation.component:tears.code` has changed from '12.17.12' to '12017012'.
 
 ## zib-ContactInformation
 * The zib ContactInformation is mapped onto two profiles: one for the concept TelephoneNumbers and one for the concept EmailAddresses. Both are added to the hosting profile.
@@ -115,6 +133,9 @@ This document contains release notes per zib, indicating differences with their 
 * New zib in 2020. However, in the zib2017 package the nl-core-episodeofcare profile exists, which is not based on a zib but included some use case concepts. This zib profile supersedes this profile.
 * The extension EpisodOfCare-Title has been replaced by ext-EpisodeOfCare.EpisodeOfCareName because this zib concept is functionally equivalent.
 * The extensions EpisodeOfCare-DateFirstEncounter and EpisodeOfCare-DateLastEncounter from the previous profile are not inherited because no functional backing exists.
+
+## zib-FeedingPatternInfant
+* No specific changes have been made to this profile other than the generic changes for the Observation resource.
 
 ## zib-FLACCpainScale
 * The semantic codes on the `Observation.component.code` elements have changed from LOINC to codes from the ScoreObservaties code system (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1).
@@ -172,6 +193,9 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-LegalSituation
 * New zib in 2020. However, in the zib2017 package the zib-patient-legalstatus extension exists, which corresponds to the LegalStatus concept of the zib FreedomRestrictingMeasures (withdrawn in the 2020 release). This new zib profile expands on that LegalStatus concept.
 
+## zib-LifeStance
+* This zib was previously represented as an extension in the Patient profile, but this has been changed to a profile on Observation in order to prevent custom extensions.
+  
 ## zib-LivingSituation
 * Added two new concepts and modelled them on `Observation.component:homeAdaption` and `Observation.component:livingCondition`.
 * Concept 'HouseType' has been moved to its own `.valueCodeableConcept` slice.
@@ -194,6 +218,9 @@ This document contains release notes per zib, indicating differences with their 
 * The code on `Observation.component:bmiScore.code` has changed to 4005003 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
 * The code on `Observation.component:weightLossScore.code` has changed to 4005004 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
 * The code on `Observation.component:illnessScore.code` has changed to 4005005 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+
+## zib-IllnessPerception
+* The concept PatientIllnessInsight with ID NL-CM:18.5.3 has been moved to `Observation.value[x]:valueString`
 
 ## zib-NameInformation
 * The way this partial zib has been modelled on the HumanName data type has been overhauled to properly accommodate the way first names are handled. In the STU3 version, official first names, initials of this first name, and the given name (nickname, roepnaam) were all added to a `.given` element in the same HumanName instance, with an annotation of the type using an extension. This turned out to be the wrong approach, as all `.given` names are to be concatenated to the complete list of first names. So instead, there are now different instances of HumanName used to communicate the official names and the given name, indicated by `.use` -- resulting in two profiles. Communicating initials is now only done for names where the full name is not known (this deviates from the zib model).   
@@ -219,11 +246,17 @@ This document contains release notes per zib, indicating differences with their 
 * New concept Indication mapped on the extension `NutritionOrder.extension:indication`.
 * The comment extension has been replaced by a mapping to `NutritionOrder.note.text`.
 
+## zib-PainScore
+* Removed mapping on `Observation.bodySite` because the AnatomicalLocation concept has been removed from the zib.
+* Removed laterality extension because the Laterality concept has been removed from the zib.
+* Cardinality of `Observation.method` has changed from 1..1 to 0..1. 
+* The data type of `Observation.value[x]` (zib concept PainScoreValue) has been changed from Quantity to Integer.
+
 ## zib-ParticipationInSociety
 * No specific changes have been made to this profile other than the generic changes for the Observation resource
 
 ## zib-Patient
-* Includes Nationality, MaritalStatus, LanguageProficiency, LifeStance.
+* Includes Nationality, MaritalStatus, LanguageProficiency.
 * Cardinality of `Patient.extension:nationality` left at 0..* due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time).
 * Cardinality of `Patient.name` left at 0..* to allow including several name elements with a different `name.use` each.
 * Cardinality of `Patient.telecom` left at 0..* to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not.
@@ -232,6 +265,33 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-Payer
 * The STU3 version of the profile mapped part of the InsuranceCompany concept in the nl-core-organization profile, while these types of organizations do not necessarily have anything in common with HealthcareProviders, and it also did not allow for the situation where PayerPerson is an organization. To fix this, two separate profiles have been created for the situations where the Payer is a PayerPerson or an InsuranceCompany. These profiles could not be combined because slicing on .type with a maximum cardinality of 1 is not allowed.
 * Both InsuranceCompany and 'PayerPerson as Organization' have been mapped in the profile Payer-Organization.
+
+## zib-Pregnancy
+* The value of `Condition.code` has changed from 118185001 to 364320009.
+
+## zib-Pregnancy.DateLastMenstruation
+* The zib-Pregnancy extension has moved from `Observation.extension` to `Observation.focus`.
+
+## zib-Pregnancy.EstimatedDateOfDelivery
+* The profile name has changed from zib-Pregnancy-TermDate to zib-Pregnancy.EstimatedDateOfDelivery.
+* The value of `Condition.code` has changed from 11778-8 (LOINC) to 161714006 (SNOMED CT).
+* The system of `Condition.code` has changed from http://loinc.org to http://snomed.info/sct.
+* The zib-Pregnancy extension has moved from `Observation.extension` to `Observation.focus`.
+
+## zib-Pregnancy.Gravidity
+* The value of `Condition.code` has changed from 11996-6 (LOINC) to 161732006 (SNOMED CT).
+* The system of `Condition.code` has changed from http://loinc.org to http://snomed.info/sct.
+* The data type on `Observation.value` has changed from Quantity to integer.
+* The zib-Pregnancy extension has moved from `Observation.extension` to `Observation.focus`.
+
+## zib-Pregnancy.Parity
+* The value of `Condition.code` has changed from 11977-6 (LOINC) to 364325004 (SNOMED CT).
+* The system of `Condition.code` has changed from http://loinc.org to http://snomed.info/sct.
+* The data type on `Observation.value` has changed from Quantity to integer.
+* The zib-Pregnancy extension has moved from `Observation.extension` to `Observation.focus`.
+
+## zib-Pregnancy.PregnancyDuration
+* The zib-Pregnancy extension has moved from `Observation.extension` to `Observation.focus`.
 
 ## zib-Problem
 * ProblemType has been added on a slice of `Condition.category` allowing the category element to be used for other purposes too.
@@ -283,7 +343,7 @@ This document contains release notes per zib, indicating differences with their 
 * `Condition.note` now honours the max cardinality of zib Comment.
 
 ## zib-StrongKidsScore
-* The datatype of Observation.value[x] (zib concept TotalScore) element has been changed from Quantity to Integer, and minimum and maximum allowed values of 0 and 5 respectively are applied.
+* The data type of Observation.value[x] (zib concept TotalScore) element has been changed from Quantity to Integer, and minimum and maximum allowed values of 0 and 5 respectively are applied.
 * The system value of the Observation.component.code elements is changed to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
 
 ## zib-TimeInterval

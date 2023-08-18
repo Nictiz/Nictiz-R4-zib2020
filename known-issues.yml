@@ -45,13 +45,13 @@ pattern-GstdSimpleQuantity:
   ignored issues:
     StructureDefinition:
       - message: "Rule sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
-        reason: The title is shown in the hosting profiles as the name of the datatype. "G-Standaard SimpleQuantity" is more descriptive than the title according to the profiling guidelines ("pattern GstdSimpleQuantity").
+        reason: The title is shown in the hosting profiles as the name of the datatype. "G-Standard SimpleQuantity" is more descriptive than the title according to the profiling guidelines ("pattern GstdSimpleQuantity").
 
 pattern-GstdQuantity: 
   ignored issues:
     StructureDefinition:
       - message: "Rule sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
-        reason: The title is shown in the hosting profiles as the name of the datatype. "G-Standaard Quantity" is more descriptive than the title according to the profiling guidelines ("pattern GstdQuantity").
+        reason: The title is shown in the hosting profiles as the name of the datatype. "G-Standard Quantity" is more descriptive than the title according to the profiling guidelines ("pattern GstdQuantity").
 
 pattern-NlCoreHealthProfessionalReference:
   ignored issues:
@@ -740,7 +740,7 @@ nl-core-*:
       - message: None of the codings provided are in the value set 'VerrichtingTypeCodelijsten'
         reason: The current version of the Validator incorrectly raises an error on combined ValueSets.
     "*.telecom[*].system.extension[*].value.ofType(CodeableConcept).coding[*]":
-      - message: Display Name for http://terminology.hl7.org/CodeSystem/v3-AddressUse#MC should be one of 'mobile contact)' instead of 'Mobile Phone' for 'http://terminology.hl7.org/CodeSystem/v3-AddressUse#MC'
+      - message: Wrong Display Name 'Mobile Phone' for http://terminology.hl7.org/CodeSystem/v3-AddressUse#MC
         reason: This core display value is redefined by the ValueSet, but this isn't properly recognized by the Validator
     "*.contentType":
       - message: The value provided ('application/octet-stream') is not in the value set 'MimeType'
@@ -786,6 +786,18 @@ nl-core-VisualFunction.VisualAid-*:
     DeviceUseStatement.reasonReference[*]:
       - message: 'Profile http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualFunction.VisualAid, Element matches more than one slice'
         reason: The Validator cannot actually inspect the referenced resources, and falsely assumes the reference is a reference to the offending profile.
+
+nl-core-PainScore-01:
+  ignored issues:
+    Observation.method:
+      - message: None of the codings provided are in the value set 'PijnMeetmethodeCodelijst'
+        reason: The terminology servers used don't know this code system and wrongly conclude that this is an invalid code.
+
+nl-core-Patient-01:
+  ignored issues:
+    Patient.communication[0].language:
+      - message: None of the codings provided are in the value set 'CommunicatieTaalCodelijst'
+        reason: The terminology servers used don't know this code system and wrongly conclude that this is an invalid code.
 
 nl-core-PharmaceuticalProduct-01:
   ignored issues:
