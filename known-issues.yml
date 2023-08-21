@@ -802,6 +802,8 @@ nl-core-*:
     Condition.code:
       - message: None of the codings provided are in the value set 'ProbleemNaamCodelijst'
         reason: This ValueSet contains two SNOMED refsets. The terminology servers are unable to determine if a code is part of this refset.
+      - message: "Error from server: The Snomed Concept 31000147101 was not known"
+        reason: This code represents the DHD Diagnosethesaurus, which the default terminology server is unable to check. This causes problems on some occassions (but not all).
 
 nl-core-AllergyIntolerance*:
   ignored issues:
