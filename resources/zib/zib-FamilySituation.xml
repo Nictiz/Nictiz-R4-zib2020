@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-FamilySituation" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-FamilySituation" />
+  <name value="ZibFamilySituation" />
+  <title value="zib FamilySituation" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Traditionally, a family is defined as a group of people of one or more adults who carry responsibility for caring for and raising one or more children.&#xD;&#xA;Currently, the term is used more broadly for all forms of cohabitation which form a recognizable social unit, of people who are or who are not related and who have long-lasting, affective bonds and provide each other with support and care." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) FamilySituation v3.2(2020)](https://zibs.nl/wiki/FamilySituation-v3.2(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-familysituation-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/FamilySituation-v3.2(2020EN)" />
+    <name value="zib FamilySituation-v3.2(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="FamilySituation" />
+      <comment value="The MaritalStatus concept of zib FamilySituation can be found in the instance of zib-Patient referenced in `.subject`." />
+      <alias value="Gezinssituatie" />
+      <mapping>
+        <identity value="zib-familysituation-v3.2-2020EN" />
+        <map value="NL-CM:7.13.1" />
+        <comment value="FamilySituation" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="365470003" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.subject">
+      <path value="Observation.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient" />
+      </type>
+    </element>
+    <element id="Observation.note">
+      <path value="Observation.note" />
+      <max value="1" />
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
+      <short value="CommentFamilySituation" />
+      <definition value="A comment on the family situation." />
+      <alias value="ToelichtingGezinssituatie" />
+      <mapping>
+        <identity value="zib-familysituation-v3.2-2020EN" />
+        <map value="NL-CM:7.13.6" />
+        <comment value="CommentFamilySituation" />
+      </mapping>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:familyComposition">
+      <path value="Observation.component" />
+      <sliceName value="familyComposition" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:familyComposition.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="224130005" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:familyComposition.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="FamilyComposition" />
+      <definition value="The family composition describes the patient’s home situation and the form of cohabitation.  &#xD;&#xA;A family can consist of one or more people." />
+      <alias value="Gezinssamenstelling" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.13.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-familysituation-v3.2-2020EN" />
+        <map value="NL-CM:7.13.8" />
+        <comment value="FamilyComposition" />
+      </mapping>
+    </element>
+    <element id="Observation.component:numberOfChildren">
+      <path value="Observation.component" />
+      <sliceName value="numberOfChildren" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:numberOfChildren.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="224118004" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:numberOfChildren.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="NumberOfChildren" />
+      <definition value="The number of children the patient has. Children in the context of this information model include step children, foster children, biological and adopted children." />
+      <alias value="AantalKinderen" />
+      <type>
+        <code value="integer" />
+      </type>
+      <mapping>
+        <identity value="zib-familysituation-v3.2-2020EN" />
+        <map value="NL-CM:7.13.2" />
+        <comment value="NumberOfChildren" />
+      </mapping>
+    </element>
+    <element id="Observation.component:numberOfChildrenLivingAtHome">
+      <path value="Observation.component" />
+      <sliceName value="numberOfChildrenLivingAtHome" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:numberOfChildrenLivingAtHome.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="55811000146107" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:numberOfChildrenLivingAtHome.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="NumberOfChildrenLivingAtHome" />
+      <definition value="The number of children living at home with the patient." />
+      <alias value="AantalKinderenInwonend" />
+      <type>
+        <code value="integer" />
+      </type>
+      <mapping>
+        <identity value="zib-familysituation-v3.2-2020EN" />
+        <map value="NL-CM:7.13.9" />
+        <comment value="NumberOfChildrenLivingAtHome" />
+      </mapping>
+    </element>
+    <element id="Observation.component:careResponsibility">
+      <path value="Observation.component" />
+      <sliceName value="careResponsibility" />
+    </element>
+    <element id="Observation.component:careResponsibility.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="270111000146104" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:careResponsibility.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="CareResponsibility" />
+      <definition value="The activities the patient carries out to care for a dependent family member." />
+      <alias value="Zorgtaak" />
+      <type>
+        <code value="string" />
+      </type>
+      <mapping>
+        <identity value="zib-familysituation-v3.2-2020EN" />
+        <map value="NL-CM:7.13.10" />
+        <comment value="CareResponsibility" />
+      </mapping>
+    </element>
+    <element id="Observation.component:child">
+      <path value="Observation.component" />
+      <sliceName value="child" />
+    </element>
+    <element id="Observation.component:child.extension">
+      <path value="Observation.component.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="0" />
+    </element>
+    <element id="Observation.component:child.extension:livingAtHome">
+      <path value="Observation.component.extension" />
+      <sliceName value="livingAtHome" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-FamilySituation.LivingAtHome" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Observation.component:child.extension:commentChild">
+      <path value="Observation.component.extension" />
+      <sliceName value="commentChild" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Comment" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Observation.component:child.extension:commentChild.value[x]">
+      <path value="Observation.component.extension.value[x]" />
+      <short value="CommentChild" />
+      <definition value="A comment on the childs family situation." />
+      <alias value="ToelichtingKind" />
+      <mapping>
+        <identity value="zib-familysituation-v3.2-2020EN" />
+        <map value="NL-CM:7.13.11" />
+        <comment value="CommentChild" />
+      </mapping>
+    </element>
+    <element id="Observation.component:child.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="67822003" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:child.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="DateOfBirth" />
+      <definition value="The child’s date of birth." />
+      <alias value="Geboortedatum" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-familysituation-v3.2-2020EN" />
+        <map value="NL-CM:7.13.4" />
+        <comment value="DateOfBirth" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

@@ -134,6 +134,10 @@ This document contains release notes per zib, indicating differences with their 
 * The extension EpisodOfCare-Title has been replaced by ext-EpisodeOfCare.EpisodeOfCareName because this zib concept is functionally equivalent.
 * The extensions EpisodeOfCare-DateFirstEncounter and EpisodeOfCare-DateLastEncounter from the previous profile are not inherited because no functional backing exists.
 
+## zib-FamilySituation
+* The code on `Observation.component:careResponsibility.code` has changed to 270111000146104.
+* A new extension commentChild has been added on `Observation.component:child`.
+
 ## zib-FeedingPatternInfant
 * No specific changes have been made to this profile other than the generic changes for the Observation resource.
 
