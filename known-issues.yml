@@ -819,11 +819,6 @@ nl-core-BodyHeight-*:
     Observation.value.ofType(Quantity).code:
       - message: The value provided ('cm') is not in the value set 'Body Length Units'
         reason: In absence of a terminology server, the Validator cannot check if 'cm' is a valid UCUM unit and raises an error.
-nl-core-DOSScore-01:
-  ignored issues:
-    Observation.code.coding[0]:
-      - message: 'Local Error: Resolved system http://snomed.info/sct, but the definition is not complete. Server Error: Unable to find code 160591000146109 in http://snomed.info/sct'
-        reason: This is a Dutch SNOMED extension which is not present yet on the international terminology server.
 
 nl-core-*Function.*Aid-*:
   ignored issues:
@@ -871,15 +866,6 @@ nl-core-PharmaceuticalProduct-02:
       - message: Code System URI 'urn:oid:2.16.840.1.113883.2.4.4.1' is unknown so the code cannot be validated
         reason: The terminology servers used don't know this code system.
 
-nl-core-Vaccination-event-03:
-  ignored issues:
-    Immunization.reasonCode[0]:
-      - message: Profile http://nictiz.nl/fhir/StructureDefinition/nl-core-Vaccination-event, Element matches more than one slice - vaccinationIndication, vaccinationMotive
-        reason: This seems to be caused by the Validator not recognizing the terminology used.
-    Immunization.reasonCode[*].coding[*]:
-      - message: 'Local Error: Resolved system http://snomed.info/sct, but the definition is not complete. Server Error: Unable to find code 159731000146104 in http://snomed.info/sct'
-        reason: This is a Dutch SNOMED extension which is not present yet on the international terminology server.
-
 zib-*Function.*Aid.Product:
   ignored issues:
     Device.type:
@@ -901,12 +887,6 @@ zib-ContactPerson:
         reason: The short description is defined on the datatype profile and not repeated in the differential.
       - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.
-
-zib-DOSScore:
-  ignored issues:
-    StructureDefinition.differential.element[1].pattern.ofType(CodeableConcept).coding[0]:
-      - message: 'Local Error: Resolved system http://snomed.info/sct, but the definition is not complete. Server Error: Unable to find code 160591000146109 in http://snomed.info/sct'
-        reason: This is a Dutch SNOMED extension which is not present yet on the international terminology server.
 
 zib-HealthcareProvider:
   ignored issues:
