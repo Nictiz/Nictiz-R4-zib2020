@@ -83,23 +83,19 @@
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Observation.value[x]:valueCodeableConcept">
+    <element id="Observation.value[x]:valueString">
       <path value="Observation.value[x]" />
-      <sliceName value="valueCodeableConcept" />
-      <short value="TNMVersion" />
-      <definition value="TNM classification version (AJCC or UICC) and edition used (7th, 8th etc.)." />
-      <alias value="TNMVersie" />
+      <sliceName value="valueString" />
+      <short value="IntegratedTNMValue" />
+      <definition value="The assigned TNM classification (the value), based on each T, N and M category (optional incl. multiple primary tumors (m) and/or the localization of M)." />
+      <alias value="GeintegreerdeTNMWaarde" />
       <type>
-        <code value="CodeableConcept" />
+        <code value="string" />
       </type>
-      <binding>
-        <strength value="extensible" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.27.6--20200901000000" />
-      </binding>
       <mapping>
         <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
-        <map value="NL-CM:4.27.3" />
-        <comment value="TNMVersion" />
+        <map value="NL-CM:4.27.4" />
+        <comment value="IntegratedTNMValue" />
       </mapping>
     </element>
     <element id="Observation.note">
@@ -207,7 +203,7 @@
       <max value="1" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-TNMTumorClassification.mNumberOfPrimaryTumors" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-TNMTumorClassification.MNumberOfPrimaryTumors" />
       </type>
     </element>
     <element id="Observation.component">
