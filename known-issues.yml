@@ -26,21 +26,6 @@ ext-TreatmentDirective2.AdvanceDirective:
       - cardinality: 0..1 instead of 0..*
         reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension is added 0..* in the hosting element.
 
-nl-core-PharmaceuticalProduct-randomCode-invalid:
-  ignored issues:
-    Medication.code:
-      - message: None of the codings provided are in the value set 'ProductCodeCodelijsten'
-        reason: This is an example of a resource that purposely contains an invalid code system and code.
-    Medication.code.coding[0]:
-      - message: Code System URI 'urn:oid:2.16.840.1.113883.2.4.4.9999' is unknown so the code cannot be validated
-        reason: This is an example of a resource that purposely contains an invalid code system and code.
-
-nl-core-PharmaceuticalProduct-INV-invalid:
-  ignored issues:
-    Medication.code:
-      - message: None of the codings provided are in the value set 'ProductCodeCodelijsten'
-        reason: This is an example of a resource that purposely contains an invalid code.
-
 pattern-GstdSimpleQuantity:
   ignored issues:
     StructureDefinition:
