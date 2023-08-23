@@ -1,5 +1,5 @@
 <CodeSystem xmlns="http://hl7.org/fhir">
-   <id value="2.16.840.1.113883.2.4.3.11.60.40.4.8.1"/>
+   <id value="2.16.840.1.113883.2.4.3.11.60.40.4.3.1"/>
    <meta>
       <profile value="http://hl7.org/fhir/StructureDefinition/shareablecodesystem"/>
       <!--<profile value="http://hl7.org/fhir/4.0/StructureDefinition/CodeSystem"/>-->
@@ -10,15 +10,15 @@
          <start value="2020-09-01T00:00:00+00:00"/>
       </valuePeriod>
    </extension>
-   <url value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1"/>
+   <url value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.3.1"/>
    <identifier>
       <use value="official"/>
       <system value="urn:ietf:rfc:3986"/>
-      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.3.1"/>
    </identifier>
    <version value="2020-09-01T00:00:00"/>
-   <name value="ContextKleding"/>
-   <title value="ContextKleding"/>
+   <name value="BristolStoolTypes"/>
+   <title value="BristolStoolTypes"/>
    <status value="active"/>
    <experimental value="false"/>
    <publisher value="Registratie aan de bron"/>
@@ -33,10 +33,10 @@
          <value value="https://www.zibs.nl"/>
       </telecom>
    </contact>
-   <description value="ContextKleding"/>
+   <description value="BristolStoolTypes"/>
    <caseSensitive value="false"/>
    <content value="complete"/>
-   <count value="4"/>
+   <count value="7"/>
    <property>
       <code value="status"/>
       <uri value="http://hl7.org/fhir/concept-properties"/>
@@ -44,9 +44,8 @@
       <type value="code"/>
    </property>
    <concept>
-      <code value="DIAPER"/>
-      <display value="Luier"/>
-      <definition value="Luier [Individu draagt alleen een luier - zou significant aan het gewicht kunnen bijdragen.]"/>
+      <code value="Type 1"/>
+      <display value="Losse harde keutels, zoals noten"/>
       <designation>
          <language value="en-US"/>
          <use>
@@ -54,7 +53,7 @@
             <code value="900000000000013009"/>
             <display value="Synonym"/>
          </use>
-         <value value="Diaper"/>
+         <value value="Separate hard lumps, like nuts."/>
       </designation>
       <property>
          <code value="status"/>
@@ -62,9 +61,8 @@
       </property>
    </concept>
    <concept>
-      <code value="FULL"/>
-      <display value="Volledig gekleed"/>
-      <definition value="Volledig gekleed, inclusief schoenen [Kleren die een significante bijdrage hebben aan het gewicht, inclusief schoenen.]"/>
+      <code value="Type 2"/>
+      <display value="Als een worst, maar klonterig"/>
       <designation>
          <language value="en-US"/>
          <use>
@@ -72,7 +70,7 @@
             <code value="900000000000013009"/>
             <display value="Synonym"/>
          </use>
-         <value value="Fully dressed"/>
+         <value value="Sausage-shaped but lumpy."/>
       </designation>
       <property>
          <code value="status"/>
@@ -80,9 +78,8 @@
       </property>
    </concept>
    <concept>
-      <code value="MINIMAL"/>
-      <display value="Lichte kleding/ondergoed"/>
-      <definition value="Lichte kleding/ondergoed [Kleding die niet significant het gewicht beïnvloedt.]"/>
+      <code value="Type 3"/>
+      <display value="Als een worst, maar met barstjes aan de buitenkant"/>
       <designation>
          <language value="en-US"/>
          <use>
@@ -90,7 +87,7 @@
             <code value="900000000000013009"/>
             <display value="Synonym"/>
          </use>
-         <value value="Minimal dressed"/>
+         <value value="Like sausage but with cracks on its surface."/>
       </designation>
       <property>
          <code value="status"/>
@@ -98,8 +95,8 @@
       </property>
    </concept>
    <concept>
-      <code value="UNDRESSED"/>
-      <display value="Zonder kleding"/>
+      <code value="Type 4"/>
+      <display value="Als een worst of slang, glad en zacht"/>
       <designation>
          <language value="en-US"/>
          <use>
@@ -107,7 +104,58 @@
             <code value="900000000000013009"/>
             <display value="Synonym"/>
          </use>
-         <value value="Undressed"/>
+         <value value="Like sausage or snake, smooth and soft."/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Type 5"/>
+      <display value="Zachte keutels met duidelijke randen"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+            <display value="Synonym"/>
+         </use>
+         <value value="Soft blobs with clear-cut edges"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Type 6"/>
+      <display value="Zachte stukjes met gehavende randen"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+            <display value="Synonym"/>
+         </use>
+         <value value="Fluffy pieces with ragged edges"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Type 7"/>
+      <display value="Helemaal vloeibaar"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+            <display value="Synonym"/>
+         </use>
+         <value value="Entirely liquid"/>
       </designation>
       <property>
          <code value="status"/>
