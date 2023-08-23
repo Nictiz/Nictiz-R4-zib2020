@@ -644,7 +644,13 @@ zib-TNMTumorClassification.DistantMetastasisLocalization:
   zib deviations:
     Observation.bodySite:
       - datatype: CodeableConcept instead of a reference
-        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.   
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.  
+
+zib-TNMTumorClassification.LLymphaticInvasion:
+  zib deviations:
+    Observation.value[x]:valueCodeableConcept:
+      - short: L_LymphaticInvasion instead of TL_LymphaticInvasion
+        reason: The zib concept name "TL_LymphaticInvasion" is an incorrect translation of the Dutch name into English.     
         
 zib-TNMTumorClassification.RegionalLymphNodesLocalization:
   zib deviations:
