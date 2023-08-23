@@ -50,30 +50,6 @@
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Observation.hasMember:t_PrimaryTumor">
-      <path value="Observation.hasMember" />
-      <sliceName value="t_PrimaryTumor" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TNMTumorClassification.TPrimaryTumor" />
-      </type>
-    </element>
-    <element id="Observation.hasMember:pn_PerineuralInvasion">
-      <path value="Observation.hasMember" />
-      <sliceName value="pn_PerineuralInvasion" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TNMTumorClassification.PnPerineuralInvasion" />
-      </type>
-    </element>
-    <element id="Observation.hasMember:r_ResidualTumor">
-      <path value="Observation.hasMember" />
-      <sliceName value="r_ResidualTumor" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TNMTumorClassification.RResidualTumor" />
-      </type>
-    </element>
     <element id="Observation.hasMember:m_DistantMetastasis">
       <path value="Observation.hasMember" />
       <sliceName value="m_DistantMetastasis" />
@@ -90,12 +66,20 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TNMTumorClassification.NRegionalLymphnodes" />
       </type>
     </element>
-    <element id="Observation.hasMember:v_VenousInvasion">
+    <element id="Observation.hasMember:m_NumberOfPrimaryTumors">
       <path value="Observation.hasMember" />
-      <sliceName value="v_VenousInvasion" />
+      <sliceName value="m_NumberOfPrimaryTumors" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TNMTumorClassification.VVenousInvasion" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TNMTumorClassification.MNumberOfPrimaryTumors" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:t_PrimaryTumor">
+      <path value="Observation.hasMember" />
+      <sliceName value="t_PrimaryTumor" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TNMTumorClassification.TPrimaryTumor" />
       </type>
     </element>
     <element id="Observation.hasMember:g_HistopathologicalGrading">
@@ -106,12 +90,36 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TNMTumorClassification.GHistopathologicalGrading" />
       </type>
     </element>
-    <element id="Observation.hasMember:m_NumberOfPrimaryTumors">
+    <element id="Observation.hasMember:l_LymphaticInvasion">
       <path value="Observation.hasMember" />
-      <sliceName value="m_NumberOfPrimaryTumors" />
+      <sliceName value="l_LymphaticInvasion" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TNMTumorClassification.MNumberOfPrimaryTumors" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TNMTumorClassification.LLymphaticInvasion" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:pn_PerineuralInvasion">
+      <path value="Observation.hasMember" />
+      <sliceName value="pn_PerineuralInvasion" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TNMTumorClassification.PnPerineuralInvasion" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:v_VenousInvasion">
+      <path value="Observation.hasMember" />
+      <sliceName value="v_VenousInvasion" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TNMTumorClassification.VVenousInvasion" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:r_ResidualTumor">
+      <path value="Observation.hasMember" />
+      <sliceName value="r_ResidualTumor" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TNMTumorClassification.RResidualTumor" />
       </type>
     </element>
   </differential>
