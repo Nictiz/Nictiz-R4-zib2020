@@ -54,5 +54,56 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TNMTumorClassification.RResidualTumor" />
       </type>
     </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:distantMetastasisLocalization">
+      <path value="Observation.component" />
+      <sliceName value="distantMetastasisLocalization" />
+    </element>
+    <element id="Observation.component:distantMetastasisLocalization.extension:anatomicalLocation">
+      <path value="Observation.component.extension" />
+      <sliceName value="anatomicalLocation" />
+    </element>
+    <element id="Observation.component:distantMetastasisLocalization.extension:anatomicalLocation.value[x]">
+      <path value="Observation.component.extension.value[x]" />
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation" />
+      </type>
+    </element>
+    <element id="Observation.component:regionalLymphNodesLocalization">
+      <path value="Observation.component" />
+      <sliceName value="regionalLymphNodesLocalization" />
+    </element>
+    <element id="Observation.component:regionalLymphNodesLocalization.extension:anatomicalLocation">
+      <path value="Observation.component.extension" />
+      <sliceName value="anatomicalLocation" />
+    </element>
+    <element id="Observation.component:regionalLymphNodesLocalization.extension:anatomicalLocation.value[x]">
+      <path value="Observation.component.extension.value[x]" />
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation" />
+      </type>
+    </element>
+    <element id="Observation.component:tumorLocalization">
+      <path value="Observation.component" />
+      <sliceName value="tumorLocalization" />
+    </element>
+    <element id="Observation.component:tumorLocalization.extension:anatomicalLocation">
+      <path value="Observation.component.extension" />
+      <sliceName value="anatomicalLocation" />
+    </element>
+    <element id="Observation.component:tumorLocalization.extension:anatomicalLocation.value[x]">
+      <path value="Observation.component.extension.value[x]" />
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation" />
+      </type>
+    </element>
   </differential>
 </StructureDefinition>
