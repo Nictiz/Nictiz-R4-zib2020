@@ -769,6 +769,12 @@ nl-core-DOSScore-01:
       - message: 'Local Error: Resolved system http://snomed.info/sct, but the definition is not complete. Server Error: Unable to find code 160591000146109 in http://snomed.info/sct'
         reason: This is a Dutch SNOMED extension which is not present yet on the international terminology server.
 
+nl-core-BowelFunction-02-DeviceUseStatement-01:
+  ignored issues:
+    DeviceUseStatement.reasonReference[0]:
+      - message: This element does not match any known slice defined in the profile http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice
+        reason: The Validator is unable to follow the reference on disk, and so is unable to analyze which profile the referenced resource matches.
+
 nl-core-*Function.*Aid-*:
   ignored issues:
     DeviceUseStatement:
