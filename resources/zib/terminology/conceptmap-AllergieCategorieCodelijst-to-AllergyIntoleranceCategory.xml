@@ -65,12 +65,13 @@
     </group>
     <group>
         <source value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor" />
+        <target value="http://hl7.org/fhir/allergy-intolerance-category"/>
         <element>
             <code value="OTH" />
             <display value="anders" />
             <target>
                 <equivalence value="unmatched" />
-                <comment value="The zib defines that &#39;Other&#39; is a possible value for the AllergyCategory. The required AllergyIntolerance.category binding does not recognize this use case. If transmitting the value under OTH is not required, omit  AllergyIntolerance.category. If the actual value associated with OTH is known and relevant, use AllergyIntolerance.category (without value) + extension http://nictiz.nl/fhir/StructureDefinition/code-specification with the description under valueCodeableConcept.text" />
+                <comment value="The zib defines that &#39;Other&#39; is a possible value for the AllergyCategory. The required AllergyIntolerance.category binding does not recognize this use case. If transmitting the value under OTH is not required, omit AllergyIntolerance.category. If the actual value associated with OTH is known and relevant, use AllergyIntolerance.category (without value) + extension http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification with the description under valueCodeableConcept.text" />
             </target>
         </element>
     </group>
