@@ -39,63 +39,21 @@
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
   <derivation value="constraint" />
   <differential>
-    <element id="DocumentReference.content">
-      <path value="DocumentReference.content" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="$this" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="DocumentReference.content:burnwound">
-      <path value="DocumentReference.content" />
-      <sliceName value="burnwound" />
-    </element>
-    <element id="DocumentReference.content:burnwound.attachment.url">
+    <element id="DocumentReference.content.attachment.url">
       <path value="DocumentReference.content.attachment.url" />
       <short value="WoundImage" />
-      <definition value="A photo of the wound as visual information." />
-      <alias value="Wondfoto" />
+      <definition value="A photo of the wound, burn wound or decubitus wound as visual information." />
+      <alias value="WondFoto" />
       <mapping>
         <identity value="zib-burnwound-v3.4-2020EN" />
-        <map value="NL-CM:19.4.8" />
+        <map value="NL-CM:19.4.11" />
         <comment value="WoundImage" />
       </mapping>
-    </element>
-    <element id="DocumentReference.content:pressureUlcer">
-      <path value="DocumentReference.content" />
-      <sliceName value="pressureUlcer" />
-    </element>
-    <element id="DocumentReference.content:pressureUlcer.attachment.url">
-      <path value="DocumentReference.content.attachment.url" />
-      <short value="WoundImage" />
-      <definition value="A photo of the decubitus wound as visual information." />
-      <alias value="WondFoto" />
       <mapping>
         <identity value="zib-pressureulcer-v3.4-2020EN" />
         <map value="NL-CM:19.1.12" />
         <comment value="WoundImage" />
       </mapping>
-    </element>
-    <element id="DocumentReference.content:wound">
-      <path value="DocumentReference.content" />
-      <sliceName value="wound" />
-      <short value="WoundImage" />
-      <definition value="A photo of the wound." />
-      <alias value="WondFoto" />
-      <mapping>
-        <identity value="zib-wound-v3.3-2020EN" />
-        <map value="NL-CM:19.2.15" />
-        <comment value="WoundImage" />
-      </mapping>
-    </element>
-    <element id="DocumentReference.content:wound.attachment.url">
-      <path value="DocumentReference.content.attachment.url" />
-      <short value="WoundImage" />
-      <definition value="A photo of the wound." />
-      <alias value="WondFoto" />
       <mapping>
         <identity value="zib-wound-v3.3-2020EN" />
         <map value="NL-CM:19.2.15" />
