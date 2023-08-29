@@ -1,5 +1,9 @@
 #!/bin/bash
 
+export DOTNET_ROOT=~/.dotnet
+export PATH=$PATH:$DOTNET_ROOT
+export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
+
 # Install the tools that we need
 which dotnet > /dev/null
 has_dotnet=$?
@@ -10,10 +14,16 @@ if [[ ! $has_dotnet == 0 || ! -f ~/.dotnet/tools/fhir ]]; then
         echo -e "\033[1;37mInstalling Firely terminal.\033[0m"
     fi
 
-    cd ~
-    wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb && dpkg -i packages-microsoft-prod.deb && rm packages-microsoft-prod.deb
-    apt-get update && apt-get -y install apt-transport-https && apt-get -y install dotnet-sdk-3.1 
+    # Unfortunately, Firely Terminal deprecated the method for bulk creating snapshots after version 2.5 (or at least
+    # without a login), so we need this ancient version, which uses an ancient version of .Net SDK, for which we need
+    # a script based installer.
+    apk add libstdc++ libintl libssl1.1
 
+    install_dir=$(mktemp -d)
+    cd $install_dir
+    wget https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh
+    bash dotnet-install.sh -c 3.1
+    cd $work_dir
     dotnet tool install -g --version 2.5.0-beta-7 firely.terminal
 
     if [[ $write_github == 1 ]]; then
