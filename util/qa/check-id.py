@@ -38,3 +38,5 @@ if __name__ == "__main__":
     if not success:
         print("\nSome invalid resources were found!")
         sys.exit(1)
+    else:
+        print("No problems found")

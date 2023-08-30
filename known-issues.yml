@@ -26,21 +26,41 @@ ext-TreatmentDirective2.AdvanceDirective:
       - cardinality: 0..1 instead of 0..*
         reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension is added 0..* in the hosting element.
 
-nl-core-PharmaceuticalProduct-randomCode-invalid:
+nl-core-HearingFunction.HearingAid.Product:
   ignored issues:
-    Medication.code:
-      - message: None of the codings provided are in the value set 'ProductCodeCodelijsten'
-        reason: This is an example of a resource that purposely contains an invalid code system and code.
-    Medication.code.coding[0]:
-      - message: Code System URI 'urn:oid:2.16.840.1.113883.2.4.4.9999' is unknown so the code cannot be validated
-        reason: This is an example of a resource that purposely contains an invalid code system and code.
+    Device:
+      - message: The slice definition for Device.identifier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+      - message: The slice definition for Device.udiCarrier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
 
-nl-core-PharmaceuticalProduct-INV-invalid:
+nl-core-HelpFromOthers:
   ignored issues:
-    Medication.code:
-      - message: None of the codings provided are in the value set 'ProductCodeCodelijsten'
-        reason: This is an example of a resource that purposely contains an invalid code.
+    CarePlan:
+      - message: The slice definition for CarePlan.activity.detail.performer has a maximum of 1 but the slices add up to a maximum of 3. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
 
+nl-core-MedicalDevice.Product:
+  ignored issues:
+    Device:
+      - message: The slice definition for Device.identifier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+      - message: The slice definition for Device.udiCarrier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+
+nl-core-NursingIntervention:
+  ignored issues:
+    CarePlan:
+      - message: The slice definition for CarePlan.activity.detail.performer has a maximum of 1 but the slices add up to a maximum of 3. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+        
+nl-core-VisualFunction.VisualAid.Product:
+  ignored issues:
+    Device:
+      - message: The slice definition for Device.identifier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+      - message: The slice definition for Device.udiCarrier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
 pattern-GstdSimpleQuantity:
   ignored issues:
     StructureDefinition:
@@ -271,6 +291,11 @@ zib-HearingFunction.HearingAid:
 
 zib-HearingFunction.HearingAid.Product:
   ignored issues:
+    Device:
+      - message: The slice definition for Device.identifier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+      - message: The slice definition for Device.udiCarrier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
     Device.type:
       - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias for ProductType is already present in the base profile where this profile is derived from. It should not be added twice to silence this issue.
@@ -284,6 +309,9 @@ zib-HearingFunction.HearingAid.Product:
 
 zib-HelpFromOthers:
   ignored issues:
+    CarePlan:
+      - message: The slice definition for CarePlan.activity.detail.performer has a maximum of 1 but the slices add up to a maximum of 3. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
     CarePlan.activity.detail.performer:*:
       - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice. 
@@ -365,6 +393,11 @@ zib-MedicalDevice.Product:
       - datatype: string instead of CD compatible datatype
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
   ignored issues:
+    Device:
+      - message: The slice definition for Device.identifier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+      - message: The slice definition for Device.udiCarrier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
     Device.udiCarrier:*.carrierHRF:
       - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the definition of the ProductID concept is not suited for all mapped elements.
@@ -427,6 +460,9 @@ zib-NursingIntervention:
       - cardinality: 0..1 instead of 0..*
         reason: The value of the extension can only occur once, but the use of the extension itself is unlimited, making the effective cardinality 0..* as required by the zib.
   ignored issues:
+    CarePlan:
+      - message: The slice definition for CarePlan.activity.detail.performer has a maximum of 1 but the slices add up to a maximum of 3. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
     CarePlan.contributor:requester:
       - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice.
@@ -679,6 +715,11 @@ zib-VisualFunction.VisualAid:
 
 zib-VisualFunction.VisualAid.Product:
   ignored issues:
+    Device:
+      - message: The slice definition for Device.identifier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+      - message: The slice definition for Device.udiCarrier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
     Device.type:
       - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias for ProductType is already present in the base profile where this profile is derived from. It should not be added twice to silence this issue.
@@ -712,9 +753,24 @@ issues should occur: false
         reason: This concerns an error in the FHIR terminology server. The adr code has been removed for R5 and the terminology server was updated for it too soon. They will fix it according to zulip chat https://chat.fhir.org/#narrow/stream/179166-implementers/topic/Consent.2Escope.3A.20diff.20in.20codes.20shown.20on.20FHIR.20vs.20Tx.20server.
       - message: None of the codings provided are in the value set 'Consent Scope Codes' (http://hl7.org/fhir/ValueSet/consent-scope), and a coding should come from this value set unless it has no suitable code
         reason: See above.
+    ValueSet.compose.include[*].concept[*]:
+      - message: Unable to validate code without using server
+        reason: This warning doesn't provide any feedback on the correctness of the materials. In addition, there's little reason to fix this issue on the package level as it is unlikely that this ever results in problems in production (ValueSets are not typically validated in production).
+    ValueSet.compose.include[*].concept[*].designation[*].language:
+      - message: Unable to validate code without using server
+        reason: This warning doesn't provide any feedback on the correctness of the materials. In addition, there's little reason to fix this issue on the package level as it is unlikely that this ever results in problems in production (ValueSets are not typically validated in production).
+    CodeSystem.language:
+      - message: Unable to validate code without using server
+        reason: This warning doesn't provide any feedback on the correctness of the materials. In addition, there's little reason to fix this issue on the package level as it is unlikely that this ever results in problems in production (CodeSystems are not typically validated in production).
+    CodeSystem.concept[*].designation[*].language:
+      - message: Unable to validate code without using server
+        reason: This warning doesn't provide any feedback on the correctness of the materials. In addition, there's little reason to fix this issue on the package level as it is unlikely that this ever results in problems in production (CodeSystems are not typically validated in production).
 
 nl-core-*:
   ignored issues:
+    "*":
+      - message: No valid Display Names found for
+        reason: This warning doesn't provide any feedback on the correctness of the materials, but only on the completeness of the terminology server used.
     "*.address*.country.extension[0].value*":
       - message: None of the codings provided are in the value set 'LandCodelijsten' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.10--20200901000000), and a coding from this value set is required) (codes = urn:oid:2.16.840.1.113883.2.4.4.16.34#6030)
         reason: The current version of the Validator incorrectly raises an error on combined ValueSets.
@@ -730,6 +786,8 @@ nl-core-*:
     Condition.code:
       - message: None of the codings provided are in the value set 'ProbleemNaamCodelijst'
         reason: This ValueSet contains two SNOMED refsets. The terminology servers are unable to determine if a code is part of this refset.
+      - message: "Error from server: The Snomed Concept 31000147101 was not known"
+        reason: This code represents the DHD Diagnosethesaurus, which the default terminology server is unable to check. This causes problems on some occassions (but not all).
 
 nl-core-AllergyIntolerance*:
   ignored issues:
@@ -745,16 +803,19 @@ nl-core-BodyHeight-*:
     Observation.value.ofType(Quantity).code:
       - message: The value provided ('cm') is not in the value set 'Body Length Units'
         reason: In absence of a terminology server, the Validator cannot check if 'cm' is a valid UCUM unit and raises an error.
-nl-core-DOSScore-01:
+        
+nl-core-BowelFunction-02-DeviceUseStatement-01:
   ignored issues:
-    Observation.code.coding[0]:
-      - message: 'Local Error: Resolved system http://snomed.info/sct, but the definition is not complete. Server Error: Unable to find code 160591000146109 in http://snomed.info/sct'
-        reason: This is a Dutch SNOMED extension which is not present yet on the international terminology server.
+    DeviceUseStatement.reasonReference[0]:
+      - message: This element does not match any known slice defined in the profile http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice
+        reason: The Validator is unable to follow the reference on disk, and so is unable to analyze which profile the referenced resource matches.
 
 nl-core-*Function.*Aid-*:
   ignored issues:
     DeviceUseStatement:
       - message: 'DeviceUseStatement.reasonReference:functionalOrMentalStatus: max allowed = 0, but found 1'
+        reason: The Validator cannot actually inspect the referenced resources, and falsely assumes the reference is a reference to the offending profile.
+      - message: 'DeviceUseStatement.reasonReference:bowelFunction: max allowed = 0, but found 1'
         reason: The Validator cannot actually inspect the referenced resources, and falsely assumes the reference is a reference to the offending profile.
 
 nl-core-HearingFunction.HearingAid-*:
@@ -797,15 +858,6 @@ nl-core-PharmaceuticalProduct-02:
       - message: Code System URI 'urn:oid:2.16.840.1.113883.2.4.4.1' is unknown so the code cannot be validated
         reason: The terminology servers used don't know this code system.
 
-nl-core-Vaccination-event-03:
-  ignored issues:
-    Immunization.reasonCode[0]:
-      - message: Profile http://nictiz.nl/fhir/StructureDefinition/nl-core-Vaccination-event, Element matches more than one slice - vaccinationIndication, vaccinationMotive
-        reason: This seems to be caused by the Validator not recognizing the terminology used.
-    Immunization.reasonCode[*].coding[*]:
-      - message: 'Local Error: Resolved system http://snomed.info/sct, but the definition is not complete. Server Error: Unable to find code 159731000146104 in http://snomed.info/sct'
-        reason: This is a Dutch SNOMED extension which is not present yet on the international terminology server.
-
 zib-*Function.*Aid.Product:
   ignored issues:
     Device.type:
@@ -827,12 +879,6 @@ zib-ContactPerson:
         reason: The short description is defined on the datatype profile and not repeated in the differential.
       - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.
-
-zib-DOSScore:
-  ignored issues:
-    StructureDefinition.differential.element[1].pattern.ofType(CodeableConcept).coding[0]:
-      - message: 'Local Error: Resolved system http://snomed.info/sct, but the definition is not complete. Server Error: Unable to find code 160591000146109 in http://snomed.info/sct'
-        reason: This is a Dutch SNOMED extension which is not present yet on the international terminology server.
 
 zib-HealthcareProvider:
   ignored issues:
