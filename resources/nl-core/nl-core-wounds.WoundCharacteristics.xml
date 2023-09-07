@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-wounds.WoundCharacteristics" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-wounds.WoundCharacteristics" />
+  <name value="NlcoreWoundsWoundCharacteristics" />
+  <title value="nl core wounds.WoundCharacteristics" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="This WoundObservable profile caputures mutliple concepts such as wound length, width and depth which are used in two different HCIMs:&#xD;&#xA;&#xD;&#xA;* [Wound v3.3(2020EN)](https://zibs.nl/wiki/Wound-v3.3(2020EN))&#xD;&#xA;* [PressureUlcer v3.4(2020EN)](https://zibs.nl/wiki/PressureUlcer-v3.4(2020EN))" />
+  <purpose value="A derived profile from [zib-wounds.WoundCharacteristics](http://nictiz.nl/fhir/StructureDefinition/zib-wounds.WoundCharacteristics) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-pressureulcer-v3.4-2020EN" />
+    <uri value="https://zibs.nl/wiki/PressureUlcer-v3.4(2020EN)" />
+    <name value="zib PressureUlcer-v3.4(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-wound-v3.3-2020EN" />
+    <uri value="https://zibs.nl/wiki/Wound-v3.3(2020EN)" />
+    <name value="zib Wound-v3.3(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Observation" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-wounds.WoundCharacteristics" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <alias value="nl-core-wounds.WoundCharacteristics" />
+    </element>
+    <element id="Observation.subject">
+      <path value="Observation.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
