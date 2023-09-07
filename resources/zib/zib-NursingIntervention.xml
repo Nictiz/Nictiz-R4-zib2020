@@ -37,7 +37,7 @@
         <key value="zib-NursingIntervention-1" />
         <severity value="error" />
         <human value="The start and/or end date of a repeating schedule should be communicated in CarePlan.encounter as well." />
-        <expression value="activity.detail.scheduledTiming.repeat.boundsPeriod.exists() implies (period = activity.detail.scheduledTiming.repeat.boundsPeriod)" />
+        <expression value="activity.detail.scheduled.ofType(Timing).repeat.bounds.ofType(Period).exists() implies (period = activity.detail.scheduled.ofType(Timing).repeat.bounds.ofType(Period))" />
       </constraint>
       <mapping>
         <identity value="zib-nursingintervention-v3.2-2020EN" />
