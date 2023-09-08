@@ -33,7 +33,7 @@
       <path value="Encounter" />
       <short value="MultidisciplinaryTeamMeeting" />
       <definition value="An interaction between healthcare provider(s), and/or patient(s) for the purpose of providing healthcare service(s) or assessing the health status of patient(s). (Note: this definition is a pre-adopt of &lt;https://jira.hl7.org/browse/FHIR-20479&gt;. Referencing the Patient as `.subject` does not indicate its presence at the Encounter. Use `.participant.individual.extension:patient` for this.)" />
-      <comment value="Zib MultidisciplinaryTeamMeeting is mapped to this Encounter profile and a profile on CarePlan (&lt;http://nictiz.nl/fhir/StructureDefinition/zib-MultidisciplinaryTeamMeeting.Plan&gt;). This Encounter profile acts as the focal resource of MultidisciplinaryTeamMeeting. This profile is referenced by the CarePlan resource, which holds the 'Plan' concept (NL-CM:15.2.10), through `CarePlan.encounter`.&#xD;&#xA;&#xD;&#xA;This profile pre-adopts the definition of `.subject` accepted in &lt;https://jira.hl7.org/browse/FHIR-20479&gt;, which means that referencing the Patient as `.subject` does not indicate its presence at the Encounter. Use `.participant.individual.extension:patient` for this purpose." />
+      <comment value="Zib MultidisciplinaryTeamMeeting is mapped to this Encounter profile and a profile on CarePlan (&lt;http://nictiz.nl/fhir/StructureDefinition/zib-MultidisciplinaryTeamMeeting.Plan&gt;). This Encounter profile acts as the focal resource of MultidisciplinaryTeamMeeting. This profile is referenced by the CarePlan resource, which holds the 'Plan' concept (NL-CM:15.2.10), through `CarePlan.encounter`.&#xD;&#xA;&#xD;&#xA;This profile pre-adopts the definition of `.subject` accepted in &lt;https://jira.hl7.org/browse/FHIR-20479&gt;, which means that referencing the Patient resource as `.subject` does not indicate the presence of the patient at the Encounter. Use `.participant.individual.extension:patient` for this purpose." />
       <alias value="Patientbespreking" />
       <mapping>
         <identity value="zib-multidisciplinaryteammeeting-v1.0-2020EN" />
@@ -90,7 +90,7 @@
     <element id="Encounter.subject">
       <path value="Encounter.subject" />
       <short value="The patient or group related to this encounter" />
-      <definition value="The patient or group related to this encounter. (Note: this definition is a pre-adopt of &lt;https://jira.hl7.org/browse/FHIR-20479&gt;. Referencing the Patient as `.subject` does not indicate its presence at the Encounter. Use `.participant.individual.extension:patient` for this.)" />
+      <definition value="The patient or group related to this encounter. (Note: this definition is a pre-adopt of &lt;https://jira.hl7.org/browse/FHIR-20479&gt;. Referencing the Patient resource as `.subject` does not indicate the presence of the patient at the Encounter. Use `.participant.individual.extension:patient` to denote this.)" />
     </element>
     <element id="Encounter.participant">
       <path value="Encounter.participant" />
@@ -143,21 +143,9 @@
         <comment value="ContactPerson" />
       </mapping>
     </element>
-    <element id="Encounter.participant.individual.extension">
-      <path value="Encounter.participant.individual.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Encounter.participant.individual.extension:patient">
       <path value="Encounter.participant.individual.extension" />
       <sliceName value="patient" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -177,7 +165,7 @@
     </element>
     <element id="Encounter.period">
       <path value="Encounter.period" />
-      <comment value="The zib concept PatientConsultationDateTime is mapped to both `period.start` and `period.end`. When all is known is a single value, both `.start` and `.end` should be populated with this value, otherwise the `period`, and thus the MultidisciplinaryTeamMeeting, is considered 'ongoing'. In FHIR R4, the Period datatype has an invariant that inconsistently says in text that `Period.start` shall be lower than `Period.end`, but actually supports lower than or equal in its expression, which reflects the original intent. This has been fixed for FHIR R5; the text now reflects the expression. &#xD;&#xA;&#xD;&#xA;When a system is able to populate both `period.start` and `period.end`, the value of `.start` is leading when converting FHIR data to a zib instance." />
+      <comment value="The zib concept PatientConsultationDateTime is mapped to both `period.start` and `period.end`. When all is known is a single value, both `.start` and `.end` should be populated with this value (if only `.start` would be populated, the Period and thus the MultidisciplinaryTeamMeeting would be considered 'ongoing').&#xD;&#xA;&#xD;&#xA;When a system is able to populate both `period.start` and `period.end` truthfully, the value of `.start` is leading when converting FHIR data to a zib instance.&#xD;&#xA;&#xD;&#xA;Note: in FHIR R4, the Period datatype has an invariant that states in text that `Period.start` shall be lower than `Period.end`. This statement is incorrect; the expression actually supports lower than or equal, which reflects the original intent. In FHIR R5 this text has been fixed." />
     </element>
     <element id="Encounter.period.start">
       <path value="Encounter.period.start" />
