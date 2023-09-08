@@ -365,18 +365,6 @@ zib-LaboratoryTestResult.SpecimenSource:
       - cardinality: 1..1 instead of 0..1
         reason: The zib concept SpecimenSource is represented using a reference to this profile from zib-LaboratoryTestResult.Specimen, so this element represents just part of the mapping. Overall, the use of this concept is optional, but when this profile is used, Device.deviceName.name must be given.
 
-zib-LegalSituation-LegalStatus:
-  zib deviations:
-    Condition.code:
-      - cardinality: 1..1 instead of 0..1
-        reason: The zib requires either a LegalStatus or a Representation to be present. This profile represents the former concept, so the LegalStatus (in Condition.code) is required.
-
-zib-LegalSituation-Representation:
-  zib deviations:
-    Condition.code:
-      - cardinality: 1..1 instead of 0..1
-        reason: The zib requires either a LegalStatus or a Representation to be present. This profile represents the latter concept, so the Representation (in Condition.code) is required.
-
 zib-MedicalDevice:
   ignored issues:
     DeviceUseStatement.derivedFrom:*:
@@ -414,6 +402,18 @@ zib-MedicalDevice.Product:
       - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the definition of the ProductID concept is not suited for all mapped elements.
 
+zib-LegalSituation-LegalStatus:
+  zib deviations:
+    Condition.code:
+      - cardinality: 1..1 instead of 0..1
+        reason: The zib requires either a LegalStatus or a Representation to be present. This profile represents the former concept, so the LegalStatus (in Condition.code) is required.
+
+zib-LegalSituation-Representation:
+  zib deviations:
+    Condition.code:
+      - cardinality: 1..1 instead of 0..1
+        reason: The zib requires either a LegalStatus or a Representation to be present. This profile represents the latter concept, so the Representation (in Condition.code) is required.
+
 zib-MedicationContraIndication:
   zib deviations:
     Flag.code:
@@ -429,6 +429,9 @@ zib-MultidisciplinaryTeamMeeting:
       - short: HealthProfessional / ContactPerson instead of HealthProfessional / Contactperson
         reason: The zib concept name "Contactperson" is not correctly translated into English (but this has been corrected in prerelease 2022-1).
   ignored issues:
+    Encounter.participant:
+      - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
+        reason: The definition of the zib concept Participant, which is the root of a container, does not contain a meaningful definition. 
     Encounter.reasonReference:disease:
       - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
         reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice.
@@ -914,12 +917,6 @@ zib-HealthProfessional-Practitioner:
         reason: The short description is defined on the datatype profile and not repeated in the differential.
       - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.
-
-zib-MultidisciplinaryTeamMeeting:
-  ignored issues:
-    Encounter.participant:
-      - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
-        reason: The definition of the zib concept Participant, which is the root of a container, does not contain a meaningful definition. 
 
 zib-Patient:
   ignored issues:
