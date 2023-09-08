@@ -123,6 +123,7 @@
     <element id="Observation.performer:performer">
       <path value="Observation.performer" />
       <sliceName value="performer" />
+      <definition value="The organization where or by whom the LaboratoryTestResult was performed.&#xD;&#xA;&#xD;&#xA;Note: the zib formally defines this relation as a reference to zib HealthcareProvider, which is primarily defined as the location at which the service was performed, and only secondarily as the organization associated with this location. According to this logic, the expected reference would be to the zib HealthcareProvider Location profile (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider&gt;) rather than the Organization profile (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization&gt;). However, on a functional level this concept is usually understood to be about the organization rather than the location, which is in line with the way FHIR models the current element. For this reason, the Organization rather than the Location resource is referenced here. See https://bits.nictiz.nl/browse/MM-4747 for more information." />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization" />
