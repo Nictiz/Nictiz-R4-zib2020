@@ -34,21 +34,9 @@
       <comment value="This is a specialization of the profile for zib MedicalDevice to represent VisualAid devices within the context of zib VisualFunction.&#xD;&#xA;&#xD;&#xA;Note: because of the way derivation works in FHIR, this profile is not based on the [nl-core-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice) profile but derived from a specialization in the zib layer." />
       <alias value="nl-core-VisualFunction.VisualAid" />
     </element>
-    <element id="DeviceUseStatement.extension">
-      <path value="DeviceUseStatement.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="DeviceUseStatement.extension:healthProfessional">
       <path value="DeviceUseStatement.extension" />
       <sliceName value="healthProfessional" />
-      <min value="0" />
     </element>
     <element id="DeviceUseStatement.extension:healthProfessional.value[x]">
       <path value="DeviceUseStatement.extension.value[x]" />
@@ -61,7 +49,6 @@
     <element id="DeviceUseStatement.extension:location">
       <path value="DeviceUseStatement.extension" />
       <sliceName value="location" />
-      <min value="0" />
     </element>
     <element id="DeviceUseStatement.extension:location.value[x]">
       <path value="DeviceUseStatement.extension.value[x]" />

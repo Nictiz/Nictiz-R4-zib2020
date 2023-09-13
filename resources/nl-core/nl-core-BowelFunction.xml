@@ -34,21 +34,9 @@
       <comment value="Please note that on a functional level, zib BowelFunction references zib MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept IncontinenceMaterial (NL-CM:4.15.6) is mapped on `DeviceUseStatement.reasonReference` in profile [nl-core-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice) instead of in this profile." />
       <alias value="nl-core-BowelFunction" />
     </element>
-    <element id="Observation.extension">
-      <path value="Observation.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Observation.extension:stoma">
       <path value="Observation.extension" />
       <sliceName value="stoma" />
-      <min value="0" />
     </element>
     <element id="Observation.extension:stoma.value[x]">
       <path value="Observation.extension.value[x]" />

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-HealthProfessional-Practitioner" />
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner" />
@@ -193,21 +193,9 @@
         <comment value="Gender" />
       </mapping>
     </element>
-    <element id="Practitioner.gender.extension">
-      <path value="Practitioner.gender.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Practitioner.gender.extension:genderCodelist">
       <path value="Practitioner.gender.extension" />
       <sliceName value="genderCodelist" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification" />
