@@ -38,21 +38,9 @@
       <path value="Observation" />
       <alias value="nl-core-LaboratoryTestResult" />
     </element>
-    <element id="Observation.extension">
-      <path value="Observation.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Observation.extension:sequelTo">
       <path value="Observation.extension" />
       <sliceName value="sequelTo" />
-      <min value="0" />
     </element>
     <element id="Observation.extension:sequelTo.value[x]">
       <path value="Observation.extension.value[x]" />
@@ -65,36 +53,18 @@
     <element id="Observation.extension:edifactReferenceNumber">
       <path value="Observation.extension" />
       <sliceName value="edifactReferenceNumber" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber" />
       </type>
     </element>
-    <element id="Observation.extension:edifactReferenceNumber.value[x]">
-      <path value="Observation.extension.value[x]" />
-      <mapping>
-        <identity value="lu-dataset-laboratory-exchange-20210222" />
-        <map value="lu-concept-v2-4409" />
-        <comment value="EdifactReferenceNumber" />
-      </mapping>
-    </element>
     <element id="Observation.extension:copyIndicator">
       <path value="Observation.extension" />
       <sliceName value="copyIndicator" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator" />
       </type>
-    </element>
-    <element id="Observation.extension:copyIndicator.value[x]">
-      <path value="Observation.extension.value[x]" />
-      <mapping>
-        <identity value="lu-dataset-laboratory-exchange-20210222" />
-        <map value="lu-concept-v2-4297" />
-        <comment value="CopyIndicator" />
-      </mapping>
     </element>
     <element id="Observation.identifier">
       <path value="Observation.identifier" />

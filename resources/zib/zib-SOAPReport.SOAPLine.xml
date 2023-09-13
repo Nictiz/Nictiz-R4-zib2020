@@ -46,21 +46,9 @@
         <comment value="SOAPLine" />
       </mapping>
     </element>
-    <element id="Observation.extension">
-      <path value="Observation.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Observation.extension:soapLineCode">
       <path value="Observation.extension" />
       <sliceName value="soapLineCode" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode" />
