@@ -67,6 +67,10 @@
       <short value="BurnType" />
       <definition value="Indication of the kind of the burn wound, differentiated into the cause of the injury." />
       <alias value="BrandwondSoort" />
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.19.4.3--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-burnwound-v3.4-2020EN" />
         <map value="NL-CM:19.4.9" />
@@ -89,21 +93,9 @@
         <comment value="AnatomicalLocation" />
       </mapping>
     </element>
-    <element id="Condition.bodySite.extension">
-      <path value="Condition.bodySite.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Condition.bodySite.extension:laterality">
       <path value="Condition.bodySite.extension" />
       <sliceName value="laterality" />
-      <min value="0" />
     </element>
     <element id="Condition.bodySite.extension:laterality.value[x]">
       <path value="Condition.bodySite.extension.value[x]" />
