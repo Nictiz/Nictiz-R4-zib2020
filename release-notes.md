@@ -63,6 +63,10 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-BarthelADLIndex
 * There was no profile in the STU3 version and therefore no diff.
 
+## zib-BowelFunction
+* The mapping of the Stoma concept has been moved from extension to profile level.
+* MedicalDevice extension has been removed because the reference is reversed in FHIR. The MedicalDevice profile refers to this profile.
+
 ## zib-Burnwound
 * BurnType is mapped to `Condition.code`
 * The concept of 'dateOfLastDressingChange' has been relocated to the Wound Characteristics profile. 
