@@ -386,3 +386,6 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-VisualFunction
 * Changed fixed slice on `.code.coding` to a pattern on `.code`.
 * Relaxed cardinality of `value[x]` to 0..1 of the conceptual cardinalities of the zib.
+
+## zib-wounds.WoundImage
+* There was no profile in the STU3 version and therefore no diff.
