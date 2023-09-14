@@ -619,12 +619,6 @@ zib-Refraction:
       - short: SphericalEquivalent instead of SfericalEquivalent
         reason: The zib concept name "SfericalEquivalent" is an incorrect translation of the Dutch name into English.
 
-zib-SkinDisorder:
-  zib deviations:
-    Condition.bodySite:
-      - datatype: CodeableConcept instead of a reference
-        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
-
 zib-SOAPReport:
   zib deviations:
     Composition.author:
@@ -649,6 +643,12 @@ zib-SOAPReport.SOAPLine:
     Observation.code:
       - cardinality: 1..1 instead of 0..1
         reason: The cardinality of both zib (SOAPLineHeader) and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected. In case of absent data, the profiling guidelines provide guidance.
+
+zib-SkinDisorder:
+  zib deviations:
+    Condition.bodySite:
+      - datatype: CodeableConcept instead of a reference
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
 
 zib-Stoma:
   zib deviations:
