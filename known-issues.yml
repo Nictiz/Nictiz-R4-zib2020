@@ -619,6 +619,12 @@ zib-Refraction:
       - short: SphericalEquivalent instead of SfericalEquivalent
         reason: The zib concept name "SfericalEquivalent" is an incorrect translation of the Dutch name into English.
 
+zib-SkinDisorder:
+  zib deviations:
+    Condition.bodySite:
+      - datatype: CodeableConcept instead of a reference
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+
 zib-SOAPReport:
   zib deviations:
     Composition.author:
@@ -633,18 +639,16 @@ zib-SOAPReport:
     Composition.section:soapLine.code:
       - cardinality: 1..1 instead of 0..1
         reason: The cardinality of both zib (SOAPLineHeader) and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected.
+  ignored issues:
+    Composition.section:soapLine:
+      - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
+        reason: The mapping is to a zib container, which doesn't have a useful description if implemented in a profile.
 
 zib-SOAPReport.SOAPLine:
   zib deviations:
     Observation.code:
       - cardinality: 1..1 instead of 0..1
         reason: The cardinality of both zib (SOAPLineHeader) and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected. In case of absent data, the profiling guidelines provide guidance.
-
-zib-SkinDisorder:
-  zib deviations:
-    Condition.bodySite:
-      - datatype: CodeableConcept instead of a reference
-        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
 
 zib-Stoma:
   zib deviations:
@@ -681,6 +685,10 @@ zib-TreatmentDirective2:
     Consent.provision.actor:agreementParty.reference:
       - cardinality: 1..1 instead of 0..1
         reason: The .reference element cannot be used without sibling .role to represent the concepts NL-CM:2.2.10, NL-CM:2.2.11 and NL-CM:2.2.12, so these two elements have to be used together. The container itself is optional.
+  ignored issues:
+    Consent.provision.actor:agreementParty:
+      - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
+        reason: The mapping is to a zib container, which doesn't have a useful description if implemented in a profile.
 
 zib-Vaccination-event:
   zib deviations:
