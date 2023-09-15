@@ -62,21 +62,9 @@
         <comment value="TextResultStatus" />
       </mapping>
     </element>
-    <element id="DiagnosticReport.status.extension">
-      <path value="DiagnosticReport.status.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="DiagnosticReport.status.extension:textResultStatus">
       <path value="DiagnosticReport.status.extension" />
       <sliceName value="textResultStatus" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
