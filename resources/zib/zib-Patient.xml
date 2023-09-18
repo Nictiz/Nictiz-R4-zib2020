@@ -71,43 +71,19 @@
         <comment value="Patient" />
       </mapping>
     </element>
-    <element id="Patient.extension">
-      <path value="Patient.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Patient.extension:nationality">
       <path value="Patient.extension" />
       <sliceName value="nationality" />
       <comment value="Due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time), the cardinality of the extension is left at 0..* instead of the zib cardinality of 0..1." />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/patient-nationality" />
       </type>
     </element>
-    <element id="Patient.extension:nationality.extension">
-      <path value="Patient.extension.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Patient.extension:nationality.extension:code">
       <path value="Patient.extension.extension" />
       <sliceName value="code" />
-      <min value="0" />
     </element>
     <element id="Patient.extension:nationality.extension:code.value[x]">
       <path value="Patient.extension.extension.value[x]" />
@@ -134,21 +110,21 @@
         </discriminator>
         <rules value="open" />
       </slicing>
-    </element>
-    <element id="Patient.identifier:bsn">
-      <path value="Patient.identifier" />
-      <sliceName value="bsn" />
       <short value="PatientIdentificationNumber" />
       <definition value="The patient’s identification number. In transfer situations, use of the social security number (BSN) must comply with the Use of Social Security Numbers in Healthcare Act (Wbsn-z). In other situations, other number systems can be used, such as internal hospital patient numbers for example." />
       <alias value="Identificatienummer" />
-      <patternIdentifier>
-        <system value="http://fhir.nl/fhir/NamingSystem/bsn" />
-      </patternIdentifier>
       <mapping>
         <identity value="zib-patient-v3.2-2020EN" />
         <map value="NL-CM:0.1.7" />
         <comment value="PatientIdentificationNumber" />
       </mapping>
+    </element>
+    <element id="Patient.identifier:bsn">
+      <path value="Patient.identifier" />
+      <sliceName value="bsn" />
+      <patternIdentifier>
+        <system value="http://fhir.nl/fhir/NamingSystem/bsn" />
+      </patternIdentifier>
     </element>
     <element id="Patient.name">
       <path value="Patient.name" />
@@ -256,21 +232,9 @@
         <comment value="Gender" />
       </mapping>
     </element>
-    <element id="Patient.gender.extension">
-      <path value="Patient.gender.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Patient.gender.extension:genderCodelist">
       <path value="Patient.gender.extension" />
       <sliceName value="genderCodelist" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -421,21 +385,9 @@
         <comment value="Contact" />
       </mapping>
     </element>
-    <element id="Patient.contact.extension">
-      <path value="Patient.contact.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Patient.contact.extension:contactPerson">
       <path value="Patient.contact.extension" />
       <sliceName value="contactPerson" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -580,17 +532,6 @@
         <comment value="LanguageProficiency" />
       </mapping>
     </element>
-    <element id="Patient.communication.extension">
-      <path value="Patient.communication.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Patient.communication.extension:languageControl">
       <path value="Patient.communication.extension" />
       <sliceName value="languageControl" />
@@ -600,7 +541,6 @@
       <alias value="TaalvaardigheidBegrijpen" />
       <alias value="TaalvaardigheidSpreken" />
       <alias value="TaalvaardigheidLezen" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/patient-proficiency" />
@@ -623,13 +563,6 @@
     </element>
     <element id="Patient.communication.extension:languageControl.extension">
       <path value="Patient.communication.extension.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
       <min value="2" />
     </element>
     <element id="Patient.communication.extension:languageControl.extension:level">
@@ -653,7 +586,6 @@
     <element id="Patient.communication.extension:communicationDetails">
       <path value="Patient.communication.extension" />
       <sliceName value="communicationDetails" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-LanguageProficiency.CommunicationDetails" />
@@ -662,7 +594,6 @@
     <element id="Patient.communication.extension:comment">
       <path value="Patient.communication.extension" />
       <sliceName value="comment" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />

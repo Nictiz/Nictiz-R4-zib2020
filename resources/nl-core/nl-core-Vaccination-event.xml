@@ -44,21 +44,9 @@
       <comment value="The zib Vaccination is mapped to this Immunization profile and a profile on ImmunizationRecommendation (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-Vaccination-request&gt;). All administered vaccinations are covered using this Immunization profile, while all planned vaccinations are covered in the ImmunizationRecommendation profile. &#xD;&#xA;&#xD;&#xA;Please note that, contrary to the related zib concepts, `.vaccineCode` and `.occurrence[x]` are mandatory in FHIR and need to be recorded to exchange Immunization resources." />
       <alias value="nl-core-Vaccination-event" />
     </element>
-    <element id="Immunization.extension">
-      <path value="Immunization.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Immunization.extension:pharmaceuticalProduct">
       <path value="Immunization.extension" />
       <sliceName value="pharmaceuticalProduct" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
