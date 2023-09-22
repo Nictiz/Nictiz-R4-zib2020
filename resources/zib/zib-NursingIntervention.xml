@@ -137,13 +137,6 @@
     </element>
     <element id="CarePlan.contributor:requester.extension">
       <path value="CarePlan.contributor.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
       <min value="1" />
     </element>
     <element id="CarePlan.contributor:requester.extension:contributorIsRequester">
@@ -195,21 +188,9 @@
       <comment value="A nursing intervention in the Dutch realm always consists of a single activity. For this reason, the cardinality of `.activity` is restricted to 0..1." />
       <max value="1" />
     </element>
-    <element id="CarePlan.activity.detail.extension">
-      <path value="CarePlan.activity.detail.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="CarePlan.activity.detail.extension:medicalDevice">
       <path value="CarePlan.activity.detail.extension" />
       <sliceName value="medicalDevice" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-CarePlan-MaterialUsed" />

@@ -24,21 +24,9 @@
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/SimpleQuantity" />
   <derivation value="constraint" />
   <differential>
-    <element id="Quantity.extension">
-      <path value="Quantity.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Quantity.extension:gstdSimpleQuantity">
       <path value="Quantity.extension" />
       <sliceName value="gstdSimpleQuantity" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation" />

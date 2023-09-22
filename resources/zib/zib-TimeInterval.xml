@@ -39,21 +39,9 @@
         <comment value="TimeInterval" />
       </mapping>
     </element>
-    <element id="Period.extension">
-      <path value="Period.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Period.extension:duration">
       <path value="Period.extension" />
       <sliceName value="duration" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration" />

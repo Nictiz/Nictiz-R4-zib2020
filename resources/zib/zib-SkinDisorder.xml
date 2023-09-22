@@ -39,21 +39,9 @@
         <comment value="SkinDisorder" />
       </mapping>
     </element>
-    <element id="Condition.extension">
-      <path value="Condition.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Condition.extension:cause">
       <path value="Condition.extension" />
       <sliceName value="cause" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -128,6 +116,10 @@
         <code value="CodeableConcept" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
       </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-skindisorder-v3.3-2020EN" />
         <map value="NL-CM:19.3.9" />

@@ -58,21 +58,9 @@
       <path value="DeviceUseStatement" />
       <alias value="nl-core-MedicalDevice" />
     </element>
-    <element id="DeviceUseStatement.extension">
-      <path value="DeviceUseStatement.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="DeviceUseStatement.extension:healthProfessional">
       <path value="DeviceUseStatement.extension" />
       <sliceName value="healthProfessional" />
-      <min value="0" />
     </element>
     <element id="DeviceUseStatement.extension:healthProfessional.value[x]">
       <path value="DeviceUseStatement.extension.value[x]" />
@@ -85,7 +73,6 @@
     <element id="DeviceUseStatement.extension:location">
       <path value="DeviceUseStatement.extension" />
       <sliceName value="location" />
-      <min value="0" />
     </element>
     <element id="DeviceUseStatement.extension:location.value[x]">
       <path value="DeviceUseStatement.extension.value[x]" />
