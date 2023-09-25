@@ -39,21 +39,9 @@
         <comment value="NutritionAdvice" />
       </mapping>
     </element>
-    <element id="NutritionOrder.extension">
-      <path value="NutritionOrder.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="NutritionOrder.extension:indication">
       <path value="NutritionOrder.extension" />
       <sliceName value="indication" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />

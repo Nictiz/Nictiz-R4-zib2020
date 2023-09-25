@@ -15,7 +15,7 @@
     </telecom>
   </contact>
   <description value="A healthy diet means that we do not consume too much or too little (energy intake balanced with energy use) and that the composition of food (mainly important nutrients) follows the recommendations from the Health Council. For an infant, this means that the child receives breastfeeding or formula milk or a combination thereof." />
-  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) FeedingPatternInfant-v1.1(2020EN)](https://zibs.nl/wiki/FeedingPatternInfant-v1.1(2020EN))." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) FeedingPatternInfant v1.1 (2020)](https://zibs.nl/wiki/FeedingPatternInfant-v1.1(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -183,21 +183,9 @@
       <comment value="Zib FeedingPatternInfant contains the container Feeding, which hosts two concepts: FeedingType and FeedingMethod. Because these concepts are inherently linked and meaning is derived from the combination of the values of these two concepts, they are modelled in one component. `.component:feedingType` contains the value of FeedingType in `.valueCodeableConcept` and the value of FeedingMethod in `.extension:feedingMethod.valueCodeableConcept`." />
       <max value="1" />
     </element>
-    <element id="Observation.component:feedingType.extension">
-      <path value="Observation.component.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Observation.component:feedingType.extension:feedingMethod">
       <path value="Observation.component.extension" />
       <sliceName value="feedingMethod" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />

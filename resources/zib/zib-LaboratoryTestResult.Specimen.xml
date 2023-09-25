@@ -15,7 +15,7 @@
     </telecom>
   </contact>
   <description value="Obtained specimen material or a microbial isolate that is used in a laboratory analysis." />
-  <purpose value="This Specimen resource represents the Specimen concept from Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) LaboratoryTestResult-v4.6(2020EN)](https://zibs.nl/wiki/LaboratoryTestResult-v4.6(2020EN))." />
+  <purpose value="This Specimen resource represents the Specimen concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) LaboratoryTestResult v4.6 (2020)](https://zibs.nl/wiki/LaboratoryTestResult-v4.6(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -210,42 +210,18 @@
         <comment value="AnatomicalLocation" />
       </mapping>
     </element>
-    <element id="Specimen.collection.bodySite.extension">
-      <path value="Specimen.collection.bodySite.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Specimen.collection.bodySite.extension:morphology">
       <path value="Specimen.collection.bodySite.extension" />
       <sliceName value="morphology" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-LaboratoryTestResult.Specimen.Morphology" />
       </type>
     </element>
-    <element id="Specimen.container.extension">
-      <path value="Specimen.container.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Specimen.container.extension:specimenNumberExtension">
       <path value="Specimen.container.extension" />
       <sliceName value="specimenNumberExtension" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/specimen-sequenceNumber" />

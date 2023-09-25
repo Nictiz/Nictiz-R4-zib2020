@@ -15,7 +15,7 @@
     </telecom>
   </contact>
   <description value="A skin condition is a disturbance of the organ skin caused by a source to be specified later on." />
-  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) SkinDisorder-v3.3(2020EN)](https://zibs.nl/wiki/SkinDisorder-v3.3(2020EN))." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) SkinDisorder v3.3 (2020)](https://zibs.nl/wiki/SkinDisorder-v3.3(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -39,21 +39,9 @@
         <comment value="SkinDisorder" />
       </mapping>
     </element>
-    <element id="Condition.extension">
-      <path value="Condition.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Condition.extension:cause">
       <path value="Condition.extension" />
       <sliceName value="cause" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />

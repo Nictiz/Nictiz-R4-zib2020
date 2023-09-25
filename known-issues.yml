@@ -633,6 +633,10 @@ zib-SOAPReport:
     Composition.section:soapLine.code:
       - cardinality: 1..1 instead of 0..1
         reason: The cardinality of both zib (SOAPLineHeader) and FHIR is 1..1, but because of conceptual cardinality 0..1 is expected.
+  ignored issues:
+    Composition.section:soapLine:
+      - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
+        reason: The mapping is to a zib container, which doesn't have a useful description if implemented in a profile.
 
 zib-SOAPReport.SOAPLine:
   zib deviations:
@@ -681,6 +685,10 @@ zib-TreatmentDirective2:
     Consent.provision.actor:agreementParty.reference:
       - cardinality: 1..1 instead of 0..1
         reason: The .reference element cannot be used without sibling .role to represent the concepts NL-CM:2.2.10, NL-CM:2.2.11 and NL-CM:2.2.12, so these two elements have to be used together. The container itself is optional.
+  ignored issues:
+    Consent.provision.actor:agreementParty:
+      - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
+        reason: The mapping is to a zib container, which doesn't have a useful description if implemented in a profile.
 
 zib-Vaccination-event:
   zib deviations:
