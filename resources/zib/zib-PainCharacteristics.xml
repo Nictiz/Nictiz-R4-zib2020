@@ -54,5 +54,123 @@
         <comment value="Comment" />
       </mapping>
     </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:painType">
+      <path value="Observation.component" />
+      <sliceName value="painType" />
+    </element>
+    <element id="Observation.component:painType.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="PainType" />
+      <definition value="Description of the characteristics of the pain as experienced by the patient." />
+      <alias value="PijnAard" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mapping>
+        <identity value="zib-paincharacteristics-v1.0-2020EN" />
+        <map value="NL-CM:12.21.2" />
+        <comment value="PainType" />
+      </mapping>
+    </element>
+    <element id="Observation.component:painEpisodeDuration">
+      <path value="Observation.component" />
+      <sliceName value="painEpisodeDuration" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:painEpisodeDuration.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="PainEpisodeDuration" />
+      <definition value="The duration of a pain episode with non-continues pain. The duration is measured in units of time (days, hours, ...)" />
+      <alias value="PijnAanvalDuur" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <mapping>
+        <identity value="zib-paincharacteristics-v1.0-2020EN" />
+        <map value="NL-CM:12.21.4" />
+        <comment value="PainEpisodeDuration" />
+      </mapping>
+    </element>
+    <element id="Observation.component:painPattern">
+      <path value="Observation.component" />
+      <sliceName value="painPattern" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:painPattern.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="PainPattern" />
+      <definition value="Description of any repeating patterns in the course of the pain that occur over time." />
+      <alias value="PijnPatroon" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mapping>
+        <identity value="zib-paincharacteristics-v1.0-2020EN" />
+        <map value="NL-CM:12.21.6" />
+        <comment value="PainPattern" />
+      </mapping>
+    </element>
+    <element id="Observation.component:painCourse">
+      <path value="Observation.component" />
+      <sliceName value="painCourse" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:painCourse.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="310951000146102" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:painCourse.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="PainCourse" />
+      <definition value="The course of the pain over time since the onset." />
+      <alias value="Pijnbeloop" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <mapping>
+        <identity value="zib-paincharacteristics-v1.0-2020EN" />
+        <map value="NL-CM:12.21.7" />
+        <comment value="PainCourse" />
+      </mapping>
+    </element>
+    <element id="Observation.component:alleviatingFactors">
+      <path value="Observation.component" />
+      <sliceName value="alleviatingFactors" />
+      <short value="AlleviatingFactors" />
+      <definition value="Description of the factors that relieve the pain, such as rest." />
+      <alias value="VerzachtendeFactoren" />
+      <max value="1" />
+      <mapping>
+        <identity value="zib-paincharacteristics-v1.0-2020EN" />
+        <map value="NL-CM:12.21.8" />
+        <comment value="AlleviatingFactors" />
+      </mapping>
+    </element>
+    <element id="Observation.component:aggravatingFactors">
+      <path value="Observation.component" />
+      <sliceName value="aggravatingFactors" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:aggravatingFactors.value[x]">
+      <path value="Observation.component.value[x]" />
+      <type>
+        <code value="string" />
+      </type>
+    </element>
   </differential>
 </StructureDefinition>
