@@ -23,6 +23,31 @@
     <uri value="https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN)" />
     <name value="zib MedicalDevice-v3.3.1(2020EN)" />
   </mapping>
+  <mapping>
+    <identity value="zib-procedure-v5.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/Procedure-v5.2(2020EN)" />
+    <name value="zib Procedure-v5.2(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-bowelfunction-v3.1.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/BowelFunction-v3.1.1(2020EN)" />
+    <name value="zib BowelFunction-v3.1.1(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/FunctionalOrMentalStatus-v3.2(2020EN)" />
+    <name value="zib FunctionalOrMentalStatus-v3.2(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-mobility-v3.3-2020EN" />
+    <uri value="https://zibs.nl/wiki/Mobility-v3.3(2020EN)" />
+    <name value="zib Mobility-v3.3(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-stoma-v3.3-2020EN" />
+    <uri value="https://zibs.nl/wiki/Stoma-v3.3(2020EN)" />
+    <name value="zib Stoma-v3.3(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="DeviceUseStatement" />
@@ -33,21 +58,9 @@
       <path value="DeviceUseStatement" />
       <alias value="nl-core-MedicalDevice" />
     </element>
-    <element id="DeviceUseStatement.extension">
-      <path value="DeviceUseStatement.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="DeviceUseStatement.extension:healthProfessional">
       <path value="DeviceUseStatement.extension" />
       <sliceName value="healthProfessional" />
-      <min value="0" />
     </element>
     <element id="DeviceUseStatement.extension:healthProfessional.value[x]">
       <path value="DeviceUseStatement.extension.value[x]" />
@@ -60,7 +73,6 @@
     <element id="DeviceUseStatement.extension:location">
       <path value="DeviceUseStatement.extension" />
       <sliceName value="location" />
-      <min value="0" />
     </element>
     <element id="DeviceUseStatement.extension:location.value[x]">
       <path value="DeviceUseStatement.extension.value[x]" />
@@ -108,6 +120,14 @@
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.reasonReference:bowelFunction">
+      <path value="DeviceUseStatement.reasonReference" />
+      <sliceName value="bowelFunction" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction" />
       </type>
     </element>
     <element id="DeviceUseStatement.reasonReference:functionalOrMentalStatus">

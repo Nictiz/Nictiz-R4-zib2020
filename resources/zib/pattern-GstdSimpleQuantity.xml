@@ -3,19 +3,19 @@
   <id value="pattern-GstdSimpleQuantity" />
   <url value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdSimpleQuantity" />
   <name value="PatternGstdSimpleQuantity" />
-  <title value="G-Standaard SimpleQuantity" />
+  <title value="G-Standard SimpleQuantity" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
-    <name value="Nictiz"/>
+    <name value="Nictiz" />
     <telecom>
-      <system value="url"/>
-      <value value="https://www.nictiz.nl"/>
-      <use value="work"/>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
     </telecom>
   </contact>
-  <description value="A SimpleQuantity datatype profile to add a SimpleQuantity translation in G-standard units using the HL7 core iso21090-PQ-translation extension. The extension MAY be used to additionally add translations expressed in a different unit from a different unit code system (e.g. NHG table Gebruiksvoorschriften (Table 25)." />
-  <purpose value="This profile provides a uniform way to include the PQ-translation extension to provide a SimpleQuantity based on G-standards units." />
+  <description value="A SimpleQuantity datatype profile to add a SimpleQuantity translation in G-Standard units using the HL7 core iso21090-PQ-translation extension. The extension MAY be used to additionally add translations expressed in a different unit from a different unit code system (e.g. NHG table Gebruiksvoorschriften (Table 25))." />
+  <purpose value="This profile provides a uniform way to include the iso21090-PQ-translation extension to provide a SimpleQuantity based on G-Standard units." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <kind value="complex-type" />
@@ -24,17 +24,7 @@
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/SimpleQuantity" />
   <derivation value="constraint" />
   <differential>
-    <element id="Quantity.extension">
-      <path value="Quantity.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Quantity.extension:GstdSimpleQuantity">
+    <element id="Quantity.extension:gstdSimpleQuantity">
       <path value="Quantity.extension" />
       <sliceName value="gstdSimpleQuantity" />
       <type>
@@ -42,10 +32,9 @@
         <profile value="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation" />
       </type>
     </element>
-    <element id="Quantity.extension:GstdSimpleQuantity.value[x]">
+    <element id="Quantity.extension:gstdSimpleQuantity.value[x]">
       <path value="Quantity.extension.value[x]" />
-      <definition value="A SimpleQuantity translation in G-standard units using. The extension MAY be used to additionally add translations expressed in a different unit from a different unit code system (e.g. NHG table Gebruiksvoorschriften (Table 25)." />
-      <min value="1" />
+      <definition value="A SimpleQuantity translation in G-Standard units. The extension MAY be used to additionally add translations expressed in a different unit from a different unit code system (e.g. NHG table Gebruiksvoorschriften (Table 25))." />
       <type>
         <code value="Quantity" />
         <profile value="http://hl7.org/fhir/StructureDefinition/SimpleQuantity" />
