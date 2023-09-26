@@ -54,6 +54,25 @@
         <comment value="Comment" />
       </mapping>
     </element>
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
+      <short value="PainScore" />
+      <definition value="The intensity or severity of the pain experienced by the patient, measured using the NRS or VAS score." />
+      <alias value="PijnScore" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MolecularSequence" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-PainScore" />
+      </type>
+      <mapping>
+        <identity value="zib-paincharacteristics-v1.0-2020EN" />
+        <map value="NL-CM:12.21.5" />
+        <comment value="PainScore" />
+      </mapping>
+    </element>
     <element id="Observation.component">
       <path value="Observation.component" />
       <slicing>
