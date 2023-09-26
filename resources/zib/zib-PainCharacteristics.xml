@@ -56,9 +56,9 @@
     </element>
     <element id="Observation.hasMember">
       <path value="Observation.hasMember" />
-      <short value="PainScore" />
+      <short value="PainIntensity" />
       <definition value="The intensity or severity of the pain experienced by the patient, measured using the NRS or VAS score." />
-      <alias value="PijnScore" />
+      <alias value="PijnIntensiteit" />
       <max value="1" />
       <type>
         <code value="Reference" />
@@ -227,6 +227,20 @@
           <code value="162483007" />
         </coding>
       </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:alleviatingFactors.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="AlleviatingFactors" />
+      <definition value="Description of the factors that relieve the pain, such as rest." />
+      <alias value="VerzachtendeFactoren" />
+      <type>
+        <code value="string" />
+      </type>
+      <mapping>
+        <identity value="zib-paincharacteristics-v1.0-2020EN" />
+        <map value="NL-CM:12.21.8" />
+        <comment value="AlleviatingFactors" />
+      </mapping>
     </element>
     <element id="Observation.component:aggravatingFactors">
       <path value="Observation.component" />
