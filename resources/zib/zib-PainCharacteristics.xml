@@ -68,6 +68,15 @@
       <path value="Observation.component" />
       <sliceName value="painType" />
     </element>
+    <element id="Observation.component:painType.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="364632003" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
     <element id="Observation.component:painType.value[x]">
       <path value="Observation.component.value[x]" />
       <short value="PainType" />
@@ -76,6 +85,10 @@
       <type>
         <code value="CodeableConcept" />
       </type>
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.21.1--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-paincharacteristics-v1.0-2020EN" />
         <map value="NL-CM:12.21.2" />
@@ -86,6 +99,15 @@
       <path value="Observation.component" />
       <sliceName value="painEpisodeDuration" />
       <max value="1" />
+    </element>
+    <element id="Observation.component:painEpisodeDuration.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="162442009" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Observation.component:painEpisodeDuration.value[x]">
       <path value="Observation.component.value[x]" />
@@ -106,6 +128,15 @@
       <sliceName value="painPattern" />
       <max value="1" />
     </element>
+    <element id="Observation.component:painPattern.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="364631005" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
     <element id="Observation.component:painPattern.value[x]">
       <path value="Observation.component.value[x]" />
       <short value="PainPattern" />
@@ -114,6 +145,10 @@
       <type>
         <code value="CodeableConcept" />
       </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.21.3--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-paincharacteristics-v1.0-2020EN" />
         <map value="NL-CM:12.21.6" />
@@ -142,6 +177,10 @@
       <type>
         <code value="CodeableConcept" />
       </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.21.2--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-paincharacteristics-v1.0-2020EN" />
         <map value="NL-CM:12.21.7" />
@@ -161,16 +200,62 @@
         <comment value="AlleviatingFactors" />
       </mapping>
     </element>
+    <element id="Observation.component:alleviatingFactors.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="162483007" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
     <element id="Observation.component:aggravatingFactors">
       <path value="Observation.component" />
       <sliceName value="aggravatingFactors" />
       <max value="1" />
+    </element>
+    <element id="Observation.component:aggravatingFactors.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="162473008" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Observation.component:aggravatingFactors.value[x]">
       <path value="Observation.component.value[x]" />
       <type>
         <code value="string" />
       </type>
+    </element>
+    <element id="Observation.component:painCharacteristicsDateTime">
+      <path value="Observation.component" />
+      <sliceName value="painCharacteristicsDateTime" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:painCharacteristicsDateTime.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="439771001" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:painCharacteristicsDateTime.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="PainCharacteristicsDateTime" />
+      <definition value="The date and time at which the pain characteristics have been identified." />
+      <alias value="PijnkenmerkenDatumTijd" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-paincharacteristics-v1.0-2020EN" />
+        <map value="NL-CM:12.21.9" />
+        <comment value="PainCharacteristicsDateTime" />
+      </mapping>
     </element>
   </differential>
 </StructureDefinition>
