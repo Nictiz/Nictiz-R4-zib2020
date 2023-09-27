@@ -388,5 +388,5 @@ This document contains release notes per zib, indicating differences with their 
 * Relaxed cardinality of `value[x]` to 0..1 of the conceptual cardinalities of the zib.
 
 ## zib-wounds.WoundCharacteristics
-* The Profile's name has been changed from "WoundCharacteristics" to "zib-wounds.WoundCharacteristics".
+* The profile's name has been changed from "WoundCharacteristics" to "zib-wounds.WoundCharacteristics".
 * The concept of "WoundImage" is a separate profile (zib-wounds.WoundImage) instead of a component.
