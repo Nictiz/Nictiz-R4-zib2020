@@ -5,18 +5,18 @@
   <name value="ExtTimeIntervalDuration" />
   <title value="ext TimeInterval.Duration" />
   <status value="draft" />
-  <publisher value="Nictiz"/>
+  <publisher value="Nictiz" />
   <contact>
-    <name value="Nictiz"/>
+    <name value="Nictiz" />
     <telecom>
-      <system value="email"/>
-      <value value="info@nictiz.nl"/>
-      <use value="work"/>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
     </telecom>
   </contact>
-  <description value="The duration of the interval in appropriate units of time (e.g. days or hours, etc.)" />
-  <purpose value="This extension represents Duration of [TimeInterval](https://zibs.nl/wiki/TimeInterval-v1.0(2020EN))." />
-  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise."/>
+  <description value="An extension to provide the Duration concept of zib TimeInterval." />
+  <purpose value="This extension can be used to represent the Duration concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) TimeInterval v1.0 (2020)](https://zibs.nl/wiki/TimeInterval-v1.0(2020EN)).&#xD;&#xA;&#xD;&#xA;Please note: this extension should not be added to profiles in isolation, but via either the [zib-TimeInterval](http://nictiz.nl/fhir/StructureDefinition/zib-TimeInterval) profile or the [ext-TimeInterval.Period](http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period) extension. See the documentation on these resources for more information." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
     <identity value="zib-timeinterval-v1.0-2020EN" />
@@ -33,17 +33,21 @@
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
   <derivation value="constraint" />
   <differential>
+    <element id="Extension">
+      <path value="Extension" />
+      <max value="1" />
+    </element>
     <element id="Extension.url">
       <path value="Extension.url" />
-      <fixedUri value="http://nictiz.nl/fhir/StructureDefintion/ext-TimeInterval.Duration" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration" />
     </element>
     <element id="Extension.value[x]">
       <path value="Extension.value[x]" />
       <short value="Duration" />
-      <definition value="The duration of the interval in appropriate units of time (e.g. days or hours, etc." />
+      <definition value="The duration of the interval in appropriate units of time (e.g. days or hours, etc.)." />
       <alias value="tijdsDuur" />
       <type>
-        <code value="Quantity" />
+        <code value="Duration" />
       </type>
       <mapping>
         <identity value="zib-timeinterval-v1.0-2020EN" />

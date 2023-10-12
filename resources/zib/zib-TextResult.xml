@@ -10,8 +10,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -45,11 +45,11 @@
       <path value="DiagnosticReport.status" />
       <short value="TextResultStatus" />
       <definition value="The status of the result." />
-      <comment value="Additional information about the mapping of the optional (0..1) TextResultStatus (0..1) to the mandatory (1..1) `.status`: because `.status` is 1..1 implementers shall have to support `.status` one way or another although the _unknown_ code can be used as a fallback. When TextResultStatus is absent, other codes may be used than from the zib. In that case, the code-specification extension should be omitted." />
+      <comment value="Additional information about the mapping of the optional (0..1) TextResultStatus to the mandatory (1..1) `.status`: because `.status` is 1..1 implementers shall have to support `.status` one way or another although the _unknown_ code can be used as a fallback. When TextResultStatus is absent, other codes may be used than from the zib. In that case, the ext-CodeSpecification extension should be omitted." />
       <alias value="TekstUitslagStatus" />
       <binding>
         <strength value="required" />
-        <description value="Use ConceptMap TekstStatusCodelijst_to_DiagnosticReportStatus to translate terminology from the functional model to profile terminology in ValueSet DiagnosticReportStatus" />
+        <description value="Use ConceptMap TekstStatusCodelijst_to_DiagnosticReportStatus to translate terminology from the functional model to profile terminology in ValueSet DiagnosticReportStatus." />
         <valueSet value="http://hl7.org/fhir/ValueSet/diagnostic-report-status|4.0.1">
           <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
             <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/TekstStatusCodelijst-to-DiagnosticReportStatus" />
@@ -62,21 +62,9 @@
         <comment value="TextResultStatus" />
       </mapping>
     </element>
-    <element id="DiagnosticReport.status.extension">
-      <path value="DiagnosticReport.status.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="DiagnosticReport.status.extension:textResultStatus">
       <path value="DiagnosticReport.status.extension" />
       <sliceName value="textResultStatus" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />

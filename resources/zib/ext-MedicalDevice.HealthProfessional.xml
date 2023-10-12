@@ -9,13 +9,13 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
-  <description value="An extension to caputure the healthcare provider involved in the indication for use of the medical device implant." />
-  <purpose value="This extension represents the HealthProfessional reference of (zib MedicalDevice v3.3.1(2020))[https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN)]." />
+  <description value="An extension to provide the health professional involved in the indication for use of the medical device implant." />
+  <purpose value="This extension represents the HealthProfessional concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) MedicalDevice v3.3.1 (2020)](https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -44,14 +44,12 @@
     <element id="Extension.value[x]">
       <path value="Extension.value[x]" />
       <short value="HealthProfessional" />
-      <definition value="The healthcare provider involved in the indication for use of the medical device implant." />
-      <comment value="Each occurence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [zib-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [zib-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner)). The reference to the Practitioner resource is referenced from the PractitionerRole instance. For this reason, sending systems should fill the reference to the PractitionerRole instance here, and not the Practitioner resource. Only in rare circumstances, there is just a Practitioner instance, in which case it is that instance which will be referenced here." />
+      <definition value="The health professional involved in the indication for use of the medical device implant." />
       <alias value="Zorgverlener" />
       <type>
         <code value="Reference" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-ZibHealthProfessionalReference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner" />
       </type>
       <mapping>
         <identity value="zib-medicaldevice-v3.3.1-2020EN" />

@@ -13,12 +13,12 @@
   <contact>
     <name value="Nictiz"/>
     <telecom>
-      <system value="email"/>
-      <value value="info@nictiz.nl"/>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work"/>
     </telecom>
   </contact>
-    <description value="Maps AllergyCategory codes as found in the Dutch zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) [AllergyIntolerance v3.3 (2020)](https://zibs.nl/wiki/AllergyIntolerance-v3.3(2020EN)) to &lt;	http://hl7.org/fhir/ValueSet/allergy-intolerance-category&gt; as found in `AllergyIntolerance.category` in FHIR R4."/>
+    <description value="Maps AllergyCategory codes as found in the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) AllergyIntolerance v3.3 (2020)](https://zibs.nl/wiki/AllergyIntolerance-v3.3(2020EN)) to &lt;http://hl7.org/fhir/ValueSet/allergy-intolerance-category&gt; as found in `AllergyIntolerance.category` in FHIR R4."/>
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
     <sourceCanonical value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.8.2.2--20200901000000" />
     <targetCanonical value="http://hl7.org/fhir/ValueSet/allergy-intolerance-category"/>
@@ -58,19 +58,20 @@
             <target>
                 <code value="biologic" />
                 <display value="Biologic" />
-                <equivalence value="subsumes" />
-                <comment value="https://bits.nictiz.nl/browse/ZIB-998" />
+                <equivalence value="specializes" />
+                <comment value="https://bits.nictiz.nl/browse/ZIB-998, https://bits.nictiz.nl/browse/MM-4791" />
             </target>
         </element>
     </group>
     <group>
         <source value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor" />
+        <target value="http://hl7.org/fhir/allergy-intolerance-category"/>
         <element>
             <code value="OTH" />
             <display value="anders" />
             <target>
                 <equivalence value="unmatched" />
-                <comment value="The zib defines that &#39;Other&#39; is a possible value for the AllergyCategory. The required AllergyIntolerance.category binding does not recognize this use case. If transmitting the value under OTH is not required, omit  AllergyIntolerance.category. If the actual value associated with OTH is known and relevant, use AllergyIntolerance.category (without value) + extension http://nictiz.nl/fhir/StructureDefinition/code-specification with the description under valueCodeableConcept.text" />
+                <comment value="The zib defines that &#39;Other&#39; is a possible value for the AllergyCategory. The required AllergyIntolerance.category binding does not recognize this use case. If transmitting the value under OTH is not required, omit AllergyIntolerance.category. If the actual value associated with OTH is known and relevant, use AllergyIntolerance.category (without value) + extension http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification with the description under valueCodeableConcept.text" />
             </target>
         </element>
     </group>

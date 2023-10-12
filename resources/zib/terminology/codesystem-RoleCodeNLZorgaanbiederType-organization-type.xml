@@ -7,7 +7,7 @@
    <language value="nl-NL"/>
    <extension url="http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod">
       <valuePeriod>
-         <start value="2020-11-11T00:00:00+00:00"/>
+         <start value="2023-04-14T00:00:00+00:00"/>
       </valuePeriod>
    </extension>
    <url value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
@@ -16,7 +16,7 @@
       <system value="urn:ietf:rfc:3986"/>
       <value value="urn:oid:2.16.840.1.113883.2.4.15.1060"/>
    </identifier>
-   <version value="2020-11-11T00:00:00"/>
+   <version value="2023-04-14T00:00:00"/>
    <name value="RoleCodeNLZorgaanbiederType"/>
    <title value="RoleCodeNL - zorgaanbiedertype (organisaties)"/>
    <status value="active"/>
@@ -29,11 +29,17 @@
          <value value="https://www.nictiz.nl"/>
       </telecom>
    </contact>
-   <description value="Dit codesysteem bevat concepten die het roltype bepaalt van een organisatie die als zorgaanbieder optreedt. Het is een invulling van het HL7v3 vocabulairedomein “RoleCode” en wel specifiek het concept “AssignedRoleType”.&#xA;                &#xD;&#xA;* 2017-02-08: Toegevoegd BRA (Brandwondencentrum) en DIA (Dialysecentrum) op verzoek RIVM.&#xD;&#xA;* 2017-12-20 Level van Openbare apotheek gecorrigeerd van 1 naar 2&#xD;&#xA;* 2018-03-21 Na wijzigingsverzoek codes A1 voor Apotheekinstelling en H1 voor Huisartsinstelling van A (Astract) naar S (Specializable) omgezet zodat deze toepasbaar worden op dit niveau&#xD;&#xA;* 2020-05-18 Toegevoegd code K4 voor Kraamzorg na wijzigingsverzoek (https://bits.nictiz.nl/browse/ZIB-1171)&#xD;&#xA;* 2020-07-16 Toegevoegd code H2 voor Hospice na wijzigingsverzoek van zib-centrum (https://bits.nictiz.nl/browse/ZIB-1171)&#xD;&#xA;* 2020-11-11 Toegevoegd code GC voor Geboortecentrum na wijzigingsverzoek van Geboortezorg (https://bits.nictiz.nl/browse/GZ-333)&#xD;&#xA;&#xD;&#xA;"/>
+   <description value="Dit codesysteem bevat concepten die het roltype bepaalt van een organisatie die als zorgaanbieder optreedt. Het is een invulling van het HL7v3 vocabulairedomein “RoleCode” en wel specifiek het concept “AssignedRoleType”. &#xA;* 2017-02-08: Toegevoegd BRA (Brandwondencentrum) en DIA (Dialysecentrum) op verzoek RIVM.&#xA;* 2017-12-20 Level van Openbare apotheek gecorrigeerd van 1 naar 2&#xA;* 2018-03-21 Na wijzigingsverzoek codes A1 voor Apotheekinstelling en H1 voor Huisartsinstelling van A (Astract) naar S (Specializable) omgezet zodat deze toepasbaar worden op dit niveau&#xA;* 2020-05-18 Toegevoegd code K4 voor Kraamzorg na wijzigingsverzoek (https://bits.nictiz.nl/browse/ZIB-1171)&#xA;* 2020-07-16 Toegevoegd code H2 voor Hospice na wijzigingsverzoek van zib-centrum (https://bits.nictiz.nl/browse/ZIB-1171)&#xA;* 2020-11-11 Toegevoegd code GC voor Geboortecentrum na wijzigingsverzoek van Geboortezorg (https://bits.nictiz.nl/browse/GZ-333)&#xA;* 2022-04-25 Toegevoegd code JZ voor Jeugdzorg, G1 voor Verslavingszorg, en F1 voor Fysiotherapiepraktijk na wijzigingsverzoek van Zibcentrum (https://bits.nictiz.nl/browse/ZIB-1559)&#xA;* 2022-06-30 Toegevoegd code TD voor Trombosedienst na wijzigingsverzoek van Laboratoriumuitwisseling&#xA;* 2022-07-07 Toegevoegd code TA1, TA2 voor Tandartspraktijken, ZG Zorggroep en SC Specialistisch Centrum na wijzigingsverzoeken van VZVZ&#xA;* 2022-09-10 Toegevoegd code AMB Ambulancezorg na wijzigingsverzoek van VZVZ&#xA;* 2022-12-21 Wijzigingen naar aanleiding harmonisatie Mitz, Vektis AGB en Patiënttermen in samenspraak met VZVZ, Patiëntenfederatie, Vecozo en Vektis                     &#xA;    *"/>
    <copyright value="Nictiz"/>
    <caseSensitive value="false"/>
    <content value="complete"/>
-   <count value="32"/>
+   <count value="93"/>
+   <property>
+      <code value="status"/>
+      <uri value="http://hl7.org/fhir/concept-properties"/>
+      <description value="A code that indicates the status of the concept. Values found in this version of the code system are: active, draft, rejected"/>
+      <type value="code"/>
+   </property>
    <property>
       <code value="effectiveDate"/>
       <uri value="http://hl7.org/fhir/concept-properties"/>
@@ -62,6 +68,10 @@
       <code value="AssignedRoleType"/>
       <display value="Een roltype wordt gebruikt om een entiteit verder aan te duiden, die een rol speelt met AssignedEntity als modelattribuut RoleClass."/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="notSelectable"/>
          <valueBoolean value="true"/>
       </property>
@@ -75,7 +85,95 @@
       </property>
       <property>
          <code value="child"/>
+         <valueCode value="Z5"/>
+      </property>
+      <property>
+         <code value="child"/>
          <valueCode value="X3"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="G6"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="IN15"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="IN9"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="IN10"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="IN11"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="IN3"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="IN13"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="IN2"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="IN5"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="IN7"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="PM10"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="PM11"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="Z27"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="PM12"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="PM3"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="PM4"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="PM6"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="PM7"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="PM8"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="PM9"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="Z10"/>
       </property>
       <property>
          <code value="child"/>
@@ -95,11 +193,11 @@
       </property>
       <property>
          <code value="child"/>
-         <valueCode value="R8"/>
+         <valueCode value="P6"/>
       </property>
       <property>
          <code value="child"/>
-         <valueCode value="P6"/>
+         <valueCode value="C3"/>
       </property>
       <property>
          <code value="child"/>
@@ -107,7 +205,11 @@
       </property>
       <property>
          <code value="child"/>
-         <valueCode value="G6"/>
+         <valueCode value="G9"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="G1"/>
       </property>
       <property>
          <code value="child"/>
@@ -123,10 +225,6 @@
       </property>
       <property>
          <code value="child"/>
-         <valueCode value="JGZ"/>
-      </property>
-      <property>
-         <code value="child"/>
          <valueCode value="G3"/>
       </property>
       <property>
@@ -135,12 +233,36 @@
       </property>
       <property>
          <code value="child"/>
-         <valueCode value="DIA"/>
+         <valueCode value="JZ"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="F1"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="SC"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="TA1"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="ZG"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="AMB"/>
       </property>
    </concept>
    <concept>
       <code value="V4"/>
       <display value="Ziekenhuis"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
@@ -162,6 +284,10 @@
       <code value="V5"/>
       <display value="Universitair Medisch Centrum"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="V4"/>
       </property>
@@ -170,6 +296,10 @@
       <code value="V6"/>
       <display value="Algemeen ziekenhuis"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="V4"/>
       </property>
@@ -177,6 +307,10 @@
    <concept>
       <code value="BRA"/>
       <display value="Brandwondencentrum"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="effectiveDate"/>
          <valueDateTime value="2017-02-08"/>
@@ -190,20 +324,24 @@
       <code value="Z4"/>
       <display value="Zelfstandig behandelcentrum"/>
       <property>
-         <code value="parent"/>
-         <valueCode value="AssignedRoleType"/>
+         <code value="status"/>
+         <valueCode value="active"/>
       </property>
       <property>
-         <code value="child"/>
-         <valueCode value="Z5"/>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
       </property>
    </concept>
    <concept>
       <code value="Z5"/>
       <display value="Diagnostisch centrum"/>
       <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
          <code value="parent"/>
-         <valueCode value="V4"/>
+         <valueCode value="AssignedRoleType"/>
       </property>
       <property>
          <code value="child"/>
@@ -214,12 +352,16 @@
       <code value="B1"/>
       <display value="Beeldvormende diagnostiek"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="notSelectable"/>
          <valueBoolean value="true"/>
       </property>
       <property>
          <code value="parent"/>
-         <valueCode value="V5"/>
+         <valueCode value="V4"/>
       </property>
       <property>
          <code value="child"/>
@@ -230,45 +372,405 @@
       <code value="B2"/>
       <display value="Echocentrum"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
-         <valueCode value="B1"/>
+         <valueCode value="V5"/>
       </property>
    </concept>
    <concept>
       <code value="X3"/>
       <display value="Verplegings- of verzorgingsinstelling"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
       </property>
       <property>
          <code value="child"/>
-         <valueCode value="R5"/>
+         <valueCode value="M1"/>
       </property>
       <property>
          <code value="child"/>
-         <valueCode value="M1"/>
-      </property>
-   </concept>
-   <concept>
-      <code value="R5"/>
-      <display value="Verpleeghuis"/>
-      <property>
-         <code value="parent"/>
-         <valueCode value="V4"/>
+         <valueCode value="R5"/>
       </property>
    </concept>
    <concept>
       <code value="M1"/>
       <display value="Verzorgingstehuis"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="V4"/>
       </property>
    </concept>
    <concept>
+      <code value="R5"/>
+      <display value="Verpleeghuis"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="G6"/>
+      <display value="Verstandelijk gehandicaptenzorg"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="IN15"/>
+      <display value="Zorg voor mensen met een beperking"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="rejected"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="IN9"/>
+      <display value="Woonvoorziening voor lichamelijk gehandicapten"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="IN10"/>
+      <display value="Woonvoorziening voor verstandelijk gehandicapten"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="IN11"/>
+      <display value="Woonvoorziening voor visueel gehandicapten"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="IN3"/>
+      <display value="Instelling voor lichamelijk gehandicapten"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="IN13"/>
+      <display value="Instelling voor verstandelijk gehandicapten"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="IN2"/>
+      <display value="Instelling voor auditief gehandicapten"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="IN5"/>
+      <display value="Instelling voor visueel gehandicapten"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="IN7"/>
+      <display value="Verpleegkundig kinderdagverblijf"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="PM10"/>
+      <display value="Orthoptistenpraktijk"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="PM11"/>
+      <display value="Podologiepraktijk"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Z27"/>
+      <display value="Pedicurepraktijk"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="PM12"/>
+      <display value="Podotherapiepraktijk"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="PM3"/>
+      <display value="Diëtistenpraktijk"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="PM4"/>
+      <display value="Ergotherapiepraktijk"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="PM6"/>
+      <display value="Huidtherapiepraktijk"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="PM7"/>
+      <display value="Logopediepraktijk"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="PM8"/>
+      <display value="Oefentherapiepraktijk"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="PM9"/>
+      <display value="Optometriepraktijk"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Z10"/>
+      <display value="Bloedbank"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
       <code value="A1"/>
       <display value="Apotheekinstelling"/>
+      <designation>
+         <language value="nl-NL"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="Apotheek"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
@@ -286,6 +788,10 @@
       <code value="J8"/>
       <display value="Openbare apotheek"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="V4"/>
       </property>
@@ -294,6 +800,10 @@
       <code value="K9"/>
       <display value="Zelfstandig opererende ziekenhuisapotheek"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="V4"/>
       </property>
@@ -301,6 +811,10 @@
    <concept>
       <code value="H1"/>
       <display value="Huisartsinstelling"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
@@ -317,6 +831,18 @@
    <concept>
       <code value="Z3"/>
       <display value="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
+      <designation>
+         <language value="nl-NL"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="Huisartsenpraktijk"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="parent"/>
          <valueCode value="V4"/>
@@ -330,6 +856,10 @@
       <code value="K3"/>
       <display value="Apotheekhoudende huisartspraktijk"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="V5"/>
       </property>
@@ -337,6 +867,18 @@
    <concept>
       <code value="N6"/>
       <display value="Huisartsenpost (t.b.v. dienstwaarneming)"/>
+      <designation>
+         <language value="nl-NL"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="Huisartsenpost"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="parent"/>
          <valueCode value="V4"/>
@@ -346,6 +888,10 @@
       <code value="L1"/>
       <display value="Laboratorium"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
       </property>
@@ -354,13 +900,9 @@
       <code value="P4"/>
       <display value="Polikliniek (als onderdeel van een ziekenhuis)"/>
       <property>
-         <code value="parent"/>
-         <valueCode value="AssignedRoleType"/>
+         <code value="status"/>
+         <valueCode value="active"/>
       </property>
-   </concept>
-   <concept>
-      <code value="R8"/>
-      <display value="Revalidatiecentrum"/>
       <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
@@ -369,6 +911,71 @@
    <concept>
       <code value="P6"/>
       <display value="Preventieve gezondheidszorg (waaronder Bevolkingsonderzoek)"/>
+      <designation>
+         <language value="nl-NL"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="Preventieve gezondheidszorg"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="JGZ"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="B4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="JGZ"/>
+      <display value="Jeugdgezondheidszorg"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="B4"/>
+      <display value="Bevolkingsonderzoek kanker"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="C3"/>
+      <display value="Complementaire zorg"/>
+      <definition value="Complementaire zorg is aanvullende zorg, die gegeven wordt naast de reguliere zorg die u krijgt voor uw aandoening. Complementaire zorg gaat uit van een holistische benadering waarbij de zorg de lichamelijke, emotionele, mentale, spirituele en sociale behoeften omvat.&#xA;                        Complementaire zorg kan vermindering geven van klachten zoals pijn, misselijkheid, braken, angst, vermoeidheid en slaapproblemen. Daarnaast richt complementaire zorg zich vooral op het bevorderen van ontspanning en comfort; De zorg is niet klachtgericht maar gezondheidgericht. (Bron V&amp;VN)"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
       <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
@@ -377,14 +984,107 @@
    <concept>
       <code value="G5"/>
       <display value="Geestelijke Gezondheidszorg"/>
+      <designation>
+         <language value="nl-NL"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="Geestelijke Gezondheidszorg (GGZ)"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="G7"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="G8"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="V7"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="G7"/>
+      <display value="Psychologiepraktijk en psychotherapiepraktijk"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="G8"/>
+      <display value="Psychiatriepraktijk zorg"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="V7"/>
+      <display value="PUK / PAAZ afdeling ziekenhuis"/>
+      <definition value="Psychiatrische afdeling van het algemeen ziekenhuis (PAAZ) en psychiatrische universitaire kliniek (PUK)"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="G9"/>
+      <display value="Gemeentelijke gezondheidsdienst"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
       <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
       </property>
    </concept>
    <concept>
-      <code value="G6"/>
-      <display value="Verstandelijk gehandicaptenzorg"/>
+      <code value="G1"/>
+      <display value="Verslavingszorg"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
@@ -394,6 +1094,10 @@
       <code value="T2"/>
       <display value="Thuiszorg"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
       </property>
@@ -401,6 +1105,10 @@
    <concept>
       <code value="K4"/>
       <display value="Kraamzorg"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="effectiveDate"/>
          <valueDateTime value="2020-05-18"/>
@@ -414,6 +1122,10 @@
       <code value="H2"/>
       <display value="Hospice"/>
       <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
          <code value="effectiveDate"/>
          <valueDateTime value="2020-07-16"/>
       </property>
@@ -423,16 +1135,20 @@
       </property>
    </concept>
    <concept>
-      <code value="JGZ"/>
-      <display value="Jeugdgezondheidszorg"/>
-      <property>
-         <code value="parent"/>
-         <valueCode value="AssignedRoleType"/>
-      </property>
-   </concept>
-   <concept>
       <code value="G3"/>
       <display value="Verloskundigenpraktijk"/>
+      <designation>
+         <language value="nl-NL"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="Verloskundepraktijk"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
@@ -441,6 +1157,10 @@
    <concept>
       <code value="GC"/>
       <display value="Geboortecentrum"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
       <property>
          <code value="effectiveDate"/>
          <valueDateTime value="2020-11-11"/>
@@ -451,8 +1171,694 @@
       </property>
    </concept>
    <concept>
+      <code value="JZ"/>
+      <display value="Jeugdzorg"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-04-25"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="F1"/>
+      <display value="Fysiotherapiepraktijk"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="SC"/>
+      <display value="Specialistisch Centrum"/>
+      <definition value="Categorale instellingen/ziekenhuizen (MSZ-instellingen voor een specifieke diagnose/ziekte of patiëntengroep). Het zijn geen (algemene) ziekenhuizen en ook geen zelfstandige klinieken (ZBC’s). Voorbeelden: St Maartenskliniek: behandelt patiënten met aandoeningen aan het bewegingsapparaat&#xA;                        Antonie van Leeuwenziekenhuis: behandelt kankerpatiënten&#xA;                        Prinses Maxima Centrum: behandelt kinderen met kanker&#xA;                        SEIN: behandelt patiënten met epilepsie"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-07-07"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="Z26"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="R8"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="DIA"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="TD"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="B3"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="Z12"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="Z14"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="Z15"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="Z16"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="Z17"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="Z18"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="Z19"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="Z20"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="Z21"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="Z22"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="Z23"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="Z24"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="Z25"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="Z6"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="Z7"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="Z8"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="Z9"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="PM13"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="PM14"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="PM15"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Z26"/>
+      <display value="Transplantatie organisatie"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="R8"/>
+      <display value="Revalidatiecentrum"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
       <code value="DIA"/>
       <display value="Dialysecentrum"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="TD"/>
+      <display value="Trombosedienst"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-06-30"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="B3"/>
+      <display value="Radiotherapeutisch centrum"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Z12"/>
+      <display value="Cardiologiecentrum"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Z14"/>
+      <display value="Epilepsiekliniek"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Z15"/>
+      <display value="Esthetisch-medisch centrum"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Z16"/>
+      <display value="Flebologiecentrum"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Z17"/>
+      <display value="Forensisch centrum"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Z18"/>
+      <display value="Handcentrum en polscentrum"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Z19"/>
+      <display value="Kankercentrum"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Z20"/>
+      <display value="Oogkliniek"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Z21"/>
+      <display value="Pijncentrum"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Z22"/>
+      <display value="Psycho-oncologisch centrum"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Z23"/>
+      <display value="Sportmedisch centrum"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Z24"/>
+      <display value="Trombosedienst"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Z25"/>
+      <display value="IVF-kliniek"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Z6"/>
+      <display value="Abortuskliniek"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Z7"/>
+      <display value="Astmacentrum"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Z8"/>
+      <display value="Audiologisch centrum"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Z9"/>
+      <display value="Besnijdeniscentrum"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="PM13"/>
+      <display value="Centrum voor eetstoornissen"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="PM14"/>
+      <display value="Centrum voor orthopedie en beweging"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="PM15"/>
+      <display value="Dermatologisch centrum"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="TA1"/>
+      <display value="Tandartsinstelling"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-07-07"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="TA2"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="TA3"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="TA4"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="TA5"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="TA6"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="TA2"/>
+      <display value="Tandartspraktijk (zelfstandig of groepspraktijk)"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-07-07"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="TA3"/>
+      <display value="Centrum voor bijzondere tandheelkunde"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="TA4"/>
+      <display value="Tandprotethische praktijk"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="TA5"/>
+      <display value="Orthodontiepraktijk"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="TA6"/>
+      <display value="Mondhygiënistenpraktijk"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="draft"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-12-21"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="V4"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="ZG"/>
+      <display value="Zorggroep"/>
+      <definition value="Zorggroep &#xA;                        Organisaties die met zorgverzekeraars contracten sluiten om de chronische zorg in een bepaalde regio te coördineren en uit te voeren met als doelstelling de kwaliteit van zorg te verbeteren (definitie van LVG).&#xA;                        Organisatie met rechtspersoonlijkheid waarin zorgaanbieders zijn verenigd. Met de term ‘zorggroep’ wordt de hoofdcontractant van het keten-DBC-contract bedoeld en niet het team van zorgverleners dat de feitelijke zorg verleent (definitie van ZonMw)."/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-07-07"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="AMB"/>
+      <display value="Ambulancezorg"/>
+      <designation>
+         <language value="nl-NL"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+         </use>
+         <value value="Ambulancediensten"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2022-09-10"/>
+      </property>
       <property>
          <code value="parent"/>
          <valueCode value="AssignedRoleType"/>
