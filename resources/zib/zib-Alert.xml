@@ -15,7 +15,7 @@
     </telecom>
   </contact>
   <description value="An alert describes a clinical or administrative fact brought to the attention of the users of the clinical systems to be taken into account when shaping diagnostic and therapeutic policy or in dealing with the patient, usually because of a safety risk.&#xD;&#xA;Disorders that describe the body’s sensitivity to a substance which results in a specific physiological reaction after being exposed to that substance are referred to as allergies. These are described in a separate information model.&#xD;&#xA;Warnings for non-allergic disorders can concern:&#xD;&#xA;* A disorder, condition or diagnosis which can be considered as a contraindication for undergoing a certain type of therapy, such as pregnancy or long QT syndrome;&#xD;&#xA;* Impaired functioning of an organ system (heart failure, impaired liver or kidney function, weakened immune system);&#xD;&#xA;* Risk of spreading certain microorganisms (multi-resistant bacteria, tubercle bacilli, HIV, HBV, Ebola virus);&#xD;&#xA;* Other risks" />
-  <purpose value="This Flag resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Alert-v4.1(2020EN)](https://zibs.nl/wiki/Alert-v4.1(2020EN))." />
+  <purpose value="This Flag resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Alert v4.1 (2020)](https://zibs.nl/wiki/Alert-v4.1(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -51,21 +51,9 @@
         <comment value="Alert" />
       </mapping>
     </element>
-    <element id="Flag.extension">
-      <path value="Flag.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Flag.extension:concern">
       <path value="Flag.extension" />
       <sliceName value="concern" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -92,7 +80,6 @@
     <element id="Flag.extension:comment">
       <path value="Flag.extension" />
       <sliceName value="comment" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
