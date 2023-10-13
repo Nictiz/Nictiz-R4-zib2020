@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<List xmlns="http://hl7.org/fhir">
+   <id value="nl-core-FamilySituationChild-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FamilySituationChild"/>
+   </meta>
+   <status value="current"/>
+   <mode value="working"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="55801000146105"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <note>
+      <text value="Test 1 2 3"/>
+   </note>
+   <!--<entry>
+      <item>
+         <reference value="Observation/nl-core-FamilySituationChild-Observation-01"/>
+         <type value="Observation"/>
+      </item>
+   </entry>-->
+   <entry>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-List-EntryCategory">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="TODO"/>
+               <display value="ParentCarer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <item>
+         <reference value="RelatedPerson/nl-core-FamilySituationChild-RelatedPerson-01"/>
+         <type value="RelatedPerson"/>
+         <display value="ParentCarer"/>
+      </item>
+   </entry>
+   <entry>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-List-EntryCategory">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="67822003"/>
+               <display value="Child"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <item>
+         <reference value="RelatedPerson/nl-core-FamilySituationChild-RelatedPerson-02"/>
+         <type value="RelatedPerson"/>
+         <display value="Child"/>
+      </item>
+   </entry>
+   <entry>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-List-EntryCategory">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="375005"/>
+               <display value="Sibling"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <item>
+         <reference value="RelatedPerson/nl-core-FamilySituationChild-RelatedPerson-03"/>
+         <type value="RelatedPerson"/>
+         <display value="Sibling"/>
+      </item>
+   </entry>
+</List>
