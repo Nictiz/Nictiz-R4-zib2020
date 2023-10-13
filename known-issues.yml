@@ -211,6 +211,16 @@ zib-Encounter:
         reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*, effective) is explained by the missing ContactReason container in FHIR. This container may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
 
 zib-FamilySituationChild:
+  zib deviations:
+   List.entry:parentCarer.item:
+      - cardinality: 1..1 instead of 0..*
+        reason: List.entry:parentCarer has cardinality 0..*, making the cardinality of List.entry:parentCarer.item effectively 0..* as required by the zib.
+   List.entry:child.item:
+      - cardinality: 1..1 instead of 0..1
+        reason: List.entry:child (mapped to the container Child) has cardinality 0..*. Because both concepts in the Child container, ContactPerson and DateOfBirth, refer to or are present in the RelatedPerson resource that should be referenced in List.entry:child.item, this element has to be present for the List.entry to have any meaningful contents.
+   List.entry:sibling.item:
+      - cardinality: 1..1 instead of 0..1
+        reason: List.entry:sibling (mapped to the container Sibling) has cardinality 0..*. Because both concepts in the Sibling container, ContactPerson and DateOfBirth, refer to or are present in the RelatedPerson resource that should be referenced in List.entry:sibling.item, this element has to be present for the List.entry to have any meaningful contents.
   ignored issues:
     List.entry:*.item:
       - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"

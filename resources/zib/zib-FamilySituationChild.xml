@@ -1,277 +1,273 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="zib-FamilySituationChild" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-FamilySituationChild" />
-  <name value="ZibFamilySituationChild" />
-  <title value="zib FamilySituationChild" />
-  <status value="draft" />
-  <publisher value="Nictiz" />
+  <id value="zib-FamilySituationChild"/>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-FamilySituationChild"/>
+  <name value="ZibFamilySituationChild"/>
+  <title value="zib FamilySituationChild"/>
+  <status value="draft"/>
+  <publisher value="Nictiz"/>
   <contact>
-    <name value="Nictiz" />
+    <name value="Nictiz"/>
     <telecom>
-      <system value="url" />
-      <value value="https://www.nictiz.nl" />
-      <use value="work" />
+      <system value="url"/>
+      <value value="https://www.nictiz.nl"/>
+      <use value="work"/>
     </telecom>
   </contact>
-  <description value="Traditionally, a family is defined as a group of people of one or more adults who carry responsibility for caring for and raising one or more children.&#xD;&#xA;Children can have multiple family situations when they live partly with their father and partly with their mother e.g. after a divorce.&#xD;&#xA;Currently, the term is used more broadly for all forms of cohabitation which form a recognizable social unit, of people who are or who are not related and who have long-lasting, affective bonds and provide each other with support and care." />
-  <purpose value="This List resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) FamilySituationChild-v1.2(2020EN)](https://zibs.nl/wiki/FamilySituationChild-v1.2(2020EN))." />
-  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
-  <fhirVersion value="4.0.1" />
+  <description value="Traditionally, a family is defined as a group of people of one or more adults who carry responsibility for caring for and raising one or more children.&#xD;&#xA;Children can have multiple family situations when they live partly with their father and partly with their mother e.g. after a divorce.&#xD;&#xA;Currently, the term is used more broadly for all forms of cohabitation which form a recognizable social unit, of people who are or who are not related and who have long-lasting, affective bonds and provide each other with support and care."/>
+  <purpose value="This List resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) FamilySituationChild-v1.2(2020EN)](https://zibs.nl/wiki/FamilySituationChild-v1.2(2020EN))."/>
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise."/>
+  <fhirVersion value="4.0.1"/>
   <mapping>
-    <identity value="zib-familysituationchild-v1.2-2020EN" />
-    <uri value="https://zibs.nl/wiki/FamilySituationChild-v1.2(2020EN)" />
-    <name value="zib FamilySituationChild-v1.2(2020EN)" />
+    <identity value="zib-familysituationchild-v1.2-2020EN"/>
+    <uri value="https://zibs.nl/wiki/FamilySituationChild-v1.2(2020EN)"/>
+    <name value="zib FamilySituationChild-v1.2(2020EN)"/>
   </mapping>
-  <kind value="resource" />
-  <abstract value="true" />
-  <type value="List" />
-  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/List" />
-  <derivation value="constraint" />
+  <kind value="resource"/>
+  <abstract value="true"/>
+  <type value="List"/>
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/List"/>
+  <derivation value="constraint"/>
   <differential>
     <element id="List">
-      <path value="List" />
-      <short value="FamilySituationChild" />
-      <alias value="GezinssituatieKind" />
+      <path value="List"/>
+      <short value="FamilySituationChild"/>
+      <alias value="GezinssituatieKind"/>
       <mapping>
-        <identity value="zib-familysituationchild-v1.2-2020EN" />
-        <map value="NL-CM:7.16.1" />
-        <comment value="FamilySituationChild" />
+        <identity value="zib-familysituationchild-v1.2-2020EN"/>
+        <map value="NL-CM:7.16.1"/>
+        <comment value="FamilySituationChild"/>
       </mapping>
     </element>
     <element id="List.status">
-      <path value="List.status" />
-      <comment value="This element has no functional counterpart in the zib and cannot be implicitly mapped to other concepts. Unless a more appropriate status is recorded, it is assumed that only _current_ List resources will be exchanged." />
+      <path value="List.status"/>
+      <comment value="This element has no functional counterpart in the zib and cannot be implicitly mapped to other concepts. Unless a more appropriate status is recorded, it is assumed that only _current_ List resources will be exchanged."/>
     </element>
     <element id="List.mode">
-      <path value="List.mode" />
-      <comment value="This element has no functional counterpart in the zib and cannot be implicitly mapped to other concepts. Unless a more appropriate status is recorded, it is assumed that only _working_ or _snapshot_ List resources will be exchanged, depending on the functioning of the source system." />
+      <path value="List.mode"/>
+      <comment value="This element has no functional counterpart in the zib and cannot be implicitly mapped to other concepts. Unless a more appropriate status is recorded, it is assumed that only _working_ or _snapshot_ List resources will be exchanged, depending on the functioning of the source system."/>
     </element>
     <element id="List.code">
-      <path value="List.code" />
-      <min value="1" />
+      <path value="List.code"/>
+      <min value="1"/>
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="55801000146105" />
+          <system value="http://snomed.info/sct"/>
+          <code value="55801000146105"/>
         </coding>
       </patternCodeableConcept>
     </element>
     <element id="List.subject">
-      <path value="List.subject" />
+      <path value="List.subject"/>
       <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient" />
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location"/>
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient"/>
       </type>
     </element>
+    <element id="List.note">
+      <path value="List.note"/>
+      <max value="1"/>
+    </element>
     <element id="List.note.text">
-      <path value="List.note.text" />
-      <short value="Comment" />
-      <definition value="A comment on the childs family situation." />
-      <alias value="Toelichting" />
+      <path value="List.note.text"/>
+      <short value="Comment"/>
+      <definition value="A comment on the childs family situation."/>
+      <alias value="Toelichting"/>
       <mapping>
-        <identity value="zib-familysituationchild-v1.2-2020EN" />
-        <map value="NL-CM:7.16.11" />
-        <comment value="Comment" />
+        <identity value="zib-familysituationchild-v1.2-2020EN"/>
+        <map value="NL-CM:7.16.11"/>
+        <comment value="Comment"/>
       </mapping>
     </element>
     <element id="List.entry">
-      <path value="List.entry" />
+      <path value="List.entry"/>
       <slicing>
         <discriminator>
-          <type value="profile" />
-          <path value="item.resolve()" />
+          <type value="profile"/>
+          <path value="item.resolve()"/>
         </discriminator>
         <discriminator>
-          <type value="pattern" />
-          <path value="extension('http://nictiz.nl/fhir/StructureDefinition/ext-List-EntryCategory').value" />
+          <type value="pattern"/>
+          <path value="extension('http://nictiz.nl/fhir/StructureDefinition/ext-List-EntryCategory').value"/>
         </discriminator>
-        <rules value="open" />
+        <rules value="open"/>
       </slicing>
     </element>
     <element id="List.entry.extension:category">
-      <path value="List.entry.extension" />
-      <sliceName value="category" />
+      <path value="List.entry.extension"/>
+      <sliceName value="category"/>
       <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-List-EntryCategory" />
+        <code value="Extension"/>
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-List-EntryCategory"/>
       </type>
-      <isModifier value="false" />
+      <isModifier value="false"/>
     </element>
     <element id="List.entry:familySituationChild-Observation">
-      <path value="List.entry" />
-      <sliceName value="familySituationChild-Observation" />
+      <path value="List.entry"/>
+      <sliceName value="familySituationChild-Observation"/>
     </element>
     <element id="List.entry:familySituationChild-Observation.extension:category">
-      <path value="List.entry.extension" />
-      <sliceName value="category" />
-      <max value="0" />
+      <path value="List.entry.extension"/>
+      <sliceName value="category"/>
+      <max value="0"/>
       <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-List-EntryCategory" />
+        <code value="Extension"/>
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-List-EntryCategory"/>
       </type>
-      <isModifier value="false" />
+      <isModifier value="false"/>
     </element>
     <element id="List.entry:familySituationChild-Observation.item">
-      <path value="List.entry.item" />
+      <path value="List.entry.item"/>
       <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-FamilySituationChild-Observation" />
+        <code value="Reference"/>
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-FamilySituationChild-Observation"/>
       </type>
     </element>
     <element id="List.entry:parentCarer">
-      <path value="List.entry" />
-      <sliceName value="parentCarer" />
+      <path value="List.entry"/>
+      <sliceName value="parentCarer"/>
     </element>
     <element id="List.entry:parentCarer.extension">
-      <path value="List.entry.extension" />
-      <min value="1" />
+      <path value="List.entry.extension"/>
+      <min value="1"/>
     </element>
     <element id="List.entry:parentCarer.extension:category">
-      <path value="List.entry.extension" />
-      <sliceName value="category" />
-      <min value="1" />
+      <path value="List.entry.extension"/>
+      <sliceName value="category"/>
+      <min value="1"/>
       <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-List-EntryCategory" />
+        <code value="Extension"/>
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-List-EntryCategory"/>
       </type>
-      <isModifier value="false" />
+      <isModifier value="false"/>
     </element>
     <element id="List.entry:parentCarer.extension:category.value[x]">
-      <path value="List.entry.extension.value[x]" />
-      <short value="ParentCarer" />
-      <definition value="Person who has taken on the role of the child's caregiver in the family situation involved. This could be a parent or other family member." />
-      <alias value="OuderVerzorger" />
+      <path value="List.entry.extension.value[x]"/>
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="TODO" />
+          <system value="http://snomed.info/sct"/>
+          <code value="TODO"/>
         </coding>
       </patternCodeableConcept>
-      <mapping>
-        <identity value="zib-familysituationchild-v1.2-2020EN" />
-        <map value="NL-CM:7.16.3" />
-        <comment value="ParentCarer" />
-      </mapping>
     </element>
     <element id="List.entry:parentCarer.item">
-      <path value="List.entry.item" />
-      <short value="ParentCarer" />
-      <definition value="Person who has taken on the role of the child's caregiver in the family situation involved. This could be a parent or other family member." />
-      <alias value="OuderVerzorger" />
+      <path value="List.entry.item"/>
+      <short value="ParentCarer"/>
+      <definition value="Person who has taken on the role of the child's caregiver in the family situation involved. This could be a parent or other family member."/>
+      <alias value="OuderVerzorger"/>
       <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson" />
+        <code value="Reference"/>
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson"/>
       </type>
       <mapping>
-        <identity value="zib-familysituationchild-v1.2-2020EN" />
-        <map value="NL-CM:7.16.3" />
-        <comment value="ParentCarer" />
+        <identity value="zib-familysituationchild-v1.2-2020EN"/>
+        <map value="NL-CM:7.16.3"/>
+        <comment value="ParentCarer"/>
       </mapping>
     </element>
     <element id="List.entry:child">
-      <path value="List.entry" />
-      <sliceName value="child" />
-      <short value="Child" />
-      <definition value="Container of the Child concept. This container contains all data elements of the Child concept." />
-      <alias value="Kind" />
+      <path value="List.entry"/>
+      <sliceName value="child"/>
+      <short value="Child"/>
+      <definition value="Container of the Child concept. This container contains all data elements of the Child concept."/>
+      <alias value="Kind"/>
       <mapping>
-        <identity value="zib-familysituationchild-v1.2-2020EN" />
-        <map value="NL-CM:7.16.4" />
-        <comment value="Child" />
+        <identity value="zib-familysituationchild-v1.2-2020EN"/>
+        <map value="NL-CM:7.16.4"/>
+        <comment value="Child"/>
       </mapping>
     </element>
     <element id="List.entry:child.extension">
-      <path value="List.entry.extension" />
-      <min value="1" />
+      <path value="List.entry.extension"/>
+      <min value="1"/>
     </element>
     <element id="List.entry:child.extension:category">
-      <path value="List.entry.extension" />
-      <sliceName value="category" />
-      <min value="1" />
+      <path value="List.entry.extension"/>
+      <sliceName value="category"/>
+      <min value="1"/>
       <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-List-EntryCategory" />
+        <code value="Extension"/>
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-List-EntryCategory"/>
       </type>
-      <isModifier value="false" />
+      <isModifier value="false"/>
     </element>
     <element id="List.entry:child.extension:category.value[x]">
-      <path value="List.entry.extension.value[x]" />
-      <short value="ContactPerson" />
-      <definition value="Child of the child receiving care" />
-      <alias value="Kind" />
+      <path value="List.entry.extension.value[x]"/>
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="67822003" />
+          <system value="http://snomed.info/sct"/>
+          <code value="67822003"/>
         </coding>
       </patternCodeableConcept>
-      <mapping>
-        <identity value="zib-familysituationchild-v1.2-2020EN" />
-        <map value="NL-CM:7.16.5" />
-        <comment value="ContactPerson" />
-      </mapping>
     </element>
     <element id="List.entry:child.item">
-      <path value="List.entry.item" />
+      <path value="List.entry.item"/>
+      <short value="ContactPerson"/>
+      <definition value="Child of the child receiving care"/>
+      <alias value="Kind"/>
       <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson" />
+        <code value="Reference"/>
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson"/>
       </type>
+      <mapping>
+        <identity value="zib-familysituationchild-v1.2-2020EN"/>
+        <map value="NL-CM:7.16.5"/>
+        <comment value="ContactPerson"/>
+      </mapping>
     </element>
     <element id="List.entry:sibling">
-      <path value="List.entry" />
-      <sliceName value="sibling" />
-      <short value="Sibling" />
-      <definition value="Container of the Sibling concept. This container contains all data elements of the Sibling concept." />
-      <alias value="BroerOfZus" />
+      <path value="List.entry"/>
+      <sliceName value="sibling"/>
+      <short value="Sibling"/>
+      <definition value="Container of the Sibling concept. This container contains all data elements of the Sibling concept."/>
+      <alias value="BroerOfZus"/>
       <mapping>
-        <identity value="zib-familysituationchild-v1.2-2020EN" />
-        <map value="NL-CM:7.16.8" />
-        <comment value="Sibling" />
+        <identity value="zib-familysituationchild-v1.2-2020EN"/>
+        <map value="NL-CM:7.16.8"/>
+        <comment value="Sibling"/>
       </mapping>
     </element>
     <element id="List.entry:sibling.extension">
-      <path value="List.entry.extension" />
-      <min value="1" />
+      <path value="List.entry.extension"/>
+      <min value="1"/>
     </element>
     <element id="List.entry:sibling.extension:category">
-      <path value="List.entry.extension" />
-      <sliceName value="category" />
-      <min value="1" />
+      <path value="List.entry.extension"/>
+      <sliceName value="category"/>
+      <min value="1"/>
       <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-List-EntryCategory" />
+        <code value="Extension"/>
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-List-EntryCategory"/>
       </type>
-      <isModifier value="false" />
+      <isModifier value="false"/>
     </element>
     <element id="List.entry:sibling.extension:category.value[x]">
-      <path value="List.entry.extension.value[x]" />
-      <short value="ContactPerson" />
-      <definition value="Sister or brother, which is also part of concerning household. This includes not only biological siblings, but also half, step, foster and adoptive siblings" />
-      <alias value="BroerOfZus" />
+      <path value="List.entry.extension.value[x]"/>
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="375005" />
+          <system value="http://snomed.info/sct"/>
+          <code value="375005"/>
         </coding>
       </patternCodeableConcept>
-      <mapping>
-        <identity value="zib-familysituationchild-v1.2-2020EN" />
-        <map value="NL-CM:7.16.9" />
-        <comment value="ContactPerson" />
-      </mapping>
     </element>
     <element id="List.entry:sibling.item">
-      <path value="List.entry.item" />
+      <path value="List.entry.item"/>
+      <short value="ContactPerson"/>
+      <definition value="Sister or brother, which is also part of concerning household. This includes not only biological siblings, but also half, step, foster and adoptive siblings "/>
+      <alias value="BroerOfZus"/>
       <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson" />
+        <code value="Reference"/>
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson"/>
       </type>
+      <mapping>
+        <identity value="zib-familysituationchild-v1.2-2020EN"/>
+        <map value="NL-CM:7.16.9"/>
+        <comment value="ContactPerson"/>
+      </mapping>
     </element>
   </differential>
 </StructureDefinition>
