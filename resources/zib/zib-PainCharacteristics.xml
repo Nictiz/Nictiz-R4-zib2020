@@ -56,6 +56,18 @@
     </element>
     <element id="Observation.hasMember">
       <path value="Observation.hasMember" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <max value="1" />
+    </element>
+    <element id="Observation.hasMember:painScore">
+      <path value="Observation.hasMember" />
+      <sliceName value="painScore" />
       <short value="PainIntensity" />
       <definition value="The intensity or severity of the pain experienced by the patient, measured using the NRS or VAS score." />
       <alias value="PijnIntensiteit" />
@@ -250,9 +262,17 @@
     </element>
     <element id="Observation.component:aggravatingFactors.value[x]">
       <path value="Observation.component.value[x]" />
+      <short value="AggravatingFactors" />
+      <definition value="Description of the factors that aggravate the pain, such as exercise." />
+      <alias value="VerergerendeFactoren" />
       <type>
         <code value="string" />
       </type>
+      <mapping>
+        <identity value="zib-paincharacteristics-v1.0-2020EN" />
+        <map value="NL-CM:12.21.11" />
+        <comment value="AggravatingFactors" />
+      </mapping>
     </element>
     <element id="Observation.component:painCharacteristicsDateTime">
       <path value="Observation.component" />
