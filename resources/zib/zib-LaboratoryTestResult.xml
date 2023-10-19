@@ -15,7 +15,7 @@
     </telecom>
   </contact>
   <description value="A laboratory result describes the result of a laboratory analysis.&#xD;&#xA;These are specimen-oriented tests as performed in laboratories such as Clinical Chemistry, Serology, Microbiology, etc.&#xD;&#xA;In addition to the results of tests with a singular result, this concept can also contain the results of more complex tests with multiple results or a ‘panel’." />
-  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) LaboratoryTestResult v4.6(2020)](https://zibs.nl/wiki/LaboratoryTestResult-v4.6(2020EN))." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) LaboratoryTestResult v4.6 (2020)](https://zibs.nl/wiki/LaboratoryTestResult-v4.6(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -80,7 +80,7 @@
       <alias value="ResultaatStatus" />
       <binding>
         <strength value="required" />
-        <description value="Use ConceptMap 'TestUitslagStatusCodelijst-to-ObservationStatus' to translate zib terminology to profile terminology in ValueSet 'ObservationStatus'" />
+        <description value="Use ConceptMap TestUitslagStatusCodelijst-to-ObservationStatus to translate terminology from the functional model to profile terminology in ValueSet ObservationStatus." />
         <valueSet value="http://hl7.org/fhir/ValueSet/observation-status|4.0.1">
           <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
             <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/TestUitslagStatusCodelijst-to-ObservationStatus" />
@@ -241,7 +241,7 @@
       <alias value="InterpretatieVlaggen" />
       <binding>
         <strength value="extensible" />
-        <description value="Use ConceptMap 'InterpretatieVlaggenCodelijst-to-ObservationInterpretationCodes' to translate zib terminology to profile terminology in ValueSet 'ObservationInterpretation'" />
+        <description value="Use ConceptMap InterpretatieVlaggenCodelijst-to-ObservationInterpretationCodes to translate terminology from the functional model to profile terminology in ValueSet ObservationInterpretation." />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.7--20200901000000">
           <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
             <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/InterpretatieVlaggenCodelijst-to-ObservationInterpretationCodes" />
