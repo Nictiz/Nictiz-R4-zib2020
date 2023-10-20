@@ -1,5 +1,5 @@
 <ValueSet xmlns="http://hl7.org/fhir">
-   <id value="2.16.840.1.113883.2.4.3.11.60.40.2.12.8.1--20200901000000"/>
+   <id value="2.16.840.1.113883.2.4.3.11.60.40.2.12.8.4--20200901000000"/>
    <meta>
       <profile value="http://hl7.org/fhir/StructureDefinition/shareablevalueset"/>
       <!--<profile value="http://hl7.org/fhir/4.0/StructureDefinition/ValueSet"/>-->
@@ -9,15 +9,15 @@
          <start value="2020-09-01T00:00:00+00:00"/>
       </valuePeriod>
    </extension>
-   <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.8.1--20200901000000"/>
+   <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.8.4--20200901000000"/>
    <identifier>
       <use value="official"/>
       <system value="urn:ietf:rfc:3986"/>
-      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.12.8.1"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.12.8.4"/>
    </identifier>
    <version value="2020-09-01T00:00:00"/>
-   <name value="GCS_EyesCodelijst"/>
-   <title value="GCS_EyesCodelijst"/>
+   <name value="GCS_VerbalCodelijstKleuter"/>
+   <title value="GCS_VerbalCodelijstKleuter"/>
    <status value="active"/>
    <experimental value="false"/>
    <publisher value="Registratie aan de bron"/>
@@ -32,20 +32,20 @@
          <value value="https://www.zibs.nl"/>
       </telecom>
    </contact>
-   <description value="GCS_EyesCodelijst"/>
+   <description value="* [ZIB-1314](https://bits.nictiz.nl/browse/ZIB-1314): [GlasgowComaScale-v3.2](https://zibs.nl/wiki/GlasgowComaScale-v3.2(2020NL)). Replace Verbal en Motor value sets The Verbal and Motor value sets were updated in Publication 2020. Unfortunately these value sets had a couple of serious issues. This is why replacing them was decided. The new value sets are in this document: [GCS_waardenlijsten.pdf](https://zibs.nl/images/f/f4/GCS_waardenlijsten.pdf). Changes in this value set are: &#xA; V1-V5 reactivated (removed 'deprecated' marker and [DEPRECATED] as text), and removed V6-V10"/>
    <immutable value="false"/>
    <compose>
       <include>
-         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.2.1"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.2.3"/>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
-               <valueDecimal value="4"/>
+               <valueDecimal value="5"/>
             </extension>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Spontaan [De ogen worden geopend zonder aansporing"/>
+               <valueString value="Adequate woorden en zinnen [Woorden of kleine zinnen in context van de situatie]"/>
             </extension>
-            <code value="E4"/>
-            <display value="Spontaneous"/>
+            <code value="V5"/>
+            <display value="Oriented"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -53,7 +53,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Spontaneous"/>
+               <value value="Oriented"/>
             </designation>
             <designation>
                <language value="nl-NL"/>
@@ -62,7 +62,35 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Spontaan"/>
+               <value value="Adequate woorden en zinnen"/>
+            </designation>
+         </concept>
+         <concept>
+            <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
+               <valueDecimal value="4"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
+               <valueString value="Onjuiste woorden [Verwarde woorden]"/>
+            </extension>
+            <code value="V4"/>
+            <display value="Confused"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Confused"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Onjuiste woorden"/>
             </designation>
          </concept>
          <concept>
@@ -70,10 +98,10 @@
                <valueDecimal value="3"/>
             </extension>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Bij aanspreken of aanroepen [De ogen worden pas geopend op aanspreken van de patiënt]"/>
+               <valueString value="Huilen [Aanhoudend huilen of krijsen]"/>
             </extension>
-            <code value="E3"/>
-            <display value="To sound"/>
+            <code value="V3"/>
+            <display value="Inappropriate speech"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -81,7 +109,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="To sound"/>
+               <value value="Inappropriate speech"/>
             </designation>
             <designation>
                <language value="nl-NL"/>
@@ -90,7 +118,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Bij aanspreken of aanroepen"/>
+               <value value="Huilen"/>
             </designation>
          </concept>
          <concept>
@@ -98,10 +126,10 @@
                <valueDecimal value="2"/>
             </extension>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Bij een prikkel [De ogen worden pas geopend na geven van een fysieke prikkel]"/>
+               <valueString value="Kreunen [Alleen kreunen]"/>
             </extension>
-            <code value="E2"/>
-            <display value="To stimuli"/>
+            <code value="V2"/>
+            <display value="Incomprehensible sounds"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -109,7 +137,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="To stimuli"/>
+               <value value="Incomprehensible sounds"/>
             </designation>
             <designation>
                <language value="nl-NL"/>
@@ -118,7 +146,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Bij een prikkel"/>
+               <value value="Kreunen"/>
             </designation>
          </concept>
          <concept>
@@ -126,9 +154,9 @@
                <valueDecimal value="1"/>
             </extension>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Geen reactie [De ogen blijven gesloten onder elke omstandigheid]"/>
+               <valueString value="Geen reactie [Geen enkel verbale response]"/>
             </extension>
-            <code value="E1"/>
+            <code value="V1"/>
             <display value="No response"/>
             <designation>
                <language value="en-US"/>
@@ -155,9 +183,6 @@
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
                <valueDecimal value="0"/>
-            </extension>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Niet testbaar door een lokale beperkende factor"/>
             </extension>
             <code value="NA"/>
             <display value="Not applicable"/>
