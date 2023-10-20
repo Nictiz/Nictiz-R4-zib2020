@@ -1,224 +1,255 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="zib-GlasgowComaScale" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-GlasgowComaScale" />
-  <name value="ZibGlasgowComaScale" />
-  <title value="zib GlasgowComaScale" />
-  <status value="draft" />
-  <publisher value="Nictiz" />
+  <id value="zib-GlasgowComaScale"/>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-GlasgowComaScale"/>
+  <name value="ZibGlasgowComaScale"/>
+  <title value="zib GlasgowComaScale"/>
+  <status value="draft"/>
+  <publisher value="Nictiz"/>
   <contact>
-    <name value="Nictiz" />
+    <name value="Nictiz"/>
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
-      <use value="work" />
+      <system value="email"/>
+      <value value="info@nictiz.nl"/>
+      <use value="work"/>
     </telecom>
   </contact>
-  <description value="Fifteen-point scale for expressing a person’s level of consciousness, from fully awake to deep unconsciousness, in a number: the so-called EMV score.&#xD;&#xA;The Glasgow Coma Scale score or EMV (Eye-Motor-Verbal) score is a scale to measure the extent of consciousness, based on eye, verbal and motor responses to specific prescribed sound and pain stimuli." />
-  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) GlasgowComaScale-v3.2(2020EN)](https://zibs.nl/wiki/GlasgowComaScale-v3.2(2020EN))." />
-  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
-  <fhirVersion value="4.0.1" />
+  <description value="Fifteen-point scale for expressing a person’s level of consciousness, from fully awake to deep unconsciousness, in a number: the so-called EMV score.&#xD;&#xA;The Glasgow Coma Scale score or EMV (Eye-Motor-Verbal) score is a scale to measure the extent of consciousness, based on eye, verbal and motor responses to specific prescribed sound and pain stimuli."/>
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) GlasgowComaScale-v3.2(2020EN)](https://zibs.nl/wiki/GlasgowComaScale-v3.2(2020EN))."/>
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise."/>
+  <fhirVersion value="4.0.1"/>
   <mapping>
-    <identity value="zib-glasgowcomascale-v3.2-2020EN" />
-    <uri value="https://zibs.nl/wiki/GlasgowComaScale-v3.2(2020EN)" />
-    <name value="zib GlasgowComaScale-v3.2(2020EN)" />
+    <identity value="zib-glasgowcomascale-v3.2-2020EN"/>
+    <uri value="https://zibs.nl/wiki/GlasgowComaScale-v3.2(2020EN)"/>
+    <name value="zib GlasgowComaScale-v3.2(2020EN)"/>
   </mapping>
-  <kind value="resource" />
-  <abstract value="true" />
-  <type value="Observation" />
-  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
-  <derivation value="constraint" />
+  <kind value="resource"/>
+  <abstract value="true"/>
+  <type value="Observation"/>
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation"/>
+  <derivation value="constraint"/>
   <differential>
     <element id="Observation">
-      <path value="Observation" />
-      <short value="GlasgowComaScale" />
-      <alias value="GlasgowComaScale" />
+      <path value="Observation"/>
+      <short value="GlasgowComaScale"/>
+      <alias value="GlasgowComaScale"/>
       <mapping>
-        <identity value="zib-glasgowcomascale-v3.2-2020EN" />
-        <map value="NL-CM:12.8.1" />
-        <comment value="GlasgowComaScale" />
+        <identity value="zib-glasgowcomascale-v3.2-2020EN"/>
+        <map value="NL-CM:12.8.1"/>
+        <comment value="GlasgowComaScale"/>
       </mapping>
     </element>
     <element id="Observation.code">
-      <path value="Observation.code" />
+      <path value="Observation.code"/>
       <patternCodeableConcept>
         <coding>
-          <system value="http://loinc.org" />
-          <code value="35088-4" />
+          <system value="http://loinc.org"/>
+          <code value="35088-4"/>
         </coding>
       </patternCodeableConcept>
     </element>
     <element id="Observation.effective[x]">
-      <path value="Observation.effective[x]" />
+      <path value="Observation.effective[x]"/>
       <slicing>
         <discriminator>
-          <type value="type" />
-          <path value="$this" />
+          <type value="type"/>
+          <path value="$this"/>
         </discriminator>
-        <rules value="open" />
+        <rules value="open"/>
       </slicing>
     </element>
     <element id="Observation.effective[x]:effectiveDateTime">
-      <path value="Observation.effective[x]" />
-      <sliceName value="effectiveDateTime" />
-      <short value="GlasgowComaScaleDateTime" />
-      <definition value="Time at which the EMV score was determined." />
-      <alias value="GlasgowComaScaleDatumTijd" />
+      <path value="Observation.effective[x]"/>
+      <sliceName value="effectiveDateTime"/>
+      <short value="GlasgowComaScaleDateTime"/>
+      <definition value="Time at which the EMV score was determined."/>
+      <alias value="GlasgowComaScaleDatumTijd"/>
       <type>
-        <code value="dateTime" />
+        <code value="dateTime"/>
       </type>
       <mapping>
-        <identity value="zib-glasgowcomascale-v3.2-2020EN" />
-        <map value="NL-CM:12.8.8" />
-        <comment value="GlasgowComaScaleDateTime" />
+        <identity value="zib-glasgowcomascale-v3.2-2020EN"/>
+        <map value="NL-CM:12.8.8"/>
+        <comment value="GlasgowComaScaleDateTime"/>
       </mapping>
     </element>
     <element id="Observation.value[x]">
-      <path value="Observation.value[x]" />
+      <path value="Observation.value[x]"/>
       <slicing>
         <discriminator>
-          <type value="type" />
-          <path value="$this" />
+          <type value="type"/>
+          <path value="$this"/>
         </discriminator>
-        <rules value="open" />
+        <rules value="open"/>
       </slicing>
     </element>
     <element id="Observation.value[x]:valueInteger">
-      <path value="Observation.value[x]" />
-      <sliceName value="valueInteger" />
-      <short value="TotalScore" />
-      <definition value="The sum of the EMV scores, expressed as a number on a scale from 3-15. The value does not have to be recorded, as it can always be calculated based on the individual scores, and as recording the total is not common for a difficult to determine individual score." />
-      <alias value="TotaalScore" />
+      <path value="Observation.value[x]"/>
+      <sliceName value="valueInteger"/>
+      <short value="TotalScore"/>
+      <definition value="The sum of the EMV scores, expressed as a number on a scale from 3-15. The value does not have to be recorded, as it can always be calculated based on the individual scores, and as recording the total is not common for a difficult to determine individual score."/>
+      <alias value="TotaalScore"/>
       <type>
-        <code value="integer" />
+        <code value="integer"/>
       </type>
-      <minValueInteger value="3" />
-      <maxValueInteger value="15" />
+      <minValueInteger value="3"/>
+      <maxValueInteger value="15"/>
       <mapping>
-        <identity value="zib-glasgowcomascale-v3.2-2020EN" />
-        <map value="NL-CM:12.8.10" />
-        <comment value="TotalScore" />
+        <identity value="zib-glasgowcomascale-v3.2-2020EN"/>
+        <map value="NL-CM:12.8.10"/>
+        <comment value="TotalScore"/>
       </mapping>
     </element>
     <element id="Observation.note">
-      <path value="Observation.note" />
-      <max value="1" />
+      <path value="Observation.note"/>
+      <max value="1"/>
     </element>
     <element id="Observation.note.text">
-      <path value="Observation.note.text" />
-      <short value="Comment" />
-      <definition value="Comment on (the context of) the EMV score measurement, such as any problems or factors that may influence interpretation." />
-      <alias value="Toelichting" />
+      <path value="Observation.note.text"/>
+      <short value="Comment"/>
+      <definition value="Comment on (the context of) the EMV score measurement, such as any problems or factors that may influence interpretation."/>
+      <alias value="Toelichting"/>
       <mapping>
-        <identity value="zib-glasgowcomascale-v3.2-2020EN" />
-        <map value="NL-CM:12.8.9" />
-        <comment value="Comment" />
+        <identity value="zib-glasgowcomascale-v3.2-2020EN"/>
+        <map value="NL-CM:12.8.9"/>
+        <comment value="Comment"/>
       </mapping>
     </element>
     <element id="Observation.component">
-      <path value="Observation.component" />
+      <path value="Observation.component"/>
       <slicing>
         <discriminator>
-          <type value="value" />
-          <path value="code" />
+          <type value="pattern"/>
+          <path value="code"/>
         </discriminator>
-        <rules value="open" />
+        <rules value="open"/>
       </slicing>
     </element>
     <element id="Observation.component:gcsEyes">
-      <path value="Observation.component" />
-      <sliceName value="gcsEyes" />
-      <max value="1" />
+      <path value="Observation.component"/>
+      <sliceName value="gcsEyes"/>
+      <max value="1"/>
     </element>
     <element id="Observation.component:gcsEyes.code">
-      <path value="Observation.component.code" />
+      <path value="Observation.component.code"/>
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="281395000" />
+          <system value="http://snomed.info/sct"/>
+          <code value="281395000"/>
         </coding>
       </patternCodeableConcept>
     </element>
     <element id="Observation.component:gcsEyes.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="GCS_Eyes" />
-      <definition value="Best eye response to a stimulus. The element is mandatory, but does not require a numerical value. If no value is given, the reason for this is to be provided in the ConditionsDuringMeasurement concept." />
-      <alias value="GCS_Eyes" />
+      <path value="Observation.component.value[x]"/>
+      <short value="GCS_Eyes"/>
+      <definition value="Best eye response to a stimulus. The element is mandatory, but does not require a numerical value. If no value is given, the reason for this is to be provided in the ConditionsDuringMeasurement concept."/>
+      <alias value="GCS_Eyes"/>
       <type>
-        <code value="CodeableConcept" />
+        <code value="CodeableConcept"/>
       </type>
       <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.8.1--20200901000000" />
+        <strength value="required"/>
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.8.1--20200901000000"/>
       </binding>
       <mapping>
-        <identity value="zib-glasgowcomascale-v3.2-2020EN" />
-        <map value="NL-CM:12.8.2" />
-        <comment value="GCS_Eyes" />
+        <identity value="zib-glasgowcomascale-v3.2-2020EN"/>
+        <map value="NL-CM:12.8.2"/>
+        <comment value="GCS_Eyes"/>
       </mapping>
     </element>
     <element id="Observation.component:gcsMotor">
-      <path value="Observation.component" />
-      <sliceName value="gcsMotor" />
-      <max value="1" />
+      <path value="Observation.component"/>
+      <sliceName value="gcsMotor"/>
+      <max value="1"/>
     </element>
     <element id="Observation.component:gcsMotor.code">
-      <path value="Observation.component.code" />
+      <path value="Observation.component.code"/>
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="281396004" />
+          <system value="http://snomed.info/sct"/>
+          <code value="281396004"/>
         </coding>
       </patternCodeableConcept>
     </element>
     <element id="Observation.component:gcsMotor.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="GCS_Motor" />
-      <definition value="Best motor response to a stimulus. The element is mandatory, but does not require a numerical value. If no value is given, the reason for this is to be provided in the ConditionsDuringMeasurement concept." />
-      <alias value="GCS_Motor" />
+      <path value="Observation.component.value[x]"/>
+      <short value="GCS_Motor"/>
+      <definition value="Best motor response to a stimulus. The element is mandatory, but does not require a numerical value. If no value is given, the reason for this is to be provided in the ConditionsDuringMeasurement concept."/>
+      <alias value="GCS_Motor"/>
       <type>
-        <code value="CodeableConcept" />
+        <code value="CodeableConcept"/>
       </type>
       <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.5--20200901000000" />
+        <strength value="required"/>
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.5--20200901000000"/>
       </binding>
       <mapping>
-        <identity value="zib-glasgowcomascale-v3.2-2020EN" />
-        <map value="NL-CM:12.8.4" />
-        <comment value="GCS_Motor" />
+        <identity value="zib-glasgowcomascale-v3.2-2020EN"/>
+        <map value="NL-CM:12.8.4"/>
+        <comment value="GCS_Motor"/>
       </mapping>
     </element>
     <element id="Observation.component:gcsVerbal">
-      <path value="Observation.component" />
-      <sliceName value="gcsVerbal" />
-      <max value="1" />
+      <path value="Observation.component"/>
+      <sliceName value="gcsVerbal"/>
+      <max value="1"/>
     </element>
     <element id="Observation.component:gcsVerbal.code">
-      <path value="Observation.component.code" />
+      <path value="Observation.component.code"/>
       <patternCodeableConcept>
         <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="281397008" />
+          <system value="http://snomed.info/sct"/>
+          <code value="281397008"/>
         </coding>
       </patternCodeableConcept>
     </element>
     <element id="Observation.component:gcsVerbal.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="GCS_Verbal" />
-      <definition value="Best verbal response to a stimulus. The element is mandatory, but does not require a numerical value. If no value is given, the reason for this is to be provided in the ConditionsDuringMeasurement concept." />
-      <alias value="GCS_Verbal" />
+      <path value="Observation.component.value[x]"/>
+      <short value="GCS_Verbal"/>
+      <definition value="Best verbal response to a stimulus. The element is mandatory, but does not require a numerical value. If no value is given, the reason for this is to be provided in the ConditionsDuringMeasurement concept."/>
+      <alias value="GCS_Verbal"/>
       <type>
-        <code value="CodeableConcept" />
+        <code value="CodeableConcept"/>
       </type>
       <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.6--20200901000000" />
+        <strength value="required"/>
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.6--20200901000000"/>
       </binding>
       <mapping>
-        <identity value="zib-glasgowcomascale-v3.2-2020EN" />
-        <map value="NL-CM:12.8.6" />
-        <comment value="GCS_Verbal" />
+        <identity value="zib-glasgowcomascale-v3.2-2020EN"/>
+        <map value="NL-CM:12.8.6"/>
+        <comment value="GCS_Verbal"/>
+      </mapping>
+    </element>
+    <element id="Observation.component:conditionsDuringMeasurement">
+      <path value="Observation.component"/>
+      <sliceName value="conditionsDuringMeasurement"/>
+    </element>
+    <element id="Observation.component:conditionsDuringMeasurement.code">
+      <path value="Observation.component.code"/>
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct"/>
+          <code value="271000124103"/>
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:conditionsDuringMeasurement.value[x]">
+      <path value="Observation.component.value[x]"/>
+      <short value="ConditionsDuringMeasurement"/>
+      <definition value="Conditions during the measurement that prevent one or more of the subscores from being determined (non testable), such as,e.g. intubation during testing of GCS_Verbal."/>
+      <alias value="ConditiesTijdensMeting"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <binding>
+        <strength value="extensible"/>
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.8.6--20200901000000"/>
+      </binding>
+      <mapping>
+        <identity value="zib-glasgowcomascale-v3.2-2020EN"/>
+        <map value="NL-CM:12.8.11"/>
+        <comment value="ConditionsDuringMeasurement"/>
       </mapping>
     </element>
   </differential>

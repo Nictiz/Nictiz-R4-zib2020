@@ -1,5 +1,5 @@
 <ValueSet xmlns="http://hl7.org/fhir">
-   <id value="2.16.840.1.113883.2.4.3.11.60.40.2.12.8.1--20200901000000"/>
+   <id value="2.16.840.1.113883.2.4.3.11.60.40.2.12.8.6--20200901000000"/>
    <meta>
       <profile value="http://hl7.org/fhir/StructureDefinition/shareablevalueset"/>
       <!--<profile value="http://hl7.org/fhir/4.0/StructureDefinition/ValueSet"/>-->
@@ -9,15 +9,15 @@
          <start value="2020-09-01T00:00:00+00:00"/>
       </valuePeriod>
    </extension>
-   <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.8.1--20200901000000"/>
+   <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.8.6--20200901000000"/>
    <identifier>
       <use value="official"/>
       <system value="urn:ietf:rfc:3986"/>
-      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.12.8.1"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.12.8.6"/>
    </identifier>
    <version value="2020-09-01T00:00:00"/>
-   <name value="GCS_EyesCodelijst"/>
-   <title value="GCS_EyesCodelijst"/>
+   <name value="ConditiesTijdensMetingCodelijst"/>
+   <title value="ConditiesTijdensMetingCodelijst"/>
    <status value="active"/>
    <experimental value="false"/>
    <publisher value="Registratie aan de bron"/>
@@ -32,20 +32,15 @@
          <value value="https://www.zibs.nl"/>
       </telecom>
    </contact>
-   <description value="GCS_EyesCodelijst"/>
+   <description value="ConditiesTijdensMetingCodelijst"/>
    <immutable value="false"/>
+   <copyright value="This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these artefacts must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/getsnomed-ct or info@snomed.org."/>
    <compose>
       <include>
-         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.2.1"/>
+         <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
-               <valueDecimal value="4"/>
-            </extension>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Spontaan [De ogen worden geopend zonder aansporing"/>
-            </extension>
-            <code value="E4"/>
-            <display value="Spontaneous"/>
+            <code value="OTH"/>
+            <display value="Other"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -53,7 +48,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Spontaneous"/>
+               <value value="Other"/>
             </designation>
             <designation>
                <language value="nl-NL"/>
@@ -62,105 +57,18 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Spontaan"/>
-            </designation>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
-               <valueDecimal value="3"/>
-            </extension>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Bij aanspreken of aanroepen [De ogen worden pas geopend op aanspreken van de patiënt]"/>
-            </extension>
-            <code value="E3"/>
-            <display value="To sound"/>
-            <designation>
-               <language value="en-US"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="To sound"/>
-            </designation>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Bij aanspreken of aanroepen"/>
-            </designation>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
-               <valueDecimal value="2"/>
-            </extension>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Bij een prikkel [De ogen worden pas geopend na geven van een fysieke prikkel]"/>
-            </extension>
-            <code value="E2"/>
-            <display value="To stimuli"/>
-            <designation>
-               <language value="en-US"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="To stimuli"/>
-            </designation>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Bij een prikkel"/>
-            </designation>
-         </concept>
-         <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
-               <valueDecimal value="1"/>
-            </extension>
-            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Geen reactie [De ogen blijven gesloten onder elke omstandigheid]"/>
-            </extension>
-            <code value="E1"/>
-            <display value="No response"/>
-            <designation>
-               <language value="en-US"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="No response"/>
-            </designation>
-            <designation>
-               <language value="nl-NL"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Geen reactie"/>
+               <value value="Anders"/>
             </designation>
          </concept>
       </include>
       <include>
-         <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+         <system value="http://snomed.info/sct"/>
          <concept>
-            <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
-               <valueDecimal value="0"/>
-            </extension>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Niet testbaar door een lokale beperkende factor"/>
+               <valueString value="gesedeerd"/>
             </extension>
-            <code value="NA"/>
-            <display value="Not applicable"/>
+            <code value="17971005"/>
+            <display value="gesedeerd"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -168,7 +76,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Not applicable"/>
+               <value value="Sedated"/>
             </designation>
             <designation>
                <language value="nl-NL"/>
@@ -177,7 +85,107 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Niet van toepassing"/>
+               <value value="gesedeerd"/>
+            </designation>
+         </concept>
+         <concept>
+            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
+               <valueString value="spierverslappers"/>
+            </extension>
+            <code value="40241000146103"/>
+            <display value="paralyse door spierrelaxans"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Paralysis caused by skeletal muscle relaxant"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="paralyse door spierrelaxans"/>
+            </designation>
+         </concept>
+         <concept>
+            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
+               <valueString value="afasie"/>
+            </extension>
+            <code value="87486003"/>
+            <display value="afasie"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Aphasia"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="afasie"/>
+            </designation>
+         </concept>
+         <concept>
+            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
+               <valueString value="tube aanwezig"/>
+            </extension>
+            <code value="419991009"/>
+            <display value="endotracheale tube aanwezig"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Endotracheal tube present"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="endotracheale tube aanwezig"/>
+            </designation>
+         </concept>
+         <concept>
+            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
+               <valueString value="tracheostoma aanwezig"/>
+            </extension>
+            <code value="302108003"/>
+            <display value="aanwezigheid van tracheostoma"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Tracheostomy present"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="aanwezigheid van tracheostoma"/>
             </designation>
          </concept>
       </include>
