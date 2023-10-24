@@ -39,6 +39,15 @@
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
   <derivation value="constraint" />
   <differential>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="225552003" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
     <element id="Observation.component">
       <path value="Observation.component" />
       <slicing>
