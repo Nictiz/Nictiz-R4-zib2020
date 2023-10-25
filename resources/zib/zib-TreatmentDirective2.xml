@@ -124,6 +124,19 @@
     </element>
     <element id="Consent.category">
       <path value="Consent.category" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Consent.category:treatmentDirectiveCode">
+      <path value="Consent.category" />
+      <sliceName value="treatmentDirectiveCode" />
+      <min value="1" />
+      <max value="1" />
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
