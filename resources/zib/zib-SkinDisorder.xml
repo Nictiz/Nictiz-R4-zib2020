@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-SkinDisorder" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-SkinDisorder" />
+  <name value="ZibSkinDisorder" />
+  <title value="zib SkinDisorder" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A skin condition is a disturbance of the organ skin caused by a source to be specified later on." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) SkinDisorder v3.3 (2020)](https://zibs.nl/wiki/SkinDisorder-v3.3(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-skindisorder-v3.3-2020EN" />
+    <uri value="https://zibs.nl/wiki/SkinDisorder-v3.3(2020EN)" />
+    <name value="zib SkinDisorder-v3.3(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Condition" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Condition" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Condition">
+      <path value="Condition" />
+      <short value="SkinDisorder" />
+      <alias value="Huidaandoening" />
+      <mapping>
+        <identity value="zib-skindisorder-v3.3-2020EN" />
+        <map value="NL-CM:19.3.1" />
+        <comment value="SkinDisorder" />
+      </mapping>
+    </element>
+    <element id="Condition.extension:cause">
+      <path value="Condition.extension" />
+      <sliceName value="cause" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/condition-dueTo" />
+      </type>
+    </element>
+    <element id="Condition.extension:cause.value[x]">
+      <path value="Condition.extension.value[x]" />
+      <short value="Cause" />
+      <definition value="The cause of the problem underlying the skin disorder." />
+      <alias value="Oorzaak" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Procedure" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationAdministration" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Immunization" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationStatement" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem" />
+      </type>
+      <mapping>
+        <identity value="zib-skindisorder-v3.3-2020EN" />
+        <map value="NL-CM:19.3.7" />
+        <comment value="Cause" />
+      </mapping>
+    </element>
+    <element id="Condition.category">
+      <path value="Condition.category" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="1" />
+    </element>
+    <element id="Condition.category:skinDisorderCode">
+      <path value="Condition.category" />
+      <sliceName value="skinDisorderCode" />
+      <min value="1" />
+      <max value="1" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="95320005" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Condition.code">
+      <path value="Condition.code" />
+      <short value="TypeOfDisorder" />
+      <definition value="A description of the patient’s type of skin disorder." />
+      <alias value="SoortAandoening" />
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.19.3.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-skindisorder-v3.3-2020EN" />
+        <map value="NL-CM:19.3.2" />
+        <comment value="TypeOfDisorder" />
+      </mapping>
+    </element>
+    <element id="Condition.bodySite">
+      <path value="Condition.bodySite" />
+      <short value="Location / AnatomicalLocation" />
+      <definition value="The location of the skin condition on the body." />
+      <alias value="AnatomischeLocatie" />
+      <max value="1" />
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-skindisorder-v3.3-2020EN" />
+        <map value="NL-CM:19.3.9" />
+        <comment value="Location / AnatomicalLocation" />
+      </mapping>
+    </element>
+    <element id="Condition.onset[x]">
+      <path value="Condition.onset[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Condition.onset[x]:onsetDateTime">
+      <path value="Condition.onset[x]" />
+      <sliceName value="onsetDateTime" />
+      <short value="DateOfOnset" />
+      <definition value="The date on which the skin condition started. A ‘vague’ date, such as only the year, is permitted." />
+      <alias value="OntstaansDatum" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-skindisorder-v3.3-2020EN" />
+        <map value="NL-CM:19.3.3" />
+        <comment value="DateOfOnset" />
+      </mapping>
+    </element>
+    <element id="Condition.note">
+      <path value="Condition.note" />
+      <max value="1" />
+    </element>
+    <element id="Condition.note.text">
+      <path value="Condition.note.text" />
+      <short value="Comment" />
+      <definition value="A comment on the skin condition and how to care for it." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-skindisorder-v3.3-2020EN" />
+        <map value="NL-CM:19.3.6" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

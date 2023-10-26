@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="nl-core-TimeInterval"/>
-  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TimeInterval"/>
-  <name value="NlcoreTimeInterval"/>
-  <title value="nl core TimeInterval"/>
-  <status value="draft"/>
-  <publisher value="Nictiz"/>
+  <id value="nl-core-TimeInterval" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TimeInterval" />
+  <name value="NlcoreTimeInterval" />
+  <title value="nl core TimeInterval" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
   <contact>
-    <name value="Nictiz"/>
+    <name value="Nictiz" />
     <telecom>
       <system value="url" />
       <value value="https://www.nictiz.nl" />
-      <use value="work"/>
+      <use value="work" />
     </telecom>
   </contact>
-  <description value="A time interval indicates the time between two moments in time. Interval can be defined by a start time and end time , start time and duration or duration and end time."/>
-  <purpose value="A derived profile from [TimeInterval](http://nictiz.nl/fhir/StructureDefinition/zib-TimeInterval) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib."/>
-  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise."/>
-  <fhirVersion value="4.0.1"/>
-  <kind value="complex-type"/>
-  <abstract value="false"/>
-  <type value="Period"/>
-  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-TimeInterval"/>
-  <derivation value="constraint"/>
+  <description value="A time interval indicates the time between two moments in time. Interval can be defined by a start time and end time , start time and duration or duration and end time." />
+  <purpose value="A derived profile from [zib-TimeInterval](http://nictiz.nl/fhir/StructureDefinition/zib-TimeInterval) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-timeinterval-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/TimeInterval-v1.0(2020EN)" />
+    <name value="zib TimeInterval-v1.0(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <type value="Period" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-TimeInterval" />
+  <derivation value="constraint" />
   <differential>
     <element id="Period">
-      <path value="Period"/>
-      <alias value="nl-core-TimeInterval"/>
+      <path value="Period" />
+      <alias value="nl-core-TimeInterval" />
     </element>
   </differential>
 </StructureDefinition>
