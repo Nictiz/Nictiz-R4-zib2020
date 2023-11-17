@@ -119,7 +119,7 @@
       <path value="Observation.component" />
       <slicing>
         <discriminator>
-          <type value="pattern" />
+          <type value="value" />
           <path value="code" />
         </discriminator>
         <rules value="open" />
@@ -227,6 +227,7 @@
     </element>
     <element id="Observation.component:conditionsDuringMeasurement.code">
       <path value="Observation.component.code" />
+      <comment value="This code aligns with the future version of this zib. See [ZIB-2040](https://bits.nictiz.nl/browse/ZIB-2040) for details." />
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
