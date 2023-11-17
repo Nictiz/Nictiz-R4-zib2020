@@ -138,6 +138,9 @@ This document contains release notes per zib, indicating differences with their 
 * The extension EpisodOfCare-Title has been replaced by ext-EpisodeOfCare.EpisodeOfCareName because this zib concept is functionally equivalent.
 * The extensions EpisodeOfCare-DateFirstEncounter and EpisodeOfCare-DateLastEncounter from the previous profile are not inherited because no functional backing exists.
 
+## zib-FamilySituationChild
+* The focal resource type has been changed from Observation to List, as this type is deemed more appropriate for a collection of references. All references to zib-ContactPerson are separate entries, while all elements of the zib that are true Observation have landed on separate profiles called zib-FamilySituationChild.FamilyComposition and zib-FamilySituationChild.NumberOfSiblings, which are also referenced.
+
 ## zib-FeedingPatternInfant
 * No specific changes have been made to this profile other than the generic changes for the Observation resource.
 
