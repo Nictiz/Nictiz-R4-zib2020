@@ -26,6 +26,7 @@
   <differential>
     <element id="List">
       <path value="List" />
+      <comment value="The zib FamilySituationChild is mapped to this List profile, and two profiles on Observation (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-FamilySituationChild.FamilyComposition&gt; and &lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-FamilySituationChild.NumberOfSiblings&gt;) and includes elements that are mapped in the zib-ContactPerson profile on the RelatedPerson resource type (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson&gt;). This List profile acts as the focal resource of zib FamilySituationChild. This profile references the Observation and RelatedPerson resources through `.entry.list`. To differentiate between several functional concepts that include references to zib-ContactPerson, an extension [ext-List-EntryCategory](http://nictiz.nl/fhir/StructureDefinition/ext-List-EntryCategory) is applied to `.entry`, which acts as slicing discriminator." />
       <alias value="nl-core-FamilySituationChild" />
     </element>
     <element id="List.subject">
@@ -39,15 +40,26 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
       </type>
     </element>
-    <element id="List.entry:familySituationChild-Observation">
-      <path value="List.entry" />
-      <sliceName value="familySituationChild-Observation" />
+    <element id="List.entry:familyComposition">
+      <path value="List.entry"/>
+      <sliceName value="familyComposition"/>
     </element>
-    <element id="List.entry:familySituationChild-Observation.item">
-      <path value="List.entry.item" />
+    <element id="List.entry:familyComposition.item">
+      <path value="List.entry.item"/>
       <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FamilySituationChild-Observation" />
+        <code value="Reference"/>
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FamilySituationChild.FamilyComposition"/>
+      </type>
+    </element>
+    <element id="List.entry:numberOfSiblings">
+      <path value="List.entry"/>
+      <sliceName value="numberOfSiblings"/>
+    </element>
+    <element id="List.entry:numberOfSiblings.item">
+      <path value="List.entry.item"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FamilySituationChild.NumberOfSiblings"/>
       </type>
     </element>
     <element id="List.entry:parentCarer">
