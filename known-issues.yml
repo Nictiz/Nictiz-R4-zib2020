@@ -741,12 +741,12 @@ zib-VisualFunction.VisualAid.Product:
         
 zib-wounds.WoundImage:
   zib deviations:
-    DocumentReference.content.attachment.url:
+    DocumentReference.content.attachment:
       - alias: WondFoto instead of Wondfoto
         for: NL-CM:19.4.11 (Burnwound.WoundImage)
         reason: The zib concept name "Wondfoto" is incorrect and must be corrected to "WondFoto".
-      - datatype: url instead of ED
-        reason: to be filled.
+      - cardinality: 1..* instead of 0..*
+        reason: The WoundImage concept itself has been mapped onto this separate DocumentReference resource. This resource may be instantiated 0..* times, but if it is used, it's content is required.
 
 unmapped zib concepts:
   - NL-CM:17.2.10: HealthcareProvider.LocationNumber
