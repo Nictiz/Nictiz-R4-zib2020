@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-wounds.WoundCharacteristics" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-wounds.WoundCharacteristics" />
+  <name value="ZibwoundsWoundCharacteristics" />
+  <title value="zib wounds.WoundCharacteristics" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="This WoundCharacteristics profile captures multiple concepts such as wound length, width and depth which are used in Burnwound, PressureUlcer and Wound.&#xD;&#xA;&#xD;&#xA;* [Burnwound v3.4(2020EN)](https://zibs.nl/wiki/Burnwound-v3.4(2020EN))&#xD;&#xA;* [PressureUlcer v3.4(2020EN)](https://zibs.nl/wiki/PressureUlcer-v3.4(2020EN))&#xD;&#xA;* [Wound v3.3(2020EN)](https://zibs.nl/wiki/Wound-v3.3(2020EN))" />
+  <purpose value="A separate Observation is deemed necessary for the observable properties of wounds." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-pressureulcer-v3.4-2020EN" />
+    <uri value="https://zibs.nl/wiki/PressureUlcer-v3.4(2020EN)" />
+    <name value="zib PressureUlcer-v3.4(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-wound-v3.3-2020EN" />
+    <uri value="https://zibs.nl/wiki/Wound-v3.3(2020EN)" />
+    <name value="zib Wound-v3.3(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-burnwound-v3.4-2020EN" />
+    <uri value="https://zibs.nl/wiki/Burnwound-v3.4(2020EN)" />
+    <name value="zib Burnwound-v3.4(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="225552003" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:woundLength">
+      <path value="Observation.component" />
+      <sliceName value="woundLength" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:woundLength.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://loinc.org" />
+          <code value="39126-8" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:woundLength.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="WoundLength" />
+      <definition value="The length of the decubitus wound applies similarly to the definitions of Wound Depth and Wound Width." />
+      <alias value="Wondlengte" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <mapping>
+        <identity value="zib-pressureulcer-v3.4-2020EN" />
+        <map value="NL-CM:19.1.9" />
+        <comment value="WoundLength" />
+      </mapping>
+      <mapping>
+        <identity value="zib-wound-v3.3-2020EN" />
+        <map value="NL-CM:19.2.12" />
+        <comment value="WoundLength" />
+      </mapping>
+    </element>
+    <element id="Observation.component:woundWidth">
+      <path value="Observation.component" />
+      <sliceName value="woundWidth" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:woundWidth.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://loinc.org" />
+          <code value="39125-0" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:woundWidth.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="WoundWidth" />
+      <definition value="The width of the decubitus wound." />
+      <alias value="Wondbreedte" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <mapping>
+        <identity value="zib-pressureulcer-v3.4-2020EN" />
+        <map value="NL-CM:19.1.10" />
+        <comment value="WoundWidth" />
+      </mapping>
+      <mapping>
+        <identity value="zib-wound-v3.3-2020EN" />
+        <map value="NL-CM:19.2.13" />
+        <comment value="WoundWidth" />
+      </mapping>
+    </element>
+    <element id="Observation.component:woundDepth">
+      <path value="Observation.component" />
+      <sliceName value="woundDepth" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:woundDepth.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://loinc.org" />
+          <code value="39127-6" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:woundDepth.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="WoundDepth" />
+      <definition value="The depth of the decubitus wound or pressureulcer." />
+      <alias value="Wonddiepte" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <mapping>
+        <identity value="zib-pressureulcer-v3.4-2020EN" />
+        <map value="NL-CM:19.1.11" />
+        <comment value="WoundDepth" />
+      </mapping>
+      <mapping>
+        <identity value="zib-wound-v3.3-2020EN" />
+        <map value="NL-CM:19.2.14" />
+        <comment value="WoundDepth" />
+      </mapping>
+    </element>
+    <element id="Observation.component:woundTissue">
+      <path value="Observation.component" />
+      <sliceName value="woundTissue" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:woundTissue.code">
+      <path value="Observation.component.code" />
+      <comment value="The code to identify this concept (SNOMED 148641000146109) aligns with the next version of the zib, since the current version doesn't provide a code. See [ZIB-2100](https://bits.nictiz.nl/browse/ZIB-2100) for more information." />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="148641000146109" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:woundTissue.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="WoundTissue" />
+      <definition value="Description of the tissue of the wound. For this, the WCS model can be used. A different classification is used for oncological ulcers." />
+      <alias value="WondWeefsel" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="https://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.21--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-wound-v3.3-2020EN" />
+        <map value="NL-CM:19.2.4" />
+        <comment value="WoundTissue" />
+      </mapping>
+    </element>
+    <element id="Observation.component:woundInfection">
+      <path value="Observation.component" />
+      <sliceName value="woundInfection" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:woundInfection.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="405009004" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:woundInfection.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="WoundInfection" />
+      <definition value="Indication stating whether the wound is infected." />
+      <alias value="WondInfectie" />
+      <type>
+        <code value="boolean" />
+      </type>
+      <mapping>
+        <identity value="zib-wound-v3.3-2020EN" />
+        <map value="NL-CM:19.2.7" />
+        <comment value="WoundInfection" />
+      </mapping>
+    </element>
+    <element id="Observation.component:woundMoisture">
+      <path value="Observation.component" />
+      <sliceName value="woundMoisture" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:woundMoisture.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="298007001" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:woundMoisture.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="WoundMoisture" />
+      <definition value="Description of the moisture in the wound." />
+      <alias value="WondVochtigheid" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="https://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.19.2.3--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-wound-v3.3-2020EN" />
+        <map value="NL-CM:19.2.6" />
+        <comment value="WoundMoisture" />
+      </mapping>
+    </element>
+    <element id="Observation.component:woundEdge">
+      <path value="Observation.component" />
+      <sliceName value="woundEdge" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:woundEdge.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="449747006" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:woundEdge.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="WoundEdge" />
+      <definition value="Description of the condition of the outer edges of the wound." />
+      <alias value="WondRand" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="https://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.19.2.5--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-wound-v3.3-2020EN" />
+        <map value="NL-CM:19.2.11" />
+        <comment value="WoundEdge" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
