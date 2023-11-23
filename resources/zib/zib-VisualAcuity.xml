@@ -39,21 +39,9 @@
         <comment value="VisualAcuity" />
       </mapping>
     </element>
-    <element id="Observation.extension">
-      <path value="Observation.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Observation.extension:visualAcuityMeasurementDevice">
       <path value="Observation.extension" />
       <sliceName value="visualAcuityMeasurementDevice" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/observation-deviceCode" />
@@ -65,9 +53,6 @@
       <definition value="The device used measuring the visual acuity." />
       <alias value="VisusMeetHulpmiddel" />
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="DeviceCode" />
-        </extension>
         <strength value="extensible" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.19.4--20200901000000" />
       </binding>
@@ -164,21 +149,9 @@
         </coding>
       </patternCodeableConcept>
     </element>
-    <element id="Observation.bodySite.extension">
-      <path value="Observation.bodySite.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Observation.bodySite.extension:laterality">
       <path value="Observation.bodySite.extension" />
       <sliceName value="laterality" />
-      <min value="0" />
     </element>
     <element id="Observation.bodySite.extension:laterality.value[x]">
       <path value="Observation.bodySite.extension.value[x]" />
@@ -234,10 +207,6 @@
         <comment value="VisualAcuityType" />
       </mapping>
     </element>
-    <element id="Observation.component:visualAcuityType.referenceRange">
-      <path value="Observation.component.referenceRange" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
-    </element>
     <element id="Observation.component:visualAcuityMeasurementChart">
       <path value="Observation.component" />
       <sliceName value="visualAcuityMeasurementChart" />
@@ -270,10 +239,6 @@
         <comment value="VisualAcuityMeasurementChart" />
       </mapping>
     </element>
-    <element id="Observation.component:visualAcuityMeasurementChart.referenceRange">
-      <path value="Observation.component.referenceRange" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
-    </element>
     <element id="Observation.component:distanceFromChart">
       <path value="Observation.component" />
       <sliceName value="distanceFromChart" />
@@ -281,7 +246,7 @@
     </element>
     <element id="Observation.component:distanceFromChart.code">
       <path value="Observation.component.code" />
-      <comment value="This code aligns with the future version of this zib. See [ZIB-1441](https://bits.nictiz.nl/browse/ZIB-1441) for details." />
+      <comment value="The code to identify this concept (SNOMED 152731000146106) aligns with the next version of the zib, since the current version doesn't provide a code. See [ZIB-1441](https://bits.nictiz.nl/browse/ZIB-1441) for more information." />
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
@@ -306,10 +271,6 @@
         <map value="NL-CM:12.19.8" />
         <comment value="DistanceFromChart" />
       </mapping>
-    </element>
-    <element id="Observation.component:distanceFromChart.referenceRange">
-      <path value="Observation.component.referenceRange" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Observation#Observation.referenceRange" />
     </element>
   </differential>
 </StructureDefinition>
