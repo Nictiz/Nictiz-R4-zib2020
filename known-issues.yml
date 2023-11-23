@@ -561,7 +561,13 @@ zib-Payer-Organization:
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consists of two parts, the root concept of the ContactInformation is mapped on .telecom.
     Organization.address:
       - datatype: Address instead of a reference
-        reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
+        reason: An address in FHIR is represented using the Address datatype, not as a separate resource.        
+        
+zib-PressureUlcer:
+  zib deviations:
+    Condition.bodySite:
+      - datatype: CodeableConcept instead of a reference
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
 
 zib-Problem:
   zib deviations:
