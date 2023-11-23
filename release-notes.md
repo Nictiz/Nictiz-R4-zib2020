@@ -387,5 +387,8 @@ This document contains release notes per zib, indicating differences with their 
 * Changed fixed slice on `.code.coding` to a pattern on `.code`.
 * Relaxed cardinality of `value[x]` to 0..1 of the conceptual cardinalities of the zib.
 
+## zib-Wound
+* The concept of 'dateOfLastDressingChange' has been relocated to the Wound Characteristics profile. 
+
 ## zib-wounds.WoundImage
 * There was no profile in the STU3 version and therefore no diff.
