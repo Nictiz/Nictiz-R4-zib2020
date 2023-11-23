@@ -179,6 +179,7 @@
     </element>
     <element id="Observation.component:careResponsibility.code">
       <path value="Observation.component.code" />
+      <comment value="The code to identify this concept (SNOMED 270111000146104) aligns with the next version of the zib, since the current version doesn't provide a code. See [ZIB-1905](https://bits.nictiz.nl/browse/ZIB-1905) for more information." />
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
@@ -204,21 +205,9 @@
       <path value="Observation.component" />
       <sliceName value="child" />
     </element>
-    <element id="Observation.component:child.extension">
-      <path value="Observation.component.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Observation.component:child.extension:livingAtHome">
       <path value="Observation.component.extension" />
       <sliceName value="livingAtHome" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -229,7 +218,6 @@
     <element id="Observation.component:child.extension:commentChild">
       <path value="Observation.component.extension" />
       <sliceName value="commentChild" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
