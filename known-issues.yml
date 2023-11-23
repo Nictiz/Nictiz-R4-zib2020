@@ -145,7 +145,22 @@ zib-BodyTemperature:
     Observation.code.coding:BodyTempCode:
       - message: "Rule sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
         reason: The slice name "BodyTempCode" is chosen to align with the Vital Signs profile for BodyTemperature.
-
+   
+zib-Burnwound:
+  ignored issues:
+    Condition.bodySite.extension:laterality.value[x]:
+      - message: "Rule sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
+        reason: The short description is defined in the extension profile and therefore not defined in the differential.
+      - message: "Rule sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias is defined in the extension profile and therefore not defined in the differential.
+  zib deviations:
+    Condition:
+      - short: Burnwound instead of BurnWound
+        reason: The root of the zib is called "BurnWound" (which is incorrect), even though the zib itself is called "Burnwound".
+    Condition.bodySite:
+      - datatype: CodeableConcept instead of a reference
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.       
+    
 zib-CareTeam:
   ignored issues:
     CareTeam.participant:*.member:
@@ -768,6 +783,14 @@ unmapped zib concepts:
   - NL-CM:13.1.34: LaboratoryTestResult.Requester::HealthProfessional
     reason: This concept is deemed unimplementable and will be removed in the future. See https://bits.nictiz.nl/browse/ZIB-1269 for details.
 
+undefined zib concepts:
+  - concept id: NL-CM:19.4.9
+    name NL: BrandwondSoort
+    name EN: BurnType
+    datatype: CD
+    cardinality: 0..1
+    reason: This concept was removed from zib Burnwound in publication 2020, but it was added later as an erratum. This erratum doesn't show up in the official publication.
+    
 ---
 # The following issues are not "real" deviations stemming from design choices, but rather problems that pop up due to
 # shortcomings in tooling, the used terminology server, etc.

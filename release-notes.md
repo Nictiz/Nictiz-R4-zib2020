@@ -67,6 +67,11 @@ This document contains release notes per zib, indicating differences with their 
 * The mapping of the Stoma concept has been moved from extension to profile level.
 * MedicalDevice extension has been removed because the reference is reversed in FHIR. The MedicalDevice profile refers to this profile.
 
+## zib-Burnwound
+* BurnType is mapped to `Condition.code`
+* The concept of 'dateOfLastDressingChange' has been relocated to the Wound Characteristics profile. 
+* The concept of 'extent' has been relocated to the Wound Characteristics profile. 
+
 ## zib-CareTeam
 * CareTeam is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
 
