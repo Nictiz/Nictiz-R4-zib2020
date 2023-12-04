@@ -1,0 +1,21 @@
+<SearchParameter xmlns="http://hl7.org/fhir">
+  <id value="Flag-detail" />
+  <url value="http://nictiz.nl/fhir/SearchParameter/Flag-detail" />
+  <name value="Flag_detail" />
+  <status value="active" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Searches on the value provided in the flag-detail extension (http://hl7.org/fhir/StructureDefinition/flag-detail) in the Flag resource."/>
+  <purpose value="To search Flag resources on the value of the flag-detail extension."/>
+  <code value="detail"/>
+  <base value="Flag"/>
+  <type value="reference"/>
+  <expression value="Flag.extension('http://hl7.org/fhir/StructureDefinition/flag-detail')"/>
+</SearchParameter>
