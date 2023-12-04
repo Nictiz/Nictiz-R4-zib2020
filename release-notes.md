@@ -250,6 +250,9 @@ This document contains release notes per zib, indicating differences with their 
 * New concept Indication mapped on the extension `NutritionOrder.extension:indication`.
 * The comment extension has been replaced by a mapping to `NutritionOrder.note.text`.
 
+## zib-PainCharacteristics
+* There was no profile in the STU3 version and therefore no diff.
+
 ## zib-PainScore
 * Removed mapping on `Observation.bodySite` because the AnatomicalLocation concept has been removed from the zib.
 * Removed laterality extension because the Laterality concept has been removed from the zib.
