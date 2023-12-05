@@ -38,7 +38,7 @@
         <key value="zib-TreatmentDirective2-1" />
         <severity value="error" />
         <human value="`extension.additionalAdvanceDirective` may only be used for AdvanceDirective references in addition to first reference in `.source[x]`." />
-        <expression value="extension.where(url = 'http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.AdvanceDirective').empty() or source.exists()" />
+        <expression value="extension.where(url = 'http://hl7.org/fhir/5.0/StructureDefinition/extension-Consent.sourceReference').empty() or source.exists()" />
       </constraint>
       <constraint>
         <key value="zib-TreatmentDirective2-2" />
@@ -77,14 +77,26 @@
       <sliceName value="additionalAdvanceDirective" />
       <type>
         <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.AdvanceDirective" />
+        <profile value="http://hl7.org/fhir/5.0/StructureDefinition/extension-Consent.sourceReference" />
       </type>
       <condition value="zib-TreatmentDirective2-1" />
     </element>
     <element id="Consent.extension:additionalAdvanceDirective.value[x]">
       <path value="Consent.extension.value[x]" />
+      <short value="AdvanceDirective" />
+      <definition value="A (written) statement in which a person indicates wishes concerning future medical action, in the event that this person is at that point no longer (deemed) capable of taking decisions on the matter." />
       <comment value="`Consent.source:sourceReference` is the primary target for referencing zib AdvanceDirective (zib concept NL-CM:2.2.8). However, the cardinality of `Consent.source[x]` is restricted to 0..1. If more than one AdvanceDirective needs to be referenced, the _additional_ references can be communicated using this extension. If this extension is used, `Consent.source:sourceReference` SHALL be populated and it SHALL not contain the same reference as this extension." />
+      <alias value="Wilsverklaring" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdvanceDirective" />
+      </type>
       <condition value="zib-TreatmentDirective2-1" />
+      <mapping>
+        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+        <map value="NL-CM:2.2.8" />
+        <comment value="AdvanceDirective" />
+      </mapping>
     </element>
     <element id="Consent.modifierExtension:specificationOther">
       <path value="Consent.modifierExtension" />
