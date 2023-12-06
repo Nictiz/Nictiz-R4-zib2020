@@ -33,7 +33,7 @@
     <element id="Address">
       <path value="Address" />
       <short value="AddressInformation" />
-      <comment value="This datatype defines a common basis for expressing all addresses around the world, but adds extensions to express Dutch addresses specifically, according to the [zib AddressInformation (v1.1, 2020)](https://zibs.nl/wiki/AddressInformation-v1.1(2020EN)). A Dutch Address still is a proper FHIR Address, which means that systems that cannot interpret the extensions will still be able to render and work with this datatype.&#xD;&#xA;&#xD;&#xA;To have true compatibility an implementer SHOULD use the core Address parts as intended. To have addresses work for Dutch context, the implementer SHOULD in addition use the extension elements.&#xD;&#xA;&#xD;&#xA;**Separate address parts**&#xD;&#xA;&#xD;&#xA;The first addition is that Dutch addresses make certain address parts separately communicable. These parts are required for use in true Dutch systems when dealing with Dutch addresses, but may not have value for international systems when information gets sent abroad.&#xD;&#xA;&#xD;&#xA;**Custom address types**&#xD;&#xA;&#xD;&#xA;The second addition is that the zib defines its own ValueSet for address types, which can only be partially expressed using the FHIR Address datatype and requires a mapping to multiple elements. The table below explains how the zib concepts are mapped to the various FHIR elements (see the ConceptMaps &lt;http://nictiz.nl/fhir/ConceptMap/AdresSoortCodelijst-to-AddressUse&gt; and &lt;http://nictiz.nl/fhir/ConceptMap/AdresSoortCodelijst-to-AddressType&gt; as well). The code from the zib should also be included using the extension on `Address.extension:addressType`.&#xD;&#xA;&#xD;&#xA;| zib                               | .ext:addressType | .use | .type    |&#xD;&#xA;|-----------------------------------|------------------|------|----------|&#xD;&#xA;| Postal Address/Postadres          | PST              |      | postal   |&#xD;&#xA;| Primary Home/Officieel adres      | HP               | home | both     |&#xD;&#xA;| Visit Address/Woon-/verblijfadres | PHYS             | home | physical |&#xD;&#xA;| Temporary Address/Tijdelijk adres | TMP              | temp |          |&#xD;&#xA;| Work Place/Werkadres              | WP               | work |          |&#xD;&#xA;| Vacation Home/Vakantie adres      | HV               | temp |          |&#xD;&#xA;&#xD;&#xA;If `Address.type` is _both_ then this is to be understood as a dual purpose address (postal and physical), unless a specific &quot;postal&quot; type address is added. Systems that support importing it like this are encouraged to do so, otherwise they may need to import this as two separate addresses.&#xD;&#xA;&#xD;&#xA;Note: FHIR core defines the AD-use extension to further specify the postal address type. However, the ValueSet used in that extension doesn't completely match the zib ValueSet. Therefore, a custom extension has been made. This doesn't preclude the use of the AD-use extension." />
+      <comment value="This datatype defines a common basis for expressing all addresses around the world, but adds extensions to express Dutch addresses specifically, according to the [zib AddressInformation v1.1 (2020)](https://zibs.nl/wiki/AddressInformation-v1.1(2020EN)). A Dutch Address still is a proper FHIR Address, which means that systems that cannot interpret the extensions will still be able to render and work with this datatype.&#xD;&#xA;&#xD;&#xA;To have true compatibility an implementer SHOULD use the core Address parts as intended. To have addresses work for Dutch context, the implementer SHOULD in addition use the extension elements.&#xD;&#xA;&#xD;&#xA;**Separate address parts**&#xD;&#xA;&#xD;&#xA;The first addition is that Dutch addresses make certain address parts separately communicable. These parts are required for use in true Dutch systems when dealing with Dutch addresses, but may not have value for international systems when information gets sent abroad.&#xD;&#xA;&#xD;&#xA;**Custom address types**&#xD;&#xA;&#xD;&#xA;The second addition is that the zib defines its own ValueSet for address types, which can only be partially expressed using the FHIR Address datatype and requires a mapping to multiple elements. The table below explains how the zib concepts are mapped to the various FHIR elements (see the ConceptMaps &lt;http://nictiz.nl/fhir/ConceptMap/AdresSoortCodelijst-to-AddressUse&gt; and &lt;http://nictiz.nl/fhir/ConceptMap/AdresSoortCodelijst-to-AddressType&gt; as well). The code from the zib should also be included using the extension on `Address.extension:addressType`.&#xD;&#xA;&#xD;&#xA;| zib                               | .ext:addressType | .use | .type    |&#xD;&#xA;|-----------------------------------|------------------|------|----------|&#xD;&#xA;| Postal Address/Postadres          | PST              |      | postal   |&#xD;&#xA;| Primary Home/Officieel adres      | HP               | home | both     |&#xD;&#xA;| Visit Address/Woon-/verblijfadres | PHYS             | home | physical |&#xD;&#xA;| Temporary Address/Tijdelijk adres | TMP              | temp |          |&#xD;&#xA;| Work Place/Werkadres              | WP               | work |          |&#xD;&#xA;| Vacation Home/Vakantie adres      | HV               | temp |          |&#xD;&#xA;&#xD;&#xA;If `Address.type` is _both_ then this is to be understood as a dual purpose address (postal and physical), unless a specific _postal_ type address is added. Systems that support importing it like this are encouraged to do so, otherwise they may need to import this as two separate addresses.&#xD;&#xA;&#xD;&#xA;Note: FHIR core defines the AD-use extension to further specify the postal address type. However, the ValueSet used in that extension doesn't completely match the zib ValueSet. Therefore, a custom extension has been made. This doesn't preclude the use of the AD-use extension." />
       <alias value="Adresgegevens" />
       <mapping>
         <identity value="zib-addressinformation-v1.1-2020EN" />
@@ -41,21 +41,9 @@
         <comment value="AddressInformation" />
       </mapping>
     </element>
-    <element id="Address.extension">
-      <path value="Address.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Address.extension:addressType">
       <path value="Address.extension" />
       <sliceName value="addressType" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -69,7 +57,7 @@
       <alias value="AdresSoort" />
       <binding>
         <strength value="required" />
-        <description value="Use ConceptMap 'AdresSoortCodelijst-to-AddressUse' to translate zib terminology to profile terminology in ValueSet 'AddressUse'" />
+        <description value="Use ConceptMap AdresSoortCodelijst-to-AddressUse to translate terminology from the functional model to profile terminology in ValueSet AddressUse." />
         <valueSet value="http://hl7.org/fhir/ValueSet/address-use|4.0.1">
           <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
             <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/AdresSoortCodelijst-to-AddressUse" />
@@ -89,7 +77,7 @@
       <alias value="AdresSoort" />
       <binding>
         <strength value="required" />
-        <description value="Use ConceptMap 'AdresSoortCodelijst-to-AddressType' to translate zib terminology to profile terminology in ValueSet 'AddressType'" />
+        <description value="Use ConceptMap AdresSoortCodelijst-to-AddressType to translate terminology from the functional model to profile terminology in ValueSet AddressType." />
         <valueSet value="http://hl7.org/fhir/ValueSet/address-type|4.0.1">
           <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
             <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/AdresSoortCodelijst-to-AddressType" />
@@ -106,21 +94,9 @@
       <path value="Address.line" />
       <comment value="The mapping of zib AddressInformation on the FHIR Address datatype is the result of compatibility with HL7v3, which is the format that a lot of healthcare data in the Netherlands is stored in.&#xD;&#xA;&#xD;&#xA;The elements of Address stored in the address-part extensions will be ignored by applications that do not support them, so any information in them should also be duplicated in the `Address.line` to which they are attached. The value of `Address.line` should be populated with a complete string representation of all the separate extension values, like: &quot;[Street] [HouseNumberIndication] [HouseNumber] [HouseNumberLetter] [HouseNumberAddition]&quot;." />
     </element>
-    <element id="Address.line.extension">
-      <path value="Address.line.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Address.line.extension:streetName">
       <path value="Address.line.extension" />
       <sliceName value="streetName" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -141,7 +117,6 @@
     <element id="Address.line.extension:houseNumber">
       <path value="Address.line.extension" />
       <sliceName value="houseNumber" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -162,7 +137,6 @@
     <element id="Address.line.extension:houseNumberLetter-houseNumberAddition">
       <path value="Address.line.extension" />
       <sliceName value="houseNumberLetter-houseNumberAddition" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -189,7 +163,6 @@
     <element id="Address.line.extension:houseNumberIndication">
       <path value="Address.line.extension" />
       <sliceName value="houseNumberIndication" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -206,7 +179,7 @@
         <key value="houseNumberIndication" />
         <severity value="error" />
         <human value="Must have value 'by' or 'to'" />
-        <expression value="value in ('by' | 'to')" />
+        <expression value="$this in ('by' | 'to')" />
       </constraint>
       <mapping>
         <identity value="zib-addressinformation-v1.1-2020EN" />
@@ -217,7 +190,6 @@
     <element id="Address.line.extension:additionalInformation">
       <path value="Address.line.extension" />
       <sliceName value="additionalInformation" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -270,23 +242,11 @@
     </element>
     <element id="Address.country">
       <path value="Address.country" />
-      <comment value="The FHIR datatype does not properly support coding the country using a CodeableConcept or Coding datatype. If the sender supports coded countries, it SHALL send the coded value using the CodeSpecification extension under `Address.country.extension:countryCode`." />
-    </element>
-    <element id="Address.country.extension">
-      <path value="Address.country.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
+      <comment value="The FHIR datatype does not properly support coding the country using a CodeableConcept or Coding datatype. If the sender supports coded countries, it SHALL send the coded value using the ext-CodeSpecification extension under `Address.country.extension:countryCode`." />
     </element>
     <element id="Address.country.extension:countryCode">
       <path value="Address.country.extension" />
       <sliceName value="countryCode" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />

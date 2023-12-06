@@ -14,7 +14,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="A contra-indication (CI) for medication safety is a condition or characteristic of a patient where healthcare professionals are not allowed to subscribe certain medicines, or only under certain conditions." />
+  <description value="A contraindication (CI) for medication safety is a condition or characteristic of a patient where healthcare professionals are not allowed to subscribe certain medicines, or only under certain conditions." />
   <purpose value="This Flag resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) MedicationContraIndication v1.0 (2020)](https://zibs.nl/wiki/MedicationContraIndication-v1.0(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
@@ -40,21 +40,9 @@
         <comment value="MedicationContraIndication" />
       </mapping>
     </element>
-    <element id="Flag.extension">
-      <path value="Flag.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Flag.extension:comment">
       <path value="Flag.extension" />
       <sliceName value="comment" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -75,7 +63,6 @@
     <element id="Flag.extension:reasonClosure">
       <path value="Flag.extension" />
       <sliceName value="reasonClosure" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -102,9 +89,9 @@
       </slicing>
       <min value="1" />
     </element>
-    <element id="Flag.category:medicationContraIndication">
+    <element id="Flag.category:medicationContraIndicationCode">
       <path value="Flag.category" />
-      <sliceName value="medicationContraIndication" />
+      <sliceName value="medicationContraIndicationCode" />
       <min value="1" />
       <max value="1" />
       <patternCodeableConcept>
@@ -117,14 +104,10 @@
     <element id="Flag.code">
       <path value="Flag.code" />
       <short value="MedicationContraIndicationName" />
-      <definition value="The name and code of the contraindication from the Dutch National Contra-indication list (G-standard Thesaurus 40)." />
+      <definition value="The name and code of the contraindication from the Dutch National Contraindication list (G-standard Thesaurus 40)." />
       <alias value="MedicatieContraIndicatieNaam" />
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="FlagCode" />
-        </extension>
         <strength value="required" />
-        <description value="MedicatieContraIndicatieNaamCodelijst" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.14.1--20200901000000" />
       </binding>
       <mapping>
@@ -136,7 +119,7 @@
     <element id="Flag.period.start">
       <path value="Flag.period.start" />
       <short value="StartDate" />
-      <definition value="The date and possibly time when the contra-indication became relevant for medication safety monitoring.&#xD;&#xA;&#xD;&#xA;Note: the zib specifies the StartDate concept as &quot;The date and possibly time when the contra-indication for medication [monitoring] was identified&quot;. This sentence was chosen specifically to indicate that the zib is about safety monitoring, which can only start once the contra-indication has been identified. However, a date in the future is not prohibited, in which case the StartDate will not align with the identification date." />
+      <definition value="The date and possibly time when the contraindication became relevant for medication safety monitoring.&#xD;&#xA;&#xD;&#xA;Note: the zib specifies the StartDate concept as &quot;The date and possibly time when the contraindication for medication [monitoring] was identified&quot;. This sentence was chosen specifically to indicate that the zib is about safety monitoring, which can only start once the contraindication has been identified. However, a date in the future is not prohibited, in which case the StartDate will not align with the identification date." />
       <alias value="BeginDatum" />
       <mapping>
         <identity value="zib-medicationcontraindication-v1.0-2020EN" />
@@ -158,7 +141,7 @@
     <element id="Flag.author">
       <path value="Flag.author" />
       <short value="Reporter" />
-      <definition value="The healthcare provider who takes responsibility for registering the contraindication." />
+      <definition value="The health professional who takes responsibility for registering the contraindication." />
       <alias value="Melder" />
       <type>
         <code value="Reference" />

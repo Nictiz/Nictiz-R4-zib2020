@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-AbilityToGroom" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-AbilityToGroom" />
+  <name value="ZibAbilityToGroom" />
+  <title value="zib AbilityToGroom" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Personal grooming activity means taking care of skin, nails and hair (and beard or mustache, if applicable). This is a part of self-care. Limitations in this ability indicate a reduced ability to cope for oneself. Washing hair does not fall into this category; it falls under the ability to wash oneself.&#xD;&#xA;This activity and activities such as those including eating, getting dressed and bathing are also known as activities of daily living (ADL). These are the activities people go through in daily life. The extent to which a person is able to do all these activities by themselves is a measure for their total ability to do things independently." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) AbilityToGroom v1.0.1 (2020)](https://zibs.nl/wiki/AbilityToGroom-v1.0.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-abilitytogroom-v1.0.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/AbilityToGroom-v1.0.1(2020EN)" />
+    <name value="zib AbilityToGroom-v1.0.1(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="AbilityToGroom" />
+      <alias value="VermogenTotUiterlijkeVerzorging" />
+      <mapping>
+        <identity value="zib-abilitytogroom-v1.0.1-2020EN" />
+        <map value="NL-CM:4.33.1" />
+        <comment value="AbilityToGroom" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="704434006" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueCodeableConcept">
+      <path value="Observation.value[x]" />
+      <sliceName value="valueCodeableConcept" />
+      <short value="Grooming" />
+      <definition value="Personal grooming includes tending to hair and facial hair, such as combing it, or shaving and/or trimming facial hair; skincare, e.g. using make-up; nailcare." />
+      <alias value="UiterlijkeVerzorging" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.33.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-abilitytogroom-v1.0.1-2020EN" />
+        <map value="NL-CM:4.33.2" />
+        <comment value="Grooming" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

@@ -15,7 +15,7 @@
     </telecom>
   </contact>
   <description value="A contact is any interaction, regardless of the situation, between a patient and the healthcare provider, in which the healthcare provider has primary responsibility for diagnosing, evaluating and treating the patient’s condition and informing the patient. These can be visits, appointments or non face-to-face interactions.&#xD;&#xA;&#xD;&#xA;Contacts can be visits to the general practitioner or other practices, home visits, admissions (in hospitals, nursing homes or care homes, psychiatric institutions or convalescent homes) or other relevant contacts. This includes past and future contacts." />
-  <purpose value="This Encounter resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Encounter v4.0.1(2020)](https://zibs.nl/wiki/Encounter-v4.0.1(2020EN)) and [HealthProfessional v3.5 (2020)](https://zibs.nl/wiki/HealthProfessional-v3.5(2020EN))." />
+  <purpose value="This Encounter resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Encounter v4.0.1 (2020)](https://zibs.nl/wiki/Encounter-v4.0.1(2020EN)) and [zib HealthProfessional v3.5 (2020)](https://zibs.nl/wiki/HealthProfessional-v3.5(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -64,11 +64,8 @@
       <definition value="The type of contact." />
       <alias value="ContactType" />
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="EncounterClass" />
-        </extension>
         <strength value="extensible" />
-        <description value="Use ConceptMap ContactTypeCodeLijst-to-ActEncounterCode to translate zib terminology to profile terminology in ValueSet ActEncounterCode." />
+        <description value="Use ConceptMap ContactTypeCodeLijst-to-ActEncounterCode to translate terminology from the functional model to profile terminology in ValueSet ActEncounterCode." />
         <valueSet value="http://terminology.hl7.org/ValueSet/v3-ActEncounterCode">
           <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
             <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/ContactTypeCodeLijst-to-ActEncounterCode" />
@@ -101,6 +98,10 @@
       <definition value="The role the health professional fulfils in the healthcare process. For health professionals, this could be for example attender, referrer or performer." />
       <alias value="ZorgverlenerRol" />
       <max value="1" />
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.1.5--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-healthprofessional-v3.5-2020EN" />
         <map value="NL-CM:17.1.5" />
@@ -111,13 +112,11 @@
       <path value="Encounter.participant.individual" />
       <short value="ContactWith" />
       <definition value="The health professional with whom the contact took or will take place. The specialty and role of the health professional can be entered in the HealthProfessional information model." />
+      <comment value="Each occurrence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [zib-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [zib-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner)). The Practitioner resource is referenced from the PractitionerRole instance. For this reason, sending systems should fill the reference to the PractitionerRole instance here, and not the Practitioner resource. Receiving systems can then retrieve the reference to the Practitioner resource from that PractitionerRole instance.&#xD;&#xA;&#xD;&#xA;In rare circumstances, there is only a Practitioner instance, in which case it is that instance which can be referenced on the `Encounter.participant` element (due to open slicing). Since this should be the exception, the zib-HealthProfessional-Practitioner profile is not explicitly mentioned as a target profile." />
       <alias value="ContactMet" />
       <type>
         <code value="Reference" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-ZibHealthProfessionalReference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
       </type>
       <mapping>
@@ -164,27 +163,14 @@
       <path value="Encounter.reasonCode" />
       <sliceName value="deviatingResult" />
     </element>
-    <element id="Encounter.reasonCode:deviatingResult.extension">
-      <path value="Encounter.reasonCode.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Encounter.reasonCode:deviatingResult.extension:commentContactReason">
       <path value="Encounter.reasonCode.extension" />
       <sliceName value="commentContactReason" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Comment" />
       </type>
-      <isModifier value="false" />
     </element>
     <element id="Encounter.reasonCode:deviatingResult.extension:commentContactReason.value[x]">
       <path value="Encounter.reasonCode.extension.value[x]" />
@@ -223,21 +209,9 @@
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Encounter.reasonReference.extension">
-      <path value="Encounter.reasonReference.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Encounter.reasonReference.extension:commentContactReason">
       <path value="Encounter.reasonReference.extension" />
       <sliceName value="commentContactReason" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -293,9 +267,6 @@
       <definition value="Location from which the patient comes before the encounter. In most cases this will only be used when the patient is admitted." />
       <alias value="Herkomst" />
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="AdmitSource" />
-        </extension>
         <strength value="extensible" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.15.1.2--20200901000000" />
       </binding>
@@ -311,9 +282,6 @@
       <definition value="Location to which the patient will go after the encounter. In most cases this will only be used when the patient is discharged." />
       <alias value="Bestemming" />
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="DischargeDisp" />
-        </extension>
         <strength value="extensible" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.15.1.3--20200901000000" />
       </binding>
@@ -325,7 +293,7 @@
     </element>
     <element id="Encounter.location">
       <path value="Encounter.location" />
-      <comment value="The zib has a restricted cardinality of 0..1 for the Location concept (NL-CM:15.1.8). However, this cardianlity is propably too restricted (see &lt;https://bits.nictiz.nl/browse/ZIB-1632&gt; for discussion) and would prevent some practical use cases. Therefore, the cardinality has been left on 0..* in this profile." />
+      <max value="1" />
     </element>
     <element id="Encounter.location.location">
       <path value="Encounter.location.location" />

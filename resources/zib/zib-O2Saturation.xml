@@ -15,7 +15,7 @@
     </telecom>
   </contact>
   <description value="Arterial oxygen saturation, also referred to as saturation, is an indicator for the amount of oxygen bound to the hemoglobin in the red blood cells of the arteries. The measurement is usually carried out as a transcutaneous measurement with a blood oxygen monitor or pulse oximeter. The saturation level is expressed as a percentage and should be over 95% in healthy people." />
-  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) O2Saturation-v3.1(2020EN)](https://zibs.nl/wiki/O2Saturation-v3.1(2020EN))." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) O2Saturation v3.1 (2020)](https://zibs.nl/wiki/O2Saturation-v3.1(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -80,13 +80,6 @@
     </element>
     <element id="Observation.value[x]">
       <path value="Observation.value[x]" />
-      <slicing>
-        <discriminator>
-          <type value="type" />
-          <path value="$this" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
       <short value="SpO2Value" />
       <definition value="The element contains the value of the indirect, peripheral measured O2 saturation. The O2 saturation gives a percentage expressing the extent to which the blood’s hemoglobin is saturated with oxygen, the ratio of oxygen-saturated hemoglobin to hemoglobin. The measurement is done in places where sufficient light can get through the skin, such as a finger, toe or earlobe." />
       <alias value="SpO2Waarde" />
@@ -102,10 +95,6 @@
         <map value="NL-CM:12.10.2" />
         <comment value="SpO2Value" />
       </mapping>
-    </element>
-    <element id="Observation.value[x].system">
-      <path value="Observation.value[x].system" />
-      <fixedUri value="http://unitsofmeasure.org" />
     </element>
     <element id="Observation.note">
       <path value="Observation.note" />
@@ -139,10 +128,11 @@
     </element>
     <element id="Observation.component:extraOxygenAdministration.code">
       <path value="Observation.component.code" />
+      <comment value="The code to identify this concept (SNOMED 266702001) aligns with the next version of the zib, since the current version doesn't provide a code. See [ZIB-1476](https://bits.nictiz.nl/browse/ZIB-1476) for more information." />
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
-          <code value="57485005" />
+          <code value="266702001" />
         </coding>
       </patternCodeableConcept>
     </element>

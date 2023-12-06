@@ -15,7 +15,7 @@
     </telecom>
   </contact>
   <description value="A laboratory result describes the result of a laboratory analysis.&#xD;&#xA;These are specimen-oriented tests as performed in laboratories such as Clinical Chemistry, Serology, Microbiology, etc.&#xD;&#xA;In addition to the results of tests with a singular result, this concept can also contain the results of more complex tests with multiple results or a ‘panel’." />
-  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) LaboratoryTestResult v4.6(2020)](https://zibs.nl/wiki/LaboratoryTestResult-v4.6(2020EN))." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) LaboratoryTestResult v4.6 (2020)](https://zibs.nl/wiki/LaboratoryTestResult-v4.6(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -33,7 +33,7 @@
       <path value="Observation" />
       <short value="LaboratoryTestResult / LaboratoryTest" />
       <definition value="An instance of zib LaboratoryTestResult or of a single LaboratoryTest within this zib." />
-      <comment value="**1. Guidance on use for singular tests and panels**&#xD;&#xA;&#xD;&#xA;The zib LaboratoryTestResult captures both singular laboratory tests and panels/clusters of multiple related tests requested together (e.g. blood gases and EBV serology)*. This profile should be used slightly different in these two situations:&#xD;&#xA;&#xD;&#xA;* For singular laboratory test results&#xD;&#xA;    * A single instance of this profile is to be used.&#xD;&#xA;    * `Observation.code` represents zib concept TestCode (NL-CM:13.1.8, the name and code of the executed test) while zib concept PanelOrBattery (NL-CM:13.1.4, the name and code of the compound test) is not expected to be present.&#xD;&#xA;    * `Observation.status` represents zib concept TestResultStatus (NL-CM:13.1.31, the status of the test result). ResultStatus (NL-CM:13.1.6) is redundant in this situation and not expected to be present.&#xD;&#xA;* For a panel or cluster:&#xD;&#xA;    * There is a single instance for the overall result plus an instance for each individual test result.&#xD;&#xA;    * The concepts Comment (NL-CM:13.1.5, `Observation.note`), ResultType (NL-CM:13.1.7, `Observation.category:resultType`) and Performer (NL-CM:13.1.35, `Observation.performer`) are repeated in the instance for the overall result and in all instances for the individual test results.&#xD;&#xA;    * For the instance representing the overall result:&#xD;&#xA;      * `Observation.code` represents zib concept PanelOrBattery (NL-CM:13.1.4, the name and code of the compound test), which is required for panels/clusters.&#xD;&#xA;      * `Observation.status` represents zib concept ResultStatus (NL-CM:13.1.6, the overall status of the test result). This status should be in accordance with the statuses of each individual test.&#xD;&#xA;      * The instances representing the individual test results are referenced using `Observation.hasMember`.&#xD;&#xA;    * For the instances representing the individual test results:&#xD;&#xA;      * `Observation.code` represents zib concept TestCode (NL-CM:13.1.8, the name and code of the executed test) for that particular test.&#xD;&#xA;      * `Observation.status` represents zib concept TestResultStatus (NL-CM:13.1.31, the status of the test result) for that particular test.&#xD;&#xA;&#xD;&#xA;Note 1: The zib also recognizes the RelatedResult concept (NL-CM:13.1.33). This is unrelated to the use of panels/clusters. This concept is represented using `Observation.extension:relatedResult`.&#xD;&#xA;&#xD;&#xA;**2. Unmapped zib concepts**&#xD;&#xA;&#xD;&#xA;* The zib concept Requester (NL-CM:13.1.34) is not implemented because it is deemed unimplementable as-is. It will be removed in the next version of the zib (see &lt;https://bits.nictiz.nl/browse/ZIB-1269&gt; for more information).&#xD;&#xA;* The zib concept InterpretationMethod (NL-CM:13.1.30) is not implemented because there's no obvious mapping to FHIR while the definition is problematic and there doesn't seem to be a use case for exchanging this information (see &lt;https://bits.nictiz.nl/browse/ZIB-1292&gt; for more information)." />
+      <comment value="**1. Guidance on use for singular tests and panels**&#xD;&#xA;&#xD;&#xA;The zib LaboratoryTestResult captures both singular laboratory tests and panels/clusters of multiple related tests requested together (e.g. blood gases and EBV serology)*. This profile should be used slightly different in these two situations:&#xD;&#xA;&#xD;&#xA;* For singular laboratory test results&#xD;&#xA;    * A single instance of this profile is to be used.&#xD;&#xA;    * `Observation.code` represents zib concept TestCode (NL-CM:13.1.8, the name and code of the executed test) while zib concept PanelOrBattery (NL-CM:13.1.4, the name and code of the compound test) is not expected to be present.&#xD;&#xA;    * `Observation.status` represents zib concept TestResultStatus (NL-CM:13.1.31, the status of the test result). ResultStatus (NL-CM:13.1.6) is redundant in this situation and not expected to be present.&#xD;&#xA;* For a panel or cluster:&#xD;&#xA;    * There is a single instance for the overall result plus an instance for each individual test result.&#xD;&#xA;    * The concepts Comment (NL-CM:13.1.5, `Observation.note`), ResultType (NL-CM:13.1.7, `Observation.category:resultType`) and Performer (NL-CM:13.1.35, `Observation.performer`) are repeated in the instance for the overall result and in all instances for the individual test results.&#xD;&#xA;    * For the instance representing the overall result:&#xD;&#xA;      * `Observation.code` represents zib concept PanelOrBattery (NL-CM:13.1.4, the name and code of the compound test), which is required for panels/clusters.&#xD;&#xA;      * `Observation.status` represents zib concept ResultStatus (NL-CM:13.1.6, the overall status of the test result). This status should be in accordance with the statuses of each individual test.&#xD;&#xA;      * The instances representing the individual test results are referenced using `Observation.hasMember:laboratoryTest`.&#xD;&#xA;    * For the instances representing the individual test results:&#xD;&#xA;      * `Observation.code` represents zib concept TestCode (NL-CM:13.1.8, the name and code of the executed test) for that particular test.&#xD;&#xA;      * `Observation.status` represents zib concept TestResultStatus (NL-CM:13.1.31, the status of the test result) for that particular test.&#xD;&#xA;&#xD;&#xA;Note 1: The zib also recognizes the RelatedResult concept (NL-CM:13.1.33). This is unrelated to the use of panels/clusters. This concept is represented using `Observation.extension:sequelTo`.&#xD;&#xA;&#xD;&#xA;**2. Unmapped zib concepts**&#xD;&#xA;&#xD;&#xA;* The zib concept Requester (NL-CM:13.1.34) is not implemented because it is deemed unimplementable as-is. It will be removed in the next version of the zib (see &lt;https://bits.nictiz.nl/browse/ZIB-1269&gt; for more information).&#xD;&#xA;* The zib concept InterpretationMethod (NL-CM:13.1.30) is not implemented because there's no obvious mapping to FHIR while the definition is problematic and there doesn't seem to be a use case for exchanging this information (see &lt;https://bits.nictiz.nl/browse/ZIB-1292&gt; for more information)." />
       <alias value="LaboratoriumUitslag" />
       <alias value="LaboratoriumTest" />
       <mapping>
@@ -47,21 +47,9 @@
         <comment value="LaboratoryTest" />
       </mapping>
     </element>
-    <element id="Observation.extension">
-      <path value="Observation.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Observation.extension:sequelTo">
       <path value="Observation.extension" />
       <sliceName value="sequelTo" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/observation-sequelTo" />
@@ -92,7 +80,7 @@
       <alias value="ResultaatStatus" />
       <binding>
         <strength value="required" />
-        <description value="Use ConceptMap 'TestUitslagStatusCodelijst-to-ObservationStatus' to translate zib terminology to profile terminology in ValueSet 'ObservationStatus'" />
+        <description value="Use ConceptMap TestUitslagStatusCodelijst-to-ObservationStatus to translate terminology from the functional model to profile terminology in ValueSet ObservationStatus." />
         <valueSet value="http://hl7.org/fhir/ValueSet/observation-status|4.0.1">
           <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
             <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/TestUitslagStatusCodelijst-to-ObservationStatus" />
@@ -125,6 +113,7 @@
       <path value="Observation.category" />
       <sliceName value="laboratoryCategory" />
       <min value="1" />
+      <max value="1" />
       <patternCodeableConcept>
         <coding>
           <system value="http://terminology.hl7.org/CodeSystem/observation-category" />
@@ -153,7 +142,7 @@
       <path value="Observation.code" />
       <short value="PanelOrBattery / TestCode" />
       <definition value="The name and code of the executed test. For laboratory tests comprising multiple subtests and often requested together as a whole, this concept contains the name and code of the compound request (often indicated as a ‘panel’, ‘battery’ or ‘cluster’). Examples include: blood gases and EBV serology." />
-      <comment value="When this resource represents a singular laboratory test result, the code MUST come from NHG Tabel 45 &lt;http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.16--20200901000000&gt; or the Nederlandse Labcodeset &lt;http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.3--20200901000000&gt;. When this resource represents the overall result of a panel/cluster, the code MUST be a LOINC code. See the root of this profile for guidance." />
+      <comment value="When this resource represents a singular laboratory test result, the code MUST come from either [TestCodeNHGCodelijst](http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.16--20200901000000) (representing NHG Tabel 45) or [TestCodeLOINCCodelijst](http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.3--20200901000000) (representing the Nederlandse Labcodeset). When this resource represents the overall result of a panel/cluster, the code MUST come from [OnderzoekCodelijst](http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.5--20200901000000) (representing LOINC). See the root of this profile for guidance." />
       <alias value="Onderzoek" />
       <alias value="TestCode" />
       <binding>
@@ -210,7 +199,7 @@
       <path value="Observation.performer" />
       <sliceName value="performer" />
       <short value="Performer" />
-      <definition value="The healthcare provider and/or organization where or by whom the LaboratoryTestResult was performed." />
+      <definition value="The organization where or by whom the LaboratoryTestResult was performed.&#xD;&#xA;&#xD;&#xA;Note: the zib formally defines this relation as a reference to zib HealthcareProvider, which is primarily defined as the location at which the service was performed, and only secondarily as the organization associated with this location. According to this logic, the expected reference would be to the zib HealthcareProvider Location profile (&lt;http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider&gt;) rather than the Organization profile (&lt;http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider-Organization&gt;). However, on a functional level this concept is usually understood to be about the organization rather than the location, which is in line with the way FHIR models the current element. For this reason, the Organization rather than the Location resource is referenced here. See https://bits.nictiz.nl/browse/MM-4747 for more information." />
       <alias value="Uitvoerder" />
       <max value="1" />
       <type>
@@ -252,7 +241,7 @@
       <alias value="InterpretatieVlaggen" />
       <binding>
         <strength value="extensible" />
-        <description value="Use ConceptMap 'InterpretatieVlaggenCodelijst-to-ObservationInterpretationCodes' to translate zib terminology to profile terminology in ValueSet 'ObservationInterpretation'" />
+        <description value="Use ConceptMap InterpretatieVlaggenCodelijst-to-ObservationInterpretationCodes to translate terminology from the functional model to profile terminology in ValueSet ObservationInterpretation." />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.7--20200901000000">
           <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
             <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/InterpretatieVlaggenCodelijst-to-ObservationInterpretationCodes" />
@@ -332,7 +321,7 @@
       <path value="Observation.referenceRange.low" />
       <short value="ReferenceRangeLowerLimit" />
       <definition value="The lower reference limit for the patient of the value measured with the test." />
-      <comment value="The zib concepts ReferenceRangeUpperLimit and ReferenceRangeLowerLimit are defined as datatype ANY, but it is unclear how these concepts should work for anything that is not a Quantity. In addition, there's no obvious way in FHIR to support reference values other than of type Quantity (with the possible exception of string). Until this issue is resolved, support for reference ranges in the profile has been restricted to Quantity. See &lt;https://bits.nictiz.nl/browse/ZIB-1703&gt;." />
+      <comment value="The zib concepts ReferenceRangeUpperLimit and ReferenceRangeLowerLimit are defined as datatype ANY, but they only have meaning if the result of the test (zib concept TestResult) is expressed using the Quantity datatype. Therefore, this element is only to be used if `Observation.valueQuantity` is populated, and should be in the same unit. This will be made explicit in future versions of the zib: see &lt;https://bits.nictiz.nl/browse/ZIB-1703&gt;." />
       <alias value="ReferentieOndergrens" />
       <mapping>
         <identity value="zib-laboratorytestresult-v4.6-2020EN" />
@@ -344,7 +333,7 @@
       <path value="Observation.referenceRange.high" />
       <short value="ReferenceRangeUpperLimit" />
       <definition value="The upper reference limit for the patient of the value measured in the test." />
-      <comment value="The zib concepts ReferenceRangeUpperLimit and ReferenceRangeLowerLimit are defined as datatype ANY, but it is unclear how these concepts should work for anything that is not a Quantity. In addition, there's no obvious way in FHIR to support reference values other than of type Quantity (with the possible exception of string). Until this issue is resolved, support for reference ranges in the profile has been restricted to Quantity. See &lt;https://bits.nictiz.nl/browse/ZIB-1703&gt;." />
+      <comment value="The zib concepts ReferenceRangeUpperLimit and ReferenceRangeLowerLimit are defined as datatype ANY, but they only have meaning if the result of the test (zib concept TestResult) is expressed using the Quantity datatype. Therefore, this element is only to be used if `Observation.valueQuantity` is populated, and should be in the same unit. This will be made explicit in future versions of the zib: see &lt;https://bits.nictiz.nl/browse/ZIB-1703&gt;." />
       <alias value="ReferentieBovengrens" />
       <mapping>
         <identity value="zib-laboratorytestresult-v4.6-2020EN" />
@@ -354,14 +343,31 @@
     </element>
     <element id="Observation.hasMember">
       <path value="Observation.hasMember" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
       <comment value="When this resource is used to represent the overall result of a panel/cluster of laboratory tests, the individual test results SHOULD be referenced here. See the root of this profile for guidance." />
+    </element>
+    <element id="Observation.hasMember:laboratoryTest">
+      <path value="Observation.hasMember" />
+      <sliceName value="laboratoryTest" />
+      <short value="LaboratoryTest" />
+      <definition value="Individual laboratory tests if the current Observation resource represents a panel or cluster." />
+      <comment value="See the root comment for guidance on representing singular laboratory test results versus panels/clusters." />
+      <alias value="LaboratoriumTest" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MolecularSequence" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult" />
       </type>
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="NL-CM:13.1.3" />
+        <comment value="LaboratoryTest, if these are part of a panel/cluster" />
+      </mapping>
     </element>
   </differential>
 </StructureDefinition>

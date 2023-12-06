@@ -15,7 +15,7 @@
     </telecom>
   </contact>
   <description value="Obtained specimen material or a microbial isolate that is used in a laboratory analysis." />
-  <purpose value="This Specimen resource represents the Specimen concept from Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) LaboratoryTestResult-v4.6(2020EN)](https://zibs.nl/wiki/LaboratoryTestResult-v4.6(2020EN))." />
+  <purpose value="This Specimen resource represents the Specimen concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) LaboratoryTestResult v4.6 (2020)](https://zibs.nl/wiki/LaboratoryTestResult-v4.6(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -77,7 +77,7 @@
       <path value="Specimen.subject" />
       <short value="SpecimenSource" />
       <definition value="If the material is not collected directly from the patient but comes from a patient-related object, e.g. a cathetertip, this source of material can be recorded here." />
-      <comment value="If zib concept SpecimenSource (NL-CM:13.1.29) is used, it can be recorded here using a reference to an instance of the [zib-LaboratoryTestResult.Specimen.Source](http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult.Specimen.Source) profile." />
+      <comment value="If zib concept SpecimenSource (NL-CM:13.1.29) is used, it can be recorded here using a reference to an instance of the [zib-LaboratoryTestResult.SpecimenSource](http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult.SpecimenSource) profile." />
       <alias value="BronMonster" />
       <type>
         <code value="Reference" />
@@ -86,7 +86,7 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Substance" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult.Specimen.Source" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult.SpecimenSource" />
       </type>
       <mapping>
         <identity value="zib-laboratorytestresult-v4.6-2020EN" />
@@ -210,42 +210,18 @@
         <comment value="AnatomicalLocation" />
       </mapping>
     </element>
-    <element id="Specimen.collection.bodySite.extension">
-      <path value="Specimen.collection.bodySite.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Specimen.collection.bodySite.extension:morphology">
       <path value="Specimen.collection.bodySite.extension" />
       <sliceName value="morphology" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-LaboratoryTestResult.Specimen.Morphology" />
       </type>
     </element>
-    <element id="Specimen.container.extension">
-      <path value="Specimen.container.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Specimen.container.extension:specimenNumberExtension">
       <path value="Specimen.container.extension" />
       <sliceName value="specimenNumberExtension" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/specimen-sequenceNumber" />

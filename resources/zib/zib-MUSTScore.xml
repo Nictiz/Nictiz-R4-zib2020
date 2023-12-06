@@ -15,7 +15,7 @@
     </telecom>
   </contact>
   <description value="The Malnutrition Universal Screening Tool (MUST) is a (validated) diagnostic screening tool for determining the extent of a patient’s malnutrition.&#xD;&#xA;For this screening tool, every patient’s Body Mass Index (BMI) and&#xD;&#xA;weight loss percentage is calculated, after which the patient is assigned a disease factor. The MUST helps to recognize and treat malnutrition at an early stage.&#xD;&#xA;&#xD;&#xA;(Source: Guidelines for Screening and Treating Malnutrition.)" />
-  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) MUSTScore-v3.1(2020EN)](https://zibs.nl/wiki/MUSTScore-v3.1(2020EN))." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) MUSTScore v3.1 (2020)](https://zibs.nl/wiki/MUSTScore-v3.1(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -88,6 +88,7 @@
       <sliceName value="valueInteger" />
       <short value="TotalScore" />
       <definition value="The total score is the sum of all the individual scores. The total score has a range from 0 - 6." />
+      <comment value="The individual scores are communicated using the different `Observation.component` slices. The ordinal values of these indivdual scores, which are used to calculate the total score, are defined by the underlying code system and are registered in the ValueSet resources bound on these slices, using the [ordinalValue](http://hl7.org/fhir/StructureDefinition/ordinalValue) extension." />
       <alias value="TotaalScore" />
       <type>
         <code value="integer" />

@@ -19,6 +19,11 @@
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
+    <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+    <uri value="https://zibs.nl/wiki/LaboratoryTestResult-v4.6(2020EN)" />
+    <name value="zib LaboratoryTestResult-v4.6(2020EN)" />
+  </mapping>
+  <mapping>
     <identity value="lu-dataset-laboratory-exchange-20210222" />
     <uri value="https://decor.nictiz.nl/ad/#/lu-/datasets/dataset/2.16.840.1.113883.2.4.3.11.60.25.1.2/2021-02-22T00:00:00" />
     <name value="ART-DECOR Dataset Lab Exchange 20210222T00:00:00" />
@@ -33,21 +38,9 @@
       <path value="Observation" />
       <alias value="nl-core-LaboratoryTestResult" />
     </element>
-    <element id="Observation.extension">
-      <path value="Observation.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Observation.extension:sequelTo">
       <path value="Observation.extension" />
       <sliceName value="sequelTo" />
-      <min value="0" />
     </element>
     <element id="Observation.extension:sequelTo.value[x]">
       <path value="Observation.extension.value[x]" />
@@ -60,38 +53,18 @@
     <element id="Observation.extension:edifactReferenceNumber">
       <path value="Observation.extension" />
       <sliceName value="edifactReferenceNumber" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber" />
       </type>
-      <isModifier value="false" />
-    </element>
-    <element id="Observation.extension:edifactReferenceNumber.value[x]">
-      <path value="Observation.extension.value[x]" />
-      <mapping>
-        <identity value="lu-dataset-laboratory-exchange-20210222" />
-        <map value="lu-concept-v2-4409" />
-        <comment value="EdifactReferenceNumber" />
-      </mapping>
     </element>
     <element id="Observation.extension:copyIndicator">
       <path value="Observation.extension" />
       <sliceName value="copyIndicator" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator" />
       </type>
-      <isModifier value="false" />
-    </element>
-    <element id="Observation.extension:copyIndicator.value[x]">
-      <path value="Observation.extension.value[x]" />
-      <mapping>
-        <identity value="lu-dataset-laboratory-exchange-20210222" />
-        <map value="lu-concept-v2-4297" />
-        <comment value="CopyIndicator" />
-      </mapping>
     </element>
     <element id="Observation.identifier">
       <path value="Observation.identifier" />
@@ -120,6 +93,7 @@
     <element id="Observation.performer:performer">
       <path value="Observation.performer" />
       <sliceName value="performer" />
+      <definition value="The organization where or by whom the LaboratoryTestResult was performed.&#xD;&#xA;&#xD;&#xA;Note: the zib formally defines this relation as a reference to zib HealthcareProvider, which is primarily defined as the location at which the service was performed, and only secondarily as the organization associated with this location. According to this logic, the expected reference would be to the zib HealthcareProvider Location profile (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider&gt;) rather than the Organization profile (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization&gt;). However, on a functional level this concept is usually understood to be about the organization rather than the location, which is in line with the way FHIR models the current element. For this reason, the Organization rather than the Location resource is referenced here. See https://bits.nictiz.nl/browse/MM-4747 for more information." />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization" />
@@ -133,14 +107,12 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen" />
       </type>
     </element>
-    <element id="Observation.hasMember">
+    <element id="Observation.hasMember:laboratoryTest">
       <path value="Observation.hasMember" />
+      <sliceName value="laboratoryTest" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MolecularSequence" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefnition/nl-core-LaboratoryTestResult" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult" />
       </type>
     </element>
   </differential>
