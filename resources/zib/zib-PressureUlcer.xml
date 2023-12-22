@@ -29,6 +29,16 @@
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Condition" />
   <derivation value="constraint" />
   <differential>
+    <element id="Condition">
+      <path value="Condition" />
+      <short value="PressureUlcer" />
+      <alias value="DecubitusWond" />
+      <mapping>
+        <identity value="zib-pressureulcer-v3.4-2020EN" />
+        <map value="NL-CM:19.1.1" />
+        <comment value="PressureUlcer" />
+      </mapping>
+    </element>
     <element id="Condition.code">
       <path value="Condition.code" />
       <patternCodeableConcept>
@@ -88,6 +98,10 @@
       <short value="DecubitusCategory" />
       <definition value="Description of the condition of the pressure ulcer, ranging from category 1 - 4." />
       <alias value="DecubitusCategorie" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.19.1.1--20200901000000" />
+      </binding>
       <mapping>
         <identity value="zib-pressureulcer-v3.4-2020EN" />
         <map value="NL-CM:19.1.2" />
