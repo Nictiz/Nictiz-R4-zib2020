@@ -58,16 +58,6 @@
         </coding>
       </patternCodeableConcept>
     </element>
-    <element id="List.subject">
-      <path value="List.subject" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
-      </type>
-    </element>
     <element id="List.note">
       <path value="List.note" />
       <max value="1" />
@@ -97,28 +87,9 @@
         <rules value="open" />
       </slicing>
     </element>
-    <element id="List.entry.extension:category">
-      <path value="List.entry.extension" />
-      <sliceName value="category" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-List-EntryCategory" />
-      </type>
-      <isModifier value="false" />
-    </element>
     <element id="List.entry:familyComposition">
       <path value="List.entry" />
       <sliceName value="familyComposition" />
-    </element>
-    <element id="List.entry:familyComposition.extension:category">
-      <path value="List.entry.extension" />
-      <sliceName value="category" />
-      <max value="0" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-List-EntryCategory" />
-      </type>
-      <isModifier value="false" />
     </element>
     <element id="List.entry:familyComposition.item">
       <path value="List.entry.item" />
@@ -130,16 +101,6 @@
     <element id="List.entry:numberOfSiblings">
       <path value="List.entry" />
       <sliceName value="numberOfSiblings" />
-    </element>
-    <element id="List.entry:numberOfSiblings.extension:category">
-      <path value="List.entry.extension" />
-      <sliceName value="category" />
-      <max value="0" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-List-EntryCategory" />
-      </type>
-      <isModifier value="false" />
     </element>
     <element id="List.entry:numberOfSiblings.item">
       <path value="List.entry.item" />
