@@ -18,6 +18,11 @@
   <purpose value="A derived profile from [zib-TreatmentDirective2](http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective2) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/TreatmentDirective2-v1.0(2020EN)" />
+    <name value="zib TreatmentDirective2-v1.0(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="Consent" />
@@ -28,21 +33,9 @@
       <path value="Consent" />
       <alias value="nl-core-TreatmentDirective2" />
     </element>
-    <element id="Consent.extension">
-      <path value="Consent.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Consent.extension:additionalAdvanceDirective">
       <path value="Consent.extension" />
       <sliceName value="additionalAdvanceDirective" />
-      <min value="0" />
     </element>
     <element id="Consent.extension:additionalAdvanceDirective.value[x]">
       <path value="Consent.extension.value[x]" />

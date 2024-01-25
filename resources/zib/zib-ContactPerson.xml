@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-ContactPerson" />
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson" />
@@ -50,14 +50,6 @@
         <comment value="Contact" />
       </mapping>
     </element>
-    <element id="RelatedPerson.patient">
-      <path value="RelatedPerson.patient" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient" />
-      </type>
-    </element>
     <element id="RelatedPerson.relationship">
       <path value="RelatedPerson.relationship" />
       <slicing>
@@ -76,7 +68,6 @@
       <alias value="Rol" />
       <binding>
         <strength value="required" />
-        <description value="RolCodelijst" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.3.1.2--20200901000000" />
       </binding>
       <mapping>
@@ -93,7 +84,6 @@
       <alias value="Relatie" />
       <binding>
         <strength value="required" />
-        <description value="RelatieCodelijst" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.3.1.1--20200901000000" />
       </binding>
       <mapping>

@@ -38,16 +38,14 @@
       <constraint>
         <key value="zib-NameInformation-1" />
         <severity value="error" />
-        <human value="If a prefix for a familiy name is specified, the family name is expected as well" />
-        <expression value="name.family.extension('http://hl7.org/fhir/StructureDefinition/humanname-own-prefix').empty().not() implies name.family.extension('http://hl7.org/fhir/StructureDefinition/humanname-own-name').empty().not()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
+        <human value="If a prefix for a family name is specified, the family name is expected as well" />
+        <expression value="family.extension('http://hl7.org/fhir/StructureDefinition/humanname-own-prefix').empty().not() implies family.extension('http://hl7.org/fhir/StructureDefinition/humanname-own-name').empty().not()" />
       </constraint>
       <constraint>
         <key value="zib-NameInformation-2" />
         <severity value="error" />
         <human value="If the prefix for a partner family name is specified, the partner family name is expected as well" />
-        <expression value="name.family.extension('http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix').empty().not() implies name.family.extension('http://hl7.org/fhir/StructureDefinition/humanname-partner-name').empty().not()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
+        <expression value="family.extension('http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix').empty().not() implies family.extension('http://hl7.org/fhir/StructureDefinition/humanname-partner-name').empty().not()" />
       </constraint>
       <mapping>
         <identity value="zib-nameinformation-v1.1-2020EN" />
@@ -55,21 +53,9 @@
         <comment value="NameInformation" />
       </mapping>
     </element>
-    <element id="HumanName.extension">
-      <path value="HumanName.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="HumanName.extension:nameUsage">
       <path value="HumanName.extension" />
       <sliceName value="nameUsage" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order" />
@@ -82,7 +68,7 @@
       <alias value="Naamgebruik" />
       <binding>
         <strength value="required" />
-        <description value="Use ConceptMap NaamgebruikCodelijst-to-HumanNameAssemblyOrder to translate terminology from the functional model to profile terminology in ValueSet HumanNameAssemblyOrder" />
+        <description value="Use ConceptMap NaamgebruikCodelijst-to-HumanNameAssemblyOrder to translate terminology from the functional model to profile terminology in ValueSet HumanNameAssemblyOrder." />
         <valueSet value="http://hl7.org/fhir/ValueSet/name-assembly-order|4.0.1">
           <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
             <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/NaamgebruikCodelijst-to-HumanNameAssemblyOrder" />
@@ -98,23 +84,11 @@
     <element id="HumanName.use">
       <path value="HumanName.use" />
       <min value="1" />
-      <fixedCode value="official" />
-    </element>
-    <element id="HumanName.family.extension">
-      <path value="HumanName.family.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
+      <patternCode value="official" />
     </element>
     <element id="HumanName.family.extension:prefix">
       <path value="HumanName.family.extension" />
       <sliceName value="prefix" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix" />
@@ -134,7 +108,6 @@
     <element id="HumanName.family.extension:lastName">
       <path value="HumanName.family.extension" />
       <sliceName value="lastName" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/humanname-own-name" />
@@ -154,7 +127,6 @@
     <element id="HumanName.family.extension:partnerPrefix">
       <path value="HumanName.family.extension" />
       <sliceName value="partnerPrefix" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix" />
@@ -174,7 +146,6 @@
     <element id="HumanName.family.extension:partnerLastName">
       <path value="HumanName.family.extension" />
       <sliceName value="partnerLastName" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/humanname-partner-name" />
@@ -211,13 +182,6 @@
     </element>
     <element id="HumanName.given.extension">
       <path value="HumanName.given.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
       <min value="1" />
     </element>
     <element id="HumanName.given.extension:givenOrInitial">

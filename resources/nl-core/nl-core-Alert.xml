@@ -18,6 +18,11 @@
   <purpose value="A derived profile from [zib-Alert](http://nictiz.nl/fhir/StructureDefinition/zib-Alert) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-alert-v4.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/Alert-v4.1(2020EN)" />
+    <name value="zib Alert-v4.1(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="Flag" />
@@ -28,21 +33,11 @@
       <path value="Flag" />
       <alias value="nl-core-Alert" />
     </element>
-    <element id="Flag.extension">
+    <element id="Flag.extension:condition">
       <path value="Flag.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
+      <sliceName value="condition" />
     </element>
-    <element id="Flag.extension:concern">
-      <path value="Flag.extension" />
-      <sliceName value="concern" />
-    </element>
-    <element id="Flag.extension:concern.value[x]">
+    <element id="Flag.extension:condition.value[x]">
       <path value="Flag.extension.value[x]" />
       <type>
         <code value="Reference" />

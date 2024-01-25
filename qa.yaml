@@ -14,6 +14,7 @@ patterns:
   - resources/nl-core/*.xml
   conceptmaps: resources/**/conceptmap-*.xml
   terminology: resources/**/terminology/*.xml
+  SearchParameters: SearchParameters/*.xml
   examples: examples/*.xml
 
 steps:
@@ -44,6 +45,10 @@ steps:
   validate other terminology:
     description: Validate the other terminology resources
     patterns: terminology
+  validate SearchParameters:
+    description: Validate SearchParameters
+    patterns: SearchParameters
+    profile: "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-SearchParameters"
   validate examples:
     description: Validate examples using the generic FHIR validation rules
     patterns: examples
@@ -52,3 +57,16 @@ steps:
       - zib profiles
       - zib extensions
     script: zib-compliance.sh
+  check resource ids:
+    description: Check if the .id matches the name of the file
+    patterns:
+      - zib profiles
+      - zib extensions
+      - nl-core profiles
+      - nl-core extensions
+      - other profiles
+      - examples
+    script: check-id.sh
+  check nl-core overrides:
+    patterns: nl-core profiles
+    script: nl-core-overrides.sh
