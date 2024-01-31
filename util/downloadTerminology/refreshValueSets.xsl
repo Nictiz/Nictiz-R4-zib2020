@@ -33,7 +33,8 @@
     </xsl:param>
     
     <xsl:variable name="resourceIds" select="collection(concat($inputdir, '?select=*.xml;recurse=yes'))//f:id/@value" as="attribute()*"/>
-    <xsl:variable name="valueSetURIs" select="collection(concat($inputdir, '?select=*.xml;recurse=yes'))/(f:StructureDefinition | f:ConceptMap | f:ValueSet)//@value[starts-with(., 'http://decor.nictiz.nl/fhir/')]" as="attribute()*"/>
+    <xsl:variable name="valueSetURIs" select="collection(concat($inputdir, '?select=*.xml;recurse=yes'))/(f:StructureDefinition | f:ConceptMap | f:ValueSet)//@value[starts-with(., 'http://decor.nictiz.nl/fhir/')][not(parent::f:source/parent::f:meta)]" as="attribute()*"/>
+    <!-- Added meta.source as a hardcoded exception as this decor.nictiz.nl/fhir uri does not reference a ValueSet and does not resolve, leading to the process crashing -->
     
     <xd:doc>
         <xd:desc/>
