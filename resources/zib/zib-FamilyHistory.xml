@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -123,8 +123,28 @@
       <alias value="Probleem" />
       <mapping>
         <identity value="zib-familyhistory-v3.1-2020EN" />
-        <map value="NL-CM:6.1.7" />
+        <map value="NL-CM:5.1.1" />
         <comment value="Problem" />
+      </mapping>
+    </element>
+    <element id="FamilyMemberHistory.condition.extension:abatement">
+      <path value="FamilyMemberHistory.condition.extension" />
+      <sliceName value="abatement" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/familymemberhistory-abatement" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="FamilyMemberHistory.condition.code">
+      <path value="FamilyMemberHistory.condition.code" />
+      <short value="ProblemName" />
+      <definition value="The problem name defines the problem. Depending on the setting, different code systems can be used. The ProblemNameCodelist provides an overview of the possible code systems." />
+      <alias value="ProbleemNaam" />
+      <mapping>
+        <identity value="zib-familyhistory-v3.1-2020EN" />
+        <map value="NL-CM:5.1.3" />
+        <comment value="ProblemName" />
       </mapping>
     </element>
     <element id="FamilyMemberHistory.condition.contributedToDeath">
@@ -136,6 +156,60 @@
         <identity value="zib-familyhistory-v3.1-2020EN" />
         <map value="NL-CM:6.1.9" />
         <comment value="IsCauseOfDeath" />
+      </mapping>
+    </element>
+    <element id="FamilyMemberHistory.condition.onset[x]">
+      <path value="FamilyMemberHistory.condition.onset[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="FamilyMemberHistory.condition.onset[x]:onsetPeriod">
+      <path value="FamilyMemberHistory.condition.onset[x]" />
+      <sliceName value="onsetPeriod" />
+      <type>
+        <code value="Period" />
+      </type>
+    </element>
+    <element id="FamilyMemberHistory.condition.onset[x]:onsetPeriod.start">
+      <path value="FamilyMemberHistory.condition.onset[x].start" />
+      <short value="ProblemStartDate" />
+      <definition value="Onset of the symptom, complaint, functional limitation, complication or date of diagnosis. A ‘vague’ date, such as only the year or the month and the year, is permitted." />
+      <alias value="ProbleemBeginDatum" />
+      <mapping>
+        <identity value="zib-familyhistory-v3.1-2020EN" />
+        <map value="NL-CM:5.1.6" />
+        <comment value="ProblemStartDate" />
+      </mapping>
+    </element>
+    <element id="FamilyMemberHistory.condition.onset[x]:onsetPeriod.end">
+      <path value="FamilyMemberHistory.condition.onset[x].end" />
+      <short value="ProblemEndDate" />
+      <definition value="Date on which the disorder to which the problem applies, is considered not to be present anymore.This datum needs not to be the same as the date of the change in problem status. A ‘vague’ date, such as only the year or the month and the year, is permitted." />
+      <alias value="ProbleemEindDatum" />
+      <mapping>
+        <identity value="zib-familyhistory-v3.1-2020EN" />
+        <map value="NL-CM:5.1.9" />
+        <comment value="ProblemEndDate" />
+      </mapping>
+    </element>
+    <element id="FamilyMemberHistory.condition.note">
+      <path value="FamilyMemberHistory.condition.note" />
+      <max value="1" />
+    </element>
+    <element id="FamilyMemberHistory.condition.note.text">
+      <path value="FamilyMemberHistory.condition.note.text" />
+      <short value="Comment" />
+      <definition value="Comment by the one who determined or updated the Problem." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-familyhistory-v3.1-2020EN" />
+        <map value="NL-CM:5.1.5" />
+        <comment value="Comment" />
       </mapping>
     </element>
   </differential>
