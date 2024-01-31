@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -55,7 +55,6 @@
         <severity value="warning" />
         <human value="Either a category for functional status finding or mental status finding is present." />
         <expression value="where(coding.system = 'http://snomed.info/sct' and coding.code = '118228005').exists() xor where(coding.system = 'http://snomed.info/sct' and coding.code = '384821006').exists()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus" />
       </constraint>
     </element>
     <element id="Observation.category:functionalStatusFinding">

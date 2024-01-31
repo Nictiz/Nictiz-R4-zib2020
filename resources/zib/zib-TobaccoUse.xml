@@ -9,13 +9,13 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
   <description value="Tobacco is a product that comes from the leaves of the tobacco plant, which is smoked as a drug. Smokable forms of tobacco include rolling tobacco, cigarettes, cigars and pipe tobacco. This information model describes the information asked of the patient about their use of tobacco." />
-  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) TobaccoUse v3.2 (2020)](https://zibs.nl/wiki/TobaccoUse-v3.2(2020EN)))." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) TobaccoUse v3.2 (2020)](https://zibs.nl/wiki/TobaccoUse-v3.2(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -148,6 +148,7 @@
     </element>
     <element id="Observation.component:typeOfTobaccoUsed.code">
       <path value="Observation.component.code" />
+      <comment value="The code to identify this concept (SNOMED 53661000146106) aligns with the next version of the zib, since the current version doesn't provide a code. See [ZIB-1403](https://bits.nictiz.nl/browse/ZIB-1403) for more information." />
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />

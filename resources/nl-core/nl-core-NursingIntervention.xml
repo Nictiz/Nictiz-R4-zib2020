@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -18,6 +18,11 @@
   <purpose value="A derived profile from [zib-NursingIntervention](http://nictiz.nl/fhir/StructureDefinition/zib-NursingIntervention) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-nursingintervention-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/NursingIntervention-v3.2(2020EN)" />
+    <name value="zib NursingIntervention-v3.2(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="CarePlan" />
@@ -28,14 +33,22 @@
       <path value="CarePlan" />
       <alias value="nl-core-NursingIntervention" />
     </element>
+    <element id="CarePlan.subject">
+      <path value="CarePlan.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
     <element id="CarePlan.contributor:requester">
       <path value="CarePlan.contributor" />
       <sliceName value="requester" />
-      <comment value="Each occurence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [nl-core-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [nl-core-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner)). The reference to the Practitioner resource is referenced from the PractitionerRole instance. For this reason, sending systems should fill the reference to the PractitionerRole instance here, and not the Practitioner resource.&#xD;&#xA;&#xD;&#xA;In rare circumstances, there is only a Practitioner instance, in which case it is that instance which will be referenced here." />
       <type>
         <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner" />
       </type>
     </element>
     <element id="CarePlan.addresses">
@@ -54,21 +67,9 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentObjective" />
       </type>
     </element>
-    <element id="CarePlan.activity.detail.extension">
-      <path value="CarePlan.activity.detail.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="CarePlan.activity.detail.extension:medicalDevice">
       <path value="CarePlan.activity.detail.extension" />
       <sliceName value="medicalDevice" />
-      <min value="0" />
     </element>
     <element id="CarePlan.activity.detail.extension:medicalDevice.value[x]">
       <path value="CarePlan.activity.detail.extension.value[x]" />
@@ -81,11 +82,10 @@
     <element id="CarePlan.activity.detail.performer:healthcareProvider">
       <path value="CarePlan.activity.detail.performer" />
       <sliceName value="healthcareProvider" />
-      <comment value="Each occurence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [nl-core-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [nl-core-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner)). The reference to the Practitioner resource is referenced from the PractitionerRole instance. For this reason, sending systems should fill the reference to the PractitionerRole instance here, and not the Practitioner resource.&#xD;&#xA;&#xD;&#xA;In rare circumstances, there is only a Practitioner instance, in which case it is that instance which will be referenced here." />
       <type>
         <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner" />
       </type>
     </element>
     <element id="CarePlan.activity.detail.performer:caregiver">
@@ -101,7 +101,6 @@
       <sliceName value="patient" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
       </type>
     </element>

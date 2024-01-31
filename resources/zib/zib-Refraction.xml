@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-Refraction" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Refraction" />
+  <name value="ZibRefraction" />
+  <title value="zib Refraction" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The refraction measurement is a measurement with which the refractive error of the eye is determined. During the refraction measurement, the necessary correction is established: the spherical power (in diopters), the cylindrical power (in diopters), the axis direction (in degrees) for any cylindrical correction, the prism (in prism diopters) and any additional power of the reading area (in diopters), the so-called reading addition." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Refraction v1.0 (2020)](https://zibs.nl/wiki/Refraction-v1.0(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-refraction-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/Refraction-v1.0(2020EN)" />
+    <name value="zib Refraction-v1.0(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="Refraction" />
+      <alias value="Refractie" />
+      <constraint>
+        <key value="zib-Refraction-1" />
+        <severity value="error" />
+        <human value="When component:cylindricalRefractionValue is present, component:cylindricalRefractionAxis should also be present." />
+        <expression value="component.code.coding.where(system = 'http://snomed.info/sct' and code = '251797004').exists() implies component.code.coding.where(system = 'http://snomed.info/sct' and code = '251799001').exists()" />
+      </constraint>
+      <constraint>
+        <key value="zib-Refraction-2" />
+        <severity value="error" />
+        <human value="When component:cylindricalRefractionAxis is present, component:cylindricalRefractionValue should also be present." />
+        <expression value="component.code.coding.where(system = 'http://snomed.info/sct' and code = '251799001').exists() implies component.code.coding.where(system = 'http://snomed.info/sct' and code = '251797004').exists()" />
+      </constraint>
+      <constraint>
+        <key value="zib-Refraction-3" />
+        <severity value="error" />
+        <human value="When component:prismValue is present, component:prismBase should also be present." />
+        <expression value="component.code.coding.where(system = 'http://snomed.info/sct' and code = '251762001').exists() implies component.code.coding.where(system = 'http://snomed.info/sct' and code = '246223004').exists()" />
+      </constraint>
+      <constraint>
+        <key value="zib-Refraction-4" />
+        <severity value="error" />
+        <human value="When component:prismBase is present, component:prismValue should also be present." />
+        <expression value="component.code.coding.where(system = 'http://snomed.info/sct' and code = '246223004').exists() implies component.code.coding.where(system = 'http://snomed.info/sct' and code = '251762001').exists()" />
+      </constraint>
+      <constraint>
+        <key value="zib-Refraction-5" />
+        <severity value="error" />
+        <human value="When component:sphericalEquivalent is present, component:sphericalRefractionValue should also be present." />
+        <expression value="component.code.coding.where(system = 'http://snomed.info/sct' and code = '112881000146107').exists() implies component.code.coding.where(system = 'http://snomed.info/sct' and code = '251795007').exists()" />
+      </constraint>
+      <mapping>
+        <identity value="zib-refraction-v1.0-2020EN" />
+        <map value="NL-CM:12.20.1" />
+        <comment value="Refraction" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="251718005" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effective[x]" />
+      <sliceName value="effectiveDateTime" />
+      <short value="RefractionDateTime" />
+      <definition value="The date and time when the refraction measurement was carried out." />
+      <alias value="RefractieDatumTijd" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-refraction-v1.0-2020EN" />
+        <map value="NL-CM:12.20.3" />
+        <comment value="RefractionDateTime" />
+      </mapping>
+    </element>
+    <element id="Observation.bodySite">
+      <path value="Observation.bodySite" />
+      <short value="AnatomicalLocation" />
+      <definition value="The laterality of the eye of which the refraction has been measured." />
+      <comment value="The code on this element is added to make explicit what is implicit in the zib. See [ZIB-1442](https://bits.nictiz.nl/browse/ZIB-1442) for details." />
+      <alias value="AnatomischeLocatie" />
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
+      </type>
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="81745001" />
+        </coding>
+      </patternCodeableConcept>
+      <mapping>
+        <identity value="zib-refraction-v1.0-2020EN" />
+        <map value="NL-CM:12.20.2" />
+        <comment value="AnatomicalLocation" />
+      </mapping>
+    </element>
+    <element id="Observation.bodySite.extension:laterality">
+      <path value="Observation.bodySite.extension" />
+      <sliceName value="laterality" />
+    </element>
+    <element id="Observation.bodySite.extension:laterality.value[x]">
+      <path value="Observation.bodySite.extension.value[x]" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.20.2--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-refraction-v1.0-2020EN" />
+        <map value="NL-CM:12.20.15" />
+        <comment value="Laterality" />
+      </mapping>
+    </element>
+    <element id="Observation.method">
+      <path value="Observation.method" />
+      <short value="RefractionMeasurementMethod" />
+      <definition value="The method used to measure the refraction." />
+      <alias value="RefractieMeetMethode" />
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.20.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-refraction-v1.0-2020EN" />
+        <map value="NL-CM:12.20.4" />
+        <comment value="RefractionMeasurementMethod" />
+      </mapping>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:cylindricalRefractionValue">
+      <path value="Observation.component" />
+      <sliceName value="cylindricalRefractionValue" />
+      <max value="1" />
+      <condition value="zib-Refraction-1" />
+      <condition value="zib-Refraction-2" />
+    </element>
+    <element id="Observation.component:cylindricalRefractionValue.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="251797004" />
+        </coding>
+      </patternCodeableConcept>
+      <condition value="zib-Refraction-1" />
+      <condition value="zib-Refraction-2" />
+    </element>
+    <element id="Observation.component:cylindricalRefractionValue.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="CylindricalRefractionValue" />
+      <definition value="The power of the cylinder needed to correct the cylindrical error (astigmatism), expressed in diopters. When a cylindrical refraction is registered, the axis of the cylinder must also be specified." />
+      <alias value="CilindrischeRefractieWaarde" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <patternQuantity>
+        <system value="http://unitsofmeasure.org" />
+        <code value="[diop]" />
+      </patternQuantity>
+      <minValueQuantity>
+        <value value="-10" />
+        <system value="http://unitsofmeasure.org" />
+        <code value="[diop]" />
+      </minValueQuantity>
+      <maxValueQuantity>
+        <value value="0" />
+        <system value="http://unitsofmeasure.org" />
+        <code value="[diop]" />
+      </maxValueQuantity>
+      <condition value="zib-Refraction-1" />
+      <condition value="zib-Refraction-2" />
+      <mapping>
+        <identity value="zib-refraction-v1.0-2020EN" />
+        <map value="NL-CM:12.20.11" />
+        <comment value="CylindricalRefractionValue" />
+      </mapping>
+    </element>
+    <element id="Observation.component:cylindricalRefractionAxis">
+      <path value="Observation.component" />
+      <sliceName value="cylindricalRefractionAxis" />
+      <max value="1" />
+      <condition value="zib-Refraction-1" />
+      <condition value="zib-Refraction-2" />
+    </element>
+    <element id="Observation.component:cylindricalRefractionAxis.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="251799001" />
+        </coding>
+      </patternCodeableConcept>
+      <condition value="zib-Refraction-1" />
+      <condition value="zib-Refraction-2" />
+    </element>
+    <element id="Observation.component:cylindricalRefractionAxis.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="CylindricalRefractionAxis" />
+      <definition value="The axis direction of the cylindrical refraction value expressed in degrees." />
+      <alias value="CilindrischeRefractieAs" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <patternQuantity>
+        <system value="http://unitsofmeasure.org" />
+        <code value="deg" />
+      </patternQuantity>
+      <minValueQuantity>
+        <value value="0" />
+        <system value="http://unitsofmeasure.org" />
+        <code value="deg" />
+      </minValueQuantity>
+      <maxValueQuantity>
+        <value value="180" />
+        <system value="http://unitsofmeasure.org" />
+        <code value="deg" />
+      </maxValueQuantity>
+      <condition value="zib-Refraction-1" />
+      <condition value="zib-Refraction-2" />
+      <mapping>
+        <identity value="zib-refraction-v1.0-2020EN" />
+        <map value="NL-CM:12.20.13" />
+        <comment value="CylindricalRefractionAxis" />
+      </mapping>
+    </element>
+    <element id="Observation.component:prismValue">
+      <path value="Observation.component" />
+      <sliceName value="prismValue" />
+      <max value="1" />
+      <condition value="zib-Refraction-3" />
+      <condition value="zib-Refraction-4" />
+    </element>
+    <element id="Observation.component:prismValue.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="251762001" />
+        </coding>
+      </patternCodeableConcept>
+      <condition value="zib-Refraction-3" />
+      <condition value="zib-Refraction-4" />
+    </element>
+    <element id="Observation.component:prismValue.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="PrismValue" />
+      <definition value="The power of the prism, expressed in prism diopters." />
+      <comment value="The unit (prism diopter) aligns with the future version of this zib. See [ZIB-1449](https://bits.nictiz.nl/browse/ZIB-1449) for details." />
+      <alias value="PrismaWaarde" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <patternQuantity>
+        <system value="http://unitsofmeasure.org" />
+        <code value="[p'diop]" />
+      </patternQuantity>
+      <minValueQuantity>
+        <value value="0" />
+        <system value="http://unitsofmeasure.org" />
+        <code value="[p'diop]" />
+      </minValueQuantity>
+      <maxValueQuantity>
+        <value value="40" />
+        <system value="http://unitsofmeasure.org" />
+        <code value="[p'diop]" />
+      </maxValueQuantity>
+      <condition value="zib-Refraction-3" />
+      <condition value="zib-Refraction-4" />
+      <mapping>
+        <identity value="zib-refraction-v1.0-2020EN" />
+        <map value="NL-CM:12.20.6" />
+        <comment value="PrismValue" />
+      </mapping>
+    </element>
+    <element id="Observation.component:prismBase">
+      <path value="Observation.component" />
+      <sliceName value="prismBase" />
+      <max value="1" />
+      <condition value="zib-Refraction-3" />
+      <condition value="zib-Refraction-4" />
+    </element>
+    <element id="Observation.component:prismBase.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="246223004" />
+        </coding>
+      </patternCodeableConcept>
+      <condition value="zib-Refraction-3" />
+      <condition value="zib-Refraction-4" />
+    </element>
+    <element id="Observation.component:prismBase.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="PrismBase" />
+      <definition value="The base of the prism, expressed in degrees." />
+      <alias value="PrismaBasis" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <patternQuantity>
+        <system value="http://unitsofmeasure.org" />
+        <code value="deg" />
+      </patternQuantity>
+      <minValueQuantity>
+        <value value="0" />
+        <system value="http://unitsofmeasure.org" />
+        <code value="deg" />
+      </minValueQuantity>
+      <maxValueQuantity>
+        <value value="360" />
+        <system value="http://unitsofmeasure.org" />
+        <code value="deg" />
+      </maxValueQuantity>
+      <condition value="zib-Refraction-3" />
+      <condition value="zib-Refraction-4" />
+      <mapping>
+        <identity value="zib-refraction-v1.0-2020EN" />
+        <map value="NL-CM:12.20.7" />
+        <comment value="PrismBase" />
+      </mapping>
+    </element>
+    <element id="Observation.component:sphericalRefractionValue">
+      <path value="Observation.component" />
+      <sliceName value="sphericalRefractionValue" />
+      <max value="1" />
+      <condition value="zib-Refraction-5" />
+    </element>
+    <element id="Observation.component:sphericalRefractionValue.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="251795007" />
+        </coding>
+      </patternCodeableConcept>
+      <condition value="zib-Refraction-5" />
+    </element>
+    <element id="Observation.component:sphericalRefractionValue.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="SphericalRefractionValue" />
+      <definition value="The spherical spectacle strength power needed to correct nearsightedness (myopia) or farsightedness (hyperopia), expressed in diopters, ascending by 0.25D." />
+      <alias value="SferischeRefractieWaarde" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <patternQuantity>
+        <system value="http://unitsofmeasure.org" />
+        <code value="[diop]" />
+      </patternQuantity>
+      <minValueQuantity>
+        <value value="-25" />
+        <system value="http://unitsofmeasure.org" />
+        <code value="[diop]" />
+      </minValueQuantity>
+      <maxValueQuantity>
+        <value value="25" />
+        <system value="http://unitsofmeasure.org" />
+        <code value="[diop]" />
+      </maxValueQuantity>
+      <condition value="zib-Refraction-5" />
+      <mapping>
+        <identity value="zib-refraction-v1.0-2020EN" />
+        <map value="NL-CM:12.20.9" />
+        <comment value="SphericalRefractionValue" />
+      </mapping>
+    </element>
+    <element id="Observation.component:sphericalEquivalent">
+      <path value="Observation.component" />
+      <sliceName value="sphericalEquivalent" />
+      <max value="1" />
+      <condition value="zib-Refraction-5" />
+    </element>
+    <element id="Observation.component:sphericalEquivalent.code">
+      <path value="Observation.component.code" />
+      <comment value="The code to identify this concept (SNOMED 112881000146107) aligns with the next version of the zib, since the current version doesn't provide a code. See [ZIB-1420](https://bits.nictiz.nl/browse/ZIB-1420) for more information." />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="112881000146107" />
+        </coding>
+      </patternCodeableConcept>
+      <condition value="zib-Refraction-5" />
+    </element>
+    <element id="Observation.component:sphericalEquivalent.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="SphericalEquivalent" />
+      <definition value="The spherical power added to half of the cylindrical power. Expressed in diopters, ascending by 0.1D. Some equipment automatically calculates the spherical equivalent." />
+      <alias value="SferischEquivalent" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <patternQuantity>
+        <system value="http://unitsofmeasure.org" />
+        <code value="[diop]" />
+      </patternQuantity>
+      <minValueQuantity>
+        <value value="-25" />
+        <system value="http://unitsofmeasure.org" />
+        <code value="[diop]" />
+      </minValueQuantity>
+      <maxValueQuantity>
+        <value value="25" />
+        <system value="http://unitsofmeasure.org" />
+        <code value="[diop]" />
+      </maxValueQuantity>
+      <condition value="zib-Refraction-5" />
+      <mapping>
+        <identity value="zib-refraction-v1.0-2020EN" />
+        <map value="NL-CM:12.20.10" />
+        <comment value="SphericalEquivalent" />
+      </mapping>
+    </element>
+    <element id="Observation.component:readAddition">
+      <path value="Observation.component" />
+      <sliceName value="readAddition" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:readAddition.code">
+      <path value="Observation.component.code" />
+      <comment value="The DefintionCodes for the concepts Refraction and ReadAddition are identical in the zib Refraction. This is recognized and fixed in future publications in [ZIB-1443](https://bits.nictiz.nl/browse/ZIB-1443). In this profile, the codes are as defined in the 2020 publication." />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="251718005" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:readAddition.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="ReadAddition" />
+      <definition value="A supplement that is added to the refraction value to determine the strength of the reading glasses, expressed in diopters." />
+      <alias value="LeesAdditie" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <patternQuantity>
+        <system value="http://unitsofmeasure.org" />
+        <code value="[diop]" />
+      </patternQuantity>
+      <minValueQuantity>
+        <value value="0" />
+        <system value="http://unitsofmeasure.org" />
+        <code value="[diop]" />
+      </minValueQuantity>
+      <maxValueQuantity>
+        <value value="5" />
+        <system value="http://unitsofmeasure.org" />
+        <code value="[diop]" />
+      </maxValueQuantity>
+      <mapping>
+        <identity value="zib-refraction-v1.0-2020EN" />
+        <map value="NL-CM:12.20.8" />
+        <comment value="ReadAddition" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

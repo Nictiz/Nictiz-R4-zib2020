@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-Payer-Organization" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Payer-Organization" />
+  <name value="ZibPayerOrganization" />
+  <title value="zib Payer Organization" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Payers are organizations or individuals that pay for the healthcare supplied to the patient. These organizations or individuals can be: facilities or people who financially guarantee or who are responsible for the patient (such as parents or guardians of minors), organizations with direct financial responsibility, combinations of these or the patient themselves." />
+  <purpose value="This Organization resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Payer v3.1.1 (2020)](https://zibs.nl/wiki/Payer-v3.1.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-payer-v3.1.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/Payer-v3.1.1(2020EN)" />
+    <name value="zib Payer-v3.1.1(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Organization" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Organization" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Organization">
+      <path value="Organization" />
+      <short value="InsuranceCompany" />
+      <comment value="The zib Payer is split into two focal profiles on Coverage based on the PayerPerson and InsuranceCompany containers. These profiles can refer to respectively an Organization as PayerPerson or an InsuranceCompany. This profile can thus represent either the PayerName or InsuranceCompany concept and both the AddressInformation and ContactInformation concepts of the zib." />
+      <alias value="Verzekeraar" />
+      <mapping>
+        <identity value="zib-payer-v3.1.1-2020EN" />
+        <map value="NL-CM:1.1.3" />
+        <comment value="InsuranceCompany" />
+      </mapping>
+    </element>
+    <element id="Organization.identifier">
+      <path value="Organization.identifier" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Organization.identifier:uzovi">
+      <path value="Organization.identifier" />
+      <sliceName value="uzovi" />
+      <short value="IdentificationNumber" />
+      <definition value="Unique healthcare insurance company identification (the UZOVI number)." />
+      <alias value="IdentificatieNummer" />
+      <max value="1" />
+      <patternIdentifier>
+        <system value="http://fhir.nl/fhir/NamingSystem/uzovi" />
+      </patternIdentifier>
+      <mapping>
+        <identity value="zib-payer-v3.1.1-2020EN" />
+        <map value="NL-CM:1.1.7" />
+        <comment value="IdentificationNumber" />
+      </mapping>
+    </element>
+    <element id="Organization.name">
+      <path value="Organization.name" />
+      <short value="OrganizationName / PayerName" />
+      <definition value="Full, official name of the healthcare insurance company or paying organization. If the UZOVI number is entered as an identification number, this will be the name as listed in the UZOVI register and the name which is returned in the Check for Right to Insurance (COV)." />
+      <alias value="OrganisatieNaam" />
+      <alias value="BetalerNaam" />
+      <mapping>
+        <identity value="zib-payer-v3.1.1-2020EN" />
+        <map value="NL-CM:1.1.16" />
+        <comment value="OrganizationName" />
+      </mapping>
+      <mapping>
+        <identity value="zib-payer-v3.1.1-2020EN" />
+        <map value="NL-CM:1.1.5" />
+        <comment value="PayerName" />
+      </mapping>
+    </element>
+    <element id="Organization.telecom">
+      <path value="Organization.telecom" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <short value="ContactInformation" />
+      <definition value="The payer’s telephone number and/or e-mail address." />
+      <alias value="Contactgegevens" />
+      <mapping>
+        <identity value="zib-payer-v3.1.1-2020EN" />
+        <map value="NL-CM:1.1.12" />
+        <comment value="ContactInformation" />
+      </mapping>
+    </element>
+    <element id="Organization.telecom:telephoneNumbers">
+      <path value="Organization.telecom" />
+      <sliceName value="telephoneNumbers" />
+      <type>
+        <code value="ContactPoint" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelephoneNumbers" />
+      </type>
+    </element>
+    <element id="Organization.telecom:emailAddresses">
+      <path value="Organization.telecom" />
+      <sliceName value="emailAddresses" />
+      <type>
+        <code value="ContactPoint" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-EmailAddresses" />
+      </type>
+    </element>
+    <element id="Organization.address">
+      <path value="Organization.address" />
+      <definition value="The payer’s address information." />
+      <type>
+        <code value="Address" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation" />
+      </type>
+      <mapping>
+        <identity value="zib-payer-v3.1.1-2020EN" />
+        <map value="NL-CM:1.1.17" />
+        <comment value="AddressInformation" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

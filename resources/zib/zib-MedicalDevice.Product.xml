@@ -9,13 +9,13 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
   <description value="Medical devices are any internally implanted and external devices and/or aids used by the patient (in the past) to reduce the effects of functional limitations in organ systems or to facilitate the treatment of a disease." />
-  <purpose value="This Device resource represents the Product container of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) MedicalDevice v3.3.1 (2020)](https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN))" />
+  <purpose value="This Device resource represents the Product concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) MedicalDevice v3.3.1 (2020)](https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -108,7 +108,7 @@
     <element id="Device.udiCarrier:gs1UdiCarrier.issuer">
       <path value="Device.udiCarrier.issuer" />
       <definition value="Organization that is charged with issuing UDIs for devices. For the zib this would be GS1's Global Trade Item Number (GTIN) or Health Industry Bar Code (HIBC). Note that the issuer must match the issuer implicitly contained in the ProductID." />
-      <fixedUri value="https://www.gs1.org/gtin" />
+      <patternUri value="https://www.gs1.org/gtin" />
     </element>
     <element id="Device.udiCarrier:gs1UdiCarrier.carrierHRF">
       <path value="Device.udiCarrier.carrierHRF" />
@@ -128,7 +128,7 @@
     <element id="Device.udiCarrier:hibcUdiCarrier.issuer">
       <path value="Device.udiCarrier.issuer" />
       <definition value="Organization that is charged with issuing UDIs for devices. For the zib this would be GS1's Global Trade Item Number (GTIN) or Health Industry Bar Code (HIBC). Note that the issuer must match the issuer implicitly contained in the ProductID." />
-      <fixedUri value="urn:oid:2.16.840.1.113883.6.40" />
+      <patternUri value="urn:oid:2.16.840.1.113883.6.40" />
     </element>
     <element id="Device.udiCarrier:hibcUdiCarrier.carrierHRF">
       <path value="Device.udiCarrier.carrierHRF" />
