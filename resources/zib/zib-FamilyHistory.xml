@@ -39,6 +39,68 @@
         <comment value="FamilyHistory" />
       </mapping>
     </element>
+    <element id="FamilyMemberHistory.date">
+      <path value="FamilyMemberHistory.date" />
+      <short value="Date" />
+      <definition value="Date on which the family history was entered. A ‘vague’ date is permitted." />
+      <alias value="Datum" />
+      <mapping>
+        <identity value="zib-familyhistory-v3.1-2020EN" />
+        <map value="NL-CM:6.1.2" />
+        <comment value="Date" />
+      </mapping>
+    </element>
+    <element id="FamilyMemberHistory.relationship">
+      <path value="FamilyMemberHistory.relationship" />
+      <short value="BiologicalRelationship" />
+      <definition value="Indicates the biological relationship of the family member to the patient." />
+      <alias value="BiologischeRelatie" />
+      <mapping>
+        <identity value="zib-familyhistory-v3.1-2020EN" />
+        <map value="NL-CM:6.1.4" />
+        <comment value="BiologicalRelationship" />
+      </mapping>
+    </element>
+    <element id="FamilyMemberHistory.deceased[x]">
+      <path value="FamilyMemberHistory.deceased[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="FamilyMemberHistory.deceased[x]:deceasedBoolean">
+      <path value="FamilyMemberHistory.deceased[x]" />
+      <sliceName value="deceasedBoolean" />
+      <short value="DeathIndicator" />
+      <definition value="An indication stating whether the family member has died." />
+      <alias value="OverlijdensIndicator" />
+      <type>
+        <code value="boolean" />
+      </type>
+      <mapping>
+        <identity value="zib-familyhistory-v3.1-2020EN" />
+        <map value="NL-CM:6.1.10" />
+        <comment value="DeathIndicator" />
+      </mapping>
+    </element>
+    <element id="FamilyMemberHistory.deceased[x]:deceasedAge">
+      <path value="FamilyMemberHistory.deceased[x]" />
+      <sliceName value="deceasedAge" />
+      <short value="AgeAtDeath" />
+      <definition value="The age at which the family member died." />
+      <alias value="LeeftijdBijOverlijden" />
+      <type>
+        <code value="Age" />
+      </type>
+      <mapping>
+        <identity value="zib-familyhistory-v3.1-2020EN" />
+        <map value="NL-CM:6.1.12" />
+        <comment value="AgeAtDeath" />
+      </mapping>
+    </element>
     <element id="FamilyMemberHistory.note">
       <path value="FamilyMemberHistory.note" />
       <max value="1" />
@@ -52,6 +114,28 @@
         <identity value="zib-familyhistory-v3.1-2020EN" />
         <map value="NL-CM:6.1.5" />
         <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="FamilyMemberHistory.condition">
+      <path value="FamilyMemberHistory.condition" />
+      <short value="Problem" />
+      <definition value="The health problem of the family member in question, which is recorded for the family history." />
+      <alias value="Probleem" />
+      <mapping>
+        <identity value="zib-familyhistory-v3.1-2020EN" />
+        <map value="NL-CM:6.1.7" />
+        <comment value="Problem" />
+      </mapping>
+    </element>
+    <element id="FamilyMemberHistory.condition.contributedToDeath">
+      <path value="FamilyMemberHistory.condition.contributedToDeath" />
+      <short value="IsCauseOfDeath" />
+      <definition value="Indication stating whether the described health problem was the cause of death of the family member." />
+      <alias value="IsDoodsoorzaak" />
+      <mapping>
+        <identity value="zib-familyhistory-v3.1-2020EN" />
+        <map value="NL-CM:6.1.9" />
+        <comment value="IsCauseOfDeath" />
       </mapping>
     </element>
   </differential>
