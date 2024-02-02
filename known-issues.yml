@@ -807,12 +807,27 @@ nl-core-AllergyIntolerance*:
       - message: None of the codings provided are in the value set 'SpecifiekeStofCodelijsten'
         reason: The terminology servers cannot handle the refset specified in the ValueSet.
 
+nl-core-BloodPressure-*:
+  ignored issues:
+    Observation.component[*].value.*:
+      - message: None of the codings provided are in the value set 'Vital Signs Units'
+        reason: The Validator checks all Observations with a vital signs magic LOINC code against the HL7 Vital Signs base profile. Unfortunately, this profile restricts the allowed components to only the use cases identified by HL7, while the zib adds additional data. This has been identified as a bug in het HL7 Vital Signs profile, which will be fixed in the next version. See https://jira.hl7.org/browse/FHIR-43353 for more information.
+
 nl-core-BodyHeight-*:
   ignored issues:
     Observation.value.ofType(Quantity).code:
       - message: The value provided ('cm') is not in the value set 'Body Length Units'
         reason: In absence of a terminology server, the Validator cannot check if 'cm' is a valid UCUM unit and raises an error.
-        
+    Observation.component[*].value.*:
+      - message: None of the codings provided are in the value set 'Vital Signs Units'
+        reason: The Validator checks all Observations with a vital signs magic LOINC code against the HL7 Vital Signs base profile. Unfortunately, this profile restricts the allowed components to only the use cases identified by HL7, while the zib adds additional data. This has been identified as a bug in het HL7 Vital Signs profile, which will be fixed in the next version. See https://jira.hl7.org/browse/FHIR-43353 for more information.
+
+nl-core-BodyWeight-*:
+  ignored issues:
+    Observation.component[*].value.*:
+      - message: None of the codings provided are in the value set 'Vital Signs Units'
+        reason: The Validator checks all Observations with a vital signs magic LOINC code against the HL7 Vital Signs base profile. Unfortunately, this profile restricts the allowed components to only the use cases identified by HL7, while the zib adds additional data. This has been identified as a bug in het HL7 Vital Signs profile, which will be fixed in the next version. See https://jira.hl7.org/browse/FHIR-43353 for more information.
+
 nl-core-BowelFunction-02-DeviceUseStatement-01:
   ignored issues:
     DeviceUseStatement.reasonReference[0]:
@@ -832,6 +847,12 @@ nl-core-HearingFunction.HearingAid-*:
     DeviceUseStatement.reasonReference[*]:
       - message: 'Profile http://nictiz.nl/fhir/StructureDefinition/nl-core-HearingFunction.HearingAid, Element matches more than one slice'
         reason: The Validator cannot actually inspect the referenced resources, and falsely assumes the reference is a reference to the offending profile.
+
+nl-core-HeartRate-*:
+  ignored issues:
+    Observation.component[*].value.*:
+      - message: None of the codings provided are in the value set 'Vital Signs Units'
+        reason: The Validator checks all Observations with a vital signs magic LOINC code against the HL7 Vital Signs base profile. Unfortunately, this profile restricts the allowed components to only the use cases identified by HL7, while the zib adds additional data. This has been identified as a bug in het HL7 Vital Signs profile, which will be fixed in the next version. See https://jira.hl7.org/browse/FHIR-43353 for more information.
 
 nl-core-VisualFunction.VisualAid-*:
   ignored issues:
@@ -866,6 +887,12 @@ nl-core-PharmaceuticalProduct-02:
         reason: The terminology servers used don't know this code system and wrongly conclude that this is an invalid code.
       - message: Code System URI 'urn:oid:2.16.840.1.113883.2.4.4.1' is unknown so the code cannot be validated
         reason: The terminology servers used don't know this code system.
+
+nl-core-PulseRate-*:
+  ignored issues:
+    Observation.component[*].value.*:
+      - message: None of the codings provided are in the value set 'Vital Signs Units'
+        reason: The Validator checks all Observations with a vital signs magic LOINC code against the HL7 Vital Signs base profile. Unfortunately, this profile restricts the allowed components to only the use cases identified by HL7, while the zib adds additional data. This has been identified as a bug in het HL7 Vital Signs profile, which will be fixed in the next version. See https://jira.hl7.org/browse/FHIR-43353 for more information.
 
 zib-*Function.*Aid.Product:
   ignored issues:
