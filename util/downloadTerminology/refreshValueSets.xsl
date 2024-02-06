@@ -33,7 +33,8 @@
     </xsl:param>
     
     <xsl:variable name="resourceIds" select="collection(concat($inputdir, '?select=*.xml;recurse=yes'))//f:id/@value" as="attribute()*"/>
-    <xsl:variable name="valueSetURIs" select="collection(concat($inputdir, '?select=*.xml;recurse=yes'))/(f:StructureDefinition | f:ConceptMap | f:ValueSet)//@value[starts-with(., 'http://decor.nictiz.nl/fhir/')]" as="attribute()*"/>
+    <xsl:variable name="valueSetURIs" select="collection(concat($inputdir, '?select=*.xml;recurse=yes'))/(f:StructureDefinition | f:ConceptMap | f:ValueSet)//@value[starts-with(., 'http://decor.nictiz.nl/fhir/')][not(parent::f:source/parent::f:meta)]" as="attribute()*"/>
+    <!-- Added meta.source as a hardcoded exception as this decor.nictiz.nl/fhir uri does not reference a ValueSet and does not resolve, leading to the process crashing -->
     
     <xd:doc>
         <xd:desc/>
@@ -78,14 +79,14 @@
             <xsl:choose>
               <xsl:when test="$valueSetExpand[self::f:ValueSet]">
                 <xsl:message>         INFO: Successful expansion of ValueSet id <xsl:value-of select="$valueSetIDVersion"/>. <xsl:value-of select="$valueSetExpand//f:details/@value"/></xsl:message>
-                <xsl:result-document href="{concat($outputdir,$valueSetName,'-',$valueSetIDVersion,'-expand.xml')}" indent="yes" method="xml" omit-xml-declaration="yes">
+                  <xsl:result-document href="{concat($outputdir,'ValueSet-',$valueSetName,'-',$valueSetIDVersion,'-expand.xml')}" indent="yes" method="xml" omit-xml-declaration="yes">
                   <xsl:copy-of select="$valueSetExpand"/>
                 </xsl:result-document>
               </xsl:when>
               <xsl:otherwise>
                 <xsl:message>         WARNING: Could not expand ValueSet id <xsl:value-of select="$valueSetIDVersion"/>. <xsl:value-of select="$valueSetExpand//f:details/@value"/></xsl:message>
                 <xsl:message>         INFO: Successful retrieval of ValueSet id <xsl:value-of select="$valueSetIDVersion"/></xsl:message>
-                <xsl:result-document href="{concat($outputdir,$valueSetName,'-',$valueSetIDVersion,'.xml')}" indent="yes" method="xml" omit-xml-declaration="yes">
+                <xsl:result-document href="{concat($outputdir,'ValueSet-',$valueSetName,'-',$valueSetIDVersion,'.xml')}" indent="yes" method="xml" omit-xml-declaration="yes">
                   <xsl:copy-of select="$valueSet"/>
                 </xsl:result-document>
               </xsl:otherwise>
