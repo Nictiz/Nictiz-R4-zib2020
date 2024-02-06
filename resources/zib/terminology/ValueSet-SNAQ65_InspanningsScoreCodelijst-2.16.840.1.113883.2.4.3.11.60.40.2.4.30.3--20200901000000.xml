@@ -1,12 +1,12 @@
 <ValueSet xmlns="http://hl7.org/fhir">
-   <id value="2.16.840.1.113883.2.4.3.11.60.40.2.4.30.2--20200901000000"/>
+   <id value="2.16.840.1.113883.2.4.3.11.60.40.2.4.30.3--20200901000000"/>
    <meta>
       <source value="http://decor.nictiz.nl/fhir/4.0/zib2020bbr-"/>
       <profile value="http://hl7.org/fhir/StructureDefinition/shareablevalueset"/>
       <!--<profile value="http://hl7.org/fhir/4.0/StructureDefinition/ValueSet"/>-->
       <tag>
          <system value="http://hl7.org/fhir/FHIR-version"/>
-         <code value="4.0"/>
+         <code value="4.0.1"/>
       </tag>
    </meta>
    <extension url="http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod">
@@ -14,15 +14,15 @@
          <start value="2020-09-01T00:00:00Z"/>
       </valuePeriod>
    </extension>
-   <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.30.2--20200901000000"/>
+   <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.30.3--20200901000000"/>
    <identifier>
       <use value="official"/>
       <system value="urn:ietf:rfc:3986"/>
-      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.4.30.2"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.4.30.3"/>
    </identifier>
    <version value="2020-09-01T00:00:00"/>
-   <name value="SNAQ65_EetlustScoreCodelijst"/>
-   <title value="SNAQ65+EetlustScoreCodelijst"/>
+   <name value="SNAQ65_InspanningsScoreCodelijst"/>
+   <title value="SNAQ65+InspanningsScoreCodelijst"/>
    <status value="active"/>
    <experimental value="false"/>
    <publisher value="Registratie aan de bron"/>
@@ -37,20 +37,20 @@
          <value value="https://www.zibs.nl"/>
       </telecom>
    </contact>
-   <description value="SNAQ65+EetlustScoreCodelijst"/>
+   <description value="SNAQ65+InspanningsScoreCodelijst"/>
    <immutable value="false"/>
    <compose>
       <include>
-         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.18.2"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.18.3"/>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
                <valueDecimal value="0"/>
             </extension>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Normale eetlust"/>
+               <valueString value="In staat tot fysieke inspanning"/>
             </extension>
-            <code value="B0"/>
-            <display value="Eetlust"/>
+            <code value="In0"/>
+            <display value="Mogelijk"/>
             <designation>
                <language value="nl-NL"/>
                <use>
@@ -58,7 +58,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Eetlust"/>
+               <value value="Mogelijk"/>
             </designation>
          </concept>
          <concept>
@@ -66,10 +66,10 @@
                <valueDecimal value="1"/>
             </extension>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Verminderde eetlust de afgelopen week"/>
+               <valueString value="Niet in staat tot fysieke inspanning"/>
             </extension>
-            <code value="B1"/>
-            <display value="GeenEetlust"/>
+            <code value="In1"/>
+            <display value="NietMogelijk"/>
             <designation>
                <language value="nl-NL"/>
                <use>
@@ -77,7 +77,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="GeenEetlust"/>
+               <value value="NietMogelijk"/>
             </designation>
          </concept>
       </include>
