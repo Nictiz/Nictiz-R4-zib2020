@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConceptMap xmlns="http://hl7.org/fhir">
+    <id value="TelecomType-to-ContactInformation-TelephoneNumbersSystem" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
+    <extension url="http://hl7.org/fhir/StructureDefinition/concept-bidirectional">
+        <valueBoolean value="true"/>
+    </extension>
+    <url value="http://nictiz.nl/fhir/ConceptMap/TelecomType-to-ContactInformation-TelephoneNumbersSystem" />
+    <name value="TelecomType_to_ContactInformation_TelephoneNumbersSystem" />
+    <title value="TelecomType to ContactInformation-TelephoneNumbersSystem" />
+    <status value="active" />
+    <publisher value="Nictiz" />
+    <contact>
+        <name value="Nictiz" />
+        <telecom>
+            <system value="url" />
+            <value value="https://www.nictiz.nl" />
+            <use value="work" />
+        </telecom>
+    </contact>
+    <description value="Maps TelecomType codes as found in the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) ContactInformation v1.2 (2020)](https://zibs.nl/wiki/ContactInformation-v1.2(2020EN)) to `ContactPoint.system` codes as found in FHIR R4.&#xD;&#xA;&#xD;&#xA;Note: The id and in addition, the canonical, name and title of this ConceptMap deviate from the guidelines ('Codelijst' is removed') because it would overflow the 64 character limit."/>
+    <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise."/>
+    <sourceCanonical value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.20.6.1--20200901000000"/>
+    <targetCanonical value="http://nictiz.nl/fhir/ValueSet/ContactInformation-TelephoneNumbersSystem"/>
+    <group>
+        <source value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+        <target value="http://hl7.org/fhir/contact-point-system" />
+        <element>
+            <code value="LL"/>
+            <target>
+                <code value="phone"/>
+                <equivalence value="subsumes"/>
+                <comment value="LL: land line/vast telefoonnummer. Phone: any voice phone, land or mobile."/>
+            </target>
+        </element>
+        <element>
+            <code value="FAX"/>
+            <target>
+                <code value="fax"/>
+                <equivalence value="equal"/>
+                <comment value="FAX: fax."/>
+            </target>
+        </element>
+    </group>
+    <group>
+        <!-- 2.16.840.1.113883.5.1119 -->
+        <source value="http://terminology.hl7.org/CodeSystem/v3-AddressUse" />
+        <target value="http://hl7.org/fhir/contact-point-system" />
+        <element>
+            <code value="MC"/>
+            <target>
+                <code value="phone"/>
+                <equivalence value="subsumes"/>
+                <comment value="MC: mobile contact/mobiel telefoonnummer. Phone: any voice phone, land or mobile."/>
+            </target>
+        </element>
+        <element>
+            <code value="PG"/>
+            <target>
+                <code value="pager"/>
+                <equivalence value="equal"/>
+                <comment value="PG: pager."/>
+            </target>
+        </element>
+    </group>
+</ConceptMap>
