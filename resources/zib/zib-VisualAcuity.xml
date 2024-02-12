@@ -111,29 +111,30 @@
       <sliceName value="valueQuantity" />
       <short value="DecimalVisualAqcuity" />
       <definition value="The measured decimal visual acuity." />
+      <comment value="Visual acuity is measured a dimensionless decimal. Therefore, a pattern with unit '1' is defined on `.valueQuantity`." />
       <alias value="DecimaleVisusWaarde" />
       <type>
         <code value="Quantity" />
       </type>
+      <patternQuantity>
+        <unit value="1" />
+        <system value="http://unitsofmeasure.org" />
+      </patternQuantity>
       <minValueQuantity>
         <value value="0" />
+        <unit value="1" />
+        <system value="http://unitsofmeasure.org" />
       </minValueQuantity>
       <maxValueQuantity>
         <value value="2" />
+        <unit value="1" />
+        <system value="http://unitsofmeasure.org" />
       </maxValueQuantity>
       <mapping>
         <identity value="zib-visualacuity-v1.0-2020EN" />
         <map value="NL-CM:12.19.11" />
         <comment value="VisualAcuity" />
       </mapping>
-    </element>
-    <element id="Observation.value[x]:valueQuantity.system">
-      <path value="Observation.value[x].system" />
-      <max value="0" />
-    </element>
-    <element id="Observation.value[x]:valueQuantity.code">
-      <path value="Observation.value[x].code" />
-      <max value="0" />
     </element>
     <element id="Observation.bodySite">
       <path value="Observation.bodySite" />
