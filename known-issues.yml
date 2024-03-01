@@ -146,7 +146,7 @@ zib-BodyTemperature:
     Observation.code.coding:BodyTempCode:
       - message: "Constraint failed: sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
         reason: The slice name "BodyTempCode" is chosen to align with the Vital Signs profile for BodyTemperature.
-
+        
 zib-CareTeam:
   ignored issues:
     CareTeam.participant:*.member:
@@ -739,6 +739,21 @@ zib-VisualFunction.VisualAid.Product:
     Device.udiCarrier:*UdiCarrier.carrierHRF:
       - datatype: string instead of CD compatible datatype
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
+        
+zib-Wound:
+  zib deviations:  
+    Condition.bodySite:
+      - datatype: CodeableConcept instead of a reference
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+        
+zib-wounds.WoundImage:
+  zib deviations:
+    DocumentReference.content.attachment:
+      - alias: WondFoto instead of Wondfoto
+        for: NL-CM:19.4.11 (Burnwound.WoundImage)
+        reason: The zib concept name "Wondfoto" is incorrect and must be corrected to "WondFoto".
+      - cardinality: 1..* instead of 0..*
+        reason: The WoundImage concept itself has been mapped onto this separate DocumentReference resource. This resource may be instantiated 0..* times, but if it is used, it's content is required.
 
 unmapped zib concepts:
   - NL-CM:17.2.10: HealthcareProvider.LocationNumber
