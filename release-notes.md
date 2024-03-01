@@ -165,6 +165,9 @@ This document contains release notes per zib, indicating differences with their 
 * Moved the fixed functional status finding and mental status finding to slices on `Observation.category` instead of `.category.coding`, discriminated by a pattern, and strengthened by an invariant to check if one of the fixed terminology codes is present.
 * The comment element is mapped on `Observation.note.text` instead of `Observation.comment`.
 
+## zib-GlasgowComaScale
+* There was no profile in the zib2017/STU3 implementation and therefore no diff.
+
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.
 * Changed cardinality of `Organization.type[DepartmentSpecialty]` and `Organization.type[OrganizationType]` from 0..* to 0..1.
