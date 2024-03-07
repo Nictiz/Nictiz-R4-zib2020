@@ -148,6 +148,13 @@ zib-BodyTemperature:
         reason: The slice name "BodyTempCode" is chosen to align with the Vital Signs profile for BodyTemperature.
         
 zib-Burnwound:
+  zib deviations:
+    Condition:
+      - short: Burnwound instead of BurnWound
+        reason: The root of the zib is called "BurnWound", even though the zib itself is called "Burnwound" (which is incorrect).
+    Condition.bodySite:
+      - datatype: CodeableConcept instead of a reference
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
   ignored issues:
     Condition.bodySite.extension:laterality.value[x]:
       - message: "Constraint failed: sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
@@ -573,6 +580,12 @@ zib-Payer-Organization:
     Organization.address:
       - datatype: Address instead of a reference
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
+        
+zib-PressureUlcer:
+  zib deviations:
+    Condition.bodySite:
+      - datatype: CodeableConcept instead of a reference
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
 
 zib-Problem:
   zib deviations:
@@ -759,12 +772,12 @@ zib-Wound:
 zib-wounds.WoundImage:
   zib deviations:
     DocumentReference.content.attachment:
-      - alias: Wondfoto instead of WondFoto
+      - alias: WondFoto instead of Wondfoto
         for: NL-CM:19.4.11 (Burnwound.WoundImage)
-        reason: The zib concept name "WondFoto" is incorrect and must be corrected to "Wondfoto".
+        reason: The zib concept name "Wondfoto" is incorrect and must be corrected to "WondFoto".
       - cardinality: 1..* instead of 0..*
-        reason: The WoundImage concept itself has been mapped onto this separate DocumentReference resource. This resource may be instantiated 0..* times, but if it is used, it's content is required.
-
+        reason: The WoundImage concept itself has been mapped onto this separate DocumentReference resource. This resource may be instantiated 0..* times, but if it is used, its content is required.   
+        
 unmapped zib concepts:
   - NL-CM:17.2.10: HealthcareProvider.LocationNumber
     reason: This zib concept is problematic to map cleanly to FHIR and it has been deemed too uncommon in practice to warrant an extension.
