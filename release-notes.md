@@ -306,7 +306,7 @@ This document contains release notes per zib, indicating differences with their 
 * The zib-Pregnancy extension has moved from `Observation.extension` to `Observation.focus`.
 
 ## zib-PressureUlcer
-* The concept of 'dateOfLastDressingChange' has been relocated to the Wound Characteristics profile.
+* The concept of 'DateOfLastDressingChange' has been relocated to the Wound Characteristics profile.
 
 ## zib-Problem
 * ProblemType has been added on a slice of `Condition.category` allowing the category element to be used for other purposes too.
@@ -399,7 +399,7 @@ This document contains release notes per zib, indicating differences with their 
 * Relaxed cardinality of `value[x]` to 0..1 of the conceptual cardinalities of the zib.
 
 ## zib-Wound
-* The concept of 'dateOfLastDressingChange' has been relocated to the Wound Characteristics profile. 
+* The concept of 'DateOfLastDressingChange' has been relocated to the Wound Characteristics profile. 
 
 ## zib-wounds.WoundCharacteristics
 * The profile's name has been changed from "WoundCharacteristics" to "zib-wounds.WoundCharacteristics".
