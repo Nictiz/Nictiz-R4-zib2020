@@ -32,8 +32,8 @@
     </xsl:param>
     
     <xsl:variable name="resourceIds" select="collection(concat($inputdir, '?select=*.xml;recurse=yes'))//f:id/@value" as="attribute()*"/>
-    <xsl:variable name="codeSystemURIs" select="collection(concat($inputdir, '?select=*.xml;recurse=yes'))//f:system[starts-with(@value, 'http') or starts-with(@value, 'urn:')][not(parent::f:identifier or parent::f:patternIdentifier or contains(@value, 'urn:iso') or contains(@value, 'loinc.org') or contains(@value, 'snomed.info') or contains(@value, 'terminology.hl7.org') or @value = 'http://hl7.org/fhir/contact-point-system' or @value = 'http://hl7.org/fhir/contact-point-use' or @value = 'http://www.nanda.org/' or @value = 'https://nursing.uiowa.edu/cncce/nursing-interventions-classification-overview')]/@value" as="attribute()*"/>
-    <!-- contact-point-system and contact-point-use are added as hardcoded exemptions, because we do reference them from ValueSets that restrict core ValueSets, but there is no need to include them in our package since they are already included in the core package,
+    <xsl:variable name="codeSystemURIs" select="collection(concat($inputdir, '?select=*.xml;recurse=yes'))//f:system[starts-with(@value, 'http') or starts-with(@value, 'urn:')][not(parent::f:identifier or parent::f:patternIdentifier or contains(@value, 'urn:iso') or contains(@value, 'loinc.org') or contains(@value, 'snomed.info') or contains(@value, 'terminology.hl7.org') or @value = 'http://hl7.org/fhir/contact-point-system' or @value = 'http://hl7.org/fhir/contact-point-use' or @value = 'http://hl7.org/fhir/FHIR-version' or @value = 'http://www.nanda.org/' or @value = 'https://nursing.uiowa.edu/cncce/nursing-interventions-classification-overview')]/@value" as="attribute()*"/>
+    <!-- contact-point-system, contact-point-use and FHIR-version are added as hardcoded exemptions, because we do reference them from ValueSets, but there is no need to include them in our package since they are already included in the core package. Including 'starts-with('http://hl7.org/fhir/')' would result in too much being excluded
     Nanda and NIC are added as hardcoded exemptions, because their URLs have changed in the latest release of HL7 Terminology to not start with 'terminology.hl7.org' anymore, but we still do not have to include them-->
     
     <xd:doc>
@@ -81,7 +81,7 @@
             <xsl:choose>
                 <xsl:when test="$codeSystem">
                     <xsl:message>            INFO: Successful retrieval of CodeSystem id <xsl:value-of select="$codeSystemIDVersion"/></xsl:message>
-                    <xsl:result-document href="{concat($outputdir,'codesystem-',$codeSystemName,'-',$codeSystemIDVersion,'.xml')}" indent="yes" method="xml" omit-xml-declaration="yes">
+                    <xsl:result-document href="{concat($outputdir,'CodeSystem-',$codeSystemName,'-',$codeSystemIDVersion,'.xml')}" indent="yes" method="xml" omit-xml-declaration="yes">
                         <xsl:copy-of select="$codeSystem"/>
                     </xsl:result-document>
                 </xsl:when>
