@@ -2,7 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-MedicalDevice" />
   <text>
-    <status value="empty"/>
+    <status value="empty" />
     <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
   </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice" />
@@ -80,6 +80,7 @@
     </element>
     <element id="DeviceUseStatement.extension:location.value[x]">
       <path value="DeviceUseStatement.extension.value[x]" />
+      <comment value="Please note that this zib concept (Location::HealthcareProvider) aligns with the &quot;Location::HealthcareProvider&quot; concept in zib Procedure (NL-CM:14.1.5), but only for the situation that said Procedure is about placing the implant described using this instance of zib MedicalDevice. In this situation, the concept in zib MedicalDevice is redundant. In FHIR representations of this situation, it is advised to only use the `Procedure.location` element in [nl-core-Procedure-event](http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event) to represent the Location concept, and not to use the current extension." />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider" />
