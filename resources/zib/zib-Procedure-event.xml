@@ -184,7 +184,7 @@
       <path value="Procedure.location" />
       <short value="Location" />
       <definition value="The healthcare center where the procedure was, is or or will be carried out." />
-      <comment value="Please note that this zib concept (Location::HealthcareProvider) aligns with the &quot;Location::HealthcareProvider&quot; concept in zib MedicalDevice (NL-CM:10.1.8), but only for the situation that this Procedure is about placing the implant described using zib MedicalDevice. In this situation, the concept in zib MedicalDevice is redundant. In FHIR representations of this situation, it is advised to only use the current element to represent the concept Location concept and not to use the [ext-MedicalDevice.Location](http://nictiz.nl/fhir/StructureDefinition/ext-MedicalDevice.Location) extension in the instance of [zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice)." />
+      <comment value="Please note that the zib concept &quot;Location::HealthcareProvider&quot; of zib MedicalDevice (NL-CM:10.1.8) is mapped onto this element, but it is also directly represented using a custom extension in the focal profile for that zib ([zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice)). The reason for this is that that concept from zib MedicalDevice aligns with the concept from zib Procedure,, but only for the situation that the Procedure is about placing an implant which is described using the instance of zib MedicalDevice. In this situation, the extension in the zib-MedicalDevice profile is redundant and it is advised to only use the current element to represent the Location concept." />
       <alias value="Locatie" />
       <type>
         <code value="Reference" />
