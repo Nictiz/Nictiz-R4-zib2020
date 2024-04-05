@@ -2,7 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-ChecklistPainBehavior" />
   <text>
-    <status value="empty"/>
+    <status value="empty" />
     <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
   </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-ChecklistPainBehavior" />
@@ -92,6 +92,7 @@
       <sliceName value="valueInteger" />
       <short value="TotalScore" />
       <definition value="The total score is the sum of all the individual scores. The total score has a range from 0 - 10." />
+      <comment value="The total score communicated using this element is always determined using the individual scores, but these individual scores are not always registered or communicated. For this reaseon, all individual `Observation.component`'s representing the individual scores are optional." />
       <alias value="TotaalScore" />
       <type>
         <code value="integer" />
