@@ -2,7 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-Procedure-event" />
   <text>
-    <status value="empty"/>
+    <status value="empty" />
     <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
   </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-event" />
@@ -31,6 +31,11 @@
     <identity value="zib-textresult-v4.4-2020EN" />
     <uri value="https://zibs.nl/wiki/TextResult-v4.4(2020EN)" />
     <name value="zib TextResult-v4.4(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-medicaldevice-v3.3.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN)" />
+    <name value="zib MedicalDevice-v3.3.1(2020EN)" />
   </mapping>
   <kind value="resource" />
   <abstract value="true" />
@@ -179,6 +184,7 @@
       <path value="Procedure.location" />
       <short value="Location" />
       <definition value="The healthcare center where the procedure was, is or or will be carried out." />
+      <comment value="Please note that this zib concept (Location::HealthcareProvider) aligns with the &quot;Location::HealthcareProvider&quot; concept in zib MedicalDevice (NL-CM:10.1.8), but only for the situation that this Procedure is about placing the implant described using zib MedicalDevice. In this situation, the concept in zib MedicalDevice is redundant. In FHIR representations of this situation, it is advised to only use the current element to represent the concept Location concept and not to use the [ext-MedicalDevice.Location](http://nictiz.nl/fhir/StructureDefinition/ext-MedicalDevice.Location) extension in the instance of [zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice)." />
       <alias value="Locatie" />
       <type>
         <code value="Reference" />
@@ -189,6 +195,11 @@
         <identity value="zib-procedure-v5.2-2020EN" />
         <map value="NL-CM:14.1.5" />
         <comment value="Location" />
+      </mapping>
+      <mapping>
+        <identity value="zib-medicaldevice-v3.3.1-2020EN" />
+        <map value="NL-CM:10.1.8" />
+        <comment value="Location::HealthcareProvider (For specific situations only. See the comment on this element for more information.)" />
       </mapping>
     </element>
     <element id="Procedure.reasonReference">
