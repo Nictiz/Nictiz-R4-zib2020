@@ -184,7 +184,7 @@
       <path value="Procedure.location" />
       <short value="Location" />
       <definition value="The healthcare center where the procedure was, is or or will be carried out." />
-      <comment value="Please note that the zib concept &quot;Location::HealthcareProvider&quot; of zib MedicalDevice (NL-CM:10.1.8) is mapped onto this element, but it is also directly represented using a custom extension in the focal profile for that zib ([zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice)). The reason for this is that that concept from zib MedicalDevice aligns with the concept from zib Procedure,, but only for the situation that the Procedure is about placing an implant which is described using the instance of zib MedicalDevice. In this situation, the extension in the zib-MedicalDevice profile is redundant and it is advised to only use the current element to represent the Location concept." />
+      <comment value="Please note that the zib concept Location::HealthcareProvider of zib MedicalDevice (NL-CM:10.1.8) is mapped onto this element, but it is also directly represented using a custom extension in the focal profile for that zib ([zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice)). The reason for this is that the Location concept from zib MedicalDevice aligns with the Location concept from zib Procedure, but only for the situation that the Procedure is about placing an implant which is described using the instance of zib MedicalDevice. In this situation, the extension in the zib-MedicalDevice profile is redundant and it is advised to only use the current element to represent the Location concept." />
       <alias value="Locatie" />
       <type>
         <code value="Reference" />
@@ -199,7 +199,7 @@
       <mapping>
         <identity value="zib-medicaldevice-v3.3.1-2020EN" />
         <map value="NL-CM:10.1.8" />
-        <comment value="Location::HealthcareProvider (For specific situations only. See the comment on this element for more information.)" />
+        <comment value="Location (For specific situations only. See the comment on this element for more information.)" />
       </mapping>
     </element>
     <element id="Procedure.reasonReference">
