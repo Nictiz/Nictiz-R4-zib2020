@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-VisualFunction.VisualAid" />
+  <text>
+    <status value="empty" />
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-VisualFunction.VisualAid" />
   <name value="ZibVisualFunctionVisualAid" />
   <title value="zib VisualFunction.VisualAid" />
@@ -33,6 +37,14 @@
       <path value="DeviceUseStatement" />
       <definition value="The medical aids used to support the visual function." />
       <comment value="This is a specialization of the [zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice) profile to represent VisualAid devices within the context of zib VisualFunction." />
+    </element>
+    <element id="DeviceUseStatement.extension:location">
+      <path value="DeviceUseStatement.extension" />
+      <sliceName value="location" />
+    </element>
+    <element id="DeviceUseStatement.extension:location.value[x]">
+      <path value="DeviceUseStatement.extension.value[x]" />
+      <comment value="Please note that this zib concept (Location::HealthcareProvider) is also mapped on the `Procedure.location` element in profile [zib-Procedure-event](http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-event). The reason for this is that this zib concept aligns with the Location::HealthcareProvider concept in zib Procedure (NL-CM:14.1.5), but only for the situation that the Procedure is about placing the implant which is described using this instance of zib MedicalDevice. This is normally not the case in the context of visual aids, so the mapping in zib-Procedure-event should be ignored in this situation." />
     </element>
     <element id="DeviceUseStatement.device">
       <path value="DeviceUseStatement.device" />
