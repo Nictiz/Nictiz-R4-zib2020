@@ -19,7 +19,7 @@
     </telecom>
   </contact>
   <description value="A photo of the wound, burn wound or decubitus wound as visual information." />
-  <purpose value="This DocumentReference resource represents the WoundImage concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Burnwound v3.4 (2020)](https://zibs.nl/wiki/Burnwound-v3.4(2020EN)), the Dutch [zib PressureUlcer v3.4 (2020)](https://zibs.nl/wiki/PressureUlcer-v3.4(2020EN)) and the Dutch [zib Wound v3.3 (2020)](https://zibs.nl/wiki/Wound-v3.3(2020EN))."/>
+  <purpose value="This DocumentReference resource represents the WoundImage concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Burnwound v3.4 (2020)](https://zibs.nl/wiki/Burnwound-v3.4(2020EN)), the Dutch [zib PressureUlcer v3.4 (2020)](https://zibs.nl/wiki/PressureUlcer-v3.4(2020EN)) and the Dutch [zib Wound v3.3 (2020)](https://zibs.nl/wiki/Wound-v3.3(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -43,6 +43,10 @@
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
   <derivation value="constraint" />
   <differential>
+    <element id="DocumentReference">
+      <path value="DocumentReference" />
+      <comment value="The functional models of zibs Burnwound, PressureUlcer and Wound represent conditions that need to be tracked over time, but define point-in-time assessments about the current state of the wounds as well. For this reason, these three zibs are all mapped onto multiple resources: a Condition resource that represents the focal resource, and Observation and DocumentReference resources for all observable properties.&#xD;&#xA;&#xD;&#xA;Since multiple observable properties are usually assessed together, all Observation and DocumentReference resources resulting from a single assessment are grouped using the [zib-wounds.WoundCharacteristics](http://nictiz.nl/fhir/StructureDefinition/zib-wounds.WoundCharacteristics) Observation profile. It is this grouping Observation that is then referenced from the Condition resources. For this DocumentReference resource, this is done using `DocumentReference.context.related`.&#xD;&#xA;&#xD;&#xA;This model allows to track multiple distinct assessment moments over time in connection with the Condition. For this reason, it is not expected that the Observations for individual outcomes are referenced from the Condition resources; all references should be referenced through this grouping Observation.&#xD;&#xA;&#xD;&#xA;Note that this model deviates somewhat from the zib approach. The zib model is meant to group all concepts relevant for a wound into a model, but it doesn't have a concept of changes over time. For this reason, all observable properties have a cardinality of 0..1 on the zib level, but this works out differently in the FHIR model." />
+    </element>
     <element id="DocumentReference.type">
       <path value="DocumentReference.type" />
       <patternCodeableConcept>
@@ -75,12 +79,11 @@
     </element>
     <element id="DocumentReference.context.related">
       <path value="DocumentReference.context.related" />
+      <comment value="The functional models of zibs Burnwound, PressureUlcer and Wound represent conditions that need to be tracked over time, but define point-in-time assessments about the current state of the wounds as well. For this reason, these three zibs are all mapped onto multiple resources: a Condition resource that represents the focal resource, and Observation and DocumentReference resources for all observable properties. See the root of this profile for guidance on using this model." />
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Burnwound" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-PressureUlcer" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Wound" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-wounds.WoundCharacteristics" />
       </type>
     </element>
   </differential>
