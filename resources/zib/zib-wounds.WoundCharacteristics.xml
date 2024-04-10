@@ -45,7 +45,7 @@
   <differential>
     <element id="Observation">
       <path value="Observation" />
-      <comment value="The functional models of zibs Wound, BurnWound and PressureUlcer represent conditions that need to be tracked over time, but define point-in-time assessments about the current status of the wounds as well. For this reason, these three zibs are all mapped onto multiple profiles: a Condition profile that represents the focal resource, and Observation profiles for all observable properties.&#xD;&#xA;&#xD;&#xA;Since multiple observable properties are usually assessed together, all Observation resources resulting from a single assessment are grouped using the current Observation profile, using `Observation.hasMember`. It is this Observation that is referenced from the Condition resources, on `Condition.evidence.detail`. This model allows to track multiple distinct assessment moments over time in connection with the condition." />
+      <comment value="The functional models of zibs Wound, Burnwound and PressureUlcer represent conditions that need to be tracked over time, but define point-in-time assessments about the current status of the wounds as well. For this reason, these three zibs are all mapped onto multiple profiles: a Condition profile that represents the focal resource, and Observation profiles for all observable properties.&#xD;&#xA;&#xD;&#xA;Since multiple observable properties are usually assessed together, all Observation resources resulting from a single assessment are grouped using the current Observation profile, using `Observation.hasMember`. It is this Observation that is referenced from the Condition resources, on `Condition.evidence.detail`. This model allows to track multiple distinct assessment moments over time in connection with the condition." />
     </element>
     <element id="Observation.code">
       <path value="Observation.code" />
@@ -71,7 +71,7 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Wound.WoundInfection" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Wound.WoundMoisture" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Wound.WoundEdge" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-BurnWound.Extent" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Burnwound.Extent" />
       </type>
     </element>
   </differential>
