@@ -19,7 +19,7 @@
     </telecom>
   </contact>
   <description value="Observable properties of a wound, burnwound or pressureulcer." />
-  <purpose value="This Observation profile groups multiple observable properties of wounds that are used in the zibs ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) [Burnwound v3.4 (2020)](https://zibs.nl/wiki/Burnwound-v3.4(2020EN)), [PressureUlcer v3.4 (2020)](https://zibs.nl/wiki/PressureUlcer-v3.4(2020EN)) and [Wound v3.3 (2020)](https://zibs.nl/wiki/Wound-v3.3(2020EN))." />
+  <purpose value="This Observation profile groups multiple observable properties of wounds that are used in the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Burnwound v3.4 (2020)](https://zibs.nl/wiki/Burnwound-v3.4(2020EN)), the Dutch [zib PressureUlcer v3.4 (2020)](https://zibs.nl/wiki/PressureUlcer-v3.4(2020EN)) and the Dutch [zib Wound v3.3 (2020)](https://zibs.nl/wiki/Wound-v3.3(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -45,7 +45,7 @@
   <differential>
     <element id="Observation">
       <path value="Observation" />
-      <comment value="The functional models of zibs Wound, Burnwound and PressureUlcer represent conditions that need to be tracked over time, but define point-in-time assessments about the current status of the wounds as well. For this reason, these three zibs are all mapped onto multiple profiles: a Condition profile that represents the focal resource, and Observation profiles for all observable properties.&#xD;&#xA;&#xD;&#xA;Since multiple observable properties are usually assessed together, all Observation resources resulting from a single assessment are grouped using the current Observation profile, using `Observation.hasMember`. It is this Observation that is referenced from the Condition resources, on `Condition.evidence.detail`. This model allows to track multiple distinct assessment moments over time in connection with the condition." />
+      <comment value="The functional models of zibs Burnwound, PressureUlcer and Wound represent conditions that need to be tracked over time, but define point-in-time assessments about the current status of the wounds as well. For this reason, these three zibs are all mapped onto multiple profiles: a Condition profile that represents the focal resource, and Observation profiles for all observable properties.&#xD;&#xA;&#xD;&#xA;Since multiple observable properties are usually assessed together, all Observation resources resulting from a single assessment are grouped using the current Observation profile, using `Observation.hasMember`. It is this Observation that is referenced from the Condition resources, on `Condition.evidence.detail`. This model allows to track multiple distinct assessment moments over time in connection with the condition." />
     </element>
     <element id="Observation.code">
       <path value="Observation.code" />
