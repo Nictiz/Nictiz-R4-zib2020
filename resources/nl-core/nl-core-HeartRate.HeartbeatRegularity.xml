@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-HeartRate.HeartbeatRegularity" />
+  <text>
+    <status value="empty" />
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HeartRate.HeartbeatRegularity" />
+  <name value="NlcoreHeartRateHeartbeatRegularity" />
+  <title value="nl core HeartRate.HeartbeatRegularity" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Regularity of the heartbeat." />
+  <purpose value="A derived profile from [zib-HeartRate.HeartbeartRegularity](http://nictiz.nl/fhir/StructureDefinition/zib-HeartRate.HeartbeartRegularity) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Observation" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-HeartRate.HeartbeatRegularity" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <comment value="This profile on the Observation resource represents the HeartbeatRegularity concept (NL-CM:12.3.5) of zib HeartRate. It can be used together with the [nl-core-HeartRate](http://nictiz.nl/fhir/StructureDefinition/nl-core-HeartRate) profile on the Observation resource, which can be referenced using `Observation.hasMember`." />
+      <alias value="nl-core-HeartRate.HeartbeatRegularity" />
+    </element>
+  </differential>
+</StructureDefinition>

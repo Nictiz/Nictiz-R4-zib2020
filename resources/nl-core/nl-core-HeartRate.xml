@@ -2,7 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-HeartRate" />
   <text>
-    <status value="empty"/>
+    <status value="empty" />
     <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
   </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HeartRate" />
@@ -43,6 +43,17 @@
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MolecularSequence" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HeartRate.HeartbeatRegularity" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HeartRate.InterpretationHeartRate" />
       </type>
     </element>
   </differential>
