@@ -54,7 +54,7 @@
       <path value="PractitionerRole.organization" />
       <short value="HealthcareProvider" />
       <definition value="The organization the health professional works for." />
-      <comment value="A HealthcareProvider in zib terms is primarily a location where care is provided, and so the zib concept HealthcareProvider (NL-CM:17.1.6) would normally be fulfilled using a reference to a Location resource (profile zib-HealthcareProvider). However, this particular context refers to the organizational aspects of a HealthcareProvider rather than its physical location:&#xD;&#xA;* the zib concept name is not preceded by a role indicator of the zib (like Location::HealthcareProvider, concept id NL-CM:14.1.5, in the zib Procedure).&#xD;&#xA;* the `PractitionerRole.location` cardinality (0..*) does not match the zib concept (0..1) and restricting it is not correct as a health professional could be working on multiple locations.&#xD;&#xA;&#xD;&#xA;Therefore, this concept is fulfilled using a reference to the Organization resource (profile zib-HealthcareProvider-Organization) and mapped onto `PractitionerRole.organization` instead of `PractitionerRole.location`." />
+      <comment value="A HealthcareProvider in zib terms is primarily a location where care is provided, and so the zib concept HealthcareProvider (NL-CM:17.1.6) would normally be fulfilled using a reference to a Location resource (profile zib-HealthcareProvider). However, this particular context refers to the organizational aspects of a HealthcareProvider rather than its physical location:&#xD;&#xA;* the zib concept name is not preceded by a role indicator of the zib (like Location::HealthcareProvider, concept id NL-CM:14.1.5, in the zib Procedure).&#xD;&#xA;* the `PractitionerRole.location` cardinality (0..\*) does not match the zib concept (0..1) and restricting it is not correct as a health professional could be working on multiple locations.&#xD;&#xA;&#xD;&#xA;Therefore, this concept is fulfilled using a reference to the Organization resource (profile zib-HealthcareProvider-Organization) and mapped onto `PractitionerRole.organization` instead of `PractitionerRole.location`." />
       <alias value="Zorgaanbieder" />
       <type>
         <code value="Reference" />
@@ -106,7 +106,7 @@
       </slicing>
       <short value="ContactInformation" />
       <definition value="Health professional’s telephone number(s) or e-mail address(es) that are specific to the role/location/service." />
-      <comment value="The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers." />
+      <comment value="The cardinality mismatch between the zib (0..1) and FHIR (0..\*) is explained by the containers TelephoneNumbers (0..\*) and EmailAddresses (0..\*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers." />
       <alias value="Contactgegevens" />
       <mapping>
         <identity value="zib-healthprofessional-v3.5-2020EN" />
