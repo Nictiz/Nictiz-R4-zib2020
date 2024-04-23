@@ -2,7 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-Burnwound" />
   <text>
-    <status value="empty"/>
+    <status value="empty" />
     <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
   </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Burnwound" />
@@ -52,6 +52,14 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Condition.evidence.detail:woundCharacteristics">
+      <path value="Condition.evidence.detail" />
+      <sliceName value="woundCharacteristics" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-wounds.WoundCharacteristics" />
       </type>
     </element>
   </differential>
