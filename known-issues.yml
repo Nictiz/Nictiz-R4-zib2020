@@ -163,6 +163,9 @@ zib-Burnwound:
         reason: The definition is defined in the extension profile and therefore not defined in the differential.
       - message: "Constraint failed: sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined in the extension profile and therefore not defined in the differential.
+    Condition.evidence.detail:woundCharacteristics:
+      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references."
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
         
 zib-CareTeam:
   ignored issues:
@@ -582,6 +585,10 @@ zib-Payer-Organization:
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
         
 zib-PressureUlcer:
+  ignored issues:
+    Condition.evidence.detail:woundCharacteristics:
+      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references."
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     Condition.bodySite:
       - datatype: CodeableConcept instead of a reference
@@ -764,11 +771,21 @@ zib-VisualFunction.VisualAid.Product:
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
         
 zib-Wound:
+  ignored issues:
+    Condition.evidence.detail:woundCharacteristics:
+      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references."
+        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:  
     Condition.bodySite:
       - datatype: CodeableConcept instead of a reference
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
-        
+
+zib-wounds.WoundCharacteristics:
+  ignored issues:
+    Observation.hasMember:*:
+      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references."
+        reason: The restriction only apply to, and defines, these slices. The slicing is open so the base references can still be used.
+
 zib-wounds.WoundImage:
   zib deviations:
     DocumentReference.content.attachment:
