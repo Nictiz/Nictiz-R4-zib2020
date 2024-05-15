@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-Burnwound" />
   <text>
-    <status value="empty" />
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Burnwound" />
   <name value="ZibBurnwound" />
   <title value="zib Burnwound" />
@@ -108,10 +106,7 @@
     </element>
     <element id="Condition.bodySite.extension:laterality.value[x]">
       <path value="Condition.bodySite.extension.value[x]" />
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.19.4.4--20200901000000" />
-      </binding>
+      <comment value="Please note: this concept represents Laterality concept of both zibs AnatomicalLocation and Burnwound. These concepts are exactly the same: the concept in zib Burnwound is a remnant that was left in error when the concept was migrated to zib AnatomicalLocation. See [ZIB-1951](https://nictiz.atlassian.net/issues/ZIB-1951) for more information." />
       <mapping>
         <identity value="zib-burnwound-v3.4-2020EN" />
         <map value="NL-CM:19.4.10" />
