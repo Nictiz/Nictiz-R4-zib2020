@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-FunctionalOrMentalStatus" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus" />
   <name value="ZibFunctionalOrMentalStatus" />
   <title value="zib FunctionalOrMentalStatus" />
@@ -9,8 +13,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -55,7 +59,6 @@
         <severity value="warning" />
         <human value="Either a category for functional status finding or mental status finding is present." />
         <expression value="where(coding.system = 'http://snomed.info/sct' and coding.code = '118228005').exists() xor where(coding.system = 'http://snomed.info/sct' and coding.code = '384821006').exists()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus" />
       </constraint>
     </element>
     <element id="Observation.category:functionalStatusFinding">

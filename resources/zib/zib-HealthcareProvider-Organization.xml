@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-HealthcareProvider-Organization" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider-Organization" />
   <name value="ZibHealthcareProviderOrganization" />
   <title value="zib HealthcareProvider Organization" />
@@ -9,13 +13,13 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
   <description value="A healthcare provider is an organization that offers and provides medical, paramedic and/or nursing care to patients/clients. Examples include: hospitals, nursing homes, doctor’s offices." />
-  <purpose value="This Organization resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) HealthcareProvider v3.4 (2020)]( https://zibs.nl/wiki/HealthcareProvider-v3.4(2020EN))." />
+  <purpose value="This Organization resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) HealthcareProvider v3.4 (2020)](https://zibs.nl/wiki/HealthcareProvider-v3.4(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -32,7 +36,7 @@
     <element id="Organization">
       <path value="Organization" />
       <short value="HealthcareProvider" />
-      <comment value="The zib HealthcareProvider is mapped to this Organization profile and a profile on Location(&amp;lt;http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider&amp;gt;). The Location profile acts as the focal resource of the HealthcareProvider because most references to this zib are concerned about the recording of the physical location where the care to patient/client takes place rather than the organizational information. Often there's no clear distinction between an organizational structure and a physical location. As a rule of thumb, locations are always used for recording where a service occurs, and hence where encounters and observations take place.&#xD;&#xA;&#xD;&#xA;Healthcare providers usually consist of multiple organizational levels and physical locations. The hierarchical structure may be captured by using multiple instances of this profile, using the `Organization.partOf` element to refer to their parent organization. The physical location is captured using the zib-HealthcareProvider profile, which refers this profile at the appropriate level in the hierarchy." />
+      <comment value="The zib HealthcareProvider is mapped to this Organization profile and a profile on Location(&lt;http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider&gt;). The Location profile acts as the focal resource of the HealthcareProvider because most references to this zib are concerned about the recording of the physical location where the care to patient/client takes place rather than the organizational information. Often there's no clear distinction between an organizational structure and a physical location. As a rule of thumb, locations are always used for recording where a service occurs, and hence where encounters and observations take place.&#xD;&#xA;&#xD;&#xA;Healthcare providers usually consist of multiple organizational levels and physical locations. The hierarchical structure may be captured by using multiple instances of this profile, using the `Organization.partOf` element to refer to their parent organization. The physical location is captured using the zib-HealthcareProvider profile, which refers this profile at the appropriate level in the hierarchy." />
       <alias value="Zorgaanbieder" />
       <mapping>
         <identity value="zib-healthcareprovider-v3.4-2020EN" />
@@ -87,7 +91,6 @@
       <sliceName value="departmentSpecialty" />
       <short value="DepartmentSpecialty" />
       <definition value="The specialty of the healthcare provider’s department. The departmental specialty can be filled in if further indication of the healthcare provider is needed. This refers to the recognized medical specialties as stated in the BIG Act." />
-      <comment value="The ValueSet binding strenght deviates from the zib because the binding strenght must be set to required in order to make the discriminator work. However, the open slice definition allows to extend codes." />
       <alias value="AfdelingSpecialisme" />
       <max value="1" />
       <binding>
@@ -105,7 +108,6 @@
       <sliceName value="organizationType" />
       <short value="OrganizationType" />
       <definition value="The type of healthcare provider, such as general hospital, or nursing home. If this field is filled in and an AGB code is used for the HealthcareProviderIdentificationNumber, the type must match the type implicitly contained in the AGB code." />
-      <comment value="The ValueSet binding strenght deviates from the zib because the binding strenght must be set to required in order to make the discriminator work. However, the open slice definition allows to extend codes." />
       <alias value="OrganisatieType" />
       <max value="1" />
       <binding>

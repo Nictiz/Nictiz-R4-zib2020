@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-NutritionAdvice" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-NutritionAdvice" />
+  <name value="ZibNutritionAdvice" />
+  <title value="zib NutritionAdvice" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A nutritional advice is a description of nourishment for the patient, which must meet specific requirements in view of the health condition of the patient. Allergies and food intolerances or chewing and swallowing problems may be a reason for special nutrition." />
+  <purpose value="This NutritionOrder resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) NutritionAdvice v3.2 (2020)](https://zibs.nl/wiki/NutritionAdvice-v3.2(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-nutritionadvice-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/NutritionAdvice-v3.2(2020EN)" />
+    <name value="zib NutritionAdvice-v3.2(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="NutritionOrder" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/NutritionOrder" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="NutritionOrder">
+      <path value="NutritionOrder" />
+      <short value="NutritionAdvice" />
+      <alias value="Voedingsadvies" />
+      <mapping>
+        <identity value="zib-nutritionadvice-v3.2-2020EN" />
+        <map value="NL-CM:7.11.1" />
+        <comment value="NutritionAdvice" />
+      </mapping>
+    </element>
+    <element id="NutritionOrder.extension:indication">
+      <path value="NutritionOrder.extension" />
+      <sliceName value="indication" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/workflow-reasonReference" />
+      </type>
+    </element>
+    <element id="NutritionOrder.extension:indication.value[x]">
+      <path value="NutritionOrder.extension.value[x]" />
+      <short value="Indication" />
+      <definition value="The indication is the reason for advising the diet." />
+      <alias value="Indicatie" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DiagnosticReport" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Media" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem" />
+      </type>
+      <mapping>
+        <identity value="zib-nutritionadvice-v3.2-2020EN" />
+        <map value="NL-CM:7.11.5" />
+        <comment value="Indication" />
+      </mapping>
+    </element>
+    <element id="NutritionOrder.intent">
+      <path value="NutritionOrder.intent" />
+      <comment value="No zib concept can be mapped to `intent`. Unless `intent` is explicitly recorded it may be assumed that a NutritionAdvice represents an _order_." />
+    </element>
+    <element id="NutritionOrder.oralDiet.type.text">
+      <path value="NutritionOrder.oralDiet.type.text" />
+      <short value="DietType" />
+      <definition value="Description of the type of diet." />
+      <alias value="DieetType" />
+      <mapping>
+        <identity value="zib-nutritionadvice-v3.2-2020EN" />
+        <map value="NL-CM:7.11.2" />
+        <comment value="DietType" />
+      </mapping>
+    </element>
+    <element id="NutritionOrder.oralDiet.texture">
+      <path value="NutritionOrder.oralDiet.texture" />
+      <max value="1" />
+    </element>
+    <element id="NutritionOrder.oralDiet.texture.modifier.text">
+      <path value="NutritionOrder.oralDiet.texture.modifier.text" />
+      <short value="Consistency" />
+      <definition value="A description of the consistency of the food." />
+      <comment value="The zib concept Consistency is mapped on two FHIR elements: `.oralDiet.texture.modifier.text` for solid foods and `.oralDiet.fluidConsistencyType.text` for liquid foods. A sending system should be able to decide on which of these FHIR elements is (the most) applicable. However, if this is not possible, it is recommended to use `.oralDiet.texture.modifier.text` as this concept has a broader meaning and may include liquid foods as well." />
+      <alias value="Consistentie" />
+      <mapping>
+        <identity value="zib-nutritionadvice-v3.2-2020EN" />
+        <map value="NL-CM:7.11.3" />
+        <comment value="Consistency" />
+      </mapping>
+    </element>
+    <element id="NutritionOrder.oralDiet.fluidConsistencyType.text">
+      <path value="NutritionOrder.oralDiet.fluidConsistencyType.text" />
+      <short value="Consistency" />
+      <definition value="A description of the consistency of the food." />
+      <comment value="The zib concept Consistency is mapped on two FHIR elements: `.oralDiet.texture.modifier.text` for solid foods and `.oralDiet.fluidConsistencyType.text` for liquid foods. A sending system should be able to decide on which of these FHIR elements is (the most) applicable. However, if this is not possible, it is recommended to use `.oralDiet.texture.modifier.text` as this concept has a broader meaning and may include liquid foods as well." />
+      <alias value="Consistentie" />
+      <mapping>
+        <identity value="zib-nutritionadvice-v3.2-2020EN" />
+        <map value="NL-CM:7.11.3" />
+        <comment value="Consistency" />
+      </mapping>
+    </element>
+    <element id="NutritionOrder.note">
+      <path value="NutritionOrder.note" />
+      <max value="1" />
+    </element>
+    <element id="NutritionOrder.note.text">
+      <path value="NutritionOrder.note.text" />
+      <short value="Comment" />
+      <definition value="A comment on the nutrition advice." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-nutritionadvice-v3.2-2020EN" />
+        <map value="NL-CM:7.11.4" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

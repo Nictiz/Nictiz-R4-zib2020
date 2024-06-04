@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-AdvanceDirective" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdvanceDirective" />
   <name value="NlcoreAdvanceDirective" />
   <title value="nl core AdvanceDirective" />
@@ -9,8 +13,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -18,6 +22,11 @@
   <purpose value="A derived profile from [zib-AdvanceDirective](http://nictiz.nl/fhir/StructureDefinition/zib-AdvanceDirective) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-advancedirective-v3.1.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/AdvanceDirective-v3.1.1(2020EN)" />
+    <name value="zib AdvanceDirective-v3.1.1(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="Consent" />
@@ -27,6 +36,17 @@
     <element id="Consent">
       <path value="Consent" />
       <alias value="nl-core-AdvanceDirective" />
+    </element>
+    <element id="Consent.extension:disorder">
+      <path value="Consent.extension" />
+      <sliceName value="disorder" />
+    </element>
+    <element id="Consent.extension:disorder.value[x]">
+      <path value="Consent.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
+      </type>
     </element>
     <element id="Consent.patient">
       <path value="Consent.patient" />

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-LaboratoryTestResult" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult" />
+  <name value="NlcoreLaboratoryTestResult" />
+  <title value="nl core LaboratoryTestResult" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A laboratory result describes the result of a laboratory analysis.&#xD;&#xA;These are specimen-oriented tests as performed in laboratories such as Clinical Chemistry, Serology, Microbiology, etc.&#xD;&#xA;In addition to the results of tests with a singular result, this concept can also contain the results of more complex tests with multiple results or a ‘panel’." />
+  <purpose value="A derived profile from [zib-LaboratoryTestResult](http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+    <uri value="https://zibs.nl/wiki/LaboratoryTestResult-v4.6(2020EN)" />
+    <name value="zib LaboratoryTestResult-v4.6(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="lu-dataset-laboratory-exchange-20210222" />
+    <uri value="https://decor.nictiz.nl/ad/#/lu-/datasets/dataset/2.16.840.1.113883.2.4.3.11.60.25.1.2/2021-02-22T00:00:00" />
+    <name value="ART-DECOR Dataset Lab Exchange 20210222T00:00:00" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Observation" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <alias value="nl-core-LaboratoryTestResult" />
+    </element>
+    <element id="Observation.extension:sequelTo">
+      <path value="Observation.extension" />
+      <sliceName value="sequelTo" />
+    </element>
+    <element id="Observation.extension:sequelTo.value[x]">
+      <path value="Observation.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult" />
+      </type>
+    </element>
+    <element id="Observation.extension:edifactReferenceNumber">
+      <path value="Observation.extension" />
+      <sliceName value="edifactReferenceNumber" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber" />
+      </type>
+    </element>
+    <element id="Observation.extension:copyIndicator">
+      <path value="Observation.extension" />
+      <sliceName value="copyIndicator" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator" />
+      </type>
+    </element>
+    <element id="Observation.identifier">
+      <path value="Observation.identifier" />
+      <mapping>
+        <identity value="lu-dataset-laboratory-exchange-20210222" />
+        <map value="lu-concept-v2-4296" />
+        <comment value="LaboratoriumUitslagIdentificatie" />
+      </mapping>
+      <mapping>
+        <identity value="lu-dataset-laboratory-exchange-20210222" />
+        <map value="lu-concept-v2-4298" />
+        <comment value="TestIdentificatie" />
+      </mapping>
+    </element>
+    <element id="Observation.subject">
+      <path value="Observation.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Observation.performer:performer">
+      <path value="Observation.performer" />
+      <sliceName value="performer" />
+      <definition value="The organization where or by whom the LaboratoryTestResult was performed.&#xD;&#xA;&#xD;&#xA;Note: the zib formally defines this relation as a reference to zib HealthcareProvider, which is primarily defined as the location at which the service was performed, and only secondarily as the organization associated with this location. According to this logic, the expected reference would be to the zib HealthcareProvider Location profile (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider&gt;) rather than the Organization profile (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization&gt;). However, on a functional level this concept is usually understood to be about the organization rather than the location, which is in line with the way FHIR models the current element. For this reason, the Organization rather than the Location resource is referenced here. See https://bits.nictiz.nl/browse/MM-4747 for more information." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization" />
+      </type>
+    </element>
+    <element id="Observation.specimen">
+      <path value="Observation.specimen" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Specimen" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:laboratoryTest">
+      <path value="Observation.hasMember" />
+      <sliceName value="laboratoryTest" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
