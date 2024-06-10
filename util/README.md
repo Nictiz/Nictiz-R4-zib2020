@@ -43,3 +43,7 @@ To update the ART-DECOR definitions file (zib2020bbr-decor.xml), the refreshDeco
 This folder contains two xslt scripts that loop through all resources in the `resources` folder, find relevant canonicals for ValueSets and systems for CodeSystems and download these terminology resources from ART-DECOR to `resources/terminology`.
 
 These scripts are standalone XSL files that operate without an XML source. They can be executed by selecting the XSL file as the XML source within Oxygen, or by calling the XSL using Saxon and using the `-it` flag with the name (downloadValueSets and downloadCodeSystems) of the template.
+
+## updateNarratives
+
+Tooling to add or re-generate the narratives for all resources in the "examples" folder, using the [Nictiz Narrative Generator](https://github.com/Nictiz/HL7-mappings/tree/master/fhir-narrativegenerator). This tool requires ANT to be installed.
