@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="build">
+    <!--
+        Add narratives to all examples in the "examples" folder.
+    -->
+    
+    <property name="tool.version" value="fhir-narrativegenerator-0.15.0"/>
+    <property name="in.dir" value="../../examples"/>
+    <property name="fhir.version" value="R4" />
+    
+    <property name="lib.dir" location="lib/ant-dependencies"/>
+
+    <target name="create-lib-dir">
+        <mkdir dir="lib"/>
+    </target>
+
+    <target name="check-tool" depends="create-lib-dir">
+        <available file="./lib/${tool.version}" type="dir" property="has.tool"/>
+    </target>
+
+    <!-- 
+        Overwrite the target to download and install the tool because it is based on a release instead of a folder
+        structure in the target repor.
+    -->
+    <target name="get.tool" depends="check-tool" unless="has.tool">
+        <sequential>
+            <echo>Downloading the testscript tools repo from Github</echo>
+            <echo>If you want to use a local copy for debugging, specifiy it with the -Dtestscripttools.local=... parameter</echo>
+            <echo/>
+            <local name="zip.name"/>
+            <property name="zip.name" value="./package.zip"/>
+            <get src="https://github.com/Nictiz/HL7-mappings/releases/download/${tool.version}/${tool.version}.zip"
+                dest="${zip.name}"/>
+            <unzip src="${zip.name}" dest="lib/${tool.version}" failOnEmptyArchive="true">
+                <mapper type="regexp" from="^.*?/(.*)" to="\1"/>
+            </unzip>
+            <delete file="${zip.name}"/>
+            <property name="has.tool" value="true" />
+        </sequential>
+    </target>
+    
+    <target name="build" depends="get.tool" if="has.tool">
+        <ant
+            antfile="./lib/${tool.version}/build/build.xml"
+            target="build"
+            dir="${basedir}"
+            inheritAll="true"/>
+    </target>
+</project>
