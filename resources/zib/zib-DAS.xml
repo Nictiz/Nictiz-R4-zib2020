@@ -39,6 +39,21 @@
         <comment value="DAS" />
       </mapping>
     </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <short value="DASMethod" />
+      <definition value="The specification of the DAS method used. &#xD;&#xA;There are different DAS scores. Each type has a different formula. DAS-28 or DAS-44 stands for 28 or 44 painful and swollen joints. One blood value for inflammation (a ESR or a CRP laboratory result) and the overall experience of disease activity by the patient via a Visual Analog Scale (VAS)." />
+      <alias value="DASMethode" />
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.18.2--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-das-v1.0-2020EN" />
+        <map value="NL-CM:12.18.14" />
+        <comment value="DASMethod" />
+      </mapping>
+    </element>
     <element id="Observation.effective[x]">
       <path value="Observation.effective[x]" />
       <slicing>
@@ -64,6 +79,31 @@
         <comment value="DASDateTime" />
       </mapping>
     </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueQuantity">
+      <path value="Observation.value[x]" />
+      <sliceName value="valueQuantity" />
+      <short value="DASValue" />
+      <definition value="The result (value)." />
+      <alias value="DASWaarde" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <mapping>
+        <identity value="zib-das-v1.0-2020EN" />
+        <map value="NL-CM:12.18.15" />
+        <comment value="DASValue" />
+      </mapping>
+    </element>
     <element id="Observation.component">
       <path value="Observation.component" />
       <slicing>
@@ -73,6 +113,34 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+    </element>
+    <element id="Observation.component:DASFormula">
+      <path value="Observation.component" />
+      <sliceName value="DASFormula" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:DASFormula.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="430321000146109" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:DASFormula.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="DASFormula" />
+      <definition value="The specification of the type of DAS. There are different DAS scores. Each type has a different formula." />
+      <alias value="DASFormule" />
+      <type>
+        <code value="string" />
+      </type>
+      <mapping>
+        <identity value="zib-das-v1.0-2020EN" />
+        <map value="NL-CM:12.18.21" />
+        <comment value="DASFormula" />
+      </mapping>
     </element>
     <element id="Observation.component:VASGeneralHealth">
       <path value="Observation.component" />
