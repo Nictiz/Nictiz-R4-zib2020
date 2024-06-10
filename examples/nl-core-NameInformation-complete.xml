@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
 <!-- An example of a complete name, with:
 * official first names (voornamen)
 * a given name (roepnaam)
@@ -8,79 +6,73 @@
 
 This example is about Ms. Johanna Petronelle Maria van Putten, commonly known as "Jo", who has a PhD. When she married
 Mr. van der Giessen, she adopted the last name of her partner, and added her own last name to it.
--->
-
-<Patient xmlns="http://hl7.org/fhir">
-   <id value="nl-core-NameInformation-complete"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
-   </meta>
-   
-   <!-- The information about the offical names is communicated using a .name instance where .name.use is 
+--><Patient xmlns="http://hl7.org/fhir">
+  <id value="nl-core-NameInformation-complete"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <div>
+        <span title="Naamsamenstelling: Partnernaam gevolgd door eigennaam">Johanna Petronella Maria (Jo) van der Giessen-van Putten</span>
+      </div>
+    </div>
+  </text>
+  <!-- The information about the offical names is communicated using a .name instance where .name.use is 
         set to "official". -->
-   <name>
-      
-      <!-- The extension is used to indicate that the person's family name is built up from the partner's last name 
+  <name>
+    <!-- The extension is used to indicate that the person's family name is built up from the partner's last name 
            followed by the person's own last name -->
-      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
-         <valueCode value="NL3"/>
+    <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+      <valueCode value="NL3"/>
+    </extension>
+    <use value="official"/>
+    <!-- The rendered name of the person -->
+    <text value="Johanna Petronella Maria (Jo) van der Giessen-van Putten"/>
+    <!-- The person's combined family name. The individual parts are repeated using the appropriate extensions. -->
+    <family value="van der Giessen-van Putten">
+      <!-- The person's own last name prefix -->
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+        <valueString value="van"/>
       </extension>
-      
-      <use value="official"/>
-      
-      <!-- The rendered name of the person -->
-      <text value="Johanna Petronella Maria (Jo) van der Giessen-van Putten"/>
-      
-      <!-- The person's combined family name. The individual parts are repeated using the appropriate extensions. -->
-      <family value="van der Giessen-van Putten">
-         
-         <!-- The person's own last name prefix -->
-         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
-            <valueString value="van"/>
-         </extension>
-         
-         <!-- The person's own last name -->
-         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-            <valueString value="Putten"/>
-         </extension>
-         
-         <!-- The partner's last name prefix -->
-         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
-            <valueString value="van der"/>
-         </extension>
-         
-         <!-- The partner's last name -->
-         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
-            <valueString value="Giessen"/>
-         </extension>
-      </family>
-      
-      <!-- Each official first name is communicated individually, augmented with the iso21090-EN-qualifier
+      <!-- The person's own last name -->
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+        <valueString value="Putten"/>
+      </extension>
+      <!-- The partner's last name prefix -->
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
+        <valueString value="van der"/>
+      </extension>
+      <!-- The partner's last name -->
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+        <valueString value="Giessen"/>
+      </extension>
+    </family>
+    <!-- Each official first name is communicated individually, augmented with the iso21090-EN-qualifier
            extension set to "BR" (Birth) to indicate that it is a complete and official first name. -->
-      <given value="Johanna">
-         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-            <valueCode value="BR"/>
-         </extension>
-      </given>
-      <given value="Petronella">
-         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-            <valueCode value="BR"/>
-         </extension>
-      </given>
-      <given value="Maria">
-         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-            <valueCode value="BR"/>
-         </extension>
-      </given>
-      
-      <!-- The scientific title of the person. -->
-      <prefix value="PhD"/>
-   </name>
-   
-   <!-- The given name (roepnaam, nickname) of the person is communicated using an additional .name instance with
+    <given value="Johanna">
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+        <valueCode value="BR"/>
+      </extension>
+    </given>
+    <given value="Petronella">
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+        <valueCode value="BR"/>
+      </extension>
+    </given>
+    <given value="Maria">
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+        <valueCode value="BR"/>
+      </extension>
+    </given>
+    <!-- The scientific title of the person. -->
+    <prefix value="PhD"/>
+  </name>
+  <!-- The given name (roepnaam, nickname) of the person is communicated using an additional .name instance with
         .name.use set to "usual". -->
-   <name>
-      <use value="usual"/>
-      <given value="Jo"/>
-   </name>
+  <name>
+    <use value="usual"/>
+    <given value="Jo"/>
+  </name>
 </Patient>

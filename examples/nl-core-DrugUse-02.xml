@@ -1,73 +1,120 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="nl-core-DrugUse-02"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-DrugUse"/>
-   </meta>
-   <status value="final"/>
-   <code>
+  <id value="nl-core-DrugUse-02"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-DrugUse"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <table>
+        <caption>Observatie/bepaling. Subject: Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen. Status: definitief</caption>
+        <tbody>
+          <tr>
+            <th>Bepalingdatum/tijd</th>
+            <td>1 januari 1970 - 1 januari 1985</td>
+          </tr>
+          <tr>
+            <th>Code</th>
+            <th>Waarde</th>
+          </tr>
+          <tr>
+            <td>
+              <span title="bevinding betreffende drugsgebruik (228366006 - SNOMED CT)">bevinding betreffende drugsgebruik</span>
+            </td>
+            <td>
+              <span title="Cocaïne (387085005 - SNOMED CT)">Cocaïne</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span title="substantie (105590001 - SNOMED CT)">substantie</span>
+            </td>
+            <td>
+              <span title="Heroïne (387341002 - SNOMED CT)">Heroïne</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span title="toedieningsweg (410675002 - SNOMED CT)">toedieningsweg</span>
+            </td>
+            <td>
+              <span title="Heeft nooit drugs gebruikt (228368007 - SNOMED CT)">Heeft nooit drugs gebruikt</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span title="detail over drugsmisbruik (363908000 - SNOMED CT)">detail over drugsmisbruik</span>
+            </td>
+            <td>3x per week</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </text>
+  <status value="final"/>
+  <code>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="228366006"/>
+      <display value="bevinding betreffende drugsgebruik"/>
+    </coding>
+  </code>
+  <subject>
+    <reference value="Patient/nl-core-Patient-01"/>
+    <type value="Patient"/>
+    <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+  </subject>
+  <effectivePeriod>
+    <start value="1970-01-01"/>
+    <end value="1985-01-01"/>
+  </effectivePeriod>
+  <valueCodeableConcept>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="387085005"/>
+      <display value="Cocaïne"/>
+    </coding>
+  </valueCodeableConcept>
+  <component>
+    <code>
       <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="228366006"/>
-         <display value="bevinding betreffende drugsgebruik"/>
+        <system value="http://snomed.info/sct"/>
+        <code value="105590001"/>
+        <display value="substantie"/>
       </coding>
-   </code>
-   <subject>
-      <reference value="Patient/nl-core-Patient-01"/>
-      <type value="Patient"/>
-      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
-   </subject>
-   <effectivePeriod>
-      <start value="1970-01-01"/>
-      <end value="1985-01-01"/>
-   </effectivePeriod>
-   <valueCodeableConcept>
+    </code>
+    <valueCodeableConcept>
       <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="387085005"/>
-         <display value="Cocaïne"/>
+        <system value="http://snomed.info/sct"/>
+        <code value="387341002"/>
+        <display value="Heroïne"/>
       </coding>
-   </valueCodeableConcept>
-   <component>
-      <code>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="105590001"/>
-            <display value="substantie"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="387341002"/>
-            <display value="Heroïne"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="410675002"/>
-            <display value="toedieningsweg"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="228368007"/>
-            <display value="Heeft nooit drugs gebruikt"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="363908000"/>
-            <display value="detail over drugsmisbruik"/>
-         </coding>
-      </code>
-      <valueString value="3x per week"/>
-   </component>
+    </valueCodeableConcept>
+  </component>
+  <component>
+    <code>
+      <coding>
+        <system value="http://snomed.info/sct"/>
+        <code value="410675002"/>
+        <display value="toedieningsweg"/>
+      </coding>
+    </code>
+    <valueCodeableConcept>
+      <coding>
+        <system value="http://snomed.info/sct"/>
+        <code value="228368007"/>
+        <display value="Heeft nooit drugs gebruikt"/>
+      </coding>
+    </valueCodeableConcept>
+  </component>
+  <component>
+    <code>
+      <coding>
+        <system value="http://snomed.info/sct"/>
+        <code value="363908000"/>
+        <display value="detail over drugsmisbruik"/>
+      </coding>
+    </code>
+    <valueString value="3x per week"/>
+  </component>
 </Observation>

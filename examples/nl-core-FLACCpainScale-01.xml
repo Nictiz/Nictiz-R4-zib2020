@@ -1,105 +1,168 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="nl-core-FLACCpainScale-01"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FLACCpainScale"/>
-   </meta>
-   <status value="final"/>
-   <code>
+  <id value="nl-core-FLACCpainScale-01"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FLACCpainScale"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <table>
+        <caption>Observatie/bepaling. Subject: Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen. Status: definitief</caption>
+        <tbody>
+          <tr>
+            <th>Bepalingdatum/tijd</th>
+            <td>12:05:00, 21 december 2016</td>
+          </tr>
+          <tr>
+            <th>Code</th>
+            <th>Waarde</th>
+          </tr>
+          <tr>
+            <td>
+              <span title="FLACC-pijnmeetinstrument (108291000146105 - SNOMED CT)">FLACC-pijnmeetinstrument</span>
+            </td>
+            <td>6</td>
+          </tr>
+          <tr>
+            <td>
+              <span title="FLACCpijnScore Gezicht (12013003 - 2.16.840.1.113883.2.4.3.11.60.40.4.0.1)">FLACCpijnScore Gezicht</span>
+            </td>
+            <td>
+              <span title="Occasional grimace (Face1 - 2.16.840.1.113883.2.4.3.11.60.40.4.21.1)">Occasional grimace</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span title="FLACCpijnScore Benen (12013004 - 2.16.840.1.113883.2.4.3.11.60.40.4.0.1)">FLACCpijnScore Benen</span>
+            </td>
+            <td>
+              <span title="Kicking (Legs2 - 2.16.840.1.113883.2.4.3.11.60.40.4.21.2)">Kicking</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span title="FLACCpijnScore Activiteit (12013005 - 2.16.840.1.113883.2.4.3.11.60.40.4.0.1)">FLACCpijnScore Activiteit</span>
+            </td>
+            <td>
+              <span title="Squirming (Act1 - 2.16.840.1.113883.2.4.3.11.60.40.4.21.3)">Squirming</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span title="FLACCpijnScore Huilen (12013006 - 2.16.840.1.113883.2.4.3.11.60.40.4.0.1)">FLACCpijnScore Huilen</span>
+            </td>
+            <td>
+              <span title="No cry (Cry0 - 2.16.840.1.113883.2.4.3.11.60.40.4.21.4)">No cry</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span title="FLACCpijnScore Troostbaar (12013009 - 2.16.840.1.113883.2.4.3.11.60.40.4.0.1)">FLACCpijnScore Troostbaar</span>
+            </td>
+            <td>
+              <span title="Difficult to console (Cons2 - 2.16.840.1.113883.2.4.3.11.60.40.4.21.5)">Difficult to console</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </text>
+  <status value="final"/>
+  <code>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="108291000146105"/>
+      <display value="FLACC-pijnmeetinstrument"/>
+    </coding>
+  </code>
+  <subject>
+    <reference value="Patient/nl-core-Patient-01"/>
+    <type value="Patient"/>
+    <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+  </subject>
+  <effectiveDateTime value="2016-12-21T12:05:00+01:00"/>
+  <valueInteger value="6"/>
+  <note>
+    <text value="Controle voor toediening pijnmedicatie."/>
+  </note>
+  <component>
+    <code>
       <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="108291000146105"/>
-         <display value="FLACC-pijnmeetinstrument"/>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
+        <code value="12013003"/>
+        <display value="FLACCpijnScore Gezicht"/>
       </coding>
-   </code>
-   <subject>
-      <reference value="Patient/nl-core-Patient-01"/>
-      <type value="Patient"/>
-      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
-   </subject>
-   <effectiveDateTime value="2016-12-21T12:05:00+01:00"/>
-   <valueInteger value="6"/>
-   <note>
-      <text value="Controle voor toediening pijnmedicatie."/>
-   </note>
-   <component>
-      <code>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
-            <code value="12013003"/>
-            <display value="FLACCpijnScore Gezicht"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.21.1"/>
-            <code value="Face1"/>
-            <display value="Occasional grimace"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
-            <code value="12013004"/>
-            <display value="FLACCpijnScore Benen"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.21.2"/>
-            <code value="Legs2"/>
-            <display value="Kicking"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
-            <code value="12013005"/>
-            <display value="FLACCpijnScore Activiteit"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.21.3"/>
-            <code value="Act1"/>
-            <display value="Squirming"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
-            <code value="12013006"/>
-            <display value="FLACCpijnScore Huilen"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.21.4"/>
-            <code value="Cry0"/>
-            <display value="No cry"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
-            <code value="12013009"/>
-            <display value="FLACCpijnScore Troostbaar"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.21.5"/>
-            <code value="Cons2"/>
-            <display value="Difficult to console"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
+    </code>
+    <valueCodeableConcept>
+      <coding>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.21.1"/>
+        <code value="Face1"/>
+        <display value="Occasional grimace"/>
+      </coding>
+    </valueCodeableConcept>
+  </component>
+  <component>
+    <code>
+      <coding>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
+        <code value="12013004"/>
+        <display value="FLACCpijnScore Benen"/>
+      </coding>
+    </code>
+    <valueCodeableConcept>
+      <coding>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.21.2"/>
+        <code value="Legs2"/>
+        <display value="Kicking"/>
+      </coding>
+    </valueCodeableConcept>
+  </component>
+  <component>
+    <code>
+      <coding>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
+        <code value="12013005"/>
+        <display value="FLACCpijnScore Activiteit"/>
+      </coding>
+    </code>
+    <valueCodeableConcept>
+      <coding>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.21.3"/>
+        <code value="Act1"/>
+        <display value="Squirming"/>
+      </coding>
+    </valueCodeableConcept>
+  </component>
+  <component>
+    <code>
+      <coding>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
+        <code value="12013006"/>
+        <display value="FLACCpijnScore Huilen"/>
+      </coding>
+    </code>
+    <valueCodeableConcept>
+      <coding>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.21.4"/>
+        <code value="Cry0"/>
+        <display value="No cry"/>
+      </coding>
+    </valueCodeableConcept>
+  </component>
+  <component>
+    <code>
+      <coding>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
+        <code value="12013009"/>
+        <display value="FLACCpijnScore Troostbaar"/>
+      </coding>
+    </code>
+    <valueCodeableConcept>
+      <coding>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.21.5"/>
+        <code value="Cons2"/>
+        <display value="Difficult to console"/>
+      </coding>
+    </valueCodeableConcept>
+  </component>
 </Observation>
