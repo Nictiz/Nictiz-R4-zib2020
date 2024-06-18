@@ -780,6 +780,9 @@ nl-core-*:
     "*":
       - message: No valid Display Names found for
         reason: This warning doesn't provide any feedback on the correctness of the materials, but only on the completeness of the terminology server used.
+    "*.text.div":
+      - message: "The URL is not valid because '(The mimetype portion of the data: URL is not valid (Mime type invalid) in URL: data:application/octet-stream;base64,"
+        reason: application/octet-stream is a valid mime type, but the Validator thinks it isn't (at the time of writing).
     "*.address*.country.extension[0].value*":
       - message: None of the codings provided are in the value set 'LandCodelijsten' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.10--20200901000000), and a coding from this value set is required) (codes = urn:oid:2.16.840.1.113883.2.4.4.16.34#6030)
         reason: The current version of the Validator incorrectly raises an error on combined ValueSets.
