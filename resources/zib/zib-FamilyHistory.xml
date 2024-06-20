@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-FamilyHistory" />
+  <text>
+    <status value="empty" />
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-FamilyHistory" />
+  <name value="ZibFamilyHistory" />
+  <title value="zib FamilyHistory" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The family history describes any health problems of biological relatives that may be relevant. The family history contains information on the medical disorders of the family member and the biological relationship between the patient and the described family member." />
+  <purpose value="This FamilyMemberHistory resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) FamilyHistory v3.1 (2020)](https://zibs.nl/wiki/FamilyHistory-v3.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-familyhistory-v3.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/FamilyHistory-v3.1(2020EN)" />
+    <name value="zib FamilyHistory-v3.1(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-problem-v4.4-2020EN" />
+    <uri value="https://zibs.nl/wiki/Problem-v4.4(2020EN)" />
+    <name value="zib Problem-v4.4(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="FamilyMemberHistory" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="FamilyMemberHistory">
+      <path value="FamilyMemberHistory" />
+      <short value="FamilyHistory / FamilyMember" />
+      <alias value="Familieanamnese" />
+      <alias value="Familielid" />
+      <constraint>
+        <key value="zib-FamilyHistory-01" />
+        <severity value="error" />
+        <human value="If one of the conditions was the cause of death of the family member, that family member should be marked as deceased." />
+        <expression value="condition.contributedToDeath = 'true' implies (deceased.ofType(boolean) = 'true' or deceased.ofType(Age).exists())" />
+      </constraint>
+      <mapping>
+        <identity value="zib-familyhistory-v3.1-2020EN" />
+        <map value="NL-CM:6.1.1" />
+        <comment value="FamilyHistory" />
+      </mapping>
+      <mapping>
+        <identity value="zib-familyhistory-v3.1-2020EN" />
+        <map value="NL-CM:6.1.3" />
+        <comment value="FamilyMember" />
+      </mapping>
+    </element>
+    <element id="FamilyMemberHistory.date">
+      <path value="FamilyMemberHistory.date" />
+      <short value="Date" />
+      <definition value="Date on which the family history was entered. A ‘vague’ date is permitted." />
+      <alias value="Datum" />
+      <mapping>
+        <identity value="zib-familyhistory-v3.1-2020EN" />
+        <map value="NL-CM:6.1.2" />
+        <comment value="Date" />
+      </mapping>
+    </element>
+    <element id="FamilyMemberHistory.relationship">
+      <path value="FamilyMemberHistory.relationship" />
+      <short value="BiologicalRelationship" />
+      <definition value="Indicates the biological relationship of the family member to the patient." />
+      <alias value="BiologischeRelatie" />
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.6.1.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-familyhistory-v3.1-2020EN" />
+        <map value="NL-CM:6.1.4" />
+        <comment value="BiologicalRelationship" />
+      </mapping>
+    </element>
+    <element id="FamilyMemberHistory.deceased[x]">
+      <path value="FamilyMemberHistory.deceased[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <comment value="Since this element can only occur at most once, it is not possible to communicate the zib concepts DeathIndicator (NL-CM:6.1.10) and AgeAtDeath (NL-CM:6.1.12) simultaneously in a single instance of this profile. However, since the presence of AgeOfDeath implies that the DeathIndicator is _true_, this is not necessary and in particular won't result in information loss." />
+      <condition value="zib-FamilyHistory-01" />
+    </element>
+    <element id="FamilyMemberHistory.deceased[x]:deceasedBoolean">
+      <path value="FamilyMemberHistory.deceased[x]" />
+      <sliceName value="deceasedBoolean" />
+      <short value="DeathIndicator" />
+      <definition value="An indication stating whether the family member has died." />
+      <alias value="OverlijdensIndicator" />
+      <type>
+        <code value="boolean" />
+      </type>
+      <mapping>
+        <identity value="zib-familyhistory-v3.1-2020EN" />
+        <map value="NL-CM:6.1.10" />
+        <comment value="DeathIndicator" />
+      </mapping>
+    </element>
+    <element id="FamilyMemberHistory.deceased[x]:deceasedAge">
+      <path value="FamilyMemberHistory.deceased[x]" />
+      <sliceName value="deceasedAge" />
+      <short value="AgeAtDeath" />
+      <definition value="The age at which the family member died." />
+      <alias value="LeeftijdBijOverlijden" />
+      <type>
+        <code value="Age" />
+      </type>
+      <patternAge>
+        <system value="http://unitsofmeasure.org" />
+        <code value="a" />
+      </patternAge>
+      <mapping>
+        <identity value="zib-familyhistory-v3.1-2020EN" />
+        <map value="NL-CM:6.1.12" />
+        <comment value="AgeAtDeath" />
+      </mapping>
+    </element>
+    <element id="FamilyMemberHistory.note">
+      <path value="FamilyMemberHistory.note" />
+      <max value="1" />
+    </element>
+    <element id="FamilyMemberHistory.note.text">
+      <path value="FamilyMemberHistory.note.text" />
+      <short value="Comment" />
+      <definition value="Comment with information on the family member which might be relevant to the family history." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-familyhistory-v3.1-2020EN" />
+        <map value="NL-CM:6.1.5" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="FamilyMemberHistory.condition">
+      <path value="FamilyMemberHistory.condition" />
+      <short value="Problem" />
+      <definition value="The health problem of the family member in question, which is recorded for the family history." />
+      <alias value="Probleem" />
+      <mapping>
+        <identity value="zib-familyhistory-v3.1-2020EN" />
+        <map value="NL-CM:6.1.7" />
+        <comment value="Problem" />
+      </mapping>
+    </element>
+    <element id="FamilyMemberHistory.condition.extension:abatement">
+      <path value="FamilyMemberHistory.condition.extension" />
+      <sliceName value="abatement" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/familymemberhistory-abatement" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="FamilyMemberHistory.condition.extension:abatement.value[x]">
+      <path value="FamilyMemberHistory.condition.extension.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="FamilyMemberHistory.condition.extension:abatement.value[x]:valueDate">
+      <path value="FamilyMemberHistory.condition.extension.value[x]" />
+      <sliceName value="valueDate" />
+      <short value="ProblemEndDate" />
+      <definition value="Date on which the disorder to which the problem applies, is considered not to be present anymore. This date needs not to be the same as the date of the change in problem status. A ‘vague’ date, such as only the year or the month and the year, is permitted." />
+      <alias value="ProbleemEindDatum" />
+      <type>
+        <code value="date" />
+      </type>
+      <mapping>
+        <identity value="zib-problem-v4.4-2020EN" />
+        <map value="NL-CM:5.1.9" />
+        <comment value="ProblemEndDate" />
+      </mapping>
+    </element>
+    <element id="FamilyMemberHistory.condition.code">
+      <path value="FamilyMemberHistory.condition.code" />
+      <short value="ProblemName" />
+      <definition value="The problem name defines the problem. Depending on the setting, different code systems can be used. The ProblemNameCodelist provides an overview of the possible code systems." />
+      <alias value="ProbleemNaam" />
+      <mapping>
+        <identity value="zib-problem-v4.4-2020EN" />
+        <map value="NL-CM:5.1.3" />
+        <comment value="ProblemName" />
+      </mapping>
+    </element>
+    <element id="FamilyMemberHistory.condition.contributedToDeath">
+      <path value="FamilyMemberHistory.condition.contributedToDeath" />
+      <short value="IsCauseOfDeath" />
+      <definition value="Indication stating whether the described health problem was the cause of death of the family member." />
+      <alias value="IsDoodsoorzaak" />
+      <condition value="zib-FamilyHistory-01" />
+      <mapping>
+        <identity value="zib-familyhistory-v3.1-2020EN" />
+        <map value="NL-CM:6.1.9" />
+        <comment value="IsCauseOfDeath" />
+      </mapping>
+    </element>
+    <element id="FamilyMemberHistory.condition.onset[x]">
+      <path value="FamilyMemberHistory.condition.onset[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="FamilyMemberHistory.condition.onset[x]:onsetPeriod">
+      <path value="FamilyMemberHistory.condition.onset[x]" />
+      <sliceName value="onsetPeriod" />
+      <type>
+        <code value="Period" />
+      </type>
+    </element>
+    <element id="FamilyMemberHistory.condition.onset[x]:onsetPeriod.start">
+      <path value="FamilyMemberHistory.condition.onset[x].start" />
+      <short value="ProblemStartDate" />
+      <definition value="Onset of the symptom, complaint, functional limitation, complication or date of diagnosis. A ‘vague’ date, such as only the year or the month and the year, is permitted." />
+      <alias value="ProbleemBeginDatum" />
+      <mapping>
+        <identity value="zib-problem-v4.4-2020EN" />
+        <map value="NL-CM:5.1.6" />
+        <comment value="ProblemStartDate" />
+      </mapping>
+    </element>
+    <element id="FamilyMemberHistory.condition.note">
+      <path value="FamilyMemberHistory.condition.note" />
+      <max value="1" />
+    </element>
+    <element id="FamilyMemberHistory.condition.note.text">
+      <path value="FamilyMemberHistory.condition.note.text" />
+      <short value="Comment" />
+      <definition value="Comment by the one who determined or updated the Problem." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-problem-v4.4-2020EN" />
+        <map value="NL-CM:5.1.5" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
