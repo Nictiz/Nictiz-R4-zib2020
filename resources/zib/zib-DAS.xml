@@ -9,8 +9,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -98,10 +98,42 @@
       <type>
         <code value="Quantity" />
       </type>
+      <minValueQuantity>
+        <value value="0.00" />
+      </minValueQuantity>
+      <maxValueQuantity>
+        <value value="10.00" />
+      </maxValueQuantity>
       <mapping>
         <identity value="zib-das-v1.0-2020EN" />
         <map value="NL-CM:12.18.15" />
         <comment value="DASValue" />
+      </mapping>
+    </element>
+    <element id="Observation.derivedFrom">
+      <path value="Observation.derivedFrom" />
+      <short value="ESR / CRP" />
+      <definition value="The C-reactive protein (CRP) is a laboratory measurment valuable for determining the presence of inflammation or to monitor the effect of a medical treatment on the inflammation. The erythrocyte sedimentation rate (ESR or sed rate) is the rate at which red blood cells in anticoagulated whole blood descend in a standardized tube over a period of one hour. Both test results can be used to calculate the DAS." />
+      <alias value="BSE / CRP" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ImagingStudy" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Media" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MolecularSequence" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult" />
+      </type>
+      <mapping>
+        <identity value="zib-das-v1.0-2020EN" />
+        <map value="NL-CM:12.18.20" />
+        <comment value="ESR" />
+      </mapping>
+      <mapping>
+        <identity value="zib-das-v1.0-2020EN" />
+        <map value="NL-CM:12.18.19" />
+        <comment value="CRP" />
       </mapping>
     </element>
     <element id="Observation.component">
