@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-Mobility" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility" />
   <name value="ZibMobility" />
   <title value="zib Mobility" />
@@ -36,7 +34,7 @@
     <element id="Observation">
       <path value="Observation" />
       <short value="Mobility" />
-      <comment value="Please note that on a functional level, zib Mobility references zib MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept MedicalDevice (NL-CM:4.3.4) is mapped on `DeviceUseStatement.reasonReference` in profile [zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice) instead of in this profile." />
+      <comment value="Please note that on a functional level, zib Mobility references zib MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept MedicalDevice (NL-CM:4.3.4) is mapped on `DeviceUseStatement.reasonReference` in profile [zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice) instead of in this profile.&#xD;&#xA;&#xD;&#xA;Several concept(s) of zib Mobility are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* Walking (NL-CM:4.3.3): [zib-Mobility.Walking](http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.Walking)&#xD;&#xA;* ClimbingStairs (NL-CM:4.3.18): [zib-Mobility.ClimbingStairs](hhttp://nictiz.nl/fhir/StructureDefinition/zib-Mobility.ClimbingStairs)&#xD;&#xA;* ChangingPosition (NL-CM:4.3.8): [zib-Mobility.ChangingPosition](hhttp://nictiz.nl/fhir/StructureDefinition/zib-Mobility.ChangingPosition)&#xD;&#xA;* MaintainingPosition (NL-CM:4.3.12): [zib-Mobility.MaintainingPosition](hhttp://nictiz.nl/fhir/StructureDefinition/zib-Mobility.MaintainingPosition)&#xD;&#xA;* Transfer (NL-CM:4.3.5): [zib-Mobility.Transfer](hhttp://nictiz.nl/fhir/StructureDefinition/zib-Mobility.Transfer)" />
       <alias value="Mobiliteit" />
       <mapping>
         <identity value="zib-mobility-v3.3-2020EN" />
@@ -68,174 +66,89 @@
         <comment value="Comment" />
       </mapping>
     </element>
-    <element id="Observation.component">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
       <slicing>
         <discriminator>
-          <type value="value" />
-          <path value="code" />
+          <type value="profile" />
+          <path value="resolve()" />
         </discriminator>
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Observation.component:walking">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:walking">
+      <path value="Observation.hasMember" />
       <sliceName value="walking" />
+      <definition value="The Walking concept (NL-CM:4.3.3) of zib Mobility, represented as a distinct Observation resource." />
       <max value="1" />
-    </element>
-    <element id="Observation.component:walking.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="282097004" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:walking.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="Walking" />
-      <definition value="Walking is moving body from one place to another by moving legs stepwise by self, capacity to bear weight of body and walk with effective gait within the range of speed from slow, moderate and fast pace." />
-      <alias value="Lopen" />
       <type>
-        <code value="CodeableConcept" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.Walking" />
       </type>
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.3.9--20200901000000" />
-      </binding>
       <mapping>
         <identity value="zib-mobility-v3.3-2020EN" />
         <map value="NL-CM:4.3.3" />
-        <comment value="Walking" />
+        <comment value="Walking (implicit, main mapping is on Observation.value[x]." />
       </mapping>
     </element>
-    <element id="Observation.component:climbingStairs">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:climbingStairs">
+      <path value="Observation.hasMember" />
       <sliceName value="climbingStairs" />
+      <definition value="The ClimbingStairs concept (NL-CM:4.3.18) of zib Mobility, represented as a distinct Observation resource." />
       <max value="1" />
-    </element>
-    <element id="Observation.component:climbingStairs.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="301587001" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:climbingStairs.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="ClimbingStairs" />
-      <definition value="ClimbingStairs indicates the extent to which a patient is capable of going up and down stairs independently." />
-      <alias value="Traplopen" />
       <type>
-        <code value="CodeableConcept" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.ClimbingStairs" />
       </type>
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.3.12--20200901000000" />
-      </binding>
       <mapping>
         <identity value="zib-mobility-v3.3-2020EN" />
         <map value="NL-CM:4.3.18" />
-        <comment value="ClimbingStairs" />
+        <comment value="ClimbingStairs (implicit, main mapping is on Observation.value[x]." />
       </mapping>
     </element>
-    <element id="Observation.component:changingPosition">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:changingPosition">
+      <path value="Observation.hasMember" />
       <sliceName value="changingPosition" />
+      <definition value="The ChangingPosition concept (NL-CM:4.3.8) of zib Mobility, represented as a distinct Observation resource." />
       <max value="1" />
-    </element>
-    <element id="Observation.component:changingPosition.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="282869009" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:changingPosition.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="ChangingPosition" />
-      <definition value="Changing position entails the body going from one position to another and going from one location to the next, such as getting out of a chair and into bed, or kneeling or crouching and getting back up." />
-      <alias value="HoudingVeranderen" />
       <type>
-        <code value="CodeableConcept" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.ChangingPosition" />
       </type>
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.3.1--20200901000000" />
-      </binding>
       <mapping>
         <identity value="zib-mobility-v3.3-2020EN" />
         <map value="NL-CM:4.3.8" />
-        <comment value="ChangingPosition" />
+        <comment value="ChangingPosition (implicit, main mapping is on Observation.value[x]." />
       </mapping>
     </element>
-    <element id="Observation.component:maintainingPosition">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:maintainingPosition">
+      <path value="Observation.hasMember" />
       <sliceName value="maintainingPosition" />
+      <definition value="The MaintainingPosition concept (NL-CM:4.3.12) of zib Mobility, represented as a distinct Observation resource." />
       <max value="1" />
-    </element>
-    <element id="Observation.component:maintainingPosition.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="249868004" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:maintainingPosition.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="MaintainingPosition" />
-      <definition value="Maintaining position is staying in the same position, such as sitting in a chair or standing, when required." />
-      <alias value="HoudingHandhaven" />
       <type>
-        <code value="CodeableConcept" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.MaintainingPosition" />
       </type>
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.3.4--20200901000000" />
-      </binding>
       <mapping>
         <identity value="zib-mobility-v3.3-2020EN" />
         <map value="NL-CM:4.3.12" />
-        <comment value="MaintainingPosition" />
+        <comment value="MaintainingPosition (implicit, main mapping is on Observation.value[x]." />
       </mapping>
     </element>
-    <element id="Observation.component:transfer">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:transfer">
+      <path value="Observation.hasMember" />
       <sliceName value="transfer" />
+      <definition value="The Transfer concept (NL-CM:4.3.5) of zib Mobility, represented as a distinct Observation resource." />
       <max value="1" />
-    </element>
-    <element id="Observation.component:transfer.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="364666007" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:transfer.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="Transfer" />
-      <definition value="A transfer is moving from one surface to another without changing the body’s position, such as sliding across a couch or moving from the bed to a chair." />
-      <alias value="UitvoerenTransfer" />
       <type>
-        <code value="CodeableConcept" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.Transfer" />
       </type>
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.3.7--20200901000000" />
-      </binding>
       <mapping>
         <identity value="zib-mobility-v3.3-2020EN" />
         <map value="NL-CM:4.3.5" />
-        <comment value="Transfer" />
+        <comment value="Transfer (implicit, main mapping is on Observation.value[x]." />
       </mapping>
     </element>
   </differential>
