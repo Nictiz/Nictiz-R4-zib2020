@@ -18,6 +18,27 @@
     </xsl:template>
 
     <xd:doc>
+        <xd:desc>Inject empty narrative if not present</xd:desc>
+    </xd:doc>
+    <xsl:template match="(f:ValueSet | f:CodeSystem)" mode="rewrite">
+        <xsl:element name="{local-name(.)}">
+            <xsl:apply-templates select="f:id | f:meta | f:implicitRules | f:language" mode="rewrite"/>
+            <xsl:choose>
+                <xsl:when test="f.text">
+                    <xsl:copy-of select="f:text"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <text>
+                        <status value="empty"/>
+                        <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+                    </text>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:apply-templates select="*[not(self::f:id | self::f:meta | self::f:implicitRules | self::f:language)]" mode="rewrite"/>
+        </xsl:element>
+    </xsl:template>
+
+    <xd:doc>
         <xd:desc>Set time zone to +00:00. This is technically not a _correct_ thing to do, but ART-DECOR will just use midnight plus the current time offset according to DST, so technically the input isn't correct either as the result will change when DST changes.</xd:desc>
     </xd:doc>
     <xsl:template match="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod']/f:valuePeriod/f:start" mode="rewrite">
