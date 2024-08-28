@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="pattern-VitalSigns" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/pattern-VitalSigns" />
   <name value="PatternVitalSigns" />
   <title value="pattern VitalSigns" />
@@ -32,7 +36,6 @@
         <severity value="error" />
         <human value="If there is no component or hasMember element then either a value[x] or a data absent reason must be present." />
         <expression value="(component.empty() and hasMember.empty()) implies (dataAbsentReason.exists() or value.exists())" />
-        <source value="http://hl7.org/fhir/StructureDefinition/vitalsigns" />
       </constraint>
     </element>
     <element id="Observation.category">
@@ -85,7 +88,6 @@
         <severity value="error" />
         <human value="if Observation.effective[x] is dateTime and has a value then that value shall be precise to the day" />
         <expression value="($this as dateTime).toString().length() &gt;= 8" />
-        <source value="http://hl7.org/fhir/StructureDefinition/vitalsigns" />
       </constraint>
     </element>
     <element id="Observation.value[x]">
@@ -103,7 +105,6 @@
         <severity value="error" />
         <human value="If there is no a value a data absent reason must be present" />
         <expression value="value.exists() or dataAbsentReason.exists()" />
-        <source value="http://hl7.org/fhir/StructureDefinition/vitalsigns" />
       </constraint>
     </element>
     <element id="Observation.component.value[x]">

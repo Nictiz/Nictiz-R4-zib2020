@@ -1,0 +1,149 @@
+<CodeSystem xmlns="http://hl7.org/fhir">
+   <id value="2.16.840.1.113883.2.4.3.11.60.40.4"/>
+   <meta>
+      <profile value="http://hl7.org/fhir/StructureDefinition/shareablecodesystem"/>
+      <!--<profile value="http://hl7.org/fhir/4.0/StructureDefinition/CodeSystem"/>-->
+   </meta>
+   <language value="nl-NL"/>
+   <extension url="http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod">
+      <valuePeriod>
+         <start value="2020-09-01T00:00:00Z"/>
+      </valuePeriod>
+   </extension>
+   <url value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4"/>
+   <identifier>
+      <use value="official"/>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4"/>
+   </identifier>
+   <version value="2020-09-01T00:00:00"/>
+   <name value="Weescodes"/>
+   <title value="Weescodes"/>
+   <status value="active"/>
+   <experimental value="false"/>
+   <publisher value="Registratie aan de bron"/>
+   <contact>
+      <name value="Registratie aan de bron"/>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.registratieaandebron.nl"/>
+      </telecom>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.zibs.nl"/>
+      </telecom>
+   </contact>
+   <description value="Weescodes"/>
+   <caseSensitive value="false"/>
+   <content value="complete"/>
+   <count value="8"/>
+   <property>
+      <code value="status"/>
+      <uri value="http://hl7.org/fhir/concept-properties"/>
+      <description value="A code that indicates the status of the concept. Values found in this version of the code system are: active, deprecated"/>
+      <type value="code"/>
+   </property>
+   <property>
+      <code value="inactive"/>
+      <uri value="http://hl7.org/fhir/concept-properties"/>
+      <description value="The date at which a concept was deprecated. Concepts that are deprecated but not inactive can still be used, but their use is discouraged, and they should be expected to be made inactive in a future release. Property type is dateTime. Note that the status property may also be used to indicate that a concept is deprecated"/>
+      <type value="boolean"/>
+   </property>
+   <concept>
+      <code value="APNA"/>
+      <display value="Toediener niet aanwezig"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+            <display value="Synonym"/>
+         </use>
+         <value value="Administration performer not available"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="FORGOT"/>
+      <display value="Vergeten toe te dienen"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+            <display value="Synonym"/>
+         </use>
+         <value value="Forgotten to administer"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="GeenGeloof"/>
+      <display value="Geen geloof"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Humanist"/>
+      <display value="Humanist"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="JA"/>
+      <display value="Ja"/>
+      <definition value="Behandeling is toegestaan en/of wenselijk."/>
+      <property>
+         <code value="status"/>
+         <valueCode value="deprecated"/>
+      </property>
+      <property>
+         <code value="inactive"/>
+         <valueBoolean value="true"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="JA_MAAR"/>
+      <display value="Ja, maar met beperkingen"/>
+      <definition value="Behandeling toegestaan en/of wenselijk maar met beperkingen die dan ook vermeld moeten worden"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="deprecated"/>
+      </property>
+      <property>
+         <code value="inactive"/>
+         <valueBoolean value="true"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="Mormoon"/>
+      <display value="Mormoon"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="NEE"/>
+      <display value="Nee"/>
+      <definition value="Behandeling niet toegestaan en/of wenselijk"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="deprecated"/>
+      </property>
+      <property>
+         <code value="inactive"/>
+         <valueBoolean value="true"/>
+      </property>
+   </concept>
+</CodeSystem>

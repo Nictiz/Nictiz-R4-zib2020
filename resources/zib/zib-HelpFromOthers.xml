@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-HelpFromOthers" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-HelpFromOthers" />
+  <name value="ZibHelpFromOthers" />
+  <title value="zib HelpFromOthers" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="There are often multiple people or parties involved in the care for a patient with a disorder or disability, particularly in the event of home care. Their efforts enable the patient to function more or less independently. This includes not only caregivers, but also professional help such as that offered by home care organizations, nurses, aids and helpers.&#xD;&#xA;Current doctors and staff from the facility to which a patient is admitted do not fall under this concept." />
+  <purpose value="This CarePlan resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) HelpFromOthers v3.01 (2020)](https://zibs.nl/wiki/HelpFromOthers-v3.01(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-helpfromothers-v3.01-2020EN" />
+    <uri value="https://zibs.nl/wiki/HelpFromOthers-v3.01(2020EN)" />
+    <name value="zib HelpFromOthers-v3.01(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="CarePlan" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/CarePlan" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="CarePlan">
+      <path value="CarePlan" />
+      <short value="HelpFromOthers" />
+      <alias value="HulpVanAnderen" />
+      <mapping>
+        <identity value="zib-helpfromothers-v3.01-2020EN" />
+        <map value="NL-CM:3.2.1" />
+        <comment value="HelpFromOthers" />
+      </mapping>
+    </element>
+    <element id="CarePlan.status">
+      <path value="CarePlan.status" />
+      <comment value="This element has no functional counterpart in the zib and cannot be implicitly mapped to other concepts. Unless a more appropriate status is recorded, it is assumed that only _active_ CarePlan resources will be exchanged." />
+    </element>
+    <element id="CarePlan.intent">
+      <path value="CarePlan.intent" />
+      <comment value="For zib HelpFromOthers, this will normally be _plan_, but the context may specify a more suitable intent." />
+    </element>
+    <element id="CarePlan.category">
+      <path value="CarePlan.category" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="1" />
+    </element>
+    <element id="CarePlan.category:helpFromOthersCode">
+      <path value="CarePlan.category" />
+      <sliceName value="helpFromOthersCode" />
+      <min value="1" />
+      <max value="1" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="243114000" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="CarePlan.activity">
+      <path value="CarePlan.activity" />
+      <comment value="The zib HelpFromOthers always consists of a single type of help. For this reason, the cardinality of `.activity` is restricted to `0..1`." />
+      <max value="1" />
+    </element>
+    <element id="CarePlan.activity.detail.code">
+      <path value="CarePlan.activity.detail.code" />
+      <short value="TypeOfHelp" />
+      <definition value="The type of help offered by the person in question." />
+      <alias value="SoortHulp" />
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.3.2.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-helpfromothers-v3.01-2020EN" />
+        <map value="NL-CM:3.2.9" />
+        <comment value="TypeOfHelp" />
+      </mapping>
+    </element>
+    <element id="CarePlan.activity.detail.scheduled[x]">
+      <path value="CarePlan.activity.detail.scheduled[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="CarePlan.activity.detail.scheduled[x]:scheduledString">
+      <path value="CarePlan.activity.detail.scheduled[x]" />
+      <sliceName value="scheduledString" />
+      <short value="Frequency" />
+      <definition value="The frequency of the provided support, e.g. daily/weekly." />
+      <alias value="Frequentie" />
+      <type>
+        <code value="string" />
+      </type>
+      <mapping>
+        <identity value="zib-helpfromothers-v3.01-2020EN" />
+        <map value="NL-CM:3.2.2" />
+        <comment value="Frequency" />
+      </mapping>
+    </element>
+    <element id="CarePlan.activity.detail.performer">
+      <path value="CarePlan.activity.detail.performer" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <short value="CareAid" />
+      <definition value="A care aid can be a health professional such as nurses, carers and helpers but also a caregiver or healthcare provider such as a home care organization." />
+      <alias value="Hulpverlener" />
+      <max value="1" />
+      <mapping>
+        <identity value="zib-helpfromothers-v3.01-2020EN" />
+        <map value="NL-CM:3.2.5" />
+        <comment value="CareAid" />
+      </mapping>
+    </element>
+    <element id="CarePlan.activity.detail.performer:healthProfessional">
+      <path value="CarePlan.activity.detail.performer" />
+      <sliceName value="healthProfessional" />
+      <short value="HealthProfessional" />
+      <definition value="Details of the health professional involved in the patient’s care." />
+      <alias value="Zorgverlener" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-ZibHealthProfessionalReference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
+      </type>
+      <mapping>
+        <identity value="zib-helpfromothers-v3.01-2020EN" />
+        <map value="NL-CM:3.2.6" />
+        <comment value="HealthProfessional" />
+      </mapping>
+    </element>
+    <element id="CarePlan.activity.detail.performer:caregiver">
+      <path value="CarePlan.activity.detail.performer" />
+      <sliceName value="caregiver" />
+      <short value="Caregiver" />
+      <definition value="Details of the caregiver involved in the patient’s support." />
+      <alias value="Mantelzorger" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson" />
+      </type>
+      <mapping>
+        <identity value="zib-helpfromothers-v3.01-2020EN" />
+        <map value="NL-CM:3.2.7" />
+        <comment value="Caregiver" />
+      </mapping>
+    </element>
+    <element id="CarePlan.activity.detail.performer:healthcareProvider">
+      <path value="CarePlan.activity.detail.performer" />
+      <sliceName value="healthcareProvider" />
+      <short value="HealthcareProvider" />
+      <definition value="Details of the organization the health professional/aid works for in the event that it is not entered as a person." />
+      <alias value="Zorgaanbieder" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider-Organization" />
+      </type>
+      <mapping>
+        <identity value="zib-helpfromothers-v3.01-2020EN" />
+        <map value="NL-CM:3.2.8" />
+        <comment value="HealthcareProvider" />
+      </mapping>
+    </element>
+    <element id="CarePlan.activity.detail.description">
+      <path value="CarePlan.activity.detail.description" />
+      <short value="Nature" />
+      <definition value="The nature of the help/support provided to the patient." />
+      <alias value="Aard" />
+      <mapping>
+        <identity value="zib-helpfromothers-v3.01-2020EN" />
+        <map value="NL-CM:3.2.3" />
+        <comment value="Nature" />
+      </mapping>
+    </element>
+    <element id="CarePlan.note">
+      <path value="CarePlan.note" />
+      <max value="1" />
+    </element>
+    <element id="CarePlan.note.text">
+      <path value="CarePlan.note.text" />
+      <short value="Comment" />
+      <definition value="A comment on the help/support the patient receives from others." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-helpfromothers-v3.01-2020EN" />
+        <map value="NL-CM:3.2.4" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-DevelopmentChild" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-DevelopmentChild" />
+  <name value="ZibDevelopmentChild" />
+  <title value="zib DevelopmentChild" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Information on the development and growth of a child is important in determining the kind of care that should be provided to the child and the family. When the child is being transferred, continuity of care can be achieved. Information can provide insight in the process of development and whether the child has a developmental delay." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) DevelopmentChild v1.2 (2020)](https://zibs.nl/wiki/DevelopmentChild-v1.2(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-developmentchild-v1.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/DevelopmentChild-v1.2(2020EN)" />
+    <name value="zib DevelopmentChild-v1.2(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="DevelopmentChild" />
+      <alias value="OntwikkelingKind" />
+      <mapping>
+        <identity value="zib-developmentchild-v1.2-2020EN" />
+        <map value="NL-CM:4.32.1" />
+        <comment value="DevelopmentChild" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="251803000" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effective[x]" />
+      <sliceName value="effectiveDateTime" />
+      <short value="DevelopmentChildDateTime" />
+      <definition value="The date and time on which the status of the development of the child are registered." />
+      <alias value="OntwikkelingKindDatumTijd" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-developmentchild-v1.2-2020EN" />
+        <map value="NL-CM:4.32.2" />
+        <comment value="DevelopmentChildDateTime" />
+      </mapping>
+    </element>
+    <element id="Observation.note">
+      <path value="Observation.note" />
+      <max value="1" />
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
+      <short value="Comment" />
+      <definition value="Comment on the development of the child." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-developmentchild-v1.2-2020EN" />
+        <map value="NL-CM:4.32.3" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:toiletTrainednessUrine">
+      <path value="Observation.component" />
+      <sliceName value="toiletTrainednessUrine" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:toiletTrainednessUrine.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="275819003" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:toiletTrainednessUrine.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="ToiletTrainednessUrine" />
+      <definition value="Degree of toilet trainedness for urine." />
+      <alias value="ZindelijkheidUrine" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.32.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-developmentchild-v1.2-2020EN" />
+        <map value="NL-CM:4.32.4" />
+        <comment value="ToiletTrainednessUrine" />
+      </mapping>
+    </element>
+    <element id="Observation.component:toiletTrainednessFeces">
+      <path value="Observation.component" />
+      <sliceName value="toiletTrainednessFeces" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:toiletTrainednessFeces.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="275818006" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:toiletTrainednessFeces.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="ToiletTrainednessFeces" />
+      <definition value="Degree of toilet trainedness for feces." />
+      <alias value="ZindelijkheidFeces" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.32.2--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-developmentchild-v1.2-2020EN" />
+        <map value="NL-CM:4.32.5" />
+        <comment value="ToiletTrainednessFeces" />
+      </mapping>
+    </element>
+    <element id="Observation.component:ageFirstMenstruation">
+      <path value="Observation.component" />
+      <sliceName value="ageFirstMenstruation" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:ageFirstMenstruation.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://loinc.org" />
+          <code value="42798-9" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:ageFirstMenstruation.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="AgeFirstMenstruation" />
+      <definition value="The age of the start of the first menstruation." />
+      <alias value="LeeftijdEersteMenstruatie" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <patternQuantity>
+        <system value="http://unitsofmeasure.org" />
+        <code value="a" />
+      </patternQuantity>
+      <mapping>
+        <identity value="zib-developmentchild-v1.2-2020EN" />
+        <map value="NL-CM:4.32.7" />
+        <comment value="AgeFirstMenstruation" />
+      </mapping>
+    </element>
+    <element id="Observation.component:developmentLocomotion">
+      <path value="Observation.component" />
+      <sliceName value="developmentLocomotion" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:developmentLocomotion.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="282716004" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:developmentLocomotion.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="DevelopmentLocomotion" />
+      <definition value="Milestones of locomotive development of a child." />
+      <alias value="OntwikkelingMotoriek" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.32.3--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-developmentchild-v1.2-2020EN" />
+        <map value="NL-CM:4.32.6" />
+        <comment value="OntwikkelingMotoriek" />
+      </mapping>
+    </element>
+    <element id="Observation.component:developmentSocial">
+      <path value="Observation.component" />
+      <sliceName value="developmentSocial" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:developmentSocial.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="225597007" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:developmentSocial.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="DevelopmentSocial" />
+      <definition value="Milestones of social development of a child." />
+      <alias value="OntwikkelingSociaal" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.32.4--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-developmentchild-v1.2-2020EN" />
+        <map value="NL-CM:4.32.8" />
+        <comment value="DevelopmentSocial" />
+      </mapping>
+    </element>
+    <element id="Observation.component:developmentLinguistics">
+      <path value="Observation.component" />
+      <sliceName value="developmentLinguistics" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:developmentLinguistics.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="61909002" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:developmentLinguistics.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="DevelopmentLinguistics" />
+      <definition value="Milestones of lingual development of a child." />
+      <alias value="OntwikkelingTaal" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.32.5--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-developmentchild-v1.2-2020EN" />
+        <map value="NL-CM:4.32.9" />
+        <comment value="DevelopmentLinguistics" />
+      </mapping>
+    </element>
+    <element id="Observation.component:developmentCognition">
+      <path value="Observation.component" />
+      <sliceName value="developmentCognition" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:developmentCognition.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="311465003" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:developmentCognition.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="DevelopmentCognition" />
+      <definition value="Milestones of cognitive development of a child." />
+      <alias value="OntwikkelingVerstandelijk" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.32.6--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-developmentchild-v1.2-2020EN" />
+        <map value="NL-CM:4.32.10" />
+        <comment value="DevelopmentCognition" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

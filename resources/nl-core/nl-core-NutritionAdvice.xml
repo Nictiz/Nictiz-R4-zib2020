@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-NutritionAdvice" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NutritionAdvice" />
   <name value="NlcoreNutritionAdvice" />
   <title value="nl core NutritionAdvice" />
@@ -18,6 +22,11 @@
   <purpose value="A derived profile from [zib-NutritionAdvice](http://nictiz.nl/fhir/StructureDefinition/zib-NutritionAdvice) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-nutritionadvice-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/NutritionAdvice-v3.2(2020EN)" />
+    <name value="zib NutritionAdvice-v3.2(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="NutritionOrder" />
@@ -28,21 +37,9 @@
       <path value="NutritionOrder" />
       <alias value="nl-core-NutritionAdvice" />
     </element>
-    <element id="NutritionOrder.extension">
-      <path value="NutritionOrder.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="NutritionOrder.extension:indication">
       <path value="NutritionOrder.extension" />
       <sliceName value="indication" />
-      <min value="0" />
     </element>
     <element id="NutritionOrder.extension:indication.value[x]">
       <path value="NutritionOrder.extension.value[x]" />
