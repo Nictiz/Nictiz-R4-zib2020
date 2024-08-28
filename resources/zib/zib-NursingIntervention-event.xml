@@ -39,6 +39,7 @@
     <element id="Procedure">
       <path value="Procedure" />
       <short value="NursingIntervention" />
+      <comment value="The zib NursingIntervention defines the concepts to describe nursing interventions across several use cases:&#xD;&#xA;&#xD;&#xA;* as a singular event that has been performed&#xD;&#xA;* as a singular event that is planned or requested&#xD;&#xA;* as a repeating series of events that is planned, requested, or has been (partially) performed&#xD;&#xA;&#xD;&#xA;However, in its current version, the zib only recognizes that these use cases exist and doesn't provide definitions on how to apply its data model to these different use cases. Nor does it specify a relation between instances of performed interventions and (series of) planned interventions. &#xD;&#xA;&#xD;&#xA;Since FHIR-resources are assumed to describe either an event or a request, the interpretation of the zib in the context of FHIR is not straightforward. In [ZIB-2431](https://nictiz.atlassian.net/issues/ZIB-2431), a proposal in the interpretation of the interpretation of the different zib concepts in these different contexts is made. As a result, two different profiles are defined for zib NursingIntervention:&#xD;&#xA;&#xD;&#xA;* The current profile on Procedure (zib-NursingIntervention-event) to register singular nursing interventions that are performed (or are to be performed).&#xD;&#xA;* A profile on ServiceRequest ([zib-NursingIntervention-request](http://nictiz.nl/fhir/StructureDefinition/zib-NursingIntervention-request)) to register planned and requested singular nursing interventions, and to describe series of nursing interventions.&#xD;&#xA;&#xD;&#xA;In the ZIB ticket mentioned above, it has been recognized that not all concepts from the zib are applicable for every use case. For this reason, the following zib concepts are not represented in the current event profile:&#xD;&#xA;&#xD;&#xA;* Interval (NL-CM:14.2.3): this concept is not relevant for performed singular events&#xD;&#xA;* Frequency (NL-CM:14.2.4): this concept is not relevant for performed singular events&#xD;&#xA;* Instruction (NL-CM:14.2.18): this concept is not relevant for performed singular events" />
       <alias value="VerpleegkundigeInterventie" />
       <mapping>
         <identity value="zib-nursingintervention-v3.2-2020EN" />
@@ -52,6 +53,10 @@
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.18--20200901000000" />
       </binding>
+      <mapping>
+        <identity value="zib-nursingintervention-v3.2-2020EN" />
+        <map value="NL-CM:14.2.2" />
+      </mapping>
     </element>
     <element id="Procedure.performed[x]">
       <path value="Procedure.performed[x]" />
@@ -67,7 +72,8 @@
       <path value="Procedure.performed[x]" />
       <sliceName value="performedDateTime" />
       <short value="ProcedureStartDateTime" />
-      <definition value="The start date (and if possible start time) of the procedure. The concept offers the option to indicate the start of the period of a series of repeating procedures." />
+      <definition value="The start date (and if possible start time) of the procedure." />
+      <comment value="Zib concept ProcedureStartDateTime (NL-CM:14.2.11) is mapped both onto the DateTime and the Period data types of the `.performed[x]` element, as it can be interpreted in two different ways for performed singular nursing interventions (see [ZIB-2431](https://nictiz.atlassian.net/issues/ZIB-2431)):&#xD;&#xA;&#xD;&#xA;* If the nursing intervention was an instantaneous event, ProcedureStartDateTime should be interpreted as the date/time of the intervention. For these situations, the DateTime data type should be used.&#xD;&#xA;* If the nursing intervention was an event that has taken some time, the ProcedureStartDateTime should be interpreted as the date/time when the intervention started, and is accompanied by a ProcedureEndDateTime for the date/time when the intervention ended. For these situations, the Period data type should be used. Note that ProcedeEndDateTime may be absent in case the intervention is still going on." />
       <alias value="ActieStartDatumTijd" />
       <type>
         <code value="dateTime" />
@@ -89,6 +95,7 @@
       <path value="Procedure.performed[x].start" />
       <short value="ProcedureStartDateTime" />
       <definition value="The start date (and if possible start time) of the procedure. The concept offers the option to indicate the start of the period of a series of repeating procedures." />
+      <comment value="Zib concept ProcedureStartDateTime (NL-CM:14.2.11) is mapped both onto the DateTime and the Period data types of the `.performed[x]` element, as it can be interpreted in two different ways for performed singular nursing interventions (see [ZIB-2431](https://nictiz.atlassian.net/issues/ZIB-2431)):&#xD;&#xA;&#xD;&#xA;* If the nursing intervention was an instantaneous event, ProcedureStartDateTime should be interpreted as the date/time of the intervention. For these situations, the DateTime data type should be used.&#xD;&#xA;* If the nursing intervention was an event that has taken some time, the ProcedureStartDateTime should be interpreted as the date/time when the intervention started, and is accompanied by a ProcedureEndDateTime for the date/time when the intervention ended. For these situations, the Period data type should be used. Note that ProcedeEndDateTime may be absent in case the intervention is still going on." />
       <alias value="ActieStartDatumTijd" />
       <mapping>
         <identity value="zib-nursingintervention-v3.2-2020EN" />
@@ -100,6 +107,7 @@
       <path value="Procedure.performed[x].end" />
       <short value="ProcedureEndDateTime" />
       <definition value="The end date (and if possible end time) of the procedure. The concept offers the option to indicate the end of the period of a series of repeating procedures." />
+      <comment value="Zib concept ProcedureStartDateTime (NL-CM:14.2.11) is mapped both onto the DateTime and the Period data types of the `.performed[x]` element, as it can be interpreted in two different ways for performed singular nursing interventions (see [ZIB-2431](https://nictiz.atlassian.net/issues/ZIB-2431)):&#xD;&#xA;&#xD;&#xA;* If the nursing intervention was an instantaneous event, ProcedureStartDateTime should be interpreted as the date/time of the intervention. For these situations, the DateTime data type should be used.&#xD;&#xA;* If the nursing intervention was an event that has taken some time, the ProcedureStartDateTime should be interpreted as the date/time when the intervention started, and is accompanied by a ProcedureEndDateTime for the date/time when the intervention ended. For these situations, the Period data type should be used. Note that ProcedeEndDateTime may be absent in case the intervention is still going on." />
       <alias value="ActieEindDatumTijd" />
       <mapping>
         <identity value="zib-nursingintervention-v3.2-2020EN" />
