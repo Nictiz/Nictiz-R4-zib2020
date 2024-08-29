@@ -62,31 +62,41 @@
             </xsl:variable>
             <!--<xsl:variable name="valueSetName" select="$valueSet/f:ValueSet/f:name/@value"/>-->
             <xsl:variable name="valueSetName" select="$valueSet/descendant-or-self::f:ValueSet/f:name/@value"/>
-            
+            <xsl:variable name="valueSetIDVersion" select="tokenize(., '/')[last()]"/>
+            <xsl:variable name="fileName">
+                <xsl:choose>
+                    <xsl:when test="$valueSetExpand[self::f:ValueSet]">
+                        <xsl:value-of select="concat('ValueSet-',$valueSetName,'-',$valueSetIDVersion,'-expand.xml')"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="concat('ValueSet-',$valueSetName,'-',$valueSetIDVersion,'.xml')"/>
+                      </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+
             <xsl:variable name="valueSetIdExists" select="$resourceIds[. = $valueSet/descendant-or-self::f:ValueSet/f:id/@value]"/>
             <xsl:message>ValueSet Canonical URI   : <xsl:value-of select="."/></xsl:message>
             <xsl:message>         Publication URI : <xsl:value-of select="$valueSetURI"/></xsl:message>
             <xsl:if test="$resourceIds[. = $valueSet/descendant-or-self::f:ValueSet/f:id/@value]">
                 <xsl:for-each select="$valueSetIdExists">
-                    <xsl:variable name="fileName" select="tokenize(document-uri(.), '/')[last()]"/>
-                    <xsl:if test="not($fileName = $valueSetName)">
-                        <xsl:message>         WARNING: This value set id <xsl:value-of select="."/> already exists as <xsl:value-of select="$fileName"/>. Please remove older files. The value set may have been renamed since previous download.</xsl:message>
+                    <xsl:variable name="currFileName" select="tokenize(base-uri(.), '/')[last()]"/>
+                    <xsl:if test="not($fileName = $currFileName)">
+                        <xsl:message>         WARNING: This value set with file name <xsl:value-of select="$fileName"/> already exists as <xsl:value-of select="$currFileName"/>. Please remove older files. The value set may have been renamed since previous download.</xsl:message>
                     </xsl:if>
                 </xsl:for-each>
             </xsl:if>
             
-            <xsl:variable name="valueSetIDVersion" select="tokenize(., '/')[last()]"/>
             <xsl:choose>
               <xsl:when test="$valueSetExpand[self::f:ValueSet]">
                 <xsl:message>         INFO: Successful expansion of ValueSet id <xsl:value-of select="$valueSetIDVersion"/>. <xsl:value-of select="$valueSetExpand//f:details/@value"/></xsl:message>
-                  <xsl:result-document href="{concat($outputdir,'ValueSet-',$valueSetName,'-',$valueSetIDVersion,'-expand.xml')}" indent="yes" method="xml" omit-xml-declaration="yes">
+                  <xsl:result-document href="{concat($outputdir,$fileName)}" indent="yes" method="xml" omit-xml-declaration="yes">
                   <xsl:copy-of select="$valueSetExpand"/>
                 </xsl:result-document>
               </xsl:when>
               <xsl:otherwise>
                 <xsl:message>         WARNING: Could not expand ValueSet id <xsl:value-of select="$valueSetIDVersion"/>. <xsl:value-of select="$valueSetExpand//f:details/@value"/></xsl:message>
                 <xsl:message>         INFO: Successful retrieval of ValueSet id <xsl:value-of select="$valueSetIDVersion"/></xsl:message>
-                <xsl:result-document href="{concat($outputdir,'ValueSet-',$valueSetName,'-',$valueSetIDVersion,'.xml')}" indent="yes" method="xml" omit-xml-declaration="yes">
+                <xsl:result-document href="{concat($outputdir,$fileName)}" indent="yes" method="xml" omit-xml-declaration="yes">
                   <xsl:copy-of select="$valueSet"/>
                 </xsl:result-document>
               </xsl:otherwise>
