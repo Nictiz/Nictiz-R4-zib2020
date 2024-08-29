@@ -30,7 +30,20 @@
                 <xsl:otherwise>
                     <text>
                         <status value="empty"/>
-                        <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+                        <xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
+                            <xsl:if test="f:language[@value]">
+                                <xsl:attribute name="lang">
+                                    <xsl:value-of select="f:language/@value"/>
+                                </xsl:attribute>
+                                <xsl:attribute name="xml:lang">
+                                    <xsl:value-of select="f:language/@value"/>
+                                </xsl:attribute>
+                            </xsl:if>
+                            <xsl:choose>
+                                <xsl:when test="f:language/@value = 'nl-NL'">Definitie-resources zijn niet voorzien van een narrative. Een menselijk leesbare versie is te vinden via de implementation guide(s) waarin deze resource gebruikt wordt.</xsl:when>
+                                <xsl:otherwise>No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:element   >
                     </text>
                 </xsl:otherwise>
             </xsl:choose>
