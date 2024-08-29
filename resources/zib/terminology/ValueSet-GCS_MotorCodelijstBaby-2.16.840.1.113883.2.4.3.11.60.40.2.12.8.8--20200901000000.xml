@@ -1,23 +1,32 @@
 <ValueSet xmlns="http://hl7.org/fhir">
-   <id value="2.16.840.1.113883.2.4.3.11.60.40.2.12.8.4--20200901000000"/>
+   <id value="2.16.840.1.113883.2.4.3.11.60.40.2.12.8.8--20200901000000"/>
    <meta>
+      <source value="http://decor.nictiz.nl/fhir/4.0/zib2020bbr-"/>
       <profile value="http://hl7.org/fhir/StructureDefinition/shareablevalueset"/>
       <!--<profile value="http://hl7.org/fhir/4.0/StructureDefinition/ValueSet"/>-->
+      <tag>
+         <system value="http://hl7.org/fhir/FHIR-version"/>
+         <code value="4.0.1"/>
+      </tag>
    </meta>
+   <text>
+      <status value="empty"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+   </text>
    <extension url="http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod">
       <valuePeriod>
-         <start value="2020-09-01T00:00:00+00:00"/>
+         <start value="2020-09-01T00:00:00Z"/>
       </valuePeriod>
    </extension>
-   <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.8.4--20200901000000"/>
+   <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.8.8--20200901000000"/>
    <identifier>
       <use value="official"/>
       <system value="urn:ietf:rfc:3986"/>
-      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.12.8.4"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.12.8.8"/>
    </identifier>
    <version value="2020-09-01T00:00:00"/>
-   <name value="GCS_VerbalCodelijstKleuter"/>
-   <title value="GCS_VerbalCodelijstKleuter"/>
+   <name value="GCS_MotorCodelijstBaby"/>
+   <title value="GCS_MotorCodelijstBaby"/>
    <status value="active"/>
    <experimental value="false"/>
    <publisher value="Registratie aan de bron"/>
@@ -32,20 +41,20 @@
          <value value="https://www.zibs.nl"/>
       </telecom>
    </contact>
-   <description value="* [ZIB-1314](https://bits.nictiz.nl/browse/ZIB-1314): [GlasgowComaScale-v3.2](https://zibs.nl/wiki/GlasgowComaScale-v3.2(2020NL)). Replace Verbal en Motor value sets The Verbal and Motor value sets were updated in Publication 2020. Unfortunately these value sets had a couple of serious issues. This is why replacing them was decided. The new value sets are in this document: [GCS_waardenlijsten.pdf](https://zibs.nl/images/f/f4/GCS_waardenlijsten.pdf). Changes in this value set are: &#xA; V1-V5 reactivated (removed 'deprecated' marker and [DEPRECATED] as text), and removed V6-V10"/>
+   <description value="* [ZIB-1314](https://bits.nictiz.nl/browse/ZIB-1314): [GlasgowComaScale-v3.2](https://zibs.nl/wiki/GlasgowComaScale-v3.2(2020NL)). Replace Verbal en Motor value sets The Verbal and Motor value sets were updated in Publication 2020. Unfortunately these value sets had a couple of serious issues. This is why replacing them was decided. The new value sets are in this document: [GCS_waardenlijsten.pdf](https://zibs.nl/images/f/f4/GCS_waardenlijsten.pdf). Changes in this value set are: &#xA; M6 -&gt; M6B, M5 &#34;Localising&#34; -&gt; M5B &#34;Withdraws to touch&#34;, M4 &#34;Normal flexion&#34; -&gt; M4B &#34;Withdraws to pain&#34;, M3 &#34;Abnormal flexion&#34; &gt; &#34;Flexor response&#34;, M2 &#34;Abnormal extension&#34; &gt; &#34;Extensor response&#34;"/>
    <immutable value="false"/>
    <compose>
       <include>
-         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.2.3"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.2.2"/>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
-               <valueDecimal value="5"/>
+               <valueDecimal value="6"/>
             </extension>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Adequate woorden en zinnen [Woorden of kleine zinnen in context van de situatie]"/>
+               <valueString value="Normaal [beweegt zoals verwacht]"/>
             </extension>
-            <code value="V5"/>
-            <display value="Oriented"/>
+            <code value="M6B"/>
+            <display value="Moves spontaneously and purposefully"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -53,7 +62,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Oriented"/>
+               <value value="Moves spontaneously and purposefully"/>
             </designation>
             <designation>
                <language value="nl-NL"/>
@@ -62,7 +71,35 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Adequate woorden en zinnen"/>
+               <value value="Normaal"/>
+            </designation>
+         </concept>
+         <concept>
+            <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
+               <valueDecimal value="5"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
+               <valueString value="Terugtrekken bij aanraking [Trekt terug bij aanraken]"/>
+            </extension>
+            <code value="M5B"/>
+            <display value="Withdraws to touch"/>
+            <designation>
+               <language value="en-US"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Withdraws to touch"/>
+            </designation>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Terugtrekken bij aanraking"/>
             </designation>
          </concept>
          <concept>
@@ -70,10 +107,10 @@
                <valueDecimal value="4"/>
             </extension>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Onjuiste woorden [Verwarde woorden]"/>
+               <valueString value="Terugtrekken in respons op pijn [Maakt afwerende of wegtrekkende beweging bij een pijnprikkel]"/>
             </extension>
-            <code value="V4"/>
-            <display value="Confused"/>
+            <code value="M4B"/>
+            <display value="Withdraws to pain"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -81,7 +118,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Confused"/>
+               <value value="Withdraws to pain"/>
             </designation>
             <designation>
                <language value="nl-NL"/>
@@ -90,7 +127,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Onjuiste woorden"/>
+               <value value="Terugtrekken in respons op pijn"/>
             </designation>
          </concept>
          <concept>
@@ -98,10 +135,10 @@
                <valueDecimal value="3"/>
             </extension>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Huilen [Aanhoudend huilen of krijsen]"/>
+               <valueString value="Buigreactie [Langzame, buiging van armen en/of benen]"/>
             </extension>
-            <code value="V3"/>
-            <display value="Inappropriate speech"/>
+            <code value="M3"/>
+            <display value="Flexor response"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -109,7 +146,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Inappropriate speech"/>
+               <value value="Flexor response"/>
             </designation>
             <designation>
                <language value="nl-NL"/>
@@ -118,7 +155,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Huilen"/>
+               <value value="Buigreactie"/>
             </designation>
          </concept>
          <concept>
@@ -126,10 +163,10 @@
                <valueDecimal value="2"/>
             </extension>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Kreunen [Alleen kreunen]"/>
+               <valueString value="Decerebrale strekreactie [strekken van armen en/of benen]"/>
             </extension>
-            <code value="V2"/>
-            <display value="Incomprehensible sounds"/>
+            <code value="M2"/>
+            <display value="Extensor response"/>
             <designation>
                <language value="en-US"/>
                <use>
@@ -137,7 +174,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Incomprehensible sounds"/>
+               <value value="Extensor response"/>
             </designation>
             <designation>
                <language value="nl-NL"/>
@@ -146,7 +183,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Kreunen"/>
+               <value value="Decerebrale strekreactie"/>
             </designation>
          </concept>
          <concept>
@@ -154,9 +191,9 @@
                <valueDecimal value="1"/>
             </extension>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Geen reactie [Geen enkel verbale response]"/>
+               <valueString value="Geen beweging op prikkel [Geen enkele beweging op een prikkel]"/>
             </extension>
-            <code value="V1"/>
+            <code value="M1"/>
             <display value="No response"/>
             <designation>
                <language value="en-US"/>
@@ -174,7 +211,7 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Geen reactie"/>
+               <value value="Geen beweging op prikkel"/>
             </designation>
          </concept>
       </include>
