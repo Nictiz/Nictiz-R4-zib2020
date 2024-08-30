@@ -11,17 +11,30 @@
     <xsl:param name="sourceDir" as="xs:string">../resources/</xsl:param>
 
     <xsl:template name="main">
-    
-        <xsl:call-template name="foo">
+
+        <xsl:call-template name="handleValueSetBindings">
             <xsl:with-param name="overwrite" select="false()"/>
         </xsl:call-template>
     </xsl:template>
 
-    <xsl:template name="foo">
+    <!--
+        Main template to download ValueSet resources based on the bindings in other resources.
+        This template will be called recursively because freshly added ValueSets might include references to other
+        ValueSets, so we need to keep on processing until no new bindings appear anymore.
+        Parameters:
+        - alreadyHandled: a list of bindings that already has been processed. See fn:findValueSetBindings() for
+                          documentation on the format.
+        - overwrite: if true, all ValueSets will be downloaded, even if they already exist.
+    -->
+    <xsl:template name="handleValueSetBindings">
         <xsl:param name="overwrite" as="xs:boolean" select="false()"/>
+        <xsl:param name="alreadyHandled" as="element(binding)*" select="()"/>
 
         <xsl:variable name="valueSetsPresent" select="nf:getValueSetsPresent($sourceDir)"/>
-        <xsl:for-each select="nf:getRequiredValueSets($sourceDir)//valueset">
+
+        <!-- Process all ValueSet bindings that were not handled yet -->
+        <xsl:variable name="bindings" select="nf:findValueSetBindings($sourceDir, $alreadyHandled)"/>
+        <xsl:for-each select="$bindings">
             <xsl:variable name="uri" select="string(@uri)"/>
             <xsl:variable name="present" select="$valueSetsPresent[f:url/@value = $uri]"/>
             <xsl:choose>
@@ -41,33 +54,53 @@
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:otherwise>
+                    <xsl:message>====================</xsl:message>
                     <xsl:message select="concat('Duplicate found for ValueSet with uri ', ./@uri, ':')"/>
                     <xsl:for-each select="$present">
                         <xsl:message select="concat('- ', base-uri())"/>
                     </xsl:for-each>
                     <xsl:message>ValueSet will not be downloaded. Please resolve the conflict first!</xsl:message>
+                    <xsl:message>====================</xsl:message>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
+
+        <!--
+            If we have processed new bindings, we should check the (possibly) added ValueSets again for ValueSet
+            bindings. So we call this template again. -->
+        <xsl:if test="count($bindings) &gt; 0">
+            <xsl:call-template name="handleValueSetBindings">
+                <xsl:with-param name="alreadyHandled" select="($alreadyHandled | $bindings)"/>
+                <xsl:with-param name="overwrite" select="$overwrite"/>
+            </xsl:call-template>           
+        </xsl:if>
     </xsl:template>
 
-    <xsl:function name="nf:getRequiredValueSets" as="node()">
+    <!--
+        This function scans the source dir for all ValueSet bindings that have not been processed so far.
+        Both the output and the alreadyHandled parameters are a list of elements called 'binding' with two attributes:
+        - uri: the canonical uri of the ValueSet to handle
+        - outputDir: the dir where the resulting file should be placed (based on the location of the files that
+                     reference the ValueSet, and determined by fn:getOutputDir()
+    -->
+    <xsl:function name="nf:findValueSetBindings" as="element(binding)*">
         <xsl:param name="sourceDir"/>
+        <xsl:param name="alreadyHandled" as="element(binding)*"/>
 
         <xsl:variable name="uris"
             select="collection(concat($sourceDir, '?select=*.xml;recurse=yes'))/(f:StructureDefinition | f:ConceptMap | f:ValueSet)//@value[starts-with(., 'http://decor.nictiz.nl/fhir/')][not(parent::f:source/parent::f:meta)]" as="attribute()*"/>
 
-        <xsl:variable name="nodes">
+        <xsl:variable name="bindings" as="element(binding)*">
             <xsl:for-each-group select="$uris" group-by="string(.)">
-                <valueset>
-                    <xsl:attribute name="uri" select="current-grouping-key()"/>
-                    <xsl:attribute name="outputDir" select="nf:getOutputPath($sourceDir, current-group())"/>
-                </valueset>   
+                <xsl:if test="not($alreadyHandled[string(@uri) = current-grouping-key()])">
+                    <binding>
+                        <xsl:attribute name="uri" select="current-grouping-key()"/>
+                        <xsl:attribute name="outputDir" select="nf:getOutputDir($sourceDir, current-group())"/>
+                    </binding>       
+                </xsl:if>
             </xsl:for-each-group>
         </xsl:variable>
-        <valuesetmeta>
-            <xsl:copy-of select="$nodes"/>
-        </valuesetmeta>
+        <xsl:copy-of select="$bindings"/>
     </xsl:function>
 
     <xsl:function name="nf:getValueSetsPresent" as="node()*">
@@ -79,8 +112,6 @@
         <xsl:param name="uri" required="yes" as="xs:string"/>
         <xsl:param name="outputDir" required="yes" as="xs:string"/>
         <xsl:param name="oldFilePath" required="no"/>
-
-        <xsl:message select="$uri"/>
 
         <!-- Get and rewrite ValueSet -->
         <xsl:variable name="downloadURI" select="replace($uri, '^http(s?)://decor.nictiz.nl/fhir/ValueSet', 'https://decor.nictiz.nl/fhir/4.0/public/ValueSet')"/>
@@ -94,13 +125,13 @@
         <xsl:variable name="idVersion" select="tokenize($uri, '/')[last()]"/>
         <xsl:variable name="fileName" select="concat('ValueSet-', $name, '-', $idVersion, '.xml')"/>
 
-        <xsl:message select="concat('Writing ', string-join(($outputDir, $fileName), '/'))"/>
-        <xsl:result-document href="{string-join(($outputDir, $fileName), '/')}" indent="yes" method="xml" omit-xml-declaration="yes">
+        <xsl:message select="concat('Writing ', $outputDir, $fileName)"/>
+       <xsl:result-document href="{concat($outputDir, $fileName)}" indent="yes" method="xml" omit-xml-declaration="yes">
             <xsl:copy-of select="$valueSet"/>
         </xsl:result-document>
     </xsl:template>
 
-    <xsl:function name="nf:getOutputPath" as="xs:string">
+    <xsl:function name="nf:getOutputDir" as="xs:string">
         <xsl:param name="sourceDir" as="xs:string"/>
         <xsl:param name="uriAttributes" as="attribute()*"/>
 
