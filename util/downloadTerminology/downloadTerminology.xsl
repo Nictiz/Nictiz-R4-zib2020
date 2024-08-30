@@ -26,19 +26,26 @@
     </xsl:template>
 
     <!--
-        Main template to download ValueSet resources based on the bindings in other resources.
-        This template will be called recursively because freshly added ValueSets might include references to other
-        ValueSets, so we need to keep on processing until no new bindings appear anymore.
+        Main template to download ValueSet and CodeSystem resources based on the bindings/references in other
+        resources.
+        This template can be called recursively because freshly added ValueSets might include references to other
+        ValueSets, so we need to keep on processing until no new bindings appear anymore. This is not relevant
+        for CodeSystems.
         Parameters:
-        - alreadyHandled: a list of bindings that already has been processed. See fn:findValueSetBindings() for
+        - type: either 'ValueSet' or 'CodeSystem', based on what needs to be processed.
+        - alreadyHandled: a list of references that already has been processed. See fn:findValueSetReferences() for
                           documentation on the format.
     -->
     <xsl:template name="handleReferences">
         <xsl:param name="type" required="yes" tunnel="yes"/>
         <xsl:param name="alreadyHandled" as="element(reference)*" select="()"/>
 
-        <xsl:variable name="present" select="if ($type = 'ValueSet') then nf:getValueSetsPresent($sourceDir) else nf:getCodeSystemsPresent($sourceDir)"/>
-        <xsl:variable name="references" select="if ($type = 'ValueSet') then nf:findValueSetBindings($sourceDir, $alreadyHandled) else nf:findCodeSystemReferences($sourceDir)"/>
+        <xsl:variable name="present" select="if ($type = 'ValueSet') then 
+            collection(concat($sourceDir, '?select=*.xml;recurse=yes'))/f:ValueSet else
+            collection(concat($sourceDir, '?select=*.xml;recurse=yes'))/f:CodeSystem"/>
+        <xsl:variable name="references" select="if ($type = 'ValueSet') then
+            nf:findValueSetReferences($sourceDir, $alreadyHandled) else 
+            nf:findCodeSystemReferences($sourceDir)"/>
         <xsl:for-each select="$references">
             <xsl:variable name="url" select="string(@url)"/>
             <xsl:variable name="present" select="$present[f:url/@value = $url]"/>
@@ -71,10 +78,10 @@
         </xsl:for-each>
 
         <!--
-            If we have processed new bindings, we should check the (possibly) added ValueSets again for ValueSet
+            If we have processed new ValueSets, we should check the (possibly) added ValueSets again for ValueSet
             bindings. So we call this template again.
         -->
-        <xsl:if test="type = 'ValueSet' and count($references) &gt; 0">
+        <xsl:if test="$type = 'ValueSet' and count($references) &gt; 0">
             <xsl:call-template name="handleReferences">
                 <xsl:with-param name="alreadyHandled" select="($alreadyHandled | $references)"/>
             </xsl:call-template>           
@@ -82,13 +89,13 @@
     </xsl:template>
 
     <!--
-        This function scans the source dir for all ValueSet bindings that have not been processed so far.
-        Both the output and the alreadyHandled parameters are a list of elements called 'binding' with two attributes:
+        Scan the source dir for all ValueSet bindings that have not been processed so far.
+        Both the output and the alreadyHandled parameters are a list of elements called 'reference' with two attributes:
         - uri: the canonical uri of the ValueSet to handle
         - outputDir: the dir where the resulting file should be placed (based on the location of the files that
                      reference the ValueSet, and determined by fn:getOutputDir()
     -->
-    <xsl:function name="nf:findValueSetBindings" as="element(reference)*">
+    <xsl:function name="nf:findValueSetReferences" as="element(reference)*">
         <xsl:param name="sourceDir"/>
         <xsl:param name="alreadyHandled" as="element(reference)*"/>
 
@@ -108,6 +115,10 @@
         <xsl:copy-of select="$references"/>
     </xsl:function>
 
+    <!--
+        Scan the source dir for all CodeSystem references that we need to include.
+        The output is the same as for nf:findValueSetReferences().
+    -->
     <xsl:function name="nf:findCodeSystemReferences" as="element(reference)*">
         <xsl:param name="sourceDir"/>
 
@@ -126,16 +137,7 @@
         <xsl:copy-of select="$references"/>
     </xsl:function>
 
-    <xsl:function name="nf:getValueSetsPresent" as="node()*">
-        <xsl:param name="sourceDir"/>
-        <xsl:copy-of select="collection(concat($sourceDir, '?select=*.xml;recurse=yes'))/f:ValueSet"/>
-    </xsl:function>
-
-    <xsl:function name="nf:getCodeSystemsPresent" as="node()*">
-        <xsl:param name="sourceDir"/>
-        <xsl:copy-of select="collection(concat($sourceDir, '?select=*.xml;recurse=yes'))/f:CodeSystem"/>
-    </xsl:function>
-
+    <!-- Wrapper to call the templates to download either a ValueSet or a CodeSystem resource, based on the type parameter. -->
     <xsl:template name="downloadResource">
         <xsl:param name="type" required="yes" as="xs:string" tunnel="yes"/>
 
@@ -172,14 +174,10 @@
             <xsl:copy-of select="$valueSet"/>
         </xsl:result-document>
 
-        <xsl:if test="(string-length($oldFilePath) &gt; 0) and ($outputURL != $oldFilePath)">
-            <xsl:message>====================</xsl:message>
-            <xsl:message>ValueSet is re-downloaded, but saved under a different name!</xsl:message>
-            <xsl:message select="concat('- Old name: ', $oldFilePath)"/>
-            <xsl:message select="concat('- New name: ', $outputURL)"/>
-            <xsl:message>You should manually remove the old file!</xsl:message>
-            <xsl:message>====================</xsl:message>
-        </xsl:if>
+        <xsl:call-template name="checkForChangedPath">
+            <xsl:with-param name="oldURL" select="$oldFilePath"/>
+            <xsl:with-param name="newURL" select="$outputURL"/>
+        </xsl:call-template>
     </xsl:template>
 
     <xsl:template name="downloadCodeSystem">
@@ -247,17 +245,18 @@
             </xsl:otherwise>
         </xsl:choose>
 
-        <xsl:if test="(string-length($oldFilePath) &gt; 0) and ($outputURL != $oldFilePath)">
-            <xsl:message>====================</xsl:message>
-            <xsl:message>CodeSystem is re-downloaded, but saved under a different name!</xsl:message>
-            <xsl:message select="concat('- Old name: ', $oldFilePath)"/>
-            <xsl:message select="concat('- New name: ', $outputURL)"/>
-            <xsl:message>You should manually remove the old file!</xsl:message>
-            <xsl:message>====================</xsl:message>
-        </xsl:if>
-
+        <xsl:call-template name="checkForChangedPath">
+            <xsl:with-param name="oldURL" select="$oldFilePath"/>
+            <xsl:with-param name="newURL" select="$outputURL"/>
+        </xsl:call-template>
     </xsl:template>
 
+    <!--
+        Get the desired output dir for the downloaded resource, based on the location of the files that require it.
+        This is determined by passing a list of all the attributes extracted from the input files that contain a 
+        reference for the specified resource. If there's is one attribute coming from a file in the zib folder, the
+        output will be placed in zibs/terminology, otherwise it will be placed in zibs/nl-core.
+    -->
     <xsl:function name="nf:getOutputDir" as="xs:string">
         <xsl:param name="sourceDir" as="xs:string"/>
         <xsl:param name="uriAttributes" as="attribute()*"/>
@@ -271,5 +270,21 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
+
+    <!-- Check if a newly downloaded file is saved under a different name, and emit a warning if this is the case. -->
+    <xsl:template name="checkForChangedPath">
+        <xsl:param name="type" tunnel="yes"/>
+        <xsl:param name="oldURL" as="xs:string"/>
+        <xsl:param name="newURL" as="xs:string"/>
+
+        <xsl:if test="(string-length($oldURL) &gt; 0) and ($oldURL != $newURL)">
+            <xsl:message>====================</xsl:message>
+            <xsl:message select="concat($type, ' is re-downloaded, but saved under a different name!')"/>
+            <xsl:message select="concat('- Old name: ', $oldURL)"/>
+            <xsl:message select="concat('- New name: ', $newURL)"/>
+            <xsl:message>You should manually remove the old file!</xsl:message>
+            <xsl:message>====================</xsl:message>
+        </xsl:if>
+    </xsl:template>
 
 </xsl:stylesheet>
