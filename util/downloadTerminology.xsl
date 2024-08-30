@@ -13,7 +13,7 @@
     <xsl:template name="main">
 
         <xsl:call-template name="handleValueSetBindings">
-            <xsl:with-param name="overwrite" select="false()"/>
+            <xsl:with-param name="overwrite" select="true()"/>
         </xsl:call-template>
     </xsl:template>
 
@@ -125,8 +125,19 @@
         <xsl:variable name="idVersion" select="tokenize($uri, '/')[last()]"/>
         <xsl:variable name="fileName" select="concat('ValueSet-', $name, '-', $idVersion, '.xml')"/>
 
-        <xsl:message select="concat('Writing ', $outputDir, $fileName)"/>
-       <xsl:result-document href="{concat($outputDir, $fileName)}" indent="yes" method="xml" omit-xml-declaration="yes">
+        <xsl:variable name="outputURI" select="string(resolve-uri(concat($outputDir, $fileName)))"/>
+        <xsl:if test="(string-length($oldFilePath) &gt; 0) and ($outputURI != $oldFilePath)">
+            <xsl:message>====================</xsl:message>
+            <xsl:message>ValueSet is re-downloaded, but saved under a different name!</xsl:message>
+            <xsl:message select="concat('- Old name: ', $oldFilePath)"/>
+            <xsl:message select="concat('- New name: ', $outputURI)"/>
+            <xsl:message>You should manually remove the old file!</xsl:message>
+            <xsl:message>====================</xsl:message>
+        </xsl:if>
+
+        <!-- Write out the file -->
+        <xsl:message select="concat('Writing ', resolve-uri(concat($outputDir, $fileName)))"/>
+        <xsl:result-document href="{concat($outputDir, $fileName)}" indent="yes" method="xml" omit-xml-declaration="yes">
             <xsl:copy-of select="$valueSet"/>
         </xsl:result-document>
     </xsl:template>
@@ -136,11 +147,11 @@
         <xsl:param name="uriAttributes" as="attribute()*"/>
 
         <xsl:choose>
-            <xsl:when test="(for $uri in $uriAttributes return contains(base-uri($uri), '/resoures/zib')) != false()">
-                <xsl:value-of select="concat($sourceDir, 'nl-core/terminology/')"/>
+            <xsl:when test="(for $uri in $uriAttributes return contains(base-uri($uri), '/resources/zib')) != false()">
+                <xsl:value-of select="concat($sourceDir, 'zib/terminology/')"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:value-of select="concat($sourceDir, 'zib/terminology/')"/>
+                <xsl:value-of select="concat($sourceDir, 'nl-core/terminology/')"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
