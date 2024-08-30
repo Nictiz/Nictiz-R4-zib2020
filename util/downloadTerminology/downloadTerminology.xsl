@@ -7,13 +7,14 @@
     exclude-result-prefixes="#all"
     version="2.0">
     <xsl:output omit-xml-declaration="yes"/>
+    <xsl:include href="rewriteTerminologyResource.xsl"/>
 
-    <xsl:param name="sourceDir" as="xs:string">../resources/</xsl:param>
-
+    <xsl:param name="sourceDir" as="xs:string">../../resources/</xsl:param>
+    
     <xsl:template name="main">
 
         <xsl:call-template name="handleValueSetBindings">
-            <xsl:with-param name="overwrite" select="true()"/>
+            <xsl:with-param name="overwrite" select="false()"/>
         </xsl:call-template>
     </xsl:template>
 
@@ -115,11 +116,10 @@
 
         <!-- Get and rewrite ValueSet -->
         <xsl:variable name="downloadURI" select="replace($uri, '^http(s?)://decor.nictiz.nl/fhir/ValueSet', 'https://decor.nictiz.nl/fhir/4.0/public/ValueSet')"/>
-        <!--<xsl:variable name="valueSet" as="element()?">
+        <xsl:variable name="valueSet" as="element()?">
             <xsl:apply-templates mode="rewrite" select="doc($downloadURI)/*"/>
-        </xsl:variable>-->
-        <xsl:variable name="valueSet" select="doc($downloadURI)"/>
-
+        </xsl:variable>
+        
         <!-- Construct file name -->
         <xsl:variable name="name" select="$valueSet/descendant-or-self::f:ValueSet/f:name/@value"/>
         <xsl:variable name="idVersion" select="tokenize($uri, '/')[last()]"/>
