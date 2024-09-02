@@ -43,7 +43,7 @@ To update the ART-DECOR definitions file (zib2020bbr-decor.xml), the refreshDeco
 
 This folder contains an xslt scripts that loops through all resources in the `resources` folder, finds relevant canonicals for ValueSets and systems for CodeSystems, and downloads these terminology resources from ART-DECOR to `resources/zib/terminology` and `resources/nl-core/terminology` respectively.
 
-These scripts are standalone XSL files that operate without an XML source. They can be executed by selecting the XSL file as the XML source within Oxygen, or by calling the XSL using Saxon using the `-xsl:downloadTerminology.xsl -it:main` command line flags.
+These scripts are standalone XSL files that operate without an XML source. They can be executed by selecting the XSL with the "main" template (command line Saxon: `-xsl:downloadTerminology.xsl -it:main`; oXygen: create a transformation scenario and configure the "Transformer").
 
 ## updateNarratives
 
