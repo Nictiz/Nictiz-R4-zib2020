@@ -58,21 +58,9 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
       </type>
     </element>
-    <element id="Observation.hasMember">
-      <path value="Observation.hasMember" />
-      <slicing>
-        <discriminator>
-          <type value="profile" />
-          <path value="resolve()" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
     <element id="Observation.hasMember:fecalContinence">
       <path value="Observation.hasMember" />
       <sliceName value="fecalContinence" />
-      <definition value="The FecalContinence concept (NL-CM:4.15.2) of zib BowelFunction, represented as a distinct Observation resource." />
-      <max value="1" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction.FecalContinence" />
@@ -81,17 +69,14 @@
     <element id="Observation.hasMember:frequency">
       <path value="Observation.hasMember" />
       <sliceName value="frequency" />
-      <definition value="The Frequency concept (NL-CM:4.15.4) of zib BowelFunction, represented as a distinct Observation resource." />
-      <max value="1" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction.Frequency" />
       </type>
     </element>
-    <element id="Observation.hasMember:defecationConstistency">
+    <element id="Observation.hasMember:defecationConsistency">
       <path value="Observation.hasMember" />
-      <sliceName value="defecationConstistency" />
-      <definition value="The DefecationConsistency concept (NL-CM:4.15.9) of zib BowelFunction, represented as a distinct Observation resource." />
+      <sliceName value="defecationConsistency" />
       <max value="1" />
       <type>
         <code value="Reference" />
@@ -101,8 +86,6 @@
     <element id="Observation.hasMember:defecationColor">
       <path value="Observation.hasMember" />
       <sliceName value="defecationColor" />
-      <definition value="The DefecationColor concept (NL-CM:4.15.10) of zib BowelFunction, represented as a distinct Observation resource." />
-      <max value="1" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction.DefecationColor" />
