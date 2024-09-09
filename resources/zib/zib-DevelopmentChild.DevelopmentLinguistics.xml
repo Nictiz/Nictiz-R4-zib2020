@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-DevelopmentChild.DevelopmentLinguistics" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-DevelopmentChild.DevelopmentLinguistics" />
+  <name value="ZibDevelopmentChildDevelopmentLinguistics" />
+  <title value="zib DevelopmentChild.DevelopmentLinguistics" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Milestones of lingual development of a child." />
+  <purpose value="This Observation resource represents the DevelopmentLinguistics concept (NL-CM:4.32.9) of Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) DevelopmentChild v1.2 (2020)](https://zibs.nl/wiki/DevelopmentChild-v1.2(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-developmentchild-v1.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/DevelopmentChild-v1.2(2020EN)" />
+    <name value="zib DevelopmentChild-v1.2(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <comment value="This Observation resource represents the DevelopmentLinguistics concept (NL-CM:4.32.9) of zib DevelopmentChild. It can be used together with the [zib-DevelopmentChild](http://nictiz.nl/fhir/StructureDefinition/zib-DevelopmentChild) profile on the Observation resource, which groups references to the current and other resources on `Observation.hasMember`." />
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="61909002" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <short value="DevelopmentLinguistics" />
+      <definition value="Milestones of lingual development of a child." />
+      <alias value="OntwikkelingTaal" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.32.5--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-developmentchild-v1.2-2020EN" />
+        <map value="NL-CM:4.32.9" />
+        <comment value="DevelopmentLinguistics" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
