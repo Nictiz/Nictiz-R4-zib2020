@@ -21,22 +21,6 @@
               <span title="Hulp nodig bij drinken (16681000146102 - SNOMED CT)">Hulp nodig bij drinken</span>
             </td>
           </tr>
-          <tr>
-            <td>
-              <span title="vermogen tot drinken (288851008 - SNOMED CT)">vermogen tot drinken</span>
-            </td>
-            <td>
-              <span title="Moeite met vastpakken van drank (307071002 - SNOMED CT)">Moeite met vastpakken van drank</span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span title="vermogen tot drinken (288851008 - SNOMED CT)">vermogen tot drinken</span>
-            </td>
-            <td>
-              <span title="Moeite met naar mond brengen van drank (288876009 - SNOMED CT)">Moeite met naar mond brengen van drank</span>
-            </td>
-          </tr>
         </tbody>
       </table>
     </div>
@@ -61,36 +45,14 @@
       <display value="Hulp nodig bij drinken"/>
     </coding>
   </valueCodeableConcept>
-  <component>
-    <code>
-      <coding>
-        <system value="http://snomed.info/sct"/>
-        <code value="288851008"/>
-        <display value="vermogen tot drinken"/>
-      </coding>
-    </code>
-    <valueCodeableConcept>
-      <coding>
-        <system value="http://snomed.info/sct"/>
-        <code value="307071002"/>
-        <display value="Moeite met vastpakken van drank"/>
-      </coding>
-    </valueCodeableConcept>
-  </component>
-  <component>
-    <code>
-      <coding>
-        <system value="http://snomed.info/sct"/>
-        <code value="288851008"/>
-        <display value="vermogen tot drinken"/>
-      </coding>
-    </code>
-    <valueCodeableConcept>
-      <coding>
-        <system value="http://snomed.info/sct"/>
-        <code value="288876009"/>
-        <display value="Moeite met naar mond brengen van drank"/>
-      </coding>
-    </valueCodeableConcept>
-  </component>
+  <hasMember>
+    <reference value="Observation/nl-core-AbilityToDrink.DrinkingLimitations-01"/>
+    <type value="Observation"/>
+    <display value="drink beperkingen: Moeite met vastpakken van drank"/>
+  </hasMember>
+  <hasMember>
+    <reference value="Observation/nl-core-AbilityToDrink.DrinkingLimitations-02"/>
+    <type value="Observation"/>
+    <display value="drink beperkingen: Moeite met naar mond brengen van drank"/>
+  </hasMember>
 </Observation>

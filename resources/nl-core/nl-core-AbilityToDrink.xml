@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-AbilityToDrink" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToDrink" />
   <name value="NlcoreAbilityToDrink" />
   <title value="nl core AbilityToDrink" />
@@ -35,6 +33,7 @@
   <differential>
     <element id="Observation">
       <path value="Observation" />
+      <comment value="One concept of zib AbilityToDrink is represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* DrinkingLimitations (NL-CM:4.8.4): [nl-core-AbilityToDrink.DrinkingLimitations](http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToDrink.DrinkingLimitations)" />
       <alias value="nl-core-AbilityToDrink" />
     </element>
     <element id="Observation.subject">
@@ -46,6 +45,14 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:drinkingLimitations">
+      <path value="Observation.hasMember" />
+      <sliceName value="drinkingLimitations" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToDrink.DrinkingLimitations" />
       </type>
     </element>
   </differential>
