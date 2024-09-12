@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-HeartRate" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-HeartRate" />
   <name value="ZibHeartRate" />
   <title value="zib HeartRate" />
@@ -36,7 +34,7 @@
     <element id="Observation">
       <path value="Observation" />
       <short value="HeartRate" />
-      <comment value="**HL7 Vital Signs compatibility**&#xD;&#xA;&#xD;&#xA;Although this profile represents a vital signs measurement, it is *not* directly based on the HL7 Vital Signs profile because of two issues in its current version that prevent it from being used for the exchange of zibs (see below). However, an effort has been made to make this profile functionally equivalent to (a profile derived from) the [HL7 Vital Signs HeartRate profile](http://hl7.org/fhir/StructureDefinition/heartrate). Instances for both profiles should be highly compatible.&#xD;&#xA;&#xD;&#xA;This means that it should be possible to mostly validate an instance for this profile against the HL7 Vital Signs counterpart, _except_ for references on `Observation.hasMember` and `Observation.derivedFrom`. The base HL7 Vital Signs profile restricts the targets of these element to itself, which is a requirement that can never be satisfied for instances of profiles that are not directly derived from it.&#xD;&#xA;&#xD;&#xA;Please note that this profile implements the zib and can therefore be more restricted than its HL7 counterpart. It should be regarded as a derived profile rather than a direct recreation of the HL7 version.&#xD;&#xA;&#xD;&#xA;**Differences with the HL7 Vital Signs counterpart**&#xD;&#xA;&#xD;&#xA;* The _required_ terminology binding on `Observation.component` to the [Vital Signs Units](http://hl7.org/fhir/ValueSet/ucum-vitals-common) dataset makes it impossible to use `.component` for representing anything else than a Quantity (like a CodeableConcept or a boolean). This binding has therefore been omitted in the current profile.&#xD;&#xA;* The `mustSupport` = _true_ flag found on numerous elements isn't further specified in the HL7 Vital Signs IG, as is required by FHIR. This flag has therefore been omitted from the current profile.&#xD;&#xA;* The target restriction on `Observation.hasMember` and `Observation.derivedFrom` to the HL7 Vital Signs profile cannot be fulfilled. This restriction has therefore been omitted from the current profile.&#xD;&#xA;&#xD;&#xA;It might happen that for some concepts, the zib uses a different (but compatible) way than what is recommended by the [HL7 Vital Signs IG](http://hl7.org/fhir/r4/observation-vitalsigns.html). This is described in the comments for these concepts. There are also some differences in the profiling approach between the current and the HL7 profile, like the use of patterns rather than slices with fixed systems and codes to enforce the inclusion of some coding (for reasons of consistency with other zib profiles, the former approach has been chosen here). Apart from what is mentioned above, constraints, invariants and terminology bindings have been copied from the HL7 Vital Signs profile, but some textual descriptions have been omitted.&#xD;&#xA;&#xD;&#xA;Note: No equivalent for the HL7 Vital Signs base profile has been created to implement the zib profiles. The profile for this zib has been directly modelled onto its HL7 Vital Signs counterpart." />
+      <comment value="**HL7 Vital Signs compatibility**&#xD;&#xA;&#xD;&#xA;Although this profile represents a vital signs measurement, it is *not* directly based on the HL7 Vital Signs profile because of two issues in its current version that prevent it from being used for the exchange of zibs (see below). However, an effort has been made to make this profile functionally equivalent to (a profile derived from) the [HL7 Vital Signs HeartRate profile](http://hl7.org/fhir/StructureDefinition/heartrate). Instances for both profiles should be highly compatible.&#xD;&#xA;&#xD;&#xA;This means that it should be possible to mostly validate an instance for this profile against the HL7 Vital Signs counterpart, _except_ for references on `Observation.hasMember` and `Observation.derivedFrom`. The base HL7 Vital Signs profile restricts the targets of these element to itself, which is a requirement that can never be satisfied for instances of profiles that are not directly derived from it.&#xD;&#xA;&#xD;&#xA;Please note that this profile implements the zib and can therefore be more restricted than its HL7 counterpart. It should be regarded as a derived profile rather than a direct recreation of the HL7 version.&#xD;&#xA;&#xD;&#xA;**Differences with the HL7 Vital Signs counterpart**&#xD;&#xA;&#xD;&#xA;* The _required_ terminology binding on `Observation.component` to the [Vital Signs Units](http://hl7.org/fhir/ValueSet/ucum-vitals-common) dataset makes it impossible to use `.component` for representing anything else than a Quantity (like a CodeableConcept or a boolean). This binding has therefore been omitted in the current profile.&#xD;&#xA;* The `mustSupport` = _true_ flag found on numerous elements isn't further specified in the HL7 Vital Signs IG, as is required by FHIR. This flag has therefore been omitted from the current profile.&#xD;&#xA;* The target restriction on `Observation.hasMember` and `Observation.derivedFrom` to the HL7 Vital Signs profile cannot be fulfilled. This restriction has therefore been omitted from the current profile.&#xD;&#xA;&#xD;&#xA;It might happen that for some concepts, the zib uses a different (but compatible) way than what is recommended by the [HL7 Vital Signs IG](http://hl7.org/fhir/r4/observation-vitalsigns.html). This is described in the comments for these concepts. There are also some differences in the profiling approach between the current and the HL7 profile, like the use of patterns rather than slices with fixed systems and codes to enforce the inclusion of some coding (for reasons of consistency with other zib profiles, the former approach has been chosen here). Apart from what is mentioned above, constraints, invariants and terminology bindings have been copied from the HL7 Vital Signs profile, but some textual descriptions have been omitted.&#xD;&#xA;&#xD;&#xA;Note: No equivalent for the HL7 Vital Signs base profile has been created to implement the zib profiles. The profile for this zib has been directly modelled onto its HL7 Vital Signs counterpart.&#xD;&#xA;&#xD;&#xA;Several concept(s) of zib HeartRate are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* HeartbeatRegularity (NL-CM:12.3.5): [zib-HeartRate.HeartbeatRegularity](http://nictiz.nl/fhir/StructureDefinition/zib-HeartRate.HeartbeatRegularity)&#xD;&#xA;* InterpretationHeartRate(NL-CM:12.3.7): [zib-HeartRate.InterpretationHeartRate](http://nictiz.nl/fhir/StructureDefinition/zib-HeartRate.InterpretationHeartRate)" />
       <alias value="Hartfrequentie" />
       <mapping>
         <identity value="zib-heartrate-v3.4-2020EN" />
@@ -126,79 +124,35 @@
         <comment value="HeartRateMeasurementMethod" />
       </mapping>
     </element>
-    <element id="Observation.component">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
       <slicing>
         <discriminator>
-          <type value="value" />
-          <path value="code" />
+          <type value="profile" />
+          <path value="resolve()" />
         </discriminator>
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Observation.component:heartbeatRegularity">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:heartbeatRegularity">
+      <path value="Observation.hasMember" />
       <sliceName value="heartbeatRegularity" />
+      <definition value="The HeartbeatRegularity concept (NL-CM:12.3.5) of zib HeartRate, represented as a distinct Observation resource." />
       <max value="1" />
-    </element>
-    <element id="Observation.component:heartbeatRegularity.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="301112006" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:heartbeatRegularity.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="HeartbeatRegularity" />
-      <definition value="Regularity of the heartbeat." />
-      <alias value="HartslagRegelmatigheid" />
       <type>
-        <code value="CodeableConcept" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HeartRate.HeartbeatRegularity" />
       </type>
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.3.1--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-heartrate-v3.4-2020EN" />
-        <map value="NL-CM:12.3.5" />
-        <comment value="HeartbeatRegularity" />
-      </mapping>
     </element>
-    <element id="Observation.component:interpretationHeartRate">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:interpretationHeartRate">
+      <path value="Observation.hasMember" />
       <sliceName value="interpretationHeartRate" />
+      <definition value="The InterpretationHeartRate concept (NL-CM:12.3.7) of zib HeartRate, represented as a distinct Observation resource." />
       <max value="1" />
-    </element>
-    <element id="Observation.component:interpretationHeartRate.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="301113001" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:interpretationHeartRate.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="InterpretationHeartRate" />
-      <definition value="Interpretation heart rate" />
-      <alias value="InterpretatieFrequentie" />
       <type>
-        <code value="CodeableConcept" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HeartRate.InterpretationHeartRate" />
       </type>
-      <binding>
-        <strength value="extensible" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.3.3--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-heartrate-v3.4-2020EN" />
-        <map value="NL-CM:12.3.7" />
-        <comment value="InterpretationHeartRate" />
-      </mapping>
     </element>
   </differential>
 </StructureDefinition>

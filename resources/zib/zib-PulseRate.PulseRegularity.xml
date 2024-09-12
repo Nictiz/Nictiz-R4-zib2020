@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-PulseRate.PulseRegularity" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-PulseRate.PulseRegularity" />
+  <name value="ZibPulseRatePulseRegularity" />
+  <title value="zib PulseRate.PulseRegularity" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Regular or irregular rhythm." />
+  <purpose value="This Observation resource represents the PulseRegularity concept (NL-CM:12.7.5) of Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) PulseRate v3.3 (2020)](https://zibs.nl/wiki/PulseRate-v3.3(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-pulserate-v3.3-2020EN" />
+    <uri value="https://zibs.nl/wiki/PulseRate-v3.3(2020EN)" />
+    <name value="zib PulseRate-v3.3(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/pattern-VitalSigns" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <comment value="This Observation resource represents the PulseRegularity concept (NL-CM:12.7.5) of zib PulseRate. It can be used together with the [zib-PulseRate](http://nictiz.nl/fhir/StructureDefinition/zib-PulseRate) profile on the Observation resource, which groups references to the current and other resources on `Observation.hasMember`." />
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://loinc.org" />
+          <code value="44969-4" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effective[x]" />
+      <sliceName value="effectiveDateTime" />
+      <short value="PulseRateDateTime" />
+      <definition value="Date and time of the pulse rate or pulse regularity measurement." />
+      <alias value="PolsfrequentieDatumTijd" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-pulserate-v3.3-2020EN" />
+        <map value="NL-CM:12.7.3" />
+        <comment value="PulseRateDateTime" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <short value="PulseRegularity" />
+      <definition value="Regular or irregular rhythm." />
+      <alias value="PolsRegelmatigheid" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.7.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-pulserate-v3.3-2020EN" />
+        <map value="NL-CM:12.7.5" />
+        <comment value="PulseRegularity" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

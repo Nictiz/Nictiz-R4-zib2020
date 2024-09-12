@@ -29,22 +29,6 @@
             </td>
             <td>126 /min</td>
           </tr>
-          <tr>
-            <td>
-              <span title="Finding of heart rhythm (301112006 - SNOMED CT)">Finding of heart rhythm</span>
-            </td>
-            <td>
-              <span title="Onregelmatige hartslag (361137007 - SNOMED CT)">Onregelmatige hartslag</span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span title="Finding of heart rate (301113001 - SNOMED CT)">Finding of heart rate</span>
-            </td>
-            <td>
-              <span title="Bradycardie (48867003 - SNOMED CT)">Bradycardie</span>
-            </td>
-          </tr>
         </tbody>
       </table>
     </div>
@@ -86,36 +70,14 @@
       <display value="Auscultatie"/>
     </coding>
   </method>
-  <component>
-    <code>
-      <coding>
-        <system value="http://snomed.info/sct"/>
-        <code value="301112006"/>
-        <display value="Finding of heart rhythm"/>
-      </coding>
-    </code>
-    <valueCodeableConcept>
-      <coding>
-        <system value="http://snomed.info/sct"/>
-        <code value="361137007"/>
-        <display value="Onregelmatige hartslag"/>
-      </coding>
-    </valueCodeableConcept>
-  </component>
-  <component>
-    <code>
-      <coding>
-        <system value="http://snomed.info/sct"/>
-        <code value="301113001"/>
-        <display value="Finding of heart rate"/>
-      </coding>
-    </code>
-    <valueCodeableConcept>
-      <coding>
-        <system value="http://snomed.info/sct"/>
-        <code value="48867003"/>
-        <display value="Bradycardie"/>
-      </coding>
-    </valueCodeableConcept>
-  </component>
+  <hasMember>
+    <reference value="Observation/nl-core-HeartRate.HeartbeatRegularity-01"/>
+    <type value="Observation"/>
+    <display value="Hartslag regelmatigheid: Onregelmatige hartslag"/>
+  </hasMember>
+  <hasMember>
+    <reference value="Observation/nl-core-HeartRate.InterpretationHeartRate-01"/>
+    <type value="Observation"/>
+    <display value="Interpretatie frequentie: Bradycardie"/>
+  </hasMember>
 </Observation>
