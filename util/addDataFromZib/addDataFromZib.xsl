@@ -45,7 +45,7 @@
             
             <!-- Add or modify URL -->
             <xsl:choose>
-                <xsl:when test="(not(f:url) or starts-with(f:url/@value, 'http://example.org/')  or starts-with(f:url/@value, 'https://example.org/')) and (starts-with($id, 'zib-') or starts-with($id, 'nl-core-'))">
+                <xsl:when test="(not(f:url) or starts-with(f:url/@value, 'http://example.org/')  or starts-with(f:url/@value, 'https://example.org/')) and (starts-with($id, 'zib-') or starts-with($id, 'nl-core-') or starts-with($id, 'ext-'))">
                     <url value="http://nictiz.nl/fhir/StructureDefinition/{$id}"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -58,7 +58,7 @@
             <!-- Add or modify name, title, status -->
             <xsl:choose>
                 <xsl:when test="not(f:url) or starts-with(f:name/@value, 'My')">
-                    <name value="{replace(concat(upper-case(substring($id,1,1)), substring($id, 2)),'-','')}"/>
+                    <name value="{translate(concat(upper-case(substring($id,1,1)), substring($id, 2)),'-.','')}"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:apply-templates select="f:name"/>
@@ -180,7 +180,7 @@
     <!-- Remove unused mappings -->
     <xsl:template match="f:StructureDefinition/f:mapping">
         <xsl:choose>
-            <xsl:when test="f:identity/@value = ('workflow','sct-concept','v2','rim','w5','sct-attr')"/>
+            <xsl:when test="not(f:identity/@value[starts-with(., 'zib-')]) and not(f:identity/@value = ancestor::f:StructureDefinition/f:differential/f:element/f:mapping/f:identity/@value)"/>
             <!-- Remove zib mapping element in nl-core profiles if it is not used -->
             <xsl:when test="starts-with(parent::f:StructureDefinition/f:id/@value, 'nl-core-') and f:identity/@value[starts-with(., 'zib-')][not(. = parent::f:StructureDefinition//f:element/f:mapping/f:identity/@value)]"/>
             <xsl:otherwise>
