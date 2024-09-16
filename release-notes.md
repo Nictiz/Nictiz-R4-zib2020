@@ -40,19 +40,19 @@ This document contains release notes per zib, indicating differences with their 
 * Added constraints in the profile on the choice that the zib provides between Concern and AlertName. Added guidance on which code to add to `Flag.code` if a reference to Concern is added.
 
 ## zib-AdvanceDirective
-* Moved TypeOfLivingWill from `Consent.category` to `Consent.provision.code`, renamed it to LivingWillType in accordance with the zib and made the element 0..1 rather than 1..1 to adhere to the conceptual cardinalities of the zib.
+* Moved TypeOfLivingWill from `Consent.category` to `Consent.provision.code`, renamed it to LivingWillType in accordance with the zib and made the element `0..1` rather than `1..1` to adhere to the conceptual cardinalities of the zib.
 * Moved LivingWillDocument from `Consent.source[x]` to `Consent.source[x]:sourceAttachment.data`.
 * Moved Representative from `Consent.consentingParty` to `Consent.provision.actor:representative.reference` because the element is removed in R4. Also `Consent.provision.actor:representative.role` has now a fixed value for this mapping.
 * Replaced fixed zib code 11341000146107#http://snomed.info/sct on `Consent.category` with acd#http://terminology.hl7.org/CodeSystem/consentcategorycodes because this is an applicable code bound in the extensible ValueSet.
 * Removed references that are not defined by the zib (e.g. `Consent.organization` and `Consent.actor`).
-* Adjusted the `Consent.dateTime` cardinality from 1..1 to 0..1 to adhere to the conceptual cardinalities of the zib.
+* Adjusted the `Consent.dateTime` cardinality from `1..1` to `0..1` to adhere to the conceptual cardinalities of the zib.
 * Added guidance for mandatory elements `Consent.status`,`Consent.scope` and `Consent.policy` or `Consent.policyRule`.
 
 # zib-AllergyIntolerance
 * Applied 'combined ValueSets' to `.code` and `.reaction.substance` instead of slicing per ValueSet.
 * The code-specification extensions have been removed from `.clinicalStatus` and `.reaction.severity` because the zib concepts can be fully mapped to FHIR.
-* Because AlleryStatus maps to both `.clinicalStatus` and `.verificationStatus`, but `.verificationStatus` now has cardinality 0..1 compared to 1..1 in STU3, guidance on how to interpret the mapping has been added to the root, but has been simplified.
-* Changed cardinality of `.note` from 0..* to 0..1 to align with the zib.
+* Because AlleryStatus maps to both `.clinicalStatus` and `.verificationStatus`, but `.verificationStatus` now has cardinality `0..1` compared to `1..1` in STU3, guidance on how to interpret the mapping has been added to the root, but has been simplified.
+* Changed cardinality of `.note` from `0..*` to `0..1` to align with the zib.
 
 ## zib-AnatomicalLocation
 * New partial zib. The anatomical location in FHIR is usually mapped on `.bodySite` (CodeableConcept with example binding). This zib has therefore been mapped onto a data type profile that can be used for `.bodySite`.
@@ -106,7 +106,7 @@ This document contains release notes per zib, indicating differences with their 
 
 ## zib-ContactPerson
 * Added textual guidance on the root to guide usage of RelatedPerson versus Patient.
-* Removed the role extension (http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role) because `RelatedPerson.relationship` has changed from 0..1 to 0..*. The zib concept role is now mapped to a slice on relationship.
+* Removed the role extension (http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role) because `RelatedPerson.relationship` has changed from `0..1` to `0..*`. The zib concept role is now mapped to a slice on relationship.
 * Updated to new zib-NameInformation, zib-AddressInformation and zib-ContactInformation profiles.
 
 ## zib-DevelopmentChild
@@ -125,7 +125,7 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-Encounter
 * ContactWith is mapped on a slice of `Encounter.participant`.
 * `Encounter.participant.type` now honors the maximum cardinality of HealthProfessionalRole.
-* `Encounter.period.start` changed to cardinality 0..1 due to the zibs conceptual cardinalities concept.
+* `Encounter.period.start` changed to cardinality `0..1` due to the zibs conceptual cardinalities concept.
 * The mapping of concepts Problem, Procedure and DeviatingResult is moved to `Encounter.reasonReference`.
 * The mapping of Location is moved to `Encounter.location.location`.
 * References to other profiles not accounted for by the zib have been removed.
@@ -160,16 +160,19 @@ This document contains release notes per zib, indicating differences with their 
 * Moved the fixed functional status finding and mental status finding to slices on `Observation.category` instead of `.category.coding`, discriminated by a pattern, and strengthened by an invariant to check if one of the fixed terminology codes is present.
 * The comment element is mapped on `Observation.note.text` instead of `Observation.comment`.
 
+## zib-GlasgowComaScale
+* There was no profile in the zib2017/STU3 implementation and therefore no diff.
+
 ## zib-HealthcareProvider
 * `Organization.identifier` is now sliced based on a pattern.
-* Changed cardinality of `Organization.type[DepartmentSpecialty]` and `Organization.type[OrganizationType]` from 0..* to 0..1.
+* Changed cardinality of `Organization.type[DepartmentSpecialty]` and `Organization.type[OrganizationType]` from `0..*` to `0..1`.
 * For `Organization.type` the slicing discriminator is changed from fixed system values to a ValueSet binding.
 * Removed comments on `Organization.alias` because it has no basis in the zib.
 * Added comments on the root to point out the usage of the Location resource and the `Organization.partOf`.
 * Major change: use of Location resource.
 
 ## zib-HealthProfessional
-* `Practitioner.identifier` slices changed cardinality from 0..1 to 0..*.
+* `Practitioner.identifier` slices changed cardinality from `0..1` to `0..*`.
 * Added HealthProfessionalIdentificationNumber mapping on `PractitionerRole.identifier`.
 * Added new mapping of Gender in Practitioner.
 * Added textual guidance on the root to clarify the use of Practitioner and PractitionerRole.
@@ -179,7 +182,7 @@ This document contains release notes per zib, indicating differences with their 
 
 ## zib-HearingFunction
 * Changed fixed slice on `.code.coding` to a pattern on `.code`.
-* Relaxed cardinality of `.value[x]` to 0..1 of the conceptual cardinalities of the zib.
+* Relaxed cardinality of `.value[x]` to `0..1` of the conceptual cardinalities of the zib.
 
 ## zib-HelpFromOthers
 * The mappings on `CarePlan.identifier`, `CarePlan.subject`, `CarePlan.author` and `CarePlan.careTeam` have been removed.
@@ -253,7 +256,7 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-PainScore
 * Removed mapping on `Observation.bodySite` because the AnatomicalLocation concept has been removed from the zib.
 * Removed laterality extension because the Laterality concept has been removed from the zib.
-* Cardinality of `Observation.method` has changed from 1..1 to 0..1. 
+* Cardinality of `Observation.method` has changed from `1..1` to `0..1`. 
 * The data type of `Observation.value[x]` (zib concept PainScoreValue) has been changed from Quantity to Integer.
 
 ## zib-ParticipationInSociety
@@ -261,9 +264,9 @@ This document contains release notes per zib, indicating differences with their 
 
 ## zib-Patient
 * Includes Nationality, MaritalStatus, LanguageProficiency.
-* Cardinality of `Patient.extension:nationality` left at 0..* due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time).
-* Cardinality of `Patient.name` left at 0..* to allow including several name elements with a different `name.use` each.
-* Cardinality of `Patient.telecom` left at 0..* to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not.
+* Cardinality of `Patient.extension:nationality` left at `0..*` due to the nature of the nationality core extension (which allows for a period to be placed next to the nationality and thus allows for different nationalities over time).
+* Cardinality of `Patient.name` left at `0..*` to allow including several name elements with a different `name.use` each.
+* Cardinality of `Patient.telecom` left at `0..*` to allow including several contact elements, because the zib ContactInformation includes a container that FHIR does not.
 * Added a comment to `deceased[x]`: When exporting the data, if `.deceasedDateTime` (DateOfDeath) is present and has a value, DeathIndicator may be set to 'true', since DeathIndicator and DateOfDeath cannot both be represented at the same time.
 
 ## zib-Payer
@@ -308,8 +311,8 @@ This document contains release notes per zib, indicating differences with their 
 ## Procedure
 * Renamed profiles from zib-Procedure and zib-ProcedureRequest to zib-Procedure-event and zib-Procedure-request conform profiling guidelines.
 * ProcedureStartDate and ProcedureEndDate have been mapped to `Procedure.performed[x]` instead of `Procedure.performedPeriod` to account for the use of `Procedure.performedDateTime` when the zib Procedure concerns an instantaneous procedure.
-* Changed cardinality of the ProcedureMethod concept to 0..* instead of 0..1.
-* The ProcedureAnatomicalLocation is mapped on `Procedure.bodySite` and the cardinality has been set to 0..1 instead of 0..*.
+* Changed cardinality of the ProcedureMethod concept to `0..*` instead of `0..1`.
+* The ProcedureAnatomicalLocation is mapped on `Procedure.bodySite` and the cardinality has been set to `0..1` instead of `0..*`.
 * The resource ProcedureRequest has been renamed to ServiceRequest and now includes a mapping for all the possible concepts of zib Procedure. Compared to STU3 a mapping has been added for ProcedureMethod, ProcedureAnatomicalLocation, MedicalDevice, ProcedureStartDate and ProcedureEndDate.
 * `Procedure.location` and `ServiceRequest.locationReference` are used to reference the zib HealthcareProvider instead of `Procedure.performer` and `ProcedureRequest.performer` to indicate where the Procedure takes place.
 * The `Procedure.performer` only references the zib HealthProfessional represented in a PractitionerRole resource. Other references not dictated by the zib are removed.
@@ -382,7 +385,7 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-Vaccination
 * Renamed profile names: zib-Vaccination to zib-Vaccination-event and zib-VaccinationRecommendation to zib-Vaccination-request conform new profiling guidelines.
 * Removed references not accounted for by the zib (e.g. `Immunization.location`, `Immunization.manufacturer` and `ImmunizationRecommendation.recommendation.supportingImmunization`).
-* Aligned cardinality of `Immunization.note` with the zib by making it 0..1.
+* Aligned cardinality of `Immunization.note` with the zib by making it `0..1`.
 * Moved VaccinationDate on a type slice on `Immunization.occurrence[x]:occurrenceDateTime`. This element has been renamed from `date` to `occurrence[x]` in R4.
 * Moved Administrator to a slice on `Immunization.performer` with a mandatory fixed pattern in `Immunization.performer.function`.
 * Added a pattern on `Immunization.doseQuantity` to mandate the use of mL by UCUM because the definition of Dose states to use milliliters. 
@@ -392,4 +395,4 @@ This document contains release notes per zib, indicating differences with their 
 
 ## zib-VisualFunction
 * Changed fixed slice on `.code.coding` to a pattern on `.code`.
-* Relaxed cardinality of `value[x]` to 0..1 of the conceptual cardinalities of the zib.
+* Relaxed cardinality of `value[x]` to `0..1` of the conceptual cardinalities of the zib.

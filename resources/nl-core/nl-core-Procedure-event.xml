@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-Procedure-event" />
+  <text>
+    <status value="empty" />
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event" />
   <name value="NlcoreProcedureevent" />
   <title value="nl core Procedure event" />
@@ -73,6 +77,7 @@
     </element>
     <element id="Procedure.location">
       <path value="Procedure.location" />
+      <comment value="Please note that the zib concept Location::HealthcareProvider of zib MedicalDevice (NL-CM:10.1.8) is mapped onto this element, but it is also directly represented using a custom extension in the focal profile for that zib ([nl-core-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice)). The reason for this is that the Location concept from zib MedicalDevice aligns with the Location concept from zib Procedure, but only for the situation that the Procedure is about placing an implant which is described using the instance of zib MedicalDevice. In this situation, the extension in the nl-core-MedicalDevice profile is redundant and it is advised to only use the current element to represent the Location concept." />
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />

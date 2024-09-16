@@ -26,7 +26,22 @@
     <xsl:template match="f:StructureDefinition">
         <xsl:copy>
             <xsl:variable name="id" select="f:id/@value"/>
-            <xsl:apply-templates select="f:id | f:meta | f:implicitRules | f:language | f:text | f:contained | f:extension | f:modifierExtension"/>
+            <xsl:apply-templates select="f:id | f:meta | f:implicitRules | f:language"/>
+
+            <!-- Add or modify empty narrative -->
+            <xsl:choose>
+                <xsl:when test="f:text">
+                    <xsl:copy-of select="f:text"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <text>
+                        <status value="empty"/>
+                        <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+                    </text>
+                </xsl:otherwise>
+            </xsl:choose>
+
+            <xsl:apply-templates select="f:contained | f:extension | f:modifierExtension"/>
             
             <!-- Add or modify URL -->
             <xsl:choose>
