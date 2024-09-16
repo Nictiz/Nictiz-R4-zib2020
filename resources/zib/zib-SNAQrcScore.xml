@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-SNAQrcScore" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-SNAQrcScore" />
   <name value="ZibSNAQrcScore" />
   <title value="zib SNAQrcScore" />
@@ -103,7 +101,7 @@
       <path value="Observation.value[x]" />
       <sliceName value="valueInteger" />
       <short value="TotalScore" />
-      <definition value="The total score is the sum of all the individual scores. The total score has a range from 0 - 6. The relation between the value of the total score and the color outcome of the score tool is:&lt;br /&gt;0 = green&lt;br /&gt;1= orange&lt;br /&gt;2 and higher = red." />
+      <definition value="The total score is the sum of all the individual scores. The total score has a range from 0 - 6. The relation between the value of the total score and the color outcome of the score tool is:&#xD;&#xA;0 = green&#xD;&#xA;1= orange&#xD;&#xA;2 and higher = red." />
       <comment value="The individual scores are communicated using the different `Observation.component` slices. The ordinal values of these indivdual scores, which are used to calculate the total score, are defined by the underlying code system and are registered in the ValueSet resources bound on these slices, using the [ordinalValue](http://hl7.org/fhir/StructureDefinition/ordinalValue) extension." />
       <alias value="TotaalScore" />
       <type>
@@ -167,6 +165,8 @@
       <type>
         <code value="CodeableConcept" />
       </type>
+      <condition value="zib-SNAQrcScore-1" />
+      <condition value="zib-SNAQrcScore-2" />
       <binding>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.29.1--20200901000000" />
@@ -201,6 +201,8 @@
       <type>
         <code value="CodeableConcept" />
       </type>
+      <condition value="zib-SNAQrcScore-1" />
+      <condition value="zib-SNAQrcScore-2" />
       <binding>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.29.2--20200901000000" />
@@ -235,6 +237,8 @@
       <type>
         <code value="CodeableConcept" />
       </type>
+      <condition value="zib-SNAQrcScore-1" />
+      <condition value="zib-SNAQrcScore-2" />
       <binding>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.29.3--20200901000000" />
@@ -269,6 +273,8 @@
       <type>
         <code value="CodeableConcept" />
       </type>
+      <condition value="zib-SNAQrcScore-1" />
+      <condition value="zib-SNAQrcScore-2" />
       <binding>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.29.4--20200901000000" />
