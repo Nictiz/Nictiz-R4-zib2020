@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-NutritionAdvice" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-NutritionAdvice" />
   <name value="ZibNutritionAdvice" />
   <title value="zib NutritionAdvice" />
@@ -39,21 +43,9 @@
         <comment value="NutritionAdvice" />
       </mapping>
     </element>
-    <element id="NutritionOrder.extension">
-      <path value="NutritionOrder.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="NutritionOrder.extension:indication">
       <path value="NutritionOrder.extension" />
       <sliceName value="indication" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -103,7 +95,7 @@
       <path value="NutritionOrder.oralDiet.texture.modifier.text" />
       <short value="Consistency" />
       <definition value="A description of the consistency of the food." />
-      <comment value="The zib concept Consistency is mapped on two FHIR elements: `NutritionOrder.oralDiet.texture.modifier.text` for solid foods and `NutritionOrder.oralDiet.fluidConsistencyType.text` for liquid foods. The zib does not offer guidance on when to use which element. Discussion on this subject is ongoing in [ZIB-1617](https://bits.nictiz.nl/browse/ZIB-1617)." />
+      <comment value="The zib concept Consistency is mapped on two FHIR elements: `.oralDiet.texture.modifier.text` for solid foods and `.oralDiet.fluidConsistencyType.text` for liquid foods. A sending system should be able to decide on which of these FHIR elements is (the most) applicable. However, if this is not possible, it is recommended to use `.oralDiet.texture.modifier.text` as this concept has a broader meaning and may include liquid foods as well." />
       <alias value="Consistentie" />
       <mapping>
         <identity value="zib-nutritionadvice-v3.2-2020EN" />
@@ -115,7 +107,7 @@
       <path value="NutritionOrder.oralDiet.fluidConsistencyType.text" />
       <short value="Consistency" />
       <definition value="A description of the consistency of the food." />
-      <comment value="The zib concept Consistency is mapped on two FHIR elements: `NutritionOrder.oralDiet.texture.modifier.text` for solid foods and `NutritionOrder.oralDiet.fluidConsistencyType.text` for liquid foods. The zib does not offer guidance on when to use which element. Discussion on this subject is ongoing in [ZIB-1617](https://bits.nictiz.nl/browse/ZIB-1617)." />
+      <comment value="The zib concept Consistency is mapped on two FHIR elements: `.oralDiet.texture.modifier.text` for solid foods and `.oralDiet.fluidConsistencyType.text` for liquid foods. A sending system should be able to decide on which of these FHIR elements is (the most) applicable. However, if this is not possible, it is recommended to use `.oralDiet.texture.modifier.text` as this concept has a broader meaning and may include liquid foods as well." />
       <alias value="Consistentie" />
       <mapping>
         <identity value="zib-nutritionadvice-v3.2-2020EN" />

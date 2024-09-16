@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-ChecklistPainBehavior" />
+  <text>
+    <status value="empty" />
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-ChecklistPainBehavior" />
+  <name value="ZibChecklistPainBehavior" />
+  <title value="zib ChecklistPainBehavior" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The CPB (Checklist Pain Behaviour) is a pain assessment tool, that is used to assess pain in children with a limited expressive repertoire or with a profound cognitive impairment, by observing their behaviour.&#xD;&#xA;The CPB has ten observations that need to be addressed. The final score indicates whether the observed child suffers pain and 'how much'. The score is often combined with a VAS score that is completed by the nurses on basis of clinical experience." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) ChecklistPainBehavior v1.1 (2020)](https://zibs.nl/wiki/ChecklistPainBehavior-v1.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-checklistpainbehavior-v1.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/ChecklistPainBehavior-v1.1(2020EN)" />
+    <name value="zib ChecklistPainBehavior-v1.1(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="ChecklistPainBehaviour" />
+      <alias value="ChecklistPijnGedrag" />
+      <mapping>
+        <identity value="zib-checklistpainbehavior-v1.1-2020EN" />
+        <map value="NL-CM:12.17.1" />
+        <comment value="ChecklistPainBehaviour" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="108331000146104" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effective[x]" />
+      <sliceName value="effectiveDateTime" />
+      <short value="ScoreDateTime" />
+      <definition value="The date and time at which the CPB score was determined." />
+      <alias value="ScoreDatumTijd" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-checklistpainbehavior-v1.1-2020EN" />
+        <map value="NL-CM:12.17.13" />
+        <comment value="ScoreDateTime" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueInteger">
+      <path value="Observation.value[x]" />
+      <sliceName value="valueInteger" />
+      <short value="TotalScore" />
+      <definition value="The total score is the sum of all the individual scores. The total score has a range from 0 - 10." />
+      <comment value="The total score communicated using this element is always determined using the individual scores, but these individual scores are not always registered or communicated. For this reason, all individual `Observation.component`s representing the individual scores are optional, and the total score might not align with the sum of the individual scores that are communicated." />
+      <alias value="TotaalScore" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="10" />
+      <mapping>
+        <identity value="zib-checklistpainbehavior-v1.1-2020EN" />
+        <map value="NL-CM:12.17.2" />
+        <comment value="TotalScore" />
+      </mapping>
+    </element>
+    <element id="Observation.note">
+      <path value="Observation.note" />
+      <max value="1" />
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
+      <short value="Comment" />
+      <definition value="A comment on the circumstances during the measurement." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-checklistpainbehavior-v1.1-2020EN" />
+        <map value="NL-CM:12.17.14" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:face">
+      <path value="Observation.component" />
+      <sliceName value="face" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:face.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="12017003" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:face.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Face" />
+      <definition value="Tense face; one or more muscles in the face are tensed." />
+      <alias value="Gezicht" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-checklistpainbehavior-v1.1-2020EN" />
+        <map value="NL-CM:12.17.3" />
+        <comment value="Face" />
+      </mapping>
+    </element>
+    <element id="Observation.component:mouth">
+      <path value="Observation.component" />
+      <sliceName value="mouth" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:mouth.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="12017004" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:mouth.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Mouth" />
+      <definition value="Deeper naso-labial furrow; the line between the nose and mouth (naso-labial furrow) is deeper and aside." />
+      <alias value="Mond" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-checklistpainbehavior-v1.1-2020EN" />
+        <map value="NL-CM:12.17.4" />
+        <comment value="Mouth" />
+      </mapping>
+    </element>
+    <element id="Observation.component:grimace">
+      <path value="Observation.component" />
+      <sliceName value="grimace" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:grimace.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="12017005" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:grimace.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Grimace" />
+      <definition value="Grimace; the co-occurrence of: furrowed eyebrows; eyes that are composed or pinched; a deeper line between the nose and mouth; opened mouth." />
+      <alias value="Grimas" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-checklistpainbehavior-v1.1-2020EN" />
+        <map value="NL-CM:12.17.5" />
+        <comment value="Grimace" />
+      </mapping>
+    </element>
+    <element id="Observation.component:lookingSad">
+      <path value="Observation.component" />
+      <sliceName value="lookingSad" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:lookingSad.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="12017006" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:lookingSad.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Looking sad" />
+      <definition value="Looking sad, almost in tears: eyebrows which have been pulled up laterally on the inner sides; wrinkles in the forehead, especially over the nose; eyes are squeezed; mouth drawn down possibly combined with a pout." />
+      <alias value="VerdrietigeBlik" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-checklistpainbehavior-v1.1-2020EN" />
+        <map value="NL-CM:12.17.6" />
+        <comment value="LookingSad" />
+      </mapping>
+    </element>
+    <element id="Observation.component:eyes">
+      <path value="Observation.component" />
+      <sliceName value="eyes" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:eyes.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="12017007" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:eyes.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Eyes" />
+      <definition value="Eyes squeezed.&#xD;&#xA;Note: Do NOT score as present when the child is blinking or when the eyes are still closed without blinking." />
+      <alias value="Ogen" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-checklistpainbehavior-v1.1-2020EN" />
+        <map value="NL-CM:12.17.7" />
+        <comment value="Eyes" />
+      </mapping>
+    </element>
+    <element id="Observation.component:panic">
+      <path value="Observation.component" />
+      <sliceName value="panic" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:panic.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="12017008" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:panic.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Panic" />
+      <definition value="Panics, panic attack: an extreme form of anxiety which manifests itself in random restless body movements or violent resistance.&#xD;&#xA;&#xD;&#xA;This may be associated with an anxious look characterized by large widely opened eyes and eyebrows which are on the inner side raised up." />
+      <alias value="Paniek" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-checklistpainbehavior-v1.1-2020EN" />
+        <map value="NL-CM:12.17.8" />
+        <comment value="Panic" />
+      </mapping>
+    </element>
+    <element id="Observation.component:moaning">
+      <path value="Observation.component" />
+      <sliceName value="moaning" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:moaning.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="12017009" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:moaning.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Moaning" />
+      <definition value="Moaning, groaning; monotonous sound on plaintive tone." />
+      <alias value="Kreunen" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-checklistpainbehavior-v1.1-2020EN" />
+        <map value="NL-CM:12.17.9" />
+        <comment value="Moaning" />
+      </mapping>
+    </element>
+    <element id="Observation.component:cry">
+      <path value="Observation.component" />
+      <sliceName value="cry" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:cry.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="12017010" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:cry.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Cry" />
+      <definition value="Cries softly; crying is accompanied by a shocking breath." />
+      <alias value="Huilen" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-checklistpainbehavior-v1.1-2020EN" />
+        <map value="NL-CM:12.17.10" />
+        <comment value="Cry" />
+      </mapping>
+    </element>
+    <element id="Observation.component:soundsOfRestlessness">
+      <path value="Observation.component" />
+      <sliceName value="soundsOfRestlessness" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:soundsOfRestlessness.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="12017011" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:soundsOfRestlessness.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="SoundsOfRestlessness" />
+      <definition value="Penetrating sounds of restlessness: sudden or longer lasting intense cries or verbal expressions of pain, such as &quot;ow&quot; or &quot;you hurt me&quot;." />
+      <alias value="Onrustgeluiden" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-checklistpainbehavior-v1.1-2020EN" />
+        <map value="NL-CM:12.17.11" />
+        <comment value="SoundsOfRestlessness" />
+      </mapping>
+    </element>
+    <element id="Observation.component:tears">
+      <path value="Observation.component" />
+      <sliceName value="tears" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:tears.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1" />
+          <code value="12017012" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:tears.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Tears" />
+      <definition value="Tears: child produces tears in at least one eye, so more than just watery eyes." />
+      <alias value="Tranen" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="1" />
+      <mapping>
+        <identity value="zib-checklistpainbehavior-v1.1-2020EN" />
+        <map value="NL-CM:12.17.12" />
+        <comment value="Tears" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

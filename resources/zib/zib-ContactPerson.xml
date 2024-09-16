@@ -1,6 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-ContactPerson" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson" />
   <name value="ZibContactPerson" />
   <title value="zib ContactPerson" />
@@ -50,14 +54,6 @@
         <comment value="Contact" />
       </mapping>
     </element>
-    <element id="RelatedPerson.patient">
-      <path value="RelatedPerson.patient" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient" />
-      </type>
-    </element>
     <element id="RelatedPerson.relationship">
       <path value="RelatedPerson.relationship" />
       <slicing>
@@ -76,7 +72,6 @@
       <alias value="Rol" />
       <binding>
         <strength value="required" />
-        <description value="RolCodelijst" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.3.1.2--20200901000000" />
       </binding>
       <mapping>
@@ -93,7 +88,6 @@
       <alias value="Relatie" />
       <binding>
         <strength value="required" />
-        <description value="RelatieCodelijst" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.3.1.1--20200901000000" />
       </binding>
       <mapping>
@@ -154,7 +148,7 @@
       </slicing>
       <short value="ContactInformation" />
       <definition value="The contact’s telephone number and/or e-mail address." />
-      <comment value="The cardinality mismatch between the zib (0..1) and FHIR (0..*) is explained by the containers TelephoneNumbers (0..*) and EmailAddresses (0..*) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers." />
+      <comment value="The cardinality mismatch between the zib (`0..1`) and FHIR (`0..*`) is explained by the containers TelephoneNumbers (`0..*`) and EmailAddresses (`0..*`) inside the ContactInformation model. The FHIR datatype ContactPoint does not have these containers." />
       <alias value="Contactgegevens" />
       <mapping>
         <identity value="zib-contactperson-v3.4-2020EN" />

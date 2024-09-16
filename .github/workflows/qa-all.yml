@@ -7,11 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Zib2020 QA
-        uses: Nictiz/Nictiz-R4-QA@main
+        uses: Nictiz/Nictiz-tooling-R4-QA@6.3.0
         with:
           changed-only: false
-          no-tx: true
+          verbosity-level: warning
+          best-practice-warnings: false
+          suppress-display-issues: true

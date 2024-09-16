@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="pattern-GstdQuantity" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/pattern-GstdQuantity" />
   <name value="PatternGstdQuantity" />
-  <title value="G-Standaard Quantity" />
+  <title value="G-Standard Quantity" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
-    <name value="Nictiz"/>
+    <name value="Nictiz" />
     <telecom>
-      <system value="url"/>
-      <value value="https://www.nictiz.nl"/>
-      <use value="work"/>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
     </telecom>
   </contact>
-  <description value="A Quantity datatype profile to add a Quantity translation in G-standard units using the HL7 core iso21090-PQ-translation extension. The extension MAY be used to additionally add translations expressed in a different unit from a different unit code system (e.g. NHG table Gebruiksvoorschriften (Table 25))." />
-  <purpose value="This profile provides a uniform way to include the PQ-translation extension to provide a Quantity based on G-standards units." />
+  <description value="A Quantity datatype profile to add a Quantity translation in G-Standard units using the HL7 core iso21090-PQ-translation extension. The extension MAY be used to additionally add translations expressed in a different unit from a different unit code system (e.g. NHG table Gebruiksvoorschriften (Table 25))." />
+  <purpose value="This profile provides a uniform way to include the iso21090-PQ-translation extension to provide a Quantity based on G-Standard units." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <kind value="complex-type" />
@@ -24,17 +28,7 @@
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Quantity" />
   <derivation value="constraint" />
   <differential>
-    <element id="Quantity.extension">
-      <path value="Quantity.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Quantity.extension:GstdQuantity">
+    <element id="Quantity.extension:gstdQuantity">
       <path value="Quantity.extension" />
       <sliceName value="gstdQuantity" />
       <type>
@@ -42,12 +36,11 @@
         <profile value="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation" />
       </type>
     </element>
-    <element id="Quantity.extension:GstdQuantity.value[x]">
+    <element id="Quantity.extension:gstdQuantity.value[x]">
       <path value="Quantity.extension.value[x]" />
-      <definition value="A SimpleQuantity translation in G-standard units using. The extension MAY be used to additionally add translations expressed in a different unit from a different unit code system (e.g. NHG table Gebruiksvoorschriften (Table 25)." />
+      <definition value="A Quantity translation in G-Standard units. The extension MAY be used to additionally add translations expressed in a different unit from a different unit code system (e.g. NHG table Gebruiksvoorschriften (Table 25))." />
       <binding>
         <strength value="extensible" />
-        <description value="GstdTabel902" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.20.77.11.27--20160830202453" />
       </binding>
     </element>

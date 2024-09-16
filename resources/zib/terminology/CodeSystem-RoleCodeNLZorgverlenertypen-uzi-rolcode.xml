@@ -1,0 +1,1485 @@
+<CodeSystem xmlns="http://hl7.org/fhir">
+   <id value="uzi-rolcode"/>
+   <meta>
+      <profile value="http://hl7.org/fhir/StructureDefinition/shareablecodesystem"/>
+      <!--<profile value="http://hl7.org/fhir/4.0/StructureDefinition/CodeSystem"/>-->
+   </meta>
+   <language value="nl-NL"/>
+   <text>
+      <status value="empty"/>
+      <div xmlns="http://www.w3.org/1999/xhtml" lang="nl-NL" xml:lang="nl-NL">Definitie-resources zijn niet voorzien van een narrative. Een menselijk leesbare versie is te vinden via de implementation guide(s) waarin deze resource gebruikt wordt.</div>
+   </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod">
+      <valuePeriod>
+         <start value="2024-01-29T00:00:00Z"/>
+      </valuePeriod>
+   </extension>
+   <url value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+   <identifier>
+      <use value="official"/>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.15.111"/>
+   </identifier>
+   <version value="11.7.0"/>
+   <name value="RoleCodeNLZorgverlenertypen"/>
+   <title value="RoleCodeNL - zorgverlenertype (personen)"/>
+   <status value="active"/>
+   <experimental value="false"/>
+   <publisher value="Nictiz"/>
+   <contact>
+      <name value="Nictiz"/>
+      <telecom>
+         <system value="phone"/>
+         <value value="070-3173450"/>
+      </telecom>
+   </contact>
+   <description value="Dit codesysteem bevat concepten die het roltype bepalen van een zorgverlener of andere medewerker in de gezondheidszorg. De onderstaande tabel is een invulling van het HL7v3 vocabulaire domein “RoleCode” en wel specifiek het concept “AssignedRoleType”. De bron voor deze lijst is het [Certificate Practice Statement (CPS)](https://www.zorgcsp.nl/certification-practice-statement-cps) van het [UZI-register](https://www.uziregister.nl/) (Unieke Zorgverlener Identificatie). &#xA;* 2024-06-29 Update op basis van UZI-Register CPS 11.7 Wijziging: 01.071 &#34;Spoedeisende hulp arts&#34; heet nu &#34;Spoedeisende hulp arts (SEH-arts)&#34;, Tabel 23 Vervallen 30.065 Verpl. spec. prev. zorg bij som. aandoeningen (per 01-07-2023) en 30.069 Verpl. spec. chronische zorg bij som. aandoeningen (per 01-07-2023). Let op dat 30.065 onterecht al vervallen stond in de vorige versie van dit codesysteem, terwijl 30.066 dat had moeten zijn. Beide zijn dus intussen vervallen&#xA;* 2022-06-27 Update op basis van UZI-Register CPS 11.4 Tabel 23 Specialismen Verpleegkundige: 30.076 Verpl. spec. algemene gezondheidszorg (per 01-01-2021) toegevoegd, 30.067 Verpl. spec. intensieve zorg bij som. aandoeningen (per 01-01-2021) vervallen, 30.065 Verpl. prev. intensieve zorg bij som. aandoeningen (per 01-01-2021) vervallen&#xA;* 2020-04-01 Update op basis van UZI-Register CPS 9.8 Artikel 36a codes toegevoegd (82.000 Klinisch technoloog, 80.000 Bachelor medisch hulpverlener, 79.000 Geregistreerd-mondhygiënist (per 01-07-2020))&#xA;* 2019-12-01 Update op basis van UZI-Register CPS 9.7 31.000 Orthopedagoog-generalist (per 01-01-2020)&#xA;* 2018-09-10 Update op basis van UZI-Register CPS 9.1 81.000 Physician Assistant&#xA;* Tevens opgenomen na grondigere controle, maar geen releasenotes voor gevonden in CPS: 01.002 was &#34;Internist-Allergoloog&#34; en is nu &#34;Allergoloog (gesloten register)&#34;, 01.062 &#34;Internist-Allergoloog (gesloten register)&#34; toegevoegd, 01.020 was &#34;Arts klinische chemie&#34; en is nu &#34;Arts klinische chemie (gesloten register)&#34;, 01.050 was &#34;Zenuwarts&#34; en is nu &#34;Zenuwarts (gesloten register)&#34;&#xA;* 2017-08-01 Update op basis van UZI-Register CPS 7.1 01.099 Zorgverlener Andere zorg&#xA;* 2016-04-01 Update op basis van UZI-register CPS 6.0 17.075 Openbaar apotheker&#xA;* 2015-09-01 Update op basis van UZI-Register CPS 5.8 01.074 Sportarts&#xA;* 2012-01-18 Update op basis van UZI-Register CPS 5.0 30.069 Verpl. spec. geestelijke gezondheidszorg, 01.070 Jeugdarts, 01.071 Spoedeisende hulp arts, 84.000 Klinisch fysicus&#xA;* 2007-10-01 Update op basis van UZI-Register CPS 3.2 01.004 Apotheekhoudend huisarts"/>
+   <caseSensitive value="false"/>
+   <content value="complete"/>
+   <count value="84"/>
+   <property>
+      <code value="status"/>
+      <uri value="http://hl7.org/fhir/concept-properties"/>
+      <description value="A code that indicates the status of the concept. Values found in this version of the code system are: active, deprecated"/>
+      <type value="code"/>
+   </property>
+   <property>
+      <code value="deprecated"/>
+      <uri value="http://hl7.org/fhir/concept-properties"/>
+      <description value="The date at which a concept was deprecated. Concepts that are deprecated but not inactive can still be used, but their use is discouraged, and they should be expected to be made inactive in a future release. Property type is dateTime. Note that the status property may also be used to indicate that a concept is deprecated"/>
+      <type value="dateTime"/>
+   </property>
+   <property>
+      <code value="effectiveDate"/>
+      <uri value="http://hl7.org/fhir/concept-properties"/>
+      <description value="The date at which the concept was status was last changed. This is calculated based on the highest of 'creation date', 'expiration date', and 'official release date'"/>
+      <type value="dateTime"/>
+   </property>
+   <property>
+      <code value="inactive"/>
+      <uri value="http://hl7.org/fhir/concept-properties"/>
+      <description value="The date at which a concept was deprecated. Concepts that are deprecated but not inactive can still be used, but their use is discouraged, and they should be expected to be made inactive in a future release. Property type is dateTime. Note that the status property may also be used to indicate that a concept is deprecated"/>
+      <type value="boolean"/>
+   </property>
+   <property>
+      <code value="notSelectable"/>
+      <uri value="http://hl7.org/fhir/concept-properties"/>
+      <description value="The concept is not intended to be chosen by the user - only intended to be used as a selector for other concepts. Note, though, that the interpretation of this is highly contextual; all concepts are selectable in some context. Property type is boolean"/>
+      <type value="boolean"/>
+   </property>
+   <property>
+      <code value="parent"/>
+      <uri value="http://hl7.org/fhir/concept-properties"/>
+      <description value="The concept identified in this property is a parent of the concept on which it is a property. The property type will be 'code'. The meaning of 'parent' is defined by the hierarchyMeaning attribute"/>
+      <type value="code"/>
+   </property>
+   <property>
+      <code value="child"/>
+      <uri value="http://hl7.org/fhir/concept-properties"/>
+      <description value="The concept identified in this property is a child of the concept on which it is a property. The property type will be 'code'. The meaning of 'child' is defined by the hierarchyMeaning attribute"/>
+      <type value="code"/>
+   </property>
+   <concept>
+      <code value="AssignedRoleType"/>
+      <display value="Een roltype wordt gebruikt om een entiteit verder aan te duiden, die een rol speelt met AssignedEntity als modelattribuut RoleClass."/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="notSelectable"/>
+         <valueBoolean value="true"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="02.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="03.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="04.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="16.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="17.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="25.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="30.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="31.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="79.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="80.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="81.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="82.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="83.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="84.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="85.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="86.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="87.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="88.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="89.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="90.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="91.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="92.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="93.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="94.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="95.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="96.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="97.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="98.000"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="99.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.000"/>
+      <display value="Arts"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.002"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.003"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.004"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.008"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.010"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.011"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.012"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.013"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.014"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.015"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.016"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.018"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.019"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.020"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.021"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.022"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.023"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.024"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.025"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.026"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.030"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.031"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.032"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.033"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.034"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.035"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.039"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.040"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.041"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.042"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.045"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.046"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.047"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.048"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.050"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.062"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.055"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.056"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.070"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.071"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="01.074"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.002"/>
+      <display value="Allergoloog (gesloten register)"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.003"/>
+      <display value="Anesthesioloog"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.004"/>
+      <display value="Apotheekhoudende huisarts"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.008"/>
+      <display value="Bedrijfsarts"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.010"/>
+      <display value="Cardioloog"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.011"/>
+      <display value="Cardiothoracaal chirurg"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.012"/>
+      <display value="Dermatoloog"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.013"/>
+      <display value="Arts v. maag-darm-leverziekten"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.014"/>
+      <display value="Chirurg"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.015"/>
+      <display value="Huisarts"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.016"/>
+      <display value="Internist"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.018"/>
+      <display value="Keel- neus- en oorarts"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.019"/>
+      <display value="Kinderarts"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.020"/>
+      <display value="Arts klinische chemie (gesloten register)"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.021"/>
+      <display value="Klinisch geneticus"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.022"/>
+      <display value="Klinisch geriater"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.023"/>
+      <display value="Longarts"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.024"/>
+      <display value="Arts-microbioloog"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.025"/>
+      <display value="Neurochirurg"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.026"/>
+      <display value="Neuroloog"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.030"/>
+      <display value="Nucleair geneeskundige"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.031"/>
+      <display value="Oogarts"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.032"/>
+      <display value="Orthopedisch chirurg"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.033"/>
+      <display value="Patholoog"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.034"/>
+      <display value="Plastisch chirurg"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.035"/>
+      <display value="Psychiater"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.039"/>
+      <display value="Radioloog"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.040"/>
+      <display value="Radiotherapeut"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.041"/>
+      <display value="Reumatoloog"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.042"/>
+      <display value="Revalidatiearts"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.045"/>
+      <display value="Uroloog"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.046"/>
+      <display value="Gynaecoloog"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.047"/>
+      <display value="Specialist ouderengeneeskunde"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.048"/>
+      <display value="Verzekeringsarts"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.050"/>
+      <display value="Zenuwarts (gesloten register)"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.062"/>
+      <display value="Internist-Allergoloog (gesloten register)"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.055"/>
+      <display value="Arts maatschappij en gezondheid"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.056"/>
+      <display value="Arts voor verstandelijk gehandicapten"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.070"/>
+      <display value="Jeugdarts"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.071"/>
+      <display value="Spoedeisende hulp arts (SEH-arts)"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="01.074"/>
+      <display value="Sportarts"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="02.000"/>
+      <display value="Tandarts"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="02.053"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="02.054"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="02.053"/>
+      <display value="Orthodontist"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="02.054"/>
+      <display value="Kaakchirurg"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="03.000"/>
+      <display value="Verloskundige"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="04.000"/>
+      <display value="Fysiotherapeut"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="16.000"/>
+      <display value="Psychotherapeut"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="17.000"/>
+      <display value="Apotheker"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="17.060"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="17.075"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="17.060"/>
+      <display value="Ziekenhuisapotheker"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="17.075"/>
+      <display value="Openbaar apotheker"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="25.000"/>
+      <display value="Gezondheidszorgpsycholoog"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="25.061"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="25.063"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="25.061"/>
+      <display value="Klinisch psycholoog"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="25.063"/>
+      <display value="Klinisch neuropsycholoog"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="30.000"/>
+      <display value="Verpleegkundige"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="30.065"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="30.066"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="30.067"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="30.068"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="30.069"/>
+      </property>
+      <property>
+         <code value="child"/>
+         <valueCode value="30.076"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="30.065"/>
+      <display value="Verpl. spec. prev. zorg bij som. aandoeningen"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="deprecated"/>
+      </property>
+      <property>
+         <code value="deprecated"/>
+         <valueDateTime value="2023-07-01"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2023-07-01"/>
+      </property>
+      <property>
+         <code value="inactive"/>
+         <valueBoolean value="true"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="30.066"/>
+      <display value="Verpl. spec. acute zorg bij som. aandoeningen"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="deprecated"/>
+      </property>
+      <property>
+         <code value="deprecated"/>
+         <valueDateTime value="2021-01-01"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2021-01-01"/>
+      </property>
+      <property>
+         <code value="inactive"/>
+         <valueBoolean value="true"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="30.067"/>
+      <display value="Verpl. spec. intensieve zorg bij som. aandoeningen"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="deprecated"/>
+      </property>
+      <property>
+         <code value="deprecated"/>
+         <valueDateTime value="2021-01-01"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2021-01-01"/>
+      </property>
+      <property>
+         <code value="inactive"/>
+         <valueBoolean value="true"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="30.068"/>
+      <display value="Verpl. spec. chronische zorg bij som. aandoeningen"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="deprecated"/>
+      </property>
+      <property>
+         <code value="deprecated"/>
+         <valueDateTime value="2023-07-01"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2023-07-01"/>
+      </property>
+      <property>
+         <code value="inactive"/>
+         <valueBoolean value="true"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="30.069"/>
+      <display value="Verpl. spec. geestelijke gezondheidszorg"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="30.076"/>
+      <display value="Verpl. spec. algemene gezondheidszorg"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2021-01-01"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="01.000"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="31.000"/>
+      <display value="Orthopedagoog-generalist"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2020-01-01"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="79.000"/>
+      <display value="Geregistreerd-mondhygiënist"/>
+      <definition value="Artikel 36a Wet BIG"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2020-07-01"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="80.000"/>
+      <display value="Bachelor medisch hulpverlener"/>
+      <definition value="Artikel 36a Wet BIG"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="81.000"/>
+      <display value="Physician assistant"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="82.000"/>
+      <display value="Klinisch technoloog"/>
+      <definition value="Artikel 36a Wet BIG"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="83.000"/>
+      <display value="Apothekersassistent"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="84.000"/>
+      <display value="Klinisch fysicus"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="85.000"/>
+      <display value="Tandprotheticus"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="86.000"/>
+      <display value="VIG-er"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="87.000"/>
+      <display value="Optometrist"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="88.000"/>
+      <display value="Huidtherapeut"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="89.000"/>
+      <display value="Diëtist"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="90.000"/>
+      <display value="Ergotherapeut"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="91.000"/>
+      <display value="Logopedist"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="92.000"/>
+      <display value="Mondhygiënist"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="93.000"/>
+      <display value="Oefentherapeut Mensendieck"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="94.000"/>
+      <display value="Oefentherapeut Cesar"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="95.000"/>
+      <display value="Orthoptist"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="96.000"/>
+      <display value="Podotherapeut"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="97.000"/>
+      <display value="Radiodiagnostisch laborant"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="98.000"/>
+      <display value="Radiotherapeutisch laborant"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+   <concept>
+      <code value="99.000"/>
+      <display value="Zorgverlener andere zorg"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="parent"/>
+         <valueCode value="AssignedRoleType"/>
+      </property>
+   </concept>
+</CodeSystem>
