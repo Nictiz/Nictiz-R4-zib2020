@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-SNAQ65plusScore" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-SNAQ65plusScore" />
   <name value="ZibSNAQ65plusScore" />
   <title value="zib SNAQ65plusScore" />
@@ -37,6 +35,18 @@
       <path value="Observation" />
       <short value="SNAQ65+Score" />
       <alias value="SNAQ65+Score" />
+      <constraint>
+        <key value="zib-SNAQ65PlusScore-1" />
+        <severity value="error" />
+        <human value="If one of the component codes is present, all SHALL be present." />
+        <expression value="component.where(code.coding.system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1' and code.coding.code.subsetOf('4030003'|'4030008'|'4030004'|'4030005')).count().subsetOf(0|4)" />
+      </constraint>
+      <constraint>
+        <key value="zib-SNAQ65PlusScore-2" />
+        <severity value="error" />
+        <human value="If the component codes are not all present, the value SHALL be present." />
+        <expression value="value.empty().not() or component.where(code.coding.system='urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1' and code.coding.code.subsetOf('4030003'|'4030008'|'4030004'|'4030005')).count()=4" />
+      </constraint>
       <mapping>
         <identity value="zib-snaq65plusscore-v1.2-2020EN" />
         <map value="NL-CM:4.30.1" />
@@ -99,6 +109,7 @@
       </type>
       <minValueInteger value="0" />
       <maxValueInteger value="5" />
+      <condition value="zib-SNAQ65PlusScore-2" />
       <mapping>
         <identity value="zib-snaq65plusscore-v1.2-2020EN" />
         <map value="NL-CM:4.30.2" />
@@ -134,6 +145,8 @@
       <path value="Observation.component" />
       <sliceName value="weightLossScore" />
       <max value="1" />
+      <condition value="zib-SNAQ65PlusScore-1" />
+      <condition value="zib-SNAQ65PlusScore-2" />
     </element>
     <element id="Observation.component:weightLossScore.code">
       <path value="Observation.component.code" />
@@ -152,6 +165,8 @@
       <type>
         <code value="CodeableConcept" />
       </type>
+      <condition value="zib-SNAQ65PlusScore-1" />
+      <condition value="zib-SNAQ65PlusScore-2" />
       <binding>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.30.1--20200901000000" />
@@ -166,6 +181,8 @@
       <path value="Observation.component" />
       <sliceName value="upperarmCircumference" />
       <max value="1" />
+      <condition value="zib-SNAQ65PlusScore-1" />
+      <condition value="zib-SNAQ65PlusScore-2" />
     </element>
     <element id="Observation.component:upperarmCircumference.code">
       <path value="Observation.component.code" />
@@ -184,6 +201,8 @@
       <type>
         <code value="CodeableConcept" />
       </type>
+      <condition value="zib-SNAQ65PlusScore-1" />
+      <condition value="zib-SNAQ65PlusScore-2" />
       <binding>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.30.4--20200901000000" />
@@ -198,6 +217,8 @@
       <path value="Observation.component" />
       <sliceName value="appetiteScore" />
       <max value="1" />
+      <condition value="zib-SNAQ65PlusScore-1" />
+      <condition value="zib-SNAQ65PlusScore-2" />
     </element>
     <element id="Observation.component:appetiteScore.code">
       <path value="Observation.component.code" />
@@ -216,6 +237,8 @@
       <type>
         <code value="CodeableConcept" />
       </type>
+      <condition value="zib-SNAQ65PlusScore-1" />
+      <condition value="zib-SNAQ65PlusScore-2" />
       <binding>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.30.2--20200901000000" />
@@ -230,6 +253,8 @@
       <path value="Observation.component" />
       <sliceName value="exerciseScore" />
       <max value="1" />
+      <condition value="zib-SNAQ65PlusScore-1" />
+      <condition value="zib-SNAQ65PlusScore-2" />
     </element>
     <element id="Observation.component:exerciseScore.code">
       <path value="Observation.component.code" />
@@ -248,6 +273,8 @@
       <type>
         <code value="CodeableConcept" />
       </type>
+      <condition value="zib-SNAQ65PlusScore-1" />
+      <condition value="zib-SNAQ65PlusScore-2" />
       <binding>
         <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.30.3--20200901000000" />
