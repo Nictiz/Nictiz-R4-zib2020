@@ -37,10 +37,10 @@
          <value value="https://www.zibs.nl"/>
       </telecom>
    </contact>
-   <description value="SNAQ_Gewichtsverlies"/>
+   <description value="Erratum ZIB-1729 - 2024-09-16 - Code G3 toegevoegd"/>
    <caseSensitive value="false"/>
    <content value="complete"/>
-   <count value="3"/>
+   <count value="4"/>
    <property>
       <code value="ordinal-value"/>
       <uri value="http://hl7.org/fhir/StructureDefinition/ordinalValue"/>
@@ -52,6 +52,12 @@
       <uri value="http://hl7.org/fhir/concept-properties"/>
       <description value="A code that indicates the status of the concept. Values found in this version of the code system are: active"/>
       <type value="code"/>
+   </property>
+   <property>
+      <code value="effectiveDate"/>
+      <uri value="http://hl7.org/fhir/concept-properties"/>
+      <description value="The date at which the concept was status was last changed. This is calculated based on the highest of 'creation date', 'expiration date', and 'official release date'"/>
+      <type value="dateTime"/>
    </property>
    <concept>
       <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
@@ -126,6 +132,35 @@
       <property>
          <code value="status"/>
          <valueCode value="active"/>
+      </property>
+   </concept>
+   <concept>
+      <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
+         <valueDecimal value="5"/>
+      </extension>
+      <code value="G3"/>
+      <display value="LossBothAverageAndHigh"/>
+      <definition value="Meer dan 3 kg in de laatste maand EN Meer dan 6 kg in de laatste 6 maanden)"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+            <display value="Synonym"/>
+         </use>
+         <value value="LossBothAverageAndHigh"/>
+      </designation>
+      <property>
+         <code value="ordinal-value"/>
+         <valueInteger value="5"/>
+      </property>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2024-08-16T13:00:00Z"/>
       </property>
    </concept>
 </CodeSystem>
