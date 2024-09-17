@@ -1,0 +1,166 @@
+<CodeSystem xmlns="http://hl7.org/fhir">
+   <id value="2.16.840.1.113883.2.4.3.11.60.40.4.5.1"/>
+   <meta>
+      <profile value="http://hl7.org/fhir/StructureDefinition/shareablecodesystem"/>
+      <!--<profile value="http://hl7.org/fhir/4.0/StructureDefinition/CodeSystem"/>-->
+   </meta>
+   <language value="nl-NL"/>
+   <text>
+      <status value="empty"/>
+      <div xmlns="http://www.w3.org/1999/xhtml" lang="nl-NL" xml:lang="nl-NL">Definitie-resources zijn niet voorzien van een narrative. Een menselijk leesbare versie is te vinden via de implementation guide(s) waarin deze resource gebruikt wordt.</div>
+   </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod">
+      <valuePeriod>
+         <start value="2020-09-01T00:00:00Z"/>
+      </valuePeriod>
+   </extension>
+   <url value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.5.1"/>
+   <identifier>
+      <use value="official"/>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.5.1"/>
+   </identifier>
+   <version value="2020-09-01T00:00:00"/>
+   <name value="SNAQ_Gewichtsverlies"/>
+   <title value="SNAQ_Gewichtsverlies"/>
+   <status value="active"/>
+   <experimental value="false"/>
+   <publisher value="Registratie aan de bron"/>
+   <contact>
+      <name value="Registratie aan de bron"/>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.registratieaandebron.nl"/>
+      </telecom>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.zibs.nl"/>
+      </telecom>
+   </contact>
+   <description value="Erratum ZIB-1729 - 2024-09-16 - Code G3 toegevoegd"/>
+   <caseSensitive value="false"/>
+   <content value="complete"/>
+   <count value="4"/>
+   <property>
+      <code value="ordinal-value"/>
+      <uri value="http://hl7.org/fhir/StructureDefinition/ordinalValue"/>
+      <description value="A numeric value that allows the comparison (less than, greater than) or other numerical manipulation of a concept (e.g. Adding up components of a score). Scores are usually a whole number, but occasionally decimals are encountered in scores."/>
+      <type value="integer"/>
+   </property>
+   <property>
+      <code value="status"/>
+      <uri value="http://hl7.org/fhir/concept-properties"/>
+      <description value="A code that indicates the status of the concept. Values found in this version of the code system are: active"/>
+      <type value="code"/>
+   </property>
+   <property>
+      <code value="effectiveDate"/>
+      <uri value="http://hl7.org/fhir/concept-properties"/>
+      <description value="The date at which the concept was status was last changed. This is calculated based on the highest of 'creation date', 'expiration date', and 'official release date'"/>
+      <type value="dateTime"/>
+   </property>
+   <concept>
+      <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
+         <valueDecimal value="0"/>
+      </extension>
+      <code value="G0"/>
+      <display value="LossLow"/>
+      <definition value="Geen gewichtverlies"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+            <display value="Synonym"/>
+         </use>
+         <value value="LossLow"/>
+      </designation>
+      <property>
+         <code value="ordinal-value"/>
+         <valueInteger value="0"/>
+      </property>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+   </concept>
+   <concept>
+      <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
+         <valueDecimal value="2"/>
+      </extension>
+      <code value="G1"/>
+      <display value="LossAverage"/>
+      <definition value="Meer dan 3 kg in de laatste maand"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+            <display value="Synonym"/>
+         </use>
+         <value value="LossAverage"/>
+      </designation>
+      <property>
+         <code value="ordinal-value"/>
+         <valueInteger value="2"/>
+      </property>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+   </concept>
+   <concept>
+      <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
+         <valueDecimal value="3"/>
+      </extension>
+      <code value="G2"/>
+      <display value="LossHigh"/>
+      <definition value="Meer dan 6 kg in de laatste 6 maanden"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+            <display value="Synonym"/>
+         </use>
+         <value value="LossHigh"/>
+      </designation>
+      <property>
+         <code value="ordinal-value"/>
+         <valueInteger value="3"/>
+      </property>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+   </concept>
+   <concept>
+      <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
+         <valueDecimal value="5"/>
+      </extension>
+      <code value="G3"/>
+      <display value="LossBothAverageAndHigh"/>
+      <definition value="Meer dan 3 kg in de laatste maand EN Meer dan 6 kg in de laatste 6 maanden)"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+            <display value="Synonym"/>
+         </use>
+         <value value="LossBothAverageAndHigh"/>
+      </designation>
+      <property>
+         <code value="ordinal-value"/>
+         <valueInteger value="5"/>
+      </property>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+      <property>
+         <code value="effectiveDate"/>
+         <valueDateTime value="2024-08-16T13:00:00Z"/>
+      </property>
+   </concept>
+</CodeSystem>
