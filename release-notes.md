@@ -333,6 +333,20 @@ This document contains release notes per zib, indicating differences with their 
 * The code on `Observation.component:appetiteScore.code` has changed to 4006004 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
 * The code on `Observation.component:nutritionScore.code` has changed to 4006005 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
 
+## zib-SNAQrcScore
+* The datatype of `Observation.value[x]` (zib concept TotalScore) element has been changed from Quantity to Integer, and minimum and maximum allowed values of 0 and 5 respectively are applied.
+* The code on `Observation.component:weightLossScore.code` has changed to 4029003 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The code on `Observation.component:appetiteScore.code` has changed to 4029004 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The code on `Observation.component:bmiScore.code` has changed to 4029005 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The code on `Observation.component:assistedEating.code` has changed to 4029008 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+
+## zib-SNAQ65plusScore
+* The datatype of `Observation.value[x]` (zib concept TotalScore) element has been changed from Quantity to Integer, and minimum and maximum allowed values of 0 and 5 respectively are applied.
+* The code on `Observation.component:weightLossScore.code` has changed to 4030003 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The code on `Observation.component:upperArmCircumference.code` has changed to 4030008 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The code on `Observation.component:appetiteScore.code` has changed to 4030004 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The code on `Observation.component:excerciseScore.code` has changed to 4030005 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+
 ## zib-SOAPReport
 * This is a newly added zib but had profiles that preceded the zib, namely gp-EncounterReport and gp-JournalEntry.
 * Removed constraints not accounted for by the zib.
