@@ -343,6 +343,13 @@ This document contains release notes per zib, indicating differences with their 
 * `Condition.bodySite` is now based on the zib AnatomicalLocation profile.
 * `Condition.note` now honours the max cardinality of zib Comment.
 
+## zib-SNAQ65plusScore
+* The datatype of `Observation.value[x]` (zib concept TotalScore) element has been changed from Quantity to Integer, and minimum and maximum allowed values of 0 and 5 respectively are applied.
+* The code on `Observation.component:weightLossScore.code` has changed to 4030003 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The code on `Observation.component:upperArmCircumference.code` has changed to 4030008 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The code on `Observation.component:appetiteScore.code` has changed to 4030004 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The code on `Observation.component:excerciseScore.code` has changed to 4030005 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+
 ## zib-Stoma
 * The resource to represent this zib has been changed from Observation to Condition. This aligns better with the meaning of the zib, as a stoma requires long term management. 
 * The general code of a Stoma has been added as a pattern to `Condition.category` allowing the category element to be used for other purposes too.
