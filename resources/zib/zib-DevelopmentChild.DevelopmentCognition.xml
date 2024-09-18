@@ -44,6 +44,31 @@
         </coding>
       </patternCodeableConcept>
     </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effective[x]" />
+      <sliceName value="effectiveDateTime" />
+      <short value="DevelopmentChildDateTime" />
+      <definition value="The date and time on which the status of the development of the child are registered." />
+      <alias value="OntwikkelingKindDatumTijd" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-developmentchild-v1.2-2020EN" />
+        <map value="NL-CM:4.32.2" />
+        <comment value="DevelopmentChildDateTime" />
+      </mapping>
+    </element>
     <element id="Observation.value[x]">
       <path value="Observation.value[x]" />
       <short value="DevelopmentCognition" />
