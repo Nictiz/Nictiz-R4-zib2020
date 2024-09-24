@@ -57,4 +57,11 @@
     <xsl:template match="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod']/f:valuePeriod/f:start" mode="rewrite">
         <start value="{replace(./@value, '[\+-][0-9]{2}:[0-9]{2}', '+00:00')}"/>
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>In ART-DECOR, half a fix is released for the 'deprecated' property in CodeSystems; the property declaration has been fixed and changed to 'deprecationDate', but the use of this property has not been fixed. This leads to a lot of rejections by the Validator, so we'll fix it in post. See https://nictiz.atlassian.net/browse/AD-690 for more information.</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:code[@value='deprecated' and parent::f:property/parent::f:concept/parent::f:CodeSystem]" mode="rewrite">
+        <code value="deprecationDate"/>
+    </xsl:template>
 </xsl:stylesheet>
