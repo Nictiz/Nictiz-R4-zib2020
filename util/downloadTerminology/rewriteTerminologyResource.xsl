@@ -64,4 +64,10 @@
     <xsl:template match="f:code[@value='deprecated' and parent::f:property/parent::f:concept/parent::f:CodeSystem]" mode="rewrite">
         <code value="deprecationDate"/>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>The 'ordinal-value' property is specified in the wrong way and is useless anyway, so it will be removed (see https://nictiz.atlassian.net/browse/AD-689) in a future release of ART-DECOR. Since it creates a lot of errors in our package, we'll remove it here.</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:property[f:uri/@value='http://hl7.org/fhir/StructureDefinition/ordinalValue' and parent::f:CodeSystem]" mode="rewrite"/>
+    <xsl:template match="f:property[f:code/@value='ordinal-value' and parent::f:concept/parent::f:CodeSystem]" mode="rewrite"/>
 </xsl:stylesheet>
