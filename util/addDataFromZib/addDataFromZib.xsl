@@ -16,7 +16,7 @@
     <xsl:param name="overwrite" select="true()"/>
 
     <!-- Zib decor project file -->
-    <xsl:param name="allDatasets" select="document('zib2024bbr-decor.xml')/decor/datasets"/>
+    <xsl:param name="allDatasets" select="document('../zib2020bbr-decor.xml')/decor/datasets"/>
     
     <!-- Unique identification string for when mappings are implicit, as described in the profiling guidelines -->
     <xsl:param name="implicitIdentifier" select="' (implicit, main mapping is on '"/>
