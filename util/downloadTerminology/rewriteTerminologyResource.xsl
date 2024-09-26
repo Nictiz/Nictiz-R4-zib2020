@@ -57,4 +57,17 @@
     <xsl:template match="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod']/f:valuePeriod/f:start" mode="rewrite">
         <start value="{replace(./@value, '[\+-][0-9]{2}:[0-9]{2}', '+00:00')}"/>
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>In ART-DECOR, half a fix is released for the 'deprecated' property in CodeSystems; the property declaration has been fixed and changed to 'deprecationDate', but the use of this property has not been fixed. This leads to a lot of rejections by the Validator, so we'll fix it in post. See https://nictiz.atlassian.net/browse/AD-690 for more information.</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:code[@value='deprecated' and parent::f:property/parent::f:concept/parent::f:CodeSystem]" mode="rewrite">
+        <code value="deprecationDate"/>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>The 'ordinal-value' property is specified in the wrong way and is useless anyway, so it will be removed (see https://nictiz.atlassian.net/browse/AD-689) in a future release of ART-DECOR. Since it creates a lot of errors in our package, we'll remove it here.</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:property[f:uri/@value='http://hl7.org/fhir/StructureDefinition/ordinalValue' and parent::f:CodeSystem]" mode="rewrite"/>
+    <xsl:template match="f:property[f:code/@value='ordinal-value' and parent::f:concept/parent::f:CodeSystem]" mode="rewrite"/>
 </xsl:stylesheet>
