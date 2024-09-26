@@ -11,7 +11,11 @@
     
     <!-- Show (optional) warnings to 'validate' content of profile -->
     <xsl:param name="showWarnings" select="true()"/>
-    <!-- Zib2020 decor project file -->
+
+    <!-- If metadata are present, overwrite them with values from the DECOR defintions file -->
+    <xsl:param name="overwrite" select="true()"/>
+
+    <!-- Zib decor project file -->
     <xsl:param name="allDatasets" select="document('../zib2020bbr-decor.xml')/decor/datasets"/>
     
     <!-- Unique identification string for when mappings are implicit, as described in the profiling guidelines -->
@@ -226,52 +230,56 @@
                 <xsl:copy>
                     <xsl:apply-templates select="@*"/>
                     <xsl:apply-templates select="f:path | f:representation | f:sliceName | f:sliceIsConstraining | f:label | f:code | f:slicing"/>
-                    <xsl:variable name="calculatedShort" select="string-join($originalConcepts/name[@language='en-US'][text() != '']/text(), ' / ')"/>
+                    <xsl:variable name="calculatedShort" select="string-join(distinct-values($originalConcepts/name[@language='en-US'][text() != '']/text()), ' / ')"/>
+                    
                     <xsl:choose>
-                        <xsl:when test="f:short">
+                        <xsl:when test="f:short and not($overwrite)">
                             <xsl:apply-templates select="f:short"/>
                             <xsl:if test="$showWarnings and not(f:short/@value = $calculatedShort)">
-                                <xsl:message>Element with id '<xsl:value-of select="@id"/>' has short '<xsl:value-of select="f:short/@value"/>' which does not correspond with Zib2020 value '<xsl:value-of select="$calculatedShort"/>'.</xsl:message>
+                                <xsl:message>Element with id '<xsl:value-of select="@id"/>' has short '<xsl:value-of select="f:short/@value"/>' which does not correspond with zib value '<xsl:value-of select="$calculatedShort"/>'.</xsl:message>
                             </xsl:if>
                         </xsl:when>
                         <xsl:when test="$calculatedShort">
                             <short value="{$calculatedShort}"/>
                         </xsl:when>
                     </xsl:choose>
+                    
+                    <xsl:variable name="definitions" select="$originalConcepts/desc[@language='en-US'][text() != '' and not(starts-with(text()[1], 'Root concept of the '))]"/><!-- Do not add definition of 'Root concept'. Because root concepts do not always have to be mapped to the root of a profile, we match on the definition text. -->
                     <xsl:variable name="calculatedDefinition">
                         <xsl:choose>
-                            <xsl:when test="count($originalConcepts/desc[@language='en-US'][text() != '']) &gt; 1">
-                                <xsl:copy-of select="concat('* ', string-join($originalConcepts/desc[@language='en-US'][text() != '']/text(), '&#xD;&#xA;* '))"/>
+                            <xsl:when test="count($definitions) &gt; 1">
+                                <xsl:copy-of select="concat('* ', string-join($definitions/text(), '&#xD;&#xA;* '))"/>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:value-of select="$originalConcepts/desc[@language='en-US'][text() != '']"/>
+                                <xsl:value-of select="$definitions[1]/text()"/>
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:variable> 
                     <xsl:choose>
-                        <xsl:when test="f:definition">
+                        <xsl:when test="f:definition and not($overwrite)">
                             <xsl:apply-templates select="f:definition"/>
                             <xsl:if test="$showWarnings and not(f:definition/@value = $calculatedDefinition)">
-                                <xsl:message>Element with id '<xsl:value-of select="@id"/>' has definition '<xsl:value-of select="f:definition/@value"/>' which does not correspond with Zib2020 value '<xsl:value-of select="$calculatedDefinition"/>'.</xsl:message>
+                                <xsl:message>Element with id '<xsl:value-of select="@id"/>' has definition '<xsl:value-of select="f:definition/@value"/>' which does not correspond with zib value '<xsl:value-of select="$calculatedDefinition"/>'.</xsl:message>
                             </xsl:if>
                         </xsl:when>
-                        <!-- Do not add definition of 'Root concept'. Because root concepts do not always have to be mapped to the root of a profile, we match on the definition text. -->
-                        <xsl:when test="starts-with($calculatedDefinition, concat('Root concept of the ', $calculatedShort, ' information model.'))"/>
-                        <xsl:when test="$originalConcepts/desc[@language='en-US']/text()">
+                        <xsl:when test="count($definitions) &gt; 0">
                             <definition value="{$calculatedDefinition}"/>
                         </xsl:when>
                     </xsl:choose>
+                    
                     <xsl:apply-templates select="f:comment | f:requirements"/>
+                    
+                    <xsl:variable name="aliases" select="distinct-values($originalConcepts/name[@language='nl-NL']/text())"/>
                     <xsl:choose>
-                        <xsl:when test="f:alias">
+                        <xsl:when test="f:alias and not($overwrite)">
                             <xsl:apply-templates select="f:alias"/>
-                            <xsl:if test="$showWarnings and $originalConcepts/name[@language='nl-NL']/text() and not(f:alias/@value = $originalConcepts/name[@language='nl-NL']/text())">
-                                <xsl:message>Element with id '<xsl:value-of select="@id"/>' has alias '<xsl:value-of select="f:alias/@value"/>' which does not correspond with Zib2020 value '<xsl:value-of select="$originalConcepts/name[@language='nl-NL']/text()"/>'.</xsl:message>
+                            <xsl:if test="$showWarnings and count($aliases) &gt; 0 and not(f:alias/@value = $aliases)">
+                                <xsl:message>Element with id '<xsl:value-of select="@id"/>' has alias '<xsl:value-of select="f:alias/@value"/>' which does not correspond with Zib value '<xsl:value-of select="$aliases"/>'.</xsl:message>
                             </xsl:if>
                         </xsl:when>
-                        <xsl:when test="$originalConcepts/name[@language='nl-NL']/text()">
-                            <xsl:for-each select="$originalConcepts">
-                                <alias value="{./name[@language='nl-NL']/text()}"/>
+                        <xsl:when test="count($aliases) &gt; 0">
+                            <xsl:for-each select="$aliases">
+                                <alias value="{.}"/>
                             </xsl:for-each>
                         </xsl:when>
                     </xsl:choose>
@@ -299,10 +307,10 @@
                     <xsl:apply-templates select="@*"/>
                     <xsl:apply-templates select="f:identity | f:language | f:map"/>
                     <xsl:choose>
-                        <xsl:when test="f:comment">
+                        <xsl:when test="f:comment and not($overwrite)">
                             <xsl:apply-templates select="f:comment"/>
                             <xsl:if test="$showWarnings and $originalConcept/name[@language='en-US']/text() and not(f:comment/@value = $originalConcept/name[@language='en-US']/text())">
-                                <xsl:message>Element with id '<xsl:value-of select="parent::f:element/@id"/>' has mapping.comment '<xsl:value-of select="f:comment/@value"/>' which does not correspond with Zib2020 value '<xsl:value-of select="$originalConcept/name[@language='en-US']/text()"/>'.</xsl:message>
+                                <xsl:message>Element with id '<xsl:value-of select="parent::f:element/@id"/>' has mapping.comment '<xsl:value-of select="f:comment/@value"/>' which does not correspond with zib0 value '<xsl:value-of select="$originalConcept/name[@language='en-US']/text()"/>'.</xsl:message>
                             </xsl:if>
                         </xsl:when>
                         <xsl:when test="$originalConcept/name[@language='en-US']/text()">
