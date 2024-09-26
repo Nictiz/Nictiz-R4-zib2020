@@ -100,8 +100,7 @@
         <xsl:param name="alreadyHandled" as="element(reference)*"/>
 
         <xsl:variable name="urls"
-            select="collection(concat($sourceDir, '?select=*.xml;recurse=yes'))/(f:StructureDefinition | f:ConceptMap | f:ValueSet)//@value[starts-with(., 'http://decor.nictiz.nl/fhir/')][not(parent::f:source/parent::f:meta)]" as="attribute()*"/>
-
+            select="collection(concat($sourceDir, '?select=*.xml;recurse=yes'))/(f:StructureDefinition//f:binding/f:valueSet | f:ValueSet//f:include/f:valueSet | f:ConceptMap/f:sourceCanonical | f:ConceptMap/f:targetCanonical)/@value[starts-with(., 'http://decor.nictiz.nl/fhir/')]" as="attribute()*"/>
         <xsl:variable name="references" as="element(reference)*">
             <xsl:for-each-group select="$urls" group-by="string(.)">
                 <xsl:if test="not($alreadyHandled[string(@url) = current-grouping-key()])">
