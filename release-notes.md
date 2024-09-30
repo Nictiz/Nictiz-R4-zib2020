@@ -422,6 +422,7 @@ This document contains release notes per zib, indicating differences with their 
 * The concept of 'DateOfLastDressingChange' has been relocated to the Wound Characteristics profile. 
 
 ## zib-wounds.WoundCharacteristics
+* The different components have been split out to distinct Observation profiles.
 * The profile's name has been changed from "WoundCharacteristics" to "zib-wounds.WoundCharacteristics".
 * The concept of "WoundImage" is a separate profile (zib-wounds.WoundImage) instead of a component.
 
