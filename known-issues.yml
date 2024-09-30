@@ -835,7 +835,13 @@ nl-core-*:
       - message: None of the codings provided are in the value set 'ProbleemNaamCodelijst'
         reason: This ValueSet contains two SNOMED refsets. The terminology servers are unable to determine if a code is part of this refset.
       - message: "Error from http://tx.fhir.org/r4: The Snomed Concept 31000147101 was not known"
-        reason: This code represents the DHD Diagnosethesaurus, which the default terminology server is unable to check. This causes problems on some occassions (but not all).
+        reason: This code represents the DHD Diagnosethesaurus, which the default terminology server is unable to check. This causes problems on some occasions (but not all).
+    Condition.evidence[*].detail[*]:
+      - message: This element does not match any known slice defined in the profile
+        reason: The Validator is unable to resolve references on disk, so it is unable to match reference slices
+    Observation.hasMember[*]:
+      - message: This element does not match any known slice defined in the profile
+        reason: The Validator is unable to resolve references on disk, so it is unable to match reference slices
 
 nl-core-AllergyIntolerance*:
   ignored issues:
@@ -893,6 +899,12 @@ nl-core-HeartRate-*:
       - message: None of the codings provided are in the value set 'Vital Signs Units'
         reason: The Validator checks all Observations with a vital signs magic LOINC code against the HL7 Vital Signs base profile. Unfortunately, this profile restricts the allowed components to only the use cases identified by HL7, while the zib adds additional data. This has been identified as a bug in het HL7 Vital Signs profile, which will be fixed in the next version. See https://jira.hl7.org/browse/FHIR-43353 for more information.
 
+nl-core-Burnwound.Extent-*:
+  ignored issues:
+    Observation.code.coding[*].code:
+      - message: Unknown code '360531000146101' in the CodeSystem 'http://snomed.info/sct'
+        reason: This Dutch code is not yet known in the default terminology server
+
 nl-core-VisualFunction.VisualAid-*:
   ignored issues:
     DeviceUseStatement.reasonReference[*]:
@@ -935,6 +947,12 @@ nl-core-PulseRate-*:
     Observation.component[*].value.*:
       - message: None of the codings provided are in the value set 'Vital Signs Units'
         reason: The Validator checks all Observations with a vital signs magic LOINC code against the HL7 Vital Signs base profile. Unfortunately, this profile restricts the allowed components to only the use cases identified by HL7, while the zib adds additional data. This has been identified as a bug in het HL7 Vital Signs profile, which will be fixed in the next version. See https://jira.hl7.org/browse/FHIR-43353 for more information.
+
+nl-core-Wound-*-DateOfLastDressingChange-*:
+  ignored issues:
+    Observation.code.coding[*].code:
+      - message: Unknown code '360541000146109' in the CodeSystem 'http://snomed.info/sct'
+        reason: This Dutch code is not yet known in the default terminology server
 
 zib-*Function.*Aid.Product:
   ignored issues:
