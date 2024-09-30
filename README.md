@@ -19,11 +19,9 @@ All of the conformance resources representing the zibs are vetted by HL7 Netherl
 
 ## Changes in this repository
 
-Bugs and other issues are tracked using the [BITS MM project](https://bits.nictiz.nl/projects/MM/).
+Bugs and other issues can be raised using the [Nictiz Service Desk](https://nictiz.atlassian.net/servicedesk/customer/portal/4) and are subsequently tracked using the [BITS ZIBFHIR project](https://bits.nictiz.nl/projects/ZIBFHIR/).
 
-Note 1: It is a bit of a misnomer to use this project, but this has been chosen for pragmatic reasons.
-
-Note 2: Changes affecting the published packages are guaranteed to be tracked using a change request in this issue tracker. Unpublished materials might change for a variety of reasons.
+Note: Changes affecting the published packages are guaranteed to be tracked using a change request in this issue tracker. Unpublished materials might change for a variety of reasons.
 
 ## Profiling guidelines
 

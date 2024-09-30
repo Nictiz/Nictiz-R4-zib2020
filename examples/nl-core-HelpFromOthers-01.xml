@@ -1,40 +1,87 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <CarePlan xmlns="http://hl7.org/fhir">
-   <id value="nl-core-HelpFromOthers-01"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HelpFromOthers"/>
-   </meta>
-   <status value="active"/>
-   <intent value="plan"/>
-   <category>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="243114000"/>
-         <display value="ondersteuning"/>
-      </coding>
-   </category>
-   <subject>
-      <reference value="Patient/nl-core-Patient-01"/>
-      <type value="Patient"/>
-      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
-   </subject>
-   <activity>
-      <detail>
-         <code>
-            <coding>
-               <system value="http://snomed.info/sct"/>
-               <code value="386229000"/>
-               <display value="ondersteuning voor verzorger"/>
-            </coding>
-         </code>
-         <status value="in-progress"/>
-         <scheduledString value="1 keer per week"/>
-         <performer>
-            <reference value="RelatedPerson/nl-core-HelpFromOthers-01-RelatedPerson-01"/>
-            <type value="RelatedPerson"/>
-            <display value="Contact person, de Boer"/>
-         </performer>
-         <description value="Boodschappen doen"/>
-      </detail>
-   </activity>
+  <id value="nl-core-HelpFromOthers-01"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HelpFromOthers"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <table>
+        <caption>Zorgplan. Subject: Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen. Categorie: <span title="ondersteuning (243114000 - SNOMED CT)">ondersteuning</span>, Status: actief<span style="display: block;">Intentie: plan</span>
+        </caption>
+        <tbody>
+          <tr>
+            <th>Activiteit</th>
+            <td>
+              <table>
+                <tbody>
+                  <tr>
+                    <td colspan="2">
+                      <table>
+                        <caption>Details<span style="display: block;">Status: is bezig</span>
+                        </caption>
+                        <tbody>
+                          <tr>
+                            <th>Code</th>
+                            <td>
+                              <span title="ondersteuning voor verzorger (386229000 - SNOMED CT)">ondersteuning voor verzorger</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>Omschrijving</th>
+                            <td>Boodschappen doen</td>
+                          </tr>
+                          <tr>
+                            <th>Schema</th>
+                            <td>1 keer per week</td>
+                          </tr>
+                          <tr>
+                            <th>Uitvoerende</th>
+                            <td>Contact person, de Boer</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </text>
+  <status value="active"/>
+  <intent value="plan"/>
+  <category>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="243114000"/>
+      <display value="ondersteuning"/>
+    </coding>
+  </category>
+  <subject>
+    <reference value="Patient/nl-core-Patient-01"/>
+    <type value="Patient"/>
+    <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+  </subject>
+  <activity>
+    <detail>
+      <code>
+        <coding>
+          <system value="http://snomed.info/sct"/>
+          <code value="386229000"/>
+          <display value="ondersteuning voor verzorger"/>
+        </coding>
+      </code>
+      <status value="in-progress"/>
+      <scheduledString value="1 keer per week"/>
+      <performer>
+        <reference value="RelatedPerson/nl-core-HelpFromOthers-01-RelatedPerson-01"/>
+        <type value="RelatedPerson"/>
+        <display value="Contact person, de Boer"/>
+      </performer>
+      <description value="Boodschappen doen"/>
+    </detail>
+  </activity>
 </CarePlan>

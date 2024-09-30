@@ -12,8 +12,10 @@ patterns:
   other profiles:
   - resources/zib/*.xml
   - resources/nl-core/*.xml
-  conceptmaps: resources/**/conceptmap-*.xml
-  terminology: resources/**/terminology/*.xml
+  ConceptMaps: resources/**/ConceptMap-*.xml
+  ValueSets: resources/**/ValueSet-*.xml
+  CodeSystems: resources/**/CodeSystem-*.xml
+  other terminology: resources/**/terminology/*.xml
   SearchParameters: SearchParameters/*.xml
   examples: examples/*.xml
 
@@ -40,11 +42,17 @@ steps:
     profile: "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions"
   validate ConceptMaps:
     description: Validate the ConceptMaps using the profile for ConceptMaps
-    patterns: conceptmaps
+    patterns: ConceptMaps
     profile: "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-ConceptMaps"
+  validate ValueSets:
+    description: Validate ValueSets
+    patterns: ValueSets
+  validate CodeSystems:
+    description: Validate CodeSystems
+    patterns: CodeSystems
   validate other terminology:
     description: Validate the other terminology resources
-    patterns: terminology
+    patterns: other terminology
   validate SearchParameters:
     description: Validate SearchParameters
     patterns: SearchParameters

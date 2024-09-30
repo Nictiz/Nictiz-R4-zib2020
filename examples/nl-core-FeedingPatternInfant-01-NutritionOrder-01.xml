@@ -1,25 +1,58 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <NutritionOrder xmlns="http://hl7.org/fhir">
-   <id value="nl-core-FeedingPatternInfant-01-NutritionOrder-01"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NutritionAdvice"/>
-   </meta>
-   <status value="active"/>
-   <intent value="order"/>
-   <patient>
-      <reference value="Patient/nl-core-Patient-01"/>
-      <type value="Patient"/>
-      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
-   </patient>
-   <dateTime value="2023-06-23T14:38:16.625919+02:00"/>
-   <oralDiet>
-      <type>
-         <text value="Energieverrijkt"/>
-      </type>
-      <texture>
-         <modifier>
-            <text value="Vloeibaar"/>
-         </modifier>
-      </texture>
-   </oralDiet>
+  <id value="nl-core-FeedingPatternInfant-01-NutritionOrder-01"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NutritionAdvice"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <table>
+        <caption>Voedingsadvies. Patiënt: Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen. Status: actief<span style="display: block;">Intentie: aanvraag</span>
+        </caption>
+        <tbody>
+          <tr>
+            <th>Aanvraagdatum</th>
+            <td>14:38:16, 23 juni 2023</td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <table>
+                <caption>Orale voeding</caption>
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Texture</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Energieverrijkt</td>
+                    <td>Vloeibaar</td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </text>
+  <status value="active"/>
+  <intent value="order"/>
+  <patient>
+    <reference value="Patient/nl-core-Patient-01"/>
+    <type value="Patient"/>
+    <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+  </patient>
+  <dateTime value="2023-06-23T14:38:16.625919+02:00"/>
+  <oralDiet>
+    <type>
+      <text value="Energieverrijkt"/>
+    </type>
+    <texture>
+      <modifier>
+        <text value="Vloeibaar"/>
+      </modifier>
+    </texture>
+  </oralDiet>
 </NutritionOrder>

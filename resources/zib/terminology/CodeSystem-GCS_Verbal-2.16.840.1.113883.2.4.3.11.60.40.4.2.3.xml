@@ -1,24 +1,28 @@
 <CodeSystem xmlns="http://hl7.org/fhir">
-   <id value="2.16.840.1.113883.2.4.3.11.60.40.4.2.2"/>
+   <id value="2.16.840.1.113883.2.4.3.11.60.40.4.2.3"/>
    <meta>
       <profile value="http://hl7.org/fhir/StructureDefinition/shareablecodesystem"/>
       <!--<profile value="http://hl7.org/fhir/4.0/StructureDefinition/CodeSystem"/>-->
    </meta>
    <language value="nl-NL"/>
+   <text>
+      <status value="empty"/>
+      <div xmlns="http://www.w3.org/1999/xhtml" lang="nl-NL" xml:lang="nl-NL">Definitie-resources zijn niet voorzien van een narrative. Een menselijk leesbare versie is te vinden via de implementation guide(s) waarin deze resource gebruikt wordt.</div>
+   </text>
    <extension url="http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod">
       <valuePeriod>
-         <start value="2020-09-01T00:00:00+00:00"/>
+         <start value="2020-09-01T00:00:00Z"/>
       </valuePeriod>
    </extension>
-   <url value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.2.2"/>
+   <url value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.2.3"/>
    <identifier>
       <use value="official"/>
       <system value="urn:ietf:rfc:3986"/>
-      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.2.2"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.2.3"/>
    </identifier>
    <version value="2020-09-01T00:00:00"/>
-   <name value="GCS_Motor"/>
-   <title value="GCS_Motor"/>
+   <name value="GCS_Verbal"/>
+   <title value="GCS_Verbal"/>
    <status value="active"/>
    <experimental value="false"/>
    <publisher value="Registratie aan de bron"/>
@@ -33,19 +37,13 @@
          <value value="https://www.zibs.nl"/>
       </telecom>
    </contact>
-   <description value="GCS_Motor"/>
+   <description value="GCS_Verbal"/>
    <caseSensitive value="false"/>
    <content value="complete"/>
-   <count value="9"/>
-   <property>
-      <code value="ordinal-value"/>
-      <uri value="http://hl7.org/fhir/StructureDefinition/ordinalValue"/>
-      <description value="A numeric value that allows the comparison (less than, greater than) or other numerical manipulation of a concept (e.g. Adding up components of a score). Scores are usually a whole number, but occasionally decimals are encountered in scores."/>
-      <type value="integer"/>
-   </property>
+   <count value="10"/>
    <property>
       <code value="status"/>
-      <uri value="http://hl7.org/fhir/concept-properties"/>
+      <uri value="http://hl7.org/fhir/concept-properties#status"/>
       <description value="A code that indicates the status of the concept. Values found in this version of the code system are: active"/>
       <type value="code"/>
    </property>
@@ -53,9 +51,9 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
          <valueDecimal value="1"/>
       </extension>
-      <code value="M1"/>
-      <display value="Geen reactie op pijnprikkel"/>
-      <definition value="Geen reactie op pijnprikkel [Geen enkele lichamelijke reactie beweging op een pijnprikkel] [DEPRECATED]"/>
+      <code value="V1"/>
+      <display value="Geen reactie"/>
+      <definition value="Geen reactie [Geen enkel verbale respons]"/>
       <designation>
          <language value="en-US"/>
          <use>
@@ -66,10 +64,6 @@
          <value value="No response"/>
       </designation>
       <property>
-         <code value="ordinal-value"/>
-         <valueInteger value="1"/>
-      </property>
-      <property>
          <code value="status"/>
          <valueCode value="active"/>
       </property>
@@ -78,9 +72,9 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
          <valueDecimal value="2"/>
       </extension>
-      <code value="M2"/>
-      <display value="Strekreactie"/>
-      <definition value="Strekreactie [Armen en handen op krampachtige manier geplooid met naar buitengedraaide hand. Mogelijk alle spieren van het lichaam gespannen]"/>
+      <code value="V2"/>
+      <display value="Onverstaanbaar"/>
+      <definition value="Onverstaanbaar [De spraak is niet te verstaan]"/>
       <designation>
          <language value="en-US"/>
          <use>
@@ -88,12 +82,8 @@
             <code value="900000000000013009"/>
             <display value="Synonym"/>
          </use>
-         <value value="Extensor response"/>
+         <value value="Incomprehensible sounds"/>
       </designation>
-      <property>
-         <code value="ordinal-value"/>
-         <valueInteger value="2"/>
-      </property>
       <property>
          <code value="status"/>
          <valueCode value="active"/>
@@ -103,9 +93,9 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
          <valueDecimal value="3"/>
       </extension>
-      <code value="M3"/>
-      <display value="Buigreactie"/>
-      <definition value="Buigreactie [Armen en handen op krampachtige manier geplooid. Meestal benen gestrekt.]"/>
+      <code value="V3"/>
+      <display value="Inadequaat"/>
+      <definition value="Inadequaat [Woorden zijn te verstaan maar vormen geen zinnen]"/>
       <designation>
          <language value="en-US"/>
          <use>
@@ -113,12 +103,8 @@
             <code value="900000000000013009"/>
             <display value="Synonym"/>
          </use>
-         <value value="Flexor response"/>
+         <value value="Inappropriate speech"/>
       </designation>
-      <property>
-         <code value="ordinal-value"/>
-         <valueInteger value="3"/>
-      </property>
       <property>
          <code value="status"/>
          <valueCode value="active"/>
@@ -128,9 +114,9 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
          <valueDecimal value="4"/>
       </extension>
-      <code value="M4"/>
-      <display value="Terugtrekken"/>
-      <definition value="Terugtrekken [In staat om een afwerende of wegtrekkende beweging te maken op een pijnprikkel]"/>
+      <code value="V4"/>
+      <display value="Verward"/>
+      <definition value="Verward [Verwarde conversatie maar wel in staat om te antwoorden op de vragen]"/>
       <designation>
          <language value="en-US"/>
          <use>
@@ -138,12 +124,8 @@
             <code value="900000000000013009"/>
             <display value="Synonym"/>
          </use>
-         <value value="Withdrawal response"/>
+         <value value="Confused"/>
       </designation>
-      <property>
-         <code value="ordinal-value"/>
-         <valueInteger value="4"/>
-      </property>
       <property>
          <code value="status"/>
          <valueCode value="active"/>
@@ -153,9 +135,9 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
          <valueDecimal value="5"/>
       </extension>
-      <code value="M5"/>
-      <display value="Lokaliseren"/>
-      <definition value="Lokaliseren [In staat zijn de pijn duidelijk te lokaliseren]"/>
+      <code value="V5"/>
+      <display value="Georiënteerd"/>
+      <definition value="Georiënteerd [Helder en duidelijk bewust van de situatie]"/>
       <designation>
          <language value="en-US"/>
          <use>
@@ -163,12 +145,8 @@
             <code value="900000000000013009"/>
             <display value="Synonym"/>
          </use>
-         <value value="Localises pain"/>
+         <value value="Oriented"/>
       </designation>
-      <property>
-         <code value="ordinal-value"/>
-         <valueInteger value="5"/>
-      </property>
       <property>
          <code value="status"/>
          <valueCode value="active"/>
@@ -176,11 +154,22 @@
    </concept>
    <concept>
       <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
-         <valueDecimal value="6"/>
+         <valueDecimal value="2"/>
       </extension>
-      <code value="M6"/>
-      <display value="Voert opdracht uit"/>
-      <definition value="Voert opdracht uit [Een eenvoudig bevel wordt uitgevoerd]"/>
+      <code value="V6"/>
+      <display value="Kreunen"/>
+      <definition value="Kreunen [geen spraak, alleen kreunen]"/>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+   </concept>
+   <concept>
+      <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
+         <valueDecimal value="2"/>
+      </extension>
+      <code value="V2B"/>
+      <display value="Jammert/kreunt"/>
       <designation>
          <language value="en-US"/>
          <use>
@@ -188,12 +177,37 @@
             <code value="900000000000013009"/>
             <display value="Synonym"/>
          </use>
-         <value value="Obeys"/>
+         <value value="Moans"/>
       </designation>
       <property>
-         <code value="ordinal-value"/>
-         <valueInteger value="6"/>
+         <code value="status"/>
+         <valueCode value="active"/>
       </property>
+   </concept>
+   <concept>
+      <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
+         <valueDecimal value="3"/>
+      </extension>
+      <code value="V3B"/>
+      <display value="Cries to pain"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+            <display value="Synonym"/>
+         </use>
+         <value value="Cries to pain"/>
+      </designation>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+            <display value="Synonym"/>
+         </use>
+         <value value="Huilt van de pijn"/>
+      </designation>
       <property>
          <code value="status"/>
          <valueCode value="active"/>
@@ -203,9 +217,8 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
          <valueDecimal value="4"/>
       </extension>
-      <code value="M4B"/>
-      <display value="Terugtrekken in respons op pijn"/>
-      <definition value="Terugtrekken in respons op pijn [Maakt afwerende of wegtrekkende beweging bij een pijnprikkel]"/>
+      <code value="V4B"/>
+      <display value="Irritatable cries"/>
       <designation>
          <language value="en-US"/>
          <use>
@@ -213,12 +226,17 @@
             <code value="900000000000013009"/>
             <display value="Synonym"/>
          </use>
-         <value value="Withdraws to pain"/>
+         <value value="Irritatable cries"/>
       </designation>
-      <property>
-         <code value="ordinal-value"/>
-         <valueInteger value="4"/>
-      </property>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+            <display value="Synonym"/>
+         </use>
+         <value value="Huilt prikkelbaar"/>
+      </designation>
       <property>
          <code value="status"/>
          <valueCode value="active"/>
@@ -228,9 +246,8 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
          <valueDecimal value="5"/>
       </extension>
-      <code value="M5B"/>
-      <display value="Terugtrekken bij aanraking"/>
-      <definition value="Terugtrekken bij aanraking [Trekt terug bij aanraken]"/>
+      <code value="V5B"/>
+      <display value="Kirt/brabbelt"/>
       <designation>
          <language value="en-US"/>
          <use>
@@ -238,37 +255,8 @@
             <code value="900000000000013009"/>
             <display value="Synonym"/>
          </use>
-         <value value="Withdraws to tuch"/>
+         <value value="Coos/babbles"/>
       </designation>
-      <property>
-         <code value="ordinal-value"/>
-         <valueInteger value="5"/>
-      </property>
-      <property>
-         <code value="status"/>
-         <valueCode value="active"/>
-      </property>
-   </concept>
-   <concept>
-      <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
-         <valueDecimal value="6"/>
-      </extension>
-      <code value="M6B"/>
-      <display value="Normaal"/>
-      <definition value="Normaal [beweegt zoals verwacht]"/>
-      <designation>
-         <language value="en-US"/>
-         <use>
-            <system value="http://snomed.info/sct"/>
-            <code value="900000000000013009"/>
-            <display value="Synonym"/>
-         </use>
-         <value value="Moves spontaneously and purposefully"/>
-      </designation>
-      <property>
-         <code value="ordinal-value"/>
-         <valueInteger value="6"/>
-      </property>
       <property>
          <code value="status"/>
          <valueCode value="active"/>
