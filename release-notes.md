@@ -67,6 +67,11 @@ This document contains release notes per zib, indicating differences with their 
 * The mapping of the Stoma concept has been moved from extension to profile level.
 * MedicalDevice extension has been removed because the reference is reversed in FHIR. The MedicalDevice profile refers to this profile.
 
+## zib-Burnwound
+* BurnType is mapped to `Condition.code`.
+* The concept of 'DateOfLastDressingChange' has been relocated to the Wound Characteristics profile. 
+* The concept of 'Extent' has been relocated to the Wound Characteristics profile. 
+
 ## zib-CareTeam
 * CareTeam is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
 
@@ -300,6 +305,9 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-Pregnancy.PregnancyDuration
 * The zib-Pregnancy extension has moved from `Observation.extension` to `Observation.focus`.
 
+## zib-PressureUlcer
+* The concept of 'DateOfLastDressingChange' has been relocated to the Wound Characteristics profile.
+
 ## zib-Problem
 * ProblemType has been added on a slice of `Condition.category` allowing the category element to be used for other purposes too.
 * FurtherSpecificationProblemName has been added with an extension on `Condition.code`.
@@ -409,3 +417,14 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-VisualFunction
 * Changed fixed slice on `.code.coding` to a pattern on `.code`.
 * Relaxed cardinality of `value[x]` to `0..1` of the conceptual cardinalities of the zib.
+
+## zib-Wound
+* The concept of 'DateOfLastDressingChange' has been relocated to the Wound Characteristics profile. 
+
+## zib-wounds.WoundCharacteristics
+* The different components have been split out to distinct Observation profiles.
+* The profile's name has been changed from "WoundCharacteristics" to "zib-wounds.WoundCharacteristics".
+* The concept of "WoundImage" is a separate profile (zib-wounds.WoundImage) instead of a component.
+
+## zib-wounds.WoundImage
+* There was no profile in the STU3 version and therefore no diff.
