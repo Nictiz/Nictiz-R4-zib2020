@@ -1,5 +1,5 @@
 <ValueSet xmlns="http://hl7.org/fhir">
-   <id value="2.16.840.1.113883.2.4.3.11.60.40.2.19.4.4--20200901000000"/>
+   <id value="2.16.840.1.113883.2.4.3.11.60.40.2.19.2.2--20200901000000"/>
    <meta>
       <source value="http://decor.nictiz.nl/fhir/4.0/zib2020bbr-"/>
       <profile value="http://hl7.org/fhir/StructureDefinition/shareablevalueset"/>
@@ -9,20 +9,24 @@
          <code value="4.0.1"/>
       </tag>
    </meta>
+   <text>
+      <status value="empty"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+   </text>
    <extension url="http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod">
       <valuePeriod>
          <start value="2020-09-01T00:00:00Z"/>
       </valuePeriod>
    </extension>
-   <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.19.4.4--20200901000000"/>
+   <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.19.2.2--20200901000000"/>
    <identifier>
       <use value="official"/>
       <system value="urn:ietf:rfc:3986"/>
-      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.19.4.4"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.19.2.2"/>
    </identifier>
    <version value="2020-09-01T00:00:00"/>
-   <name value="BrandwondLateraliteitCodelijst"/>
-   <title value="BrandwondLateraliteitCodelijst"/>
+   <name value="WondWeefselOncoUlcerCodelijst"/>
+   <title value="WondWeefselOncoUlcerCodelijst"/>
    <status value="active"/>
    <experimental value="false"/>
    <publisher value="Registratie aan de bron"/>
@@ -37,27 +41,17 @@
          <value value="https://www.zibs.nl"/>
       </telecom>
    </contact>
-   <description value="BrandwondLateraliteitCodelijst"/>
+   <description value="WondWeefselOncoUlcerCodelijst"/>
    <immutable value="false"/>
-   <copyright value="This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these artefacts must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/getsnomed-ct or info@snomed.org."/>
    <compose>
       <include>
-         <system value="http://snomed.info/sct"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.7.1"/>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Links"/>
+               <valueString value="Graad I"/>
             </extension>
-            <code value="7771000"/>
-            <display value="links"/>
-            <designation>
-               <language value="en-US"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Left"/>
-            </designation>
+            <code value="GRAAD1"/>
+            <display value="Graad I"/>
             <designation>
                <language value="nl-NL"/>
                <use>
@@ -65,24 +59,15 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="links"/>
+               <value value="Graad I"/>
             </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Rechts"/>
+               <valueString value="Graad II"/>
             </extension>
-            <code value="24028007"/>
-            <display value="rechts"/>
-            <designation>
-               <language value="en-US"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Right"/>
-            </designation>
+            <code value="GRAAD2"/>
+            <display value="Graad II"/>
             <designation>
                <language value="nl-NL"/>
                <use>
@@ -90,24 +75,15 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="rechts"/>
+               <value value="Graad II"/>
             </designation>
          </concept>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="Rechts en links"/>
+               <valueString value="Graad III"/>
             </extension>
-            <code value="51440002"/>
-            <display value="bilateraal"/>
-            <designation>
-               <language value="en-US"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="Right and left"/>
-            </designation>
+            <code value="GRAAD3"/>
+            <display value="Graad III"/>
             <designation>
                <language value="nl-NL"/>
                <use>
@@ -115,7 +91,39 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="bilateraal"/>
+               <value value="Graad III"/>
+            </designation>
+         </concept>
+         <concept>
+            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
+               <valueString value="Graad IV"/>
+            </extension>
+            <code value="GRAAD4"/>
+            <display value="Graad IV"/>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Graad IV"/>
+            </designation>
+         </concept>
+         <concept>
+            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
+               <valueString value="Graad V"/>
+            </extension>
+            <code value="GRAAD5"/>
+            <display value="Graad V"/>
+            <designation>
+               <language value="nl-NL"/>
+               <use>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="900000000000013009"/>
+                  <display value="Synonym"/>
+               </use>
+               <value value="Graad V"/>
             </designation>
          </concept>
       </include>

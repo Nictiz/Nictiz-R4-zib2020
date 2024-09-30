@@ -1,7 +1,6 @@
 <ValueSet xmlns="http://hl7.org/fhir">
-   <id value="2.16.840.1.113883.2.4.3.11.60.40.2.10.1.1--20200901000000"/>
+   <id value="2.16.840.1.113883.2.4.3.11.60.40.2.19.2.3--20200901000000"/>
    <meta>
-      <lastUpdated value="2024-08-16T13:00:00Z"/>
       <source value="http://decor.nictiz.nl/fhir/4.0/zib2020bbr-"/>
       <profile value="http://hl7.org/fhir/StructureDefinition/shareablevalueset"/>
       <!--<profile value="http://hl7.org/fhir/4.0/StructureDefinition/ValueSet"/>-->
@@ -19,15 +18,15 @@
          <start value="2020-09-01T00:00:00Z"/>
       </valuePeriod>
    </extension>
-   <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.10.1.1--20200901000000"/>
+   <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.19.2.3--20200901000000"/>
    <identifier>
       <use value="official"/>
       <system value="urn:ietf:rfc:3986"/>
-      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.10.1.1"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.19.2.3"/>
    </identifier>
    <version value="2020-09-01T00:00:00"/>
-   <name value="ProductTypeCodelijst"/>
-   <title value="ProductTypeCodelijst"/>
+   <name value="WondVochtigheidCodelijst"/>
+   <title value="WondVochtigheidCodelijst"/>
    <status value="active"/>
    <experimental value="false"/>
    <publisher value="Registratie aan de bron"/>
@@ -42,18 +41,17 @@
          <value value="https://www.zibs.nl"/>
       </telecom>
    </contact>
-   <description value="Erratum ZIB-1536 - 2024-09-16 - Code 0 uit twee systemen toegevoegd"/>
+   <description value="WondVochtigheidCodelijst"/>
    <immutable value="false"/>
-   <copyright value="This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these artefacts must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/getsnomed-ct or info@snomed.org."/>
    <compose>
       <include>
-         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.218"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.7.3"/>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="no visual aids"/>
+               <valueString value="Droge wond"/>
             </extension>
-            <code value="0"/>
-            <display value="geen"/>
+            <code value="DROOG"/>
+            <display value="Droge wond"/>
             <designation>
                <language value="nl-NL"/>
                <use>
@@ -61,27 +59,15 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="geen"/>
-            </designation>
-            <designation>
-               <language value="en-US"/>
-               <use>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="900000000000013009"/>
-                  <display value="Synonym"/>
-               </use>
-               <value value="none"/>
+               <value value="Droge wond"/>
             </designation>
          </concept>
-      </include>
-      <include>
-         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.211"/>
          <concept>
             <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
-               <valueString value="no hearing aid"/>
+               <valueString value="Vochtige wond"/>
             </extension>
-            <code value="0"/>
-            <display value="Geen"/>
+            <code value="VOCHTIG"/>
+            <display value="Vochtige wond"/>
             <designation>
                <language value="nl-NL"/>
                <use>
@@ -89,26 +75,25 @@
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="Geen"/>
+               <value value="Vochtige wond"/>
             </designation>
+         </concept>
+         <concept>
+            <extension url="http://hl7.org/fhir/StructureDefinition/valueset-concept-comments">
+               <valueString value="Natte wond"/>
+            </extension>
+            <code value="NAT"/>
+            <display value="Natte wond"/>
             <designation>
-               <language value="en-US"/>
+               <language value="nl-NL"/>
                <use>
                   <system value="http://snomed.info/sct"/>
                   <code value="900000000000013009"/>
                   <display value="Synonym"/>
                </use>
-               <value value="none"/>
+               <value value="Natte wond"/>
             </designation>
          </concept>
-      </include>
-      <include>
-         <system value="http://snomed.info/sct"/>
-         <filter>
-            <property value="concept"/>
-            <op value="descendent-of"/>
-            <value value="260787004"/>
-         </filter>
       </include>
    </compose>
 </ValueSet>

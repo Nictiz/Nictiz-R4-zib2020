@@ -1,5 +1,5 @@
 <ValueSet xmlns="http://hl7.org/fhir">
-   <id value="2.16.840.1.113883.2.4.3.11.60.40.2.19.2.7--20200901000000"/>
+   <id value="2.16.840.1.113883.2.4.3.11.60.121.11.21--20200901000000"/>
    <meta>
       <source value="http://decor.nictiz.nl/fhir/4.0/zib2020bbr-"/>
       <profile value="http://hl7.org/fhir/StructureDefinition/shareablevalueset"/>
@@ -18,15 +18,15 @@
          <start value="2020-09-01T00:00:00Z"/>
       </valuePeriod>
    </extension>
-   <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.19.2.7--20200901000000"/>
+   <url value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.21--20200901000000"/>
    <identifier>
       <use value="official"/>
       <system value="urn:ietf:rfc:3986"/>
-      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.2.19.2.7"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.121.11.21"/>
    </identifier>
    <version value="2020-09-01T00:00:00"/>
-   <name value="WondDrainTypeCodelijst"/>
-   <title value="WondDrainTypeCodelijst"/>
+   <name value="WondWeefselCodelijsten"/>
+   <title value="WondWeefselCodelijsten"/>
    <status value="active"/>
    <experimental value="false"/>
    <publisher value="Registratie aan de bron"/>
@@ -41,17 +41,14 @@
          <value value="https://www.zibs.nl"/>
       </telecom>
    </contact>
-   <description value="WondDrainTypeCodelijst"/>
+   <description value="Value set combining the distinct value sets that the zib Wound binds to for NL-CM:19.2.4 WoundTissue. This value set as such does not exist in the zib but facilitates referencing all these value sets at the same time"/>
    <immutable value="false"/>
-   <copyright value="This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these artefacts must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/getsnomed-ct or info@snomed.org."/>
    <compose>
       <include>
-         <system value="http://snomed.info/sct"/>
-         <filter>
-            <property value="concept"/>
-            <op value="is-a"/>
-            <value value="32712000"/>
-         </filter>
+         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.19.2.1--20200901000000"/>
+      </include>
+      <include>
+         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.19.2.2--20200901000000"/>
       </include>
    </compose>
 </ValueSet>
