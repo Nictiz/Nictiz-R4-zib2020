@@ -163,9 +163,6 @@ zib-Burnwound:
         reason: The definition is defined in the extension profile and therefore not defined in the differential.
       - message: "Constraint failed: sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined in the extension profile and therefore not defined in the differential.
-    Condition.evidence.detail:woundCharacteristics:
-      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references."
-        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
         
 zib-CareTeam:
   zib deviations:
@@ -543,10 +540,6 @@ zib-Payer-Organization:
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
         
 zib-PressureUlcer:
-  ignored issues:
-    Condition.evidence.detail:woundCharacteristics:
-      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references."
-        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     Condition.bodySite:
       - datatype: CodeableConcept instead of a reference
@@ -727,20 +720,12 @@ zib-VisualFunction.VisualAid.Product:
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
         
 zib-Wound:
-  ignored issues:
-    Condition.evidence.detail:woundCharacteristics:
-      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references."
-        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:  
     Condition.bodySite:
       - datatype: CodeableConcept instead of a reference
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
 
 zib-Wound.Drain:
-  ignored issues:
-    DeviceUseStatement.reasonReference:*:
-      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept instead of a reference
@@ -765,12 +750,6 @@ zib-Wound.Drain.Product:
     Device.udiCarrier:*UdiCarrier.carrierHRF:
       - datatype: string instead of CD compatible datatype
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
-
-zib-wounds.WoundCharacteristics:
-  ignored issues:
-    Observation.hasMember:*:
-      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references."
-        reason: The restriction only apply to, and defines, these slices. The slicing is open so the base references can still be used.
 
 zib-wounds.WoundImage:
   zib deviations:
@@ -963,6 +942,12 @@ zib-Alert:
       - message: "Constraint failed: sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias "Alert" is already defined in the base profile, so it doesn't need to be defined again in the differential.
 
+zib-Burnwound.Extent:
+  ignored issues:
+    Observation.code:
+      - message: Unknown code '360531000146101' in the CodeSystem 'http://snomed.info/sct'
+        reason: This Dutch code is not yet known in the default terminology server
+
 zib-CareTeam:
   ignored issues:
     CareTeam.participant:*.member:
@@ -1030,3 +1015,9 @@ zib-Payer-Organization:
         reason: The short description is defined on the datatype profile and not repeated in the differential.
       - message: "Constraint failed: sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.
+
+zib-wounds.DateOfLastDressingChange:
+  ignored issues:
+    Observation.code:
+      - message: Unknown code '360541000146109' in the CodeSystem 'http://snomed.info/sct'
+        reason: This Dutch code is not yet known in the default terminology server
