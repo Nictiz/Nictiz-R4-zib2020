@@ -21,6 +21,7 @@ All of the conformance resources representing the zibs are vetted by HL7 Netherl
 
 Bugs and other issues can be raised using the [Nictiz Service Desk](https://nictiz.atlassian.net/servicedesk/customer/portal/4) and are subsequently tracked using the [BITS ZIBFHIR project](https://bits.nictiz.nl/projects/ZIBFHIR/).
 
+
 Note: Changes affecting the published packages are guaranteed to be tracked using a change request in this issue tracker. Unpublished materials might change for a variety of reasons.
 
 ## Profiling guidelines
