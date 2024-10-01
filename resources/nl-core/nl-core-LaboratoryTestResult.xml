@@ -117,6 +117,20 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult" />
       </type>
     </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <mapping>
+        <identity value="zib-laboratorytestresult-v4.6-2020EN" />
+        <map value="tbd" />
+      </mapping>
+    </element>
     <element id="Observation.component.code">
       <path value="Observation.component.code" />
       <mapping>
