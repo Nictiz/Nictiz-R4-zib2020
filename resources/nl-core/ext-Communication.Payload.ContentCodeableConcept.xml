@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+   <id value="ext-Communication.Payload.ContentCodeableConcept"/>
+   <url value="http://nictiz.nl/fhir/5.0/StructureDefinition/extension-Communication.payload.content[x]:contentCodeableConcept"/>
+   <name value="ExtCommunicationPayloadContentCodeableConcept"/>
+   <title value="ext Communication.Payload.ContentCodeableConcept"/>
+   <status value="draft"/>
+   <publisher value="Nictiz"/>
+   <contact>
+      <name value="Nictiz"/>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.nictiz.nl"/>
+         <use value="work"/>
+      </telecom>
+   </contact>
+   <description value="An extension to extend `Communication.payload.content` with a CodeableConcept data type. This is a pre-adopt of R5 in which the string data type of this element is changed to a CodeableConcept."/>
+   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise."/>
+   <fhirVersion value="4.0.1"/>
+   <kind value="complex-type"/>
+   <abstract value="false"/>
+   <context>
+      <type value="element"/>
+      <expression value="Communication.payload.content"/>
+   </context>
+   <type value="Extension"/>
+   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension"/>
+   <derivation value="constraint"/>
+   <differential>
+      <element id="Extension">
+         <path value="Extension"/>
+         <max value="1"/>
+      </element>
+      <element id="Extension.url">
+         <path value="Extension.url"/>
+         <fixedUri value="http://nictiz.nl/fhir/5.0/StructureDefinition/extension-Communication.payload.content[x]:contentCodeableConcept"/>
+      </element>
+      <element id="Extension.value[x]">
+         <path value="Extension.value[x]"/>
+         <type>
+            <code value="CodeableConcept"/>
+         </type>
+      </element>
+   </differential>
+</StructureDefinition>
