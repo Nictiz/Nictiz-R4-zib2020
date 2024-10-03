@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-wounds.WoundImage" />
+  <text>
+    <status value="empty" />
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-wounds.WoundImage" />
+  <name value="ZibwoundsWoundImage" />
+  <title value="zib wounds.WoundImage" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A photo of the wound, burn wound or decubitus wound as visual information." />
+  <purpose value="This DocumentReference resource represents the WoundImage concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Burnwound v3.4 (2020)](https://zibs.nl/wiki/Burnwound-v3.4(2020EN)), the Dutch [zib PressureUlcer v3.4 (2020)](https://zibs.nl/wiki/PressureUlcer-v3.4(2020EN)) and the Dutch [zib Wound v3.3 (2020)](https://zibs.nl/wiki/Wound-v3.3(2020EN)) (NL-CM:19.4.11/NL-CM:19.1.12/NL-CM:19.2.15)." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-burnwound-v3.4-2020EN" />
+    <uri value="https://zibs.nl/wiki/Burnwound-v3.4(2020EN)" />
+    <name value="zib Burnwound-v3.4(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-pressureulcer-v3.4-2020EN" />
+    <uri value="https://zibs.nl/wiki/PressureUlcer-v3.4(2020EN)" />
+    <name value="zib PressureUlcer-v3.4(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-wound-v3.3-2020EN" />
+    <uri value="https://zibs.nl/wiki/Wound-v3.3(2020EN)" />
+    <name value="zib Wound-v3.3(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="DocumentReference" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="DocumentReference">
+      <path value="DocumentReference" />
+      <comment value="This DocumentReference resource represents the WoundImage concept of zibs Burnwound, PressureUlcer and Wound (NL-CM:19.4.11/NL-CM:19.1.12/NL-CM:19.2.15). It is usually part of an assessment, which is represented using the [zib-wounds.WoundCharacteristics](http://nictiz.nl/fhir/StructureDefinition/zib-wounds.WoundCharacteristics) profile, which can be referred using `DocumentReference.context.related`. See the comment on the root of that profile for guidance on using this resource." />
+    </element>
+    <element id="DocumentReference.type">
+      <path value="DocumentReference.type" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://loinc.org" />
+          <code value="72170-4" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="DocumentReference.content.attachment">
+      <path value="DocumentReference.content.attachment" />
+      <short value="WoundImage" />
+      <definition value="A photo of the wound, burn wound or decubitus wound as visual information." />
+      <alias value="WondFoto" />
+      <mapping>
+        <identity value="zib-burnwound-v3.4-2020EN" />
+        <map value="NL-CM:19.4.11" />
+        <comment value="WoundImage" />
+      </mapping>
+      <mapping>
+        <identity value="zib-pressureulcer-v3.4-2020EN" />
+        <map value="NL-CM:19.1.12" />
+        <comment value="WoundImage" />
+      </mapping>
+      <mapping>
+        <identity value="zib-wound-v3.3-2020EN" />
+        <map value="NL-CM:19.2.15" />
+        <comment value="WoundImage" />
+      </mapping>
+    </element>
+    <element id="DocumentReference.context.related">
+      <path value="DocumentReference.context.related" />
+      <comment value="The functional models of zibs Burnwound, PressureUlcer and Wound represent conditions that need to be tracked over time, but define point-in-time assessments about the current state of the wounds as well. For this reason, these three zibs are all mapped onto multiple resources: a Condition resource that represents the focal resource, and Observation and DocumentReference resources for all observable properties. See the root of this profile for guidance on using this model." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-wounds.WoundCharacteristics" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
