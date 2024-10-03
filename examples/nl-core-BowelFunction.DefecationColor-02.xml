@@ -1,7 +1,7 @@
 <Observation xmlns="http://hl7.org/fhir">
-  <id value="nl-core-BowelFunction.Frequency-01"/>
+  <id value="nl-core-BowelFunction.DefecationColor-02"/>
   <meta>
-    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction.Frequency"/>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction.DefecationColor"/>
   </meta>
   <text>
     <status value="extensions"/>
@@ -15,9 +15,11 @@
           </tr>
           <tr>
             <td>
-              <span title="frequentie van defecatie (162098000 - SNOMED CT)">frequentie van defecatie</span>
+              <span title="Kleur [type] in feces (9397-1 - LOINC)">Kleur [type] in feces</span>
             </td>
-            <td>3 /d</td>
+            <td>
+              <span title="grijswitte feces (267056008 - SNOMED CT)">grijswitte feces</span>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -26,9 +28,9 @@
   <status value="final"/>
   <code>
     <coding>
-      <system value="http://snomed.info/sct"/>
-      <code value="162098000"/>
-      <display value="frequentie van defecatie"/>
+      <system value="http://loinc.org"/>
+      <code value="9397-1"/>
+      <display value="Kleur [type] in feces"/>
     </coding>
   </code>
   <subject>
@@ -36,10 +38,11 @@
     <type value="Patient"/>
     <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
   </subject>
-  <valueQuantity>
-    <value value="3"/>
-    <unit value="/d"/>
-    <system value="http://unitsofmeasure.org"/>
-    <code value="/d"/>
-  </valueQuantity>
+  <valueCodeableConcept>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="267056008"/>
+      <display value="grijswitte feces"/>
+    </coding>
+  </valueCodeableConcept>
 </Observation>

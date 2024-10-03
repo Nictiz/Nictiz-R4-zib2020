@@ -1,7 +1,7 @@
 <Observation xmlns="http://hl7.org/fhir">
-  <id value="nl-core-BowelFunction.Frequency-01"/>
+  <id value="nl-core-BowelFunction.DefecationConsistency-02"/>
   <meta>
-    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction.Frequency"/>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction.DefecationConsistency"/>
   </meta>
   <text>
     <status value="extensions"/>
@@ -15,9 +15,11 @@
           </tr>
           <tr>
             <td>
-              <span title="frequentie van defecatie (162098000 - SNOMED CT)">frequentie van defecatie</span>
+              <span title="score op Bristol Stoelgangschaal (443172007 - SNOMED CT)">score op Bristol Stoelgangschaal</span>
             </td>
-            <td>3 /d</td>
+            <td>
+              <span title="Zachte stukjes met gehavende randen (Type 6 - 2.16.840.1.113883.2.4.3.11.60.40.4.3.1)">Zachte stukjes met gehavende randen</span>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -27,8 +29,8 @@
   <code>
     <coding>
       <system value="http://snomed.info/sct"/>
-      <code value="162098000"/>
-      <display value="frequentie van defecatie"/>
+      <code value="443172007"/>
+      <display value="score op Bristol Stoelgangschaal"/>
     </coding>
   </code>
   <subject>
@@ -36,10 +38,11 @@
     <type value="Patient"/>
     <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
   </subject>
-  <valueQuantity>
-    <value value="3"/>
-    <unit value="/d"/>
-    <system value="http://unitsofmeasure.org"/>
-    <code value="/d"/>
-  </valueQuantity>
+  <valueCodeableConcept>
+    <coding>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.3.1"/>
+      <code value="Type 6"/>
+      <display value="Zachte stukjes met gehavende randen"/>
+    </coding>
+  </valueCodeableConcept>
 </Observation>
