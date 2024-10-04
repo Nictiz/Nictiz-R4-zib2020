@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="ext-AllergyIntolerance.Type" />
-  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-AllergyIntolerance.Type" />
-  <name value="ExtAllergyIntoleranceType" />
-  <title value="ext AllergyIntolerance Type" />
+  <id value="extension-AllergyIntolerance.type" />
+  <url value="http://nictiz.nl/fhir/5.0/StructureDefinition/extension-AllergyIntolerance.type" />
+  <name value="ExtensionAllergyIntoleranceType" />
+  <title value="extension AllergyIntolerance.type" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -14,8 +14,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="An extension to provide the type of an AllergyIntolerance resource, without the need of using the _required_ binding present on `AllergyIntolerance.type`. Note that in R5 this binding has been made _preferred_, making this extension technically a pre-adopt. This extension should be replaced by the extension 'http://hl7.org/fhir/5.0/StructureDefinition/extension-AllergyIntolerance.type'." />
-  <purpose value="This extension represents the type of an AllergyIntolerance resource, needed to distinguish between HypersensitivityIntolerance and Reaction building blocks for implementations following the information standard [CiO](https://informatiestandaarden.nictiz.nl/wiki/Landingspagina_Contra-indicaties_en_Overgevoeligheden)." />
+  <description value="An extension to provide the type of an AllergyIntolerance resource, without the need of using the _required_ binding present on `AllergyIntolerance.type`. Note that in R5 this binding has been made _preferred_, making this extension technically a pre-adopt. This extension should be replaced by the extension 'http://hl7.org/fhir/5.0/StructureDefinition/extension-AllergyIntolerance.type' whenever it's made available as part of the package hl7.fhir.extensions.r4:4.0.1 mentioned on http://hl7.org/fhir/R5/versions.html#extensions." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <kind value="complex-type" />
@@ -42,6 +41,10 @@
       <type>
         <code value="CodeableConcept" />
       </type>
+      <binding>
+        <strength value="preferred" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/allergy-intolerance-type" />
+      </binding>
     </element>
   </differential>
 </StructureDefinition>
