@@ -39,7 +39,7 @@
         <key value="nl-core-NameInformation-01" />
         <severity value="warning" />
         <human value="If parts of the name are specified using one or more of the structured elements, the `.text` element SHOULD be populated with a rendered version of the full name. This ensures compatibility with common FHIR usage." />
-        <expression value="(family.exists() or given.extension.where(url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier').value != 'IN') implies text.hasValue()" />
+        <expression value="(family.exists() or given.extension.where(url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier').where(value != 'IN').exists()) implies text.hasValue()" />
       </constraint>
     </element>
     <element id="HumanName.text">
