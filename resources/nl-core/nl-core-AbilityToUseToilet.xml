@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-AbilityToUseToilet" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToUseToilet" />
   <name value="NlcoreAbilityToUseToilet" />
   <title value="nl core AbilityToUseToilet" />
@@ -35,6 +33,7 @@
   <differential>
     <element id="Observation">
       <path value="Observation" />
+      <comment value="Several concepts of zib AbilityToUseToillet are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* ToiletUse (NL-CM:4.22.6): [nl-core-AbilityToUseToilet.ToiletUse](http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToUseToilet.ToiletUse)&#xD;&#xA;* MenstrualCare (NL-CM:4.22.4): [nl-core-AbilityToUseToilet.MenstrualCare](http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToUseToilet.MenstrualCare)" />
       <alias value="nl-core-AbilityToUseToilet" />
     </element>
     <element id="Observation.subject">
@@ -46,6 +45,22 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:toiletUse">
+      <path value="Observation.hasMember" />
+      <sliceName value="toiletUse" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToUseToilet.ToiletUse" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:menstrualCare">
+      <path value="Observation.hasMember" />
+      <sliceName value="menstrualCare" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToUseToilet.MenstrualCare" />
       </type>
     </element>
   </differential>

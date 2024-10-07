@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-AbilityToDrink" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-AbilityToDrink" />
   <name value="ZibAbilityToDrink" />
   <title value="zib AbilityToDrink" />
@@ -36,6 +34,7 @@
     <element id="Observation">
       <path value="Observation" />
       <short value="AbilityToDrink" />
+      <comment value="The DrinkingLimitations concept (NL-CM:4.8.4) is represented using distinct Observation resources, using profile [zib-AbilityToDrink.DrinkingLimitations](http://nictiz.nl/fhir/StructureDefinition/zib-AbilityToDrink.DrinkingLimitations). It is referenced from this resource using `Observation.hasMember`." />
       <alias value="VermogenTotDrinken" />
       <mapping>
         <identity value="zib-abilitytodrink-v3.1.1-2020EN" />
@@ -81,46 +80,24 @@
         <comment value="Drinking" />
       </mapping>
     </element>
-    <element id="Observation.component">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
       <slicing>
         <discriminator>
-          <type value="value" />
-          <path value="code" />
+          <type value="profile" />
+          <path value="resolve()" />
         </discriminator>
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Observation.component:drinkingLimitations">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:drinkingLimitations">
+      <path value="Observation.hasMember" />
       <sliceName value="drinkingLimitations" />
-    </element>
-    <element id="Observation.component:drinkingLimitations.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="288851008" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:drinkingLimitations.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="DrinkingLimitations" />
-      <definition value="DrinkingLimitations specifies the patient’s limitations in drinking." />
-      <alias value="DrinkBeperkingen" />
+      <definition value="The DrinkingLimitations concept (NL-CM:4.8.4) of zib AbilityToDrink, represented as a distinct Observation resource." />
       <type>
-        <code value="CodeableConcept" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-AbilityToDrink.DrinkingLimitations" />
       </type>
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.8.2--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-abilitytodrink-v3.1.1-2020EN" />
-        <map value="NL-CM:4.8.4" />
-        <comment value="DrinkingLimitations" />
-      </mapping>
     </element>
   </differential>
 </StructureDefinition>

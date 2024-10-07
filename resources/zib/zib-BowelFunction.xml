@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-BowelFunction" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-BowelFunction" />
   <name value="ZibBowelFunction" />
   <title value="zib BowelFunction" />
@@ -36,7 +34,7 @@
     <element id="Observation">
       <path value="Observation" />
       <short value="BowelFunction" />
-      <comment value="Please note that on a functional level, zib BowelFunction references zib MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept IncontinenceMaterial (NL-CM:4.15.6) is mapped on `DeviceUseStatement.reasonReference` in profile [zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice) instead of in this profile." />
+      <comment value="Please note that on a functional level, zib BowelFunction references zib MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept IncontinenceMaterial (NL-CM:4.15.6) is mapped on `DeviceUseStatement.reasonReference` in profile [zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice) instead of in this profile.&#xD;&#xA;&#xD;&#xA;Several concept(s) of zib BowelFunction are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* FecalContinence (NL-CM:4.15.2): [zib-BowelFunction.FecalContinence](http://nictiz.nl/fhir/StructureDefinition/zib-BowelFunction.FecalContinence)&#xD;&#xA;* Frequency (NL-CM:4.15.4): [zib-BowelFunction.Frequency](http://nictiz.nl/fhir/StructureDefinition/zib-BowelFunction.Frequency)&#xD;&#xA;* DefecationConsistency(NL-CM:4.15.9): [zib-BowelFunction.DefecationConsistency](http://nictiz.nl/fhir/StructureDefinition/zib-BowelFunction.DefecationConsistency)&#xD;&#xA;* DefecationColor(NL-CM:4.15.10): [zib-BowelFunction.DefecationColor](http://nictiz.nl/fhir/StructureDefinition/zib-BowelFunction.DefecationColor)" />
       <alias value="Darmfunctie" />
       <mapping>
         <identity value="zib-bowelfunction-v3.1.1-2020EN" />
@@ -88,139 +86,55 @@
         <comment value="Comment" />
       </mapping>
     </element>
-    <element id="Observation.component">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
       <slicing>
         <discriminator>
-          <type value="value" />
-          <path value="code" />
+          <type value="profile" />
+          <path value="resolve()" />
         </discriminator>
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Observation.component:fecalContinence">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:fecalContinence">
+      <path value="Observation.hasMember" />
       <sliceName value="fecalContinence" />
+      <definition value="The FecalContinence concept (NL-CM:4.15.2) of zib BowelFunction, represented as a distinct Observation resource." />
       <max value="1" />
-    </element>
-    <element id="Observation.component:fecalContinence.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="129008009" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:fecalContinence.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="FecalContinence" />
-      <definition value="Fecal continence is the voluntary control over the excretion of feces." />
-      <alias value="FecesContinentie" />
       <type>
-        <code value="CodeableConcept" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-BowelFunction.FecalContinence" />
       </type>
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.15.1--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-bowelfunction-v3.1.1-2020EN" />
-        <map value="NL-CM:4.15.2" />
-        <comment value="FecalContinence" />
-      </mapping>
     </element>
-    <element id="Observation.component:frequency">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:frequency">
+      <path value="Observation.hasMember" />
       <sliceName value="frequency" />
+      <definition value="The Frequency concept (NL-CM:4.15.4) of zib BowelFunction, represented as a distinct Observation resource." />
       <max value="1" />
-    </element>
-    <element id="Observation.component:frequency.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="162098000" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:frequency.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="Frequency" />
-      <definition value="The defecation frequency." />
-      <alias value="Frequentie" />
       <type>
-        <code value="Quantity" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-BowelFunction.Frequency" />
       </type>
-      <mapping>
-        <identity value="zib-bowelfunction-v3.1.1-2020EN" />
-        <map value="NL-CM:4.15.4" />
-        <comment value="Frequency" />
-      </mapping>
     </element>
-    <element id="Observation.component:defecationConsistency">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:defecationConsistency">
+      <path value="Observation.hasMember" />
       <sliceName value="defecationConsistency" />
+      <definition value="The DefecationConsistency concept (NL-CM:4.15.9) of zib BowelFunction, represented as a distinct Observation resource." />
       <max value="1" />
-    </element>
-    <element id="Observation.component:defecationConsistency.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="443172007" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:defecationConsistency.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="DefecationConsistency" />
-      <definition value="The consistency of the feces indicates the hardness of the stool. The Bristol Stool scale is used to determine this." />
-      <alias value="DefecatieConsistentie" />
       <type>
-        <code value="CodeableConcept" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-BowelFunction.DefecationConsistency" />
       </type>
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.15.2--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-bowelfunction-v3.1.1-2020EN" />
-        <map value="NL-CM:4.15.9" />
-        <comment value="DefecationConsistency" />
-      </mapping>
     </element>
-    <element id="Observation.component:defecationColor">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:defecationColor">
+      <path value="Observation.hasMember" />
       <sliceName value="defecationColor" />
+      <definition value="The DefecationColor concept (NL-CM:4.15.10) of zib BowelFunction, represented as a distinct Observation resource." />
       <max value="1" />
-    </element>
-    <element id="Observation.component:defecationColor.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://loinc.org" />
-          <code value="9397-1" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:defecationColor.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="DefecationColor" />
-      <definition value="The color of feces is possibly relevant for identifying underlying diseases, such as bleeding or biliary tract disease." />
-      <alias value="DefecatieKleur" />
       <type>
-        <code value="CodeableConcept" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-BowelFunction.DefecationColor" />
       </type>
-      <binding>
-        <strength value="extensible" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.15.5--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-bowelfunction-v3.1.1-2020EN" />
-        <map value="NL-CM:4.15.10" />
-        <comment value="DefecationColor" />
-      </mapping>
     </element>
   </differential>
 </StructureDefinition>
