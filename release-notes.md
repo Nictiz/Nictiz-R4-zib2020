@@ -245,7 +245,6 @@ This document contains release notes per zib, indicating differences with their 
 * Removed explanation of splitting up family names, as this is already given by the zib.
 * Aliases have been aligned with the zib.
 * Removed BRP mappings.
-* Added the notion on the root that populating `HumanName.text` is encouraged.
 
 ## zib-NursingIntervention
 * The resource to represent this zib has been changed from Procedure to CarePlan. This aligns better with the meaning of the zib: a statement of a plan (which may or may not have been completed) rather than the record of a procedure that has been carried out. The profile for the current version is created from scratch.
