@@ -235,6 +235,8 @@ This document contains release notes per zib, indicating differences with their 
 * The concept PatientIllnessInsight with ID NL-CM:18.5.3 has been moved to `Observation.value[x]:valueString`
 
 ## zib-NameInformation
+* A split has been made between the zib and the nl-core profile. Whereas the zib doesn't recognize an unstructured last name and an unstructured full name, the nl-core profile explicitly does. It also adds the requirement to provide these unstructured names if parts of the structured names are present to align with international usage of the HumanName data type.
+* The profile has been renamed from 'nl-core-humanname' to 'zib-NameInformation' and 'nl-core-NameInformation'.
 * The way this partial zib has been modelled on the HumanName data type has been overhauled to properly accommodate the way first names are handled. In the STU3 version, official first names, initials of this first name, and the given name (nickname, roepnaam) were all added to a `.given` element in the same HumanName instance, with an annotation of the type using an extension. This turned out to be the wrong approach, as all `.given` names are to be concatenated to the complete list of first names. So instead, there are now different instances of HumanName used to communicate the official names and the given name, indicated by `.use` -- resulting in two profiles. Communicating initials is now only done for names where the full name is not known (this deviates from the zib model).   
 * `.use` has been made mandatory (instead of discouraged).
 * Moved information and mappings from the extension level to the `.value[x]` level.
@@ -245,7 +247,6 @@ This document contains release notes per zib, indicating differences with their 
 * Removed explanation of splitting up family names, as this is already given by the zib.
 * Aliases have been aligned with the zib.
 * Removed BRP mappings.
-* Added the notion on the root that populating `HumanName.text` is encouraged.
 
 ## zib-NursingIntervention
 * The resource to represent this zib has been changed from Procedure to CarePlan. This aligns better with the meaning of the zib: a statement of a plan (which may or may not have been completed) rather than the record of a procedure that has been carried out. The profile for the current version is created from scratch.
