@@ -1,46 +1,71 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Condition xmlns="http://hl7.org/fhir">
-   <id value="nl-core-Stoma-01"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Stoma"/>
-   </meta>
-   <category>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="245857005"/>
-         <display value="stoma"/>
-      </coding>
-   </category>
-   <code>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="261030007"/>
-         <display value="eindstandig colostoma"/>
-      </coding>
-   </code>
-   <bodySite>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
-         <valueCodeableConcept>
-            <coding>
-               <system value="http://snomed.info/sct"/>
-               <code value="24028007"/>
-               <display value="rechts"/>
-            </coding>
-         </valueCodeableConcept>
-      </extension>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="27033000"/>
-         <display value="onderbuik"/>
-      </coding>
-   </bodySite>
-   <subject>
-      <reference value="Patient/nl-core-Patient-01"/>
-      <type value="Patient"/>
-      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
-   </subject>
-   <onsetDateTime value="2014"/>
-   <note>
-      <text value="Patiënt heeft veel last van dit type stoma."/>
-   </note>
+  <id value="nl-core-Stoma-01"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Stoma"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <table>
+        <caption>Aandoening. Subject: Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen. Categorie: <span title="stoma (245857005 - SNOMED CT)">stoma</span>
+        </caption>
+        <tfoot>
+          <tr>
+            <td colspan="2">Patiënt heeft veel last van dit type stoma.</td>
+          </tr>
+        </tfoot>
+        <tbody>
+          <tr>
+            <th>Code</th>
+            <td>
+              <span title="eindstandig colostoma (261030007 - SNOMED CT)">eindstandig colostoma</span>
+            </td>
+          </tr>
+          <tr>
+            <th>Eerste symptomen</th>
+            <td>2014</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </text>
+  <category>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="245857005"/>
+      <display value="stoma"/>
+    </coding>
+  </category>
+  <code>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="261030007"/>
+      <display value="eindstandig colostoma"/>
+    </coding>
+  </code>
+  <bodySite>
+    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+      <valueCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct"/>
+          <code value="24028007"/>
+          <display value="rechts"/>
+        </coding>
+      </valueCodeableConcept>
+    </extension>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="27033000"/>
+      <display value="onderbuik"/>
+    </coding>
+  </bodySite>
+  <subject>
+    <reference value="Patient/nl-core-Patient-01"/>
+    <type value="Patient"/>
+    <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+  </subject>
+  <onsetDateTime value="2014"/>
+  <note>
+    <text value="Patiënt heeft veel last van dit type stoma."/>
+  </note>
 </Condition>

@@ -1,47 +1,76 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="nl-core-LaboratoryTestResult-03"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
-   </meta>
-   <status value="final"/>
-   <category>
-      <coding>
-         <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
-         <code value="laboratory"/>
-         <display value="Laboratory"/>
-      </coding>
-   </category>
-   <category>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="395124008"/>
-         <display value="Virologisch onderzoek"/>
-      </coding>
-   </category>
-   <code>
-      <coding>
-         <system value="http://loinc.org"/>
-         <code value="22314-9"/>
-         <display value="Hepatitis A virus IgM Ab [Presence] in Serum"/>
-      </coding>
-   </code>
-   <subject>
-      <reference value="Patient/nl-core-Patient-01"/>
-      <type value="Patient"/>
-      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
-   </subject>
-   <effectiveDateTime value="2012-01-16T10:12:00+00:00"/>
-   <valueCodeableConcept>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="165996008"/>
-         <display value="hepatitis A-test negatief"/>
-      </coding>
-   </valueCodeableConcept>
-   <specimen>
-      <reference value="Specimen/nl-core-LaboratoryTestResult.Specimen-03"/>
-      <type value="Specimen"/>
-      <display value="monster"/>
-   </specimen>
+  <id value="nl-core-LaboratoryTestResult-03"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <table>
+        <caption>Observatie/bepaling. Subject: Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen. Categorie: <span title="Laboratory (laboratory - http://terminology.hl7.org/CodeSystem/observation-category)">Laboratory</span>, <span title="Virologisch onderzoek (395124008 - SNOMED CT)">Virologisch onderzoek</span>, Status: definitief</caption>
+        <tbody>
+          <tr>
+            <th>Bepalingdatum/tijd</th>
+            <td>10:12:00, 16 januari 2012</td>
+          </tr>
+          <tr>
+            <th>Specimen</th>
+            <td>monster</td>
+          </tr>
+          <tr>
+            <th>Code</th>
+            <th>Waarde</th>
+          </tr>
+          <tr>
+            <td>
+              <span title="Hepatitis A virus IgM Ab [Presence] in Serum (22314-9 - LOINC)">Hepatitis A virus IgM Ab [Presence] in Serum</span>
+            </td>
+            <td>
+              <span title="hepatitis A-test negatief (165996008 - SNOMED CT)">hepatitis A-test negatief</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </text>
+  <status value="final"/>
+  <category>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+      <code value="laboratory"/>
+      <display value="Laboratory"/>
+    </coding>
+  </category>
+  <category>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="395124008"/>
+      <display value="Virologisch onderzoek"/>
+    </coding>
+  </category>
+  <code>
+    <coding>
+      <system value="http://loinc.org"/>
+      <code value="22314-9"/>
+      <display value="Hepatitis A virus IgM Ab [Presence] in Serum"/>
+    </coding>
+  </code>
+  <subject>
+    <reference value="Patient/nl-core-Patient-01"/>
+    <type value="Patient"/>
+    <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+  </subject>
+  <effectiveDateTime value="2012-01-16T10:12:00+00:00"/>
+  <valueCodeableConcept>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="165996008"/>
+      <display value="hepatitis A-test negatief"/>
+    </coding>
+  </valueCodeableConcept>
+  <specimen>
+    <reference value="Specimen/nl-core-LaboratoryTestResult.Specimen-03"/>
+    <type value="Specimen"/>
+    <display value="monster"/>
+  </specimen>
 </Observation>

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-TreatmentDirective2" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective2" />
   <name value="ZibTreatmentDirective2" />
   <title value="zib TreatmentDirective2" />
@@ -83,7 +87,7 @@
     </element>
     <element id="Consent.extension:additionalAdvanceDirective.value[x]">
       <path value="Consent.extension.value[x]" />
-      <comment value="`Consent.source:sourceReference` is the primary target for referencing zib AdvanceDirective (zib concept NL-CM:2.2.8). However, the cardinality of `Consent.source[x]` is restricted to 0..1. If more than one AdvanceDirective needs to be referenced, the _additional_ references can be communicated using this extension. If this extension is used, `Consent.source:sourceReference` SHALL be populated and it SHALL not contain the same reference as this extension." />
+      <comment value="`Consent.source:sourceReference` is the primary target for referencing zib AdvanceDirective (zib concept NL-CM:2.2.8). However, the cardinality of `Consent.source[x]` is restricted to `0..1`. If more than one AdvanceDirective needs to be referenced, the _additional_ references can be communicated using this extension. If this extension is used, `Consent.source:sourceReference` SHALL be populated and it SHALL not contain the same reference as this extension." />
       <condition value="zib-TreatmentDirective2-1" />
     </element>
     <element id="Consent.modifierExtension:specificationOther">
@@ -171,7 +175,7 @@
       <sliceName value="sourceReference" />
       <short value="AdvanceDirective" />
       <definition value="A (written) statement in which a person indicates wishes concerning future medical action, in the event that this person is at that point no longer (deemed) capable of taking decisions on the matter." />
-      <comment value="The cardinality of this `Consent.source[x]` element is restricted to 0..1, which is narrower than the AdvanceDirective concept (NL-CM:2.2.8) specified in the HCIM TreatmentDirective2. If additional AdvanceDirective references are needed, the additionalAdvanceDirective extension can be used _in addition to_ this element. If the additionalAdvanceDirective extension is used, this element SHALL be populated and it SHALL not contain a reference that is also present in the extension." />
+      <comment value="The cardinality of this `Consent.source[x]` element is restricted to `0..1`, which is narrower than the AdvanceDirective concept (NL-CM:2.2.8) specified in the HCIM TreatmentDirective2. If additional AdvanceDirective references are needed, the additionalAdvanceDirective extension can be used _in addition to_ this element. If the additionalAdvanceDirective extension is used, this element SHALL be populated and it SHALL not contain a reference that is also present in the extension." />
       <alias value="Wilsverklaring" />
       <type>
         <code value="Reference" />

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-Burnwound" />
+  <text>
+    <status value="empty" />
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Burnwound" />
+  <name value="NlcoreBurnwound" />
+  <title value="nl core Burnwound" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A burn wound is a wound caused by skin being exposed to heat for a certain time above a certain critical temperature. Heat above this critical temperature (+/- 40°C) will cause damage to the skin. There are different types of burn wounds, which are categorized according to the depth of the burn wound.&#xD;&#xA;&#xD;&#xA;The depth of the burn wound depends on:&#xD;&#xA;the temperature of the impacting heat;&#xD;&#xA;the duration of the impact of heat on the skin;&#xD;&#xA;the source of the burn (e.g. fire, fluid)." />
+  <purpose value="A derived profile from [zib-Burnwound](http://nictiz.nl/fhir/StructureDefinition/zib-Burnwound) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-burnwound-v3.4-2020EN" />
+    <uri value="https://zibs.nl/wiki/Burnwound-v3.4(2020EN)" />
+    <name value="zib Burnwound-v3.4(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Condition" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-Burnwound" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Condition">
+      <path value="Condition" />
+      <comment value="The functional model of zib Burnwound represents a condition that needs to be tracked over time, but defines point-in-time assessments about the current state of the wound as well. For this reason, this zib is mapped onto multiple resources: this Condition profile represents the focal resource, while all point-in-time properties are mapped onto Observation and DocumentReference profiles. Those observable properties, in turn, are grouped using the [nl-core-wounds.WoundCharacteristics](http://nictiz.nl/fhir/StructureDefinition/nl-core-wounds.WoundCharacteristics) Observation profile, which can be referenced on `Condition.evidence.detail` (see slice &quot;woundCharacteristics&quot;).&#xD;&#xA;&#xD;&#xA;This model allows to track multiple distinct assessment moments over time in connection with the Condition. For this reason, it is not expected that the Observations for individual outcomes or DocumentReference resources are referenced from or to this Condition resource directly; all references should be channeled through the zib-wounds.WoundCharacteristics grouping Observation. Note that the individual Observations are referenced from the grouping Observation, but that the direction for DocumentReference resources is reversed.&#xD;&#xA;&#xD;&#xA;This model deviates somewhat from the zib approach. The zib model is meant to group all concepts relevant for a wound into a model, but it doesn't have a concept of changes over time. For this reason, all observable properties have a cardinality of `0..1` on the zib level, but this works out differently in the FHIR model." />
+      <alias value="nl-core-Burnwound" />
+    </element>
+    <element id="Condition.bodySite">
+      <path value="Condition.bodySite" />
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation" />
+      </type>
+    </element>
+    <element id="Condition.subject">
+      <path value="Condition.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Condition.evidence.detail:woundCharacteristics">
+      <path value="Condition.evidence.detail" />
+      <sliceName value="woundCharacteristics" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-wounds.WoundCharacteristics" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>

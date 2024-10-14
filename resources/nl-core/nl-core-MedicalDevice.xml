@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-MedicalDevice" />
+  <text>
+    <status value="empty" />
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice" />
   <name value="NlcoreMedicalDevice" />
   <title value="nl core MedicalDevice" />
@@ -76,6 +80,7 @@
     </element>
     <element id="DeviceUseStatement.extension:location.value[x]">
       <path value="DeviceUseStatement.extension.value[x]" />
+      <comment value="Please note that this zib concept (Location::HealthcareProvider) is also mapped on the `Procedure.location` element in profile [nl-core-Procedure-event](http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event). The reason for this is that this zib concept aligns with the Location::HealthcareProvider concept in zib Procedure (NL-CM:14.1.5), but only for the situation that the Procedure is about placing the implant which is described using this instance of zib MedicalDevice. In this situation, the current extension is redundant and it is advised to only use `Procedure.location` in profile nl-core-Procedure-event to represent the Location concept." />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider" />
@@ -152,6 +157,14 @@
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Stoma" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.reasonReference:wound">
+      <path value="DeviceUseStatement.reasonReference" />
+      <sliceName value="wound" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Wound" />
       </type>
     </element>
     <element id="DeviceUseStatement.bodySite">

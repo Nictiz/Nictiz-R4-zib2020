@@ -1,0 +1,92 @@
+<CodeSystem xmlns="http://hl7.org/fhir">
+   <id value="2.16.840.1.113883.2.4.3.11.60.40.4.17.2"/>
+   <meta>
+      <profile value="http://hl7.org/fhir/StructureDefinition/shareablecodesystem"/>
+      <!--<profile value="http://hl7.org/fhir/4.0/StructureDefinition/CodeSystem"/>-->
+   </meta>
+   <language value="nl-NL"/>
+   <text>
+      <status value="empty"/>
+      <div xmlns="http://www.w3.org/1999/xhtml" lang="nl-NL" xml:lang="nl-NL">Definitie-resources zijn niet voorzien van een narrative. Een menselijk leesbare versie is te vinden via de implementation guide(s) waarin deze resource gebruikt wordt.</div>
+   </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/resource-effectivePeriod">
+      <valuePeriod>
+         <start value="2020-09-01T00:00:00Z"/>
+      </valuePeriod>
+   </extension>
+   <url value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.17.2"/>
+   <identifier>
+      <use value="official"/>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.17.2"/>
+   </identifier>
+   <version value="2020-09-01T00:00:00"/>
+   <name value="SK_Ziektebeeld"/>
+   <title value="SK_Ziektebeeld"/>
+   <status value="active"/>
+   <experimental value="false"/>
+   <publisher value="Registratie aan de bron"/>
+   <contact>
+      <name value="Registratie aan de bron"/>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.registratieaandebron.nl"/>
+      </telecom>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.zibs.nl"/>
+      </telecom>
+   </contact>
+   <description value="SK_Ziektebeeld"/>
+   <caseSensitive value="false"/>
+   <content value="complete"/>
+   <count value="2"/>
+   <property>
+      <code value="status"/>
+      <uri value="http://hl7.org/fhir/concept-properties#status"/>
+      <description value="A code that indicates the status of the concept. Values found in this version of the code system are: active"/>
+      <type value="code"/>
+   </property>
+   <concept>
+      <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
+         <valueDecimal value="0"/>
+      </extension>
+      <code value="R0"/>
+      <display value="NoRisk"/>
+      <definition value="Geen ziektebeeld met verhoogd risico"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+            <display value="Synonym"/>
+         </use>
+         <value value="NoRisk"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+   </concept>
+   <concept>
+      <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
+         <valueDecimal value="2"/>
+      </extension>
+      <code value="R1"/>
+      <display value="IncreasedRisk"/>
+      <definition value="Ziektebeeld met verhoogd risico aanwezig"/>
+      <designation>
+         <language value="en-US"/>
+         <use>
+            <system value="http://snomed.info/sct"/>
+            <code value="900000000000013009"/>
+            <display value="Synonym"/>
+         </use>
+         <value value="IncreasedRisk"/>
+      </designation>
+      <property>
+         <code value="status"/>
+         <valueCode value="active"/>
+      </property>
+   </concept>
+</CodeSystem>

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-IllnessPerception" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-IllnessPerception" />
   <name value="ZibIllnessPerception" />
   <title value="zib IllnessPerception" />
@@ -32,6 +34,7 @@
     <element id="Observation">
       <path value="Observation" />
       <short value="IllnessPerception" />
+      <comment value="Several concept(s) of zib IllnessPerception are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* PatientIllnessInsight (NL-CM:18.5.3): [zib-IllnessPerception.PatientIllnessInsight](http://nictiz.nl/fhir/StructureDefinition/zib-IllnessPerception.PatientIllnessInsight)&#xD;&#xA;* CopingWithIllnessByPatient (NL-CM:18.5.4): [zib-IllnessPerception.CopingWithIllnessByPatient](http://nictiz.nl/fhir/StructureDefinition/zib-IllnessPerception.CopingWithIllnessByPatient)&#xD;&#xA;* CopingWithIllnessByPatient(NL-CM:18.5.5): [zib-IllnessPerception.CopingWithIllnessByFamily](http://nictiz.nl/fhir/StructureDefinition/zib-IllnessPerception.CopingWithIllnessByFamily)" />
       <alias value="Ziektebeleving" />
       <mapping>
         <identity value="zib-illnessperception-v3.1-2020EN" />
@@ -48,99 +51,45 @@
         </coding>
       </patternCodeableConcept>
     </element>
-    <element id="Observation.component">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
       <slicing>
         <discriminator>
-          <type value="value" />
-          <path value="code" />
+          <type value="profile" />
+          <path value="resolve()" />
         </discriminator>
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Observation.component:patientIllnessInsight">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:patientIllnessInsight">
+      <path value="Observation.hasMember" />
       <sliceName value="patientIllnessInsight" />
+      <definition value="The PatientIllnessInsight concept (NL-CM:18.5.3) of zib IllnessPerception, represented as a distinct Observation resource." />
       <max value="1" />
-    </element>
-    <element id="Observation.component:patientIllnessInsight.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="27026000" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:patientIllnessInsight.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="PatientIllnessInsight" />
-      <definition value="The patient’s illness insight describes their awareness of having an illness or health problem and what that means for their daily life." />
-      <alias value="ZiekteInzichtVanPatiënt" />
       <type>
-        <code value="string" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-IllnessPerception.PatientIllnessInsight" />
       </type>
-      <mapping>
-        <identity value="zib-illnessperception-v3.1-2020EN" />
-        <map value="NL-CM:18.5.3" />
-        <comment value="PatientIllnessInsight" />
-      </mapping>
     </element>
-    <element id="Observation.component:copingWithIllnessByPatient">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:copingWithIllnessByPatient">
+      <path value="Observation.hasMember" />
       <sliceName value="copingWithIllnessByPatient" />
+      <definition value="The CopingWithIllnessByPatient concept (NL-CM:18.5.4) of zib IllnessPerception, represented as a distinct Observation resource." />
       <max value="1" />
-    </element>
-    <element id="Observation.component:copingWithIllnessByPatient.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="364667003" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:copingWithIllnessByPatient.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="CopingWithIllnessByPatient" />
-      <definition value="The description of how the patient deals with their illness or health problem." />
-      <alias value="OmgaanMetZiekteprocesDoorPatiënt" />
       <type>
-        <code value="string" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-IllnessPerception.CopingWithIllnessByPatient" />
       </type>
-      <mapping>
-        <identity value="zib-illnessperception-v3.1-2020EN" />
-        <map value="NL-CM:18.5.4" />
-        <comment value="CopingWithIllnessByPatient" />
-      </mapping>
     </element>
-    <element id="Observation.component:copingWithIllnessByFamily">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:copingWithIllnessByFamily">
+      <path value="Observation.hasMember" />
       <sliceName value="copingWithIllnessByFamily" />
+      <definition value="The CopingWithIllnessByFamily concept (NL-CM:18.5.5) of zib IllnessPerception, represented as a distinct Observation resource." />
       <max value="1" />
-    </element>
-    <element id="Observation.component:copingWithIllnessByFamily.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="405199009" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:copingWithIllnessByFamily.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="CopingWithIllnessByFamily" />
-      <definition value="The description of how the family deals with the patient’s illness or health problem." />
-      <alias value="OmgaanMetZiekteprocesDoorNaasten" />
       <type>
-        <code value="string" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-IllnessPerception.CopingWithIllnessByFamily" />
       </type>
-      <mapping>
-        <identity value="zib-illnessperception-v3.1-2020EN" />
-        <map value="NL-CM:18.5.5" />
-        <comment value="CopingWithIllnessByFamily" />
-      </mapping>
     </element>
   </differential>
 </StructureDefinition>

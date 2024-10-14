@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-Wound.Drain" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Wound.Drain" />
+  <name value="ZibWoundDrain" />
+  <title value="zib Wound.Drain" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A drain is a medical aid placed to drain blood and exudate from the wound area." />
+  <purpose value="This DeviceUseStatement resource represents the adaptations for the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Wound v3.3 (2020)](https://zibs.nl/wiki/Wound-v3.3(2020EN)) of [zib MedicalDevice v3.3.1 (2020)](https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-wound-v3.3-2020EN" />
+    <uri value="https://zibs.nl/wiki/Wound-v3.3(2020EN)" />
+    <name value="zib Wound-v3.3(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="DeviceUseStatement" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="DeviceUseStatement">
+      <path value="DeviceUseStatement" />
+      <definition value="https://zibs.nl/wiki/Wound-v3.3(2020EN)." />
+      <comment value="This is a specialization of the [zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice) profile to represent Drain devices within the context of zib Wound." />
+    </element>
+    <element id="DeviceUseStatement.device">
+      <path value="DeviceUseStatement.device" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Wound.Drain.Product" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.reasonReference:bowelFunction">
+      <path value="DeviceUseStatement.reasonReference" />
+      <sliceName value="bowelFunction" />
+      <max value="0" />
+    </element>
+    <element id="DeviceUseStatement.reasonReference:functionalOrMentalStatus">
+      <path value="DeviceUseStatement.reasonReference" />
+      <sliceName value="functionalOrMentalStatus" />
+      <max value="0" />
+    </element>
+    <element id="DeviceUseStatement.reasonReference:mobility">
+      <path value="DeviceUseStatement.reasonReference" />
+      <sliceName value="mobility" />
+      <max value="0" />
+    </element>
+    <element id="DeviceUseStatement.reasonReference:stoma">
+      <path value="DeviceUseStatement.reasonReference" />
+      <sliceName value="stoma" />
+      <max value="0" />
+    </element>
+    <element id="DeviceUseStatement.reasonReference:wound">
+      <path value="DeviceUseStatement.reasonReference" />
+      <sliceName value="wound" />
+      <max value="0" />
+    </element>
+    <element id="DeviceUseStatement.reasonReference:drain">
+      <path value="DeviceUseStatement.reasonReference" />
+      <sliceName value="drain" />
+      <short value="Wound" />
+      <comment value="Please note that on a functional level, zib Wound references zib MedicalDevice, but in FHIR this direction is reversed." />
+      <alias value="Wond" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Wound" />
+      </type>
+      <mapping>
+        <identity value="zib-wound-v3.3-2020EN" />
+        <map value="NL-CM:19.2.17" />
+        <comment value="Reversed reference for zib Wound.Drain" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

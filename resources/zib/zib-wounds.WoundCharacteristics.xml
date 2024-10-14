@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-wounds.WoundCharacteristics" />
+  <text>
+    <status value="empty" />
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-wounds.WoundCharacteristics" />
+  <name value="ZibwoundsWoundCharacteristics" />
+  <title value="zib wounds.WoundCharacteristics" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Observable properties of a wound, burnwound or pressureulcer." />
+  <purpose value="This Observation profile groups multiple observable properties of wounds that are used in the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Burnwound v3.4 (2020)](https://zibs.nl/wiki/Burnwound-v3.4(2020EN)), the Dutch [zib PressureUlcer v3.4 (2020)](https://zibs.nl/wiki/PressureUlcer-v3.4(2020EN)) and the Dutch [zib Wound v3.3 (2020)](https://zibs.nl/wiki/Wound-v3.3(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-burnwound-v3.4-2020EN" />
+    <uri value="https://zibs.nl/wiki/Burnwound-v3.4(2020EN)" />
+    <name value="zib Burnwound-v3.4(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-pressureulcer-v3.4-2020EN" />
+    <uri value="https://zibs.nl/wiki/PressureUlcer-v3.4(2020EN)" />
+    <name value="zib PressureUlcer-v3.4(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-wound-v3.3-2020EN" />
+    <uri value="https://zibs.nl/wiki/Wound-v3.3(2020EN)" />
+    <name value="zib Wound-v3.3(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <comment value="The functional models of zibs Burnwound, PressureUlcer and Wound represent conditions that need to be tracked over time, but define point-in-time assessments about the current state of the wounds as well. For this reason, these three zibs are all mapped onto multiple resources: a Condition resource that represents the focal resource, and Observation and DocumentReference resources for all observable properties.&#xD;&#xA;&#xD;&#xA;Since multiple observable properties are usually assessed together, all Observation and DocumentReference resources resulting from a single assessment are grouped using the current Observation profile. For the Observation resources, this is done using `Observation.hasMember`. For the DocumentReference resources, the direction is reversed, so the current resource is referenced *from* `DocumentReference.context.related` in profile [zib-wounds.WoundImage](http://nictiz.nl/fhir/StructureDefinition/zib-wounds.WoundImage). It is this grouping Observation that is referenced from the Condition resources, on `Condition.evidence.detail`.&#xD;&#xA;&#xD;&#xA;This model allows to track multiple distinct assessment moments over time in connection with the Condition. For this reason, it is not expected that the Observations and DocumentReferences for individual outcomes are referenced directly from and to the Condition resources; all references should be referenced through this grouping Observation.&#xD;&#xA;&#xD;&#xA;Note that this model deviates somewhat from the zib approach. The zib model is meant to group all concepts relevant for a wound into a model, but it doesn't have a concept of changes over time. For this reason, all observable properties have a cardinality of `0..1` on the zib level, but this works out differently in the FHIR model." />
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="225552003" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.hasMember:dateOfLastDressingChange">
+      <path value="Observation.hasMember" />
+      <sliceName value="dateOfLastDressingChange" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-wounds.DateOfLastDressingChange" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:woundLength">
+      <path value="Observation.hasMember" />
+      <sliceName value="woundLength" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-wounds.WoundLength" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:woundWidth">
+      <path value="Observation.hasMember" />
+      <sliceName value="woundWidth" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-wounds.WoundWidth" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:woundDepth">
+      <path value="Observation.hasMember" />
+      <sliceName value="woundDepth" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-wounds.WoundDepth" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:woundTissue">
+      <path value="Observation.hasMember" />
+      <sliceName value="woundTissue" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Wound.WoundTissue" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:woundInfection">
+      <path value="Observation.hasMember" />
+      <sliceName value="woundInfection" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Wound.WoundInfection" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:woundMoisture">
+      <path value="Observation.hasMember" />
+      <sliceName value="woundMoisture" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Wound.WoundMoisture" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:woundEdge">
+      <path value="Observation.hasMember" />
+      <sliceName value="woundEdge" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Wound.WoundEdge" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:extent">
+      <path value="Observation.hasMember" />
+      <sliceName value="extent" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Burnwound.Extent" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>

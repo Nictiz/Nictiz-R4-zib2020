@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-AbilityToEat" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-AbilityToEat" />
   <name value="ZibAbilityToEat" />
   <title value="zib AbilityToEat" />
@@ -32,6 +34,7 @@
     <element id="Observation">
       <path value="Observation" />
       <short value="AbilityToEat" />
+      <comment value="The EatingLimitations concept (NL-CM:4.7.4) is represented using distinct Observation resources, using profile [zib-AbilityToEat.EatingLimitations](http://nictiz.nl/fhir/StructureDefinition/zib-AbilityToEat.EatingLimitations). It is referenced from this resource using `Observation.hasMember`." />
       <alias value="VermogenTotEten" />
       <mapping>
         <identity value="zib-abilitytoeat-v3.1.1-2020EN" />
@@ -77,46 +80,24 @@
         <comment value="Eating" />
       </mapping>
     </element>
-    <element id="Observation.component">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
       <slicing>
         <discriminator>
-          <type value="value" />
-          <path value="code" />
+          <type value="profile" />
+          <path value="resolve()" />
         </discriminator>
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Observation.component:eatingLimitations">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:eatingLimitations">
+      <path value="Observation.hasMember" />
       <sliceName value="eatingLimitations" />
-    </element>
-    <element id="Observation.component:eatingLimitations.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="288843005" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:eatingLimitations.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="EatingLimitations" />
-      <definition value="Eating constraints specify the patient’s constraints in eating." />
-      <alias value="EetBeperkingen" />
+      <definition value="The EatingLimitations concept (NL-CM:4.7.4) of zib AbilityToEat, represented as a distinct Observation resource." />
       <type>
-        <code value="CodeableConcept" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-AbilityToEat.EatingLimitations" />
       </type>
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.7.2--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-abilitytoeat-v3.1.1-2020EN" />
-        <map value="NL-CM:4.7.4" />
-        <comment value="EatingLimitations" />
-      </mapping>
     </element>
   </differential>
 </StructureDefinition>
