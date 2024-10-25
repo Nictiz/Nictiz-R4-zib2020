@@ -917,12 +917,6 @@ nl-core-HearingFunction.HearingAid-*:
       - message: 'Profile http://nictiz.nl/fhir/StructureDefinition/nl-core-HearingFunction.HearingAid, Element matches more than one slice'
         reason: The Validator cannot actually inspect the referenced resources, and falsely assumes the reference is a reference to the offending profile.
 
-nl-core-HeartRate-*:
-  ignored issues:
-    Observation.component[*].value.*:
-      - message: None of the codings provided are in the value set 'Vital Signs Units'
-        reason: The Validator checks all Observations with a vital signs magic LOINC code against the HL7 Vital Signs base profile. Unfortunately, this profile restricts the allowed components to only the use cases identified by HL7, while the zib adds additional data. This has been identified as a bug in het HL7 Vital Signs profile, which will be fixed in the next version. See https://jira.hl7.org/browse/FHIR-43353 for more information.
-
 nl-core-VisualFunction.VisualAid-*:
   ignored issues:
     DeviceUseStatement.reasonReference[*]:
@@ -968,9 +962,6 @@ nl-core-PulseRate-*:
     Observation.code:
       - message: "HeartRateCode: magic LOINC code 8867-4 required, but not found"
         reason: The Validator regards a heart rate measured by palpation as a special case of a heart rate and requires the heart rate code to be present in addition, whereas the zib regards a "pulse rate" as something fundamentally different than a heart rate. This issue is tracked in https://nictiz.atlassian.net/browse/ZIB-2216. Until it has been resolved, this error message is silenced.
-    Observation.component[*].value.*:
-      - message: None of the codings provided are in the value set 'Vital Signs Units'
-        reason: The Validator checks all Observations with a vital signs magic LOINC code against the HL7 Vital Signs base profile. Unfortunately, this profile restricts the allowed components to only the use cases identified by HL7, while the zib adds additional data. This has been identified as a bug in het HL7 Vital Signs profile, which will be fixed in the next version. See https://jira.hl7.org/browse/FHIR-43353 for more information.
 
 zib-*Function.*Aid.Product:
   ignored issues:
