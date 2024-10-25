@@ -843,9 +843,6 @@ nl-core-*:
     "*":
       - message: No valid Display Names found for
         reason: This warning doesn't provide any feedback on the correctness of the materials, but only on the completeness of the terminology server used.
-    "*.text.div":
-      - message: "The URL is not valid because '(The mimetype portion of the data: URL is not valid (Mime type invalid) in URL: data:application/octet-stream;base64,"
-        reason: application/octet-stream is a valid mime type, but the Validator thinks it isn't (at the time of writing).
     "*.address*.country.extension[0].value*":
       - message: None of the codings provided are in the value set 'LandCodelijsten'
         reason: The current version of the Validator incorrectly raises an error on combined ValueSets.
@@ -855,9 +852,6 @@ nl-core-*:
     "*.telecom[*].system.extension[*].value.ofType(CodeableConcept).coding[*]":
       - message: Wrong Display Name 'Mobile Phone' for http://terminology.hl7.org/CodeSystem/v3-AddressUse#MC
         reason: This core display value is redefined by the ValueSet, but this isn't properly recognized by the Validator
-    "*.contentType":
-      - message: The value provided ('application/octet-stream') is not in the value set 'MimeType'
-        reason: The Validator is unable to check mime types in absence of a terminology server.
     Condition.code:
       - message: None of the codings provided are in the value set 'ProbleemNaamCodelijst'
         reason: This ValueSet contains two SNOMED refsets. The terminology servers are unable to determine if a code is part of this refset.
@@ -929,12 +923,6 @@ nl-core-HeartRate-*:
       - message: None of the codings provided are in the value set 'Vital Signs Units'
         reason: The Validator checks all Observations with a vital signs magic LOINC code against the HL7 Vital Signs base profile. Unfortunately, this profile restricts the allowed components to only the use cases identified by HL7, while the zib adds additional data. This has been identified as a bug in het HL7 Vital Signs profile, which will be fixed in the next version. See https://jira.hl7.org/browse/FHIR-43353 for more information.
 
-nl-core-Burnwound.Extent-*:
-  ignored issues:
-    Observation.code.coding[*].code:
-      - message: Unknown code '360531000146101' in the CodeSystem 'http://snomed.info/sct'
-        reason: This Dutch code is not yet known in the default terminology server
-
 nl-core-VisualFunction.VisualAid-*:
   ignored issues:
     DeviceUseStatement.reasonReference[*]:
@@ -984,12 +972,6 @@ nl-core-PulseRate-*:
       - message: None of the codings provided are in the value set 'Vital Signs Units'
         reason: The Validator checks all Observations with a vital signs magic LOINC code against the HL7 Vital Signs base profile. Unfortunately, this profile restricts the allowed components to only the use cases identified by HL7, while the zib adds additional data. This has been identified as a bug in het HL7 Vital Signs profile, which will be fixed in the next version. See https://jira.hl7.org/browse/FHIR-43353 for more information.
 
-nl-core-Wound-*-DateOfLastDressingChange-*:
-  ignored issues:
-    Observation.code.coding[*].code:
-      - message: Unknown code '360541000146109' in the CodeSystem 'http://snomed.info/sct'
-        reason: This Dutch code is not yet known in the default terminology server
-
 zib-*Function.*Aid.Product:
   ignored issues:
     Device.type:
@@ -1003,12 +985,6 @@ zib-Alert:
     Flag:
       - message: "Constraint failed: sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias "Alert" is already defined in the base profile, so it doesn't need to be defined again in the differential.
-
-zib-Burnwound.Extent:
-  ignored issues:
-    Observation.code:
-      - message: Unknown code '360531000146101' in the CodeSystem 'http://snomed.info/sct'
-        reason: This Dutch code is not yet known in the default terminology server
 
 zib-CareTeam:
   ignored issues:
@@ -1077,9 +1053,3 @@ zib-Payer-Organization:
         reason: The short description is defined on the datatype profile and not repeated in the differential.
       - message: "Constraint failed: sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.
-
-zib-wounds.DateOfLastDressingChange:
-  ignored issues:
-    Observation.code:
-      - message: Unknown code '360541000146109' in the CodeSystem 'http://snomed.info/sct'
-        reason: This Dutch code is not yet known in the default terminology server
