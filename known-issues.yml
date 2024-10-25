@@ -826,6 +826,18 @@ issues should occur: false
       - message: Unable to validate code without using server
         reason: This warning doesn't provide any feedback on the correctness of the materials. In addition, there's little reason to fix this issue on the package level as it is unlikely that this ever results in problems in production (CodeSystems are not typically validated in production).
 
+2.16.840.1.113883.2.4.3.11.60.40.2.5.1.3--20200901000000:
+  ignored issues:
+    ValueSet.compose.include[9].filter[0]:
+      - message: The value for a filter based on property 'concept' must be a valid code from the system 'http://snomed.info/sct', and '31000147101' is not
+        reason: This code represents the DHD Diagnosethesaurus, which the default terminology server is unable to check
+
+2.16.840.1.113883.2.4.3.11.60.40.2.14.1.2--20200901000000:
+  ignored issues:
+    ValueSet.compose.include[0].filter[0]:
+      - message: The value for a filter based on property 'concept' must be a valid code from the system 'http://snomed.info/sct', and '41000147108' is not
+        reason: This code represents the DHD Verrichtingenthesaurus, which the default terminology server is unable to check
+
 nl-core-*:
   ignored issues:
     "*":
@@ -835,7 +847,7 @@ nl-core-*:
       - message: "The URL is not valid because '(The mimetype portion of the data: URL is not valid (Mime type invalid) in URL: data:application/octet-stream;base64,"
         reason: application/octet-stream is a valid mime type, but the Validator thinks it isn't (at the time of writing).
     "*.address*.country.extension[0].value*":
-      - message: None of the codings provided are in the value set 'LandCodelijsten' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.10--20200901000000), and a coding from this value set is required) (codes = urn:oid:2.16.840.1.113883.2.4.4.16.34#6030)
+      - message: None of the codings provided are in the value set 'LandCodelijsten'
         reason: The current version of the Validator incorrectly raises an error on combined ValueSets.
     "*.code":
       - message: None of the codings provided are in the value set 'VerrichtingTypeCodelijsten'
@@ -857,6 +869,9 @@ nl-core-*:
     Observation.hasMember[*]:
       - message: This element does not match any known slice defined in the profile
         reason: The Validator is unable to resolve references on disk, so it is unable to match reference slices
+    Procedure.code:
+      - message: "Error from http://tx.fhir.org/r4: The Snomed Concept 41000147108 was not known"
+        reason: This code represents the DHD Verrichtingenthesaurus, which the default terminology server is unable to check. This causes problems on some occasions (but not all).
 
 nl-core-AllergyIntolerance*:
   ignored issues:
@@ -925,6 +940,12 @@ nl-core-VisualFunction.VisualAid-*:
     DeviceUseStatement.reasonReference[*]:
       - message: 'Profile http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualFunction.VisualAid, Element matches more than one slice'
         reason: The Validator cannot actually inspect the referenced resources, and falsely assumes the reference is a reference to the offending profile.
+
+nl-core-LaboratoryTestResult-*:
+  ignored issues:
+    Observation.code:
+      - message: None of the codings provided are in the value set 'TestCode-en-Onderzoek-Codelijsten'
+        reason: The current version of the Validator incorrectly raises an error on combined ValueSets.
 
 nl-core-PainScore-01:
   ignored issues:
