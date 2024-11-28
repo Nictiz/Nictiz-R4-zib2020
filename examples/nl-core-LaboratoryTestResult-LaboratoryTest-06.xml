@@ -1,60 +1,91 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="nl-core-LaboratoryTestResult-LaboratoryTest-06"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
-   </meta>
-   <status value="final"/>
-   <category>
-      <coding>
-         <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
-         <code value="laboratory"/>
-         <display value="Laboratory"/>
-      </coding>
-   </category>
-   <category>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="275711006"/>
-         <display value="Serumtest"/>
-      </coding>
-   </category>
-   <code>
-      <coding>
-         <system value="http://loinc.org"/>
-         <code value="20570-8"/>
-         <display value="Hematocriet"/>
-      </coding>
-   </code>
-   <subject>
-      <reference value="Patient/nl-core-Patient-01"/>
-      <type value="Patient"/>
-      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
-   </subject>
-   <effectiveDateTime value="2022-01-02T12:00:02+01:00"/>
-   <valueQuantity>
-      <value value="45"/>
+  <id value="nl-core-LaboratoryTestResult-LaboratoryTest-06"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <table>
+        <caption>Observatie/bepaling. Subject: Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen. Categorie: <span title="Laboratory (laboratory - http://terminology.hl7.org/CodeSystem/observation-category)">Laboratory</span>, <span title="Serumtest (275711006 - SNOMED CT)">Serumtest</span>, Status: definitief</caption>
+        <tbody>
+          <tr>
+            <th>Bepalingdatum/tijd</th>
+            <td colspan="2">12:00:02, 2 januari 2022</td>
+          </tr>
+          <tr>
+            <th>Specimen</th>
+            <td colspan="2">monster</td>
+          </tr>
+          <tr>
+            <th>Code</th>
+            <th>Waarde</th>
+            <th>Referentiewaarden</th>
+          </tr>
+          <tr>
+            <td>
+              <span title="Hematocriet (20570-8 - LOINC)">Hematocriet</span>
+            </td>
+            <td>45 %</td>
+            <td>
+              <div>39 % - 51 %</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </text>
+  <status value="final"/>
+  <category>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+      <code value="laboratory"/>
+      <display value="Laboratory"/>
+    </coding>
+  </category>
+  <category>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="275711006"/>
+      <display value="Serumtest"/>
+    </coding>
+  </category>
+  <code>
+    <coding>
+      <system value="http://loinc.org"/>
+      <code value="20570-8"/>
+      <display value="Hematocriet"/>
+    </coding>
+  </code>
+  <subject>
+    <reference value="Patient/nl-core-Patient-01"/>
+    <type value="Patient"/>
+    <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+  </subject>
+  <effectiveDateTime value="2022-01-02T12:00:02+01:00"/>
+  <valueQuantity>
+    <value value="45"/>
+    <unit value="%"/>
+    <system value="http://unitsofmeasure.org"/>
+    <code value="%"/>
+  </valueQuantity>
+  <specimen>
+    <reference value="Specimen/nl-core-LaboratoryTestResult.Specimen-04"/>
+    <type value="Specimen"/>
+    <display value="monster"/>
+  </specimen>
+  <referenceRange>
+    <low>
+      <value value="39"/>
       <unit value="%"/>
       <system value="http://unitsofmeasure.org"/>
       <code value="%"/>
-   </valueQuantity>
-   <specimen>
-      <reference value="Specimen/nl-core-LaboratoryTestResult.Specimen-04"/>
-      <type value="Specimen"/>
-      <display value="monster"/>
-   </specimen>
-   <referenceRange>
-      <low>
-         <value value="39"/>
-         <unit value="%"/>
-         <system value="http://unitsofmeasure.org"/>
-         <code value="%"/>
-      </low>
-      <high>
-         <value value="51"/>
-         <unit value="%"/>
-         <system value="http://unitsofmeasure.org"/>
-         <code value="%"/>
-      </high>
-   </referenceRange>
+    </low>
+    <high>
+      <value value="51"/>
+      <unit value="%"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="%"/>
+    </high>
+  </referenceRange>
 </Observation>

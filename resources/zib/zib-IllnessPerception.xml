@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-IllnessPerception" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-IllnessPerception" />
+  <name value="ZibIllnessPerception" />
+  <title value="zib IllnessPerception" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="In nearly all cases, a lengthy or life-threatening illness is a traumatic experience for the patient and their environment. Every patient deals with this in their own way. The way in which a person deals with problems and stress is also referred to as coping. Illness perception entails both the way the patient sees their situation and the way in which the patient and their environment deal with the situation (coping strategies)." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) IllnessPerception v3.1 (2020)](https://zibs.nl/wiki/IllnessPerception-v3.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-illnessperception-v3.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/IllnessPerception-v3.1(2020EN)" />
+    <name value="zib IllnessPerception-v3.1(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="IllnessPerception" />
+      <comment value="Several concept(s) of zib IllnessPerception are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* PatientIllnessInsight (NL-CM:18.5.3): [zib-IllnessPerception.PatientIllnessInsight](http://nictiz.nl/fhir/StructureDefinition/zib-IllnessPerception.PatientIllnessInsight)&#xD;&#xA;* CopingWithIllnessByPatient (NL-CM:18.5.4): [zib-IllnessPerception.CopingWithIllnessByPatient](http://nictiz.nl/fhir/StructureDefinition/zib-IllnessPerception.CopingWithIllnessByPatient)&#xD;&#xA;* CopingWithIllnessByPatient(NL-CM:18.5.5): [zib-IllnessPerception.CopingWithIllnessByFamily](http://nictiz.nl/fhir/StructureDefinition/zib-IllnessPerception.CopingWithIllnessByFamily)" />
+      <alias value="Ziektebeleving" />
+      <mapping>
+        <identity value="zib-illnessperception-v3.1-2020EN" />
+        <map value="NL-CM:18.5.1" />
+        <comment value="IllnessPerception" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="363910003" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.hasMember:patientIllnessInsight">
+      <path value="Observation.hasMember" />
+      <sliceName value="patientIllnessInsight" />
+      <definition value="The PatientIllnessInsight concept (NL-CM:18.5.3) of zib IllnessPerception, represented as a distinct Observation resource." />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-IllnessPerception.PatientIllnessInsight" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:copingWithIllnessByPatient">
+      <path value="Observation.hasMember" />
+      <sliceName value="copingWithIllnessByPatient" />
+      <definition value="The CopingWithIllnessByPatient concept (NL-CM:18.5.4) of zib IllnessPerception, represented as a distinct Observation resource." />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-IllnessPerception.CopingWithIllnessByPatient" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:copingWithIllnessByFamily">
+      <path value="Observation.hasMember" />
+      <sliceName value="copingWithIllnessByFamily" />
+      <definition value="The CopingWithIllnessByFamily concept (NL-CM:18.5.5) of zib IllnessPerception, represented as a distinct Observation resource." />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-IllnessPerception.CopingWithIllnessByFamily" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>

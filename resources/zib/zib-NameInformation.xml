@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-NameInformation" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
   <name value="ZibNameInformation" />
   <title value="zib NameInformation" />
@@ -33,21 +35,19 @@
       <path value="HumanName" />
       <short value="NameInformation" />
       <definition value="This slice represents the person's official name information, including given names, last name and possibly the partner's last name." />
-      <comment value="This `.name` element represents a Dutch name according to the [zib NameInformation (v1.1, 2020)](https://zibs.nl/wiki/NameInformation-v1.1(2020EN)) (except for the GivenName concept). A Dutch name is represented in FHIR as an ordinary international name, but is augmented using extensions to specify how the last name is built up according to the Dutch rules. See the guidance on `.family` and on `.extension:nameUsage` for more information. Systems that need to work in a Dutch context SHOULD support these extensions as specified here. In addition, systems SHOULD use the core elements according to the FHIR specifications to provide compatibility outside Dutch contexts. It is encouraged to provide a representation of the full name in the `.text` element.&#xD;&#xA;&#xD;&#xA;**Note 1**: The zib cannot be represented straightforward in FHIR. Especially note the guidance on `.given` on how to map the FirstNames and Initials concepts, and on `.prefix`/`.suffix` on how to map the Titles concept.&#xD;&#xA;&#xD;&#xA;**Note 2**: This element should only contain a person's _official_ names. The GivenName concept is represented in another `.name` element with `.name.use` = _usual_.&#xD;&#xA;&#xD;&#xA;**Note 3**: The examples illustrate how the zib is mapped to FHIR." />
+      <comment value="This `.name` element represents a Dutch name according to the [zib NameInformation v1.1 (2020)](https://zibs.nl/wiki/NameInformation-v1.1(2020EN)) (except for the GivenName concept).&#xD;&#xA;&#xD;&#xA;**Note 1**: The zib cannot be represented straightforward in FHIR. Especially note the guidance on `.given` on how to map the FirstNames and Initials concepts, and on `.prefix`/`.suffix` on how to map the Titles concept.&#xD;&#xA;&#xD;&#xA;**Note 2**: This element should only contain a person's _official_ names. The GivenName concept is represented in another `.name` element with `.name.use` = _usual_." />
       <alias value="Naamgegevens" />
       <constraint>
         <key value="zib-NameInformation-1" />
         <severity value="error" />
-        <human value="If a prefix for a familiy name is specified, the family name is expected as well" />
-        <expression value="name.family.extension('http://hl7.org/fhir/StructureDefinition/humanname-own-prefix').empty().not() implies name.family.extension('http://hl7.org/fhir/StructureDefinition/humanname-own-name').empty().not()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
+        <human value="If a prefix for a family name is specified, the family name is expected as well" />
+        <expression value="family.extension('http://hl7.org/fhir/StructureDefinition/humanname-own-prefix').empty().not() implies family.extension('http://hl7.org/fhir/StructureDefinition/humanname-own-name').empty().not()" />
       </constraint>
       <constraint>
         <key value="zib-NameInformation-2" />
         <severity value="error" />
         <human value="If the prefix for a partner family name is specified, the partner family name is expected as well" />
-        <expression value="name.family.extension('http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix').empty().not() implies name.family.extension('http://hl7.org/fhir/StructureDefinition/humanname-partner-name').empty().not()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation" />
+        <expression value="family.extension('http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix').empty().not() implies family.extension('http://hl7.org/fhir/StructureDefinition/humanname-partner-name').empty().not()" />
       </constraint>
       <mapping>
         <identity value="zib-nameinformation-v1.1-2020EN" />
@@ -55,21 +55,9 @@
         <comment value="NameInformation" />
       </mapping>
     </element>
-    <element id="HumanName.extension">
-      <path value="HumanName.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="HumanName.extension:nameUsage">
       <path value="HumanName.extension" />
       <sliceName value="nameUsage" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order" />
@@ -82,7 +70,7 @@
       <alias value="Naamgebruik" />
       <binding>
         <strength value="required" />
-        <description value="Use ConceptMap NaamgebruikCodelijst-to-HumanNameAssemblyOrder to translate terminology from the functional model to profile terminology in ValueSet HumanNameAssemblyOrder" />
+        <description value="Use ConceptMap NaamgebruikCodelijst-to-HumanNameAssemblyOrder to translate terminology from the functional model to profile terminology in ValueSet HumanNameAssemblyOrder." />
         <valueSet value="http://hl7.org/fhir/ValueSet/name-assembly-order|4.0.1">
           <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
             <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/NaamgebruikCodelijst-to-HumanNameAssemblyOrder" />
@@ -98,23 +86,11 @@
     <element id="HumanName.use">
       <path value="HumanName.use" />
       <min value="1" />
-      <fixedCode value="official" />
-    </element>
-    <element id="HumanName.family.extension">
-      <path value="HumanName.family.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
+      <patternCode value="official" />
     </element>
     <element id="HumanName.family.extension:prefix">
       <path value="HumanName.family.extension" />
       <sliceName value="prefix" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix" />
@@ -134,7 +110,6 @@
     <element id="HumanName.family.extension:lastName">
       <path value="HumanName.family.extension" />
       <sliceName value="lastName" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/humanname-own-name" />
@@ -154,7 +129,6 @@
     <element id="HumanName.family.extension:partnerPrefix">
       <path value="HumanName.family.extension" />
       <sliceName value="partnerPrefix" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix" />
@@ -174,7 +148,6 @@
     <element id="HumanName.family.extension:partnerLastName">
       <path value="HumanName.family.extension" />
       <sliceName value="partnerLastName" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/humanname-partner-name" />
@@ -211,13 +184,6 @@
     </element>
     <element id="HumanName.given.extension">
       <path value="HumanName.given.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
       <min value="1" />
     </element>
     <element id="HumanName.given.extension:givenOrInitial">

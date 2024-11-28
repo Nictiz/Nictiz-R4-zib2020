@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-wounds.DateOfLastDressingChange" />
+  <text>
+    <status value="empty" />
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-wounds.DateOfLastDressingChange" />
+  <name value="ZibwoundsDateOfLastDressingChange" />
+  <title value="zib wounds.DateOfLastDressingChange" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Date on which the dressing was last changed." />
+  <purpose value="This Observation resource represents the DateOfLastDressingChange concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Burnwound v3.4 (2020)](https://zibs.nl/wiki/Burnwound-v3.4(2020EN)), the Dutch [zib PressureUlcer v3.4 (2020)](https://zibs.nl/wiki/PressureUlcer-v3.4(2020EN)) and the Dutch [zib Wound v3.3 (2020)](https://zibs.nl/wiki/Wound-v3.3(2020EN)) (NL-CM:19.4.8/NL-CM:19.1.8/NL-CM:19.2.3)." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-burnwound-v3.4-2020EN" />
+    <uri value="https://zibs.nl/wiki/Burnwound-v3.4(2020EN)" />
+    <name value="zib Burnwound-v3.4(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-pressureulcer-v3.4-2020EN" />
+    <uri value="https://zibs.nl/wiki/PressureUlcer-v3.4(2020EN)" />
+    <name value="zib PressureUlcer-v3.4(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-wound-v3.3-2020EN" />
+    <uri value="https://zibs.nl/wiki/Wound-v3.3(2020EN)" />
+    <name value="zib Wound-v3.3(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <comment value="This Observation resource represents the DateOfLastDressingChange concept of zibs Burnwound, PressureUlcer and Wound (NL-CM:19.4.8/NL-CM:19.1.8/NL-CM:19.2.3). It is usually part of an assessment, which is represented using the [zib-wounds.WoundCharacteristics](http://nictiz.nl/fhir/StructureDefinition/zib-wounds.WoundCharacteristics) profile. See the comment on the root of that profile for guidance on using this resource." />
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="360541000146109" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <short value="DateOfLastDressingChange" />
+      <definition value="The date on which the dressing was last changed." />
+      <alias value="DatumLaatsteVerbandwissel" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-burnwound-v3.4-2020EN" />
+        <map value="NL-CM:19.4.8" />
+        <comment value="DateOfLastDressingChange" />
+      </mapping>
+      <mapping>
+        <identity value="zib-pressureulcer-v3.4-2020EN" />
+        <map value="NL-CM:19.1.8" />
+        <comment value="DateOfLastDressingChange" />
+      </mapping>
+      <mapping>
+        <identity value="zib-wound-v3.3-2020EN" />
+        <map value="NL-CM:19.2.3" />
+        <comment value="DateOfLastDressingChange" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

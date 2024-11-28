@@ -12,8 +12,11 @@ patterns:
   other profiles:
   - resources/zib/*.xml
   - resources/nl-core/*.xml
-  conceptmaps: resources/**/conceptmap-*.xml
-  terminology: resources/**/terminology/*.xml
+  ConceptMaps: resources/**/ConceptMap-*.xml
+  ValueSets: resources/**/ValueSet-*.xml
+  CodeSystems: resources/**/CodeSystem-*.xml
+  other terminology: resources/**/terminology/*.xml
+  SearchParameters: SearchParameters/*.xml
   examples: examples/*.xml
 
 steps:
@@ -39,11 +42,21 @@ steps:
     profile: "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions"
   validate ConceptMaps:
     description: Validate the ConceptMaps using the profile for ConceptMaps
-    patterns: conceptmaps
+    patterns: ConceptMaps
     profile: "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-ConceptMaps"
+  validate ValueSets:
+    description: Validate ValueSets
+    patterns: ValueSets
+  validate CodeSystems:
+    description: Validate CodeSystems
+    patterns: CodeSystems
   validate other terminology:
     description: Validate the other terminology resources
-    patterns: terminology
+    patterns: other terminology
+  validate SearchParameters:
+    description: Validate SearchParameters
+    patterns: SearchParameters
+    profile: "http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-SearchParameters"
   validate examples:
     description: Validate examples using the generic FHIR validation rules
     patterns: examples
@@ -52,3 +65,15 @@ steps:
       - zib profiles
       - zib extensions
     script: zib-compliance.sh
+  check resource ids:
+    description: Check if the .id matches the name of the file
+    patterns:
+      - zib profiles
+      - zib extensions
+      - nl-core profiles
+      - nl-core extensions
+      - other profiles
+      - examples
+  check nl-core overrides:
+    patterns: nl-core profiles
+    script: nl-core-overrides.sh

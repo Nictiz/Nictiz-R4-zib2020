@@ -1,40 +1,70 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <PractitionerRole xmlns="http://hl7.org/fhir">
-   <id value="nl-core-TreatmentDirective2-01-PractitionerRole-01"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
-   </meta>
-   <practitioner>
-      <reference value="Practitioner/nl-core-TreatmentDirective2-01-Practitioner-01"/>
-      <type value="Practitioner"/>
-      <display value="Healthcare professional (person), J.H.R. Peters"/>
-   </practitioner>
-   <specialty>
-      <coding>
-         <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
-         <version value="2020-04-01T00:00:00"/>
-         <code value="01.000"/>
-         <display value="Arts"/>
-      </coding>
-   </specialty>
-   <telecom>
-      <system value="phone">
-         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
-            <valueCodeableConcept>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
-                  <code value="LL"/>
-                  <display value="Land Line"/>
-               </coding>
-            </valueCodeableConcept>
-         </extension>
-      </system>
-      <value value="+3715828282"/>
-      <use value="work"/>
-   </telecom>
-   <telecom>
-      <system value="email"/>
-      <value value="j.peters@hospital.nl"/>
-      <use value="work"/>
-   </telecom>
+  <id value="nl-core-TreatmentDirective2-01-PractitionerRole-01"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <table>
+        <caption>Zorgverlenerrol. </caption>
+        <tbody>
+          <tr>
+            <th>Zorgverlener</th>
+            <td>
+              <div>Healthcare professional (person), J.H.R. Peters</div>
+            </td>
+          </tr>
+          <tr>
+            <th>Specialisme</th>
+            <td>
+              <span title="Arts (01.000 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Arts</span>
+            </td>
+          </tr>
+          <tr>
+            <th>Contactgegevens</th>
+            <td>
+              <div>
+                <a href="tel:+3715828282">+3715828282</a> (Tel Werk)</div>
+              <div>
+                <a href="mailto:j.peters@hospital.nl">j.peters@hospital.nl</a> (E-mail Werk)</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </text>
+  <practitioner>
+    <reference value="Practitioner/nl-core-TreatmentDirective2-01-Practitioner-01"/>
+    <type value="Practitioner"/>
+    <display value="Healthcare professional (person), J.H.R. Peters"/>
+  </practitioner>
+  <specialty>
+    <coding>
+      <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+      <version value="2020-04-01T00:00:00"/>
+      <code value="01.000"/>
+      <display value="Arts"/>
+    </coding>
+  </specialty>
+  <telecom>
+    <system value="phone">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+        <valueCodeableConcept>
+          <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+            <code value="LL"/>
+            <display value="Land Line"/>
+          </coding>
+        </valueCodeableConcept>
+      </extension>
+    </system>
+    <value value="+3715828282"/>
+    <use value="work"/>
+  </telecom>
+  <telecom>
+    <system value="email"/>
+    <value value="j.peters@hospital.nl"/>
+    <use value="work"/>
+  </telecom>
 </PractitionerRole>

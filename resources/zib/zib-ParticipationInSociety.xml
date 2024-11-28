@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-ParticipationInSociety" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-ParticipationInSociety" />
+  <name value="ZibParticipationInSociety" />
+  <title value="zib ParticipationInSociety" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Participation in society pertains to the patient’s initiative to participate in social activities in daily life, such as practicing a profession and hobbies. Participation in society also describes the patient’s social network." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) ParticipationInSociety v3.1 (2020)](https://zibs.nl/wiki/ParticipationInSociety-v3.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-participationinsociety-v3.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/ParticipationInSociety-v3.1(2020EN)" />
+    <name value="zib ParticipationInSociety-v3.1(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="ParticipationInSociety" />
+      <comment value="Several concept(s) of zib ParticipationInSociety are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* SocialNetwork (NL-CM:18.6.2): [zib-ParticipationInSociety.SocialNetwork](http://nictiz.nl/fhir/StructureDefinition/zib-ParticipationInSociety.SocialNetwork)&#xD;&#xA;* Hobby (NL-CM:18.6.3): [zib-ParticipationInSociety.Hobby](http://nictiz.nl/fhir/StructureDefinition/zib-ParticipationInSociety.Hobby)&#xD;&#xA;* WorkSituation (NL-CM:18.6.5): [zib-ParticipationInSociety.WorkSituation](http://nictiz.nl/fhir/StructureDefinition/zib-ParticipationInSociety.WorkSituation)" />
+      <alias value="ParticipatieInMaatschappij" />
+      <mapping>
+        <identity value="zib-participationinsociety-v3.1-2020EN" />
+        <map value="NL-CM:18.6.1" />
+        <comment value="ParticipationInSociety" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="314845004" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.note">
+      <path value="Observation.note" />
+      <max value="1" />
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
+      <short value="Comment" />
+      <definition value="Comment on the participation in society." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-participationinsociety-v3.1-2020EN" />
+        <map value="NL-CM:18.6.5" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.hasMember:socialNetwork">
+      <path value="Observation.hasMember" />
+      <sliceName value="socialNetwork" />
+      <definition value="The SocialNetwork concept (NL-CM:18.6.2) of zib ParticipationInSociety, represented as a distinct Observation resource." />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ParticipationInSociety.SocialNetwork" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:hobby">
+      <path value="Observation.hasMember" />
+      <sliceName value="hobby" />
+      <definition value="The Hobby concept (NL-CM:18.6.3) of zib ParticipationInSociety, represented as a distinct Observation resource." />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ParticipationInSociety.Hobby" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:workSituation">
+      <path value="Observation.hasMember" />
+      <sliceName value="workSituation" />
+      <definition value="The WorkSituation concept (NL-CM:18.6.4) of zib ParticipationInSociety, represented as a distinct Observation resource." />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ParticipationInSociety.WorkSituation" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>

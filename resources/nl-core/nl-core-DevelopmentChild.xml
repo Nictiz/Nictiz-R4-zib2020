@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-DevelopmentChild" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-DevelopmentChild" />
+  <name value="NlcoreDevelopmentChild" />
+  <title value="nl core DevelopmentChild" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Information on the development and growth of a child is important in determining the kind of care that should be provided to the child and the family. When the child is being transferred, continuity of care can be achieved. Information can provide insight in the process of development and whether the child has a developmental delay." />
+  <purpose value="A derived profile from [zib-DevelopmentChild](http://nictiz.nl/fhir/StructureDefinition/zib-DevelopmentChild) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-developmentchild-v1.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/DevelopmentChild-v1.2(2020EN)" />
+    <name value="zib DevelopmentChild-v1.2(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Observation" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-DevelopmentChild" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <comment value="Several concept(s) of zib DevelopmentChild are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* ToiletTrainednessUrine (NL-CM:4.32.4): [nl-core-DevelopmentChild.ToiletTrainednessUrine](http://nictiz.nl/fhir/StructureDefinition/nl-core-DevelopmentChild.ToiletTrainednessUrine)&#xD;&#xA;* ToiletTrainednessFeces (NL-CM:4.32.5): [nl-core-DevelopmentChild.ToiletTrainednessFeces](http://nictiz.nl/fhir/StructureDefinition/nl-core-DevelopmentChild.ToiletTrainednessFeces)&#xD;&#xA;* AgeFirstMenstruation(NL-CM:4.32.7): [nl-core-DevelopmentChild.AgeFirstMenstruation](http://nictiz.nl/fhir/StructureDefinition/nl-core-DevelopmentChild.AgeFirstMenstruation)&#xD;&#xA;* DevelopmentLocomotion(NL-CM:4.32.6): [nl-core-evelopmentChild.DevelopmentLocomotion](http://nictiz.nl/fhir/StructureDefinition/nl-core-evelopmentChild.DevelopmentLocomotion)&#xD;&#xA;* DevelopmentSocial (NL-CM:4.32.8): [nl-core-DevelopmentChild.DevelopmentSocial](http://nictiz.nl/fhir/StructureDefinition/nl-core-DevelopmentChild.DevelopmentSocial)&#xD;&#xA;* DevelopmentLinguistics(NL-CM:4.32.9): [nl-core-DevelopmentChild.DevelopmentLinguistics](http://nictiz.nl/fhir/StructureDefinition/nl-core-DevelopmentChild.DevelopmentLinguistics)" />
+      <alias value="nl-core-DevelopmentChild" />
+    </element>
+    <element id="Observation.subject">
+      <path value="Observation.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:toiletTrainednessUrine">
+      <path value="Observation.hasMember" />
+      <sliceName value="toiletTrainednessUrine" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-DevelopmentChild.ToiletTrainednessUrine" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:toiletTrainednessFeces">
+      <path value="Observation.hasMember" />
+      <sliceName value="toiletTrainednessFeces" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-DevelopmentChild.ToiletTrainednessFeces" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:ageFirstMenstruation">
+      <path value="Observation.hasMember" />
+      <sliceName value="ageFirstMenstruation" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-DevelopmentChild.AgeFirstMenstruation" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:developmentLocomotion">
+      <path value="Observation.hasMember" />
+      <sliceName value="developmentLocomotion" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-DevelopmentChild.DevelopmentLocomotion" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:developmentSocial">
+      <path value="Observation.hasMember" />
+      <sliceName value="developmentSocial" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-DevelopmentChild.DevelopmentSocial" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:developmentLinguistics">
+      <path value="Observation.hasMember" />
+      <sliceName value="developmentLinguistics" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-DevelopmentChild.DevelopmentLinguistics" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:developmentCognition">
+      <path value="Observation.hasMember" />
+      <sliceName value="developmentCognition" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-DevelopmentChild.DevelopmentCognition" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>

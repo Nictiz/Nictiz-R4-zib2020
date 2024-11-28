@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-NameInformation" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NameInformation" />
   <name value="NlcoreNameInformation" />
   <title value="nl core NameInformation" />
@@ -18,6 +20,11 @@
   <purpose value="A derived profile from [zib-NameInformation](http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib.&#xD;&#xA;&#xD;&#xA;For the entire zib, the complementary profile [nl-core-NameInformation.GivenName](http://nictiz.nl/fhir/StructureDefinition/nl-core-NameInformation.GivenName) should be used. Both profiles can be added in a slice with the discriminator set to `value`/`use`." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-nameinformation-v1.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/NameInformation-v1.1(2020EN)" />
+    <name value="zib NameInformation-v1.1(2020EN)" />
+  </mapping>
   <kind value="complex-type" />
   <abstract value="false" />
   <type value="HumanName" />
@@ -26,7 +33,95 @@
   <differential>
     <element id="HumanName">
       <path value="HumanName" />
+      <comment value="This `.name` element accomodates the official parts of a Dutch name according to common international usage and optionally to the [zib NameInformation v1.1 (2020)](https://zibs.nl/wiki/NameInformation-v1.1(2020EN)). An official Dutch name is represented in FHIR as an ordinary international name, optionally augmented using extensions to specify how the last name is built up according to the Dutch rules if conformance to the zib is required. See the guidance on `.family` and on `.extension:nameUsage` for more information.&#xD;&#xA;&#xD;&#xA;Systems that need to work in a Dutch context SHOULD support the extensions as specified in `.given`, `.family` and `.extension:nameUsage`. In addition, systems SHOULD use the core elements according to the FHIR specifications to provide compatibility outside Dutch contexts. This means that:&#xD;&#xA;* If parts of the name are specified using one or more of the structured elements, the `.text` element SHOULD be populated with a rendered version of the full name.&#xD;&#xA;* If parts of the family name are specified using the extensions in `.family`, the `.family` element SHOULD be populated with the full family name.&#xD;&#xA;&#xD;&#xA;**Note 1**: The zib cannot be represented straightforward in FHIR. Especially note the guidance on `.given` on how to map the FirstNames and Initials concepts, and on `.prefix`/`.suffix` on how to map the Titles concept.&#xD;&#xA;&#xD;&#xA;**Note 2**: This element should only contain a person's _official_ names. The GivenName concept is represented in another `.name` element with `.name.use` = _usual_.&#xD;&#xA;&#xD;&#xA;**Note 3**: The examples illustrate how the zib is mapped to FHIR." />
       <alias value="nl-core-NameInformation" />
+      <constraint>
+        <key value="nl-core-NameInformation-01" />
+        <severity value="warning" />
+        <human value="If parts of the name are specified using one or more of the structured elements, the `.text` element SHOULD be populated with a rendered version of the full name. This ensures compatibility with common FHIR usage." />
+        <expression value="(family.exists() or given.extension.where(url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier').where(value != 'IN').exists()) implies text.hasValue()" />
+      </constraint>
+    </element>
+    <element id="HumanName.text">
+      <path value="HumanName.text" />
+      <comment value="A representation of the full name, including given names and the family name.&#xD;&#xA;&#xD;&#xA;When implementing zib NameInformation, this representation should include the FirstNames or Initials and the family name constructed according to the NameUsage concept." />
+      <condition value="nl-core-NameInformation-01" />
+      <mapping>
+        <identity value="zib-nameinformation-v1.1-2020EN" />
+        <map value="NL-CM:20.4.4" />
+        <comment value="FirstNames (implicit, main mapping is on .given)" />
+      </mapping>
+      <mapping>
+        <identity value="zib-nameinformation-v1.1-2020EN" />
+        <map value="NL-CM:20.4.5" />
+        <comment value="Initials (implicit, main mapping is on .given)" />
+      </mapping>
+      <mapping>
+        <identity value="zib-nameinformation-v1.1-2020EN" />
+        <map value="NL-CM:20.4.7" />
+        <comment value="NameUsage (implicit, main mapping is on extension:nameUsage)" />
+      </mapping>
+      <mapping>
+        <identity value="zib-nameinformation-v1.1-2020EN" />
+        <map value="NL-CM:20.4.11" />
+        <comment value="Prefix (implicit, main mapping is on .family.extension:prefix)" />
+      </mapping>
+      <mapping>
+        <identity value="zib-nameinformation-v1.1-2020EN" />
+        <map value="NL-CM:20.4.10" />
+        <comment value="LastName (implicit, main mapping is on .family.extension:lastName)" />
+      </mapping>
+      <mapping>
+        <identity value="zib-nameinformation-v1.1-2020EN" />
+        <map value="NL-CM:20.4.9" />
+        <comment value="PartnerPrefix (implicit, main mapping is on .family.extension:partnerPrefix)" />
+      </mapping>
+      <mapping>
+        <identity value="zib-nameinformation-v1.1-2020EN" />
+        <map value="NL-CM:20.4.8" />
+        <comment value="PartnerLastName (implicit, main mapping is on .family.extension:partnerLastName)" />
+      </mapping>
+    </element>
+    <element id="HumanName.family">
+      <path value="HumanName.family" />
+      <comment value="When implementing zib NameInformation, this representation should be constrcuted from the Prefix, LastName, PartnerPrefix and/or PartnerLastName concepts according to the NameUsage concept." />
+      <condition value="nl-core-NameInformation-01" />
+      <constraint>
+        <key value="nl-core-NameInformation-02" />
+        <severity value="warning" />
+        <human value="If parts of the family name are specified using the extensions in .family, the .family element SHOULD be populated with the full family name as well. This ensures compatibility with common FHIR usage." />
+        <expression value="(extension('http://hl7.org/fhir/StructureDefinition/humanname-own-prefix').exists() or extension('http://hl7.org/fhir/StructureDefinition/humanname-own-name').exists() or extension('http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix').exists() or extension('http://hl7.org/fhir/StructureDefinition/humanname-partner-name').exists()) implies $this.hasValue()" />
+      </constraint>
+      <mapping>
+        <identity value="zib-nameinformation-v1.1-2020EN" />
+        <map value="NL-CM:20.4.7" />
+        <comment value="NameUsage (implicit, main mapping is on extension:nameUsage)" />
+      </mapping>
+      <mapping>
+        <identity value="zib-nameinformation-v1.1-2020EN" />
+        <map value="NL-CM:20.4.11" />
+        <comment value="Prefix (implicit, main mapping is on .family.extension:prefix)" />
+      </mapping>
+      <mapping>
+        <identity value="zib-nameinformation-v1.1-2020EN" />
+        <map value="NL-CM:20.4.10" />
+        <comment value="LastName (implicit, main mapping is on .family.extension:lastName)" />
+      </mapping>
+      <mapping>
+        <identity value="zib-nameinformation-v1.1-2020EN" />
+        <map value="NL-CM:20.4.9" />
+        <comment value="PartnerPrefix (implicit, main mapping is on .family.extension:partnerPrefix)" />
+      </mapping>
+      <mapping>
+        <identity value="zib-nameinformation-v1.1-2020EN" />
+        <map value="NL-CM:20.4.8" />
+        <comment value="PartnerLastName (implicit, main mapping is on .family.extension:partnerLastName)" />
+      </mapping>
+    </element>
+    <element id="HumanName.given">
+      <path value="HumanName.given" />
+      <comment value="This element can be used to represent full given names or initials. `extension:givenOrInitial` SHALL be used on each repretition to specifiy if it's a full name (_BR_) or an initial (_IN_).&#xD;&#xA;&#xD;&#xA;## Zib compatibility&#xD;&#xA;&#xD;&#xA;Tthis element is used to represent the FirstNames and Initials concepts of zib NameInformation, but the FHIR implementation deviates from the zib model. The zib defines these concepts as a list of official first names (as a single string) and a list of initials (as a single string), both optional. They both represent the official name(s) of a person and thus represent the same concept. In FHIR however, each first name is either a complete name or an initial, but not both. In addition, each name may be defined separately.&#xD;&#xA;&#xD;&#xA;Therefore, the zib concepts are implemented here in the following way:&#xD;&#xA;&#xD;&#xA;* Systems SHOULD use a `.given` element for each official first name that they know of (either as a full name or an initial), in order of appearance (as specified by FHIR).&#xD;&#xA;* Each of these elements:&#xD;&#xA;  * SHOULD be populated with the complete name if it is known, or with the initial if no more information is available.&#xD;&#xA;  * As noted, it SHALL be augmented with `extension:givenOrInitial`.&#xD;&#xA;&#xD;&#xA;Initials should thus not be communicated for each complete first name that is known, in contrast to what is specified by the zib. Receiving systems can recreate initials from the full names if needed.&#xD;&#xA;&#xD;&#xA;If a system _does_ however only have a list of official first names and a separate list of official initials, without knowing the relationship between these two, only the full names SHOULD be communicated, while an additional `.name` instance MAY be used to communicate the initials. It is expected that the second instance just contains the initials and no other information from the zib. Receiving systems MAY ignore the second instance.&#xD;&#xA;&#xD;&#xA;**Note 1:** The GivenName concept should not be included here but in a separate `.name` instance where `.use` = _usual_.&#xD;&#xA;&#xD;&#xA;**Note 2**: As specified by FHIR, multiple official first names MAY be combined in a single `.given` element (separated by spaces), as long as the `.given` elements can be concatenated to form the full first name representation, and the 'extension:givenOrInitial` is used to mark the element as containing either full names or the initials. This pattern is strongly discouraged as it is hard to determine if the value pertains multiple names or a single combined name containing spaces." />
+      <condition value="nl-core-NameInformation-01" />
     </element>
   </differential>
 </StructureDefinition>
