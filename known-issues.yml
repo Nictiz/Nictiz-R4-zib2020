@@ -708,6 +708,14 @@ zib-Vaccination-request:
     ImmunizationRecommendation.recommendation.dateCriterion.value:
       - cardinality: 1..1 instead of 0..1
         reason: ImmunizationRecommendation.recommendation.dateCriterion has cardinality 0..1, making the cardinality of ImmunizationRecommendation.recommendation.dateCriterion.value effectively 0..1 as required by the zib.
+        
+zib-VisualAcuity:
+  zib deviations:
+    Observation.bodySite.extension:laterality.value[x]:
+      - short: AnatomicalLocation
+        reason: The zib implies a reference to AnatomicalLocation::Laterality, but actually references AnatomicalLocation. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442
+      - datatype: CodeableConcept
+        reason: The zib implies a reference to AnatomicalLocation::Laterality, but actually references AnatomicalLocation. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442
 
 zib-VisualFunction.VisualAid:
   zib deviations:
