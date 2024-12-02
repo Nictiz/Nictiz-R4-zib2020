@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-Problem" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem" />
   <name value="ZibProblem" />
   <title value="zib Problem" />
@@ -148,14 +146,16 @@
         <comment value="ProblemName" />
       </mapping>
     </element>
-    <element id="Condition.code.extension:furtherSpecificationProblemName">
-      <path value="Condition.code.extension" />
-      <sliceName value="furtherSpecificationProblemName" />
-      <max value="1" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-Problem.FurtherSpecificationProblemName" />
-      </type>
+    <element id="Condition.code.text">
+      <path value="Condition.code.text" />
+      <short value="FurtherSpecificationProblemName" />
+      <definition value="Further specification of problem name when it is recorded via a thesaurus or code system in which the required level of detail is not (yet) available." />
+      <alias value="NadereSpecificatieProbleemNaam" />
+      <mapping>
+        <identity value="zib-problem-v4.4-2020EN" />
+        <map value="NL-CM:5.1.13" />
+        <comment value="FurtherSpecificationProblemName" />
+      </mapping>
     </element>
     <element id="Condition.bodySite">
       <path value="Condition.bodySite" />
