@@ -1,5 +1,5 @@
 <Observation xmlns="http://hl7.org/fhir">
-  <id value="nl-core-VisualAcuity-01"/>
+  <id value="nl-core-VisualAcuity-02"/>
   <meta>
     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualAcuity"/>
   </meta>
@@ -12,6 +12,10 @@
           <tr>
             <th>Bepalingdatum/tijd</th>
             <td>8 februari 2020</td>
+          </tr>
+          <tr>
+            <th>Apparaat/Systeem</th>
+            <td>Visual acuity measurement device: visus via stenopeïsche opening</td>
           </tr>
           <tr>
             <th>Deel van lichaam</th>
@@ -27,14 +31,14 @@
             <td>
               <span title="bevinding betreffende visus (260246004 - SNOMED CT)">bevinding betreffende visus</span>
             </td>
-            <td>0.8 1</td>
+            <td>1.0 1</td>
           </tr>
           <tr>
             <td>
               <span title="onderzoek van visus (16830007 - SNOMED CT)">onderzoek van visus</span>
             </td>
             <td>
-              <span title="best-gecorrigeerde visus (419775003 - SNOMED CT)">best-gecorrigeerde visus</span>
+              <span title="Pinhole visual acuity (419475002 - SNOMED CT)">Pinhole visual acuity</span>
             </td>
           </tr>
           <tr>
@@ -42,14 +46,14 @@
               <span title="verrichting ingedeeld naar hulpmiddel (verrichting) (363691001 - SNOMED CT)">verrichting ingedeeld naar hulpmiddel (verrichting)</span>
             </td>
             <td>
-              <span title="Snellen Letterkaart (2 - 2.16.840.1.113883.2.4.3.11.60.40.4.27)">Snellen Letterkaart</span>
+              <span title="logaritmische E-hakenkaart (1 - 2.16.840.1.113883.2.4.3.11.60.40.4.27)">logaritmische E-hakenkaart</span>
             </td>
           </tr>
           <tr>
             <td>
               <span title="afstand tot visuskaart (152731000146106 - SNOMED CT)">afstand tot visuskaart</span>
             </td>
-            <td>5 m</td>
+            <td>3 m</td>
           </tr>
         </tbody>
       </table>
@@ -70,7 +74,7 @@
   </subject>
   <effectiveDateTime value="2020-02-08"/>
   <valueQuantity>
-    <value value="0.8"/>
+    <value value="1.0"/>
     <system value="http://unitsofmeasure.org"/>
     <code value="1"/>
   </valueQuantity>
@@ -79,8 +83,8 @@
       <valueCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct"/>
-          <code value="7771000"/>
-          <display value="links"/>
+          <code value="24028007"/>
+          <display value="rechts"/>
         </coding>
       </valueCodeableConcept>
     </extension>
@@ -90,6 +94,11 @@
       <display value="oog"/>
     </coding>
   </bodySite>
+  <device>
+    <reference value="Device/nl-core-VisualAcuity.VisualAcuityMeasurementDevice-02"/>
+    <type value="Device"/>
+    <display value="Visual acuity measurement device: visus via stenopeïsche opening"/>
+  </device>
   <component>
     <code>
       <coding>
@@ -101,8 +110,8 @@
     <valueCodeableConcept>
       <coding>
         <system value="http://snomed.info/sct"/>
-        <code value="419775003"/>
-        <display value="best-gecorrigeerde visus"/>
+        <code value="419475002"/>
+        <display value="Pinhole visual acuity"/>
       </coding>
     </valueCodeableConcept>
   </component>
@@ -117,8 +126,8 @@
     <valueCodeableConcept>
       <coding>
         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.27"/>
-        <code value="2"/>
-        <display value="Snellen Letterkaart"/>
+        <code value="1"/>
+        <display value="logaritmische E-hakenkaart"/>
       </coding>
     </valueCodeableConcept>
   </component>
@@ -131,7 +140,7 @@
       </coding>
     </code>
     <valueQuantity>
-      <value value="5"/>
+      <value value="3"/>
       <unit value="m"/>
       <system value="http://unitsofmeasure.org"/>
       <code value="m"/>
