@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-VisualAcuity" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-VisualAcuity" />
   <name value="ZibVisualAcuity" />
   <title value="zib VisualAcuity" />
@@ -19,7 +17,7 @@
     </telecom>
   </contact>
   <description value="Visual acuity is a measurement of sharpness of vision. It is a measure of the smallest details that someone can still distinguish." />
-  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) VisualAcuity-v1.0(2020EN)](https://zibs.nl/wiki/VisualAcuity-v1.0(2020EN)). Because of some irregularities that were found in the 2020 version of the zib, concept names, descriptions and DefinitionCodes were taken from version [v2.0(2021EN)](https://zibs.nl/wiki/Visus-v2.0(2021NL))." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) VisualAcuity v1.0 (2020)](https://zibs.nl/wiki/VisualAcuity-v1.0(2020EN)). Because of some irregularities that were found in the 2020 version of the zib, concept names, descriptions and DefinitionCodes were taken from version [v2.0 (2021)](https://zibs.nl/wiki/Visus-v2.0(2021EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -41,29 +39,6 @@
         <identity value="zib-visualacuity-v1.0-2020EN" />
         <map value="NL-CM:12.19.1" />
         <comment value="VisualAcuity" />
-      </mapping>
-    </element>
-    <element id="Observation.extension:visualAcuityMeasurementDevice">
-      <path value="Observation.extension" />
-      <sliceName value="visualAcuityMeasurementDevice" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://hl7.org/fhir/StructureDefinition/observation-deviceCode" />
-      </type>
-    </element>
-    <element id="Observation.extension:visualAcuityMeasurementDevice.value[x]">
-      <path value="Observation.extension.value[x]" />
-      <short value="VisualAcuityMeasurementDevice" />
-      <definition value="The device used measuring the visual acuity." />
-      <alias value="VisusMeetHulpmiddel" />
-      <binding>
-        <strength value="extensible" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.19.4--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-visualacuity-v1.0-2020EN" />
-        <map value="NL-CM:12.19.6" />
-        <comment value="VisualAcuityMeasurementDevice" />
       </mapping>
     </element>
     <element id="Observation.code">
@@ -168,6 +143,15 @@
         <map value="NL-CM:12.19.5" />
         <comment value="AnatomicalLocation" />
       </mapping>
+    </element>
+    <element id="Observation.device">
+      <path value="Observation.device" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DeviceMetric" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-VisualAcuity.VisualAcuityMeasurementDevice" />
+      </type>
     </element>
     <element id="Observation.component">
       <path value="Observation.component" />
