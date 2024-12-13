@@ -1,0 +1,99 @@
+<Condition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-Burnwound-01"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Burnwound"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <table>
+        <caption>Aandoening. Subject: Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen. Categorie: <span title="Burn (125666000 - SNOMED CT)">Burn</span>
+        </caption>
+        <tfoot>
+          <tr>
+            <td colspan="2">Mevrouw kreeg hete thee over zich heen, wond is ongeveer 10 bij 4 cm.</td>
+          </tr>
+        </tfoot>
+        <tbody>
+          <tr>
+            <th>Code</th>
+            <td>
+              <span title="thermische brandwond (105594005 - SNOMED CT)">thermische brandwond</span>
+            </td>
+          </tr>
+          <tr>
+            <th>Eerste symptomen</th>
+            <td>29 september 2014</td>
+          </tr>
+          <tr>
+            <th>Stadium</th>
+            <td>
+              <span title="oppervlakkige tweedegraads brandwond (262587005 - SNOMED CT)">oppervlakkige tweedegraads brandwond</span>
+            </td>
+          </tr>
+          <tr>
+            <th>Ondersteunend onderzoek</th>
+            <td>
+              <div>Details: Wound finding</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </text>
+  <category>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="125666000"/>
+      <display value="Burn"/>
+    </coding>
+  </category>
+  <code>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="105594005"/>
+      <display value="thermische brandwond"/>
+    </coding>
+  </code>
+  <bodySite>
+    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+      <valueCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct"/>
+          <code value="51440002"/>
+          <display value="bilateraal"/>
+        </coding>
+      </valueCodeableConcept>
+    </extension>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="14975008"/>
+      <display value="onderarm"/>
+    </coding>
+  </bodySite>
+  <subject>
+    <reference value="Patient/nl-core-Patient-01"/>
+    <type value="Patient"/>
+    <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+  </subject>
+  <onsetDateTime value="2014-09-29"/>
+  <stage>
+    <summary>
+      <coding>
+        <system value="http://snomed.info/sct"/>
+        <code value="262587005"/>
+        <display value="oppervlakkige tweedegraads brandwond"/>
+      </coding>
+    </summary>
+  </stage>
+  <evidence>
+    <detail>
+      <reference value="Observation/nl-core-Burnwound-01-WoundCharacteristics-01"/>
+      <type value="Observation"/>
+      <display value="Wound finding"/>
+    </detail>
+  </evidence>
+  <note>
+    <text value="Mevrouw kreeg hete thee over zich heen, wond is ongeveer 10 bij 4 cm."/>
+  </note>
+</Condition>

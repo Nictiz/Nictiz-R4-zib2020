@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-BowelFunction" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction" />
   <name value="NlcoreBowelFunction" />
   <title value="nl core BowelFunction" />
@@ -35,7 +33,7 @@
   <differential>
     <element id="Observation">
       <path value="Observation" />
-      <comment value="Please note that on a functional level, zib BowelFunction references zib MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept IncontinenceMaterial (NL-CM:4.15.6) is mapped on `DeviceUseStatement.reasonReference` in profile [nl-core-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice) instead of in this profile." />
+      <comment value="Please note that on a functional level, zib BowelFunction references zib MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept IncontinenceMaterial (NL-CM:4.15.6) is mapped on `DeviceUseStatement.reasonReference` in profile [nl-core-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice) instead of in this profile.&#xD;&#xA;&#xD;&#xA;Several concept(s) of zib BowelFunction are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* FecalContinence (NL-CM:4.15.2): [nl-core-BowelFunction.FecalContinence](http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction.FecalContinence)&#xD;&#xA;* Frequency (NL-CM:4.15.4): [nl-core-BowelFunction.Frequency](http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction.Frequency)&#xD;&#xA;* DefecationConsistency(NL-CM:4.15.9): [nl-core-BowelFunction.DefecationConsistency](http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction.DefecationConsistency)&#xD;&#xA;* DefecationColor(NL-CM:4.15.10): [nl-core-BowelFunction.DefecationColor](http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction.DefecationColor)" />
       <alias value="nl-core-BowelFunction" />
     </element>
     <element id="Observation.extension:stoma">
@@ -58,6 +56,39 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:fecalContinence">
+      <path value="Observation.hasMember" />
+      <sliceName value="fecalContinence" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction.FecalContinence" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:frequency">
+      <path value="Observation.hasMember" />
+      <sliceName value="frequency" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction.Frequency" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:defecationConsistency">
+      <path value="Observation.hasMember" />
+      <sliceName value="defecationConsistency" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction.DefecationConsistency" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:defecationColor">
+      <path value="Observation.hasMember" />
+      <sliceName value="defecationColor" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction.DefecationColor" />
       </type>
     </element>
   </differential>

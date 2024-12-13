@@ -62,6 +62,14 @@ nl-core-VisualFunction.VisualAid.Product:
       - message: The slice definition for Device.udiCarrier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
         reason: This is indeed what is intended, just one of these slices may be chosen.
 
+nl-core-Wound.Drain.Product:
+  ignored issues:
+    Device:
+      - message: The slice definition for Device.identifier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+      - message: The slice definition for Device.udiCarrier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+
 pattern-GstdSimpleQuantity:
   ignored issues:
     StructureDefinition:
@@ -91,6 +99,18 @@ pattern-ZibHealthProfessionalReference:
     StructureDefinition:
       - message: "Constraint failed: sd-pg-08: 'The title of the StructureDefinition should conform to the profiling guidelines'"
         reason: The title is shown in the hosting profiles as the name of the datatype. "zib HealthProfessional Reference" is more descriptive than the title according to the profiling guidelines ("pattern ZibHealthProfessionalReference").
+
+zib-AbilityToDrink.DrinkingLimitations:
+  zib deviations:
+      Observation.value[x]:valueCodeableConcept:
+      - cardinality: 0..1 instead of 0..*
+        reason: The value can only occur once, but this profile is referenced 0..* times via .hasMember, making the effective cardinality 0..* as required by the zib.
+
+zib-AbilityToEat.EatingLimitations:
+  zib deviations:
+      Observation.value[x]:valueCodeableConcept:
+      - cardinality: 0..1 instead of 0..*
+        reason: The value can only occur once, but this profile is referenced 0..* times via .hasMember, making the effective cardinality 0..* as required by the zib.
 
 zib-AbilityToUseToilet:
   zib deviations:
@@ -146,12 +166,25 @@ zib-BodyTemperature:
     Observation.code.coding:BodyTempCode:
       - message: "Constraint failed: sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
         reason: The slice name "BodyTempCode" is chosen to align with the Vital Signs profile for BodyTemperature.
-
-zib-CareTeam:
+        
+zib-Burnwound:
+  zib deviations:
+    Condition:
+      - short: Burnwound instead of BurnWound
+        reason: The root of the zib is called "BurnWound", even though the zib itself is called "Burnwound" (which is incorrect).
+    Condition.bodySite:
+      - datatype: CodeableConcept instead of a reference
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
   ignored issues:
-    CareTeam.participant:*.member:
-      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
+    Condition.bodySite.extension:laterality.value[x]:
+      - message: "Constraint failed: sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
+        reason: The short description is defined in the extension profile and therefore not defined in the differential.
+      - message: "Constraint failed: sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
+        reason: The definition is defined in the extension profile and therefore not defined in the differential.
+      - message: "Constraint failed: sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias is defined in the extension profile and therefore not defined in the differential.
+        
+zib-CareTeam:
   zib deviations:
     CareTeam.name:
       - short: CareTeamName instead of CareTeamNaam
@@ -190,13 +223,6 @@ zib-ContactPerson:
     RelatedPerson.telecom: Although there is a cardinality mismatch for the mapping of zib concept ContactPerson.ContactInformation on this element (as pointed out above), the cardinalities between zib and FHIR do match for the mapping of zib concept Payer.ContactInformation (NL-CM:1.1.12), as these are both 0..*.
 
 zib-Encounter:
-  ignored issues:
-    Encounter.participant:healthProfessional.individual:
-      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
-    Encounter.reasonReference:*:
-      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     Encounter.class:
       - cardinality: 1..1 instead of 0..1
@@ -218,10 +244,6 @@ zib-FLACCpainScale:
         reason: The root of the zib is called "FLACCpainScore" (which is incorrect), even though the zib itself is called "FLACCpainScale".
 
 zib-FreedomRestrictingIntervention:
-  ignored issues:
-    Procedure.reasonReference:legalSituation-*:
-      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     Procedure:
       - short: FreedomRestrictingIntervention instead of FreedomrestrictingIntervention
@@ -275,10 +297,6 @@ zib-HealthProfessional-PractitionerRole:
         reason: ContactInformation in FHIR is represented using the ContactPoint datatype, not as a separate resource. Because the FHIR profile for ContactInformation consists of two parts the root concept of ContactInformation is mapped on .telecom.
 
 zib-HearingFunction.HearingAid:
-  ignored issues:
-    DeviceUseStatement.reasonReference:*:
-      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     DeviceUseStatement:
       - datatype: undefined
@@ -313,18 +331,8 @@ zib-HelpFromOthers:
     CarePlan:
       - message: The slice definition for CarePlan.activity.detail.performer has a maximum of 1 but the slices add up to a maximum of 3. Check that this is what is intended
         reason: This is indeed what is intended, just one of these slices may be chosen.
-    CarePlan.activity.detail.performer:*:
-      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice. 
 
 zib-LaboratoryTestResult:
-  ignored issues:
-    Observation.performer:performer:
-      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
-    Observation.hasMember:laboratoryTest:
-      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     Observation.status:
       - cardinality: 1..1 instead of 0..1
@@ -367,13 +375,6 @@ zib-LaboratoryTestResult.SpecimenSource:
         reason: The zib concept SpecimenSource is represented using a reference to this profile from zib-LaboratoryTestResult.Specimen, so this element represents just part of the mapping. Overall, the use of this concept is optional, but when this profile is used, Device.deviceName.name must be given.
 
 zib-MedicalDevice:
-  ignored issues:
-    DeviceUseStatement.derivedFrom:*:
-      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
-    DeviceUseStatement.reasonReference:*:
-      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept instead of a reference
@@ -464,12 +465,6 @@ zib-NursingIntervention:
     CarePlan:
       - message: The slice definition for CarePlan.activity.detail.performer has a maximum of 1 but the slices add up to a maximum of 3. Check that this is what is intended
         reason: This is indeed what is intended, just one of these slices may be chosen.
-    CarePlan.contributor:requester:
-      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice.
-    CarePlan.activity.detail.performer:*:
-      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice. 
 
 zib-Patient:
   zib deviations:
@@ -563,6 +558,12 @@ zib-Payer-Organization:
     Organization.address:
       - datatype: Address instead of a reference
         reason: An address in FHIR is represented using the Address datatype, not as a separate resource.
+        
+zib-PressureUlcer:
+  zib deviations:
+    Condition.bodySite:
+      - datatype: CodeableConcept instead of a reference
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
 
 zib-Problem:
   zib deviations:
@@ -571,10 +572,6 @@ zib-Problem:
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
 
 zib-Procedure-event:
-  ignored issues:
-    Procedure.report:textResult:
-      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     Procedure.bodySite:
       - datatype: CodeableConcept instead of a reference
@@ -619,6 +616,12 @@ zib-Refraction:
     Observation.component:sphericalEquivalent.value[x]:
       - short: SphericalEquivalent instead of SfericalEquivalent
         reason: The zib concept name "SfericalEquivalent" is an incorrect translation of the Dutch name into English.
+
+zib-SNAQ65plusScore:
+  ignored issues:
+    StructureDefinition.mapping[0]:
+      - message: "Constraint failed: sd-zpg-05: 'The URI for zib mappings should align with the mapping name'"
+        reason: The discrepancy between uri and name in the mapping stems from the '+' character in the zib name, as this character is not allowed in the mapping name.
 
 zib-SOAPReport:
   zib deviations:
@@ -715,10 +718,6 @@ zib-VisualAcuity:
         reason: The zib implies a reference to AnatomicalLocation::Laterality, but actually references AnatomicalLocation. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442
 
 zib-VisualFunction.VisualAid:
-  ignored issues:
-    DeviceUseStatement.reasonReference:*:
-      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used.
   zib deviations:
     DeviceUseStatement:
       - datatype: undefined
@@ -747,7 +746,51 @@ zib-VisualFunction.VisualAid.Product:
     Device.udiCarrier:*UdiCarrier.carrierHRF:
       - datatype: string instead of CD compatible datatype
         reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
+        
+zib-Wound:
+  zib deviations:  
+    Condition.bodySite:
+      - datatype: CodeableConcept instead of a reference
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
 
+zib-Wound.Drain:
+  zib deviations:
+    DeviceUseStatement.bodySite:
+      - datatype: CodeableConcept instead of a reference
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+    DeviceUseStatement.timing[x]:timingPeriod.end:
+      - short: EndDate instead of EindDatum
+        reason: The zib concept name "EindDatum" has not been translated into English.
+
+zib-Wound.Drain.Product:
+  ignored issues:
+    Device:
+      - message: The slice definition for Device.identifier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+      - message: The slice definition for Device.udiCarrier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+    Device.type:
+      - message: "Constraint failed: sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist"
+        reason: The short for ProductType is already present in the base profile where this profile is derived from. It should not be added twice to silence this issue.
+      - message: "Constraint failed: sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias for ProductType is already present in the base profile where this profile is derived from. It should not be added twice to silence this issue.
+  zib deviations:
+    Device.identifier:*ProductID:
+      - datatype: Identifier instead of CD compatible datatype
+        reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.udiCarrier:*UdiCarrier.carrierHRF:
+      - datatype: string instead of CD compatible datatype
+        reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
+
+zib-wounds.WoundImage:
+  zib deviations:
+    DocumentReference.content.attachment:
+      - alias: WondFoto instead of Wondfoto
+        for: NL-CM:19.4.11 (Burnwound.WoundImage)
+        reason: The zib concept name "Wondfoto" is incorrect and must be corrected to "WondFoto".
+      - cardinality: 1..* instead of 0..*
+        reason: The WoundImage concept itself has been mapped onto this separate DocumentReference resource. This resource may be instantiated 0..* times, but if it is used, its content is required.
+        
 unmapped zib concepts:
   - NL-CM:17.2.10: HealthcareProvider.LocationNumber
     reason: This zib concept is problematic to map cleanly to FHIR and it has been deemed too uncommon in practice to warrant an extension.
@@ -756,6 +799,14 @@ unmapped zib concepts:
   - NL-CM:13.1.34: LaboratoryTestResult.Requester::HealthProfessional
     reason: This concept is deemed unimplementable and will be removed in the future. See https://bits.nictiz.nl/browse/ZIB-1269 for details.
 
+undefined zib concepts:
+  - concept id: NL-CM:19.4.9
+    name NL: BrandwondSoort
+    name EN: BurnType
+    datatype: CD
+    cardinality: 0..1
+    reason: The BurnType concept was added by an erratum.
+    
 ---
 # The following issues are not "real" deviations stemming from design choices, but rather problems that pop up due to
 # shortcomings in tooling, the used terminology server, etc.
@@ -783,13 +834,25 @@ issues should occur: false
       - message: Unable to validate code without using server
         reason: This warning doesn't provide any feedback on the correctness of the materials. In addition, there's little reason to fix this issue on the package level as it is unlikely that this ever results in problems in production (CodeSystems are not typically validated in production).
 
+2.16.840.1.113883.2.4.3.11.60.40.2.5.1.3--20200901000000:
+  ignored issues:
+    ValueSet.compose.include[9].filter[0]:
+      - message: The value for a filter based on property 'concept' must be a valid code from the system 'http://snomed.info/sct', and '31000147101' is not
+        reason: This code represents the DHD Diagnosethesaurus, which the default terminology server is unable to check
+
+2.16.840.1.113883.2.4.3.11.60.40.2.14.1.2--20200901000000:
+  ignored issues:
+    ValueSet.compose.include[0].filter[0]:
+      - message: The value for a filter based on property 'concept' must be a valid code from the system 'http://snomed.info/sct', and '41000147108' is not
+        reason: This code represents the DHD Verrichtingenthesaurus, which the default terminology server is unable to check
+
 nl-core-*:
   ignored issues:
     "*":
       - message: No valid Display Names found for
         reason: This warning doesn't provide any feedback on the correctness of the materials, but only on the completeness of the terminology server used.
     "*.address*.country.extension[0].value*":
-      - message: None of the codings provided are in the value set 'LandCodelijsten' (http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.10--20200901000000), and a coding from this value set is required) (codes = urn:oid:2.16.840.1.113883.2.4.4.16.34#6030)
+      - message: None of the codings provided are in the value set 'LandCodelijsten'
         reason: The current version of the Validator incorrectly raises an error on combined ValueSets.
     "*.code":
       - message: None of the codings provided are in the value set 'VerrichtingTypeCodelijsten'
@@ -797,14 +860,20 @@ nl-core-*:
     "*.telecom[*].system.extension[*].value.ofType(CodeableConcept).coding[*]":
       - message: Wrong Display Name 'Mobile Phone' for http://terminology.hl7.org/CodeSystem/v3-AddressUse#MC
         reason: This core display value is redefined by the ValueSet, but this isn't properly recognized by the Validator
-    "*.contentType":
-      - message: The value provided ('application/octet-stream') is not in the value set 'MimeType'
-        reason: The Validator is unable to check mime types in absence of a terminology server.
     Condition.code:
       - message: None of the codings provided are in the value set 'ProbleemNaamCodelijst'
         reason: This ValueSet contains two SNOMED refsets. The terminology servers are unable to determine if a code is part of this refset.
       - message: "Error from http://tx.fhir.org/r4: The Snomed Concept 31000147101 was not known"
-        reason: This code represents the DHD Diagnosethesaurus, which the default terminology server is unable to check. This causes problems on some occassions (but not all).
+        reason: This code represents the DHD Diagnosethesaurus, which the default terminology server is unable to check. This causes problems on some occasions (but not all).
+    Condition.evidence[*].detail[*]:
+      - message: This element does not match any known slice defined in the profile
+        reason: The Validator is unable to resolve references on disk, so it is unable to match reference slices
+    Observation.hasMember[*]:
+      - message: This element does not match any known slice defined in the profile
+        reason: The Validator is unable to resolve references on disk, so it is unable to match reference slices
+    Procedure.code:
+      - message: "Error from http://tx.fhir.org/r4: The Snomed Concept 41000147108 was not known"
+        reason: This code represents the DHD Verrichtingenthesaurus, which the default terminology server is unable to check. This causes problems on some occasions (but not all).
 
 nl-core-AllergyIntolerance*:
   ignored issues:
@@ -856,17 +925,17 @@ nl-core-HearingFunction.HearingAid-*:
       - message: 'Profile http://nictiz.nl/fhir/StructureDefinition/nl-core-HearingFunction.HearingAid, Element matches more than one slice'
         reason: The Validator cannot actually inspect the referenced resources, and falsely assumes the reference is a reference to the offending profile.
 
-nl-core-HeartRate-*:
-  ignored issues:
-    Observation.component[*].value.*:
-      - message: None of the codings provided are in the value set 'Vital Signs Units'
-        reason: The Validator checks all Observations with a vital signs magic LOINC code against the HL7 Vital Signs base profile. Unfortunately, this profile restricts the allowed components to only the use cases identified by HL7, while the zib adds additional data. This has been identified as a bug in het HL7 Vital Signs profile, which will be fixed in the next version. See https://jira.hl7.org/browse/FHIR-43353 for more information.
-
 nl-core-VisualFunction.VisualAid-*:
   ignored issues:
     DeviceUseStatement.reasonReference[*]:
       - message: 'Profile http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualFunction.VisualAid, Element matches more than one slice'
         reason: The Validator cannot actually inspect the referenced resources, and falsely assumes the reference is a reference to the offending profile.
+
+nl-core-LaboratoryTestResult-*:
+  ignored issues:
+    Observation.code:
+      - message: None of the codings provided are in the value set 'TestCode-en-Onderzoek-Codelijsten'
+        reason: The current version of the Validator incorrectly raises an error on combined ValueSets.
 
 nl-core-PainScore-01:
   ignored issues:
@@ -901,9 +970,6 @@ nl-core-PulseRate-*:
     Observation.code:
       - message: "HeartRateCode: magic LOINC code 8867-4 required, but not found"
         reason: The Validator regards a heart rate measured by palpation as a special case of a heart rate and requires the heart rate code to be present in addition, whereas the zib regards a "pulse rate" as something fundamentally different than a heart rate. This issue is tracked in https://nictiz.atlassian.net/browse/ZIB-2216. Until it has been resolved, this error message is silenced.
-    Observation.component[*].value.*:
-      - message: None of the codings provided are in the value set 'Vital Signs Units'
-        reason: The Validator checks all Observations with a vital signs magic LOINC code against the HL7 Vital Signs base profile. Unfortunately, this profile restricts the allowed components to only the use cases identified by HL7, while the zib adds additional data. This has been identified as a bug in het HL7 Vital Signs profile, which will be fixed in the next version. See https://jira.hl7.org/browse/FHIR-43353 for more information.
 
 zib-*Function.*Aid.Product:
   ignored issues:
@@ -918,7 +984,13 @@ zib-Alert:
     Flag:
       - message: "Constraint failed: sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias "Alert" is already defined in the base profile, so it doesn't need to be defined again in the differential.
-       
+
+zib-CareTeam:
+  ignored issues:
+    CareTeam.participant:*.member:
+      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7 base references, unless they are added on a slice"
+        reason: The restriction is set on a slice, but this cannot be automatically checked.
+
 zib-ContactPerson:
   ignored issues:
     RelatedPerson.address:
@@ -926,6 +998,12 @@ zib-ContactPerson:
         reason: The short description is defined on the datatype profile and not repeated in the differential.
       - message: "Constraint failed: sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
         reason: The alias is defined on the datatype profile and not repeated in the differential.
+
+zib-Encounter:
+  ignored issues:
+    Encounter.participant:healthProfessional.individual:
+      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7 base references, unless they are added on a slice."
+        reason: The restriction is set on a slice, but this cannot be automatically checked.
 
 zib-HealthcareProvider:
   ignored issues:

@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-ParticipationInSociety" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-ParticipationInSociety" />
   <name value="ZibParticipationInSociety" />
   <title value="zib ParticipationInSociety" />
@@ -36,6 +34,7 @@
     <element id="Observation">
       <path value="Observation" />
       <short value="ParticipationInSociety" />
+      <comment value="Several concept(s) of zib ParticipationInSociety are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* SocialNetwork (NL-CM:18.6.2): [zib-ParticipationInSociety.SocialNetwork](http://nictiz.nl/fhir/StructureDefinition/zib-ParticipationInSociety.SocialNetwork)&#xD;&#xA;* Hobby (NL-CM:18.6.3): [zib-ParticipationInSociety.Hobby](http://nictiz.nl/fhir/StructureDefinition/zib-ParticipationInSociety.Hobby)&#xD;&#xA;* WorkSituation (NL-CM:18.6.5): [zib-ParticipationInSociety.WorkSituation](http://nictiz.nl/fhir/StructureDefinition/zib-ParticipationInSociety.WorkSituation)" />
       <alias value="ParticipatieInMaatschappij" />
       <mapping>
         <identity value="zib-participationinsociety-v3.1-2020EN" />
@@ -67,99 +66,45 @@
         <comment value="Comment" />
       </mapping>
     </element>
-    <element id="Observation.component">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
       <slicing>
         <discriminator>
-          <type value="value" />
-          <path value="code" />
+          <type value="profile" />
+          <path value="resolve()" />
         </discriminator>
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Observation.component:socialNetwork">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:socialNetwork">
+      <path value="Observation.hasMember" />
       <sliceName value="socialNetwork" />
+      <definition value="The SocialNetwork concept (NL-CM:18.6.2) of zib ParticipationInSociety, represented as a distinct Observation resource." />
       <max value="1" />
-    </element>
-    <element id="Observation.component:socialNetwork.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="365469004" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:socialNetwork.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="SocialNetwork" />
-      <definition value="A description of the patient’s social network, such as family, neighbors and friends." />
-      <alias value="SociaalNetwerk" />
       <type>
-        <code value="string" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ParticipationInSociety.SocialNetwork" />
       </type>
-      <mapping>
-        <identity value="zib-participationinsociety-v3.1-2020EN" />
-        <map value="NL-CM:18.6.2" />
-        <comment value="SocialNetwork" />
-      </mapping>
     </element>
-    <element id="Observation.component:hobby">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:hobby">
+      <path value="Observation.hasMember" />
       <sliceName value="hobby" />
+      <definition value="The Hobby concept (NL-CM:18.6.3) of zib ParticipationInSociety, represented as a distinct Observation resource." />
       <max value="1" />
-    </element>
-    <element id="Observation.component:hobby.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="405081003" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:hobby.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="Hobby" />
-      <definition value="An activity the patient enjoys doing in their free time." />
-      <alias value="Vrijetijdsbesteding" />
       <type>
-        <code value="string" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ParticipationInSociety.Hobby" />
       </type>
-      <mapping>
-        <identity value="zib-participationinsociety-v3.1-2020EN" />
-        <map value="NL-CM:18.6.3" />
-        <comment value="Hobby" />
-      </mapping>
     </element>
-    <element id="Observation.component:workSituation">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:workSituation">
+      <path value="Observation.hasMember" />
       <sliceName value="workSituation" />
+      <definition value="The WorkSituation concept (NL-CM:18.6.4) of zib ParticipationInSociety, represented as a distinct Observation resource." />
       <max value="1" />
-    </element>
-    <element id="Observation.component:workSituation.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="364703007" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:workSituation.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="WorkSituation" />
-      <definition value="WorkSituation describes the extent to which and in what way the patient participates in the workforce. Work is meant in the broadest sense of the word: activities that contribute to the person themselves, their environment or society. This includes both paid and unpaid work." />
-      <alias value="Arbeidssituatie" />
       <type>
-        <code value="string" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ParticipationInSociety.WorkSituation" />
       </type>
-      <mapping>
-        <identity value="zib-participationinsociety-v3.1-2020EN" />
-        <map value="NL-CM:18.6.4" />
-        <comment value="WorkSituation" />
-      </mapping>
     </element>
   </differential>
 </StructureDefinition>

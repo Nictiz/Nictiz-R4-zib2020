@@ -1,30 +1,60 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <PractitionerRole xmlns="http://hl7.org/fhir">
-   <id value="nl-core-HealthProfessional-PractitionerRole-01"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
-   </meta>
-   <practitioner>
-      <reference value="Practitioner/nl-core-HealthProfessional-Practitioner-01"/>
-      <type value="Practitioner"/>
-      <display value="Healthcare professional (person), J.H.R. Peters"/>
-   </practitioner>
-   <specialty>
-      <coding>
-         <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
-         <version value="2020-04-01T00:00:00"/>
-         <code value="01.026"/>
-         <display value="Neuroloog"/>
-      </coding>
-   </specialty>
-   <telecom>
-      <system value="phone"/>
-      <value value="+3715828282"/>
-      <use value="work"/>
-   </telecom>
-   <telecom>
-      <system value="email"/>
-      <value value="j.peters@hospital.nl"/>
-      <use value="work"/>
-   </telecom>
+  <id value="nl-core-HealthProfessional-PractitionerRole-01"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <table>
+        <caption>Zorgverlenerrol. </caption>
+        <tbody>
+          <tr>
+            <th>Zorgverlener</th>
+            <td>
+              <div>Healthcare professional (person), J.H.R. Peters</div>
+            </td>
+          </tr>
+          <tr>
+            <th>Specialisme</th>
+            <td>
+              <span title="Neuroloog (01.026 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Neuroloog</span>
+            </td>
+          </tr>
+          <tr>
+            <th>Contactgegevens</th>
+            <td>
+              <div>
+                <a href="tel:+3715828282">+3715828282</a> (Tel Werk)</div>
+              <div>
+                <a href="mailto:j.peters@hospital.nl">j.peters@hospital.nl</a> (E-mail Werk)</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </text>
+  <practitioner>
+    <reference value="Practitioner/nl-core-HealthProfessional-Practitioner-01"/>
+    <type value="Practitioner"/>
+    <display value="Healthcare professional (person), J.H.R. Peters"/>
+  </practitioner>
+  <specialty>
+    <coding>
+      <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+      <version value="2020-04-01T00:00:00"/>
+      <code value="01.026"/>
+      <display value="Neuroloog"/>
+    </coding>
+  </specialty>
+  <telecom>
+    <system value="phone"/>
+    <value value="+3715828282"/>
+    <use value="work"/>
+  </telecom>
+  <telecom>
+    <system value="email"/>
+    <value value="j.peters@hospital.nl"/>
+    <use value="work"/>
+  </telecom>
 </PractitionerRole>
