@@ -1,0 +1,149 @@
+<Observation xmlns="http://hl7.org/fhir">
+  <id value="nl-core-VisualAcuity-02"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualAcuity"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <table>
+        <caption>Observatie/bepaling. Subject: Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen. Status: definitief</caption>
+        <tbody>
+          <tr>
+            <th>Bepalingdatum/tijd</th>
+            <td>8 februari 2020</td>
+          </tr>
+          <tr>
+            <th>Apparaat/Systeem</th>
+            <td>Visual acuity measurement device: visus via stenopeïsche opening</td>
+          </tr>
+          <tr>
+            <th>Deel van lichaam</th>
+            <td>
+              <span title="oog (81745001 - SNOMED CT)">oog</span>
+            </td>
+          </tr>
+          <tr>
+            <th>Code</th>
+            <th>Waarde</th>
+          </tr>
+          <tr>
+            <td>
+              <span title="bevinding betreffende visus (260246004 - SNOMED CT)">bevinding betreffende visus</span>
+            </td>
+            <td>1.0 1</td>
+          </tr>
+          <tr>
+            <td>
+              <span title="onderzoek van visus (16830007 - SNOMED CT)">onderzoek van visus</span>
+            </td>
+            <td>
+              <span title="Pinhole visual acuity (419475002 - SNOMED CT)">Pinhole visual acuity</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span title="verrichting ingedeeld naar hulpmiddel (verrichting) (363691001 - SNOMED CT)">verrichting ingedeeld naar hulpmiddel (verrichting)</span>
+            </td>
+            <td>
+              <span title="logaritmische E-hakenkaart (1 - 2.16.840.1.113883.2.4.3.11.60.40.4.27)">logaritmische E-hakenkaart</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span title="afstand tot visuskaart (152731000146106 - SNOMED CT)">afstand tot visuskaart</span>
+            </td>
+            <td>3 m</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </text>
+  <status value="final"/>
+  <code>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="260246004"/>
+      <display value="bevinding betreffende visus"/>
+    </coding>
+  </code>
+  <subject>
+    <reference value="Patient/nl-core-Patient-01"/>
+    <type value="Patient"/>
+    <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+  </subject>
+  <effectiveDateTime value="2020-02-08"/>
+  <valueQuantity>
+    <value value="1.0"/>
+    <system value="http://unitsofmeasure.org"/>
+    <code value="1"/>
+  </valueQuantity>
+  <bodySite>
+    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+      <valueCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct"/>
+          <code value="24028007"/>
+          <display value="rechts"/>
+        </coding>
+      </valueCodeableConcept>
+    </extension>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="81745001"/>
+      <display value="oog"/>
+    </coding>
+  </bodySite>
+  <device>
+    <reference value="Device/nl-core-VisualAcuity.VisualAcuityMeasurementDevice-02"/>
+    <type value="Device"/>
+    <display value="Visual acuity measurement device: visus via stenopeïsche opening"/>
+  </device>
+  <component>
+    <code>
+      <coding>
+        <system value="http://snomed.info/sct"/>
+        <code value="16830007"/>
+        <display value="onderzoek van visus"/>
+      </coding>
+    </code>
+    <valueCodeableConcept>
+      <coding>
+        <system value="http://snomed.info/sct"/>
+        <code value="419475002"/>
+        <display value="Pinhole visual acuity"/>
+      </coding>
+    </valueCodeableConcept>
+  </component>
+  <component>
+    <code>
+      <coding>
+        <system value="http://snomed.info/sct"/>
+        <code value="363691001"/>
+        <display value="verrichting ingedeeld naar hulpmiddel (verrichting)"/>
+      </coding>
+    </code>
+    <valueCodeableConcept>
+      <coding>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.27"/>
+        <code value="1"/>
+        <display value="logaritmische E-hakenkaart"/>
+      </coding>
+    </valueCodeableConcept>
+  </component>
+  <component>
+    <code>
+      <coding>
+        <system value="http://snomed.info/sct"/>
+        <code value="152731000146106"/>
+        <display value="afstand tot visuskaart"/>
+      </coding>
+    </code>
+    <valueQuantity>
+      <value value="3"/>
+      <unit value="m"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="m"/>
+    </valueQuantity>
+  </component>
+</Observation>
