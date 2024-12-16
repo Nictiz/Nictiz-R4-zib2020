@@ -553,6 +553,9 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 * Remark: On the zib level, it is not entirely clear if future use means a concrete order, a clinical reminder, or both. Pending this discussion, further profiling efforts are withheld.
 
 ### VisualAcuity v1.0
+* Profiles:
+    * zib-VisualAcuity
+    * zib-VisualAcuity.VisualAcuityMeasurementDevice.xml
 * Status: not submitted for validation
 
 ### VisualFunction v3.1
