@@ -466,6 +466,17 @@ zib-NursingIntervention:
       - message: The slice definition for CarePlan.activity.detail.performer has a maximum of 1 but the slices add up to a maximum of 3. Check that this is what is intended
         reason: This is indeed what is intended, just one of these slices may be chosen.
 
+zib-NutritionAdvice:
+  zib deviations:
+    NutritionOrder.oralDiet.texture.modifier:
+      - datatype: CodeableConcept instead of ST
+        reason: Together with HL7 NL and the zib centre, it has been decided that the flattened string concept from the zib is mapped to multiple coded elements in FHIR. See https://nictiz.atlassian.net/browse/ZIBFHIR-163 for details.
+    NutritionOrder.oralDiet.fluidConsistencyType:
+      - datatype: CodeableConcept instead of ST
+        reason: Together with HL7 NL and the zib centre, it has been decided that the flattened string concept from the zib is mapped to multiple coded elements in FHIR. See https://nictiz.atlassian.net/browse/ZIBFHIR-163 for details.
+      - cardinality: 0..* instead of 0..1
+        reason: Together with HL7 NL and the zib centre, it has been decided that the flattened string concept from the zib is mapped to multiple coded elements in FHIR. See https://nictiz.atlassian.net/browse/ZIBFHIR-163 for details.
+        
 zib-Patient:
   zib deviations:
     Patient.extension:nationality.extension:code.value[x]:
