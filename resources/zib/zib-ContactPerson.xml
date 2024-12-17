@@ -182,6 +182,23 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-EmailAddresses" />
       </type>
     </element>
+    <element id="RelatedPerson.birthDate">
+      <path value="RelatedPerson.birthDate"/>
+      <short value="DateOfBirth / DateOfBirthSibling"/>
+      <definition value="* Date of birth of the sister or brother.&#xD;&#xA;* The child’s date of birth."/>
+      <alias value="GeboortedatumKind"/>
+      <alias value="GeboortedatumZusBroer"/>
+      <mapping>
+        <identity value="zib-familysituationchild-v1.2-2020EN"/>
+        <map value="NL-CM:7.16.6"/>
+        <comment value="DateOfBirth"/>
+      </mapping>
+      <mapping>
+        <identity value="zib-familysituationchild-v1.2-2020EN"/>
+        <map value="NL-CM:7.16.10"/>
+        <comment value="DateOfBirthSibling"/>
+      </mapping>
+    </element>
     <element id="RelatedPerson.address">
       <path value="RelatedPerson.address" />
       <definition value="Contact’s address information." />
