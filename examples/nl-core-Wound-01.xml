@@ -1,0 +1,84 @@
+<Condition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-Wound-01"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Wound"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <table>
+        <caption>Aandoening. Subject: Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen. Categorie: <span title="verwonding (416462003 - SNOMED CT)">verwonding</span>
+        </caption>
+        <tfoot>
+          <tr>
+            <td colspan="2">Wond lekt steeds minder.</td>
+          </tr>
+        </tfoot>
+        <tbody>
+          <tr>
+            <th>Code</th>
+            <td>
+              <span title="operatiewond (112633009 - SNOMED CT)">operatiewond</span>
+            </td>
+          </tr>
+          <tr>
+            <th>Eerste symptomen</th>
+            <td>10 oktober 2014</td>
+          </tr>
+          <tr>
+            <th>Ondersteunend onderzoek</th>
+            <td>
+              <div>Details: Wound finding</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </text>
+  <category>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="416462003"/>
+      <display value="verwonding"/>
+    </coding>
+  </category>
+  <code>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="112633009"/>
+      <display value="operatiewond"/>
+    </coding>
+  </code>
+  <bodySite>
+    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+      <valueCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct"/>
+          <code value="24028007"/>
+          <display value="rechts"/>
+        </coding>
+      </valueCodeableConcept>
+    </extension>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="80581009"/>
+      <display value="bovenbuik"/>
+    </coding>
+  </bodySite>
+  <subject>
+    <reference value="Patient/nl-core-Patient-01"/>
+    <type value="Patient"/>
+    <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+  </subject>
+  <onsetDateTime value="2014-10-10"/>
+  <evidence>
+    <detail>
+      <reference value="Observation/nl-core-Wound-01-WoundCharacteristics-01"/>
+      <type value="Observation"/>
+      <display value="Wound finding"/>
+    </detail>
+  </evidence>
+  <note>
+    <text value="Wond lekt steeds minder."/>
+  </note>
+</Condition>

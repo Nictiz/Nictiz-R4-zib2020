@@ -1,60 +1,91 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="nl-core-LaboratoryTestResult-01"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
-   </meta>
-   <status value="final"/>
-   <category>
-      <coding>
-         <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
-         <code value="laboratory"/>
-         <display value="Laboratory"/>
-      </coding>
-   </category>
-   <category>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="275711006"/>
-         <display value="Serumtest"/>
-      </coding>
-   </category>
-   <code>
-      <coding>
-         <system value="http://loinc.org"/>
-         <code value="2947-0"/>
-         <display value="Sodium [Moles/volume] in Blood"/>
-      </coding>
-   </code>
-   <subject>
-      <reference value="Patient/nl-core-Patient-01"/>
-      <type value="Patient"/>
-      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
-   </subject>
-   <effectiveDateTime value="2021-06-12T13:15:00+02:00"/>
-   <valueQuantity>
-      <value value="138"/>
+  <id value="nl-core-LaboratoryTestResult-01"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <table>
+        <caption>Observatie/bepaling. Subject: Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen. Categorie: <span title="Laboratory (laboratory - http://terminology.hl7.org/CodeSystem/observation-category)">Laboratory</span>, <span title="Serumtest (275711006 - SNOMED CT)">Serumtest</span>, Status: definitief</caption>
+        <tbody>
+          <tr>
+            <th>Bepalingdatum/tijd</th>
+            <td colspan="2">13:15:00, 12 juni 2021</td>
+          </tr>
+          <tr>
+            <th>Specimen</th>
+            <td colspan="2">monster</td>
+          </tr>
+          <tr>
+            <th>Code</th>
+            <th>Waarde</th>
+            <th>Referentiewaarden</th>
+          </tr>
+          <tr>
+            <td>
+              <span title="Sodium [Moles/volume] in Blood (2947-0 - LOINC)">Sodium [Moles/volume] in Blood</span>
+            </td>
+            <td>138 mmol/l</td>
+            <td>
+              <div>136 mmol/l - 146 mmol/l</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </text>
+  <status value="final"/>
+  <category>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+      <code value="laboratory"/>
+      <display value="Laboratory"/>
+    </coding>
+  </category>
+  <category>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="275711006"/>
+      <display value="Serumtest"/>
+    </coding>
+  </category>
+  <code>
+    <coding>
+      <system value="http://loinc.org"/>
+      <code value="2947-0"/>
+      <display value="Sodium [Moles/volume] in Blood"/>
+    </coding>
+  </code>
+  <subject>
+    <reference value="Patient/nl-core-Patient-01"/>
+    <type value="Patient"/>
+    <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+  </subject>
+  <effectiveDateTime value="2021-06-12T13:15:00+02:00"/>
+  <valueQuantity>
+    <value value="138"/>
+    <unit value="mmol/l"/>
+    <system value="http://unitsofmeasure.org"/>
+    <code value="mmol/l"/>
+  </valueQuantity>
+  <specimen>
+    <reference value="Specimen/nl-core-LaboratoryTestResult.Specimen-01"/>
+    <type value="Specimen"/>
+    <display value="monster"/>
+  </specimen>
+  <referenceRange>
+    <low>
+      <value value="136"/>
       <unit value="mmol/l"/>
       <system value="http://unitsofmeasure.org"/>
       <code value="mmol/l"/>
-   </valueQuantity>
-   <specimen>
-      <reference value="Specimen/nl-core-LaboratoryTestResult.Specimen-01"/>
-      <type value="Specimen"/>
-      <display value="monster"/>
-   </specimen>
-   <referenceRange>
-      <low>
-         <value value="136"/>
-         <unit value="mmol/l"/>
-         <system value="http://unitsofmeasure.org"/>
-         <code value="mmol/l"/>
-      </low>
-      <high>
-         <value value="146"/>
-         <unit value="mmol/l"/>
-         <system value="http://unitsofmeasure.org"/>
-         <code value="mmol/l"/>
-      </high>
-   </referenceRange>
+    </low>
+    <high>
+      <value value="146"/>
+      <unit value="mmol/l"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mmol/l"/>
+    </high>
+  </referenceRange>
 </Observation>

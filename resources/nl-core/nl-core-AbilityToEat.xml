@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-AbilityToEat" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToEat" />
   <name value="NlcoreAbilityToEat" />
   <title value="nl core AbilityToEat" />
@@ -35,6 +33,7 @@
   <differential>
     <element id="Observation">
       <path value="Observation" />
+      <comment value="The EatingLimitations concept (NL-CM:4.7.4) is represented using distinct Observation resources, using profile [nl-core-AbilityToEat.EatingLimitations](http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToEat.EatingLimitations). It is referenced from this resource using `Observation.hasMember`." />
       <alias value="nl-core-AbilityToEat" />
     </element>
     <element id="Observation.subject">
@@ -46,6 +45,15 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:eatingLimitations">
+      <path value="Observation.hasMember" />
+      <sliceName value="eatingLimitations" />
+      <definition value="The EatingLimitations concept (NL-CM:4.7.4) of zib AbilityToEat, represented as a distinct Observation resource." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToEat.EatingLimitations" />
       </type>
     </element>
   </differential>

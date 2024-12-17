@@ -1,32 +1,61 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="nl-core-PainScore-01"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PainScore"/>
-   </meta>
-   <status value="final"/>
-   <code>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="225908003"/>
-         <display value="pijnscore"/>
-      </coding>
-   </code>
-   <subject>
-      <reference value="Patient/nl-core-Patient-01"/>
-      <type value="Patient"/>
-      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
-   </subject>
-   <effectiveDateTime value="2013-02-08T06:43:00+01:00"/>
-   <valueInteger value="7"/>
-   <note>
-      <text value="Bij bewegen"/>
-   </note>
-   <method>
-      <coding>
-         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.9.1"/>
-         <code value="VAS10"/>
-         <display value="VAS10"/>
-      </coding>
-   </method>
+  <id value="nl-core-PainScore-01"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PainScore"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <table>
+        <caption>Observatie/bepaling. Subject: Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen. Status: definitief</caption>
+        <tbody>
+          <tr>
+            <th>Bepalingdatum/tijd</th>
+            <td>06:43:00, 8 februari 2013</td>
+          </tr>
+          <tr>
+            <th>Methode</th>
+            <td>
+              <span title="VAS10 (VAS10 - 2.16.840.1.113883.2.4.3.11.60.40.4.9.1)">VAS10</span>
+            </td>
+          </tr>
+          <tr>
+            <th>Code</th>
+            <th>Waarde</th>
+          </tr>
+          <tr>
+            <td>
+              <span title="pijnscore (225908003 - SNOMED CT)">pijnscore</span>
+            </td>
+            <td>7</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </text>
+  <status value="final"/>
+  <code>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="225908003"/>
+      <display value="pijnscore"/>
+    </coding>
+  </code>
+  <subject>
+    <reference value="Patient/nl-core-Patient-01"/>
+    <type value="Patient"/>
+    <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+  </subject>
+  <effectiveDateTime value="2013-02-08T06:43:00+01:00"/>
+  <valueInteger value="7"/>
+  <note>
+    <text value="Bij bewegen"/>
+  </note>
+  <method>
+    <coding>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.9.1"/>
+      <code value="VAS10"/>
+      <display value="VAS10"/>
+    </coding>
+  </method>
 </Observation>

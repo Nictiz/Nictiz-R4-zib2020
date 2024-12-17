@@ -1,105 +1,168 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="nl-core-ApgarScore-10Minute-01"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ApgarScore-10Minute"/>
-   </meta>
-   <status value="final"/>
-   <code>
+  <id value="nl-core-ApgarScore-10Minute-01"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ApgarScore-10Minute"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <table>
+        <caption>Observatie/bepaling. Subject: Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen. Status: definitief</caption>
+        <tbody>
+          <tr>
+            <th>Bepalingdatum/tijd</th>
+            <td>09:00:00, 19 december 2016</td>
+          </tr>
+          <tr>
+            <th>Code</th>
+            <th>Waarde</th>
+          </tr>
+          <tr>
+            <td>
+              <span title="10 minute Apgar Score (9271-8 - LOINC)">10 minute Apgar Score</span>
+            </td>
+            <td>8</td>
+          </tr>
+          <tr>
+            <td>
+              <span title="10 minute Apgar Respiratory effort (32405-3 - LOINC)">10 minute Apgar Respiratory effort</span>
+            </td>
+            <td>
+              <span title="Good, strong cry; normal rate and effort of breathing (LA6727-7 - LOINC)">Good, strong cry; normal rate and effort of breathing</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span title="10 minute Apgar Color (32401-2 - LOINC)">10 minute Apgar Color</span>
+            </td>
+            <td>
+              <span title="Good color in body with bluish hands or feet (LA6723-6 - LOINC)">Good color in body with bluish hands or feet</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span title="10 minute Apgar Heart rate (32402-0 - LOINC)">10 minute Apgar Heart rate</span>
+            </td>
+            <td>
+              <span title="Fewer than 100 beats per minute (LA6717-8 - LOINC)">Fewer than 100 beats per minute</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span title="10 minute Apgar Reflex irritability (32404-6 - LOINC)">10 minute Apgar Reflex irritability</span>
+            </td>
+            <td>
+              <span title="Grimace and pulling away, cough, or sneeze during suctioning (LA6721-0 - LOINC)">Grimace and pulling away, cough, or sneeze during suctioning</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span title="10 minute Apgar Muscle tone (32403-8 - LOINC)">10 minute Apgar Muscle tone</span>
+            </td>
+            <td>
+              <span title="Active motion (LA6715-2 - LOINC)">Active motion</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </text>
+  <status value="final"/>
+  <code>
+    <coding>
+      <system value="http://loinc.org"/>
+      <code value="9271-8"/>
+      <display value="10 minute Apgar Score"/>
+    </coding>
+  </code>
+  <subject>
+    <reference value="Patient/nl-core-Patient-01"/>
+    <type value="Patient"/>
+    <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+  </subject>
+  <effectiveDateTime value="2016-12-19T09:00:00+01:00"/>
+  <valueInteger value="8"/>
+  <note>
+    <text value="Geen medisch onderzoek kinderarts nodig"/>
+  </note>
+  <component>
+    <code>
       <coding>
-         <system value="http://loinc.org"/>
-         <code value="9271-8"/>
-         <display value="10 minute Apgar Score"/>
+        <system value="http://loinc.org"/>
+        <code value="32405-3"/>
+        <display value="10 minute Apgar Respiratory effort"/>
       </coding>
-   </code>
-   <subject>
-      <reference value="Patient/nl-core-Patient-01"/>
-      <type value="Patient"/>
-      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
-   </subject>
-   <effectiveDateTime value="2016-12-19T09:00:00+01:00"/>
-   <valueInteger value="8"/>
-   <note>
-      <text value="Geen medisch onderzoek kinderarts nodig"/>
-   </note>
-   <component>
-      <code>
-         <coding>
-            <system value="http://loinc.org"/>
-            <code value="32405-3"/>
-            <display value="10 minute Apgar Respiratory effort"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="http://loinc.org"/>
-            <code value="LA6727-7"/>
-            <display value="Good, strong cry; normal rate and effort of breathing"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="http://loinc.org"/>
-            <code value="32401-2"/>
-            <display value="10 minute Apgar Color"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="http://loinc.org"/>
-            <code value="LA6723-6"/>
-            <display value="Good color in body with bluish hands or feet"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="http://loinc.org"/>
-            <code value="32402-0"/>
-            <display value="10 minute Apgar Heart rate"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="http://loinc.org"/>
-            <code value="LA6717-8"/>
-            <display value="Fewer than 100 beats per minute"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="http://loinc.org"/>
-            <code value="32404-6"/>
-            <display value="10 minute Apgar Reflex irritability"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="http://loinc.org"/>
-            <code value="LA6721-0"/>
-            <display value="Grimace and pulling away, cough, or sneeze during suctioning"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="http://loinc.org"/>
-            <code value="32403-8"/>
-            <display value="10 minute Apgar Muscle tone"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="http://loinc.org"/>
-            <code value="LA6715-2"/>
-            <display value="Active motion"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
+    </code>
+    <valueCodeableConcept>
+      <coding>
+        <system value="http://loinc.org"/>
+        <code value="LA6727-7"/>
+        <display value="Good, strong cry; normal rate and effort of breathing"/>
+      </coding>
+    </valueCodeableConcept>
+  </component>
+  <component>
+    <code>
+      <coding>
+        <system value="http://loinc.org"/>
+        <code value="32401-2"/>
+        <display value="10 minute Apgar Color"/>
+      </coding>
+    </code>
+    <valueCodeableConcept>
+      <coding>
+        <system value="http://loinc.org"/>
+        <code value="LA6723-6"/>
+        <display value="Good color in body with bluish hands or feet"/>
+      </coding>
+    </valueCodeableConcept>
+  </component>
+  <component>
+    <code>
+      <coding>
+        <system value="http://loinc.org"/>
+        <code value="32402-0"/>
+        <display value="10 minute Apgar Heart rate"/>
+      </coding>
+    </code>
+    <valueCodeableConcept>
+      <coding>
+        <system value="http://loinc.org"/>
+        <code value="LA6717-8"/>
+        <display value="Fewer than 100 beats per minute"/>
+      </coding>
+    </valueCodeableConcept>
+  </component>
+  <component>
+    <code>
+      <coding>
+        <system value="http://loinc.org"/>
+        <code value="32404-6"/>
+        <display value="10 minute Apgar Reflex irritability"/>
+      </coding>
+    </code>
+    <valueCodeableConcept>
+      <coding>
+        <system value="http://loinc.org"/>
+        <code value="LA6721-0"/>
+        <display value="Grimace and pulling away, cough, or sneeze during suctioning"/>
+      </coding>
+    </valueCodeableConcept>
+  </component>
+  <component>
+    <code>
+      <coding>
+        <system value="http://loinc.org"/>
+        <code value="32403-8"/>
+        <display value="10 minute Apgar Muscle tone"/>
+      </coding>
+    </code>
+    <valueCodeableConcept>
+      <coding>
+        <system value="http://loinc.org"/>
+        <code value="LA6715-2"/>
+        <display value="Active motion"/>
+      </coding>
+    </valueCodeableConcept>
+  </component>
 </Observation>
