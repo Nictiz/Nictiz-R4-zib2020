@@ -249,9 +249,21 @@ zib-FamilySituationChild:
       - cardinality: 1..1 instead of 0..1
         reason: List.entry:sibling (mapped to the container Sibling) has cardinality 0..*. Because both concepts in the Sibling container, ContactPerson and DateOfBirth, refer to or are present in the RelatedPerson resource that should be referenced in List.entry:sibling.item, this element has to be present for the List.entry to have any meaningful contents.
   ignored issues:
-    List.entry:*.item:
-      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
-        reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice.
+    List.entry:familyComposition.item:
+      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7 base references, unless they are added on a slice.'"
+        reason: The reference is added on a slice (but the tooling is unable to check if there are co-requirements). 
+    List.entry:numberOfSiblings.item:
+      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7 base references, unless they are added on a slice.'"
+        reason: The reference is added on a slice (but the tooling is unable to check if there are co-requirements). 
+    List.entry:parentCarer.item:
+      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7 base references, unless they are added on a slice.'"
+        reason: The reference is added on a slice (but the tooling is unable to check if there are co-requirements). 
+    List.entry:child.item:
+      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7 base references, unless they are added on a slice.'"
+        reason: The reference is added on a slice (but the tooling is unable to check if there are co-requirements). 
+    List.entry:sibling.item:
+      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7 base references, unless they are added on a slice.'"
+        reason: The reference is added on a slice (but the tooling is unable to check if there are co-requirements). 
 
 zib-FLACCpainScale:
   zib deviations:
