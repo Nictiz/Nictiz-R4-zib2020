@@ -101,6 +101,7 @@
 
         <xsl:variable name="urls"
             select="collection(concat($sourceDir, '?select=*.xml;recurse=yes'))/(f:StructureDefinition//f:binding/f:valueSet | f:ValueSet//f:include/f:valueSet | f:ConceptMap/f:sourceCanonical | f:ConceptMap/f:targetCanonical)/@value[starts-with(., 'http://decor.nictiz.nl/fhir/')]" as="attribute()*"/>
+
         <xsl:variable name="references" as="element(reference)*">
             <xsl:for-each-group select="$urls" group-by="string(.)">
                 <xsl:if test="not($alreadyHandled[string(@url) = current-grouping-key()])">
@@ -121,7 +122,7 @@
     <xsl:function name="nf:findCodeSystemReferences" as="element(reference)*">
         <xsl:param name="sourceDir"/>
 
-        <xsl:variable name="urls" select="collection(concat($sourceDir, '?select=*.xml;recurse=yes'))//f:system[starts-with(@value, 'http') or starts-with(@value, 'urn:')][not(parent::f:identifier or parent::f:patternIdentifier or contains(@value, 'urn:iso') or contains(@value, 'loinc.org') or contains(@value, 'snomed.info') or contains(@value, 'terminology.hl7.org') or @value = 'http://hl7.org/fhir/contact-point-system' or @value = 'http://hl7.org/fhir/contact-point-use' or @value = 'http://hl7.org/fhir/FHIR-version' or @value = 'http://www.nanda.org/' or @value = 'https://nursing.uiowa.edu/cncce/nursing-interventions-classification-overview')]/@value" as="attribute()*"/>
+        <xsl:variable name="urls" select="collection(concat($sourceDir, '?select=*.xml;recurse=yes'))//(f:StructureDefinition|f:ValueSet)//f:system[starts-with(@value, 'http') or starts-with(@value, 'urn:')][not(parent::f:identifier or parent::f:patternIdentifier or contains(@value, 'urn:iso') or contains(@value, 'loinc.org') or contains(@value, 'snomed.info') or contains(@value, 'terminology.hl7.org') or @value = 'http://hl7.org/fhir/contact-point-system' or @value = 'http://hl7.org/fhir/contact-point-use' or @value = 'http://hl7.org/fhir/FHIR-version' or @value = 'http://www.nanda.org/' or @value = 'https://nursing.uiowa.edu/cncce/nursing-interventions-classification-overview')]/@value" as="attribute()*"/>
         <!-- contact-point-system, contact-point-use and FHIR-version are added as hardcoded exemptions, because we do reference them from ValueSets, but there is no need to include them in our package since they are already included in the core package. Including 'starts-with('http://hl7.org/fhir/')' would result in too much being excluded
         Nanda and NIC are added as hardcoded exemptions, because their URLs have changed in the latest release of HL7 Terminology to not start with 'terminology.hl7.org' anymore, but we still do not have to include them-->
 
