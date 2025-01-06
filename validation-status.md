@@ -31,7 +31,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 
 ### AbilityToManageMedication v1.0.1
 * Status: not submitted for validation
-* Remark: A discussion is ongoing if the reference to zib NursingIntervention needs to modelled, as this is deemed unnecessary on the zib level.
+* Remark: A discussion is ongoing if the reference to zib NursingIntervention needs to be modeled, as this is deemed unnecessary on the zib level.
 
 ### AbilityToPerformMouthcareActivities v3.1
 * Status: not submitted for validation
@@ -65,7 +65,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 ### AlcoholUse v3.2
 * Profile: zib-AlcoholUse
 * Status: validated
-* Remark: Since validation, a new issues has come up regarding the relation between the AlcoholUseStatus and the ObservationOfUse container. This could result in the withdrawal of this profile and subsequent re-profiling of this zib.
+* Remark: Since validation, a new issue has come up regarding the relation between the AlcoholUseStatus and the ObservationOfUse container. This could result in the withdrawal of this profile and subsequent re-profiling of this zib.
 
 ### Alert v4.1
 * Profile: zib-Alert
@@ -189,7 +189,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 ### DrugUse v3.3
 * Profile: zib-DrugUse
 * Status: validated
-* Remark: Since validation, a new issues has come up regarding the relation between the DrugUseStatus and the ObservationOfUse container. This could result in the withdrawal of this profile and subsequent re-profiling of this zib.
+* Remark: Since validation, a new issue has come up regarding the relation between the DrugUseStatus and the ObservationOfUse container. This could result in the withdrawal of this profile and subsequent re-profiling of this zib.
 
 ### Education v3.2
 * Profile: zib-Education
@@ -198,7 +198,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 ### Encounter v4.0.1
 * Profile: zib-Encounter
 * Status: in progress
-* Remark: the profile had passed validation before, but afterwards the guidance is adjusted regarding start and stop dates
+* Remark: the profile had passed validation before, but afterwards the guidance is adjusted regarding start and stop dates.
 
 ### EpisodeOfCare v1.0
 * Profile: zib-EpisodeOfCare
@@ -310,7 +310,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 ### LanguageProficiency v3.2
 * Profiles: zib-Patient
 * Status: validated
-* Remark: This zib is modelled inline in the zib-Patient profile.
+* Remark: This zib is modeled inline in the zib-Patient profile.
 
 ### LegalSituation v2.0
 * Profiles:
@@ -325,7 +325,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 ### MaritalStatus v3.1
 * Profile: zib-Patient
 * Status: validated
-* Remark: This zib is modelled inline in the zib-Patient profile.
+* Remark: This zib is modeled inline in the zib-Patient profile.
 
 ### MedicalDevice v3.3.1
 * Profiles:
@@ -380,7 +380,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 ### Nationality v3.0
 * Profiles: zib-Patient
 * Status: validated
-* Remark: This zib is modelled inline in the zib-Patient profile.
+* Remark: This zib is modeled inline in the zib-Patient profile.
 
 ### NursingIntervention v3.2
 * Status: not submitted for validation
@@ -541,7 +541,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 ### TobaccoUse v3.2
 * Profile: zib-TobaccoUse
 * Status: validated
-* Remark: Since validation, a new issues has come up regarding the relation between the TobaccoUseStatus and the ObservationOfUse container. This could result in the withdrawal of this profile and subsequent re-profiling of this zib.
+* Remark: Since validation, a new issue has come up regarding the relation between the TobaccoUseStatus and the ObservationOfUse container. This could result in the withdrawal of this profile and subsequent re-profiling of this zib.
 
 ### Vaccination v4.0 (past use)
 * Profile: zib-Vaccination-event
@@ -563,3 +563,22 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
     * zib-VisualFunction
     * zib-VisualFunction.VisualAid
 * Status: not submitted for validation
+
+### Wound v3.3
+* Profiles:
+    * zib-Wound
+    * zib-Wound.Drain
+    * zib-Wound.WoundEdge
+    * zib-Wound.WoundInfection
+    * zib-Wound.WoundMoisture
+    * zib-Wound.WoundTissue
+    * zib-wounds.WoundCharacteristics
+    * zib-wounds.DateOfLastDressingChange
+    * zib-wounds.WoundDepth
+    * zib-wounds.WoundImage
+    * zib-wounds.WoundLength
+    * zib-wounds.WoundWidth
+    * zib-MedicalDevice
+* Status: in progress
+
+
