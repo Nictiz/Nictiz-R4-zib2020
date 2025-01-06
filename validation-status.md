@@ -2,7 +2,13 @@
 ## Validation by HL7 Netherlands
 Nictiz develops FHIR profiles (and related conformance resources) representing the zibs. These profiles undergo a validation process at HL7 Netherlands[^1], which checks them on aspects like alignment with international FHIR usage, re-usability, usage of terminology, etc. If one or more of these aspects are deemed incorrect, HL7 Netherlands asks Nictiz to adjust the profile accordingly. Only if all these aspects are deemed correct by HL7 Netherlands, the profile passes validation.
 
-In terms of the NEN7522, HL7 Netherlands fulfills the roles of "expert" and "autorisator".
+Profiles can be in one of four statuses:
+* not submitted for validation: the profiles have not been developed yet, are still in development, or are being adjusted after rejection or withdrawal.
+* in progress: the profiles have been submitted for validation and are awaiting the discussion at HL7 Netherlands.
+* validated: the profiles have passed review at HL7 Netherlands.
+* rejected: issues have been found with the profiles during review at HL7 Netherlands. Normally, this will result in adjustments of the profile and re-submission, with the accompanying statuses.
+
+[^1] In terms of the NEN7522, HL7 Netherlands fulfills the roles of "expert" and "autorisator".
 
 ## Beta status
 Profiles that have passed validation at HL7 Netherlands are published with a beta label to indicate that, although they have undergone thorough review, they have not been tested in production use. Users should be aware that production testing could introduce the need for adjustments and even breaking changes, although this is deemed unlikely.
