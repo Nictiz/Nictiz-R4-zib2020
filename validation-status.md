@@ -71,7 +71,9 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 ### AlcoholUse v3.2
 * Profile: zib-AlcoholUse
 * Status: validated
-* Remark: Since validation, a new issue has come up regarding the relation between the AlcoholUseStatus and the ObservationOfUse container. This could result in the withdrawal of this profile and subsequent re-profiling of this zib.
+* Remarks:
+    * Since validation, a new issue has come up regarding the relation between the AlcoholUseStatus and the ObservationOfUse container. This could result in the withdrawal of this profile and subsequent re-profiling of this zib.
+    * See [ZIB-2212](https://nictiz.atlassian.net/issues/ZIB-2212) for more information.
 
 ### Alert v4.1
 * Profile: zib-Alert
@@ -195,7 +197,9 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 ### DrugUse v3.3
 * Profile: zib-DrugUse
 * Status: validated
-* Remark: Since validation, a new issue has come up regarding the relation between the DrugUseStatus and the ObservationOfUse container. This could result in the withdrawal of this profile and subsequent re-profiling of this zib.
+* Remarks:
+    * Since validation, a new issue has come up regarding the relation between the DrugUseStatus and the ObservationOfUse container. This could result in the withdrawal of this profile and subsequent re-profiling of this zib.
+    * See [ZIB-2212](https://nictiz.atlassian.net/issues/ZIB-2212) for more information.
 
 ### Education v3.2
 * Profile: zib-Education
@@ -547,7 +551,9 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 ### TobaccoUse v3.2
 * Profile: zib-TobaccoUse
 * Status: validated
-* Remark: Since validation, a new issue has come up regarding the relation between the TobaccoUseStatus and the ObservationOfUse container. This could result in the withdrawal of this profile and subsequent re-profiling of this zib.
+* Remarks:
+    * Since validation, a new issue has come up regarding the relation between the TobaccoUseStatus and the ObservationOfUse container. This could result in the withdrawal of this profile and subsequent re-profiling of this zib.
+    * See [ZIB-2212](https://nictiz.atlassian.net/issues/ZIB-2212) for more information.
 
 ### Vaccination v4.0 (past use)
 * Profile: zib-Vaccination-event
