@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-HealthProfessional-PractitionerRole" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
   <name value="NlcoreHealthProfessionalPractitionerRole" />
   <title value="nl core HealthProfessional PractitionerRole" />
@@ -9,8 +13,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -18,6 +22,16 @@
   <purpose value="A derived profile from [zib-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-healthprofessional-v3.5-2020EN" />
+    <uri value="https://zibs.nl/wiki/HealthProfessional-v3.5(2020EN)" />
+    <name value="zib HealthProfessional-v3.5(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-contactinformation-v1.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/ContactInformation-v1.2(2020EN)" />
+    <name value="zib ContactInformation-v1.2(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="PractitionerRole" />
@@ -26,6 +40,7 @@
   <differential>
     <element id="PractitionerRole">
       <path value="PractitionerRole" />
+      <comment value="The zib HealthProfessional is mapped for all but one concept (HealthProfessionalRole) to a profile on Practitioner (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner&gt;) and this PractitionerRole profile. The PractitionerRole resource covers the recording of the location and types of services that HealthProfessionals are able to provide for a HealthcareProvider. The zib concepts Specialty and HealthcareProvider are therefore mapped onto PractitionerRole.&#xD;&#xA;&#xD;&#xA;Although the zib concept name HealthProfessionalRole superficially seems to match the PractitionerRole resource, this is not the case based on the definition and values of that concept. In FHIR, the role that a HealthProfessional fulfills is captured as part of the clinical resource for that specific case, for example in the `Procedure.performer.role` element. This prevents the creation of duplicate HealthProfessional instances for each clinical situation where the HealthProfessional performs a different role in the process." />
       <alias value="nl-core-HealthProfessional-PractitionerRole" />
     </element>
     <element id="PractitionerRole.practitioner">
@@ -38,7 +53,7 @@
     </element>
     <element id="PractitionerRole.organization">
       <path value="PractitionerRole.organization" />
-      <comment value="A HealthcareProvider in zib terms is primarily a location where care is provided, and so the zib concept HealthcareProvider (NL-CM:17.1.6) would normally be fulfilled using a reference to a Location resource (profile nl-core-HealthcareProvider). However, this particular context refers to the organizational aspects of a HealthcareProvider rather than its physical location:&#xD;&#xA;* the zib concept name is not preceded by a role indicator of the zib (like Location::HealthcareProvider, concept id NL-CM:14.1.5, in the zib Procedure).&#xD;&#xA;* the `PractitionerRole.location` cardinality (0..*) does not match the zib concept (0..1) and restricting it is not correct as a health professional could be working on multiple locations.&#xD;&#xA;&#xD;&#xA;Therefore, this concept is fulfilled using a reference to the Organization resource (profile nl-core-HealthcareProvider-Organization) and mapped onto `PractitionerRole.organization` instead of `PractitionerRole.location`." />
+      <comment value="A HealthcareProvider in zib terms is primarily a location where care is provided, and so the zib concept HealthcareProvider (NL-CM:17.1.6) would normally be fulfilled using a reference to a Location resource (profile nl-core-HealthcareProvider). However, this particular context refers to the organizational aspects of a HealthcareProvider rather than its physical location:&#xD;&#xA;* the zib concept name is not preceded by a role indicator of the zib (like Location::HealthcareProvider, concept id NL-CM:14.1.5, in the zib Procedure).&#xD;&#xA;* the `PractitionerRole.location` cardinality (`0..*`) does not match the zib concept (`0..1`) and restricting it is not correct as a health professional could be working on multiple locations.&#xD;&#xA;&#xD;&#xA;Therefore, this concept is fulfilled using a reference to the Organization resource (profile nl-core-HealthcareProvider-Organization) and mapped onto `PractitionerRole.organization` instead of `PractitionerRole.location`." />
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />

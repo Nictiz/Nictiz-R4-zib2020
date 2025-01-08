@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-AbilityToDrink" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-AbilityToDrink" />
+  <name value="ZibAbilityToDrink" />
+  <title value="zib AbilityToDrink" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Being able to independently prepare and drink beverages is part of self-care. Limitations in this ability indicate a reduced ability to cope for oneself.&#xD;&#xA;This activity and activities such as those including eating, getting dressed and bathing are also known as activities of daily living (ADL). These are the activities people go through in daily life. The extent to which a person is able to do all these activities by themselves is a measure for their total ability to do things independently." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) AbilityToDrink v3.1.1 (2020)](https://zibs.nl/wiki/AbilityToDrink-v3.1.1(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-abilitytodrink-v3.1.1-2020EN" />
+    <uri value="https://zibs.nl/wiki/AbilityToDrink-v3.1.1(2020EN)" />
+    <name value="zib AbilityToDrink-v3.1.1(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="AbilityToDrink" />
+      <comment value="The DrinkingLimitations concept (NL-CM:4.8.4) is represented using distinct Observation resources, using profile [zib-AbilityToDrink.DrinkingLimitations](http://nictiz.nl/fhir/StructureDefinition/zib-AbilityToDrink.DrinkingLimitations). It is referenced from this resource using `Observation.hasMember`." />
+      <alias value="VermogenTotDrinken" />
+      <mapping>
+        <identity value="zib-abilitytodrink-v3.1.1-2020EN" />
+        <map value="NL-CM:4.8.1" />
+        <comment value="AbilityToDrink" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="288852001" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueCodeableConcept">
+      <path value="Observation.value[x]" />
+      <sliceName value="valueCodeableConcept" />
+      <short value="Drinking" />
+      <definition value="Taking fluids during meals and during the day or when thirsty." />
+      <alias value="Drinken" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.8.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-abilitytodrink-v3.1.1-2020EN" />
+        <map value="NL-CM:4.8.3" />
+        <comment value="Drinking" />
+      </mapping>
+    </element>
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.hasMember:drinkingLimitations">
+      <path value="Observation.hasMember" />
+      <sliceName value="drinkingLimitations" />
+      <definition value="The DrinkingLimitations concept (NL-CM:4.8.4) of zib AbilityToDrink, represented as a distinct Observation resource." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-AbilityToDrink.DrinkingLimitations" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
