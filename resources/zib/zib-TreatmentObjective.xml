@@ -83,21 +83,9 @@
         <comment value="DesiredHealthCondition" />
       </mapping>
     </element>
-    <element id="Goal.target.extension">
-      <path value="Goal.target.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Goal.target.extension:medicalDevice">
       <path value="Goal.target.extension" />
       <sliceName value="medicalDevice" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentObjective.MedicalDevice" />
