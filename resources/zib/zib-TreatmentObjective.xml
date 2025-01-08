@@ -47,13 +47,13 @@
     </element>
     <element id="Goal.lifecycleStatus">
       <path value="Goal.lifecycleStatus" />
-      <comment value="No zib concept can be mapped (implicitly). Unless `lifecycleStatus` is explicitly recorded, TreatmentObjectives may assumed to be _active_." />
+      <comment value="No zib concept can be mapped (implicitly) to this element. Unless `.lifecycleStatus` is explicitly recorded, TreatmentObjectives may assumed to be _active_." />
     </element>
     <element id="Goal.description.text">
       <path value="Goal.description.text" />
       <short value="DesiredHealthcareResult / StatusName / StatusValue" />
-      <definition value="The textual account of the treatment objective. This concept provides the option to define a treatment objective which cannot be described as a measurement value or functional/mental status." />
-      <comment value="If the concept DesiredHealthcareResult (NL-CM:13.5.5) is not present in this instance of zib TreatmentObject, but DesiredHealthCondition (NL-CM:13.5.3) is, `description.text` should be filled with a textual representation of FunctionalOrMentalStatus.StatusName and FunctionalOrMentalStatus.StatusValue." />
+      <definition value="The textual account of the treatment objective." />
+      <comment value="This element is used to represent the zib concept DesiredHealthcareResult (NL-CM:13.5.5) if present. If instead DesiredHealthCondition::FunctionalOrMentalStatus is used (NL-CM:13.5.3), this element should be populated with a textual representation of FunctionalOrMentalStatus.StatusName (NL-CM:4.26.2) and FunctionalOrMentalStatus.StatusValue (NL-CM:4.26.3).&#xD;&#xA;&#xD;&#xA;Receiving systems that need to map back to the zib could look at `.target.measure` and `.target.detailCodeableConcept`; if these elements are absent, this element represents zib concept DesiredHealthCareResult, and if present, this element represents a summary of zib concept DesiredHealthCondition." />
       <alias value="GewenstZorgresultaat" />
       <mapping>
         <identity value="zib-treatmentobjective-v3.2-2020EN" />
@@ -120,7 +120,7 @@
       <path value="Goal.target.detail[x]" />
       <sliceName value="detailCodeableConcept" />
       <short value="StatusValue" />
-      <definition value="The extent to which the patient is limited by the functional or mental condition.&#xD;&#xA;If both the status name and the status value are recorded in code, then both values must come from the same code system. If the patient uses a medical device, the evaluation of the extent of the limitation will take place without this aid. The answer codes must be selected from the subselection of the code system corresponding with the request in accordance with the rules applicable to that system." />
+      <definition value="The extent to which the patient is limited by the functional or mental condition.&#xD;&#xA;&#xD;&#xA;If both the status name and the status value are recorded in code, then both values must come from the same code system. If the patient uses a medical device, the evaluation of the extent of the limitation will take place without this aid. The answer codes must be selected from the subselection of the code system corresponding with the request in accordance with the rules applicable to that system." />
       <alias value="StatusWaarde" />
       <type>
         <code value="CodeableConcept" />
@@ -150,6 +150,7 @@
       <sliceName value="dueDate" />
       <short value="StatusDate" />
       <definition value="Indicates the date of the DesiredHealthCondition by which the goal should be met." />
+      <comment value="Please note that this definition differs from that of zib FunctionalOrMentalStatus. However, [ZIB-1657](https://nictiz.atlassian.net/browse/ZIB-1657) clarifies that in the current context, the StatusDate should be interpreted this way." />
       <alias value="StatusDatum" />
       <type>
         <code value="date" />
