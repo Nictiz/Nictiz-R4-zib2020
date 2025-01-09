@@ -96,11 +96,23 @@
     </element>
     <element id="Observation.interpretation">
       <path value="Observation.interpretation" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.interpretation:interpreationHeartRate">
+      <path value="Observation.interpretation" />
+      <sliceName value="interpreationHeartRate" />
       <short value="InterpretationHeartRate" />
       <definition value="Interpretation heart rate" />
       <alias value="InterpretatieFrequentie" />
+      <max value="1" />
       <binding>
-        <strength value="extensible" />
+        <strength value="required" />
         <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.3.3--20200901000000" />
       </binding>
       <mapping>
