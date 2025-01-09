@@ -37,7 +37,7 @@
     <element id="Goal">
       <path value="Goal" />
       <short value="TreatmentObjective" />
-      <comment value="Although the zib model assumes there's a reference from zib OutcomeOfCare to a distinct instance of zib FunctionalOrMentalStatus (in future context), in this profile the concepts of zib FunctionalOrMentalStatus are mapped directly as this aligns with the way the Goal resource is used." />
+      <comment value="On the zib level, zib TreatmentObjective uses a reference to zib FunctionalOrMentalStatus (in future context), but in FHIR the all concepts from FunctionalOrMentalStatus are presented directly in the the Goal resource and therefore all concepts from zib FunctionalOrMentalStatus are mapped onto this profile. The only exception is the reference to zib MedicalDevice; this reference is represented by the core extension resource-pertainsToGoal in the [zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice) profile." />
       <alias value="Behandeldoel" />
       <mapping>
         <identity value="zib-treatmentobjective-v3.2-2020EN" />
@@ -82,14 +82,6 @@
         <map value="NL-CM:13.5.3" />
         <comment value="DesiredHealthCondition" />
       </mapping>
-    </element>
-    <element id="Goal.target.extension:medicalDevice">
-      <path value="Goal.target.extension" />
-      <sliceName value="medicalDevice" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentObjective.MedicalDevice" />
-      </type>
     </element>
     <element id="Goal.target.measure">
       <path value="Goal.target.measure" />

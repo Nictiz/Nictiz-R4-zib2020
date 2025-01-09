@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-MedicalDevice" />
   <text>
-    <status value="empty" />
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice" />
   <name value="ZibMedicalDevice" />
   <title value="zib MedicalDevice" />
@@ -92,6 +90,29 @@
     <element id="DeviceUseStatement.extension:location.value[x]">
       <path value="DeviceUseStatement.extension.value[x]" />
       <comment value="Please note that this zib concept (Location::HealthcareProvider) is also mapped on the `Procedure.location` element in profile [zib-Procedure-event](http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-event). The reason for this is that this zib concept aligns with the Location::HealthcareProvider concept in zib Procedure (NL-CM:14.1.5), but only for the situation that the Procedure is about placing the implant which is described using this instance of zib MedicalDevice. In this situation, the current extension is redundant and it is advised to only use `Procedure.location` in profile zib-Procedure-event to represent the Location concept." />
+    </element>
+    <element id="DeviceUseStatement.extension:pertainsToGoal">
+      <path value="DeviceUseStatement.extension" />
+      <sliceName value="pertainsToGoal" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/resource-pertainsToGoal" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="DeviceUseStatement.extension:pertainsToGoal.value[x]">
+      <path value="DeviceUseStatement.extension.value[x]" />
+      <comment value="Zib TreatmentObjective (represented by the Goal resource in FHIR) includes the option to use zib FunctionalOrMentalStatus to describe the desired treatment objective. In this situation, zib FunctionalOrMentalStatus is inlined in the same Goal resource and may reference zib MedicalDevice (represented by the current DeviceUseStatement resource) to model the intended use of a medical device. However, in FHIR, the link between Goal and DeviceUseStatement is reversed, using this extension.&#xD;&#xA;&#xD;&#xA;This extension may thus be used to represent the link zib TreatmentObjective -&gt; zib FunctionalOrMentalStatus -&gt; zib MedicalDevice. In this situation, it is expected that DeviceUseStatement is set to _intended_." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Goal" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentObjective" />
+      </type>
+      <mapping>
+        <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
+        <map value="NL-CM:4.26.5" />
+        <comment value="Reversed reference for zib FunctionalOrMentalStatus.MedicalDevice" />
+      </mapping>
     </element>
     <element id="DeviceUseStatement.status">
       <path value="DeviceUseStatement.status" />
@@ -244,7 +265,7 @@
       <path value="DeviceUseStatement.reasonReference" />
       <sliceName value="functionalOrMentalStatus" />
       <short value="FunctionalOrMentalStatus" />
-      <comment value="Please note that on a functional level, zib FunctionalOrMentalStatus references zib MedicalDevice, but in FHIR this direction is reversed." />
+      <comment value="Please note that on a functional level, zib FunctionalOrMentalStatus references zib MedicalDevice, but in FHIR this direction is reversed. This reference only applies to FunctionalOrMentalStatus in the context of registrations. For the use of zib FunctionalOrMentalStatus in the context of treatment objectives, the resource-pertainsToGoal extension should be used." />
       <alias value="FunctioneleOfMentaleStatus" />
       <type>
         <code value="Reference" />
