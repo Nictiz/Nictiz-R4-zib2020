@@ -287,9 +287,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 * Profiles:
     * zib-HeartRate
     * zib-HeartRate.HeartbeatRegularity
-    * zib-HeartRate.InterpretationHeartRate
-* Status: rejected
-* Remark: A discussion is ongoing if the InterpretationHeartRate concept should be regarded a distinct Observation of its own or an interpretation of the heart rate. See [ZIB-2570](https://nictiz.atlassian.net/browse/ZIB-2570) for details.
+* Status: not submitted for validation
 
 ### HelpFromOthers v3.01
 * Status: not submitted for validation
