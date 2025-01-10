@@ -11,23 +11,27 @@
         <tbody>
           <tr>
             <th>Bepalingdatum/tijd</th>
-            <td>06:43:00, 8 februari 2013</td>
+            <td colspan="2">06:43:00, 8 februari 2013</td>
           </tr>
           <tr>
             <th>Methode</th>
-            <td>
+            <td colspan="2">
               <span title="Auscultatie (37931006 - SNOMED CT)">Auscultatie</span>
             </td>
           </tr>
           <tr>
             <th>Code</th>
             <th>Waarde</th>
+            <th>Interpretatie</th>
           </tr>
           <tr>
             <td>
               <span title="Heart rate (8867-4 - LOINC)">Heart rate</span>
             </td>
             <td>126 /min</td>
+            <td>
+              <span title="Bradycardie (48867003 - SNOMED CT)">Bradycardie</span>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -60,6 +64,13 @@
     <system value="http://unitsofmeasure.org"/>
     <code value="/min"/>
   </valueQuantity>
+  <interpretation>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="48867003"/>
+      <display value="Bradycardie"/>
+    </coding>
+  </interpretation>
   <note>
     <text value="Misschien bigeminie?"/>
   </note>
@@ -74,10 +85,5 @@
     <reference value="Observation/nl-core-HeartRate.HeartbeatRegularity-01"/>
     <type value="Observation"/>
     <display value="Hartslag regelmatigheid: Onregelmatige hartslag"/>
-  </hasMember>
-  <hasMember>
-    <reference value="Observation/nl-core-HeartRate.InterpretationHeartRate-01"/>
-    <type value="Observation"/>
-    <display value="Interpretatie frequentie: Bradycardie"/>
   </hasMember>
 </Observation>
