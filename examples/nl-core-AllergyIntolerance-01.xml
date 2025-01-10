@@ -1,69 +1,107 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <AllergyIntolerance xmlns="http://hl7.org/fhir">
-   <id value="nl-core-AllergyIntolerance-01"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AllergyIntolerance"/>
-   </meta>
-   <verificationStatus>
+  <id value="nl-core-AllergyIntolerance-01"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AllergyIntolerance"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <table>
+        <caption>Allergie/intolerantie. Patiënt: Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen. Categorie: biologisch materiaal, Status: <span title="Entered in Error (entered-in-error - http://terminology.hl7.org/CodeSystem/allergyintolerance-verification)">Entered in Error</span>
+        </caption>
+        <tbody>
+          <tr>
+            <th>Code</th>
+            <td>
+              <span title="Bijengif (288328004 - SNOMED CT)">Bijengif</span>
+            </td>
+          </tr>
+          <tr>
+            <th>Eerste symptomen</th>
+            <td>8 november 2008</td>
+          </tr>
+          <tr>
+            <th>Meest recente voorkomen</th>
+            <td>15 november 2009</td>
+          </tr>
+          <tr>
+            <th>Reactie</th>
+            <td>
+              <ul>
+                <li>
+                  <div>11:35:00, 15 november 2008 ernstig</div>
+                  <div>
+                    <span title="Misselijkheid en braken (16932000 - SNOMED CT)">Misselijkheid en braken</span>
+                  </div>
+                  <div>sterke misselijkheid en veel braken</div>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </text>
+  <verificationStatus>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification"/>
+      <code value="entered-in-error"/>
+      <display value="Entered in Error"/>
+    </coding>
+  </verificationStatus>
+  <category value="biologic">
+    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+      <valueCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct"/>
+          <code value="419199007"/>
+          <display value="Allergie voor substantie"/>
+        </coding>
+      </valueCodeableConcept>
+    </extension>
+  </category>
+  <criticality value="high">
+    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+      <valueCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct"/>
+          <code value="24484000"/>
+          <display value="Ernstig"/>
+        </coding>
+      </valueCodeableConcept>
+    </extension>
+  </criticality>
+  <code>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="288328004"/>
+      <display value="Bijengif"/>
+    </coding>
+  </code>
+  <patient>
+    <reference value="Patient/nl-core-Patient-01"/>
+    <type value="Patient"/>
+    <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+  </patient>
+  <onsetDateTime value="2008-11-08"/>
+  <lastOccurrence value="2009-11-15"/>
+  <reaction>
+    <substance>
       <coding>
-         <system value="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification"/>
-         <code value="entered-in-error"/>
-         <display value="Entered in Error"/>
+        <system value="http://snomed.info/sct"/>
+        <code value="288328004"/>
+        <display value="Bijengif"/>
       </coding>
-   </verificationStatus>
-   <category value="biologic">
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
-         <valueCodeableConcept>
-            <coding>
-               <system value="http://snomed.info/sct"/>
-               <code value="419199007"/>
-               <display value="Allergie voor substantie"/>
-            </coding>
-         </valueCodeableConcept>
-      </extension>
-   </category>
-   <criticality value="high">
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
-         <valueCodeableConcept>
-            <coding>
-               <system value="http://snomed.info/sct"/>
-               <code value="24484000"/>
-               <display value="Ernstig"/>
-            </coding>
-         </valueCodeableConcept>
-      </extension>
-   </criticality>
-   <code>
+    </substance>
+    <manifestation>
       <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="288328004"/>
-         <display value="Bijengif"/>
+        <system value="http://snomed.info/sct"/>
+        <code value="16932000"/>
+        <display value="Misselijkheid en braken"/>
       </coding>
-   </code>
-   <patient>
-      <reference value="Patient/nl-core-Patient-01"/>
-      <type value="Patient"/>
-      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
-   </patient>
-   <onsetDateTime value="2008-11-08"/>
-   <lastOccurrence value="2009-11-15"/>
-   <reaction>
-      <substance>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="288328004"/>
-            <display value="Bijengif"/>
-         </coding>
-      </substance>
-      <manifestation>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="16932000"/>
-            <display value="Misselijkheid en braken"/>
-         </coding>
-      </manifestation>
-      <description value="sterke misselijkheid en veel braken"/>
-      <onset value="2008-11-15T11:35:00+01:00"/>
-      <severity value="severe"/>
-   </reaction>
+    </manifestation>
+    <description value="sterke misselijkheid en veel braken"/>
+    <onset value="2008-11-15T11:35:00+01:00"/>
+    <severity value="severe"/>
+  </reaction>
 </AllergyIntolerance>

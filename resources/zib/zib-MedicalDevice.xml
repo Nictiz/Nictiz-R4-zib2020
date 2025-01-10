@@ -52,6 +52,11 @@
     <uri value="https://zibs.nl/wiki/Stoma-v3.3(2020EN)" />
     <name value="zib Stoma-v3.3(2020EN)" />
   </mapping>
+  <mapping>
+    <identity value="zib-wound-v3.3-2020EN" />
+    <uri value="https://zibs.nl/wiki/Wound-v3.3(2020EN)" />
+    <name value="zib Wound-v3.3(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="true" />
   <type value="DeviceUseStatement" />
@@ -281,6 +286,22 @@
         <identity value="zib-stoma-v3.3-2020EN" />
         <map value="NL-CM:5.2.3" />
         <comment value="Reversed reference for zib Stoma.StomaMaterial" />
+      </mapping>
+    </element>
+    <element id="DeviceUseStatement.reasonReference:wound">
+      <path value="DeviceUseStatement.reasonReference" />
+      <sliceName value="wound" />
+      <short value="Wound" />
+      <comment value="Please note that on a functional level, zib Wound references zib MedicalDevice, but in FHIR this direction is reversed." />
+      <alias value="Wond" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Wound" />
+      </type>
+      <mapping>
+        <identity value="zib-wound-v3.3-2020EN" />
+        <map value="NL-CM:19.2.17" />
+        <comment value="Reversed reference for zib Wound.Drain" />
       </mapping>
     </element>
     <element id="DeviceUseStatement.bodySite">

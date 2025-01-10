@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-Mobility" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility" />
   <name value="NlcoreMobility" />
   <title value="nl core Mobility" />
@@ -35,7 +33,7 @@
   <differential>
     <element id="Observation">
       <path value="Observation" />
-      <comment value="Please note that on a functional level, zib Mobility references zib MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept MedicalDevice (NL-CM:4.3.4) is mapped on `DeviceUseStatement.reasonReference` in profile [nl-core-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice) instead of in this profile." />
+      <comment value="Please note that on a functional level, zib Mobility references zib MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept MedicalDevice (NL-CM:4.3.4) is mapped on `DeviceUseStatement.reasonReference` in profile [nl-core-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice) instead of in this profile.&#xD;&#xA;&#xD;&#xA;Several concept(s) of zib Mobility are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* Walking (NL-CM:4.3.3): [nl-core-Mobility.Walking](http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility.Walking)&#xD;&#xA;* ClimbingStairs (NL-CM:4.3.18): [nl-core-Mobility.ClimbingStairs](hhttp://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility.ClimbingStairs)&#xD;&#xA;* ChangingPosition (NL-CM:4.3.8): [nl-core-Mobility.ChangingPosition](http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility.ChangingPosition)&#xD;&#xA;* MaintainingPosition (NL-CM:4.3.12): [nl-core-Mobility.MaintainingPosition](http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility.MaintainingPosition)&#xD;&#xA;* Transfer (NL-CM:4.3.5): [nl-core-Mobility.Transfer](http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility.Transfer)" />
       <alias value="nl-core-Mobility" />
     </element>
     <element id="Observation.subject">
@@ -47,6 +45,46 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:walking">
+      <path value="Observation.hasMember" />
+      <sliceName value="walking" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility.Walking" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:climbingStairs">
+      <path value="Observation.hasMember" />
+      <sliceName value="climbingStairs" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility.ClimbingStairs" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:changingPosition">
+      <path value="Observation.hasMember" />
+      <sliceName value="changingPosition" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility.ChangingPosition" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:maintainingPosition">
+      <path value="Observation.hasMember" />
+      <sliceName value="maintainingPosition" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility.MaintainingPosition" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:transfer">
+      <path value="Observation.hasMember" />
+      <sliceName value="transfer" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility.Transfer" />
       </type>
     </element>
   </differential>

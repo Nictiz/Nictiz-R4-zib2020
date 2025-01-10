@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-FluidBalance" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-FluidBalance" />
   <name value="ZibFluidBalance" />
   <title value="zib FluidBalance" />
@@ -36,6 +34,7 @@
     <element id="Observation">
       <path value="Observation" />
       <short value="FluidBalance" />
+      <comment value="Several concept(s) of zib Mobility are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* FluidTotalIn (NL-CM:12.15.4): [zib-FluidBalance.FluidTotalIn ](http://nictiz.nl/fhir/StructureDefinition/zib-FluidBalance.FluidTotalIn)&#xD;&#xA;* FluidTotalOut (NL-CM:12.15.5): [zib-FluidBalance.FluidTotalOut ](http://nictiz.nl/fhir/StructureDefinition/zib-FluidBalance.FluidTotalOut)" />
       <alias value="Vochtbalans" />
       <mapping>
         <identity value="zib-fluidbalance-v1.0.1-2020EN" />
@@ -106,79 +105,35 @@
         <comment value="Comment" />
       </mapping>
     </element>
-    <element id="Observation.component">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
       <slicing>
         <discriminator>
-          <type value="value" />
-          <path value="code" />
+          <type value="profile" />
+          <path value="resolve()" />
         </discriminator>
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Observation.component:fluidTotalIn">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:fluidTotalIn">
+      <path value="Observation.hasMember" />
       <sliceName value="fluidTotalIn" />
+      <definition value="The FluidTotalIn concept (NL-CM:12.15.4) of zib FluidBalance, represented as a distinct Observation resource." />
       <max value="1" />
-    </element>
-    <element id="Observation.component:fluidTotalIn.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="251852001" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:fluidTotalIn.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="FluidTotalIn" />
-      <definition value="The total of fluid intake (e.g. by mouth, drip or tube feeding) in mL." />
-      <alias value="VochtTotaalIn" />
       <type>
-        <code value="Quantity" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-FluidBalance.FluidTotalIn" />
       </type>
-      <patternQuantity>
-        <system value="http://unitsofmeasure.org" />
-        <code value="mL" />
-      </patternQuantity>
-      <mapping>
-        <identity value="zib-fluidbalance-v1.0.1-2020EN" />
-        <map value="NL-CM:12.15.4" />
-        <comment value="FluidTotalIn" />
-      </mapping>
     </element>
-    <element id="Observation.component:fluidTotalOut">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:fluidTotalOut">
+      <path value="Observation.hasMember" />
       <sliceName value="fluidTotalOut" />
+      <definition value="The FluidTotalOut concept (NL-CM:12.15.5) of zib FluidBalance, represented as a distinct Observation resource." />
       <max value="1" />
-    </element>
-    <element id="Observation.component:fluidTotalOut.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="251841007" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:fluidTotalOut.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="FluidTotalOut" />
-      <definition value="The total of fluid excretion (e.g. urine production, drain, watery defecation) in mL." />
-      <alias value="VochtTotaalUit" />
       <type>
-        <code value="Quantity" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-FluidBalance.FluidTotalOut" />
       </type>
-      <patternQuantity>
-        <system value="http://unitsofmeasure.org" />
-        <code value="mL" />
-      </patternQuantity>
-      <mapping>
-        <identity value="zib-fluidbalance-v1.0.1-2020EN" />
-        <map value="NL-CM:12.15.5" />
-        <comment value="FluidTotalOut" />
-      </mapping>
     </element>
   </differential>
 </StructureDefinition>

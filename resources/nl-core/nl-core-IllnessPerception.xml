@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-IllnessPerception" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-IllnessPerception" />
   <name value="NlcoreIllnessPerception" />
   <title value="nl core IllnessPerception" />
@@ -35,6 +33,7 @@
   <differential>
     <element id="Observation">
       <path value="Observation" />
+      <comment value="Several concept(s) of zib IllnessPerception are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* PatientIllnessInsight (NL-CM:18.5.3): [nl-core-IllnessPerception.PatientIllnessInsight](http://nictiz.nl/fhir/StructureDefinition/nl-core-IllnessPerception.PatientIllnessInsight)&#xD;&#xA;* CopingWithIllnessByPatient (NL-CM:18.5.4): [nl-core-IllnessPerception.CopingWithIllnessByPatient](http://nictiz.nl/fhir/StructureDefinition/nl-core-IllnessPerception.CopingWithIllnessByPatient)&#xD;&#xA;* CopingWithIllnessByPatient(NL-CM:18.5.5): [nl-core-IllnessPerception.CopingWithIllnessByFamily](http://nictiz.nl/fhir/StructureDefinition/nl-core-IllnessPerception.CopingWithIllnessByFamily)" />
       <alias value="nl-core-IllnessPerception" />
     </element>
     <element id="Observation.subject">
@@ -46,6 +45,30 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:patientIllnessInsight">
+      <path value="Observation.hasMember" />
+      <sliceName value="patientIllnessInsight" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-IllnessPerception.PatientIllnessInsight" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:copingWithIllnessByPatient">
+      <path value="Observation.hasMember" />
+      <sliceName value="copingWithIllnessByPatient" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-IllnessPerception.CopingWithIllnessByPatient" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:copingWithIllnessByFamily">
+      <path value="Observation.hasMember" />
+      <sliceName value="copingWithIllnessByFamily" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-IllnessPerception.CopingWithIllnessByFamily" />
       </type>
     </element>
   </differential>

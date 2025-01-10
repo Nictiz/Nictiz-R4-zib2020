@@ -67,6 +67,11 @@ This document contains release notes per zib, indicating differences with their 
 * The mapping of the Stoma concept has been moved from extension to profile level.
 * MedicalDevice extension has been removed because the reference is reversed in FHIR. The MedicalDevice profile refers to this profile.
 
+## zib-Burnwound
+* BurnType is mapped to `Condition.code`.
+* The concept of 'DateOfLastDressingChange' has been relocated to the Wound Characteristics profile. 
+* The concept of 'Extent' has been relocated to the Wound Characteristics profile. 
+
 ## zib-CareTeam
 * CareTeam is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
 
@@ -233,6 +238,8 @@ This document contains release notes per zib, indicating differences with their 
 * The concept PatientIllnessInsight with ID NL-CM:18.5.3 has been moved to `Observation.value[x]:valueString`
 
 ## zib-NameInformation
+* A split has been made between the zib and the nl-core profile. Whereas the zib doesn't recognize an unstructured last name and an unstructured full name, the nl-core profile explicitly does. It also adds the requirement to provide these unstructured names if parts of the structured names are present to align with international usage of the HumanName data type.
+* The profile has been renamed from 'nl-core-humanname' to 'zib-NameInformation' and 'nl-core-NameInformation'.
 * The way this partial zib has been modelled on the HumanName data type has been overhauled to properly accommodate the way first names are handled. In the STU3 version, official first names, initials of this first name, and the given name (nickname, roepnaam) were all added to a `.given` element in the same HumanName instance, with an annotation of the type using an extension. This turned out to be the wrong approach, as all `.given` names are to be concatenated to the complete list of first names. So instead, there are now different instances of HumanName used to communicate the official names and the given name, indicated by `.use` -- resulting in two profiles. Communicating initials is now only done for names where the full name is not known (this deviates from the zib model).   
 * `.use` has been made mandatory (instead of discouraged).
 * Moved information and mappings from the extension level to the `.value[x]` level.
@@ -243,7 +250,6 @@ This document contains release notes per zib, indicating differences with their 
 * Removed explanation of splitting up family names, as this is already given by the zib.
 * Aliases have been aligned with the zib.
 * Removed BRP mappings.
-* Added the notion on the root that populating `HumanName.text` is encouraged.
 
 ## zib-NursingIntervention
 * The resource to represent this zib has been changed from Procedure to CarePlan. This aligns better with the meaning of the zib: a statement of a plan (which may or may not have been completed) rather than the record of a procedure that has been carried out. The profile for the current version is created from scratch.
@@ -303,6 +309,9 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-Pregnancy.PregnancyDuration
 * The zib-Pregnancy extension has moved from `Observation.extension` to `Observation.focus`.
 
+## zib-PressureUlcer
+* The concept of 'DateOfLastDressingChange' has been relocated to the Wound Characteristics profile.
+
 ## zib-Problem
 * ProblemType has been added on a slice of `Condition.category` allowing the category element to be used for other purposes too.
 * FurtherSpecificationProblemName has been added with an extension on `Condition.code`.
@@ -329,6 +338,26 @@ This document contains release notes per zib, indicating differences with their 
 
 ## zib-Refraction
 * Refraction is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
+
+## zib-SNAQScore
+* The datatype of `Observation.value[x]` (zib concept TotalScore) element has been changed from Quantity to Integer, and minimum and maximum allowed values of 0 and 5 respectively are applied.
+* The code on `Observation.component:weightLossScore.code` has changed to 4006003 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The code on `Observation.component:appetiteScore.code` has changed to 4006004 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The code on `Observation.component:nutritionScore.code` has changed to 4006005 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+
+## zib-SNAQrcScore
+* The datatype of `Observation.value[x]` (zib concept TotalScore) element has been changed from Quantity to Integer, and minimum and maximum allowed values of 0 and 5 respectively are applied.
+* The code on `Observation.component:weightLossScore.code` has changed to 4029003 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The code on `Observation.component:appetiteScore.code` has changed to 4029004 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The code on `Observation.component:bmiScore.code` has changed to 4029005 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The code on `Observation.component:assistedEating.code` has changed to 4029008 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+
+## zib-SNAQ65plusScore
+* The datatype of `Observation.value[x]` (zib concept TotalScore) element has been changed from Quantity to Integer, and minimum and maximum allowed values of 0 and 5 respectively are applied.
+* The code on `Observation.component:weightLossScore.code` has changed to 4030003 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The code on `Observation.component:upperArmCircumference.code` has changed to 4030008 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The code on `Observation.component:appetiteScore.code` has changed to 4030004 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
+* The code on `Observation.component:excerciseScore.code` has changed to 4030005 and the system value to urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1.
 
 ## zib-SOAPReport
 * This is a newly added zib but had profiles that preceded the zib, namely gp-EncounterReport and gp-JournalEntry.
@@ -392,3 +421,14 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-VisualFunction
 * Changed fixed slice on `.code.coding` to a pattern on `.code`.
 * Relaxed cardinality of `value[x]` to `0..1` of the conceptual cardinalities of the zib.
+
+## zib-Wound
+* The concept of 'DateOfLastDressingChange' has been relocated to the Wound Characteristics profile. 
+
+## zib-wounds.WoundCharacteristics
+* The different components have been split out to distinct Observation profiles.
+* The profile's name has been changed from "WoundCharacteristics" to "zib-wounds.WoundCharacteristics".
+* The concept of "WoundImage" is a separate profile (zib-wounds.WoundImage) instead of a component.
+
+## zib-wounds.WoundImage
+* There was no profile in the STU3 version and therefore no diff.
