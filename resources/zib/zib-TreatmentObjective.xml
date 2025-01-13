@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-TreatmentObjective" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentObjective" />
   <name value="ZibTreatmentObjective" />
   <title value="zib TreatmentObjective" />
@@ -9,8 +11,8 @@
   <contact>
     <name value="Nictiz" />
     <telecom>
-      <system value="email" />
-      <value value="info@nictiz.nl" />
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
       <use value="work" />
     </telecom>
   </contact>
@@ -37,7 +39,7 @@
     <element id="Goal">
       <path value="Goal" />
       <short value="TreatmentObjective" />
-      <comment value="On the zib level, zib TreatmentObjective uses a reference to zib FunctionalOrMentalStatus (in future context), but in FHIR the all concepts from FunctionalOrMentalStatus are presented directly in the the Goal resource and therefore all concepts from zib FunctionalOrMentalStatus are mapped onto this profile. The only exception is the reference to zib MedicalDevice; this reference is represented by the core extension resource-pertainsToGoal in the [zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice) profile." />
+      <comment value="On the zib level, zib TreatmentObjective uses a reference to zib FunctionalOrMentalStatus (in future context). In FHIR the concepts from FunctionalOrMentalStatus are represented directly in the the Goal resource, with the exception of the reference to zib MedicalDevice; this reference is represented by the core extension resource-pertainsToGoal in the [zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice) profile." />
       <alias value="Behandeldoel" />
       <mapping>
         <identity value="zib-treatmentobjective-v3.2-2020EN" />

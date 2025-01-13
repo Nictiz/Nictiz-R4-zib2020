@@ -55,6 +55,11 @@
     <uri value="https://zibs.nl/wiki/Wound-v3.3(2020EN)" />
     <name value="zib Wound-v3.3(2020EN)" />
   </mapping>
+  <mapping>
+    <identity value="zib-treatmentobjective-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/TreatmentObjective-v3.2(2020EN)" />
+    <name value="zib TreatmentObjective-v3.2(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="true" />
   <type value="DeviceUseStatement" />
@@ -91,18 +96,18 @@
       <path value="DeviceUseStatement.extension.value[x]" />
       <comment value="Please note that this zib concept (Location::HealthcareProvider) is also mapped on the `Procedure.location` element in profile [zib-Procedure-event](http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-event). The reason for this is that this zib concept aligns with the Location::HealthcareProvider concept in zib Procedure (NL-CM:14.1.5), but only for the situation that the Procedure is about placing the implant which is described using this instance of zib MedicalDevice. In this situation, the current extension is redundant and it is advised to only use `Procedure.location` in profile zib-Procedure-event to represent the Location concept." />
     </element>
-    <element id="DeviceUseStatement.extension:pertainsToGoal">
+    <element id="DeviceUseStatement.extension:treatmentObjective">
       <path value="DeviceUseStatement.extension" />
-      <sliceName value="pertainsToGoal" />
+      <sliceName value="treatmentObjective" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/resource-pertainsToGoal" />
       </type>
       <isModifier value="false" />
     </element>
-    <element id="DeviceUseStatement.extension:pertainsToGoal.value[x]">
+    <element id="DeviceUseStatement.extension:treatmentObjective.value[x]">
       <path value="DeviceUseStatement.extension.value[x]" />
-      <comment value="Zib TreatmentObjective (represented by the Goal resource in FHIR) includes the option to use zib FunctionalOrMentalStatus to describe the desired treatment objective. In this situation, zib FunctionalOrMentalStatus is inlined in the same Goal resource and may reference zib MedicalDevice (represented by the current DeviceUseStatement resource) to model the intended use of a medical device. However, in FHIR, the link between Goal and DeviceUseStatement is reversed, using this extension.&#xD;&#xA;&#xD;&#xA;This extension may thus be used to represent the link zib TreatmentObjective -&gt; zib FunctionalOrMentalStatus -&gt; zib MedicalDevice. In this situation, it is expected that DeviceUseStatement is set to _intended_." />
+      <comment value="Zib TreatmentObjective (represented by the Goal resource in FHIR) can use the data model of zib FunctionalOrMentalStatus to describe the desired treatment objective, which in turn may refer zib MedicalDevice to indicate the intent to use that device for reaching the treatment objective.&#xD;&#xA;&#xD;&#xA;In FHIR, the modeling deviates somewhat from this approach:&#xD;&#xA;&#xD;&#xA;* Both zib TreatmentObjective and the desired zib FunctionalOrMentalStatus are represented using the [zib-TreatmentObjective](http://nictiz.nl/fhir/zib-TreatmentObjective) profile on the Goal resource.&#xD;&#xA;* The reference from TreatmentObjective::FunctionalOrMentalStatus::MedicalDevice is in the opposite direction, to the Goal resource.&#xD;&#xA;&#xD;&#xA;This extension may thus be used to represent the link zib TreatmentObjective -&gt; zib FunctionalOrMentalStatus -&gt; zib MedicalDevice. In this situation, it is expected that `DeviceUseStatement.status` is set to _intended_." />
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Goal" />
@@ -111,7 +116,12 @@
       <mapping>
         <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
         <map value="NL-CM:4.26.5" />
-        <comment value="Reversed reference for zib FunctionalOrMentalStatus.MedicalDevice" />
+        <comment value="Reversed reference for zib FunctionalOrMentalStatus.MedicalDevice, when using zib FunctionalOrMentalStatus in the context of zib TreatmentObjective" />
+      </mapping>
+      <mapping>
+        <identity value="zib-treatmentobjective-v3.2-2020EN" />
+        <map value="NL-CM:13.5.1" />
+        <comment value="Reversed reference for zib FunctionalOrMentalStatus.MedicalDevice, when using zib FunctionalOrMentalStatus in the context of zib TreatmentObjective" />
       </mapping>
     </element>
     <element id="DeviceUseStatement.status">
@@ -274,7 +284,7 @@
       <mapping>
         <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
         <map value="NL-CM:4.26.5" />
-        <comment value="Reversed reference for zib FunctionalOrMentalStatus.MedicalDevice" />
+        <comment value="Reversed reference for zib FunctionalOrMentalStatus.MedicalDevice, when using zib FunctionalOrMentalStatus in the context of registrations" />
       </mapping>
     </element>
     <element id="DeviceUseStatement.reasonReference:mobility">

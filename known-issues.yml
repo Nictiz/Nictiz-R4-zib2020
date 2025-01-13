@@ -393,6 +393,12 @@ zib-MedicalDevice:
     DeviceUseStatement.timing[x]:timingPeriod.end:
       - short: EndDate instead of EindDatum
         reason: The zib concept name "EindDatum" has not been translated into English.
+  ignored issues:
+    DeviceUseStatement.extension:treatmentObjective.value[x]:
+      - message: "Constraint failed: sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real short to use here.
+      - message: "Constraint failed: sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real alias to use here.
 
 zib-MedicalDevice.Product:
   zib deviations:
