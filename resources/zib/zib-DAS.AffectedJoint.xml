@@ -1,158 +1,160 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-   <id value="zib-DAS.AffectedJoint"/>
-   <text>
-      <status value="empty"/>
-      <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-   </text>
-   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-DAS.AffectedJoint"/>
-   <name value="ZibDASAffectedJoint"/>
-   <title value="zib DAS.AffectedJoint"/>
-   <status value="draft"/>
-   <publisher value="Nictiz"/>
-   <contact>
-      <name value="Nictiz"/>
-      <telecom>
-         <system value="url"/>
-         <value value="https://www.nictiz.nl"/>
-         <use value="work"/>
-      </telecom>
-   </contact>
-   <description value="Container of the AffectedJoint concept in zib DAS."/>
-   <purpose value="This Observation resource represents the AffectedJoint concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) DAS v1.0 (2020)](https://zibs.nl/wiki/DAS-v1.0(2020NL))."/>
-   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise."/>
-   <fhirVersion value="4.0.1"/>
-   <mapping>
-      <identity value="zib-das-v1.0-2020EN"/>
-      <uri value="https://zibs.nl/wiki/DAS-v1.0(2020EN)"/>
-      <name value="zib DAS-v1.0(2020EN)"/>
-   </mapping>
-   <kind value="resource"/>
-   <abstract value="true"/>
-   <type value="Observation"/>
-   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation"/>
-   <derivation value="constraint"/>
-   <differential>
-      <element id="Observation">
-         <path value="Observation"/>
-         <short value="AffectedJoint"/>
-         <definition value="Container of the AffectedJoint concept.This container contains all data elements of the AffectedJoint concept."/>
-         <alias value="AangedaanGewricht"/>
-         <mapping>
-            <identity value="zib-das-v1.0-2020EN"/>
-            <map value="NL-CM:12.18.2"/>
-            <comment value="AffectedJoint"/>
-         </mapping>
-      </element>
-      <element id="Observation.code">
-         <path value="Observation.code"/>
-         <patternCodeableConcept>
-            <coding>
-               <system value="http://snomed.info/sct"/>
-               <code value="118952005"/>
-            </coding>
-         </patternCodeableConcept>
-      </element>
-      <element id="Observation.effective[x]">
-         <path value="Observation.effective[x]"/>
-         <slicing>
-            <discriminator>
-               <type value="type"/>
-               <path value="$this"/>
-            </discriminator>
-            <rules value="open"/>
-         </slicing>
-      </element>
-      <element id="Observation.effective[x]:effectiveDateTime">
-         <path value="Observation.effective[x]"/>
-         <sliceName value="effectiveDateTime"/>
-         <short value="DASDateTime"/>
-         <definition value="The date and possibly time when the DAS score measurement was carried out."/>
-         <alias value="DASDatumTijd"/>
-         <type>
-            <code value="dateTime"/>
-         </type>
-         <mapping>
-            <identity value="zib-das-v1.0-2020EN"/>
-            <map value="NL-CM:12.18.17"/>
-            <comment value="DASDateTime"/>
-         </mapping>
-      </element>
-      <element id="Observation.bodySite">
-         <path value="Observation.bodySite"/>
-         <type>
-            <code value="CodeableConcept"/>
-            <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation"/>
-         </type>
-      </element>
-      <element id="Observation.component">
-         <path value="Observation.component"/>
-         <slicing>
-            <discriminator>
-               <type value="value"/>
-               <path value="code"/>
-            </discriminator>
-            <rules value="open"/>
-         </slicing>
-      </element>
-      <element id="Observation.component:swollen">
-         <path value="Observation.component"/>
-         <sliceName value="swollen"/>
-         <max value="1"/>
-      </element>
-      <element id="Observation.component:swollen.code">
-         <path value="Observation.component.code"/>
-         <patternCodeableConcept>
-            <coding>
-               <system value="http://snomed.info/sct"/>
-               <code value="271771009"/>
-            </coding>
-         </patternCodeableConcept>
-      </element>
-      <element id="Observation.component:swollen.value[x]">
-         <path value="Observation.component.value[x]"/>
-         <short value="Swollen"/>
-         <definition value="Swolen joint indicator."/>
-         <alias value="Gezwollen"/>
-         <type>
-            <code value="boolean"/>
-         </type>
-         <mapping>
-            <identity value="zib-das-v1.0-2020EN"/>
-            <map value="NL-CM:12.18.4"/>
-            <comment value="Swollen"/>
-         </mapping>
-      </element>
-      <element id="Observation.component:tender">
-         <path value="Observation.component"/>
-         <sliceName value="tender"/>
-         <short value="Tender"/>
-         <definition value="Tender joint indicator."/>
-         <alias value="Pijnlijk"/>
-         <max value="1"/>
-      </element>
-      <element id="Observation.component:tender.code">
-         <path value="Observation.component.code"/>
-         <patternCodeableConcept>
-            <coding>
-               <system value="http://snomed.info/sct"/>
-               <code value="110288007"/>
-            </coding>
-         </patternCodeableConcept>
-      </element>
-      <element id="Observation.component:tender.value[x]">
-         <path value="Observation.component.value[x]"/>
-         <short value="Tender"/>
-         <definition value="Tender joint indicator."/>
-         <alias value="Pijnlijk"/>
-         <type>
-            <code value="boolean"/>
-         </type>
-         <mapping>
-            <identity value="zib-das-v1.0-2020EN"/>
-            <map value="NL-CM:12.18.3"/>
-            <comment value="Tender"/>
-         </mapping>
-      </element>
-   </differential>
+  <id value="zib-DAS.AffectedJoint" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-DAS.AffectedJoint" />
+  <name value="ZibDASAffectedJoint" />
+  <title value="zib DAS.AffectedJoint" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Container of the AffectedJoint concept in zib DAS." />
+  <purpose value="This Observation resource represents the AffectedJoint concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) DAS v1.0 (2020)](https://zibs.nl/wiki/DAS-v1.0(2020NL))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-das-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/DAS-v1.0(2020EN)" />
+    <name value="zib DAS-v1.0(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="AffectedJoint" />
+      <definition value="Container of the AffectedJoint concept.This container contains all data elements of the AffectedJoint concept." />
+      <alias value="AangedaanGewricht" />
+      <mapping>
+        <identity value="zib-das-v1.0-2020EN" />
+        <map value="NL-CM:12.18.2" />
+        <comment value="AffectedJoint" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="118952005" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effective[x]" />
+      <sliceName value="effectiveDateTime" />
+      <short value="DASDateTime" />
+      <definition value="The date and possibly time when the DAS score measurement was carried out." />
+      <alias value="DASDatumTijd" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-das-v1.0-2020EN" />
+        <map value="NL-CM:12.18.17" />
+        <comment value="DASDateTime" />
+      </mapping>
+    </element>
+    <element id="Observation.bodySite">
+      <path value="Observation.bodySite" />
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-minValueSet">
+          <valueCanonical value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.18.1--20200901000000" />
+        </extension>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000" />
+      </binding>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:swollen">
+      <path value="Observation.component" />
+      <sliceName value="swollen" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:swollen.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="271771009" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:swollen.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Swollen" />
+      <definition value="Swolen joint indicator." />
+      <alias value="Gezwollen" />
+      <type>
+        <code value="boolean" />
+      </type>
+      <mapping>
+        <identity value="zib-das-v1.0-2020EN" />
+        <map value="NL-CM:12.18.4" />
+        <comment value="Swollen" />
+      </mapping>
+    </element>
+    <element id="Observation.component:tender">
+      <path value="Observation.component" />
+      <sliceName value="tender" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:tender.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="110288007" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:tender.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="Tender" />
+      <definition value="Tender joint indicator." />
+      <alias value="Pijnlijk" />
+      <type>
+        <code value="boolean" />
+      </type>
+      <mapping>
+        <identity value="zib-das-v1.0-2020EN" />
+        <map value="NL-CM:12.18.3" />
+        <comment value="Tender" />
+      </mapping>
+    </element>
+  </differential>
 </StructureDefinition>

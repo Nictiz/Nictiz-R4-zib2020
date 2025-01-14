@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-DAS" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-DAS" />
   <name value="ZibDAS" />
   <title value="zib DAS" />
@@ -186,12 +188,12 @@
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Observation.component:DASFormula">
+    <element id="Observation.component:dasFormula">
       <path value="Observation.component" />
-      <sliceName value="DASFormula" />
+      <sliceName value="dasFormula" />
       <max value="1" />
     </element>
-    <element id="Observation.component:DASFormula.code">
+    <element id="Observation.component:dasFormula.code">
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
@@ -200,7 +202,7 @@
         </coding>
       </patternCodeableConcept>
     </element>
-    <element id="Observation.component:DASFormula.value[x]">
+    <element id="Observation.component:dasFormula.value[x]">
       <path value="Observation.component.value[x]" />
       <short value="DASFormula" />
       <definition value="The specification of the type of DAS. There are different DAS scores. Each type has a different formula." />
@@ -214,12 +216,12 @@
         <comment value="DASFormula" />
       </mapping>
     </element>
-    <element id="Observation.component:VASGeneralHealth">
+    <element id="Observation.component:vasGeneralHealth">
       <path value="Observation.component" />
-      <sliceName value="VASGeneralHealth" />
+      <sliceName value="vasGeneralHealth" />
       <max value="1" />
     </element>
-    <element id="Observation.component:VASGeneralHealth.code">
+    <element id="Observation.component:vasGeneralHealth.code">
       <path value="Observation.component.code" />
       <patternCodeableConcept>
         <coding>
@@ -228,7 +230,7 @@
         </coding>
       </patternCodeableConcept>
     </element>
-    <element id="Observation.component:VASGeneralHealth.value[x]">
+    <element id="Observation.component:vasGeneralHealth.value[x]">
       <path value="Observation.component.value[x]" />
       <short value="VASGeneralHealth" />
       <definition value="The VAS score for general health as experienced by the patient on a scale of 1 to 100" />
