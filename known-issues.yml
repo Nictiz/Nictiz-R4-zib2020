@@ -231,6 +231,12 @@ zib-DAS:
       - cardinality: 0..* instead of 0..1
         reason: The zib requires at most one instance of zib-LaboratoryTestResult for BSE or CRP; however, additional information, including additional instances of zib-LaboratoryTestResult could be used. In theory, the zib constraint could be added to the profile, but it is deemed too complex to interpret both for human consumption and for tooling (it would involve creating two derived profiles from zib-LaboratoryTestResult and the slicing by profile to add the constraints).
 
+zib-DAS.AffectedJoint:
+  zib deviations:
+    Observation.bodySite:
+      - datatype: CodeableConcept instead of a reference
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+
 zib-Encounter:
   zib deviations:
     Encounter.class:
