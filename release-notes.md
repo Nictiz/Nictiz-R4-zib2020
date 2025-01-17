@@ -388,8 +388,7 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-TreatmentObjective
 * DesiredHealthcareResult element moved to `Goal.description.text`.
 * Removed the mapping on `Goal.expressedBy` and the reference to practitionerRole.
-* The reference to FunctionalOrMentalStatus is mapped inline on the goal resource elements (see comment on the root element for the explanation).
-* The medicalDevice extension is part of the new inline mapping of FunctionalOrMentalStatus and this is mapped on `Goal.target`.
+* The reference Goal -> FunctionalOrMentalStatus -> MedicalDevice is mapped in reverse onto the resource-pertainsToGoal extension in zib-MedicalDevice
 
 ## zib-TextResult
 * New concept VisualResult mapped in additional profile zib-TextResult.VisualResult on `Media.content`. `DiagnosticReport.image.link` references this profile.
