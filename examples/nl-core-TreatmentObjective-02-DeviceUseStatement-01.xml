@@ -1,5 +1,5 @@
 <DeviceUseStatement xmlns="http://hl7.org/fhir">
-  <id value="nl-core-TreatmentObjective-01-DeviceUseStatement-01"/>
+  <id value="nl-core-TreatmentObjective-02-DeviceUseStatement-01"/>
   <meta>
     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice"/>
   </meta>
@@ -7,7 +7,7 @@
     <status value="extensions"/>
     <div xmlns="http://www.w3.org/1999/xhtml">
       <table>
-        <caption>Beschrijving apparaatgebruik. Subject: Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen. Status: actief</caption>
+        <caption>Beschrijving apparaatgebruik. Subject: Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen. Status: bedoeld</caption>
         <tbody>
           <tr>
             <th>Apparaat/Systeem</th>
@@ -17,7 +17,14 @@
       </table>
     </div>
   </text>
-  <status value="active"/>
+  <extension url="http://hl7.org/fhir/StructureDefinition/resource-pertainsToGoal">
+    <valueReference>
+      <reference value="Goal/nl-core-TreatmentObjective-02"/>
+      <type value="Goal"/>
+      <display value="Behandeldoel, Gewenste gezondheidstoestand: kan zich scheren, specifiek doel: in staat om zich te scheren, per 2015-02-23"/>
+    </valueReference>
+  </extension>
+  <status value="intended"/>
   <subject>
     <reference value="Patient/nl-core-Patient-01"/>
     <type value="Patient"/>
@@ -27,7 +34,7 @@
     <start value="2015-02-23"/>
   </timingPeriod>
   <device>
-    <reference value="Device/nl-core-TreatmentObjective-01-Device-01"/>
+    <reference value="Device/nl-core-TreatmentObjective-02-Device-01"/>
     <type value="Device"/>
     <display value="Ergonomisch elektrische tandenborstel"/>
   </device>
