@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-TextResult" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-TextResult" />
   <version value="0.0.1" />
   <name value="ZibTextResult" />
@@ -33,7 +37,7 @@
     <element id="DiagnosticReport">
       <path value="DiagnosticReport" />
       <short value="TextResult" />
-      <comment value="Zib TextResult is mapped to this DiagnosticReport profile and a profile on Media (&lt;http://nictiz.nl/fhir/StructureDefinition/zib-TextResult.VisualResult&gt;). This DiagnosticReport profile acts as the focal resource of zib TextResult. This profile references the Media resouce through `.media.link` that holds the VisualResult information.&#xD;&#xA;&#xD;&#xA;Please note that on a functional level, zib TextResult references zib Procedure, but in FHIR this direction is reversed. Therefore, the concept Procedure (NL-CM:13.2.5) is mapped on `Procedure.report` in profile [zib-Procedure-event](http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-event) instead of in this profile." />
+      <comment value="Zib TextResult is mapped to this DiagnosticReport profile and a profile on Media (&lt;http://nictiz.nl/fhir/StructureDefinition/zib-TextResult.VisualResult&gt;). This DiagnosticReport profile acts as the focal resource of zib TextResult. This profile references the Media resource through `.media.link` that holds the VisualResult information.&#xD;&#xA;&#xD;&#xA;Please note that on a functional level, zib TextResult references zib Procedure, but in FHIR this direction is reversed. Therefore, the concept Procedure (NL-CM:13.2.5) is mapped on `Procedure.report` in profile [zib-Procedure-event](http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-event) instead of in this profile." />
       <alias value="TekstUitslag" />
       <mapping>
         <identity value="zib-textresult-v4.4-2020EN" />
@@ -45,7 +49,7 @@
       <path value="DiagnosticReport.status" />
       <short value="TextResultStatus" />
       <definition value="The status of the result." />
-      <comment value="Additional information about the mapping of the optional (0..1) TextResultStatus to the mandatory (1..1) `.status`: because `.status` is 1..1 implementers shall have to support `.status` one way or another although the _unknown_ code can be used as a fallback. When TextResultStatus is absent, other codes may be used than from the zib. In that case, the ext-CodeSpecification extension should be omitted." />
+      <comment value="Additional information about the mapping of the optional (`0..1`) TextResultStatus to the mandatory (`1..1`) `.status`: because `.status` is `1..1` implementers shall have to support `.status` one way or another although the _unknown_ code can be used as a fallback. When TextResultStatus is absent, other codes may be used than from the zib. In that case, the ext-CodeSpecification extension should be omitted." />
       <alias value="TekstUitslagStatus" />
       <binding>
         <strength value="required" />

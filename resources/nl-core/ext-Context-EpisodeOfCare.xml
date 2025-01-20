@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="ext-Context-EpisodeOfCare" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/ext-Context-EpisodeOfCare" />
   <name value="ExtContextEpisodeOfCare" />
   <title value="ext Context EpisodeOfCare" />
@@ -14,7 +18,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="`Observation.context` and `MedicationRequest.context` have been renamed and remodeled in R4 to only contain a reference to Encounter. `MedicationStatement.context` and `MedicationAdministration.context` are a 0..1 reference to Encounter|EpisodeOfCare. This extension allows to add a reference to EpisodeOfCare (potentially next to a reference to an Encounter). From R5 onwards, this extension will likely be replaced by an HL7 core extension." />
+  <description value="`Observation.context` and `MedicationRequest.context` have been renamed and remodeled in R4 to only contain a reference to Encounter. `MedicationStatement.context` and `MedicationAdministration.context` are a `0..1` reference to Encounter|EpisodeOfCare. This extension allows to add a reference to EpisodeOfCare (potentially next to a reference to an Encounter). From R5 onwards, this extension will likely be replaced by an HL7 core extension." />
   <purpose value="This extension provides a generic method to add a reference to an EpisodeOfCare resource." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
