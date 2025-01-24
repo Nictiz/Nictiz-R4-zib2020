@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-NursingIntervention" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NursingIntervention" />
   <name value="NlcoreNursingIntervention" />
   <title value="nl core NursingIntervention" />
@@ -67,21 +71,9 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentObjective" />
       </type>
     </element>
-    <element id="CarePlan.activity.detail.extension">
-      <path value="CarePlan.activity.detail.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="CarePlan.activity.detail.extension:medicalDevice">
       <path value="CarePlan.activity.detail.extension" />
       <sliceName value="medicalDevice" />
-      <min value="0" />
     </element>
     <element id="CarePlan.activity.detail.extension:medicalDevice.value[x]">
       <path value="CarePlan.activity.detail.extension.value[x]" />

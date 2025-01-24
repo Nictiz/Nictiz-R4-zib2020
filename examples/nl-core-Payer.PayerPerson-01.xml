@@ -1,35 +1,56 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Coverage xmlns="http://hl7.org/fhir">
-   <id value="nl-core-Payer.PayerPerson-01"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Payer.PayerPerson"/>
-   </meta>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Payer.BankInformation">
-      <extension url="bankName">
-         <valueString value="ING"/>
-      </extension>
-      <extension url="bankCode">
-         <valueString value="INGBNL2A"/>
-      </extension>
-      <extension url="accountNumber">
-         <valueString value="NL85INGB0001234567"/>
-      </extension>
-   </extension>
-   <status value="active"/>
-   <type>
-      <coding>
-         <system value="http://terminology.hl7.org/CodeSystem/coverage-selfpay"/>
-         <code value="pay"/>
-      </coding>
-   </type>
-   <beneficiary>
-      <reference value="Patient/nl-core-Patient-01"/>
-      <type value="Patient"/>
-      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
-   </beneficiary>
-   <payor>
-      <reference value="Organization/nl-core-Payer-Organization-01"/>
-      <type value="Organization"/>
-      <display value="Payer-Organization, Stichting Het Goede Doel"/>
-   </payor>
+  <id value="nl-core-Payer.PayerPerson-01"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Payer.PayerPerson"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <table>
+        <caption>Verzekering/garantstelling. Status: actief</caption>
+        <tbody>
+          <tr>
+            <th>Type</th>
+            <td>pay (http://terminology.hl7.org/CodeSystem/coverage-selfpay)</td>
+          </tr>
+          <tr>
+            <th>Betaler</th>
+            <td>Payer-Organization, Stichting Het Goede Doel</td>
+          </tr>
+          <tr>
+            <th>begunstigde</th>
+            <td>Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </text>
+  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Payer.BankInformation">
+    <extension url="bankName">
+      <valueString value="ING"/>
+    </extension>
+    <extension url="bankCode">
+      <valueString value="INGBNL2A"/>
+    </extension>
+    <extension url="accountNumber">
+      <valueString value="NL85INGB0001234567"/>
+    </extension>
+  </extension>
+  <status value="active"/>
+  <type>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/coverage-selfpay"/>
+      <code value="pay"/>
+    </coding>
+  </type>
+  <beneficiary>
+    <reference value="Patient/nl-core-Patient-01"/>
+    <type value="Patient"/>
+    <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+  </beneficiary>
+  <payor>
+    <reference value="Organization/nl-core-Payer-Organization-01"/>
+    <type value="Organization"/>
+    <display value="Payer-Organization, Stichting Het Goede Doel"/>
+  </payor>
 </Coverage>

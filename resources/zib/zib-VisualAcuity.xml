@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-VisualAcuity" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-VisualAcuity" />
+  <name value="ZibVisualAcuity" />
+  <title value="zib VisualAcuity" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Visual acuity is a measurement of sharpness of vision. It is a measure of the smallest details that someone can still distinguish." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) VisualAcuity v1.0 (2020)](https://zibs.nl/wiki/VisualAcuity-v1.0(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-visualacuity-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/VisualAcuity-v1.0(2020EN)" />
+    <name value="zib VisualAcuity-v1.0(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="VisualAcuity" />
+      <alias value="Visus" />
+      <mapping>
+        <identity value="zib-visualacuity-v1.0-2020EN" />
+        <map value="NL-CM:12.19.1" />
+        <comment value="VisualAcuity" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="260246004" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effective[x]" />
+      <sliceName value="effectiveDateTime" />
+      <short value="VisualAcuityDateTime" />
+      <definition value="The date and time when the visual acuity was measured." />
+      <alias value="VisusDatumTijd" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-visualacuity-v1.0-2020EN" />
+        <map value="NL-CM:12.19.4" />
+        <comment value="VisualAcuityDateTime" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueQuantity">
+      <path value="Observation.value[x]" />
+      <sliceName value="valueQuantity" />
+      <short value="DecimalVisualAqcuity" />
+      <definition value="The measured decimal visual acuity." />
+      <comment value="Visual acuity is measured a dimensionless decimal. Therefore, a pattern with unit '1' is defined on `.valueQuantity`." />
+      <alias value="DecimaleVisusWaarde" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <patternQuantity>
+        <system value="http://unitsofmeasure.org" />
+        <code value="1" />
+      </patternQuantity>
+      <minValueQuantity>
+        <value value="0" />
+        <system value="http://unitsofmeasure.org" />
+        <code value="1" />
+      </minValueQuantity>
+      <maxValueQuantity>
+        <value value="2" />
+        <system value="http://unitsofmeasure.org" />
+        <code value="1" />
+      </maxValueQuantity>
+      <mapping>
+        <identity value="zib-visualacuity-v1.0-2020EN" />
+        <map value="NL-CM:12.19.11" />
+        <comment value="VisualAcuity" />
+      </mapping>
+    </element>
+    <element id="Observation.bodySite">
+      <path value="Observation.bodySite" />
+      <definition value="The laterality of the eye of which the visual acuity has been measured." />
+      <comment value="The code on this element is added to make explicit what is implicit in the zib. See [ZIB-1442](https://bits.nictiz.nl/browse/ZIB-1442) for details." />
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation" />
+      </type>
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="81745001" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.bodySite.extension:laterality">
+      <path value="Observation.bodySite.extension" />
+      <sliceName value="laterality" />
+    </element>
+    <element id="Observation.bodySite.extension:laterality.value[x]">
+      <path value="Observation.bodySite.extension.value[x]" />
+      <short value="AnatomicalLocation" />
+      <definition value="The laterality of the eye of which the visual acuity has been measured." />
+      <alias value="AnatomischeLocatie" />
+      <mapping>
+        <identity value="zib-visualacuity-v1.0-2020EN" />
+        <map value="NL-CM:12.19.5" />
+        <comment value="AnatomicalLocation" />
+      </mapping>
+    </element>
+    <element id="Observation.device">
+      <path value="Observation.device" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DeviceMetric" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-VisualAcuity.VisualAcuityMeasurementDevice" />
+      </type>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:visualAcuityType">
+      <path value="Observation.component" />
+      <sliceName value="visualAcuityType" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:visualAcuityType.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="16830007" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:visualAcuityType.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="VisualAcuityType" />
+      <definition value="Type of visual acuity measurement." />
+      <alias value="VisusMetingType" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.19.2--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-visualacuity-v1.0-2020EN" />
+        <map value="NL-CM:12.19.2" />
+        <comment value="VisualAcuityType" />
+      </mapping>
+    </element>
+    <element id="Observation.component:visualAcuityMeasurementChart">
+      <path value="Observation.component" />
+      <sliceName value="visualAcuityMeasurementChart" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:visualAcuityMeasurementChart.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="363691001" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:visualAcuityMeasurementChart.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="VisualAcuityMeasurementChart" />
+      <definition value="The type of chart used for the visual acuity measurement." />
+      <alias value="VisusMetingKaart" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.19.3--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-visualacuity-v1.0-2020EN" />
+        <map value="NL-CM:12.19.7" />
+        <comment value="VisualAcuityMeasurementChart" />
+      </mapping>
+    </element>
+    <element id="Observation.component:distanceFromChart">
+      <path value="Observation.component" />
+      <sliceName value="distanceFromChart" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:distanceFromChart.code">
+      <path value="Observation.component.code" />
+      <comment value="This code aligns with the future version of this zib. See [ZIB-1441](https://bits.nictiz.nl/browse/ZIB-1441)." />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="152731000146106" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:distanceFromChart.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="DistanceFromChart" />
+      <definition value="Distance to the chart in meters" />
+      <alias value="AfstandTotKaart" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <patternQuantity>
+        <system value="http://unitsofmeasure.org" />
+        <code value="m" />
+      </patternQuantity>
+      <mapping>
+        <identity value="zib-visualacuity-v1.0-2020EN" />
+        <map value="NL-CM:12.19.8" />
+        <comment value="DistanceFromChart" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

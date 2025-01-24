@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-BloodPressure" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-BloodPressure" />
   <name value="ZibBloodPressure" />
   <title value="zib BloodPressure" />
@@ -15,7 +17,7 @@
     </telecom>
   </contact>
   <description value="The blood pressure is a parameter for determining the condition of the blood circulation and is expressed in systolic and diastolic pressure in mmHg." />
-  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) BloodPressure-v3.2.1(2020EN)](https://zibs.nl/wiki/BloodPressure-v3.2.1(2020EN))." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) BloodPressure v3.2.1 (2020)](https://zibs.nl/wiki/BloodPressure-v3.2.1(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -40,21 +42,9 @@
         <comment value="BloodPressure" />
       </mapping>
     </element>
-    <element id="Observation.extension">
-      <path value="Observation.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Observation.extension:position">
       <path value="Observation.extension" />
       <sliceName value="position" />
-      <min value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/observation-bodyPosition" />
@@ -271,7 +261,7 @@
     </element>
     <element id="Observation.component:cuffType.code">
       <path value="Observation.component.code" />
-      <comment value="LOINC code _8358-4_ (Blood pressure device cuff size) may be used here as well, as suggested by the HL7 Vital Signs IG." />
+      <comment value="LOINC code _8358-4_ (Blood pressure device cuff size), which is the suggested code by the HL7 Vital Signs IG for this concept, may be used here in addition to SNOMED code _70665002_." />
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />

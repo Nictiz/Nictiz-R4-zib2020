@@ -1,59 +1,96 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="nl-core-AbilityToEat-01"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToEat"/>
-   </meta>
-   <status value="final"/>
-   <code>
+  <id value="nl-core-AbilityToEat-01"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToEat"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <table>
+        <caption>Observatie/bepaling. Subject: Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen. Status: definitief</caption>
+        <tbody>
+          <tr>
+            <th>Code</th>
+            <th>Waarde</th>
+          </tr>
+          <tr>
+            <td>
+              <span title="vermogen tot eten (288883002 - SNOMED CT)">vermogen tot eten</span>
+            </td>
+            <td>
+              <span title="Hulp nodig bij eten (129033007 - SNOMED CT)">Hulp nodig bij eten</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span title="vaardigheid betreffende eten (288843005 - SNOMED CT)">vaardigheid betreffende eten</span>
+            </td>
+            <td>
+              <span title="Moeite met in stukken snijden van voedsel (289078003 - SNOMED CT)">Moeite met in stukken snijden van voedsel</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span title="vaardigheid betreffende eten (288843005 - SNOMED CT)">vaardigheid betreffende eten</span>
+            </td>
+            <td>
+              <span title="Moeite met hanteren van eetgerei bij zelfstandig eten (289046006 - SNOMED CT)">Moeite met hanteren van eetgerei bij zelfstandig eten</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </text>
+  <status value="final"/>
+  <code>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="288883002"/>
+      <display value="vermogen tot eten"/>
+    </coding>
+  </code>
+  <subject>
+    <reference value="Patient/nl-core-Patient-01"/>
+    <type value="Patient"/>
+    <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+  </subject>
+  <valueCodeableConcept>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="129033007"/>
+      <display value="Hulp nodig bij eten"/>
+    </coding>
+  </valueCodeableConcept>
+  <component>
+    <code>
       <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="288883002"/>
-         <display value="vermogen tot eten"/>
+        <system value="http://snomed.info/sct"/>
+        <code value="288843005"/>
+        <display value="vaardigheid betreffende eten"/>
       </coding>
-   </code>
-   <subject>
-      <reference value="Patient/nl-core-Patient-01"/>
-      <type value="Patient"/>
-      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
-   </subject>
-   <valueCodeableConcept>
+    </code>
+    <valueCodeableConcept>
       <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="129033007"/>
-         <display value="Hulp nodig bij eten"/>
+        <system value="http://snomed.info/sct"/>
+        <code value="289078003"/>
+        <display value="Moeite met in stukken snijden van voedsel"/>
       </coding>
-   </valueCodeableConcept>
-   <component>
-      <code>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="288843005"/>
-            <display value="vaardigheid betreffende eten"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="289078003"/>
-            <display value="Moeite met in stukken snijden van voedsel"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="288843005"/>
-            <display value="vaardigheid betreffende eten"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="289046006"/>
-            <display value="Moeite met hanteren van eetgerei bij zelfstandig eten"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
+    </valueCodeableConcept>
+  </component>
+  <component>
+    <code>
+      <coding>
+        <system value="http://snomed.info/sct"/>
+        <code value="288843005"/>
+        <display value="vaardigheid betreffende eten"/>
+      </coding>
+    </code>
+    <valueCodeableConcept>
+      <coding>
+        <system value="http://snomed.info/sct"/>
+        <code value="289046006"/>
+        <display value="Moeite met hanteren van eetgerei bij zelfstandig eten"/>
+      </coding>
+    </valueCodeableConcept>
+  </component>
 </Observation>

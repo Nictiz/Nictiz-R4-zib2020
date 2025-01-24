@@ -15,8 +15,9 @@ def scanForZibReferences(root, hits, element_id = "", element = "unknown"):
     elif type(root) == dict:
         if "id" in root:
             element_id = root["id"]
-        for entry in root:
-            scanForZibReferences(root[entry], hits, element_id, entry)
+        if "max" not in root or root["max"] != "0": # Ignore elements where max cardinality is set to 0
+            for entry in root:
+                scanForZibReferences(root[entry], hits, element_id, entry)
     elif type(root) == str:
         if "StructureDefinition/zib-" in root: # Our "magic string" to detect references to zib profiles. It doesn't contain the full hostname and path so that it catches misspelled references as well.
             if element != "source": # constraint.source is the one exception where the reference to the zib profile is required
