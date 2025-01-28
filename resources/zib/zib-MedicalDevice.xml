@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-MedicalDevice" />
   <text>
-    <status value="empty" />
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice" />
   <name value="ZibMedicalDevice" />
   <title value="zib MedicalDevice" />
@@ -31,11 +29,6 @@
     <identity value="zib-procedure-v5.2-2020EN" />
     <uri value="https://zibs.nl/wiki/Procedure-v5.2(2020EN)" />
     <name value="zib Procedure-v5.2(2020EN)" />
-  </mapping>
-  <mapping>
-    <identity value="zib-bowelfunction-v3.1.1-2020EN" />
-    <uri value="https://zibs.nl/wiki/BowelFunction-v3.1.1(2020EN)" />
-    <name value="zib BowelFunction-v3.1.1(2020EN)" />
   </mapping>
   <mapping>
     <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
@@ -222,22 +215,6 @@
         <identity value="zib-medicaldevice-v3.3.1-2020EN" />
         <map value="NL-CM:10.1.7" />
         <comment value="Indication" />
-      </mapping>
-    </element>
-    <element id="DeviceUseStatement.reasonReference:bowelFunction">
-      <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="bowelFunction" />
-      <short value="BowelFunction" />
-      <comment value="Please note that on a functional level, zib BowelFunction references zib MedicalDevice, but in FHIR this direction is reversed." />
-      <alias value="Darmfunctie" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-BowelFunction" />
-      </type>
-      <mapping>
-        <identity value="zib-bowelfunction-v3.1.1-2020EN" />
-        <map value="NL-CM:4.15.6" />
-        <comment value="Reversed reference for zib BowelFunction.IncontinenceMaterial" />
       </mapping>
     </element>
     <element id="DeviceUseStatement.reasonReference:functionalOrMentalStatus">
