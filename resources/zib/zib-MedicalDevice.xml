@@ -31,11 +31,6 @@
     <name value="zib Procedure-v5.2(2020EN)" />
   </mapping>
   <mapping>
-    <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
-    <uri value="https://zibs.nl/wiki/FunctionalOrMentalStatus-v3.2(2020EN)" />
-    <name value="zib FunctionalOrMentalStatus-v3.2(2020EN)" />
-  </mapping>
-  <mapping>
     <identity value="zib-stoma-v3.3-2020EN" />
     <uri value="https://zibs.nl/wiki/Stoma-v3.3(2020EN)" />
     <name value="zib Stoma-v3.3(2020EN)" />
@@ -108,10 +103,10 @@
     <element id="DeviceUseStatement.derivedFrom:procedure-request">
       <path value="DeviceUseStatement.derivedFrom" />
       <sliceName value="procedure-request" />
-      <short value="Procedure" />
-      <definition value="The procedure which has the purpose of placing this product in or on the body." />
+      <short value="MedicalDevice" />
+      <definition value="The product, the placing of which in or on the body is the purpose of the procedure, for example placing an implant." />
       <comment value="* Note 1: on a functional level, zib Procedure references zib MedicalDevice, but in FHIR this direction is reversed.&#xD;&#xA;* Note 2: zib Procedure can represent a requested or (to be) performed procedure. This slice represents requested procedures, while slice `procedure-event` represents performed procedures." />
-      <alias value="Verrichting" />
+      <alias value="MedischHulpmiddel" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-request" />
@@ -119,16 +114,16 @@
       <mapping>
         <identity value="zib-procedure-v5.2-2020EN" />
         <map value="NL-CM:14.1.7" />
-        <comment value="Reversed reference for zib Procedure.MedicalDevice" />
+        <comment value="MedicalDevice" />
       </mapping>
     </element>
     <element id="DeviceUseStatement.derivedFrom:procedure-event">
       <path value="DeviceUseStatement.derivedFrom" />
       <sliceName value="procedure-event" />
-      <short value="Procedure" />
-      <definition value="The procedure which has the purpose of placing this product in or on the body." />
+      <short value="MedicalDevice" />
+      <definition value="The product, the placing of which in or on the body is the purpose of the procedure, for example placing an implant." />
       <comment value="* Note 1: on a functional level, zib Procedure references zib MedicalDevice, but in FHIR this direction is reversed.&#xD;&#xA;* Note 2: zib Procedure can represent a requested or (to be) performed procedure. This slice represents performed procedures, while slice `procedure-request` represents requested procedures." />
-      <alias value="Verrichting" />
+      <alias value="MedischHulpmiddel" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-event" />
@@ -136,7 +131,7 @@
       <mapping>
         <identity value="zib-procedure-v5.2-2020EN" />
         <map value="NL-CM:14.1.7" />
-        <comment value="Reversed reference for zib Procedure.MedicalDevice" />
+        <comment value="MedicalDevice" />
       </mapping>
     </element>
     <element id="DeviceUseStatement.timing[x]">
@@ -159,7 +154,7 @@
     <element id="DeviceUseStatement.timing[x]:timingPeriod.start">
       <path value="DeviceUseStatement.timing[x].start" />
       <short value="StartDate" />
-      <definition value="The start date of the first use or implant of the medical device. A ‘vague’ date, such as only the year, is permitted." />
+      <definition value="The start date of the first use or implant of the medical device. A &quot;vague&quot; date, such as only the year, is permitted." />
       <alias value="BeginDatum" />
       <mapping>
         <identity value="zib-medicaldevice-v3.3.1-2020EN" />
@@ -170,7 +165,7 @@
     <element id="DeviceUseStatement.timing[x]:timingPeriod.end">
       <path value="DeviceUseStatement.timing[x].end" />
       <short value="EndDate" />
-      <definition value="The end date of the last use or explant of the medical device. A ‘vague’ date, such as only the year, is permitted." />
+      <definition value="The end date of the last use or explant of the medical device. A &quot;vague&quot; date, such as only the year, is permitted." />
       <alias value="EindDatum" />
       <mapping>
         <identity value="zib-medicaldevice-v3.3.1-2020EN" />
@@ -212,28 +207,13 @@
         <comment value="Indication" />
       </mapping>
     </element>
-    <element id="DeviceUseStatement.reasonReference:functionalOrMentalStatus">
-      <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="functionalOrMentalStatus" />
-      <short value="FunctionalOrMentalStatus" />
-      <comment value="Please note that on a functional level, zib FunctionalOrMentalStatus references zib MedicalDevice, but in FHIR this direction is reversed." />
-      <alias value="FunctioneleOfMentaleStatus" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus" />
-      </type>
-      <mapping>
-        <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
-        <map value="NL-CM:4.26.5" />
-        <comment value="Reversed reference for zib FunctionalOrMentalStatus.MedicalDevice" />
-      </mapping>
-    </element>
     <element id="DeviceUseStatement.reasonReference:stoma">
       <path value="DeviceUseStatement.reasonReference" />
       <sliceName value="stoma" />
-      <short value="Stoma" />
+      <short value="StomaMaterial" />
+      <definition value="Stoma material describes the medical aids used, such as a skin plate (the adhesive part around the stoma), the stoma pouch (to catch the stoma output) and other stoma aids for caring for the stoma. For tracheostomies, it also describes aids such as voice prostheses and stoma filters. Catheters inserted through the stoma such as tracheal cannulas are not described in this concept. These aids must be modeled in a higher information model describing the catheter and referring to the stoma." />
       <comment value="Please note that on a functional level, zib Stoma references zib MedicalDevice, but in FHIR this direction is reversed." />
-      <alias value="Stoma" />
+      <alias value="StomaMateriaal" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Stoma" />
@@ -241,15 +221,16 @@
       <mapping>
         <identity value="zib-stoma-v3.3-2020EN" />
         <map value="NL-CM:5.2.3" />
-        <comment value="Reversed reference for zib Stoma.StomaMaterial" />
+        <comment value="StomaMaterial" />
       </mapping>
     </element>
     <element id="DeviceUseStatement.reasonReference:wound">
       <path value="DeviceUseStatement.reasonReference" />
       <sliceName value="wound" />
-      <short value="Wound" />
+      <short value="Drain" />
+      <definition value="A drain is a medical aid placed to drain blood and exudate from the wound area." />
       <comment value="Please note that on a functional level, zib Wound references zib MedicalDevice, but in FHIR this direction is reversed." />
-      <alias value="Wond" />
+      <alias value="Drain" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Wound" />
@@ -257,13 +238,13 @@
       <mapping>
         <identity value="zib-wound-v3.3-2020EN" />
         <map value="NL-CM:19.2.17" />
-        <comment value="Reversed reference for zib Wound.Drain" />
+        <comment value="Drain" />
       </mapping>
     </element>
     <element id="DeviceUseStatement.bodySite">
       <path value="DeviceUseStatement.bodySite" />
-      <short value="Location / AnatomicalLocation" />
-      <definition value="Patient’s anatomical location of the medical device used." />
+      <short value="AnatomicalLocation" />
+      <definition value="Patient's anatomical location of the medical device used." />
       <alias value="AnatomischeLocatie" />
       <type>
         <code value="CodeableConcept" />
