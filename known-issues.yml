@@ -26,6 +26,14 @@ ext-TreatmentDirective2.AdvanceDirective:
       - cardinality: 0..1 instead of 0..*
         reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension is added 0..* in the hosting element.
 
+ext-TreatmentObjective.MedicalDevice:
+  zib deviations:
+   Extension.value[x]:
+   - short: MedicalDevice
+     reason: We only use the part before the double colons according to the profile guidelines.
+   - cardinality: 0..1
+     reason: The extension allows the value to occur only once (0..1), but the use of the extension itself (in a resource) is allowed to be repeated (0..*), effectively resulting in a cardinality of 0..* for this element.
+
 nl-core-HearingFunction.HearingAid.Product:
   ignored issues:
     Device:
@@ -307,6 +315,14 @@ zib-HearingFunction.HearingAid:
     DeviceUseStatement:
       - datatype: undefined
         reason: In FHIR, the reference to the MedicalDevice points in the other direction (so the MedicalDevice refers to HearingFunction). The MedicalDevice reference is however mapped on the root element that represents this zib rather than on DeviceUseStatement.reasonReference resulting in an unmatched datatype.
+    DeviceUseStatement.extension:treatmentObjective.value[x]:
+      - short: Value of extension instead of FunctionalOrMentalStatus
+        reason: Inherited deviation from zib-MedicalDevice, see the comment there.
+      - alias: ' instead of FunctionalOrMentalStatus'
+        reason: Inherited deviation from zib-MedicalDevice, see the comment there.
+      - datatype: Reference instead of rootconcept
+        for: NL-CM:13.5.1 (TreatmentObjective)
+        reason: Inherited deviation from zib-MedicalDevice, see the comment there.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept instead of a reference
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
@@ -382,6 +398,14 @@ zib-LaboratoryTestResult.SpecimenSource:
 
 zib-MedicalDevice:
   zib deviations:
+    DeviceUseStatement.extension:treatmentObjective.value[x]:
+      - short: Value of extension instead of FunctionalOrMentalStatus
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real short to use here.
+      - alias: ' instead of FunctionalOrMentalStatus'
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real alias to use here.
+      - datatype: Reference instead of rootconcept
+        for: NL-CM:13.5.1 (TreatmentObjective)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key here is added to let the user know that there is a relation, but it's not a direct representation.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept instead of a reference
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
@@ -391,6 +415,12 @@ zib-MedicalDevice:
     DeviceUseStatement.timing[x]:timingPeriod.end:
       - short: EndDate instead of EindDatum
         reason: The zib concept name "EindDatum" has not been translated into English.
+  ignored issues:
+    DeviceUseStatement.extension:treatmentObjective.value[x]:
+      - message: "Constraint failed: sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real short to use here.
+      - message: "Constraint failed: sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real alias to use here.
 
 zib-MedicalDevice.Product:
   zib deviations:
@@ -711,6 +741,12 @@ zib-TreatmentDirective2:
       - message: "Constraint failed: sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
         reason: The mapping is to a zib container, which doesn't have a useful description if implemented in a profile.
 
+zib-TreatmentObjective:
+  zib deviations:
+    Goal.target:
+      - datatype: BackboneElement
+        reason: Although the zib model assumes there's a reference from zib OutcomeOfCare to a distinct instance of zib FunctionalOrMentalStatus (in future context), in this profile the concepts of zib FunctionalOrMentalStatus are mapped directly as this aligns with the way the Goal resource is used.
+
 zib-Vaccination-event:
   zib deviations:
     Immunization.vaccineCode:
@@ -739,6 +775,14 @@ zib-VisualFunction.VisualAid:
     DeviceUseStatement:
       - datatype: undefined
         reason: In FHIR, the reference to the MedicalDevice points in the other direction (so the MedicalDevice refers to VisualFunction). The MedicalDevice reference is however mapped on the root element that represents this zib rather than on DeviceUseStatement.reasonReference resulting in an unmatched datatype.
+    DeviceUseStatement.extension:treatmentObjective.value[x]:
+      - short: Value of extension instead of FunctionalOrMentalStatus
+        reason: Inherited deviation from zib-MedicalDevice, see the comment there.
+      - alias: ' instead of FunctionalOrMentalStatus'
+        reason: Inherited deviation from zib-MedicalDevice, see the comment there.
+      - datatype: Reference instead of rootconcept
+        for: NL-CM:13.5.1 (TreatmentObjective)
+        reason: Inherited deviation from zib-MedicalDevice, see the comment there.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept instead of a reference
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
@@ -772,6 +816,14 @@ zib-Wound:
 
 zib-Wound.Drain:
   zib deviations:
+    DeviceUseStatement.extension:treatmentObjective.value[x]:
+      - short: Value of extension instead of FunctionalOrMentalStatus
+        reason: Inherited deviation from zib-MedicalDevice, see the comment there.
+      - alias: ' instead of FunctionalOrMentalStatus'
+        reason: Inherited deviation from zib-MedicalDevice, see the comment there.
+      - datatype: Reference instead of rootconcept
+        for: NL-CM:13.5.1 (TreatmentObjective)
+        reason: Inherited deviation from zib-MedicalDevice, see the comment there.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept instead of a reference
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
