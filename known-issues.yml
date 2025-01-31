@@ -252,6 +252,12 @@ zib-Encounter:
       - cardinality: 0..* instead of 0..1
         reason: The cardinality mismatch between the zib (0..1) and FHIR (0..*, effective) is explained by the missing ContactReason container in FHIR. This container may exist 0..* times, thereby this mapping is still honoring the cardinality requirements of the zib.
 
+zib-FeedingPatternInfant:
+  zib deviations:
+    Observation.component:feedingSupplement.value[x]:
+      - datatype: CodeableConcept instead of ST
+        reason: This is a concious deviation from the zib that has been decided by HL7 Netherlands and the zib centre. The zib model of using a single string is deemed too restrictive for some real-world systems, hence coded information is allowed as well. This deviation is documented in the profile.
+
 zib-FLACCpainScale:
   zib deviations:
    Observation:
@@ -889,7 +895,7 @@ nl-core-*:
     Condition.code:
       - message: None of the codings provided are in the value set 'ProbleemNaamCodelijst'
         reason: This ValueSet contains two SNOMED refsets. The terminology servers are unable to determine if a code is part of this refset.
-      - message: "Error from http://tx.fhir.org/r4: The Snomed Concept 31000147101 was not known"
+      - message: "Error from http://tx.fhir.org/r4: The SNOMED CT Concept 31000147101 is not known"
         reason: This code represents the DHD Diagnosethesaurus, which the default terminology server is unable to check. This causes problems on some occasions (but not all).
     Condition.evidence[*].detail[*]:
       - message: This element does not match any known slice defined in the profile
@@ -898,7 +904,7 @@ nl-core-*:
       - message: This element does not match any known slice defined in the profile
         reason: The Validator is unable to resolve references on disk, so it is unable to match reference slices
     Procedure.code:
-      - message: "Error from http://tx.fhir.org/r4: The Snomed Concept 41000147108 was not known"
+      - message: "Error from http://tx.fhir.org/r4: The SNOMED CT Concept 41000147108 is not known"
         reason: This code represents the DHD Verrichtingenthesaurus, which the default terminology server is unable to check. This causes problems on some occasions (but not all).
 
 nl-core-AllergyIntolerance*:
