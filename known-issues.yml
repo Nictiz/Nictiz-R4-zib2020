@@ -26,6 +26,14 @@ ext-TreatmentDirective2.AdvanceDirective:
       - cardinality: 0..1 instead of 0..*
         reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension is added 0..* in the hosting element.
 
+nl-core-AbilityToPerformMouthcareActivities.Prosthesis.Product:
+  ignored issues:
+    Device:
+      - message: The slice definition for Device.identifier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+      - message: The slice definition for Device.udiCarrier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+
 nl-core-HearingFunction.HearingAid.Product:
   ignored issues:
     Device:
