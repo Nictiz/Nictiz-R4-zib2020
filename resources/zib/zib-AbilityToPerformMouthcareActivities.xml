@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-AbilityToPerformMouthcareActivities" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-AbilityToPerformMouthcareActivities" />
   <name value="ZibAbilityToPerformMouthcareActivities" />
   <title value="zib AbilityToPerformMouthcareActivities" />
@@ -37,6 +39,31 @@
         <identity value="zib-abilitytoperformmouthcareactivities-v3.1-2020EN" />
         <map value="NL-CM:4.13.1" />
         <comment value="AbilityToPerformMouthcareActivities" />
+      </mapping>
+    </element>
+    <element id="Observation.extension:prosthesis">
+      <path value="Observation.extension" />
+      <sliceName value="prosthesis" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/workflow-supportingInfo" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Observation.extension:prosthesis.value[x]">
+      <path value="Observation.extension.value[x]" />
+      <short value="Prosthesis" />
+      <definition value="Information on the dental aids used by the patient." />
+      <alias value="Prothese" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-AbilityToPerformMouthcareActivities.Prosthesis" />
+      </type>
+      <mapping>
+        <identity value="zib-abilitytoperformmouthcareactivities-v3.1-2020EN" />
+        <map value="NL-CM:4.13.4" />
+        <comment value="Prosthesis" />
       </mapping>
     </element>
     <element id="Observation.code">
