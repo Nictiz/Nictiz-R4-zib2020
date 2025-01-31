@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-VisualFunction.VisualAid" />
   <text>
-    <status value="empty" />
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-VisualFunction.VisualAid" />
   <name value="ZibVisualFunctionVisualAid" />
   <title value="zib VisualFunction.VisualAid" />
@@ -35,8 +33,15 @@
   <differential>
     <element id="DeviceUseStatement">
       <path value="DeviceUseStatement" />
+      <short value="MedicalDevice / VisualAid" />
       <definition value="The medical aids used to support the visual function." />
       <comment value="This is a specialization of the [zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice) profile to represent VisualAid devices within the context of zib VisualFunction." />
+      <alias value="ZienHulpmiddel::MedischHulpmiddel" />
+      <mapping>
+        <identity value="zib-visualfunction-v3.1-2020EN" />
+        <map value="NL-CM:4.16.4" />
+        <comment value="VisualAid:MedicalDevice" />
+      </mapping>
     </element>
     <element id="DeviceUseStatement.extension:location">
       <path value="DeviceUseStatement.extension" />

@@ -310,6 +310,9 @@ zib-HealthProfessional-PractitionerRole:
 
 zib-HearingFunction.HearingAid:
   zib deviations:
+    DeviceUseStatement:
+      - datatype: undefined instead of Reference
+        reason: The root of this profile represents the MedicalDevice concept as specified by zib HearingFunction.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept instead of a reference
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
@@ -742,6 +745,11 @@ zib-VisualFunction:
 
 zib-VisualFunction.VisualAid:
   zib deviations:
+    DeviceUseStatement:
+      - short: MedicalDevice / VisualAid instead of MedicalDevice / VisualAid:MedicalDevice
+        reason: The zib accidentally uses a single colon instead of a double colon as separator, so the tooling mistakes it for a complete name.
+      - datatype: undefined instead of Reference
+        reason: The root of this profile represents the MedicalDevice concept as specified by zib VisualFunction.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept instead of a reference
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
@@ -775,6 +783,9 @@ zib-Wound:
 
 zib-Wound.Drain:
   zib deviations:
+    DeviceUseStatement:
+      - datatype: undefined instead of Reference
+        reason: The root of this profile represents the MedicalDevice concept as specified by zib Wound.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept instead of a reference
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.

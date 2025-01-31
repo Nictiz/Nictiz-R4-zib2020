@@ -33,8 +33,15 @@
   <differential>
     <element id="DeviceUseStatement">
       <path value="DeviceUseStatement" />
-      <definition value="https://zibs.nl/wiki/Wound-v3.3(2020EN)." />
+      <short value="MedicalDevice / Drain" />
+      <definition value="A drain is a medical aid placed to drain blood and exudate from the wound area." />
       <comment value="This is a specialization of the [zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice) profile to represent Drain devices within the context of zib Wound." />
+      <alias value="Drain::MedischHulpmiddel" />
+      <mapping>
+        <identity value="zib-wound-v3.3-2020EN" />
+        <map value="NL-CM:19.2.17" />
+        <comment value="Drain::MecicalDevice" />
+      </mapping>
     </element>
     <element id="DeviceUseStatement.device">
       <path value="DeviceUseStatement.device" />

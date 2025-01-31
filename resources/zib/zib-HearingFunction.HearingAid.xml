@@ -33,8 +33,15 @@
   <differential>
     <element id="DeviceUseStatement">
       <path value="DeviceUseStatement" />
+      <short value="MedicalDevice / HearingAid" />
       <definition value="The medical aid used to help the patient hear." />
       <comment value="This is a specialization of the [zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice) profile to represent HearingAid devices within the context of zib HearingFunction." />
+      <alias value="HorenHulpmiddel::MedischHulpmiddel" />
+      <mapping>
+        <identity value="zib-hearingfunction-v3.2-2020EN" />
+        <map value="NL-CM:4.17.4" />
+        <comment value="HearingAid::MedicalDevice" />
+      </mapping>
     </element>
     <element id="DeviceUseStatement.extension:location">
       <path value="DeviceUseStatement.extension" />
