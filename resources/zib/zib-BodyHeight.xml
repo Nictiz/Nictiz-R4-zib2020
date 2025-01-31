@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-BodyHeight" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyHeight" />
   <name value="ZibBodyHeight" />
   <title value="zib BodyHeight" />
@@ -15,7 +19,7 @@
     </telecom>
   </contact>
   <description value="A person’s body height." />
-  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) BodyHeight-v3.1.1(2020EN)](https://zibs.nl/wiki/BodyHeight-v3.1.1(2020EN))." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) BodyHeight v3.1.1 (2020)](https://zibs.nl/wiki/BodyHeight-v3.1.1(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -82,22 +86,15 @@
       <type>
         <code value="Quantity" />
       </type>
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://hl7.org/fhir/ValueSet/ucum-bodylength" />
+      </binding>
       <mapping>
         <identity value="zib-bodyheight-v3.1.1-2020EN" />
         <map value="NL-CM:12.2.2" />
         <comment value="HeightValue" />
       </mapping>
-    </element>
-    <element id="Observation.value[x].system">
-      <path value="Observation.value[x].system" />
-      <fixedUri value="http://unitsofmeasure.org" />
-    </element>
-    <element id="Observation.value[x].code">
-      <path value="Observation.value[x].code" />
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://hl7.org/fhir/ValueSet/ucum-bodylength" />
-      </binding>
     </element>
     <element id="Observation.note">
       <path value="Observation.note" />

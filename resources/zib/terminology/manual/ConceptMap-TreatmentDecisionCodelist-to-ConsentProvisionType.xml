@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConceptMap xmlns="http://hl7.org/fhir">
+  <id value="TreatmentDecisionCodelist-to-ConsentProvisionType"/>
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
+  <extension url="http://hl7.org/fhir/StructureDefinition/concept-bidirectional">
+    <valueBoolean value="false"/>
+  </extension>
+  <url value="http://nictiz.nl/fhir/ConceptMap/TreatmentDecisionCodelist-to-ConsentProvisionType"/>
+  <name value="TreatmentDecisionCodelist_to_ConsentProvisionType"/>
+  <title value="TreatmentDecisionCodelist to ConsentProvisionType"/>
+  <status value="draft"/>
+  <publisher value="Nictiz"/>
+  <contact>
+    <name value="Nictiz"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://www.nictiz.nl"/>
+      <use value="work"/>
+    </telecom>
+  </contact>
+  <description value="Maps treatment decision codes as found in the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) TreatmentDirective2 v1.0 (2020)](https://zibs.nl/wiki/TreatmentDirective2-v1.0(2020EN) to &lt;http://hl7.org/fhir/ValueSet/consent-provision-type&gt; as found in `Consent.provision.type` in FHIR R4.&#xD;&#xA;&#xD;&#xA;"/>
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <sourceCanonical value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.2.2.2--20200901000000"/>
+  <targetCanonical value="http://hl7.org/fhir/ValueSet/consent-provision-type"/>
+  <group>
+    <source value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.25.1"/>
+    <target value="http://hl7.org/fhir/consent-provision-type"/>
+    <element>
+      <code value="0"/>
+      <target>
+        <code value="permit"/>
+        <equivalence value="equal"/>
+      </target>
+    </element>
+    <element>
+      <code value="1"/>
+      <target>
+        <equivalence value="unmatched"/>
+        <comment value="The SpecificationOther modifier extension on Consent.provision.type can be used to implicitly communicate this code."/>
+      </target>
+    </element>
+    <element>
+      <code value="2"/>
+      <target>
+        <code value="deny"/>
+        <equivalence value="equal"/>
+      </target>
+    </element>
+  </group>
+</ConceptMap>

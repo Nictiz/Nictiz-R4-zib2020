@@ -1,36 +1,54 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Medication xmlns="http://hl7.org/fhir">
-   <id value="nl-core-Vaccination-03-PharmaceuticalProduct-01"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
-   </meta>
-   <!-- Omschrijving -->
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalProduct.Description">
-      <!-- add description -->
-      <valueString value="HEPATITIS A, GEINACTIVEERD, INTACT VIRUS"/>
-   </extension>
-   <!-- Serienummer -->
-<!--   <identifier> <!-\- Add serialnumber -\-> </identifier>-->
-   <!-- ProductCode -->
-   <code>
-      <coding>
-         <system value="http://www.whocc.no/atc"/>
-         <code value="J07BC02"/>
-         <!-- ProductNaam -->
-         <display value="HEPATITIS A, GEINACTIVEERD, INTACT VIRUS"/>
-      </coding>
-   </code>
-   <!-- FarmaceutischeVorm -->
-   <form>
-      <coding>
-         <system value="urn:oid:2.16.840.1.113883.2.4.4.11"/>
-         <code value="21"/>
-         <!-- ProductNaam -->
-         <display value="SUSPENSIE VOOR INJECTIE"/>
-      </coding>
-   </form>
-   <!-- Batchnummer -->
-   <batch>
-      <lotNumber value="AW1898"></lotNumber>
-   </batch>
+  <id value="nl-core-Vaccination-03-PharmaceuticalProduct-01"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <table>
+        <tbody>
+          <tr>
+            <th>Code</th>
+            <td>
+              <span title="HEPATITIS A, GEINACTIVEERD, INTACT VIRUS (J07BC02 - http://www.whocc.no/atc)">HEPATITIS A, GEINACTIVEERD, INTACT VIRUS</span>
+            </td>
+            <th>Form</th>
+            <td>
+              <span title="SUSPENSIE VOOR INJECTIE (21 - G-Standaard tabel 902 thesaurus 0006)">SUSPENSIE VOOR INJECTIE</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </text>
+  <!-- Omschrijving -->
+  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalProduct.Description">
+    <!-- add description -->
+    <valueString value="HEPATITIS A, GEINACTIVEERD, INTACT VIRUS"/>
+  </extension>
+  <!-- Serienummer -->
+  <!--   <identifier> <!-\- Add serialnumber -\-> </identifier>-->
+  <!-- ProductCode -->
+  <code>
+    <coding>
+      <system value="http://www.whocc.no/atc"/>
+      <code value="J07BC02"/>
+      <!-- ProductNaam -->
+      <display value="HEPATITIS A, GEINACTIVEERD, INTACT VIRUS"/>
+    </coding>
+  </code>
+  <!-- FarmaceutischeVorm -->
+  <form>
+    <coding>
+      <system value="urn:oid:2.16.840.1.113883.2.4.4.11"/>
+      <code value="21"/>
+      <!-- ProductNaam -->
+      <display value="SUSPENSIE VOOR INJECTIE"/>
+    </coding>
+  </form>
+  <!-- Batchnummer -->
+  <batch>
+    <lotNumber value="AW1898"/>
+  </batch>
 </Medication>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-PulseRate" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PulseRate" />
+  <name value="NlcorePulseRate" />
+  <title value="nl core PulseRate" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The pulse rate is the number of palpations per minute measured at an artery." />
+  <purpose value="A derived profile from [zib-PulseRate](http://nictiz.nl/fhir/StructureDefinition/zib-PulseRate) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-pulserate-v3.3-2020EN" />
+    <uri value="https://zibs.nl/wiki/PulseRate-v3.3(2020EN)" />
+    <name value="zib PulseRate-v3.3(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Observation" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-PulseRate" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <comment value="**HL7 Vital Signs compatibility**&#xD;&#xA;&#xD;&#xA;Although this profile represents a vital signs measurement, it is *not* directly based on a HL7 Vital Signs profile because there isn't a direct counterpart in HL7 Vital Signs. Moreover the HL7 Vital Signs profiles contain two issues in their current version that prevent them from being used for the exchange of zibs (see below). However, an effort has been made to make this profile consistent with the (other) [HL7 Vital Signs profiles](https://www.hl7.org/fhir/R4/observation-vitalsigns.html), since the zib PulseRate is considered to be a vital sign. In particular it is closely related to the zib HeartRate, the profile of which is derived from its HL7 Vital Signs counterpart.&#xD;&#xA;&#xD;&#xA;**Differences with the HL7 Vital Signs profiles**&#xD;&#xA;&#xD;&#xA;* The _required_ terminology binding on `Observation.component` to the [Vital Signs Units](http://hl7.org/fhir/ValueSet/ucum-vitals-common) dataset makes it impossible to use `.component` for representing anything else than a Quantity (like a CodeableConcept or a boolean). This binding has therefore been omitted in the current profile.&#xD;&#xA;* The `mustSupport` = _true_ flag found on numerous elements isn't further specified in the HL7 Vital Signs IG, as is required by FHIR. This flag has therefore been omitted from the current profile.&#xD;&#xA;* The target restriction on `Observation.hasMember` and `Observation.derivedFrom` to a HL7 Vital Signs profile cannot be fulfilled. This restriction has therefore been omitted from the current profile.&#xD;&#xA;&#xD;&#xA;It might happen that for some concepts, the zib uses a different (but compatible) way than what is recommended by the [HL7 Vital Signs IG](http://hl7.org/fhir/r4/observation-vitalsigns.html). This is described in the comments for these concepts. There are also some differences in the profiling approach between the current profile and the HL7 profiles, like the use of patterns rather than slices with fixed systems and codes to enforce the inclusion of some coding (for reasons of consistency with other zib profiles, the former approach has been chosen here). Apart from what is mentioned above, constraints, invariants and terminology bindings have been copied from the HL7 Vital Signs profiles, but some textual descriptions have been omitted.&#xD;&#xA;&#xD;&#xA;Note: No equivalent for the HL7 Vital Signs base profile has been created to implement the zib profiles. The profile for this zib has been modelled taking the other HL7 Vital Signs profiles into consideration.&#xD;&#xA;&#xD;&#xA;**Multiple profiles to represent the zib**&#xD;&#xA;&#xD;&#xA;The PulseRegularity concept (NL-CM:12.7.5) is represented using distinct Observation resources, using profile [nl-core-PulseRate.PulseRegularity](http://nictiz.nl/fhir/StructureDefinition/nl-core-PulseRate.PulseRegularity). It is referenced from this resource using Observation.hasMember." />
+      <alias value="nl-core-PulseRate" />
+    </element>
+    <element id="Observation.subject">
+      <path value="Observation.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:pulseRegularity">
+      <path value="Observation.hasMember" />
+      <sliceName value="pulseRegularity" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PulseRate.PulseRegularity" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
