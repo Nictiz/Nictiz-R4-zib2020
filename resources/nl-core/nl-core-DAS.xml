@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-DAS" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-DAS" />
+  <name value="NlcoreDAS" />
+  <title value="nl core DAS" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The Disease Activity Score (DAS) is a combined index developed in Nijmegen around 1990 to measure disease activity in patients with rheumatoid arthritis (RA). It concerns a formula with 28 or 44 painful and swollen joints, a blood value for inflammation (BSE or CRP) and the overall experience of disease activity by the patient. The DAS results in a number between 0 and 10, which indicates how active rheumatoid arthritis is at present. The score has been validated for use in clinical trials in combination with the EULAR response criteria." />
+  <purpose value="A derived profile from [zib-DAS](http://nictiz.nl/fhir/StructureDefinition/zib-DAS) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-das-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/DAS-v1.0(2020EN)" />
+    <name value="zib DAS-v1.0(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Observation" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-DAS" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <comment value="Several concepts of zib DAS are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* AffectedJoint (NL-CM:12:18.2): [nl-core-DAS.AffectedJoint](http://nictiz.nl/fhir/StructureDefinition/nl-core-DAS.AffectedJoint).&#xD;&#xA;* CountOfSwollenJoints (NL-CM:12:18.11): [nl-core-DAS.CountOfSwollenJoints](http://nictiz.nl/fhir/StructureDefinition/nl-core-DAS.CountOfSwollenJoints).&#xD;&#xA;* CountOfTenderJoints (NL-CM:12:18.12): [nl-core-DAS.CountOfTenderJoints](http://nictiz.nl/fhir/StructureDefinition/nl-core-DAS.CountOfTenderJoints)." />
+      <alias value="nl-core-DAS" />
+    </element>
+    <element id="Observation.subject">
+      <path value="Observation.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:affectedJoint">
+      <path value="Observation.hasMember" />
+      <sliceName value="affectedJoint" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-DAS.AffectedJoint" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:countOfTenderJoints">
+      <path value="Observation.hasMember" />
+      <sliceName value="countOfTenderJoints" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-DAS.CountOfTenderJoints" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:countOfSwollenJoints">
+      <path value="Observation.hasMember" />
+      <sliceName value="countOfSwollenJoints" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-DAS.CountOfSwollenJoints" />
+      </type>
+    </element>
+    <element id="Observation.derivedFrom">
+      <path value="Observation.derivedFrom" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ImagingStudy" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Media" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MolecularSequence" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
