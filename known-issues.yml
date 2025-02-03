@@ -263,6 +263,9 @@ zib-FreedomRestrictingIntervention:
 
 zib-FunctionalOrMentalStatus:
   zib deviations:
+    Observation.extension:medicalDevice.value[x]:
+      - short: MedicalDevice instead of MedicalDevice:MedicalDevice
+        reason: The zib accidentally uses a single colon, so the tool thinks that it's the full name.
     Observation.code:
       - cardinality: 1..1 instead of 0..1
         reason: The FHIR profiles are expected to implement zib cardinalities as conceptual cardinalities, but FHIR requires the Observation.code element to be present. This aligns with the intention of the zib, as the StatusName concept is required for zib FunctionalOrMentalStatus to make sense. 
@@ -742,6 +745,8 @@ zib-VisualFunction:
     Observation.extension:visualAid.value[x]:
       - cardinality: 0..* instead of 0..1
         reason: This extension can be used to refer other DeviceUseStatement resources than instances of zib-MedicalDevice, to which the cardinality of 0..1 applies. Ideally this particular reference would be added on a profile slice to set the proper cardinality, but this is not feasible with in an extension.
+      - short: VisualAid instead of VisualAid:MedicalDevice
+        reason: The zib accidentally uses a single colon, so the tool thinks that it's the full name.
 
 zib-VisualFunction.VisualAid:
   zib deviations:
