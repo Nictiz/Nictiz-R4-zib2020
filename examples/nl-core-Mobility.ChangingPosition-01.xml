@@ -1,7 +1,7 @@
 <Observation xmlns="http://hl7.org/fhir">
-  <id value="nl-core-AbilityToDrink.DrinkingLimitations-02"/>
+  <id value="nl-core-Mobility.ChangingPosition-01"/>
   <meta>
-    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToDrink.DrinkingLimitations"/>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility.ChangingPosition"/>
   </meta>
   <text>
     <status value="extensions"/>
@@ -15,10 +15,10 @@
           </tr>
           <tr>
             <td>
-              <span title="vermogen tot drinken (288851008 - SNOMED CT)">vermogen tot drinken</span>
+              <span title="vermogen om positie aan te houden (249868004 - SNOMED CT)">vermogen om positie aan te houden</span>, <span title="vermogen om te verplaatsen (364666007 - SNOMED CT)">vermogen om te verplaatsen</span>
             </td>
             <td>
-              <span title="Moeite met naar mond brengen van drank (288876009 - SNOMED CT)">Moeite met naar mond brengen van drank</span>
+              <span title="Independently able to maintain position (19811000146100 - SNOMED CT)">Independently able to maintain position</span>
             </td>
           </tr>
         </tbody>
@@ -29,8 +29,15 @@
   <code>
     <coding>
       <system value="http://snomed.info/sct"/>
-      <code value="288851008"/>
-      <display value="vermogen tot drinken"/>
+      <code value="249868004"/>
+      <display value="vermogen om positie aan te houden"/>
+    </coding>
+  </code>
+  <code>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="364666007"/>
+      <display value="vermogen om te verplaatsen"/>
     </coding>
   </code>
   <subject>
@@ -41,8 +48,8 @@
   <valueCodeableConcept>
     <coding>
       <system value="http://snomed.info/sct"/>
-      <code value="288876009"/>
-      <display value="Moeite met naar mond brengen van drank"/>
+      <code value="19811000146100"/>
+      <display value="Independently able to maintain position"/>
     </coding>
   </valueCodeableConcept>
 </Observation>
