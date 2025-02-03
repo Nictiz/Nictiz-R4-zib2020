@@ -237,6 +237,12 @@ zib-DAS.AffectedJoint:
       - datatype: CodeableConcept instead of a reference
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
 
+zib-DAS.CountOfSwollenJoints:
+  zib deviations:
+    Observation.value[x]:
+      - short: CountOfSwollenJoints instead of CountOfSwolenJoints
+        reason: The zib concept name "CountOfSwolenJoints" is an incorrect translation of the Dutch name into English.
+
 zib-Encounter:
   zib deviations:
     Encounter.class:
