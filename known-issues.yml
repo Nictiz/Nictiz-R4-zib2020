@@ -171,7 +171,7 @@ zib-BowelFunction:
   zib deviations:
     Observation.extension:incontinenceMaterial.value[x]:
       - cardinality: 0..* instead of 0..1
-        reason: This extension can be used to refer other DeviceUseStatement resources than instances of zib-MedicalDevice, to which the cardinality of 0..1 applies. Ideally this particular reference would be added on a profile slice to set the proper cardinality, but this is not feasible with in an extension.
+        reason: This extension can be used to refer other DeviceUseStatement resources than instances of zib-MedicalDevice, to which the cardinality of 0..1 applies. Ideally this particular reference would be added on a profile slice to set the proper cardinality, but this is not feasible within an extension.
 
 zib-Burnwound:
   zib deviations:
@@ -744,7 +744,7 @@ zib-VisualFunction:
   zib deviations:
     Observation.extension:visualAid.value[x]:
       - cardinality: 0..* instead of 0..1
-        reason: This extension can be used to refer other DeviceUseStatement resources than instances of zib-MedicalDevice, to which the cardinality of 0..1 applies. Ideally this particular reference would be added on a profile slice to set the proper cardinality, but this is not feasible with in an extension.
+        reason: This extension can be used to refer other DeviceUseStatement resources than instances of zib-MedicalDevice, to which the cardinality of 0..1 applies. Ideally this particular reference would be added on a profile slice to set the proper cardinality, but this is not feasible within an extension.
       - short: VisualAid instead of VisualAid:MedicalDevice
         reason: The zib accidentally uses a single colon, so the tool thinks that it's the full name.
 
