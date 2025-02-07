@@ -17,6 +17,9 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-AbilityToGroom
 * No specific changes have been made to this profile other than the generic changes for the Observation resource.
 
+## zib-AbilityToPerformMouthcareActivities
+* The reference between the Observation and the DeviceUseStatement profile has been moved from the `.reasonReference` extension in the DeviceUseStatement to the `workflow-supportingInfo` extension in the Observation profile.
+
 ## zib-AbilityToUseToilet
 * No specific changes have been made to this profile other than the generic changes for the Observation resource.
 
