@@ -1,157 +1,155 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-   <id value="zib-Mobility"/>
-   <text>
-      <status value="empty"/>
-      <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-   </text>
-   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility"/>
-   <name value="ZibMobility"/>
-   <title value="zib Mobility"/>
-   <status value="draft"/>
-   <publisher value="Nictiz"/>
-   <contact>
-      <name value="Nictiz"/>
-      <telecom>
-         <system value="url"/>
-         <value value="https://www.nictiz.nl"/>
-         <use value="work"/>
-      </telecom>
-   </contact>
-   <description value="Mobility describes the abilities and any limitations in all aspects of mobility, such as changing position, walking and moving forward, in some cases with the help of an aid."/>
-   <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Mobility v3.3 (2020)](https://zibs.nl/wiki/Mobility-v3.3(2020EN))."/>
-   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise."/>
-   <fhirVersion value="4.0.1"/>
-   <mapping>
-      <identity value="zib-mobility-v3.3-2020EN"/>
-      <uri value="https://zibs.nl/wiki/Mobility-v3.3(2020EN)"/>
-      <name value="zib Mobility-v3.3(2020EN)"/>
-   </mapping>
-   <kind value="resource"/>
-   <abstract value="true"/>
-   <type value="Observation"/>
-   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation"/>
-   <derivation value="constraint"/>
-   <differential>
-      <element id="Observation">
-         <path value="Observation"/>
-         <short value="Mobility"/>
-         <comment value="Please note that on a functional level, zib Mobility references zib MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept MedicalDevice (NL-CM:4.3.4) is mapped on `DeviceUseStatement.reasonReference` in profile [zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice) instead of in this profile.&#xD;&#xA;&#xD;&#xA;Several concept(s) of zib Mobility are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* Walking (NL-CM:4.3.3): [zib-Mobility.Walking](http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.Walking)&#xD;&#xA;* ClimbingStairs (NL-CM:4.3.18): [zib-Mobility.ClimbingStairs](http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.ClimbingStairs)&#xD;&#xA;* ChangingPosition (NL-CM:4.3.8): [zib-Mobility.ChangingPosition](http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.ChangingPosition)&#xD;&#xA;* MaintainingPosition (NL-CM:4.3.12): [zib-Mobility.MaintainingPosition](http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.MaintainingPosition)&#xD;&#xA;* Transfer (NL-CM:4.3.5): [zib-Mobility.Transfer](http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.Transfer)"/>
-         <alias value="Mobiliteit"/>
-         <mapping>
-            <identity value="zib-mobility-v3.3-2020EN"/>
-            <map value="NL-CM:4.3.1"/>
-            <comment value="Mobility"/>
-         </mapping>
-      </element>
-      <element id="Observation.extension:medicalDevice">
-         <path value="Observation.extension"/>
-         <sliceName value="medicalDevice"/>
-         <type>
-            <code value="Extension"/>
-            <profile value="http://hl7.org/fhir/StructureDefinition/workflow-supportingInfo"/>
-         </type>
-         <isModifier value="false"/>
-      </element>
-      <element id="Observation.extension:medicalDevice.value[x]">
-         <path value="Observation.extension.value[x]"/>
-         <short value="MedicalDevice"/>
-         <definition value="Description of medical aids that can be used for limitations in mobility."/>
-         <alias value="MedischHulpmiddel"/>
-         <type>
-            <code value="Reference"/>
-            <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource"/>
-            <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice"/>
-         </type>
-         <mapping>
-            <identity value="zib-mobility-v3.3-2020EN"/>
-            <map value="NL-CM:4.3.4"/>
-            <comment value="MedicalDevice"/>
-         </mapping>
-      </element>
-      <element id="Observation.code">
-         <path value="Observation.code"/>
-         <patternCodeableConcept>
-            <coding>
-               <system value="http://snomed.info/sct"/>
-               <code value="301438001"/>
-            </coding>
-         </patternCodeableConcept>
-      </element>
-      <element id="Observation.note">
-         <path value="Observation.note"/>
-         <max value="1"/>
-      </element>
-      <element id="Observation.note.text">
-         <path value="Observation.note.text"/>
-         <short value="Comment"/>
-         <definition value="A comment on the patient's mobility."/>
-         <alias value="Toelichting"/>
-         <mapping>
-            <identity value="zib-mobility-v3.3-2020EN"/>
-            <map value="NL-CM:4.3.16"/>
-            <comment value="Comment"/>
-         </mapping>
-      </element>
-      <element id="Observation.hasMember">
-         <path value="Observation.hasMember"/>
-         <slicing>
-            <discriminator>
-               <type value="profile"/>
-               <path value="resolve()"/>
-            </discriminator>
-            <rules value="open"/>
-         </slicing>
-      </element>
-      <element id="Observation.hasMember:walking">
-         <path value="Observation.hasMember"/>
-         <sliceName value="walking"/>
-         <definition value="The Walking concept (NL-CM:4.3.3) of zib Mobility, represented as a distinct Observation resource."/>
-         <max value="1"/>
-         <type>
-            <code value="Reference"/>
-            <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.Walking"/>
-         </type>
-      </element>
-      <element id="Observation.hasMember:climbingStairs">
-         <path value="Observation.hasMember"/>
-         <sliceName value="climbingStairs"/>
-         <definition value="The ClimbingStairs concept (NL-CM:4.3.18) of zib Mobility, represented as a distinct Observation resource."/>
-         <max value="1"/>
-         <type>
-            <code value="Reference"/>
-            <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.ClimbingStairs"/>
-         </type>
-      </element>
-      <element id="Observation.hasMember:changingPosition">
-         <path value="Observation.hasMember"/>
-         <sliceName value="changingPosition"/>
-         <definition value="The ChangingPosition concept (NL-CM:4.3.8) of zib Mobility, represented as a distinct Observation resource."/>
-         <max value="1"/>
-         <type>
-            <code value="Reference"/>
-            <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.ChangingPosition"/>
-         </type>
-      </element>
-      <element id="Observation.hasMember:maintainingPosition">
-         <path value="Observation.hasMember"/>
-         <sliceName value="maintainingPosition"/>
-         <definition value="The MaintainingPosition concept (NL-CM:4.3.12) of zib Mobility, represented as a distinct Observation resource."/>
-         <max value="1"/>
-         <type>
-            <code value="Reference"/>
-            <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.MaintainingPosition"/>
-         </type>
-      </element>
-      <element id="Observation.hasMember:transfer">
-         <path value="Observation.hasMember"/>
-         <sliceName value="transfer"/>
-         <definition value="The Transfer concept (NL-CM:4.3.5) of zib Mobility, represented as a distinct Observation resource."/>
-         <max value="1"/>
-         <type>
-            <code value="Reference"/>
-            <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.Transfer"/>
-         </type>
-      </element>
-   </differential>
+  <id value="zib-Mobility" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility" />
+  <name value="ZibMobility" />
+  <title value="zib Mobility" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Mobility describes the abilities and any limitations in all aspects of mobility, such as changing position, walking and moving forward, in some cases with the help of an aid." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Mobility v3.3 (2020)](https://zibs.nl/wiki/Mobility-v3.3(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-mobility-v3.3-2020EN" />
+    <uri value="https://zibs.nl/wiki/Mobility-v3.3(2020EN)" />
+    <name value="zib Mobility-v3.3(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="Mobility" />
+      <comment value="Please note that on a functional level, zib Mobility references zib MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept MedicalDevice (NL-CM:4.3.4) is mapped on `DeviceUseStatement.reasonReference` in profile [zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice) instead of in this profile.&#xD;&#xA;&#xD;&#xA;Several concepts of zib Mobility are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* Walking (NL-CM:4.3.3): [zib-Mobility.Walking](http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.Walking)&#xD;&#xA;* ClimbingStairs (NL-CM:4.3.18): [zib-Mobility.ClimbingStairs](http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.ClimbingStairs)&#xD;&#xA;* ChangingPosition (NL-CM:4.3.8): [zib-Mobility.ChangingPosition](http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.ChangingPosition)&#xD;&#xA;* MaintainingPosition (NL-CM:4.3.12): [zib-Mobility.MaintainingPosition](http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.MaintainingPosition)&#xD;&#xA;* Transfer (NL-CM:4.3.5): [zib-Mobility.Transfer](http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.Transfer)" />
+      <alias value="Mobiliteit" />
+      <mapping>
+        <identity value="zib-mobility-v3.3-2020EN" />
+        <map value="NL-CM:4.3.1" />
+        <comment value="Mobility" />
+      </mapping>
+    </element>
+    <element id="Observation.extension:medicalDevice">
+        <path value="Observation.extension"/>
+        <sliceName value="medicalDevice"/>
+        <type>
+          <code value="Extension"/>
+          <profile value="http://hl7.org/fhir/StructureDefinition/workflow-supportingInfo"/>
+        </type>
+        <isModifier value="false"/>
+    </element>
+    <element id="Observation.extension:medicalDevice.value[x]">
+        <path value="Observation.extension.value[x]"/>
+        <short value="MedicalDevice"/>
+        <definition value="Description of medical aids that can be used for limitations in mobility."/>
+        <alias value="MedischHulpmiddel"/>
+        <type>
+          <code value="Reference"/>
+          <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource"/>
+          <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice"/>
+        </type>
+        <mapping>
+          <identity value="zib-mobility-v3.3-2020EN"/>
+          <map value="NL-CM:4.3.4"/>
+          <comment value="MedicalDevice"/>
+        </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="301438001" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.note">
+      <path value="Observation.note" />
+      <max value="1" />
+    </element>
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
+      <short value="Comment" />
+      <definition value="A comment on the patient’s mobility." />
+      <alias value="Toelichting" />
+      <mapping>
+        <identity value="zib-mobility-v3.3-2020EN" />
+        <map value="NL-CM:4.3.16" />
+        <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.hasMember:walking">
+      <path value="Observation.hasMember" />
+      <sliceName value="walking" />
+      <definition value="The Walking concept (NL-CM:4.3.3) of zib Mobility, represented as a distinct Observation resource." />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.Walking" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:climbingStairs">
+      <path value="Observation.hasMember" />
+      <sliceName value="climbingStairs" />
+      <definition value="The ClimbingStairs concept (NL-CM:4.3.18) of zib Mobility, represented as a distinct Observation resource." />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.ClimbingStairs" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:changingPosition">
+      <path value="Observation.hasMember" />
+      <sliceName value="changingPosition" />
+      <definition value="The ChangingPosition concept (NL-CM:4.3.8) of zib Mobility, represented as a distinct Observation resource." />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.ChangingPosition" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:maintainingPosition">
+      <path value="Observation.hasMember" />
+      <sliceName value="maintainingPosition" />
+      <definition value="The MaintainingPosition concept (NL-CM:4.3.12) of zib Mobility, represented as a distinct Observation resource." />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.MaintainingPosition" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:transfer">
+      <path value="Observation.hasMember" />
+      <sliceName value="transfer" />
+      <definition value="The Transfer concept (NL-CM:4.3.5) of zib Mobility, represented as a distinct Observation resource." />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility.Transfer" />
+      </type>
+    </element>
+  </differential>
 </StructureDefinition>
