@@ -1,7 +1,7 @@
 <Observation xmlns="http://hl7.org/fhir">
-  <id value="nl-core-IllnessPerception.PatientIllnessInsight-01"/>
+  <id value="nl-core-Mobility.ClimbingStairs-01"/>
   <meta>
-    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-IllnessPerception.PatientIllnessInsight"/>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility.ClimbingStairs"/>
   </meta>
   <text>
     <status value="extensions"/>
@@ -15,9 +15,11 @@
           </tr>
           <tr>
             <td>
-              <span title="inzicht (27026000 - SNOMED CT)">inzicht</span>
+              <span title="vermogen tot traplopen (301587001 - SNOMED CT)">vermogen tot traplopen</span>
             </td>
-            <td>Kan niet overzien wat de ziekte betekent in het dagelijks leven.</td>
+            <td>
+              <span title="Niet in staat trap te lopen (301589003 - SNOMED CT)">Niet in staat trap te lopen</span>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -27,8 +29,8 @@
   <code>
     <coding>
       <system value="http://snomed.info/sct"/>
-      <code value="27026000"/>
-      <display value="inzicht"/>
+      <code value="301587001"/>
+      <display value="vermogen tot traplopen"/>
     </coding>
   </code>
   <subject>
@@ -36,5 +38,11 @@
     <type value="Patient"/>
     <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
   </subject>
-  <valueString value="Kan niet overzien wat de ziekte betekent in het dagelijks leven."/>
+  <valueCodeableConcept>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="301589003"/>
+      <display value="Niet in staat trap te lopen"/>
+    </coding>
+  </valueCodeableConcept>
 </Observation>

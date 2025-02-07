@@ -216,7 +216,13 @@ zib-BodyTemperature:
     Observation.code.coding:BodyTempCode:
       - message: "Constraint failed: sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
         reason: The slice name "BodyTempCode" is chosen to align with the Vital Signs profile for BodyTemperature.
-        
+
+zib-BowelFunction:
+  zib deviations:
+    Observation.extension:incontinenceMaterial.value[x]:
+      - cardinality: 0..* instead of 0..1
+        reason: This extension can be used to refer other DeviceUseStatement resources than instances of zib-MedicalDevice, to which the cardinality of 0..1 applies. Ideally this particular reference would be added on a profile slice to set the proper cardinality, but this is not feasible within an extension.
+
 zib-Burnwound:
   zib deviations:
     Condition:
@@ -307,6 +313,9 @@ zib-FreedomRestrictingIntervention:
 
 zib-FunctionalOrMentalStatus:
   zib deviations:
+    Observation.extension:medicalDevice.value[x]:
+      - short: MedicalDevice instead of MedicalDevice:MedicalDevice
+        reason: The zib accidentally uses a single colon, so the tool thinks that it's the full name.
     Observation.code:
       - cardinality: 1..1 instead of 0..1
         reason: The FHIR profiles are expected to implement zib cardinalities as conceptual cardinalities, but FHIR requires the Observation.code element to be present. This aligns with the intention of the zib, as the StatusName concept is required for zib FunctionalOrMentalStatus to make sense. 
@@ -355,8 +364,8 @@ zib-HealthProfessional-PractitionerRole:
 zib-HearingFunction.HearingAid:
   zib deviations:
     DeviceUseStatement:
-      - datatype: undefined
-        reason: In FHIR, the reference to the MedicalDevice points in the other direction (so the MedicalDevice refers to HearingFunction). The MedicalDevice reference is however mapped on the root element that represents this zib rather than on DeviceUseStatement.reasonReference resulting in an unmatched datatype.
+      - datatype: undefined instead of Reference
+        reason: The root of this profile represents the MedicalDevice concept as specified by zib HearingFunction.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept instead of a reference
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
@@ -435,9 +444,6 @@ zib-MedicalDevice:
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept instead of a reference
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
-    DeviceUseStatement.reasonReference:zibMedicalDeviceReference:
-      - short: zib MedicalDevice reference
-        reason: This is a special slice that represents situations where zib MedicalDevice is referenced from another zib through the reasonReference element. Because this reference is reversed in FHIR, this profile needs to contain the mappings for the references in _all_ these zibs. A common slice is defined with an indicative name rather than the name of all the targets. 
     DeviceUseStatement.timing[x]:timingPeriod.end:
       - short: EndDate instead of EindDatum
         reason: The zib concept name "EindDatum" has not been translated into English.
@@ -784,11 +790,21 @@ zib-VisualAcuity:
       - datatype: CodeableConcept
         reason: The zib implies a reference to AnatomicalLocation::Laterality, but actually references AnatomicalLocation. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442
 
+zib-VisualFunction:
+  zib deviations:
+    Observation.extension:visualAid.value[x]:
+      - cardinality: 0..* instead of 0..1
+        reason: This extension can be used to refer other DeviceUseStatement resources than instances of zib-MedicalDevice, to which the cardinality of 0..1 applies. Ideally this particular reference would be added on a profile slice to set the proper cardinality, but this is not feasible within an extension.
+      - short: VisualAid instead of VisualAid:MedicalDevice
+        reason: The zib accidentally uses a single colon, so the tool thinks that it's the full name.
+
 zib-VisualFunction.VisualAid:
   zib deviations:
     DeviceUseStatement:
-      - datatype: undefined
-        reason: In FHIR, the reference to the MedicalDevice points in the other direction (so the MedicalDevice refers to VisualFunction). The MedicalDevice reference is however mapped on the root element that represents this zib rather than on DeviceUseStatement.reasonReference resulting in an unmatched datatype.
+      - short: MedicalDevice / VisualAid instead of MedicalDevice / VisualAid:MedicalDevice
+        reason: The zib accidentally uses a single colon instead of a double colon as separator, so the tooling mistakes it for a complete name.
+      - datatype: undefined instead of Reference
+        reason: The root of this profile represents the MedicalDevice concept as specified by zib VisualFunction.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept instead of a reference
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
@@ -822,6 +838,9 @@ zib-Wound:
 
 zib-Wound.Drain:
   zib deviations:
+    DeviceUseStatement:
+      - datatype: undefined instead of Reference
+        reason: The root of this profile represents the MedicalDevice concept as specified by zib Wound.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept instead of a reference
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
