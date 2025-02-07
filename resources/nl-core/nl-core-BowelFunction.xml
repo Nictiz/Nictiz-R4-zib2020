@@ -47,6 +47,18 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Stoma" />
       </type>
     </element>
+    <element id="Observation.extension:incontinenceMaterial">
+      <path value="Observation.extension" />
+      <sliceName value="incontinenceMaterial" />
+    </element>
+    <element id="Observation.extension:incontinenceMaterial.value[x]">
+      <path value="Observation.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice" />
+      </type>
+    </element>
     <element id="Observation.subject">
       <path value="Observation.subject" />
       <type>
@@ -77,7 +89,6 @@
     <element id="Observation.hasMember:defecationConsistency">
       <path value="Observation.hasMember" />
       <sliceName value="defecationConsistency" />
-      <max value="1" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction.DefecationConsistency" />

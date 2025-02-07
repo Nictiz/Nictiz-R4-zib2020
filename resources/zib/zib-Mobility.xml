@@ -42,6 +42,31 @@
         <comment value="Mobility" />
       </mapping>
     </element>
+    <element id="Observation.extension:medicalDevice">
+        <path value="Observation.extension"/>
+        <sliceName value="medicalDevice"/>
+        <type>
+          <code value="Extension"/>
+          <profile value="http://hl7.org/fhir/StructureDefinition/workflow-supportingInfo"/>
+        </type>
+        <isModifier value="false"/>
+    </element>
+    <element id="Observation.extension:medicalDevice.value[x]">
+        <path value="Observation.extension.value[x]"/>
+        <short value="MedicalDevice"/>
+        <definition value="Description of medical aids that can be used for limitations in mobility."/>
+        <alias value="MedischHulpmiddel"/>
+        <type>
+          <code value="Reference"/>
+          <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource"/>
+          <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice"/>
+        </type>
+        <mapping>
+          <identity value="zib-mobility-v3.3-2020EN"/>
+          <map value="NL-CM:4.3.4"/>
+          <comment value="MedicalDevice"/>
+        </mapping>
+    </element>
     <element id="Observation.code">
       <path value="Observation.code" />
       <patternCodeableConcept>
