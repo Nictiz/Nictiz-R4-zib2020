@@ -1,7 +1,7 @@
 <Observation xmlns="http://hl7.org/fhir">
-  <id value="nl-core-IllnessPerception.PatientIllnessInsight-01"/>
+  <id value="nl-core-Mobility.Transfer-01"/>
   <meta>
-    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-IllnessPerception.PatientIllnessInsight"/>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility.Transfer"/>
   </meta>
   <text>
     <status value="extensions"/>
@@ -15,9 +15,11 @@
           </tr>
           <tr>
             <td>
-              <span title="inzicht (27026000 - SNOMED CT)">inzicht</span>
+              <span title="vermogen om te verplaatsen (364666007 - SNOMED CT)">vermogen om te verplaatsen</span>
             </td>
-            <td>Kan niet overzien wat de ziekte betekent in het dagelijks leven.</td>
+            <td>
+              <span title="Able to transfer location with assistance (719024002 - SNOMED CT)">Able to transfer location with assistance</span>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -27,8 +29,8 @@
   <code>
     <coding>
       <system value="http://snomed.info/sct"/>
-      <code value="27026000"/>
-      <display value="inzicht"/>
+      <code value="364666007"/>
+      <display value="vermogen om te verplaatsen"/>
     </coding>
   </code>
   <subject>
@@ -36,5 +38,11 @@
     <type value="Patient"/>
     <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
   </subject>
-  <valueString value="Kan niet overzien wat de ziekte betekent in het dagelijks leven."/>
+  <valueCodeableConcept>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="719024002"/>
+      <display value="Able to transfer location with assistance"/>
+    </coding>
+  </valueCodeableConcept>
 </Observation>

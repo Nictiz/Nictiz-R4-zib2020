@@ -33,8 +33,15 @@
   <differential>
     <element id="DeviceUseStatement">
       <path value="DeviceUseStatement" />
-      <definition value="https://zibs.nl/wiki/Wound-v3.3(2020EN)." />
+      <short value="MedicalDevice / Drain" />
+      <definition value="A drain is a medical aid placed to drain blood and exudate from the wound area." />
       <comment value="This is a specialization of the [zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice) profile to represent Drain devices within the context of zib Wound." />
+      <alias value="Drain" />
+      <mapping>
+        <identity value="zib-wound-v3.3-2020EN" />
+        <map value="NL-CM:19.2.17" />
+        <comment value="Drain" />
+      </mapping>
     </element>
     <element id="DeviceUseStatement.device">
       <path value="DeviceUseStatement.device" />
@@ -44,21 +51,6 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Wound.Drain.Product" />
       </type>
     </element>
-    <element id="DeviceUseStatement.reasonReference:bowelFunction">
-      <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="bowelFunction" />
-      <max value="0" />
-    </element>
-    <element id="DeviceUseStatement.reasonReference:functionalOrMentalStatus">
-      <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="functionalOrMentalStatus" />
-      <max value="0" />
-    </element>
-    <element id="DeviceUseStatement.reasonReference:mobility">
-      <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="mobility" />
-      <max value="0" />
-    </element>
     <element id="DeviceUseStatement.reasonReference:stoma">
       <path value="DeviceUseStatement.reasonReference" />
       <sliceName value="stoma" />
@@ -67,11 +59,6 @@
     <element id="DeviceUseStatement.reasonReference:wound">
       <path value="DeviceUseStatement.reasonReference" />
       <sliceName value="wound" />
-      <max value="0" />
-    </element>
-    <element id="DeviceUseStatement.reasonReference:drain">
-      <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="drain" />
       <short value="Wound" />
       <comment value="Please note that on a functional level, zib Wound references zib MedicalDevice, but in FHIR this direction is reversed." />
       <alias value="Wond" />

@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-HearingFunction.HearingAid" />
   <text>
-    <status value="empty" />
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-HearingFunction.HearingAid" />
   <name value="ZibHearingFunctionHearingAid" />
   <title value="zib HearingFunction.HearingAid" />
@@ -35,8 +33,15 @@
   <differential>
     <element id="DeviceUseStatement">
       <path value="DeviceUseStatement" />
+      <short value="MedicalDevice / HearingAid" />
       <definition value="The medical aid used to help the patient hear." />
       <comment value="This is a specialization of the [zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice) profile to represent HearingAid devices within the context of zib HearingFunction." />
+      <alias value="HorenHulpmiddel" />
+      <mapping>
+        <identity value="zib-hearingfunction-v3.2-2020EN" />
+        <map value="NL-CM:4.17.4" />
+        <comment value="HearingAid" />
+      </mapping>
     </element>
     <element id="DeviceUseStatement.extension:location">
       <path value="DeviceUseStatement.extension" />
@@ -54,46 +59,10 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HearingFunction.HearingAid.Product" />
       </type>
     </element>
-    <element id="DeviceUseStatement.reasonReference:bowelFunction">
-      <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="bowelFunction" />
-      <max value="0" />
-    </element>
-    <element id="DeviceUseStatement.reasonReference:functionalOrMentalStatus">
-      <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="functionalOrMentalStatus" />
-      <max value="0" />
-    </element>
-    <element id="DeviceUseStatement.reasonReference:mobility">
-      <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="mobility" />
-      <max value="0" />
-    </element>
     <element id="DeviceUseStatement.reasonReference:stoma">
       <path value="DeviceUseStatement.reasonReference" />
       <sliceName value="stoma" />
       <max value="0" />
-    </element>
-    <element id="DeviceUseStatement.reasonReference:wound">
-      <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="wound" />
-      <max value="0" />
-    </element>
-    <element id="DeviceUseStatement.reasonReference:hearingFunction">
-      <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="hearingFunction" />
-      <short value="HearingFunction" />
-      <comment value="Please note that on a functional level, zib HearingFunction references zib MedicalDevice, but in FHIR this direction is reversed." />
-      <alias value="FunctieHoren" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HearingFunction" />
-      </type>
-      <mapping>
-        <identity value="zib-hearingfunction-v3.2-2020EN" />
-        <map value="NL-CM:4.17.4" />
-        <comment value="Reversed reference for zib HearingFunction.HearingAid" />
-      </mapping>
     </element>
     <element id="DeviceUseStatement.bodySite">
       <path value="DeviceUseStatement.bodySite" />

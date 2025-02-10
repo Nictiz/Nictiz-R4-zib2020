@@ -31,21 +31,6 @@
     <name value="zib Procedure-v5.2(2020EN)" />
   </mapping>
   <mapping>
-    <identity value="zib-bowelfunction-v3.1.1-2020EN" />
-    <uri value="https://zibs.nl/wiki/BowelFunction-v3.1.1(2020EN)" />
-    <name value="zib BowelFunction-v3.1.1(2020EN)" />
-  </mapping>
-  <mapping>
-    <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
-    <uri value="https://zibs.nl/wiki/FunctionalOrMentalStatus-v3.2(2020EN)" />
-    <name value="zib FunctionalOrMentalStatus-v3.2(2020EN)" />
-  </mapping>
-  <mapping>
-    <identity value="zib-mobility-v3.3-2020EN" />
-    <uri value="https://zibs.nl/wiki/Mobility-v3.3(2020EN)" />
-    <name value="zib Mobility-v3.3(2020EN)" />
-  </mapping>
-  <mapping>
     <identity value="zib-stoma-v3.3-2020EN" />
     <uri value="https://zibs.nl/wiki/Stoma-v3.3(2020EN)" />
     <name value="zib Stoma-v3.3(2020EN)" />
@@ -202,7 +187,7 @@
     <element id="DeviceUseStatement.timing[x]:timingPeriod.start">
       <path value="DeviceUseStatement.timing[x].start" />
       <short value="StartDate" />
-      <definition value="The start date of the first use or implant of the medical device. A ‘vague’ date, such as only the year, is permitted." />
+      <definition value="The start date of the first use or implant of the medical device. A &quot;vague&quot; date, such as only the year, is permitted." />
       <alias value="BeginDatum" />
       <mapping>
         <identity value="zib-medicaldevice-v3.3.1-2020EN" />
@@ -213,7 +198,7 @@
     <element id="DeviceUseStatement.timing[x]:timingPeriod.end">
       <path value="DeviceUseStatement.timing[x].end" />
       <short value="EndDate" />
-      <definition value="The end date of the last use or explant of the medical device. A ‘vague’ date, such as only the year, is permitted." />
+      <definition value="The end date of the last use or explant of the medical device. A &quot;vague&quot; date, such as only the year, is permitted." />
       <alias value="EindDatum" />
       <mapping>
         <identity value="zib-medicaldevice-v3.3.1-2020EN" />
@@ -255,54 +240,6 @@
         <comment value="Indication" />
       </mapping>
     </element>
-    <element id="DeviceUseStatement.reasonReference:bowelFunction">
-      <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="bowelFunction" />
-      <short value="BowelFunction" />
-      <comment value="Please note that on a functional level, zib BowelFunction references zib MedicalDevice, but in FHIR this direction is reversed." />
-      <alias value="Darmfunctie" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-BowelFunction" />
-      </type>
-      <mapping>
-        <identity value="zib-bowelfunction-v3.1.1-2020EN" />
-        <map value="NL-CM:4.15.6" />
-        <comment value="Reversed reference for zib BowelFunction.IncontinenceMaterial" />
-      </mapping>
-    </element>
-    <element id="DeviceUseStatement.reasonReference:functionalOrMentalStatus">
-      <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="functionalOrMentalStatus" />
-      <short value="FunctionalOrMentalStatus" />
-      <comment value="Please note that on a functional level, zib FunctionalOrMentalStatus references zib MedicalDevice, but in FHIR this direction is reversed. This reference only applies to FunctionalOrMentalStatus in the context of registrations. For the use of zib FunctionalOrMentalStatus in the context of treatment objectives, the resource-pertainsToGoal extension should be used." />
-      <alias value="FunctioneleOfMentaleStatus" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus" />
-      </type>
-      <mapping>
-        <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
-        <map value="NL-CM:4.26.5" />
-        <comment value="Reversed reference for zib FunctionalOrMentalStatus.MedicalDevice, when using zib FunctionalOrMentalStatus in the context of registrations" />
-      </mapping>
-    </element>
-    <element id="DeviceUseStatement.reasonReference:mobility">
-      <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="mobility" />
-      <short value="Mobility" />
-      <comment value="Please note that on a functional level, zib Mobility references zib MedicalDevice, but in FHIR this direction is reversed." />
-      <alias value="Mobiliteit" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Mobility" />
-      </type>
-      <mapping>
-        <identity value="zib-mobility-v3.3-2020EN" />
-        <map value="NL-CM:4.3.4" />
-        <comment value="Reversed reference for zib Mobility.MedicalDevice" />
-      </mapping>
-    </element>
     <element id="DeviceUseStatement.reasonReference:stoma">
       <path value="DeviceUseStatement.reasonReference" />
       <sliceName value="stoma" />
@@ -319,26 +256,10 @@
         <comment value="Reversed reference for zib Stoma.StomaMaterial" />
       </mapping>
     </element>
-    <element id="DeviceUseStatement.reasonReference:wound">
-      <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="wound" />
-      <short value="Wound" />
-      <comment value="Please note that on a functional level, zib Wound references zib MedicalDevice, but in FHIR this direction is reversed." />
-      <alias value="Wond" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Wound" />
-      </type>
-      <mapping>
-        <identity value="zib-wound-v3.3-2020EN" />
-        <map value="NL-CM:19.2.17" />
-        <comment value="Reversed reference for zib Wound.Drain" />
-      </mapping>
-    </element>
     <element id="DeviceUseStatement.bodySite">
       <path value="DeviceUseStatement.bodySite" />
       <short value="Location / AnatomicalLocation" />
-      <definition value="Patient’s anatomical location of the medical device used." />
+      <definition value="Patient's anatomical location of the medical device used." />
       <alias value="AnatomischeLocatie" />
       <type>
         <code value="CodeableConcept" />
