@@ -62,6 +62,31 @@
         <comment value="Stoma" />
       </mapping>
     </element>
+    <element id="Observation.extension:incontinenceMaterial">
+      <path value="Observation.extension" />
+      <sliceName value="incontinenceMaterial" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/workflow-supportingInfo" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Observation.extension:incontinenceMaterial.value[x]">
+      <path value="Observation.extension.value[x]" />
+      <short value="IncontinenceMaterial" />
+      <definition value="A description of the incontinence material used." />
+      <alias value="Incontinentiemateriaal" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice" />
+      </type>
+      <mapping>
+        <identity value="zib-bowelfunction-v3.1.1-2020EN" />
+        <map value="NL-CM:4.15.6" />
+        <comment value="IncontinenceMaterial" />
+      </mapping>
+    </element>
     <element id="Observation.code">
       <path value="Observation.code" />
       <patternCodeableConcept>
