@@ -36,6 +36,18 @@
       <comment value="This is a specialization of the [nl-core-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice) profile to represent Prosthesis devices within the context of zib AbilityToPerformMouthcareActivities." />
       <alias value="nl-core-AbilityToPerformMouthcareActivities.Prosthesis" />
     </element>
+    <element id="DeviceUseStatement.extension:healthProfessional">
+      <path value="DeviceUseStatement.extension" />
+      <sliceName value="healthProfessional" />
+    </element>
+    <element id="DeviceUseStatement.extension:healthProfessional.value[x]">
+      <path value="DeviceUseStatement.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
+      </type>
+    </element>
     <element id="DeviceUseStatement.extension:location">
       <path value="DeviceUseStatement.extension" />
       <sliceName value="location" />
