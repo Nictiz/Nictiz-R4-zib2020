@@ -26,6 +26,14 @@ ext-TreatmentDirective2.AdvanceDirective:
       - cardinality: 0..1 instead of 0..*
         reason: FHIR restricts Extension.value to a max cardinality of 0..1. To use it more than once, the extension is added 0..* in the hosting element.
 
+nl-core-AbilityToPerformMouthcareActivities.Prosthesis.Product:
+  ignored issues:
+    Device:
+      - message: The slice definition for Device.identifier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+      - message: The slice definition for Device.udiCarrier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+
 nl-core-HearingFunction.HearingAid.Product:
   ignored issues:
     Device:
@@ -111,6 +119,48 @@ zib-AbilityToEat.EatingLimitations:
       Observation.value[x]:valueCodeableConcept:
       - cardinality: 0..1 instead of 0..*
         reason: The value can only occur once, but this profile is referenced 0..* times via .hasMember, making the effective cardinality 0..* as required by the zib.
+
+zib-AbilityToPerformMouthcareActivities:
+  zib deviations:
+    Observation.extension:prosthesis.value[x]:
+      - cardinality: 0..* instead of 0..1
+        reason: This extension can be used to refer other DeviceUseStatement resources than instances of zib-AbilityToPerformMouthcareActivities.Prosthesis, to which the cardinality of 0..1 applies. Ideally this particular reference would be added on a profile slice to set the proper cardinality, but this is not feasible within an extension.
+      - short: Prosthesis instead of Prosthesis:MedicalDevice
+        reason: The zib accidentally uses a single colon instead of a double colon as separator, so the tooling mistakes it for a complete name.
+
+zib-AbilityToPerformMouthcareActivities.Prosthesis:
+  zib deviations:
+    DeviceUseStatement:
+      - short: Prosthesis / MedicalDevice instead of MedicalDevice / Prosthesis:MedicalDevice
+        reason: The zib accidentally uses a single colon instead of a double colon as separator, so the tooling mistakes it for a complete name.
+      - datatype: undefined instead of Reference
+        reason: The root of this profile represents the Prosthesis concept as specified by zib AbilityToPerformMouthcareActivities.
+    DeviceUseStatement.bodySite:
+      - datatype: CodeableConcept instead of a reference
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+    DeviceUseStatement.timing[x]:timingPeriod.end:
+      - short: EndDate instead of EindDatum
+        reason: The zib concept name "EindDatum" has not been translated into English.
+
+zib-AbilityToPerformMouthcareActivities.Prosthesis.Product:
+  ignored issues:
+    Device:
+      - message: The slice definition for Device.identifier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+      - message: The slice definition for Device.udiCarrier has a maximum of 1 but the slices add up to a maximum of 2. Check that this is what is intended
+        reason: This is indeed what is intended, just one of these slices may be chosen.
+    Device.type:
+      - message: "Constraint failed: sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist"
+        reason: The short for ProductType is already present in the base profile where this profile is derived from. It should not be added twice to silence this issue.
+      - message: "Constraint failed: sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The alias for ProductType is already present in the base profile where this profile is derived from. It should not be added twice to silence this issue.
+  zib deviations:
+    Device.identifier:*ProductID:
+      - datatype: Identifier instead of CD compatible datatype
+        reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
+    Device.udiCarrier:*UdiCarrier.carrierHRF:
+      - datatype: string instead of CD compatible datatype
+        reason: The mapping of ProductID is not straightforward and relates to multiple elements in FHIR. In result, the mapping of the concept to FHIR will not match on a datatype level.
 
 zib-AbilityToUseToilet:
   zib deviations:
