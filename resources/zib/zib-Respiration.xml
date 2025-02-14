@@ -32,12 +32,30 @@
     <element id="Observation">
       <path value="Observation" />
       <short value="Respiration" />
+      <comment value="Several concepts of zib Respiration are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* BreathingFrequency (NL-CM:12.5.2): [zib-Respiration.BreathingFrequency](http://nictiz.nl/fhir/StructureDefinition/zib-Respiration.BreathingFrequency)&#xD;&#xA;* Rhythm (NL-CM:12.5.5): [zib-Respiration.Rhythm](http://nictiz.nl/fhir/StructureDefinition/zib-Respiration.Rhythm)&#xD;&#xA;* Depth (NL-CM:12.5.6): [zib-Respiration.Depth](http://nictiz.nl/fhir/StructureDefinition/zib-Respiration.Depth)&#xD;&#xA;* DeviatingBreathingPattern (NL-CM:12.5.7): [zib-Respiration.DeviatingBreathingPattern](http://nictiz.nl/fhir/StructureDefinition/zib-Respiration.DeviatingBreathingPattern)&#xD;&#xA;* ExtraOxygenAdministration (NL-CM:12.5.12): [zib-Respiration.ExtraOxygenAdministration](http://nictiz.nl/fhir/StructureDefinition/zib-Respiration.ExtraOxygenAdministration)&#xD;&#xA;* FlowRate (NL-CM:12.5.10): [zib-Respiration.AdministeredOxygen.FlowRate](http://nictiz.nl/fhir/StructureDefinition/zib-&#xD;&#xA;Respiration.AdministeredOxygen.FlowRate)&#xD;&#xA;* FiO2 (NL-CM:12.5.9): [zib-Respiration.AdministeredOxygen.FiO2](http://nictiz.nl/fhir/StructureDefinition/zib-Respiration.AdministeredOxygen.FiO2)&#xD;&#xA;&#xD;&#xA;Note that the concepts FlowRate and FiO2 are grouped in the AdministeredOxygen container on the zib level. This container is left out in the FHIR modeling as it servers no practical purpose in exchange of this information. A respiration assessment can contain just a single observation about administered oxygen and the definition codes for these two concepts are sufficient to encode what the information is about.&#xD;&#xA;&#xD;&#xA;In addition, the AdministrationDevice concept (NL-CM:12.5.13) is represented using the [zib-Respiration.AdministrationDevice](http://nictiz.nl/fhir/StructureDefinition/zib-Respiration.AdministrationDevice) profile on the DeviceUseStatement resource. It can be referenced using `.extension:administrationDevice`." />
       <alias value="Ademhaling" />
       <mapping>
         <identity value="zib-respiration-v3.2-2020EN" />
         <map value="NL-CM:12.5.1" />
         <comment value="Respiration" />
       </mapping>
+    </element>
+    <element id="Observation.extension:administrationDevice">
+      <path value="Observation.extension" />
+      <sliceName value="administrationDevice" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/workflow-supportingInfo" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Observation.extension:administrationDevice.value[x]">
+      <path value="Observation.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Respiration.AdministrationDevice" />
+      </type>
     </element>
     <element id="Observation.code">
       <path value="Observation.code" />
@@ -88,223 +106,80 @@
         <comment value="Comment" />
       </mapping>
     </element>
-    <element id="Observation.component">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
       <slicing>
         <discriminator>
-          <type value="value" />
-          <path value="code" />
+          <type value="profile" />
+          <path value="resolve()" />
         </discriminator>
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Observation.component:breathingFrequency">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:breathingFrequency">
+      <path value="Observation.hasMember" />
       <sliceName value="breathingFrequency" />
       <max value="1" />
-    </element>
-    <element id="Observation.component:breathingFrequency.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://loinc.org" />
-          <code value="9279-1" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:breathingFrequency.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="BreathingFrequency" />
-      <definition value="The value of the measured breathing frequency. The breathing frequency is the number of breaths per minute." />
-      <alias value="Ademfrequentie" />
       <type>
-        <code value="Quantity" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Respiration.BreathingFrequency" />
       </type>
-      <mapping>
-        <identity value="zib-respiration-v3.2-2020EN" />
-        <map value="NL-CM:12.5.2" />
-        <comment value="BreathingFrequency" />
-      </mapping>
     </element>
-    <element id="Observation.component:rhythm">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:rhythm">
+      <path value="Observation.hasMember" />
       <sliceName value="rhythm" />
       <max value="1" />
-    </element>
-    <element id="Observation.component:rhythm.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="48064009" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:rhythm.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="Rhythm" />
-      <definition value="The rhythm or regularity of breathing." />
-      <alias value="Ritme" />
       <type>
-        <code value="CodeableConcept" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Respiration.Rhythm" />
       </type>
-      <binding>
-        <strength value="extensible" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.5.1--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-respiration-v3.2-2020EN" />
-        <map value="NL-CM:12.5.5" />
-        <comment value="Rhythm" />
-      </mapping>
     </element>
-    <element id="Observation.component:depth">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:depth">
+      <path value="Observation.hasMember" />
       <sliceName value="depth" />
-      <max value="1" />
-    </element>
-    <element id="Observation.component:depth.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="271626009" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:depth.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="Depth" />
-      <definition value="The depth of the breaths." />
-      <alias value="Diepte" />
       <type>
-        <code value="CodeableConcept" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Respiration.Depth" />
       </type>
-      <binding>
-        <strength value="extensible" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.5.2--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-respiration-v3.2-2020EN" />
-        <map value="NL-CM:12.5.6" />
-        <comment value="Depth" />
-      </mapping>
     </element>
-    <element id="Observation.component:deviatingBreathingPattern">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:deviatingBreathingPattern">
+      <path value="Observation.hasMember" />
       <sliceName value="deviatingBreathingPattern" />
       <max value="1" />
-    </element>
-    <element id="Observation.component:deviatingBreathingPattern.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="278907009" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:deviatingBreathingPattern.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="DeviatingBreathingPattern" />
-      <definition value="Specific, abnormal breathing patterns." />
-      <alias value="AfwijkendAdemhalingspatroon" />
       <type>
-        <code value="CodeableConcept" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Respiration.DeviatingBreathingPattern" />
       </type>
-      <binding>
-        <strength value="extensible" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.5.3--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-respiration-v3.2-2020EN" />
-        <map value="NL-CM:12.5.7" />
-        <comment value="DeviatingBreathingPattern" />
-      </mapping>
     </element>
-    <element id="Observation.component:extraOxygenAdministration">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:extraOxygenAdministration">
+      <path value="Observation.hasMember" />
       <sliceName value="extraOxygenAdministration" />
       <max value="1" />
-    </element>
-    <element id="Observation.component:extraOxygenAdministration.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="16206004" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:extraOxygenAdministration.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="ExtraOxygenAdministration" />
-      <definition value="An indication stating whether the patient is given extra oxygen. In that event, additional information can be recorded in the concepts that are part of the AdministeredOxygen container." />
-      <alias value="ExtraZuurstofToediening" />
       <type>
-        <code value="boolean" />
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MolecularSequence" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Respiration.ExtraOxygenAdministration" />
       </type>
-      <mapping>
-        <identity value="zib-respiration-v3.2-2020EN" />
-        <map value="NL-CM:12.5.12" />
-        <comment value="ExtraOxygenAdministration" />
-      </mapping>
     </element>
-    <element id="Observation.component:flowRate">
-      <path value="Observation.component" />
-      <sliceName value="flowRate" />
+    <element id="Observation.hasMember:administeredOxygen-FlowRate">
+      <path value="Observation.hasMember" />
+      <sliceName value="administeredOxygen-FlowRate" />
       <max value="1" />
-    </element>
-    <element id="Observation.component:flowRate.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="427081008" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:flowRate.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="FlowRate" />
-      <definition value="The amount of administered oxygen. The value is between 0.0 and 50.0 l/min." />
-      <alias value="FlowRate" />
       <type>
-        <code value="Quantity" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministeredOxygen.FlowRate" />
       </type>
-      <mapping>
-        <identity value="zib-respiration-v3.2-2020EN" />
-        <map value="NL-CM:12.5.10" />
-        <comment value="FlowRate" />
-      </mapping>
     </element>
-    <element id="Observation.component:fIo2">
-      <path value="Observation.component" />
-      <sliceName value="fIo2" />
+    <element id="Observation.hasMember:administeredOxygen-FiO2">
+      <path value="Observation.hasMember" />
+      <sliceName value="administeredOxygen-FiO2" />
       <max value="1" />
-    </element>
-    <element id="Observation.component:fIo2.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="250774007" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:fIo2.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="FiO2" />
-      <definition value="The fractional concentration of inspired oxygen. Value is between 0.0 and 1.0, with a normal value of 0.21 (no extra oxygen administered)." />
-      <alias value="FiO2" />
       <type>
-        <code value="Quantity" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministeredOxygen.FiO2" />
       </type>
-      <mapping>
-        <identity value="zib-respiration-v3.2-2020EN" />
-        <map value="NL-CM:12.5.9" />
-        <comment value="FiO2" />
-      </mapping>
     </element>
   </differential>
 </StructureDefinition>
