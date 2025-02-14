@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-VisualFunction" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-VisualFunction" />
   <name value="ZibVisualFunction" />
   <title value="zib VisualFunction" />
@@ -15,7 +17,7 @@
     </telecom>
   </contact>
   <description value="Sight is the ability to observe lit objects, with the goal of orienting yourself on objects and people in a lit environment. This pertains to observing the light stimuli, and not processing them in the brain.&#xD;&#xA;A sight disorder can lead to things including orientation problems." />
-  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) VisualFunctionv3.1 (2020)](https://zibs.nl/wiki/VisualFunction-v3.1(2020EN))." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) VisualFunction v3.1 (2020)](https://zibs.nl/wiki/VisualFunction-v3.1(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -32,12 +34,36 @@
     <element id="Observation">
       <path value="Observation" />
       <short value="VisualFunction" />
-      <comment value="Please note that on a functional level, zib VisualFunction references zib MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept VisualAid (NL-CM:4.16.4) is mapped on `DeviceUseStatement.reasonReference:observation` in profile [zib-VisualFunction.VisualAid](http://nictiz.nl/fhir/StructureDefinition/zib-VisualFunction.VisualAid) instead of in this profile." />
       <alias value="FunctieZien" />
       <mapping>
         <identity value="zib-visualfunction-v3.1-2020EN" />
         <map value="NL-CM:4.16.1" />
         <comment value="VisualFunction" />
+      </mapping>
+    </element>
+    <element id="Observation.extension:visualAid">
+      <path value="Observation.extension" />
+      <sliceName value="visualAid" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/workflow-supportingInfo" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Observation.extension:visualAid.value[x]">
+      <path value="Observation.extension.value[x]" />
+      <short value="VisualAid" />
+      <definition value="The medical aids used to support the visual function." />
+      <alias value="ZienHulpmiddel" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-VisualFunction.VisualAid" />
+      </type>
+      <mapping>
+        <identity value="zib-visualfunction-v3.1-2020EN" />
+        <map value="NL-CM:4.16.4" />
+        <comment value="VisualAid" />
       </mapping>
     </element>
     <element id="Observation.code">
@@ -63,7 +89,7 @@
       <path value="Observation.value[x]" />
       <sliceName value="valueCodeableConcept" />
       <short value="VisualFunction" />
-      <definition value="The ability to see as a result of response to stimuli of visual organs" />
+      <definition value="The ability to see as a result of response to stimuli of visual organs." />
       <alias value="VisueleFunctie" />
       <type>
         <code value="CodeableConcept" />

@@ -12,10 +12,8 @@ if [[ $has_node != 0 || $has_npm != 0 ]]; then
     echo -e "\033[1;37mInstalling NodeJS and NPM.\033[0m"
   fi
     
-  apt-get update
-  apt-get -y upgrade
-  apt-get -y install nodejs npm
-
+  apk add nodejs npm
+  
   if [[ $write_github == 1 ]]; then
     echo "::endgroup::"
   fi
@@ -40,7 +38,7 @@ fi
 exit_code=0
 
 echo "Generating snapshots"
-source $script_dir/generatezibsnapshots.sh $@
+source $script_dir/generatesnapshots.sh $@
 
 if [ $? == 0 ]; then
     if [[ $changed_only == 0 ]]; then

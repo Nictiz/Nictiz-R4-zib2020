@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-Vaccination-request" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Vaccination-request" />
   <name value="ZibVaccinationrequest" />
   <title value="zib Vaccination request" />
@@ -15,7 +19,7 @@
     </telecom>
   </contact>
   <description value="Immunization can be defined as “Generating natural immunity against pathogens by means of vaccination (active immunization) or by administering immunoglobulins (passive immunization)”.&#xD;&#xA;&#xD;&#xA;Only the (administered and planned) vaccinations are included in this information model. Administering immunoglobulins is part of the medication overview. Vaccinations have lifelong relevance.&#xD;&#xA;&#xD;&#xA;Most vaccinations are carried out in the Netherlands as part of the RVP (Rijksvaccinatieprogramma, National Immunisation Program). RVP information is especially important for children.&#xD;&#xA;&#xD;&#xA;Vaccinations are also relevant for adult patients such as transplant patients, dialysis patients and patients with a post-splenectomy status. In addition, there are specific indications for the vaccination of risk groups, such as travelers, professionals who come into contact with blood or patients with wounds, weakened immune systems or heightened risk." />
-  <purpose value="This ImmunizationRecommendation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Vaccination-v4.0(2020EN)](https://zibs.nl/wiki/Vaccination-v4.0(2020EN))." />
+  <purpose value="This ImmunizationRecommendation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Vaccination v4.0 (2020)](https://zibs.nl/wiki/Vaccination-v4.0(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -39,14 +43,6 @@
         <map value="NL-CM:11.1.1" />
         <comment value="Vaccination" />
       </mapping>
-    </element>
-    <element id="ImmunizationRecommendation.patient">
-      <path value="ImmunizationRecommendation.patient" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient" />
-      </type>
     </element>
     <element id="ImmunizationRecommendation.recommendation">
       <path value="ImmunizationRecommendation.recommendation" />

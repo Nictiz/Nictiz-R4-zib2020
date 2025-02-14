@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="nl-core-Pregnancy" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy" />
+  <name value="NlcorePregnancy" />
+  <title value="nl core Pregnancy" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Pregnancy or gravidity is the condition in which a woman carries a fertilized egg, which grows into an embryo and then a fetus. A pregnancy of between 37 and 42 weeks is considered normal. “Term pregnancy” is 37 to 42 weeks. The term gravidity is also used for the number of times a woman has been pregnant. This and parity - the number of times a woman has given birth - provides insight into the patient’s obstetric history." />
+  <purpose value="A derived profile from [zib-Pregnancy](http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-pregnancy-v4.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/Pregnancy-v4.0(2020EN)" />
+    <name value="zib Pregnancy-v4.0(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Condition" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Condition">
+      <path value="Condition" />
+      <comment value="Zib Pregnancy is mapped to this Condition profile and 5 profiles on Observation:&#xD;&#xA;&#xD;&#xA;* [nl-core-Pregnancy.DateLastMenstruation](http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.DateLastMenstruation)&#xD;&#xA;* [nl-core-Pregnancy.EstimatedDateOfDelivery](http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.EstimatedDateOfDelivery)&#xD;&#xA;* [nl-core-Pregnancy.Gravidity](http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.Gravidity)&#xD;&#xA;* [nl-core-Pregnancy.Parity](http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.Parity)&#xD;&#xA;* [nl-core-Pregnancy.PregnancyDuration](http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.PregnancyDuration)&#xD;&#xA;&#xD;&#xA;This Condition profile acts as the focal resource of zib Pregancy. This profile is referenced by the Observation profiles through `Observation.focus`." />
+      <alias value="nl-core-Pregnancy" />
+    </element>
+    <element id="Condition.subject">
+      <path value="Condition.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
