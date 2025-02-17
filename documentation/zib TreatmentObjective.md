@@ -13,7 +13,7 @@ graph
     end
 ```
 
-Since the entry point is zib TreatmentObjective, the profile is called `zib-TreatmentObjective`, and doesn't mention zib FunctionalOrMentalStatus. Perhaps somewhat confusingly, there is also a profile called `zib-FunctionalOrMentalStatus`, but it plays no role in this scenario; it represents the standalone interpretation of zib-FunctionalOrMentalStatus, which is an observed functional or mental status. 
+Since the entry point is zib TreatmentObjective, the profile is called `zib-TreatmentObjective`, and doesn't mention zib FunctionalOrMentalStatus. Perhaps somewhat confusingly, there is also a profile called `zib-FunctionalOrMentalStatus`, but it plays no role in this scenario; it represents the standalone interpretation of zib FunctionalOrMentalStatus, which is an observed functional or mental status. 
 
 ## Referencing zib MedicalDevice
 Zib FunctionalOrMentalStatus, in turn, can reference zib MedicalDevice to indicate any aid(s) the patient has to reduce the impact of the disability or disorder. Within the context of zib TreatmentObjective, this reference is interpreted as the _intent_ to use the device rather than actual use.
@@ -39,5 +39,5 @@ graph TB
 
     FOMS --MedicalDevice--> MD
 
-    zib-MedicalDevice --workflow-pertainsToGoal extension--> zib-TreatmentObjective
+    zib-MedicalDevice --resource-pertainsToGoal extension--> zib-TreatmentObjective
 ```
