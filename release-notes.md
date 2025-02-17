@@ -388,11 +388,6 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-TimeInterval
 * In the previous release, the concepts of this partial zib were mapped directly in the profiles where they are used. In this release the usage of this partial zib has been expanded and profiles have been created to aid the usage in profiles in the various situations that might occur.
 
-## zib-TreatmentObjective
-* DesiredHealthcareResult element moved to `Goal.description.text`.
-* Removed the mapping on `Goal.expressedBy` and the reference to practitionerRole.
-* The reference Goal -> FunctionalOrMentalStatus -> MedicalDevice is mapped in reverse onto the resource-pertainsToGoal extension in zib-MedicalDevice
-
 ## zib-TextResult
 * New concept VisualResult mapped in additional profile zib-TextResult.VisualResult on `Media.content`. `DiagnosticReport.image.link` references this profile.
 
@@ -411,6 +406,11 @@ This document contains release notes per zib, indicating differences with their 
 * Added guidance for mandatory elements `Consent.status`, `Consent.scope` and `Consent.policy` or `Consent.policyRule`.
 * Moved AdvanceDirective from `Consent.source[x]` to `Consent.source[x]:sourceReference` to be more specific.
 * Removed references that are not defined by the zib (e.g. `Consent.organization` and `Consent.actor`).
+
+## zib-TreatmentObjective
+* DesiredHealthcareResult element moved to `Goal.description.text`.
+* Removed the mapping on `Goal.expressedBy` and the reference to PractitionerRole.
+* The reference TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice is mapped in reverse onto the resource-pertainsToGoal extension in zib-MedicalDevice.
 
 ## zib-Vaccination
 * Renamed profile names: zib-Vaccination to zib-Vaccination-event and zib-VaccinationRecommendation to zib-Vaccination-request conform new profiling guidelines.
