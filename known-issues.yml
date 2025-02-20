@@ -823,9 +823,12 @@ zib-TreatmentDirective2:
 
 zib-TreatmentObjective:
   zib deviations:
-    Goal.target:
-      - datatype: BackboneElement instead of Reference
+    Goal:
+      - datatype: undefined instead of reference
         reason: Although the zib model assumes there's a reference from zib TreatmentObjective to a distinct instance of zib FunctionalOrMentalStatus (in future context), in this profile the concepts of zib FunctionalOrMentalStatus are mapped directly as this aligns with the way the Goal resource is used.
+    Goal.description.text:
+      - short: DesiredHealthcareResult instead of DesiredHealthcareResult / StatusName / StatusValue
+        reason: StatusName and StatusValue are mapped implicitly and shouldn't end up in the short
 
 zib-Vaccination-event:
   zib deviations:
