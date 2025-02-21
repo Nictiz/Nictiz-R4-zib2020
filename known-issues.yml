@@ -135,6 +135,22 @@ zib-AbilityToPerformMouthcareActivities.Prosthesis:
         reason: The zib accidentally uses a single colon instead of a double colon as separator, so the tooling mistakes it for a complete name.
       - datatype: undefined instead of Reference
         reason: The root of this profile represents the Prosthesis concept as specified by zib AbilityToPerformMouthcareActivities.
+    DeviceUseStatement.extension:treatmentObjective.value[x]:
+      - short: Value of extension instead of FunctionalOrMentalStatus
+        for: NL-CM:4.26.5 (FunctionalOrMentalStatus.MedicalDevice)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real short to use here.
+      - alias: ' instead of FunctionalOrMentalStatus'
+        for: NL-CM:4.26.5 (FunctionalOrMentalStatus.MedicalDevice)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real alias to use here.
+      - short: Value of extension instead of TreatmentObjective
+        for: NL-CM:13.5.1 (TreatmentObjective)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real short to use here.
+      - alias: ' instead of Behandeldoel'
+        for: NL-CM:13.5.1 (TreatmentObjective)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real alias to use here.
+      - datatype: Reference instead of rootconcept
+        for: NL-CM:13.5.1 (TreatmentObjective)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key here is added to let the user know that there is a relation, but it's not a direct representation.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept instead of a reference
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
@@ -366,6 +382,22 @@ zib-HearingFunction.HearingAid:
     DeviceUseStatement:
       - datatype: undefined instead of Reference
         reason: The root of this profile represents the MedicalDevice concept as specified by zib HearingFunction.
+    DeviceUseStatement.extension:treatmentObjective.value[x]:
+      - short: Value of extension instead of FunctionalOrMentalStatus
+        for: NL-CM:4.26.5 (FunctionalOrMentalStatus.MedicalDevice)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real short to use here.
+      - alias: ' instead of FunctionalOrMentalStatus'
+        for: NL-CM:4.26.5 (FunctionalOrMentalStatus.MedicalDevice)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real alias to use here.
+      - short: Value of extension instead of TreatmentObjective
+        for: NL-CM:13.5.1 (TreatmentObjective)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real short to use here.
+      - alias: ' instead of Behandeldoel'
+        for: NL-CM:13.5.1 (TreatmentObjective)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real alias to use here.
+      - datatype: Reference instead of rootconcept
+        for: NL-CM:13.5.1 (TreatmentObjective)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key here is added to let the user know that there is a relation, but it's not a direct representation.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept instead of a reference
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
@@ -441,12 +473,34 @@ zib-LaboratoryTestResult.SpecimenSource:
 
 zib-MedicalDevice:
   zib deviations:
+    DeviceUseStatement.extension:treatmentObjective.value[x]:
+      - short: Value of extension instead of FunctionalOrMentalStatus
+        for: NL-CM:4.26.5 (FunctionalOrMentalStatus.MedicalDevice)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real short to use here.
+      - alias: ' instead of FunctionalOrMentalStatus'
+        for: NL-CM:4.26.5 (FunctionalOrMentalStatus.MedicalDevice)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real alias to use here.
+      - short: Value of extension instead of TreatmentObjective
+        for: NL-CM:13.5.1 (TreatmentObjective)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real short to use here.
+      - alias: ' instead of Behandeldoel'
+        for: NL-CM:13.5.1 (TreatmentObjective)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real alias to use here.
+      - datatype: Reference instead of rootconcept
+        for: NL-CM:13.5.1 (TreatmentObjective)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key here is added to let the user know that there is a relation, but it's not a direct representation.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept instead of a reference
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
     DeviceUseStatement.timing[x]:timingPeriod.end:
       - short: EndDate instead of EindDatum
         reason: The zib concept name "EindDatum" has not been translated into English.
+  ignored issues:
+    DeviceUseStatement.extension:treatmentObjective.value[x]:
+      - message: "Constraint failed: sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real short to use here.
+      - message: "Constraint failed: sd-pg-04: 'If mapping.map exists and the mapping is not implicit, alias should exist.'"
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real alias to use here.
 
 zib-MedicalDevice.Product:
   zib deviations:
@@ -767,6 +821,15 @@ zib-TreatmentDirective2:
       - message: "Constraint failed: sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
         reason: The mapping is to a zib container, which doesn't have a useful description if implemented in a profile.
 
+zib-TreatmentObjective:
+  zib deviations:
+    Goal:
+      - datatype: undefined instead of reference
+        reason: Although the zib model assumes there's a reference from zib TreatmentObjective to a distinct instance of zib FunctionalOrMentalStatus (in future context), in this profile the concepts of zib FunctionalOrMentalStatus are mapped directly as this aligns with the way the Goal resource is used.
+    Goal.description.text:
+      - short: DesiredHealthcareResult instead of DesiredHealthcareResult / StatusName / StatusValue
+        reason: StatusName and StatusValue are mapped implicitly and shouldn't end up in the short.
+
 zib-Vaccination-event:
   zib deviations:
     Immunization.vaccineCode:
@@ -805,6 +868,22 @@ zib-VisualFunction.VisualAid:
         reason: The zib accidentally uses a single colon instead of a double colon as separator, so the tooling mistakes it for a complete name.
       - datatype: undefined instead of Reference
         reason: The root of this profile represents the MedicalDevice concept as specified by zib VisualFunction.
+    DeviceUseStatement.extension:treatmentObjective.value[x]:
+      - short: Value of extension instead of FunctionalOrMentalStatus
+        for: NL-CM:4.26.5 (FunctionalOrMentalStatus.MedicalDevice)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real short to use here.
+      - alias: ' instead of FunctionalOrMentalStatus'
+        for: NL-CM:4.26.5 (FunctionalOrMentalStatus.MedicalDevice)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real alias to use here.
+      - short: Value of extension instead of TreatmentObjective
+        for: NL-CM:13.5.1 (TreatmentObjective)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real short to use here.
+      - alias: ' instead of Behandeldoel'
+        for: NL-CM:13.5.1 (TreatmentObjective)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real alias to use here.
+      - datatype: Reference instead of rootconcept
+        for: NL-CM:13.5.1 (TreatmentObjective)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key here is added to let the user know that there is a relation, but it's not a direct representation.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept instead of a reference
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
@@ -841,6 +920,22 @@ zib-Wound.Drain:
     DeviceUseStatement:
       - datatype: undefined instead of Reference
         reason: The root of this profile represents the MedicalDevice concept as specified by zib Wound.
+    DeviceUseStatement.extension:treatmentObjective.value[x]:
+      - short: Value of extension instead of FunctionalOrMentalStatus
+        for: NL-CM:4.26.5 (FunctionalOrMentalStatus.MedicalDevice)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real short to use here.
+      - alias: ' instead of FunctionalOrMentalStatus'
+        for: NL-CM:4.26.5 (FunctionalOrMentalStatus.MedicalDevice)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real alias to use here.
+      - short: Value of extension instead of TreatmentObjective
+        for: NL-CM:13.5.1 (TreatmentObjective)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real short to use here.
+      - alias: ' instead of Behandeldoel'
+        for: NL-CM:13.5.1 (TreatmentObjective)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key is one aspect of this loop, but there's no real alias to use here.
+      - datatype: Reference instead of rootconcept
+        for: NL-CM:13.5.1 (TreatmentObjective)
+        reason: The mapping here is quite complex and indirect; it refers to the mapping from TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice, which in FHIR becomes DeviceUseStatement -> Goal. The mapping key here is added to let the user know that there is a relation, but it's not a direct representation.
     DeviceUseStatement.bodySite:
       - datatype: CodeableConcept instead of a reference
         reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.

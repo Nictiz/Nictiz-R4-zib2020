@@ -35,6 +35,16 @@
     <uri value="https://zibs.nl/wiki/Stoma-v3.3(2020EN)" />
     <name value="zib Stoma-v3.3(2020EN)" />
   </mapping>
+  <mapping>
+    <identity value="zib-treatmentobjective-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/TreatmentObjective-v3.2(2020EN)" />
+    <name value="zib TreatmentObjective-v3.2(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/FunctionalOrMentalStatus-v3.2(2020EN)" />
+    <name value="zib FunctionalOrMentalStatus-v3.2(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="DeviceUseStatement" />
@@ -67,6 +77,19 @@
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.extension:treatmentObjective">
+      <path value="DeviceUseStatement.extension" />
+      <sliceName value="treatmentObjective" />
+    </element>
+    <element id="DeviceUseStatement.extension:treatmentObjective.value[x]">
+      <path value="DeviceUseStatement.extension.value[x]" />
+      <comment value="Zib TreatmentObjective (represented by the Goal resource in FHIR) can use the data model of zib FunctionalOrMentalStatus to describe the desired treatment objective, which in turn may refer zib MedicalDevice to indicate the intent to use that device for reaching the treatment objective.&#xD;&#xA;&#xD;&#xA;In FHIR, the modeling deviates somewhat from this approach:&#xD;&#xA;&#xD;&#xA;* Both zib TreatmentObjective and the desired zib FunctionalOrMentalStatus are represented using the [nl-core-TreatmentObjective](http://nictiz.nl/fhir/nl-core-TreatmentObjective) profile on the Goal resource.&#xD;&#xA;* The reference from TreatmentObjective::FunctionalOrMentalStatus::MedicalDevice is in the opposite direction, to the Goal resource.&#xD;&#xA;&#xD;&#xA;This extension may thus be used to represent the link zib TreatmentObjective -&gt; zib FunctionalOrMentalStatus -&gt; zib MedicalDevice. In this situation, it is expected that `DeviceUseStatement.status` is set to _intended_." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Goal" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentObjective" />
       </type>
     </element>
     <element id="DeviceUseStatement.subject">

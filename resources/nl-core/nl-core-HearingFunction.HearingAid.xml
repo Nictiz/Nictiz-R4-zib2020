@@ -60,6 +60,18 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider" />
       </type>
     </element>
+    <element id="DeviceUseStatement.extension:treatmentObjective">
+      <path value="DeviceUseStatement.extension" />
+      <sliceName value="treatmentObjective" />
+    </element>
+    <element id="DeviceUseStatement.extension:treatmentObjective.value[x]">
+      <path value="DeviceUseStatement.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Goal" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentObjective" />
+      </type>
+    </element>
     <element id="DeviceUseStatement.subject">
       <path value="DeviceUseStatement.subject" />
       <type>

@@ -407,6 +407,11 @@ This document contains release notes per zib, indicating differences with their 
 * Moved AdvanceDirective from `Consent.source[x]` to `Consent.source[x]:sourceReference` to be more specific.
 * Removed references that are not defined by the zib (e.g. `Consent.organization` and `Consent.actor`).
 
+## zib-TreatmentObjective
+* DesiredHealthcareResult element moved to `Goal.description.text`.
+* Removed the mapping on `Goal.expressedBy` and the reference to PractitionerRole.
+* The reference TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice is mapped in reverse onto the resource-pertainsToGoal extension in zib-MedicalDevice.
+
 ## zib-Vaccination
 * Renamed profile names: zib-Vaccination to zib-Vaccination-event and zib-VaccinationRecommendation to zib-Vaccination-request conform new profiling guidelines.
 * Removed references not accounted for by the zib (e.g. `Immunization.location`, `Immunization.manufacturer` and `ImmunizationRecommendation.recommendation.supportingImmunization`).
