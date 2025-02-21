@@ -27,4 +27,4 @@ The profiling guidelines for this project can be found at the [informatiestandaa
 ## Documentation
 Oftentimes, there's a 1-to-1 relation between the zib and the resulting profile, but there are situations where the mapping is more complex. When this relation is not straightforward, documentation can be found on the root element of the affected profiles.
 
-In addition, the `documentation/` folder of this repository contains contains additional guidance for several situations. However, this additional documentation is still highly experimental and far from complete.
+In addition, the `documentation/` folder of this repository contains additional guidance for several situations. However, this additional documentation is still highly experimental and far from complete.
