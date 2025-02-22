@@ -72,7 +72,7 @@
       <slicing>
         <discriminator>
           <type value="value" />
-          <path value="coding" />
+          <path value="$this" />
         </discriminator>
         <rules value="open" />
       </slicing>
@@ -117,7 +117,7 @@
       <slicing>
         <discriminator>
           <type value="exists" />
-          <path value="extension(url='http://nictiz.nl/fhir/StructureDefinition/ext-NursingIntervention-ContributorIsRequester')" />
+          <path value="extension('http://nictiz.nl/fhir/StructureDefinition/ext-NursingIntervention-ContributorIsRequester')" />
         </discriminator>
         <rules value="open" />
       </slicing>
