@@ -61,6 +61,7 @@ steps:
     description: Validate examples using the generic FHIR validation rules
     patterns: examples
   check zib compliance:
+    snapshots: json
     patterns:
       - zib profiles
       - zib extensions
@@ -75,8 +76,9 @@ steps:
       - other profiles
       - examples
   check nl-core overrides:
+    snapshots: json
     patterns: nl-core profiles
-    script: nl-core-overrides.sh
+    script: nl-core-overrides.py
   check zib mapping inheritance:
     patterns: nl-core profiles
     script: inherit-mapping-declarations.py

@@ -835,6 +835,9 @@ zib-Vaccination-event:
     Immunization.vaccineCode:
       - cardinality: 1..1 instead of 0..1
         reason: This is a known difference between the zib (0..*) and FHIR (1..1). The mandatory element in FHIR seems legit. If an immunization event has taken place the vaccine code should be known. Otherwise, the value of the whole Immunization resource will be strongly diminished.
+    Immunization.occurrence[x]:occurrenceDateTime:
+      - cardinality: 1..1 instead of 0..1
+        reason: This is a mandatory element in FHIR, although it is optional in the zib.
     Immunization.performer:administrator.actor:
       - cardinality: 1..1 instead of 0..1
         reason: Immunization.performer:administrator has cardinality 0..1, making the cardinality of Immunization.performer:administrator.actor effectively 0..1 as required by the zib.
