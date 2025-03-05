@@ -471,6 +471,18 @@ zib-LaboratoryTestResult.SpecimenSource:
       - cardinality: 1..1 instead of 0..1
         reason: The zib concept SpecimenSource is represented using a reference to this profile from zib-LaboratoryTestResult.Specimen, so this element represents just part of the mapping. Overall, the use of this concept is optional, but when this profile is used, Device.deviceName.name must be given.
 
+zib-LivingSituation.HomeAdaption:
+  zib deviations:
+      Observation.value[x]:valueCodeableConcept:
+      - cardinality: 0..1 instead of 0..*
+        reason: The value can only occur once, but this profile is referenced 0..* times via .hasMember, making the effective cardinality 0..* as required by the zib.
+
+zib-LivingSituation.LivingCondition:
+  zib deviations:
+      Observation.value[x]:valueCodeableConcept:
+      - cardinality: 0..1 instead of 0..*
+        reason: The value can only occur once, but this profile is referenced 0..* times via .hasMember, making the effective cardinality 0..* as required by the zib.
+
 zib-MedicalDevice:
   zib deviations:
     DeviceUseStatement.extension:treatmentObjective.value[x]:
