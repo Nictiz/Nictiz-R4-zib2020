@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="nl-core-LivingSituation" />
+  <id value="nl-core-LivingSituation.HomeAdaption" />
   <text>
     <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
-  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LivingSituation" />
-  <name value="NlcoreLivingSituation" />
-  <title value="nl core LivingSituation" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LivingSituation.HomeAdaption" />
+  <name value="NlcoreLivingSituationHomeAdaption" />
+  <title value="nl core LivingSituation.HomeAdaption" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -16,8 +16,8 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="The living situation is the physical environment in which the patient normally lives, sleeps, keeps their clothing, etc." />
-  <purpose value="A derived profile from [zib-LivingSituation](http://nictiz.nl/fhir/StructureDefinition/zib-LivingSituation) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
+  <description value="Adaptions present in the home that have been made in the context of the illness or disability to make the functioning of the patient safer and more comfortable and to enable independent living." />
+  <purpose value="A derived profile from [zib-LivingSituation.HomeAdaption](http://nictiz.nl/fhir/StructureDefinition/zib-LivingSituation.HomeAdaption) to provide a version better suited for implementation purposes. This profile augments the base profile with elements found in the various use cases that have adopted the zib." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -28,12 +28,13 @@
   <kind value="resource" />
   <abstract value="false" />
   <type value="Observation" />
-  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-LivingSituation" />
+  <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-LivingSituation.HomeAdaption" />
   <derivation value="constraint" />
   <differential>
     <element id="Observation">
       <path value="Observation" />
-      <alias value="nl-core-LivingSituation" />
+      <comment value="This Observation resource represents the HomeAdaption concept (NL-CM:7.8.5) of zib LivingSituation. It can be used together with the [nl-core-LivingSituation](http://nictiz.nl/fhir/StructureDefinition/nl-core-LivingSituation) profile on the Observation resource, which groups references to the current and other resources on `Observation.hasMember`." />
+      <alias value="nl-core-LivingSituation.HomeAdaption" />
     </element>
     <element id="Observation.subject">
       <path value="Observation.subject" />
@@ -44,30 +45,6 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
-      </type>
-    </element>
-    <element id="Observation.hasMember:houseType">
-      <path value="Observation.hasMember" />
-      <sliceName value="houseType" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LivingSituation.HouseType" />
-      </type>
-    </element>
-    <element id="Observation.hasMember:homeAdaption">
-      <path value="Observation.hasMember" />
-      <sliceName value="homeAdaption" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LivingSituation.HomeAdaption" />
-      </type>
-    </element>
-    <element id="Observation.hasMember:livingCondition">
-      <path value="Observation.hasMember" />
-      <sliceName value="livingCondition" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LivingSituation.LivingCondition" />
       </type>
     </element>
   </differential>
