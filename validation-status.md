@@ -409,7 +409,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 
 ### PainScore v4.0
 * Profile: zib-PainScore
-* Status: in progress
+* Status: validated
 
 ### ParticipationInSociety v3.1
 * Profiles:
