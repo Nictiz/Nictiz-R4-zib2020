@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-HearingFunction.HearingAid" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HearingFunction.HearingAid" />
   <name value="NlcoreHearingFunctionHearingAid" />
   <title value="nl core HearingFunction.HearingAid" />
@@ -34,21 +36,9 @@
       <comment value="This is a specialization of the profile for zib MedicalDevice to represent HearingAid devices within the context of zib HearingFunction.&#xD;&#xA;&#xD;&#xA;Note: because of the way derivation works in FHIR, this profile is not based on the [nl-core-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice) profile but derived from a specialization in the zib layer." />
       <alias value="nl-core-HearingFunction.HearingAid" />
     </element>
-    <element id="DeviceUseStatement.extension">
-      <path value="DeviceUseStatement.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="DeviceUseStatement.extension:healthProfessional">
       <path value="DeviceUseStatement.extension" />
       <sliceName value="healthProfessional" />
-      <min value="0" />
     </element>
     <element id="DeviceUseStatement.extension:healthProfessional.value[x]">
       <path value="DeviceUseStatement.extension.value[x]" />
@@ -61,13 +51,25 @@
     <element id="DeviceUseStatement.extension:location">
       <path value="DeviceUseStatement.extension" />
       <sliceName value="location" />
-      <min value="0" />
     </element>
     <element id="DeviceUseStatement.extension:location.value[x]">
       <path value="DeviceUseStatement.extension.value[x]" />
+      <comment value="Please note that this zib concept (Location::HealthcareProvider) is also mapped on the `Procedure.location` element in profile [nl-core-Procedure-event](http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event). The reason for this is that this zib concept aligns with the Location::HealthcareProvider concept in zib Procedure (NL-CM:14.1.5), but only for the situation that the Procedure is about placing the implant which is described using this instance of zib MedicalDevice. This is normally not the case in the context of hearing aids, so the mapping in nl-core-Procedure-event should be ignored in this situation." />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.extension:treatmentObjective">
+      <path value="DeviceUseStatement.extension" />
+      <sliceName value="treatmentObjective" />
+    </element>
+    <element id="DeviceUseStatement.extension:treatmentObjective.value[x]">
+      <path value="DeviceUseStatement.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Goal" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentObjective" />
       </type>
     </element>
     <element id="DeviceUseStatement.subject">
@@ -109,14 +111,6 @@
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
-      </type>
-    </element>
-    <element id="DeviceUseStatement.reasonReference:hearingFunction">
-      <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="hearingFunction" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HearingFunction" />
       </type>
     </element>
     <element id="DeviceUseStatement.bodySite">

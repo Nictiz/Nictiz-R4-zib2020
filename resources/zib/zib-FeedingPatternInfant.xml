@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-FeedingPatternInfant" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-FeedingPatternInfant" />
   <name value="ZibFeedingPatternInfant" />
   <title value="zib FeedingPatternInfant" />
@@ -15,7 +17,7 @@
     </telecom>
   </contact>
   <description value="A healthy diet means that we do not consume too much or too little (energy intake balanced with energy use) and that the composition of food (mainly important nutrients) follows the recommendations from the Health Council. For an infant, this means that the child receives breastfeeding or formula milk or a combination thereof." />
-  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) FeedingPatternInfant-v1.1(2020EN)](https://zibs.nl/wiki/FeedingPatternInfant-v1.1(2020EN))." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) FeedingPatternInfant v1.1 (2020)](https://zibs.nl/wiki/FeedingPatternInfant-v1.1(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -32,6 +34,7 @@
     <element id="Observation">
       <path value="Observation" />
       <short value="FeedingPatternInfant" />
+      <comment value="## Deviation from zib FeedingPatternInfant&#xD;&#xA;&#xD;&#xA;During the formal review of this profile by HL7 Netherlands, it was determined that the zib approach of sending feeding supplement data only as a single string is too restrictive, as many real-word systems have this data available in coded form. For this reason, the &quot;feedingSupplement&quot; component supports the _CodeableConcept_ data type rather than the _string_ data type. See the documentation on `.component:feedingSupplement.valueCodeableConcept` for guidance." />
       <alias value="VoedingspatroonZuigeling" />
       <mapping>
         <identity value="zib-feedingpatterninfant-v1.1-2020EN" />
@@ -123,7 +126,6 @@
     <element id="Observation.component:feedingSupplement">
       <path value="Observation.component" />
       <sliceName value="feedingSupplement" />
-      <max value="1" />
     </element>
     <element id="Observation.component:feedingSupplement.code">
       <path value="Observation.component.code" />
@@ -138,15 +140,20 @@
       <path value="Observation.component.value[x]" />
       <short value="FeedingSupplement" />
       <definition value="It is possible to add supplements to breast and formula milk, such as locust bean gum to thicken milk in case of infant reflux." />
+      <comment value="In contrast to the zib model, this profile allows for communicating feeding supplements in two ways:&#xD;&#xA;&#xD;&#xA;1. As a single string. In this case, a single feedingSupplement component is expected with the data communicated using the `.text` element of this _CodeableConcept_ value.&#xD;&#xA;2. As one or more coded supplements. In this case, a feedingSupplement component is expected for each coded supplement.&#xD;&#xA;&#xD;&#xA;Receiving systems MUST be able to interpret feeding supplement data both types. To support receiving systems which don't support coded information about feeding supplements, sending systems MUST provide a valid `.display` when sending coded information.&#xD;&#xA;&#xD;&#xA;See the [Geboortezorg dataset](https://decor.nictiz.nl/pub/perinatologie/peri20-html-20220929T111810/voc-2.16.840.1.113883.2.4.3.11.60.90.77.11.302-2020-09-15T112808.html) for an example ValueSet of coded feeding supplements.&#xD;&#xA;&#xD;&#xA;See also the remark on the root of this profile for the background of this deviation." />
       <alias value="VoedingToevoeging" />
       <type>
-        <code value="string" />
+        <code value="CodeableConcept" />
       </type>
       <mapping>
         <identity value="zib-feedingpatterninfant-v1.1-2020EN" />
         <map value="NL-CM:4.31.7" />
         <comment value="FeedingSupplement" />
       </mapping>
+    </element>
+    <element id="Observation.component:feedingSupplement.value[x].coding.display">
+      <path value="Observation.component.value[x].coding.display" />
+      <min value="1" />
     </element>
     <element id="Observation.component:feedingFrequency">
       <path value="Observation.component" />
@@ -181,23 +188,10 @@
       <sliceName value="feedingType" />
       <definition value="Several combinations of FeedingType and FeedingMethod are possible: 1) FeedingType breast milk, FeedingMethod breastfed = to give breastfeeding naturally. 2) FeedingType breast milk, FeedingMethod bottle fed = to give expressed breast milk via bottle. 3) FeedingType formula milk, FeedingMethod bottle fed = to give formula milk via bottle." />
       <comment value="Zib FeedingPatternInfant contains the container Feeding, which hosts two concepts: FeedingType and FeedingMethod. Because these concepts are inherently linked and meaning is derived from the combination of the values of these two concepts, they are modelled in one component. `.component:feedingType` contains the value of FeedingType in `.valueCodeableConcept` and the value of FeedingMethod in `.extension:feedingMethod.valueCodeableConcept`." />
-      <max value="1" />
-    </element>
-    <element id="Observation.component:feedingType.extension">
-      <path value="Observation.component.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
     </element>
     <element id="Observation.component:feedingType.extension:feedingMethod">
       <path value="Observation.component.extension" />
       <sliceName value="feedingMethod" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />

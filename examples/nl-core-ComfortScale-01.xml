@@ -1,121 +1,192 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="nl-core-ComfortScale-01"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ComfortScale"/>
-   </meta>
-   <status value="final"/>
-   <code>
+  <id value="nl-core-ComfortScale-01"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ComfortScale"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <table>
+        <caption>Observatie/bepaling. Subject: Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen. Status: definitief</caption>
+        <tbody>
+          <tr>
+            <th>Bepalingdatum/tijd</th>
+            <td>12:05:00, 21 december 2016</td>
+          </tr>
+          <tr>
+            <th>Code</th>
+            <th>Waarde</th>
+          </tr>
+          <tr>
+            <td>
+              <span title="COMFORT scale (108301000146109 - SNOMED CT)">COMFORT scale</span>
+            </td>
+            <td>14</td>
+          </tr>
+          <tr>
+            <td>
+              <span title="ComfortScore Alertheid (12012003 - 2.16.840.1.113883.2.4.3.11.60.40.4.0.1)">ComfortScore Alertheid</span>
+            </td>
+            <td>
+              <span title="Awake and alert (Alert4 - 2.16.840.1.113883.2.4.3.11.60.40.4.20.1)">Awake and alert</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span title="ComfortScore Kalmte_Agitatie (12012004 - 2.16.840.1.113883.2.4.3.11.60.40.4.0.1)">ComfortScore Kalmte_Agitatie</span>
+            </td>
+            <td>
+              <span title="Slightly anxious (Calm2 - 2.16.840.1.113883.2.4.3.11.60.40.4.20.2)">Slightly anxious</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span title="ComfortScore Huilen (12012006 - 2.16.840.1.113883.2.4.3.11.60.40.4.0.1)">ComfortScore Huilen</span>
+            </td>
+            <td>
+              <span title="Occasional sobbing or moaning (Cry2 - 2.16.840.1.113883.2.4.3.11.60.40.4.20.4)">Occasional sobbing or moaning</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span title="ComfortScore Lichaamsbeweging (12012008 - 2.16.840.1.113883.2.4.3.11.60.40.4.0.1)">ComfortScore Lichaamsbeweging</span>
+            </td>
+            <td>
+              <span title="Occasional, slight movements (Mov2 - 2.16.840.1.113883.2.4.3.11.60.40.4.20.5)">Occasional, slight movements</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span title="ComfortScore Gezichtsspanning (12012009 - 2.16.840.1.113883.2.4.3.11.60.40.4.0.1)">ComfortScore Gezichtsspanning</span>
+            </td>
+            <td>
+              <span title="Normal facial tone (Face2 - 2.16.840.1.113883.2.4.3.11.60.40.4.20.6)">Normal facial tone</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span title="ComfortScore Spierspanning (12012010 - 2.16.840.1.113883.2.4.3.11.60.40.4.0.1)">ComfortScore Spierspanning</span>
+            </td>
+            <td>
+              <span title="Reduced muscle tone (Musc2 - 2.16.840.1.113883.2.4.3.11.60.40.4.20.7)">Reduced muscle tone</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </text>
+  <status value="final"/>
+  <code>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="108301000146109"/>
+      <display value="COMFORT scale"/>
+    </coding>
+  </code>
+  <subject>
+    <reference value="Patient/nl-core-Patient-01"/>
+    <type value="Patient"/>
+    <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+  </subject>
+  <effectiveDateTime value="2016-12-21T12:05:00+01:00"/>
+  <valueInteger value="14"/>
+  <note>
+    <text value="Controle na verhogen pijnmedicatie."/>
+  </note>
+  <component>
+    <code>
       <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="108301000146109"/>
-         <display value="COMFORT scale"/>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
+        <code value="12012003"/>
+        <display value="ComfortScore Alertheid"/>
       </coding>
-   </code>
-   <subject>
-      <reference value="Patient/nl-core-Patient-01"/>
-      <type value="Patient"/>
-      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
-   </subject>
-   <effectiveDateTime value="2016-12-21T12:05:00+01:00"/>
-   <valueInteger value="14"/>
-   <note>
-      <text value="Controle na verhogen pijnmedicatie."/>
-   </note>
-   <component>
-      <code>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
-            <code value="12012003"/>
-            <display value="ComfortScore Alertheid"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.20.1"/>
-            <code value="Alert4"/>
-            <display value="Awake and alert"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
-            <code value="12012004"/>
-            <display value="ComfortScore Kalmte_Agitatie"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.20.2"/>
-            <code value="Calm2"/>
-            <display value="Slightly anxious"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
-            <code value="12012006"/>
-            <display value="ComfortScore Huilen"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.20.4"/>
-            <code value="Cry2"/>
-            <display value="Occasional sobbing or moaning"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
-            <code value="12012008"/>
-            <display value="ComfortScore Lichaamsbeweging"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.20.5"/>
-            <code value="Mov2"/>
-            <display value="Occasional, slight movements"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
-            <code value="12012009"/>
-            <display value="ComfortScore Gezichtsspanning"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.20.6"/>
-            <code value="Face2"/>
-            <display value="Normal facial tone"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
-            <code value="12012010"/>
-            <display value="ComfortScore Spierspanning"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.20.7"/>
-            <code value="Musc2"/>
-            <display value="Reduced muscle tone"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
+    </code>
+    <valueCodeableConcept>
+      <coding>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.20.1"/>
+        <code value="Alert4"/>
+        <display value="Awake and alert"/>
+      </coding>
+    </valueCodeableConcept>
+  </component>
+  <component>
+    <code>
+      <coding>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
+        <code value="12012004"/>
+        <display value="ComfortScore Kalmte_Agitatie"/>
+      </coding>
+    </code>
+    <valueCodeableConcept>
+      <coding>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.20.2"/>
+        <code value="Calm2"/>
+        <display value="Slightly anxious"/>
+      </coding>
+    </valueCodeableConcept>
+  </component>
+  <component>
+    <code>
+      <coding>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
+        <code value="12012006"/>
+        <display value="ComfortScore Huilen"/>
+      </coding>
+    </code>
+    <valueCodeableConcept>
+      <coding>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.20.4"/>
+        <code value="Cry2"/>
+        <display value="Occasional sobbing or moaning"/>
+      </coding>
+    </valueCodeableConcept>
+  </component>
+  <component>
+    <code>
+      <coding>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
+        <code value="12012008"/>
+        <display value="ComfortScore Lichaamsbeweging"/>
+      </coding>
+    </code>
+    <valueCodeableConcept>
+      <coding>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.20.5"/>
+        <code value="Mov2"/>
+        <display value="Occasional, slight movements"/>
+      </coding>
+    </valueCodeableConcept>
+  </component>
+  <component>
+    <code>
+      <coding>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
+        <code value="12012009"/>
+        <display value="ComfortScore Gezichtsspanning"/>
+      </coding>
+    </code>
+    <valueCodeableConcept>
+      <coding>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.20.6"/>
+        <code value="Face2"/>
+        <display value="Normal facial tone"/>
+      </coding>
+    </valueCodeableConcept>
+  </component>
+  <component>
+    <code>
+      <coding>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1"/>
+        <code value="12012010"/>
+        <display value="ComfortScore Spierspanning"/>
+      </coding>
+    </code>
+    <valueCodeableConcept>
+      <coding>
+        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.20.7"/>
+        <code value="Musc2"/>
+        <display value="Reduced muscle tone"/>
+      </coding>
+    </valueCodeableConcept>
+  </component>
 </Observation>

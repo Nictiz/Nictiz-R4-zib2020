@@ -1,46 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Patient xmlns="http://hl7.org/fhir">
-   <!-- An example of a person where the official first names (voornamen) are known.--> 
-   <id value="nl-core-NameInformation-firstNames"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
-   </meta>
-   
-   <!-- The official name information is communicated in a .name instance with .name.use set to "official" --> 
-   <name>
-      <use value="official"/>
-      
-      <!-- The rendered name of the person -->
-      <text value="Hendrik Johan Willem (Henk) Schemer"/>
-      
-      <family value="Schemer">
-         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-            <valueString value="Schemer"/>
-         </extension>
-      </family>
-      
-      <!-- Each official first name is communicated individually, augmented with the iso21090-EN-qualifier
+  <!-- An example of a person where the official first names (voornamen) are known.-->
+  <id value="nl-core-NameInformation-firstNames"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <div>Hendrik Johan Willem Schemer</div>
+    </div>
+  </text>
+  <!-- The official name information is communicated in a .name instance with .name.use set to "official" -->
+  <name>
+    <use value="official"/>
+    <!-- The rendered name of the person -->
+    <text value="Hendrik Johan Willem Schemer"/>
+    <family value="Schemer">
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+        <valueString value="Schemer"/>
+      </extension>
+    </family>
+    <!-- Each official first name is communicated individually, augmented with the iso21090-EN-qualifier
            extension set to "BR" (Birth) to indicate that it is a complete and official first name. -->
-      <given value="Hendrik">
-         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-            <valueCode value="BR"/>
-         </extension>
-      </given>
-      <given value="Johan">
-         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-            <valueCode value="BR"/>
-         </extension>
-      </given>
-      <given value="Willem">
-         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-            <valueCode value="BR"/>
-         </extension>
-      </given>
-   </name>
-   
-   <!-- The given name (roepnaam) is communicated using an additional .name instance with .name.use set to "usual" -->
-   <name>
-      <use value="usual"/>
-      <given value="Henk"/>
-   </name>
+    <given value="Hendrik">
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+        <valueCode value="BR"/>
+      </extension>
+    </given>
+    <given value="Johan">
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+        <valueCode value="BR"/>
+      </extension>
+    </given>
+    <given value="Willem">
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+        <valueCode value="BR"/>
+      </extension>
+    </given>
+  </name>
+  <!-- The given name (roepnaam) is communicated using an additional .name instance with .name.use set to "usual" -->
+  <name>
+    <use value="usual"/>
+    <given value="Henk"/>
+  </name>
 </Patient>

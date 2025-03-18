@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-AbilityToUseToilet" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-AbilityToUseToilet" />
   <name value="ZibAbilityToUseToilet" />
   <title value="zib AbilityToUseToilet" />
@@ -15,7 +17,7 @@
     </telecom>
   </contact>
   <description value="Being able to urinate, defecate and keep up hygiene during a menstrual cycle independently is part of self-care. Limitations in this ability indicate a reduced ability to cope for oneself.&#xD;&#xA;This activity and activities such as those including eating, getting dressed and bathing are also known as activities of daily living (ADL). These are the activities people go through in daily life. The extent to which a person is able to do all these activities by themselves is a measure for their total ability to do things independently." />
-  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) AbilityToUseToilet-v3.1.1(2020EN)](https://zibs.nl/wiki/AbilityToUseToilet-v3.1.1(2020EN))." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) AbilityToUseToilet v3.1.1 (2020)](https://zibs.nl/wiki/AbilityToUseToilet-v3.1.1(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -32,6 +34,7 @@
     <element id="Observation">
       <path value="Observation" />
       <short value="AbilityToUseToilet" />
+      <comment value="Several concepts of zib AbilityToUseToillet are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* ToiletUse (NL-CM:4.22.6): [zib-AbilityToUseToilet.ToiletUse](http://nictiz.nl/fhir/StructureDefinition/zib-AbilityToUseToilet.ToiletUse)&#xD;&#xA;* MenstrualCare (NL-CM:4.22.4): [zib-AbilityToUseToilet.MenstrualCare](http://nictiz.nl/fhir/StructureDefinition/zib-AbilityToUseToilet.MenstrualCare)" />
       <alias value="VermogenTotToiletgang" />
       <mapping>
         <identity value="zib-abilitytousetoilet-v3.1.1-2020EN" />
@@ -48,79 +51,35 @@
         </coding>
       </patternCodeableConcept>
     </element>
-    <element id="Observation.component">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
       <slicing>
         <discriminator>
-          <type value="value" />
-          <path value="code" />
+          <type value="profile" />
+          <path value="resolve()" />
         </discriminator>
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Observation.component:toiletUse">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:toiletUse">
+      <path value="Observation.hasMember" />
       <sliceName value="toiletUse" />
+      <definition value="The ToiletUse concept (NL-CM:4.22.6) of zib AbilityToUseToilet, represented as a distinct Observation resource." />
       <max value="1" />
-    </element>
-    <element id="Observation.component:toiletUse.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="284899001" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:toiletUse.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="ToiletUse" />
-      <definition value="Coordinating and realizing urination or defecation, such as indicating the need, getting into the right position, finding and reaching a suitable spot, manipulating clothing before and after urination, and cleaning up (the body) afterwards." />
-      <alias value="Toiletgebruik" />
       <type>
-        <code value="CodeableConcept" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-AbilityToUseToilet.ToiletUse" />
       </type>
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.22.4--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-abilitytousetoilet-v3.1.1-2020EN" />
-        <map value="NL-CM:4.22.6" />
-        <comment value="ToiletUse" />
-      </mapping>
     </element>
-    <element id="Observation.component:menstrualCare">
-      <path value="Observation.component" />
+    <element id="Observation.hasMember:menstrualCare">
+      <path value="Observation.hasMember" />
       <sliceName value="menstrualCare" />
+      <definition value="The MenstrualCare concept (NL-CM:4.22.4) of zib AbilityToUseToilet, represented as a distinct Observation resource." />
       <max value="1" />
-    </element>
-    <element id="Observation.component:menstrualCare.code">
-      <path value="Observation.component.code" />
-      <patternCodeableConcept>
-        <coding>
-          <system value="http://snomed.info/sct" />
-          <code value="284955009" />
-        </coding>
-      </patternCodeableConcept>
-    </element>
-    <element id="Observation.component:menstrualCare.value[x]">
-      <path value="Observation.component.value[x]" />
-      <short value="MenstrualCare" />
-      <definition value="Coordinating, planning and hygiene in the event of menstruation, such as anticipating the menstruation and using sanitary napkins and tampons." />
-      <alias value="ZorgBijMenstruatie" />
       <type>
-        <code value="CodeableConcept" />
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-AbilityToUseToilet.MenstrualCare" />
       </type>
-      <binding>
-        <strength value="required" />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.22.3--20200901000000" />
-      </binding>
-      <mapping>
-        <identity value="zib-abilitytousetoilet-v3.1.1-2020EN" />
-        <map value="NL-CM:4.22.4" />
-        <comment value="MenstrualCare" />
-      </mapping>
     </element>
   </differential>
 </StructureDefinition>

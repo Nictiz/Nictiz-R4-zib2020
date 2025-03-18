@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-NutritionAdvice" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NutritionAdvice" />
   <name value="NlcoreNutritionAdvice" />
   <title value="nl core NutritionAdvice" />
@@ -33,21 +37,9 @@
       <path value="NutritionOrder" />
       <alias value="nl-core-NutritionAdvice" />
     </element>
-    <element id="NutritionOrder.extension">
-      <path value="NutritionOrder.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="NutritionOrder.extension:indication">
       <path value="NutritionOrder.extension" />
       <sliceName value="indication" />
-      <min value="0" />
     </element>
     <element id="NutritionOrder.extension:indication.value[x]">
       <path value="NutritionOrder.extension.value[x]" />
@@ -57,7 +49,6 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/DiagnosticReport" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Media" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
       </type>
     </element>

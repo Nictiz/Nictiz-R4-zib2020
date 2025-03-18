@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-Refraction" />
+  <text>
+    <status value="empty"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
+  </text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Refraction" />
   <name value="ZibRefraction" />
   <title value="zib Refraction" />
@@ -15,7 +19,7 @@
     </telecom>
   </contact>
   <description value="The refraction measurement is a measurement with which the refractive error of the eye is determined. During the refraction measurement, the necessary correction is established: the spherical power (in diopters), the cylindrical power (in diopters), the axis direction (in degrees) for any cylindrical correction, the prism (in prism diopters) and any additional power of the reading area (in diopters), the so-called reading addition." />
-  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Refraction-v1.0(2020EN)](https://zibs.nl/wiki/Refraction-v1.0(2020EN))." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Refraction v1.0 (2020)](https://zibs.nl/wiki/Refraction-v1.0(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -125,21 +129,9 @@
         <comment value="AnatomicalLocation" />
       </mapping>
     </element>
-    <element id="Observation.bodySite.extension">
-      <path value="Observation.bodySite.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-      <min value="0" />
-    </element>
     <element id="Observation.bodySite.extension:laterality">
       <path value="Observation.bodySite.extension" />
       <sliceName value="laterality" />
-      <min value="0" />
     </element>
     <element id="Observation.bodySite.extension:laterality.value[x]">
       <path value="Observation.bodySite.extension.value[x]" />
@@ -424,7 +416,7 @@
     </element>
     <element id="Observation.component:sphericalEquivalent.code">
       <path value="Observation.component.code" />
-      <comment value="This code aligns with the future version of this zib. See [ZIB-1420](https://bits.nictiz.nl/browse/ZIB-1420) for details." />
+      <comment value="The code to identify this concept (SNOMED 112881000146107) aligns with the next version of the zib, since the current version doesn't provide a code. See [ZIB-1420](https://bits.nictiz.nl/browse/ZIB-1420) for more information." />
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />

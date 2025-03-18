@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-VisualFunction" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualFunction" />
   <name value="NlcoreVisualFunction" />
   <title value="nl core VisualFunction" />
@@ -31,8 +33,19 @@
   <differential>
     <element id="Observation">
       <path value="Observation" />
-      <comment value="Please note that on a functional level, zib VisualFunction references zib MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept VisualAid (NL-CM:4.16.4) is mapped on `DeviceUseStatement.reasonReference:observation` in profile [nl-core-VisualFunction.VisualAid](http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualFunction.VisualAid) instead of in this profile." />
       <alias value="nl-core-VisualFunction" />
+    </element>
+    <element id="Observation.extension:visualAid">
+      <path value="Observation.extension" />
+      <sliceName value="visualAid" />
+    </element>
+    <element id="Observation.extension:visualAid.value[x]">
+      <path value="Observation.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualFunction.VisualAid" />
+      </type>
     </element>
     <element id="Observation.subject">
       <path value="Observation.subject" />

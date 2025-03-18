@@ -1,35 +1,59 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Condition xmlns="http://hl7.org/fhir">
-   <id value="nl-core-LegalSituation-LegalStatus-01"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LegalSituation-LegalStatus"/>
-   </meta>
-   <clinicalStatus>
-      <coding>
-         <system value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
-         <code value="inactive"/>
-         <display value="Inactive"/>
-      </coding>
-   </clinicalStatus>
-   <category>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="303186005"/>
-         <display value="juridische status van patiënt"/>
-      </coding>
-   </category>
-   <code>
-      <coding>
-         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.23.2"/>
-         <code value="OTS"/>
-         <display value="Onder toezichtstelling (ots)"/>
-      </coding>
-   </code>
-   <subject>
-      <reference value="Patient/nl-core-Patient-01"/>
-      <type value="Patient"/>
-      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
-   </subject>
-   <onsetDateTime value="2018-01-01"/>
-   <abatementDateTime value="2020-01-01"/>
+  <id value="nl-core-LegalSituation-LegalStatus-01"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LegalSituation-LegalStatus"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <table>
+        <caption>Aandoening. Subject: Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen. Categorie: <span title="juridische status van patiënt (303186005 - SNOMED CT)">juridische status van patiënt</span>, Status: <span title="Inactive (inactive - http://terminology.hl7.org/CodeSystem/condition-clinical)">Inactive</span>
+        </caption>
+        <tbody>
+          <tr>
+            <th>Code</th>
+            <td>
+              <span title="Onder toezichtstelling (ots) (OTS - 2.16.840.1.113883.2.4.3.11.60.40.4.23.2)">Onder toezichtstelling (ots)</span>
+            </td>
+          </tr>
+          <tr>
+            <th>Eerste symptomen</th>
+            <td>1 januari 2018</td>
+          </tr>
+          <tr>
+            <th>Oplossing/remissie</th>
+            <td>1 januari 2020</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </text>
+  <clinicalStatus>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
+      <code value="inactive"/>
+      <display value="Inactive"/>
+    </coding>
+  </clinicalStatus>
+  <category>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="303186005"/>
+      <display value="juridische status van patiënt"/>
+    </coding>
+  </category>
+  <code>
+    <coding>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.23.2"/>
+      <code value="OTS"/>
+      <display value="Onder toezichtstelling (ots)"/>
+    </coding>
+  </code>
+  <subject>
+    <reference value="Patient/nl-core-Patient-01"/>
+    <type value="Patient"/>
+    <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+  </subject>
+  <onsetDateTime value="2018-01-01"/>
+  <abatementDateTime value="2020-01-01"/>
 </Condition>

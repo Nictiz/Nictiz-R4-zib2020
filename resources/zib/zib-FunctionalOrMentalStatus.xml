@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-FunctionalOrMentalStatus" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus" />
   <name value="ZibFunctionalOrMentalStatus" />
   <title value="zib FunctionalOrMentalStatus" />
@@ -32,12 +34,36 @@
     <element id="Observation">
       <path value="Observation" />
       <short value="FunctionalOrMentalStatus" />
-      <comment value="Please note that on a functional level, zib FunctionalOrMentalStatus references zib MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept MedicalDevice (NL-CM:4.26.5) is mapped on `DeviceUseStatement.reasonReference` in profile [zib-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice) instead of in this profile." />
       <alias value="FunctioneleOfMentaleStatus" />
       <mapping>
         <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
         <map value="NL-CM:4.26.1" />
         <comment value="FunctionalOrMentalStatus" />
+      </mapping>
+    </element>
+    <element id="Observation.extension:medicalDevice">
+      <path value="Observation.extension" />
+      <sliceName value="medicalDevice" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/workflow-supportingInfo" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Observation.extension:medicalDevice.value[x]">
+      <path value="Observation.extension.value[x]" />
+      <short value="MedicalDevice" />
+      <definition value="Medical aid the patient has or will receive to reduce the impact of the disability or disorder." />
+      <alias value="Hulpmiddel" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice" />
+      </type>
+      <mapping>
+        <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
+        <map value="NL-CM:4.26.5" />
+        <comment value="MedicalDevice" />
       </mapping>
     </element>
     <element id="Observation.category">
@@ -55,7 +81,6 @@
         <severity value="warning" />
         <human value="Either a category for functional status finding or mental status finding is present." />
         <expression value="where(coding.system = 'http://snomed.info/sct' and coding.code = '118228005').exists() xor where(coding.system = 'http://snomed.info/sct' and coding.code = '384821006').exists()" />
-        <source value="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus" />
       </constraint>
     </element>
     <element id="Observation.category:functionalStatusFinding">
@@ -85,7 +110,7 @@
     <element id="Observation.code">
       <path value="Observation.code" />
       <short value="StatusName" />
-      <definition value="Coded description of the functional or mental status or limitation. &#xD;&#xA;Code systems used include: &#xD;&#xA;-  SNOMED CT&#xD;&#xA;-  ICF (International Classification of Functioning, Disability and Health) &#xD;&#xA;-  NOC (Nursing Outcomes Classification)&#xD;&#xA;-  OMAHA" />
+      <definition value="Coded description of the functional or mental status or limitation. &amp;#xD;&amp;#xA;Code systems used include: &#xD;&#xA;&#xD;&#xA;-  SNOMED CT&#xD;&#xA;-  ICF (International Classification of Functioning, Disability and Health)&#xD;&#xA;-  NOC (Nursing Outcomes Classification)&#xD;&#xA;-  OMAHA" />
       <alias value="StatusNaam" />
       <binding>
         <strength value="required" />
@@ -136,7 +161,7 @@
       <path value="Observation.value[x]" />
       <sliceName value="valueCodeableConcept" />
       <short value="StatusValue" />
-      <definition value="The extent to which the patient is limited by the functional or mental condition. &#xD;&#xA;If both the status name and the status value are recorded in code, then both values must come from the same code system.  &#xD;&#xA;If the patient uses a medical device, the evaluation of the extent of the limitation will take place without this aid.&#xD;&#xA;The answer codes must be selected from the subselection of the code system corresponding with the request in accordance with the rules applicable to that system." />
+      <definition value="The extent to which the patient is limited by the functional or mental condition.&#xD;&#xA;&#xD;&#xA;If both the status name and the status value are recorded in code, then both values must come from the same code system. If the patient uses a medical device, the evaluation of the extent of the limitation will take place without this aid.&#xD;&#xA;&#xD;&#xA;The answer codes must be selected from the subselection of the code system corresponding with the request in accordance with the rules applicable to that system." />
       <alias value="StatusWaarde" />
       <type>
         <code value="CodeableConcept" />
