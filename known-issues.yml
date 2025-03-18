@@ -997,6 +997,15 @@ issues should occur: false
 
 "*":
   ignored issues:
+    StructureDefinition.differential.element[*].binding.extension[*]*:
+      - message: Profile http://hl7.org/fhir/tools/StructureDefinition/additional-binding|0.4.0, Element matches more than one slice - key, purpose
+        reason: This is a bug in the extension. See https://jira.hl7.org/browse/FHIR-49977
+      - message: "Slice 'Extension.extension:purpose': a matching slice is required, but not found"
+        reason: This is a bug in the extension. See https://jira.hl7.org/browse/FHIR-49977
+      - message: The Profile 'http://hl7.org/fhir/tools/StructureDefinition/additional-binding|0.4.0' definition allows for the type id but found type code
+        reason: This is a bug in the extension. See https://jira.hl7.org/browse/FHIR-49977
+      - message: "Constraint failed: ext-ab-1: 'Additional Bindings SHOULD have a key to allow a binding to be constrained.'"
+        reason: This is a bug in the extension. See https://jira.hl7.org/browse/FHIR-49977
     Consent.scope*:
       - message: Unknown Code 'adr' in the system 'http://terminology.hl7.org/CodeSystem/consentscope'
         reason: This concerns an error in the FHIR terminology server. The adr code has been removed for R5 and the terminology server was updated for it too soon. They will fix it according to zulip chat https://chat.fhir.org/#narrow/stream/179166-implementers/topic/Consent.2Escope.3A.20diff.20in.20codes.20shown.20on.20FHIR.20vs.20Tx.20server.
