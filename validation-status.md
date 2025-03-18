@@ -96,7 +96,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 
 ### BarthelADLIndex v3.1
 * Profile: zib-BarthelADLIndex
-* Status: in progress
+* Status: validated
 
 ### BladderFunction v3.2
 * Profiles:
@@ -150,7 +150,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 
 ### ChecklistPainBehavior v1.1
 * Profile: zib-ChecklistPainBehavior
-* Status: in progress
+* Status: validated
 
 ### ComfortScale v1.1
 * Profile: zib-ComfortScale
@@ -399,7 +399,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 
 ### O2Saturation v3.1
 * Profile: zib-O2Saturation
-* Status: in progress
+* Status: validated
 
 ### OutcomeOfCare v3.2
 * Status: not submitted for validation
