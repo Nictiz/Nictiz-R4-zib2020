@@ -1,48 +1,67 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="nl-core-LivingSituation-01"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LivingSituation"/>
-   </meta>
-   <status value="final"/>
-   <code>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="365508006"/>
-         <display value="Residence and accommodation circumstances - finding"/>
-      </coding>
-   </code>
-   <subject>
-      <reference value="Patient/nl-core-Patient-01"/>
-      <type value="Patient"/>
-      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
-   </subject>
-   <note>
-      <text value="De bovenwoning is een probleem vanwege ontbreken lift. De patiënt staat op de wachtlijst voor een benedenwoning"/>
-   </note>
-   <hasMember>
-      <reference value="Observation/nl-core-LivingSituation.HouseType-01"/>
-      <type value="Observation"/>
-      <display value="House type: Bovenwoning"/>
-   </hasMember>
-   <hasMember>
-      <reference value="Observation/nl-core-LivingSituation.HouseAdaption-01"/>
-      <type value="Observation"/>
-      <display value="Home adaption: Aangepast toilet"/>
-   </hasMember>
-   <hasMember>
-      <reference value="Observation/nl-core-LivingSituation.HouseAdaption-02"/>
-      <type value="Observation"/>
-      <display value="Home adaption: Badstoel en/of douchestoel"/>
-   </hasMember>
-   <hasMember>
-      <reference value="Observation/nl-core-LivingSituation.HouseAdaption-03"/>
-      <type value="Observation"/>
-      <display value="Home adaption: Wandbeugel"/>
-   </hasMember>
-   <hasMember>
-      <reference value="Observation/nl-core-LivingSituation.LivingCondition-01"/>
-      <type value="Observation"/>
-      <display value="Living condition: Access to residence by stairs"/>
-   </hasMember>
+  <id value="nl-core-LivingSituation-01"/>
+  <meta>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LivingSituation"/>
+  </meta>
+  <text>
+    <status value="extensions"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <table>
+        <caption>Observatie/bepaling. Subject: Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen. Status: definitief</caption>
+        <tbody>
+          <tr>
+            <th>Code</th>
+            <th>Waarde</th>
+          </tr>
+          <tr>
+            <td>
+              <span title="Residence and accommodation circumstances - finding (365508006 - SNOMED CT)">Residence and accommodation circumstances - finding</span>
+            </td>
+            <td/>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </text>
+  <status value="final"/>
+  <code>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="365508006"/>
+      <display value="Residence and accommodation circumstances - finding"/>
+    </coding>
+  </code>
+  <subject>
+    <reference value="Patient/nl-core-Patient-01"/>
+    <type value="Patient"/>
+    <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+  </subject>
+  <note>
+    <text value="De bovenwoning is een probleem vanwege ontbreken lift. De patiënt staat op de wachtlijst voor een benedenwoning"/>
+  </note>
+  <hasMember>
+    <reference value="Observation/nl-core-LivingSituation.HouseType-01"/>
+    <type value="Observation"/>
+    <display value="House type: Bovenwoning"/>
+  </hasMember>
+  <hasMember>
+    <reference value="Observation/nl-core-LivingSituation.HouseAdaption-01"/>
+    <type value="Observation"/>
+    <display value="Home adaption: Aangepast toilet"/>
+  </hasMember>
+  <hasMember>
+    <reference value="Observation/nl-core-LivingSituation.HouseAdaption-02"/>
+    <type value="Observation"/>
+    <display value="Home adaption: Badstoel en/of douchestoel"/>
+  </hasMember>
+  <hasMember>
+    <reference value="Observation/nl-core-LivingSituation.HouseAdaption-03"/>
+    <type value="Observation"/>
+    <display value="Home adaption: Wandbeugel"/>
+  </hasMember>
+  <hasMember>
+    <reference value="Observation/nl-core-LivingSituation.LivingCondition-01"/>
+    <type value="Observation"/>
+    <display value="Living condition: Access to residence by stairs"/>
+  </hasMember>
 </Observation>
