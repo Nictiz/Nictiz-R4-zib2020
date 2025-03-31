@@ -340,7 +340,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
     * zib-MedicalDevice
     * zib-MedicalDevice.Product
     * zib-Procedure-event
-* Status: in progress
+* Status: validated
 
 ### MedicationAdministration2 v1.1.1
 * Status: not submitted for validation
