@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-LegalSituation-LegalStatus" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-LegalSituation-LegalStatus" />
   <name value="ZibLegalSituationLegalStatus" />
   <title value="zib LegalSituation LegalStatus" />
@@ -42,6 +40,15 @@
         <identity value="zib-legalsituation-v2.0-2020EN" />
         <map value="NL-CM:7.17.1" />
         <comment value="LegalSituation" />
+      </mapping>
+    </element>
+    <element id="Condition.clinicalStatus">
+      <path value="Condition.clinicalStatus" />
+      <comment value="Sending systems that don't record an explicit status can use the following guidance to infer a value from the zib:&#xD;&#xA;&#xD;&#xA;* DateStop present and in the past: _inactive_&#xD;&#xA;* DateStop absent: _active_&#xD;&#xA;* DateStop present and in the future: _active_" />
+      <mapping>
+        <identity value="zib-legalsituation-v2.0-2020EN" />
+        <map value="NL-CM:7.17.4" />
+        <comment value="DateStop (implicit, main mapping is on Condition.abatement[x]:abatementDateTime)" />
       </mapping>
     </element>
     <element id="Condition.category">
