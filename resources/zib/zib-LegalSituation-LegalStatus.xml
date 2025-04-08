@@ -44,7 +44,7 @@
     </element>
     <element id="Condition.clinicalStatus">
       <path value="Condition.clinicalStatus" />
-      <comment value="Sending systems that don't record an explicit status can use the following guidance to infer a value from the zib:&#xD;&#xA;&#xD;&#xA;* DateStop present and in the past: _inactive_&#xD;&#xA;* DateStop absent: _active_&#xD;&#xA;* DateStop present and in the future: _active_" />
+      <comment value="Sending systems that don't record an explicit status can use the following guidance to infer a value from the zib:&#xD;&#xA;&#xD;&#xA;* DateStop present and in the past: _inactive_&#xD;&#xA;* DateStop present and in the future: _active_&#xD;&#xA;* DateStop absent while DateStart is present and in the past: _active_&#xD;&#xA;* When both DateStart and DateStop are absent, `.clinicalStatus` cannot be reliably populated based on data from the zib.&#xD;&#xA;&#xD;&#xA;Note that only in the first situation it's required to populate this element (based on constraint con-4)." />
       <mapping>
         <identity value="zib-legalsituation-v2.0-2020EN" />
         <map value="NL-CM:7.17.4" />
