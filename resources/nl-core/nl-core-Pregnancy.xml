@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-Pregnancy" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy" />
   <name value="NlcorePregnancy" />
   <title value="nl core Pregnancy" />
@@ -29,22 +27,64 @@
   </mapping>
   <kind value="resource" />
   <abstract value="false" />
-  <type value="Condition" />
+  <type value="Observation" />
   <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy" />
   <derivation value="constraint" />
   <differential>
-    <element id="Condition">
-      <path value="Condition" />
-      <comment value="Zib Pregnancy is mapped to this Condition profile and 5 profiles on Observation:&#xD;&#xA;&#xD;&#xA;* [nl-core-Pregnancy.DateLastMenstruation](http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.DateLastMenstruation)&#xD;&#xA;* [nl-core-Pregnancy.EstimatedDateOfDelivery](http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.EstimatedDateOfDelivery)&#xD;&#xA;* [nl-core-Pregnancy.Gravidity](http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.Gravidity)&#xD;&#xA;* [nl-core-Pregnancy.Parity](http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.Parity)&#xD;&#xA;* [nl-core-Pregnancy.PregnancyDuration](http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.PregnancyDuration)&#xD;&#xA;&#xD;&#xA;This Condition profile acts as the focal resource of zib Pregancy. This profile is referenced by the Observation profiles through `Observation.focus`." />
+    <element id="Observation">
+      <path value="Observation" />
+      <comment value="Several concepts of zib Pregnancy are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* [nl-core-Pregnancy.DateLastMenstruation](http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.DateLastMenstruation)&#xD;&#xA;* [nl-core-Pregnancy.EstimatedDateOfDelivery](http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.EstimatedDateOfDelivery)&#xD;&#xA;* [nl-core-Pregnancy.Gravidity](http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.Gravidity)&#xD;&#xA;* [nl-core-Pregnancy.Parity](http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.Parity)&#xD;&#xA;* [nl-core-Pregnancy.PregnancyDuration](http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.PregnancyDuration)" />
       <alias value="nl-core-Pregnancy" />
     </element>
-    <element id="Condition.subject">
-      <path value="Condition.subject" />
+    <element id="Observation.subject">
+      <path value="Observation.subject" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:pregnancyDuration">
+      <path value="Observation.hasMember" />
+      <sliceName value="pregnancyDuration" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.PregnancyDuration" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:parity">
+      <path value="Observation.hasMember" />
+      <sliceName value="parity" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.Parity" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:gravidity">
+      <path value="Observation.hasMember" />
+      <sliceName value="gravidity" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.Gravidity" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:estimatedDateOfDelivery">
+      <path value="Observation.hasMember" />
+      <sliceName value="estimatedDateOfDelivery" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.EstimatedDateOfDelivery" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:dateLastMenstruation">
+      <path value="Observation.hasMember" />
+      <sliceName value="dateLastMenstruation" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.DateLastMenstruation" />
       </type>
     </element>
   </differential>
