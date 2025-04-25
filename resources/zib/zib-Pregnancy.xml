@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-Pregnancy" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy" />
   <name value="ZibPregnancy" />
   <title value="zib Pregnancy" />
@@ -19,7 +17,7 @@
     </telecom>
   </contact>
   <description value="Pregnancy or gravidity is the condition in which a woman carries a fertilized egg, which grows into an embryo and then a fetus. A pregnancy of between 37 and 42 weeks is considered normal. “Term pregnancy” is 37 to 42 weeks. The term gravidity is also used for the number of times a woman has been pregnant. This and parity - the number of times a woman has given birth - provides insight into the patient’s obstetric history." />
-  <purpose value="This Condition resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Pregnancy v4.0 (2020)](https://zibs.nl/wiki/Pregnancy-v4.0(2020EN))." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Pregnancy v4.0 (2020)](https://zibs.nl/wiki/Pregnancy-v4.0(2020EN))." />
   <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
   <mapping>
@@ -29,14 +27,14 @@
   </mapping>
   <kind value="resource" />
   <abstract value="true" />
-  <type value="Condition" />
-  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Condition" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
   <derivation value="constraint" />
   <differential>
-    <element id="Condition">
-      <path value="Condition" />
+    <element id="Observation">
+      <path value="Observation" />
       <short value="Pregnancy" />
-      <comment value="Zib Pregnancy is mapped to this Condition profile and 5 profiles on Observation:&#xD;&#xA;&#xD;&#xA;* [zib-Pregnancy.DateLastMenstruation](http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy.DateLastMenstruation)&#xD;&#xA;* [zib-Pregnancy.EstimatedDateOfDelivery](http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy.EstimatedDateOfDelivery)&#xD;&#xA;* [zib-Pregnancy.Gravidity](http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy.Gravidity)&#xD;&#xA;* [zib-Pregnancy.Parity](http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy.Parity)&#xD;&#xA;* [zib-Pregnancy.PregnancyDuration](http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy.PregnancyDuration)&#xD;&#xA;&#xD;&#xA;This Condition profile acts as the focal resource of zib Pregancy. This profile is referenced by the Observation profiles through `Observation.focus`." />
+      <comment value="Several concepts of zib Pregnancy are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* [zib-Pregnancy.DateLastMenstruation](http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy.DateLastMenstruation)&#xD;&#xA;* [zib-Pregnancy.EstimatedDateOfDelivery](http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy.EstimatedDateOfDelivery)&#xD;&#xA;* [zib-Pregnancy.Gravidity](http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy.Gravidity)&#xD;&#xA;* [zib-Pregnancy.Parity](http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy.Parity)&#xD;&#xA;* [zib-Pregnancy.PregnancyDuration](http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy.PregnancyDuration)" />
       <alias value="Zwangerschap" />
       <mapping>
         <identity value="zib-pregnancy-v4.0-2020EN" />
@@ -44,8 +42,8 @@
         <comment value="Pregnancy" />
       </mapping>
     </element>
-    <element id="Condition.code">
-      <path value="Condition.code" />
+    <element id="Observation.code">
+      <path value="Observation.code" />
       <patternCodeableConcept>
         <coding>
           <system value="http://snomed.info/sct" />
@@ -53,12 +51,12 @@
         </coding>
       </patternCodeableConcept>
     </element>
-    <element id="Condition.note">
-      <path value="Condition.note" />
+    <element id="Observation.note">
+      <path value="Observation.note" />
       <max value="1" />
     </element>
-    <element id="Condition.note.text">
-      <path value="Condition.note.text" />
+    <element id="Observation.note.text">
+      <path value="Observation.note.text" />
       <short value="Comment" />
       <definition value="Comment on the pregnancy." />
       <alias value="Toelichting" />
@@ -67,6 +65,61 @@
         <map value="NL-CM:7.14.7" />
         <comment value="Comment" />
       </mapping>
+    </element>
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.hasMember:pregnancyDuration">
+      <path value="Observation.hasMember" />
+      <sliceName value="pregnancyDuration" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy.PregnancyDuration" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:parity">
+      <path value="Observation.hasMember" />
+      <sliceName value="parity" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy.Parity" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:gravidity">
+      <path value="Observation.hasMember" />
+      <sliceName value="gravidity" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy.Gravidity" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:estimatedDateOfDelivery">
+      <path value="Observation.hasMember" />
+      <sliceName value="estimatedDateOfDelivery" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy.EstimatedDateOfDelivery" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:dateLastMenstruation">
+      <path value="Observation.hasMember" />
+      <sliceName value="dateLastMenstruation" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy.DateLastMenstruation" />
+      </type>
     </element>
   </differential>
 </StructureDefinition>
