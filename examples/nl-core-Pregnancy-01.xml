@@ -1,4 +1,4 @@
-<Condition xmlns="http://hl7.org/fhir">
+<Observation xmlns="http://hl7.org/fhir">
   <id value="nl-core-Pregnancy-01"/>
   <meta>
     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy"/>
@@ -7,23 +7,23 @@
     <status value="extensions"/>
     <div xmlns="http://www.w3.org/1999/xhtml">
       <table>
-        <caption>Aandoening. Subject: Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen. </caption>
-        <tfoot>
-          <tr>
-            <td colspan="2">Mevrouw is vaak misselijk in de ochtend.</td>
-          </tr>
-        </tfoot>
+        <caption>Observatie/bepaling. Subject: Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen. Status: definitief</caption>
         <tbody>
           <tr>
             <th>Code</th>
+            <th>Waarde</th>
+          </tr>
+          <tr>
             <td>
               <span title="bevinding betreffende zwangerschap (118185001 - SNOMED CT)">bevinding betreffende zwangerschap</span>
             </td>
+            <td/>
           </tr>
         </tbody>
       </table>
     </div>
   </text>
+  <status value="final"/>
   <code>
     <coding>
       <system value="http://snomed.info/sct"/>
@@ -39,4 +39,29 @@
   <note>
     <text value="Mevrouw is vaak misselijk in de ochtend."/>
   </note>
-</Condition>
+  <hasMember>
+    <reference value="Observation/nl-core-Pregnancy.PregnancyDuration-01"/>
+    <type value="Observation"/>
+    <display value="zwangerschapsduur"/>
+  </hasMember>
+  <hasMember>
+    <reference value="Observation/nl-core-Pregnancy.Parity-01"/>
+    <type value="Observation"/>
+    <display value="pariteit"/>
+  </hasMember>
+  <hasMember>
+    <reference value="Observation/nl-core-Pregnancy.Gravidity-01"/>
+    <type value="Observation"/>
+    <display value="graviditeit"/>
+  </hasMember>
+  <hasMember>
+    <reference value="Observation/nl-core-Pregnancy.EstimatedDateOfDelivery-01"/>
+    <type value="Observation"/>
+    <display value="aterme_datum_items"/>
+  </hasMember>
+  <hasMember>
+    <reference value="Observation/nl-core-Pregnancy.DateLastMenstruation-01"/>
+    <type value="Observation"/>
+    <display value="datum_laatste_menstruatie"/>
+  </hasMember>
+</Observation>

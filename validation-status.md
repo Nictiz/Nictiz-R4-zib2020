@@ -444,7 +444,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
     * zib-Pregnancy.Gravidity
     * zib-Pregnancy.Parity
     * zib-Pregnancy.PregnancyDuration
-* Status: validated
+* Status: not submitted for validation
 
 ### PressureUlcer v3.4
 * Profiles:
