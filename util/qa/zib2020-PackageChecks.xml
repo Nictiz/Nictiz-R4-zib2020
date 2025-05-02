@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib2020-PackageChecks" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib2020-PackageChecks" />
+  <name value="Zib202=PackageChecks" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="http://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Profile to perform checks specific to the zib2020 package." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="StructureDefinition" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/StructureDefinition" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="StructureDefinition.differential.element">
+      <path value="StructureDefinition.differential.element" />
+      <constraint>
+        <key value="Zib2020PackageChecks-01" />
+        <severity value="error" />
+        <human value="When applying datatype profile zib-AnatomicalLocation, the associated ValueSet should be bound." />
+        <expression value="'http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation' in type.profile implies binding.valueSet = 'http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000'" />
+      </constraint>
+      <constraint>
+        <key value="Zib2020PackageChecks-02" />
+        <severity value="error" />
+        <human value="When applying datatype profile zib-AnatomicalLocation, the associated ValueSet should have binding strength required." />
+        <expression value="'http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation' in type.profile implies binding.strength = 'required'" />
+      </constraint>
+      <constraint>
+        <key value="Zib2020PackageChecks-03" />
+        <severity value="warning" />
+        <human value="When referencing the zib-HealthProfessional-PractitionerRole profile, the default explanation should be added to the comment." />
+        <expression value="'http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole' in type.targetProfile implies comment.contains('Each occurrence of the zib HealthProfessional is normally represented by _two_ FHIR resources:')" />
+      </constraint>
+    </element>
+  </differential>
+</StructureDefinition>
