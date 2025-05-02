@@ -2,6 +2,7 @@ main branch: origin/main
 ignored issues: known-issues.yml
 igs:
   - resources
+  - util/qa
 script dir: util/qa
 
 patterns:
@@ -23,11 +24,15 @@ steps:
   validate zib profiles:
     description: Validate the zib profiles using the profile for zib profiles
     patterns: zib profiles
-    profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Profiles
+    profile:
+    - http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Profiles
+    - http://nictiz.nl/fhir/StructureDefinition/zib2020-PackageChecks
   validate zib extensions:
     description: Validate the zib specific extensions using the profile for zib extensions
     patterns: zib extensions
-    profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Extensions
+    profile:
+    - http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Extensions
+    - http://nictiz.nl/fhir/StructureDefinition/zib2020-PackageChecks
   validate nl-core profiles:
     description: Validate the nl-core profiles using the profile for nl-core extensions
     patterns: nl-core profiles

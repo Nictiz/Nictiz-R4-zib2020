@@ -715,6 +715,11 @@ zib-Procedure-request:
 
 zib-Refraction:
   ignored issues:
+    Observation.bodySite:
+      - message: "Constraint failed: Zib2020PackageChecks-01: 'When applying datatype profile zib-AnatomicalLocation, the associated ValueSet should be bound.'"
+        reason: zib AnatomicalLocation is in this case only used to encode laterality, not the location, so this is set to a fixed value, not to the entire ValueSet.
+      - message: "Constraint failed: Zib2020PackageChecks-02: 'When applying datatype profile zib-AnatomicalLocation, the associated ValueSet should have binding strength required.'"
+        reason: zib AnatomicalLocation is in this case only used to encode laterality, not the location, so this is set to a fixed value, not to the entire ValueSet.
     Observation.bodySite.extension:laterality.value[x]:
       - message: "Constraint failed: sd-pg-02: 'If mapping.map exists and the mapping is not implicit, short should exist'"
         reason: The short description is defined in the extension profile and therefore not defined in the differential.
@@ -855,6 +860,12 @@ zib-VisualAcuity:
         reason: The zib implies a reference to AnatomicalLocation::Laterality, but actually references AnatomicalLocation. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442
       - datatype: CodeableConcept
         reason: The zib implies a reference to AnatomicalLocation::Laterality, but actually references AnatomicalLocation. This leads to unexpected results. https://bits.nictiz.nl/browse/ZIB-1442
+  ignored issues:
+    Observation.bodySite:
+      - message: "Constraint failed: Zib2020PackageChecks-01: 'When applying datatype profile zib-AnatomicalLocation, the associated ValueSet should be bound.'"
+        reason: zib AnatomicalLocation is in this case only used to encode laterality, not the location, so this is set to a fixed value, not to the entire ValueSet.
+      - message: "Constraint failed: Zib2020PackageChecks-02: 'When applying datatype profile zib-AnatomicalLocation, the associated ValueSet should have binding strength required.'"
+        reason: zib AnatomicalLocation is in this case only used to encode laterality, not the location, so this is set to a fixed value, not to the entire ValueSet.
 
 zib-VisualFunction:
   zib deviations:
