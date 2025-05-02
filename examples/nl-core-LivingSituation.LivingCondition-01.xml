@@ -1,7 +1,7 @@
 <Observation xmlns="http://hl7.org/fhir">
-  <id value="nl-core-Pregnancy.PregnancyDuration-01"/>
+  <id value="nl-core-LivingSituation.LivingCondition-01"/>
   <meta>
-    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.PregnancyDuration"/>
+    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LivingSituation.LivingCondition"/>
   </meta>
   <text>
     <status value="extensions"/>
@@ -15,9 +15,11 @@
           </tr>
           <tr>
             <td>
-              <span title="zwangerschapsduur (57036006 - SNOMED CT)">zwangerschapsduur</span>
+              <span title="Characteristics of home environment (224249004 - SNOMED CT)">Characteristics of home environment</span>
             </td>
-            <td>24 w</td>
+            <td>
+              <span title="Access to residence by stairs (715758005 - SNOMED CT)">Access to residence by stairs</span>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -27,8 +29,8 @@
   <code>
     <coding>
       <system value="http://snomed.info/sct"/>
-      <code value="57036006"/>
-      <display value="zwangerschapsduur"/>
+      <code value="224249004"/>
+      <display value="Characteristics of home environment"/>
     </coding>
   </code>
   <subject>
@@ -36,10 +38,11 @@
     <type value="Patient"/>
     <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
   </subject>
-  <valueQuantity>
-    <value value="24"/>
-    <unit value="w"/>
-    <system value="http://unitsofmeasure.org"/>
-    <code value="{w}"/>
-  </valueQuantity>
+  <valueCodeableConcept>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="715758005"/>
+      <display value="Access to residence by stairs"/>
+    </coding>
+  </valueCodeableConcept>
 </Observation>

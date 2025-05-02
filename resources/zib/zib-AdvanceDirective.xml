@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-AdvanceDirective" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-AdvanceDirective" />
   <name value="ZibAdvanceDirective" />
   <title value="zib AdvanceDirective" />
@@ -73,7 +71,7 @@
     </element>
     <element id="Consent.status">
       <path value="Consent.status" />
-      <comment value="This element has no functional counterpart in the zib and cannot be implicitly mapped to other concepts. Unless a more appropriate status is recorded, it is assumed that only _active_ Consent resources will be exchanged." />
+      <comment value="This element has no functional counterpart in the zib and cannot be implicitly mapped to other zib concepts. An appropriate status needs to be recorded in order to produce a valid instance." />
     </element>
     <element id="Consent.scope">
       <path value="Consent.scope" />
@@ -131,15 +129,12 @@
     <element id="Consent.source[x]:sourceAttachment">
       <path value="Consent.source[x]" />
       <sliceName value="sourceAttachment" />
-      <type>
-        <code value="Attachment" />
-      </type>
-    </element>
-    <element id="Consent.source[x]:sourceAttachment.data">
-      <path value="Consent.source[x].data" />
       <short value="LivingWillDocument" />
       <definition value="Scanned source document with the living will and the patient's signature, such as a PDF." />
       <alias value="WilsverklaringDocument" />
+      <type>
+        <code value="Attachment" />
+      </type>
       <mapping>
         <identity value="zib-advancedirective-v3.1.1-2020EN" />
         <map value="NL-CM:7.15.5" />

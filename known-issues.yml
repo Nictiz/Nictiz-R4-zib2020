@@ -471,6 +471,18 @@ zib-LaboratoryTestResult.SpecimenSource:
       - cardinality: 1..1 instead of 0..1
         reason: The zib concept SpecimenSource is represented using a reference to this profile from zib-LaboratoryTestResult.Specimen, so this element represents just part of the mapping. Overall, the use of this concept is optional, but when this profile is used, Device.deviceName.name must be given.
 
+zib-LivingSituation.HomeAdaption:
+  zib deviations:
+      Observation.value[x]:valueCodeableConcept:
+      - cardinality: 0..1 instead of 0..*
+        reason: The value can only occur once, but this profile is referenced 0..* times via .hasMember, making the effective cardinality 0..* as required by the zib.
+
+zib-LivingSituation.LivingCondition:
+  zib deviations:
+      Observation.value[x]:valueCodeableConcept:
+      - cardinality: 0..1 instead of 0..*
+        reason: The value can only occur once, but this profile is referenced 0..* times via .hasMember, making the effective cardinality 0..* as required by the zib.
+
 zib-MedicalDevice:
   zib deviations:
     DeviceUseStatement.extension:treatmentObjective.value[x]:
@@ -1011,6 +1023,15 @@ issues should occur: false
 
 "*":
   ignored issues:
+    StructureDefinition.differential.element[*].binding.extension[*]*:
+      - message: Profile http://hl7.org/fhir/tools/StructureDefinition/additional-binding|0.4.0, Element matches more than one slice - key, purpose
+        reason: This is a bug in the extension. See https://jira.hl7.org/browse/FHIR-49977
+      - message: "Slice 'Extension.extension:purpose': a matching slice is required, but not found"
+        reason: This is a bug in the extension. See https://jira.hl7.org/browse/FHIR-49977
+      - message: The Profile 'http://hl7.org/fhir/tools/StructureDefinition/additional-binding|0.4.0' definition allows for the type id but found type code
+        reason: This is a bug in the extension. See https://jira.hl7.org/browse/FHIR-49977
+      - message: "Constraint failed: ext-ab-1: 'Additional Bindings SHOULD have a key to allow a binding to be constrained.'"
+        reason: This is a bug in the extension. See https://jira.hl7.org/browse/FHIR-49977
     Consent.scope*:
       - message: Unknown Code 'adr' in the system 'http://terminology.hl7.org/CodeSystem/consentscope'
         reason: This concerns an error in the FHIR terminology server. The adr code has been removed for R5 and the terminology server was updated for it too soon. They will fix it according to zulip chat https://chat.fhir.org/#narrow/stream/179166-implementers/topic/Consent.2Escope.3A.20diff.20in.20codes.20shown.20on.20FHIR.20vs.20Tx.20server.
@@ -1160,7 +1181,7 @@ nl-core-PharmaceuticalProduct-02:
       - message: Code System URI 'urn:oid:2.16.840.1.113883.2.4.4.1' is unknown so the code cannot be validated
         reason: The terminology servers used don't know this code system.
 
-nl-core-PulseRate-*:
+nl-core-PulseRate*:
   ignored issues:
     Observation.code:
       - message: "HeartRateCode: magic LOINC code 8867-4 required, but not found"

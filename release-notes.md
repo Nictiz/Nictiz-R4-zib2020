@@ -283,7 +283,7 @@ This document contains release notes per zib, indicating differences with their 
 * Both InsuranceCompany and 'PayerPerson as Organization' have been mapped in the profile Payer-Organization.
 
 ## zib-Pregnancy
-* The value of `Condition.code` has changed from 118185001 to 364320009.
+* The mapping of zib Pregnancy is now mapped onto an Observation resource rather than a Condition resource, aligning with the meaning of the zib.
 
 ## zib-Pregnancy.DateLastMenstruation
 * The zib-Pregnancy extension has moved from `Observation.extension` to `Observation.focus`.
