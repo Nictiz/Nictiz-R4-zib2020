@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-wounds.WoundCharacteristics" />
   <text>
-    <status value="empty" />
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-wounds.WoundCharacteristics" />
   <name value="NlcorewoundsWoundCharacteristics" />
   <title value="nl core wounds.WoundCharacteristics" />
@@ -57,6 +55,16 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Observation.focus">
+      <path value="Observation.focus" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Burnwound" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PressureUlcer" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Wound" />
       </type>
     </element>
     <element id="Observation.hasMember:dateOfLastDressingChange">
