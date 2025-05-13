@@ -139,7 +139,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
     * zib-wounds.WoundCharacteristics
     * zib-wounds.DateOfLastDressingChange
     * zib-wounds.WoundImage
-* Status: in progress
+* Status: rejected
 
 ### CareAgreement v1.0
 * Status: not submitted for validation
@@ -383,7 +383,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 * Profiles:
     * zib-NameInformation
     * zib-NameInformation.GivenName
-* Status: in progress
+* Status: validated
 
 ### Nationality v3.0
 * Profiles: zib-Patient
@@ -455,7 +455,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
     * zib-wounds.WoundImage
     * zib-wounds.WoundLength
     * zib-wounds.WoundWidth
-* Status: in progress
+* Status: rejected
 
 ### Procedure v5.2 (past use)
 * Profiles:
@@ -589,6 +589,6 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
     * zib-wounds.WoundLength
     * zib-wounds.WoundWidth
     * zib-MedicalDevice
-* Status: in progress
+* Status: rejected
 
 
