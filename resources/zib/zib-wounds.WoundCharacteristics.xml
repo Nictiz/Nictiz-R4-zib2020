@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-wounds.WoundCharacteristics" />
   <text>
-    <status value="empty" />
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-wounds.WoundCharacteristics" />
   <name value="ZibwoundsWoundCharacteristics" />
   <title value="zib wounds.WoundCharacteristics" />
@@ -45,7 +43,7 @@
   <differential>
     <element id="Observation">
       <path value="Observation" />
-      <comment value="The functional models of zibs Burnwound, PressureUlcer and Wound represent conditions that need to be tracked over time, but define point-in-time assessments about the current state of the wounds as well. For this reason, these three zibs are all mapped onto multiple resources: a Condition resource that represents the focal resource, and Observation and DocumentReference resources for all observable properties.&#xD;&#xA;&#xD;&#xA;Since multiple observable properties are usually assessed together, all Observation and DocumentReference resources resulting from a single assessment are grouped using the current Observation profile. For the Observation resources, this is done using `Observation.hasMember`. For the DocumentReference resources, the direction is reversed, so the current resource is referenced *from* `DocumentReference.context.related` in profile [zib-wounds.WoundImage](http://nictiz.nl/fhir/StructureDefinition/zib-wounds.WoundImage). It is this grouping Observation that is referenced from the Condition resources, on `Condition.evidence.detail`.&#xD;&#xA;&#xD;&#xA;This model allows to track multiple distinct assessment moments over time in connection with the Condition. For this reason, it is not expected that the Observations and DocumentReferences for individual outcomes are referenced directly from and to the Condition resources; all references should be referenced through this grouping Observation.&#xD;&#xA;&#xD;&#xA;Note that this model deviates somewhat from the zib approach. The zib model is meant to group all concepts relevant for a wound into a model, but it doesn't have a concept of changes over time. For this reason, all observable properties have a cardinality of `0..1` on the zib level, but this works out differently in the FHIR model." />
+      <comment value="The functional models of zibs Burnwound, PressureUlcer and Wound represent conditions that need to be tracked over time, but define point-in-time assessments about the current state of the wounds as well. For this reason, these three zibs are all mapped onto multiple resources: a Condition resource that represents the focal resource, and Observation and DocumentReference resources for all observable properties.&#xD;&#xA;&#xD;&#xA;Since multiple observable properties are usually assessed together, all Observation and DocumentReference resources resulting from a single assessment are grouped using the current Observation profile. For the Observation resources, this is done using `Observation.hasMember`. For the DocumentReference resources, the direction is reversed, so the current resource is referenced *from* `DocumentReference.context.related` in profile [zib-wounds.WoundImage](http://nictiz.nl/fhir/StructureDefinition/zib-wounds.WoundImage). This grouping Observation in turn references the Condition resources using `Observation.focus`.&#xD;&#xA;&#xD;&#xA;This model allows to track multiple distinct assessment moments over time in connection with the Condition. For this reason, it is not expected that the Observations and DocumentReferences for individual outcomes directly reference the Condition resources; all references should be referenced through this grouping Observation.&#xD;&#xA;&#xD;&#xA;Note that this model deviates somewhat from the zib approach. The zib model is meant to group all concepts relevant for a wound into a model, but it doesn't have a concept of changes over time. For this reason, all observable properties have a cardinality of `0..1` on the zib level, but this works out differently in the FHIR model." />
     </element>
     <element id="Observation.code">
       <path value="Observation.code" />
@@ -55,6 +53,16 @@
           <code value="225552003" />
         </coding>
       </patternCodeableConcept>
+    </element>
+    <element id="Observation.focus">
+      <path value="Observation.focus" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Burnwound" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-PressureUlcer" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Wound" />
+      </type>
     </element>
     <element id="Observation.hasMember">
       <path value="Observation.hasMember" />
