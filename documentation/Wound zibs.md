@@ -10,14 +10,16 @@ However, for a concrete implementation in FHIR, this aspect becomes relevant. In
 For this reason, these three wound zibs are mapped onto multiple resources: there is a focal profile on Condition, while all point-in-time properties are mapped onto Observation and DocumentReference profiles. The Observation/DocumentReference resources resulting from the same assessment are organized by grouping them with a single Observation resource (profile [zib-wounds.WoundCharacteristics](http://nictiz.nl/fhir/StructureDefinition/zib-wounds.WoundCharacteristics)). This model allows to track multiple distinct assessment moments over time in connection with the Condition.
 
 ```mermaid
-graph TD
+graph LR
     Condition["`**Condition**
     burnwound, pressure ulcer or wound`"]
     
     Condition --> woundCharacteristics1
     Condition --> woundCharacteristics2
+    Condition --> woundCharacteristics3
+
     woundCharacteristics1["`**Observation**
-    assessment group at day 1`"]
+    assessment at day 1`"]
     length1["`**Observation**
     wound length at day 1`"]
     width1["`**Observation**
@@ -26,13 +28,22 @@ graph TD
     woundCharacteristics1 -->width1
 
     woundCharacteristics2["`**Observation**
-    assessment group at day 2`"]
+    assessment at day 3`"]
     length2["`**Observation**
-    wound length at day 2`"]
+    wound length at day 3`"]
     width2["`**Observation**
-    wound width at day 2`"]
+    wound width at day 3`"]
     woundCharacteristics2 -->length2
     woundCharacteristics2 -->width2
+
+    woundCharacteristics3["`**Observation**
+    assessment at day 5`"]
+    length3["`**Observation**
+    wound length at day 5`"]
+    width3["`**Observation**
+    wound width at day 5`"]
+    woundCharacteristics3 -->length3
+    woundCharacteristics3 -->width3
 
 ```
 
@@ -72,24 +83,27 @@ These resources reference each other in the following way:
 * The zib-wounds.WoundCharacteristics Observation is linked to the Condition resource using the `Observation.focus` element.
 
 ```mermaid
-graph TD
+graph LR
     Condition["`**Condition**
     zib-PressureUlcr`"]
-    woundCharacteristics1 --.focus--> Condition
+    woundCharacteristics --.focus----> Condition
 
     subgraph assessment
-        woundImage1["`**DocumentReference**
+        woundImage["`**DocumentReference**
         zib-wounds.WoundImage`"]
-        woundCharacteristics1["`**Observation**
+        woundCharacteristics["`**Observation**
         zib-wounds.WoundCharacteristics`"]
-        length1["`**Observation**
+        length["`**Observation**
         zib-wounds.WoundLength`"]
-        width1["`**Observation**
+        width["`**Observation**
         zib-wounds.WoundWidth`"]
+        xxx["`**Observation**
+        zib-xxx`"]
 
-        woundImage1 --.context.related--> woundCharacteristics1
-        woundCharacteristics1 --.hasMember--> length1
-        woundCharacteristics1 --.hasMember--> width1
+        woundImage --.context.related--> woundCharacteristics
+        woundCharacteristics --.hasMember--> length
+        woundCharacteristics --.hasMember--> width
+        woundCharacteristics --.hasMember--> xxx
 
     end
 
