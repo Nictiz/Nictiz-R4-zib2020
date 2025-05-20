@@ -29,6 +29,18 @@
       <path value="Procedure" />
       <alias value="nl-core-NursingIntervention-event" />
     </element>
+    <element id="Procedure.extension:treatmentObjective">
+      <path value="Procedure.extension" />
+      <sliceName value="treatmentObjective" />
+    </element>
+    <element id="Procedure.extension:treatmentObjective.value[x]">
+      <path value="Procedure.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Goal" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentObjective" />
+      </type>
+    </element>
     <element id="Procedure.basedOn">
       <path value="Procedure.basedOn" />
       <comment value="As described on the root comment, the zib NursingIntervention can be used for performed singular interventions, planned/requested repeating interventions and series of interventions. The current profile describes performed singular interventions. If this intervention is the result of a previously planned/requested (series of) interventions, this relation can be described using a reference to a ServiceRequest conforming to profile [nl-core-NursingIntervention-request](http://nictiz.nl/fhir/StructureDefinition/nl-core-NursingIntervention-request)." />
@@ -46,6 +58,15 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Procedure.usedReference:medicalDevice">
+      <path value="Procedure.usedReference" />
+      <sliceName value="medicalDevice" />
+      <comment value="Zib NursingIntervention defines a reference to zib MedicalDevice, which is modelled using a combination of the DeviceUseStatement and Device resources. In the context of zib NursingIntervention however, this reference is limited in scope to the materials used, which is just a subset of the entire zib MedicalDevice. In FHIR this aligns with the Device resource.&#xD;&#xA;&#xD;&#xA;For this reason, the MedicalDevice concept in zib NursingIntervention is only implemented as a reference to the [nl-core-MedicalDevice.Product](http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice.Product) profile on Device, referenced from the `Procedure.usedReference` element. This aligns with the intention of the zib.&#xD;&#xA;&#xD;&#xA;See [ZIB-2691](https://nictiz.atlassian.net/browse/ZIB-2691) for details." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice.Product" />
       </type>
     </element>
   </differential>

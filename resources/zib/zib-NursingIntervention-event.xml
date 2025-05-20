@@ -47,6 +47,32 @@
         <comment value="NursingIntervention" />
       </mapping>
     </element>
+    <element id="Procedure.extension:treatmentObjective">
+      <path value="Procedure.extension" />
+      <sliceName value="treatmentObjective" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/resource-pertainsToGoal" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Procedure.extension:treatmentObjective.value[x]">
+      <path value="Procedure.extension.value[x]" />
+      <short value="TreatmentObjective" />
+      <definition value="The description of the treatment goal that the intervention decision is based on." />
+      <comment value="Please note that the zib limits the number of zib TreatmentObjective references to 1. Since this extension can be used for Goal references outside the scope of zib TreatmentObjective, the use of this extension has been left unconstrained." />
+      <alias value="BehandelDoel" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Goal" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentObjective" />
+      </type>
+      <mapping>
+        <identity value="zib-nursingintervention-v3.2-2020EN" />
+        <map value="NL-CM:14.2.14" />
+        <comment value="TreatmentObjective" />
+      </mapping>
+    </element>
     <element id="Procedure.code">
       <path value="Procedure.code" />
       <binding>
@@ -222,6 +248,33 @@
         <identity value="zib-nursingintervention-v3.2-2020EN" />
         <map value="NL-CM:14.2.5" />
         <comment value="Comment" />
+      </mapping>
+    </element>
+    <element id="Procedure.usedReference">
+      <path value="Procedure.usedReference" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Procedure.usedReference:medicalDevice">
+      <path value="Procedure.usedReference" />
+      <sliceName value="medicalDevice" />
+      <short value="MedicalDevice" />
+      <definition value="Description of the materials used for the nursing procedure, such as bandages." />
+      <comment value="Zib NursingIntervention defines a reference to zib MedicalDevice, which is modelled using a combination of the DeviceUseStatement and Device resources. In the context of zib NursingIntervention however, this reference is limited in scope to the materials used, which is just a subset of the entire zib MedicalDevice. In FHIR this aligns with the Device resource.&#xD;&#xA;&#xD;&#xA;For this reason, the MedicalDevice concept in zib NursingIntervention is only implemented as a reference to the [zib-MedicalDevice.Product](http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice.Product) profile on Device, referenced from the `Procedure.usedReference` element. This aligns with the intention of the zib.&#xD;&#xA;&#xD;&#xA;See [ZIB-2691](https://nictiz.atlassian.net/browse/ZIB-2691) for details." />
+      <alias value="MedischHulpmiddel" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice.Product" />
+      </type>
+      <mapping>
+        <identity value="zib-nursingintervention-v3.2-2020EN" />
+        <map value="NL-CM:14.2.13" />
+        <comment value="MedicalDevice" />
       </mapping>
     </element>
   </differential>
