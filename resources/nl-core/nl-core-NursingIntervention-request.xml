@@ -29,6 +29,17 @@
       <path value="ServiceRequest" />
       <alias value="nl-core-NursingIntervention-request" />
     </element>
+    <element id="ServiceRequest.extension:pertainsToGoal">
+      <path value="ServiceRequest.extension" />
+      <sliceName value="pertainsToGoal" />
+    </element>
+    <element id="ServiceRequest.extension:pertainsToGoal.value[x]">
+      <path value="ServiceRequest.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentObjective" />
+      </type>
+    </element>
     <element id="ServiceRequest.subject">
       <path value="ServiceRequest.subject" />
       <type>

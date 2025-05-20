@@ -42,6 +42,30 @@
         <comment value="NursingIntervention" />
       </mapping>
     </element>
+    <element id="ServiceRequest.extension:pertainsToGoal">
+      <path value="ServiceRequest.extension" />
+      <sliceName value="pertainsToGoal" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/resource-pertainsToGoal" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="ServiceRequest.extension:pertainsToGoal.value[x]">
+      <path value="ServiceRequest.extension.value[x]" />
+      <short value="TreatmentObjective" />
+      <comment value="Please note that the zib limits the number of zib TreatmentObjective references to 1. Since this extension can be used for Goal references outside the scope of zib TreatmentObjective, the use of this extension has been left unconstrained." />
+      <alias value="BehandelDoel" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentObjective" />
+      </type>
+      <mapping>
+        <identity value="zib-nursingintervention-v3.2-2020EN" />
+        <map value="NL-CM:14.2.14" />
+        <comment value="TreatmentObjective" />
+      </mapping>
+    </element>
     <element id="ServiceRequest.code">
       <path value="ServiceRequest.code" />
       <short value="Intervention" />
