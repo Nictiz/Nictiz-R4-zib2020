@@ -434,7 +434,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 
 ### PharmaceuticalProduct v2.1.2
 * Profile: zib-PharmaceuticalProduct
-* Status: in progress
+* Status: validated
 
 ### Pregnancy-v4.0
 * Profiles:
