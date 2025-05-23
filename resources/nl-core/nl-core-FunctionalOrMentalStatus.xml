@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-FunctionalOrMentalStatus" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FunctionalOrMentalStatus" />
   <name value="NlcoreFunctionalOrMentalStatus" />
   <title value="nl core FunctionalOrMentalStatus" />
@@ -35,8 +33,19 @@
   <differential>
     <element id="Observation">
       <path value="Observation" />
-      <comment value="Please note that on a functional level, zib FunctionalOrMentalStatus references zib MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept MedicalDevice (NL-CM:4.26.5) is mapped on `DeviceUseStatement.reasonReference` in profile [nl-core-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice) instead of in this profile." />
       <alias value="nl-core-FunctionalOrMentalStatus" />
+    </element>
+    <element id="Observation.extension:medicalDevice">
+      <path value="Observation.extension" />
+      <sliceName value="medicalDevice" />
+    </element>
+    <element id="Observation.extension:medicalDevice.value[x]">
+      <path value="Observation.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice" />
+      </type>
     </element>
     <element id="Observation.subject">
       <path value="Observation.subject" />

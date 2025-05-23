@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-HearingFunction" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-HearingFunction" />
   <name value="ZibHearingFunction" />
   <title value="zib HearingFunction" />
@@ -36,12 +34,36 @@
     <element id="Observation">
       <path value="Observation" />
       <short value="HearingFunction" />
-      <comment value="Please note that on a functional level, zib HearingFunction references zib MedicalDevice, but in FHIR this direction is reversed. Therefore, the concept HearingAid (NL-CM:4.17.4) is mapped on `DeviceUseStatement.reasonReference:observation` in profile [zib-HearingFunction.HearingAid](http://nictiz.nl/fhir/StructureDefinition/zib-HearingFunction.HearingAid) instead of in this profile." />
       <alias value="FunctieHoren" />
       <mapping>
         <identity value="zib-hearingfunction-v3.2-2020EN" />
         <map value="NL-CM:4.17.1" />
         <comment value="HearingFunction" />
+      </mapping>
+    </element>
+    <element id="Observation.extension:hearingAid">
+      <path value="Observation.extension" />
+      <sliceName value="hearingAid" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/workflow-supportingInfo" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Observation.extension:hearingAid.value[x]">
+      <path value="Observation.extension.value[x]" />
+      <short value="HearingAid" />
+      <definition value="The medical aid used to help the patient hear." />
+      <alias value="HorenHulpmiddel" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HearingFunction.HearingAid" />
+      </type>
+      <mapping>
+        <identity value="zib-hearingfunction-v3.2-2020EN" />
+        <map value="NL-CM:4.17.4" />
+        <comment value="HearingAid" />
       </mapping>
     </element>
     <element id="Observation.code">

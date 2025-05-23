@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-HearingFunction.HearingAid" />
   <text>
-    <status value="empty" />
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HearingFunction.HearingAid" />
   <name value="NlcoreHearingFunctionHearingAid" />
   <title value="nl core HearingFunction.HearingAid" />
@@ -44,9 +42,8 @@
     </element>
     <element id="DeviceUseStatement.extension:healthProfessional.value[x]">
       <path value="DeviceUseStatement.extension.value[x]" />
-      <type>
+      <comment value="Each occurrence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [nl-core-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [nl-core-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner)). The Practitioner resource is referenced from the PractitionerRole instance. For this reason, sending systems should fill the reference to the PractitionerRole instance here, and not the Practitioner resource. Receiving systems can then retrieve the reference to the Practitioner resource from that PractitionerRole instance.&#xD;&#xA;&#xD;&#xA;In rare circumstances, there is only a Practitioner instance, in which case it is that instance which will be referenced here. However, since this should be the exception, the nl-core-HealthProfessional-Practitioner profile is not explicitly mentioned as a target profile." />      <type>
         <code value="Reference" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
       </type>
     </element>
@@ -60,6 +57,18 @@
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.extension:treatmentObjective">
+      <path value="DeviceUseStatement.extension" />
+      <sliceName value="treatmentObjective" />
+    </element>
+    <element id="DeviceUseStatement.extension:treatmentObjective.value[x]">
+      <path value="DeviceUseStatement.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Goal" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentObjective" />
       </type>
     </element>
     <element id="DeviceUseStatement.subject">
@@ -101,14 +110,6 @@
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
-      </type>
-    </element>
-    <element id="DeviceUseStatement.reasonReference:hearingFunction">
-      <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="hearingFunction" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HearingFunction" />
       </type>
     </element>
     <element id="DeviceUseStatement.bodySite">

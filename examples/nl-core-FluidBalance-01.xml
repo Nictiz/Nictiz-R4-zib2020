@@ -23,18 +23,6 @@
             </td>
             <td/>
           </tr>
-          <tr>
-            <td>
-              <span title="totale vochtinname (251852001 - SNOMED CT)">totale vochtinname</span>
-            </td>
-            <td>1400 mL</td>
-          </tr>
-          <tr>
-            <td>
-              <span title="totale vochtuitscheiding (251841007 - SNOMED CT)">totale vochtuitscheiding</span>
-            </td>
-            <td>1000 mL</td>
-          </tr>
         </tbody>
       </table>
     </div>
@@ -59,34 +47,14 @@
   <note>
     <text value="Moeite met aflezen"/>
   </note>
-  <component>
-    <code>
-      <coding>
-        <system value="http://snomed.info/sct"/>
-        <code value="251852001"/>
-        <display value="totale vochtinname"/>
-      </coding>
-    </code>
-    <valueQuantity>
-      <value value="1400"/>
-      <unit value="mL"/>
-      <system value="http://unitsofmeasure.org"/>
-      <code value="mL"/>
-    </valueQuantity>
-  </component>
-  <component>
-    <code>
-      <coding>
-        <system value="http://snomed.info/sct"/>
-        <code value="251841007"/>
-        <display value="totale vochtuitscheiding"/>
-      </coding>
-    </code>
-    <valueQuantity>
-      <value value="1000"/>
-      <unit value="mL"/>
-      <system value="http://unitsofmeasure.org"/>
-      <code value="mL"/>
-    </valueQuantity>
-  </component>
+  <hasMember>
+    <reference value="Observation/nl-core-FluidBalance.FluidTotalIn-01"/>
+    <type value="Observation"/>
+    <display value="vocht_totaal_in"/>
+  </hasMember>
+  <hasMember>
+    <reference value="Observation/nl-core-FluidBalance.FluidTotalOut-01"/>
+    <type value="Observation"/>
+    <display value="vocht_totaal_uit"/>
+  </hasMember>
 </Observation>

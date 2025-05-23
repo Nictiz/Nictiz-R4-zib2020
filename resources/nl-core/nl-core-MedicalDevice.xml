@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-MedicalDevice" />
   <text>
-    <status value="empty" />
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice" />
   <name value="NlcoreMedicalDevice" />
   <title value="nl core MedicalDevice" />
@@ -33,24 +31,19 @@
     <name value="zib Procedure-v5.2(2020EN)" />
   </mapping>
   <mapping>
-    <identity value="zib-bowelfunction-v3.1.1-2020EN" />
-    <uri value="https://zibs.nl/wiki/BowelFunction-v3.1.1(2020EN)" />
-    <name value="zib BowelFunction-v3.1.1(2020EN)" />
+    <identity value="zib-stoma-v3.3-2020EN" />
+    <uri value="https://zibs.nl/wiki/Stoma-v3.3(2020EN)" />
+    <name value="zib Stoma-v3.3(2020EN)" />
+  </mapping>
+  <mapping>
+    <identity value="zib-treatmentobjective-v3.2-2020EN" />
+    <uri value="https://zibs.nl/wiki/TreatmentObjective-v3.2(2020EN)" />
+    <name value="zib TreatmentObjective-v3.2(2020EN)" />
   </mapping>
   <mapping>
     <identity value="zib-functionalormentalstatus-v3.2-2020EN" />
     <uri value="https://zibs.nl/wiki/FunctionalOrMentalStatus-v3.2(2020EN)" />
     <name value="zib FunctionalOrMentalStatus-v3.2(2020EN)" />
-  </mapping>
-  <mapping>
-    <identity value="zib-mobility-v3.3-2020EN" />
-    <uri value="https://zibs.nl/wiki/Mobility-v3.3(2020EN)" />
-    <name value="zib Mobility-v3.3(2020EN)" />
-  </mapping>
-  <mapping>
-    <identity value="zib-stoma-v3.3-2020EN" />
-    <uri value="https://zibs.nl/wiki/Stoma-v3.3(2020EN)" />
-    <name value="zib Stoma-v3.3(2020EN)" />
   </mapping>
   <kind value="resource" />
   <abstract value="false" />
@@ -68,9 +61,8 @@
     </element>
     <element id="DeviceUseStatement.extension:healthProfessional.value[x]">
       <path value="DeviceUseStatement.extension.value[x]" />
-      <type>
+      <comment value="Each occurrence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [nl-core-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [nl-core-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner)). The Practitioner resource is referenced from the PractitionerRole instance. For this reason, sending systems should fill the reference to the PractitionerRole instance here, and not the Practitioner resource. Receiving systems can then retrieve the reference to the Practitioner resource from that PractitionerRole instance.&#xD;&#xA;&#xD;&#xA;In rare circumstances, there is only a Practitioner instance, in which case it is that instance which will be referenced here. However, since this should be the exception, the nl-core-HealthProfessional-Practitioner profile is not explicitly mentioned as a target profile." />      <type>
         <code value="Reference" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/pattern-NlCoreHealthProfessionalReference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
       </type>
     </element>
@@ -84,6 +76,19 @@
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider" />
+      </type>
+    </element>
+    <element id="DeviceUseStatement.extension:treatmentObjective">
+      <path value="DeviceUseStatement.extension" />
+      <sliceName value="treatmentObjective" />
+    </element>
+    <element id="DeviceUseStatement.extension:treatmentObjective.value[x]">
+      <path value="DeviceUseStatement.extension.value[x]" />
+      <comment value="Zib TreatmentObjective (represented by the Goal resource in FHIR) can use the data model of zib FunctionalOrMentalStatus to describe the desired treatment objective, which in turn may refer zib MedicalDevice to indicate the intent to use that device for reaching the treatment objective.&#xD;&#xA;&#xD;&#xA;In FHIR, the modeling deviates somewhat from this approach:&#xD;&#xA;&#xD;&#xA;* Both zib TreatmentObjective and the desired zib FunctionalOrMentalStatus are represented using the [nl-core-TreatmentObjective](http://nictiz.nl/fhir/nl-core-TreatmentObjective) profile on the Goal resource.&#xD;&#xA;* The reference from TreatmentObjective::FunctionalOrMentalStatus::MedicalDevice is in the opposite direction, to the Goal resource.&#xD;&#xA;&#xD;&#xA;This extension may thus be used to represent the link zib TreatmentObjective -&gt; zib FunctionalOrMentalStatus -&gt; zib MedicalDevice. In this situation, it is expected that `DeviceUseStatement.status` is set to _intended_." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Goal" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentObjective" />
       </type>
     </element>
     <element id="DeviceUseStatement.subject">
@@ -125,30 +130,6 @@
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem" />
-      </type>
-    </element>
-    <element id="DeviceUseStatement.reasonReference:bowelFunction">
-      <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="bowelFunction" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction" />
-      </type>
-    </element>
-    <element id="DeviceUseStatement.reasonReference:functionalOrMentalStatus">
-      <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="functionalOrMentalStatus" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FunctionalOrMentalStatus" />
-      </type>
-    </element>
-    <element id="DeviceUseStatement.reasonReference:mobility">
-      <path value="DeviceUseStatement.reasonReference" />
-      <sliceName value="mobility" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility" />
       </type>
     </element>
     <element id="DeviceUseStatement.reasonReference:stoma">
