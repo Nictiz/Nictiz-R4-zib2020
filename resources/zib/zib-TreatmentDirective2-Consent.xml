@@ -54,20 +54,6 @@
         <comment value="TreatmentDirective" />
       </mapping>
     </element>
-    <element id="Consent.extension:additionalAdvanceDirective">
-      <path value="Consent.extension" />
-      <sliceName value="additionalAdvanceDirective" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.AdvanceDirective" />
-      </type>
-      <condition value="zib-TreatmentDirective2-1" />
-    </element>
-    <element id="Consent.extension:additionalAdvanceDirective.value[x]">
-      <path value="Consent.extension.value[x]" />
-      <comment value="`Consent.source:sourceReference` is the primary target for referencing zib AdvanceDirective (zib concept NL-CM:2.2.8). However, the cardinality of `Consent.source[x]` is restricted to `0..1`. If more than one AdvanceDirective needs to be referenced, the _additional_ references can be communicated using this extension. If this extension is used, `Consent.source:sourceReference` SHALL be populated and it SHALL not contain the same reference as this extension." />
-      <condition value="zib-TreatmentDirective2-1" />
-    </element>
     <element id="Consent.extension:comment">
       <path value="Consent.extension" />
       <sliceName value="comment" />
@@ -88,6 +74,20 @@
         <map value="NL-CM:2.2.13" />
         <comment value="Comment" />
       </mapping>
+    </element>
+    <element id="Consent.extension:additionalAdvanceDirective">
+      <path value="Consent.extension" />
+      <sliceName value="additionalAdvanceDirective" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.AdvanceDirective" />
+      </type>
+      <condition value="zib-TreatmentDirective2-1" />
+    </element>
+    <element id="Consent.extension:additionalAdvanceDirective.value[x]">
+      <path value="Consent.extension.value[x]" />
+      <comment value="`Consent.source:sourceReference` is the primary target for referencing zib AdvanceDirective (zib concept NL-CM:2.2.8). However, the cardinality of `Consent.source[x]` is restricted to `0..1`. If more than one AdvanceDirective needs to be referenced, the _additional_ references can be communicated using this extension. If this extension is used, `Consent.source:sourceReference` SHALL be populated and it SHALL not contain the same reference as this extension." />
+      <condition value="zib-TreatmentDirective2-1" />
     </element>
     <element id="Consent.modifierExtension:specificationOther">
       <path value="Consent.modifierExtension" />
