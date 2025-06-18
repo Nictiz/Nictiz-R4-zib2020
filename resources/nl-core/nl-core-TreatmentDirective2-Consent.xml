@@ -31,16 +31,29 @@
   <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective2-Consent" />
   <derivation value="constraint" />
   <differential>
+    <element id="Consent.extension:additionalAdvanceDirective">
+      <path value="Consent.extension" />
+      <sliceName value="additionalAdvanceDirective" />
+    </element>
+    <element id="Consent.extension:additionalAdvanceDirective.value[x]">
+      <path value="Consent.extension.value[x]" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdvanceDirective" />
+      </type>
+    </element>
     <element id="Consent.performer">
       <path value="Consent.performer" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
       </type>
     </element>
     <element id="Consent.source[x]:sourceReference">
@@ -48,11 +61,11 @@
       <sliceName value="sourceReference" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdvanceDirective" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Consent" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Contract" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdvanceDirective" />
       </type>
     </element>
   </differential>
