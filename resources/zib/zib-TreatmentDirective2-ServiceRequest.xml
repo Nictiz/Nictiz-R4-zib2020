@@ -1,12 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-TreatmentDirective2-ServiceRequest" />
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective2-ServiceRequest" />
   <name value="ZibTreatmentDirective2ServiceRequest" />
   <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A treatment directive contains a joint decision between a health professional (for example a general practitioner) and a patient or his representative(s) about the desirability of performing a certain treatment, such as resuscitation, before this treatment becomes (acute) necessary.&amp;#xD;&amp;#xA;When the need arises and the treatment cannot be discussed with the patient or representative (s), that decision is an important indication for the treating health professional (for example an ER doctor).&amp;#xD;&amp;#xA;The term treatment limit is a synonym of the term treatment directive." />
+  <purpose value="This Servicerequest resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) TreatmentDirective2-v1.0 (2020)](https://zibs.nl/wiki/TreatmentDirective2-v1.0(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
   <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/TreatmentDirective2-v1.0(2020EN)" />
+    <name value="zib TreatmentDirective2-v1.0(2020EN)" />
+  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="ServiceRequest" />
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/ServiceRequest" />
   <derivation value="constraint" />
+  <differential>
+    <element id="ServiceRequest">
+      <path value="ServiceRequest" />
+      <short value="TreatmentDirective" />
+      <comment value="A straightforward and accurate mapping of zib TreatmentDirective2 to FHIR is not possible. The main consideration is to choose between the Consent and CarePlan resource. Unfortunately, the Consent resource does not have full support for treatment directives yet as its main focus is to model Patient's privacy consents. Regardless, it seems to be the best match to represent the intention of the zib, as both the resource and the zib cover a mutual agreement about treatments and not per se the resulting actions or policy for treatments, which would better be handled using the CarePlan resource. Future migration to a later version of FHIR or the zib will result in the reevaluation of the mapping." />
+      <alias value="BehandelAanwijzing" />
+      <mapping>
+        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+        <map value="NL-CM:2.2.1" />
+        <comment value="TreatmentDirective" />
+      </mapping>
+    </element>
+    <element id="ServiceRequest.status">
+      <path value="ServiceRequest.status" />
+      <comment value="This element is implicitly mapped to the zib concepts NL-CM:2.2.5 (MostRecentReviewDate) and NL-CM:2.2.6 (DateExpired). Unless the status is explicitly recorded, the following guidance applies:&amp;#xD;&amp;#xA;&amp;#xD;&amp;#xA;* When MostRecentReviewDate is in the past and DateExpired is absent or in the future, `.status` will usually be set to _active_.&amp;#xD;&amp;#xA;* When DateExpired is in the past, `.status` will usually be set to _revoked_.&amp;#xD;&amp;#xA;* When MostRecentReviewDate is absent or in the future,  which is not possible following the zib, `.status` will usually be set to _draft_." />
+      <mapping>
+        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+        <map value="NL-CM:2.2.5" />
+        <comment value="MostRecentReviewDate (implicit, main mapping is on `Consent.dateTime`)" />
+      </mapping>
+    </element>
+    <element id="ServiceRequest.intent">
+      <path value="ServiceRequest.intent" />
+      <definition value="The resource will be used for TreatmentDirective purposes so the fixed value will always be directive." />
+      <fixedCode value="directive" />
+    </element>
+    <element id="ServiceRequest.category.coding.system">
+      <path value="ServiceRequest.category.coding.system" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="ServiceRequest.category.coding.code">
+      <path value="ServiceRequest.category.coding.code" />
+      <fixedCode value="11291000146105" />
+    </element>
+    <element id="ServiceRequest.code">
+      <path value="ServiceRequest.code" />
+      <short value="Treatment" />
+      <definition value="The medical treatment to which the treatment instruction applies." />
+      <alias value="Behandeling" />
+      <binding>
+        <strength value="required" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.2.2.1--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+        <map value="NL-CM:2.2.3" />
+        <comment value="Treatment" />
+      </mapping>
+    </element>
+    <element id="ServiceRequest.code.text">
+      <path value="ServiceRequest.code.text" />
+      <mapping>
+        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+        <map value="NL-CM:2.2.4" />
+        <comment value="SpecificationOther" />
+      </mapping>
+    </element>
+    <element id="ServiceRequest.occurrence[x]">
+      <path value="ServiceRequest.occurrence[x]" />
+      <type>
+        <code value="Period" />
+      </type>
+    </element>
+    <element id="ServiceRequest.occurrence[x].end">
+      <path value="ServiceRequest.occurrence[x].end" />
+      <short value="DateExpired" />
+      <definition value="The date on which the treatment directive has been withdrawn and therefore no longer applies. An explicit decision must be taken about the 'date expired', in consultation between the responsible care provider and the patient or his representative(s).Any future termination can only be entered as a condition. Often this will be linked to 1 or more events." />
+      <comment value="enddate occured then .status is revoked/completed" />
+      <alias value="DatumBeeindigd" />
+      <mapping>
+        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+        <map value="NL-CM:2.2.6" />
+        <comment value="DateExpired" />
+      </mapping>
+    </element>
+    <element id="ServiceRequest.supportingInfo">
+      <path value="ServiceRequest.supportingInfo" />
+      <definition value="TreatmentDirective2 Consent information." />
+      <comment value="Reference to TreatmentDirective2 Consent resource." />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective2-Consent" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+      </type>
+    </element>
+  </differential>
 </StructureDefinition>
