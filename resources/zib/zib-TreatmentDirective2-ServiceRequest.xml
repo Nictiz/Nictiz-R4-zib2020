@@ -39,6 +39,24 @@
         <comment value="TreatmentDirective" />
       </mapping>
     </element>
+    <element id="ServiceRequest.modifierExtension:specificationOther">
+      <path value="ServiceRequest.modifierExtension" />
+      <sliceName value="specificationOther" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.SpecificationOther" />
+      </type>
+      <condition value="zib-TreatmentDirective2-2" />
+      <mapping>
+        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+        <map value="NL-CM:2.2.4" />
+        <comment value="specificationOther" />
+      </mapping>
+    </element>
+    <element id="ServiceRequest.modifierExtension:specificationOther.value[x]">
+      <path value="ServiceRequest.modifierExtension.value[x]" />
+      <condition value="zib-TreatmentDirective2-2" />
+    </element>
     <element id="ServiceRequest.status">
       <path value="ServiceRequest.status" />
       <comment value="This element is implicitly mapped to the zib concepts NL-CM:2.2.5 (MostRecentReviewDate) and NL-CM:2.2.6 (DateExpired). Unless the status is explicitly recorded, the following guidance applies:&amp;#xD;&amp;#xA;&amp;#xD;&amp;#xA;* When MostRecentReviewDate is in the past and DateExpired is absent or in the future, `.status` will usually be set to _active_.&amp;#xD;&amp;#xA;* When DateExpired is in the past, `.status` will usually be set to _revoked_.&amp;#xD;&amp;#xA;* When MostRecentReviewDate is absent or in the future,  which is not possible following the zib, `.status` will usually be set to _draft_." />
@@ -61,6 +79,15 @@
       <path value="ServiceRequest.category.coding.code" />
       <fixedCode value="11291000146105" />
     </element>
+    <element id="ServiceRequest.doNotPerform">
+      <path value="ServiceRequest.doNotPerform" />
+      <meaningWhenMissing value="If missing, the specificationOther from the modifierExtension SHALL be used." />
+      <mapping>
+        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+        <map value="NL-CM:2.2.2" />
+        <comment value="TreatmentDecision" />
+      </mapping>
+    </element>
     <element id="ServiceRequest.code">
       <path value="ServiceRequest.code" />
       <short value="Treatment" />
@@ -74,14 +101,6 @@
         <identity value="zib-treatmentdirective2-v1.0-2020EN" />
         <map value="NL-CM:2.2.3" />
         <comment value="Treatment" />
-      </mapping>
-    </element>
-    <element id="ServiceRequest.code.text">
-      <path value="ServiceRequest.code.text" />
-      <mapping>
-        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
-        <map value="NL-CM:2.2.4" />
-        <comment value="SpecificationOther" />
       </mapping>
     </element>
     <element id="ServiceRequest.occurrence[x]">

@@ -64,6 +64,10 @@
       </type>
       <isModifier value="false" />
     </element>
+    <element id="Consent.extension:comment.url">
+      <path value="Consent.extension.url" />
+      <fixedUri value="http://hl7.org/fhir/StructureDefinition/note" />
+    </element>
     <element id="Consent.extension:comment.value[x]">
       <path value="Consent.extension.value[x]" />
       <short value="Comment" />
@@ -88,19 +92,6 @@
       <path value="Consent.extension.value[x]" />
       <comment value="`Consent.source:sourceReference` is the primary target for referencing zib AdvanceDirective (zib concept NL-CM:2.2.8). However, the cardinality of `Consent.source[x]` is restricted to `0..1`. If more than one AdvanceDirective needs to be referenced, the _additional_ references can be communicated using this extension. If this extension is used, `Consent.source:sourceReference` SHALL be populated and it SHALL not contain the same reference as this extension." />
       <condition value="zib-TreatmentDirective2-1" />
-    </element>
-    <element id="Consent.modifierExtension:specificationOther">
-      <path value="Consent.modifierExtension" />
-      <sliceName value="specificationOther" />
-      <type>
-        <code value="Extension" />
-        <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.SpecificationOther" />
-      </type>
-      <condition value="zib-TreatmentDirective2-2" />
-    </element>
-    <element id="Consent.modifierExtension:specificationOther.value[x]">
-      <path value="Consent.modifierExtension.value[x]" />
-      <condition value="zib-TreatmentDirective2-2" />
     </element>
     <element id="Consent.status">
       <path value="Consent.status" />
@@ -180,12 +171,12 @@
       <mapping>
         <identity value="zib-treatmentdirective2-v1.0-2020EN" />
         <map value="NL-CM:2.2.11" />
-        <comment value="Vertegenwoordiger" />
+        <comment value="Representative::ContactPerson" />
       </mapping>
       <mapping>
         <identity value="zib-treatmentdirective2-v1.0-2020EN" />
         <map value="NL-CM:2.2.12" />
-        <comment value="Zorgverlener" />
+        <comment value="HealthProfessional" />
       </mapping>
     </element>
     <element id="Consent.source[x]">
