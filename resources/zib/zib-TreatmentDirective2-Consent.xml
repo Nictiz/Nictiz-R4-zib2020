@@ -211,6 +211,7 @@
       <path value="Consent.provision.type" />
       <short value="TreatmentDecision" />
       <definition value="The joint decision taken with regard to the desirability of performing the indicated treatment. If the agreement is 'Other', 'Specification Other' shall contain the instructions for whether or not to carry out the treatment. Implementers SHALL support the specificationOther modifier extension for this." />
+      <comment value="This element can only be used for situations where TreatmentDecision is _Wel uitvoeren_ (_allow_) or _Niet uitvoeren_ (_deny_). It the TreatmentDecision is _Anders_, this element MUST be absent and the modifier extension [ext-TreatmentDirective2.SpecificationOther](http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.SpecificationOther) MUST be populated with the textual decision according to zib concept SpecificationOther." />
       <alias value="BehandelBesluit" />
       <condition value="zib-TreatmentDirective2-2" />
       <binding>
