@@ -3,6 +3,7 @@
   <id value="zib-TreatmentDirective2-ServiceRequest" />
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective2-ServiceRequest" />
   <name value="ZibTreatmentDirective2ServiceRequest" />
+  <title value="zib TreatmentDirective2 ServiceRequest" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -23,7 +24,7 @@
     <name value="zib TreatmentDirective2-v1.0(2020EN)" />
   </mapping>
   <kind value="resource" />
-  <abstract value="false" />
+  <abstract value="true" />
   <type value="ServiceRequest" />
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/ServiceRequest" />
   <derivation value="constraint" />
@@ -46,11 +47,6 @@
         <code value="Extension" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.ReasonForEnding" />
       </type>
-      <mapping>
-        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
-        <map value="NL-CM:2.2.7" />
-        <comment value="ReasonForEnding" />
-      </mapping>
     </element>
     <element id="ServiceRequest.modifierExtension:specificationOther">
       <path value="ServiceRequest.modifierExtension" />
@@ -60,11 +56,6 @@
         <profile value="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.SpecificationOther" />
       </type>
       <condition value="zib-TreatmentDirective2-2" />
-      <mapping>
-        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
-        <map value="NL-CM:2.2.4" />
-        <comment value="specificationOther" />
-      </mapping>
     </element>
     <element id="ServiceRequest.modifierExtension:specificationOther.value[x]">
       <path value="ServiceRequest.modifierExtension.value[x]" />
@@ -72,7 +63,7 @@
     </element>
     <element id="ServiceRequest.status">
       <path value="ServiceRequest.status" />
-      <comment value="This element is implicitly mapped to the zib concepts NL-CM:2.2.5 (MostRecentReviewDate) and NL-CM:2.2.6 (DateExpired). Unless the status is explicitly recorded, the following guidance applies:&amp;#xD;&amp;#xA;&amp;#xD;&amp;#xA;* When MostRecentReviewDate is in the past and DateExpired is absent or in the future, `.status` will usually be set to _active_.&amp;#xD;&amp;#xA;* When DateExpired is in the past, `.status` will usually be set to _revoked_.&amp;#xD;&amp;#xA;* When MostRecentReviewDate is absent or in the future,  which is not possible following the zib, `.status` will usually be set to _draft_." />
+      <comment value="This element is implicitly mapped to the zib concepts NL-CM:2.2.5 (MostRecentReviewDate) and NL-CM:2.2.6 (DateExpired). Unless the status is explicitly recorded, the following guidance applies:&#xD;&#xA;&#xD;&#xA;* When MostRecentReviewDate is in the past and DateExpired is absent or in the future, `.status` will usually be set to _active_.&#xD;&#xA;* When DateExpired is in the past, `.status` will usually be set to _revoked_&#xD;&#xA;* When MostRecentReviewDate is absent or in the future,  which is not possible following the zib, `.status` will usually be set to _draft_." />
       <mapping>
         <identity value="zib-treatmentdirective2-v1.0-2020EN" />
         <map value="NL-CM:2.2.5" />
@@ -81,20 +72,23 @@
     </element>
     <element id="ServiceRequest.intent">
       <path value="ServiceRequest.intent" />
-      <definition value="The resource will be used for TreatmentDirective purposes so the fixed value will always be directive." />
-      <fixedCode value="directive" />
+      <comment value="This resource represents a treatment directive according to zib TreatmentDirective2. For this reason, the `.purpose` is fixed on _directive_." />
+      <patternCode value="directive" />
     </element>
-    <element id="ServiceRequest.category.coding.system">
-      <path value="ServiceRequest.category.coding.system" />
-      <fixedUri value="http://snomed.info/sct" />
-    </element>
-    <element id="ServiceRequest.category.coding.code">
-      <path value="ServiceRequest.category.coding.code" />
-      <fixedCode value="11291000146105" />
+    <element id="ServiceRequest.category">
+      <path value="ServiceRequest.category" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="11291000146105" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="ServiceRequest.doNotPerform">
       <path value="ServiceRequest.doNotPerform" />
-      <meaningWhenMissing value="If missing, the specificationOther from the modifierExtension SHALL be used." />
+      <short value="TreatmentDecision" />
+      <definition value="The joint decision taken with regard to the desirability of performing the indicated treatment." />
+      <alias value="BehandelBesluit" />
       <mapping>
         <identity value="zib-treatmentdirective2-v1.0-2020EN" />
         <map value="NL-CM:2.2.2" />
@@ -118,11 +112,22 @@
     </element>
     <element id="ServiceRequest.occurrence[x]">
       <path value="ServiceRequest.occurrence[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="ServiceRequest.occurrence[x]:occurrencePeriod">
+      <path value="ServiceRequest.occurrence[x]" />
+      <sliceName value="occurrencePeriod" />
       <type>
         <code value="Period" />
       </type>
     </element>
-    <element id="ServiceRequest.occurrence[x].end">
+    <element id="ServiceRequest.occurrence[x]:occurrencePeriod.end">
       <path value="ServiceRequest.occurrence[x].end" />
       <short value="DateExpired" />
       <definition value="The date on which the treatment directive has been withdrawn and therefore no longer applies. An explicit decision must be taken about the 'date expired', in consultation between the responsible care provider and the patient or his representative(s).Any future termination can only be entered as a condition. Often this will be linked to 1 or more events." />
@@ -141,8 +146,8 @@
       <min value="1" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective2-Consent" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective2-Consent" />
       </type>
     </element>
   </differential>

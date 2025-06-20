@@ -3,6 +3,7 @@
   <id value="nl-core-TreatmentDirective2-ServiceRequest" />
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentDirective2-ServiceRequest" />
   <name value="NlcoreTreatmentDirective2ServiceRequest" />
+  <title value="nl core TreatmentDirective2 ServiceRequest" />
   <status value="draft" />
   <publisher value="Nictiz" />
   <contact>
@@ -28,12 +29,27 @@
   <baseDefinition value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective2-ServiceRequest" />
   <derivation value="constraint" />
   <differential>
+    <element id="ServiceRequest">
+      <path value="ServiceRequest" />
+      <alias value="nl-core-TreatmentDirective2-ServiceRequest" />
+    </element>
+    <element id="ServiceRequest.subject">
+      <path value="ServiceRequest.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+      </type>
+    </element>
     <element id="ServiceRequest.supportingInfo">
       <path value="ServiceRequest.supportingInfo" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentDirective2-Consent" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentDirective2-Consent" />
       </type>
     </element>
   </differential>
