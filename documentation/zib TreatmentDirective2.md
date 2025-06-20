@@ -2,7 +2,7 @@
 ## Consent vs. ServiceRequest
 At the time of writing, there is no obvious way to represent treatment directives in FHIR. The Consent resource [states that](https://www.hl7.org/fhir/R4/consent.html#scope) it's intended to cover the use case of "Advance Care Directives: Consent to instructions for potentially needed medical treatment (e.g. DNR)", but that this use case is not modeled yet.
 
-Meanwhile there is [discussion in the FHIR community](https://jira.hl7.org/browse/FHIR-50903) if the ResourceRequest would be a better fit. A ServiceRequest is an actionable resource, and it supports _directive_ as an `.intent`. The Consent resource on the other hand is about a consumer choice, which is not the same as an agreement as a treatment directive defines. Indeed, the PACIO Advance Directive Interoperability IG [has adopted ServiceRequest](https://build.fhir.org/ig/HL7/fhir-pacio-adi/StructureDefinition-ADI-PMOCPRServiceRequest.html) to model a(relative simple) DNR directive.
+Meanwhile there is [discussion in the FHIR community](https://jira.hl7.org/browse/FHIR-50903) if the ServiceRequest would be a better fit. A ServiceRequest is an actionable resource, and it supports _directive_ as an `.intent`. The Consent resource on the other hand is about a consumer choice, which is not the same as an agreement as a treatment directive defines. Indeed, the PACIO Advance Directive Interoperability IG [has adopted ServiceRequest](https://build.fhir.org/ig/HL7/fhir-pacio-adi/StructureDefinition-ADI-PMOCPRServiceRequest.html) to model a(relative simple) DNR directive.
 
 However, the zib is a more elaborate model than what the ServiceRequest resource (or the Consent resource) can cover. For this reason, the choice has been made to model the zib onto both resources.
 
