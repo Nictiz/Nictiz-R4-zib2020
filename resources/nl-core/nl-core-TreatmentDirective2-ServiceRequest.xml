@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-TreatmentDirective2-ServiceRequest" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentDirective2-ServiceRequest" />
   <name value="NlcoreTreatmentDirective2ServiceRequest" />
   <title value="nl core TreatmentDirective2 ServiceRequest" />
@@ -31,6 +33,7 @@
   <differential>
     <element id="ServiceRequest">
       <path value="ServiceRequest" />
+      <comment value="At the time of writing, there is no obvious way to represent treatment directives in FHIR. The Consent states that they are in scope, but not yet modeled in FHIR R4. Meanwhile there is [discussion in the FHIR community](https://jira.hl7.org/browse/FHIR-50903) if the ServiceRequest would be a better fit.&#xD;&#xA;&#xD;&#xA;For this reason, zib TreatmentDirective2 if mapped onto both the ServiceRequest and the Consent resource:&#xD;&#xA;&#xD;&#xA;* This ServiceRequest resource should be regarded the actionable resource. It covers the decision to perform or not perform a specific treatment, and information if this decision is still active.&#xD;&#xA;* The [Consent resource](http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentDirective2-Consent) is the resource containing the details of the agreement. It duplicates the information that is also present in this ServiceRequest. The Consent resource can be referenced from `ServiceRequest.supportingInfo`." />
       <alias value="nl-core-TreatmentDirective2-ServiceRequest" />
     </element>
     <element id="ServiceRequest.subject">
