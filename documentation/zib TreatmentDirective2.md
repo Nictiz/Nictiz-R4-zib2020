@@ -9,6 +9,17 @@ However, the zib is a more elaborate model than what the ServiceRequest resource
 * The ServiceRequest resource (zib-TreatmentDirective2-ServiceRequest) should be regarded the actionable resource. It covers the decision to perform or not perform a specific treatment, and information if this decision is still active.
 * The Consent resource (zib-TreatmentDirective2-Consent) is the resource containing the details of the agreement. It duplicates the information that is also present in the ServiceRequest. The Consent resource can be referenced from the ServiceRequest resource.
 
+```mermaid
+flowchart TB
+    zib-TreatmentDirective2-ServiceRequest["`**ServiceRequest**
+        (zib-TreatmentDirective2-ServiceRequest)
+        _Actionable resource with limited details_`"]
+    zib-TreatmentDirective2-Consent["`**Consent**
+        (zib-TreatmentDirective2-Consent)
+        _Details on the agreement_`"]
+    zib-TreatmentDirective2-ServiceRequest --> zib-TreatmentDirective2-Consent
+```
+
 ## Modifier extension "SpecificationOther"
 Both the Consent and the ServiceRequest resource include the option to indicate that whether the treatment should be performed:
 
