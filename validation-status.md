@@ -226,7 +226,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 
 ### FeedingPatternInfant v1.1
 * Profile: zib-FeedingPatternInfant
-* Status: rejected
+* Status: validated
 
 ### FeedingTubeSystem v3.3
 * Status: not submitted for validation
@@ -486,7 +486,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 
 ### Refraction v1.0
 * Profile: zib-Refraction
-* Status: in progress
+* Status: validated
 
 ### Respiration v3.2
 * Status: not submitted for validation
