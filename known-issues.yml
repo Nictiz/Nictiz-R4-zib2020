@@ -550,6 +550,28 @@ zib-MedicationContraIndication:
       - cardinality: 1..1 instead of 0..1
         reason: Flag.code is mandatory in FHIR. The cardinality matches the cardinality of the zib, but not the conceptual cardinality. This should not be a major problem, as a contraindication is useless without specifying what it pertains to.
 
+zib-MultidisciplinaryTeamMeeting:
+  zib deviations:
+    Encounter.participant.type:
+      - short: RoleParticipant instead of RolDeelnemer
+        reason: The zib concept name "RolDeelnemer" is not translated into English (but this has been corrected in prerelease 2022-1).
+    Encounter.participant.individual:
+      - short: HealthProfessional / ContactPerson instead of HealthProfessional / Contactperson
+        reason: The zib concept name "Contactperson" is not correctly translated into English (but this has been corrected in prerelease 2022-1).
+  ignored issues:
+    Encounter.participant:
+      - message: "Rule sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
+        reason: The definition of the zib concept Participant, which is the root of a container, does not contain a meaningful definition. 
+    Encounter.reasonReference:disease:
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: The slice is constrained on the target profile because this is what defines the slice. The HL7 base references are still available in the default slice.
+
+zib-MultidisciplinaryTeamMeeting.Plan:
+  zib deviations:
+    CarePlan.encounter:
+      - datatype: Reference instead of the root concept of zib MultidisciplinaryTeamMeeting
+        reason: This is a Reference to the zib-MultidisciplinaryTeamMeeting profile instead of the concept itself.
+
 zib-NameInformation:
   zib deviations:
     HumanName.prefix:
