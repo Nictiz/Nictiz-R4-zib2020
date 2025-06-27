@@ -820,7 +820,33 @@ zib-TextResult.VisualResult:
   zib deviations:
     Media.content:
       - cardinality: 1..1 instead of 0..*
-        reason: The use of the Media resource referenced in zib-TextResult DiagnosticReport.media.link is optional (0..*), but if the Media resource is used, Media.content should be present (1..1).
+        reason: The use of the Media resource referenced in zib-TextResult DiagnosticReport.media.link is optional (0..*), but if the Media resource is used, Media.content should be present (1..1).        
+        
+zib-TNMTumorClassification:
+  ignored issues:
+    "Observation.hasMember:*":
+      - message: "Rule sd-zpg-03: 'References to other resource profiles should be added next to the HL7  base references.'"
+        reason: "The restriction only applies to, and defines, this slice. The slicing is open so the base references can still be used."
+      - message: "Rule sd-pg-13: 'Slice names should be camelCased starting with a lowercase letter.'"
+        reason: Because this is for medical reasons relevant, the slice names are written in lowercase.
+        
+zib-TNMTumorClassification.DistantMetastasisLocalization:
+  zib deviations:
+    Observation.bodySite:
+      - datatype: CodeableConcept instead of a reference
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.  
+
+zib-TNMTumorClassification.LLymphaticInvasion:
+  zib deviations:
+    Observation.value[x]:valueCodeableConcept:
+      - short: L_LymphaticInvasion instead of TL_LymphaticInvasion
+        reason: The zib concept name "TL_LymphaticInvasion" is an incorrect translation of the Dutch name into English.     
+        
+zib-TNMTumorClassification.RegionalLymphNodesLocalization:
+  zib deviations:
+    Observation.bodySite:
+      - datatype: CodeableConcept instead of a reference
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
 
 zib-TreatmentDirective2:
   zib deviations:
