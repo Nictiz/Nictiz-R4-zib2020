@@ -53,13 +53,16 @@ class Profile:
             self.mapping_declarations.append(declaration)
             self.el_mappings[declaration.identity] = []
 
-        elements = []
+        self.elements = []
         differential = xml_root.find("f:differential", NS)
         for xml_el in differential.findall("f:element", NS):
             fshPath = xml_el.get("id")
             fshPath = ".".join(fshPath.split(".")[1:]) # Cut off resource name
             fshPath = re.sub(":(\\w*)", "[\\1]", fshPath, flags=re.MULTILINE) # Put slice names in brackets
             el = Element(fshPath)
+            el.min = self.__fhirValue__(xml_el, "min")
+            el.max = self.__fhirValue__(xml_el, "max")
+            self.elements.append(el)
             
             for mapping in xml_el.findall("f:mapping", NS):
                 identity = self.__fhirValue__(mapping, "identity")
@@ -76,6 +79,9 @@ class Profile:
         fsh += f"Parent: {self.parent}\n"
         fsh += f"Id: {self.id}\n"
         fsh += f'Title: "{self.title}"\n'
+        for el in self.elements:
+            if el.min or el.max:
+                fsh += f"* {el.path} {el.min if el.min else ''}..{el.max if el.max else ''}\n"
 
         for mapping in self.mapping_declarations:
             fsh += f"\nMapping: {mapping.identity}\n"
