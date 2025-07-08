@@ -21,6 +21,7 @@ class Element:
     value_set: str = None
     binding_strength: str = None
     types: list[str] = field(default_factory=list)
+    target_profiles: list[str] = field(default_factory=list)
     slicing_type: str = None
     slicing_path: str = None
     slice_name: str = None
@@ -82,6 +83,8 @@ class Profile:
             if data_type != None:
                 for code in data_type.findall("f:code", NS):
                     el.types.append(code.get("value"))
+                for profile in data_type.findall("f:targetProfile", NS):
+                    el.target_profiles.append(profile.get("value"))
 
             slicing = xml_el.find("f:slicing", NS)
             if slicing != None:
@@ -109,9 +112,14 @@ class Profile:
             if (el.min or el.max) and not el.slice_name:
                 fsh += f"* {el.path} {el.min if el.min else ''}..{el.max if el.max else ''}\n"
             if len(el.types) > 0:
-                fsh += f"* {el.path} only {' or '.join(el.types)}\n"
+                if len(el.target_profiles):
+                    fsh += f"* {el.path} only Canonical({' or '.join(el.target_profiles)})\n"
+                else:
+                    fsh += f"* {el.path} only {' or '.join(el.types)}\n" # Not bulletproof, but it doesn't need to be
             if el.value_set or el.binding_strength:
-                fsh += f"* {el.path} from {el.value_set} {el.binding_strength if el.binding_strength else ''}\n"
+                fsh += f"* {el.path} from {el.value_set}"
+                if el.binding_strength:
+                    fsh += f" ({el.binding_strength})\n"
             if el.slicing_path and el.slicing_type :
                 fsh += f"* {el.path} ^slicing.discriminator.type = #{el.slicing_type}\n"
                 fsh += f'* {el.path} ^slicing.discriminator.path = "{el.slicing_path}"\n'
@@ -121,14 +129,18 @@ class Profile:
                     slice_declarations = []
                     for sliced_el in sliced_elements:
                         slice_declaration = sliced_el.slice_name
+
                         if sliced_el.min or sliced_el.max:
                             slice_declaration += f" {sliced_el.min if sliced_el.min else ''}..{sliced_el.max if sliced_el.max else ''}"
+                        else:
+                            # It is required to add a cardinality, so default to ..* if nothing exists
+                            slice_declaration += " ..*"
                         slice_declarations.append(slice_declaration)
                     fsh += f"* {el.path} contains\n    " + " and\n    ".join(slice_declarations) + "\n"
                     
 
         for mapping in self.mapping_declarations:
-            fsh += f"\nMapping: {mapping.identity}\n"
+            fsh += f"\nMapping: {self.name}-to-zib\n"
             fsh += f"Id: {mapping.identity}\n"
             fsh += f'Title: "{mapping.name}"\n'
             fsh += f"Source: {self.name}\n"
