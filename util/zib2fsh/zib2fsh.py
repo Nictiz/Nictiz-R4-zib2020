@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
 import collections
@@ -20,6 +20,7 @@ class Element:
     max: str = None
     value_set: str = None
     binding_strength: str = None
+    types: list[str] = field(default_factory=list)
     slicing_type: str = None
     slicing_path: str = None
     slice_name: str = None
@@ -63,7 +64,9 @@ class Profile:
         for xml_el in differential.findall("f:element", NS):
             fshPath = xml_el.get("id")
             fshPath = ".".join(fshPath.split(".")[1:]) # Cut off resource name
+            fshPath = re.sub("(\\.?)\\w+\\[x]\\:(\\w*)", "\\1\\2", fshPath) # When the pattern is element[x]:elementDataType, in FSH this needs to be simply elementDataType. This conversion isn't bulletproof, but good enough for our puropses
             fshPath = re.sub(":(\\w*)", "[\\1]", fshPath, flags=re.MULTILINE) # Put slice names in brackets
+            
             el = Element(fshPath)
             self.elements.append(el)
 
@@ -74,7 +77,12 @@ class Profile:
             if binding != None:
                 el.value_set = self.__fhirValue__(binding, "valueSet")
                 el.binding_strength = self.__fhirValue__(binding, "strength")
-                            
+
+            data_type = xml_el.find("f:type", NS)
+            if data_type != None:
+                for code in data_type.findall("f:code", NS):
+                    el.types.append(code.get("value"))
+
             slicing = xml_el.find("f:slicing", NS)
             if slicing != None:
                 discriminator = slicing.find("f:discriminator", NS)
@@ -100,19 +108,23 @@ class Profile:
         for el in self.elements:
             if (el.min or el.max) and not el.slice_name:
                 fsh += f"* {el.path} {el.min if el.min else ''}..{el.max if el.max else ''}\n"
+            if len(el.types) > 0:
+                fsh += f"* {el.path} only {' or '.join(el.types)}\n"
             if el.value_set or el.binding_strength:
                 fsh += f"* {el.path} from {el.value_set} {el.binding_strength if el.binding_strength else ''}\n"
-            if el.slicing_path and el.slicing_type:
+            if el.slicing_path and el.slicing_type :
                 fsh += f"* {el.path} ^slicing.discriminator.type = #{el.slicing_type}\n"
                 fsh += f'* {el.path} ^slicing.discriminator.path = "{el.slicing_path}"\n'
-                sliced_elements = [sliced_el for sliced_el in self.elements if re.match(f"^{el.path}\[\w+\]$", sliced_el.path)]
-                slice_declarations = []
-                for sliced_el in sliced_elements:
-                    slice_declaration = sliced_el.slice_name
-                    if sliced_el.min or sliced_el.max:
-                        slice_declaration += f" {sliced_el.min if sliced_el.min else ''}..{sliced_el.max if sliced_el.max else ''}"
-                    slice_declarations.append(slice_declaration)
-                fsh += f"* {el.path} contains\n    " + " and\n    ".join(slice_declarations) + "\n"
+                fsh += f"* {el.path} ^slicing.rules = #open\n" # default
+                if el.slicing_type != "type": # Type slicing works a bit different
+                    sliced_elements = [sliced_el for sliced_el in self.elements if re.match(f"^{el.path}\[\w+\]$", sliced_el.path)]
+                    slice_declarations = []
+                    for sliced_el in sliced_elements:
+                        slice_declaration = sliced_el.slice_name
+                        if sliced_el.min or sliced_el.max:
+                            slice_declaration += f" {sliced_el.min if sliced_el.min else ''}..{sliced_el.max if sliced_el.max else ''}"
+                        slice_declarations.append(slice_declaration)
+                    fsh += f"* {el.path} contains\n    " + " and\n    ".join(slice_declarations) + "\n"
                     
 
         for mapping in self.mapping_declarations:
