@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from pathlib import Path
 
 import collections
@@ -12,6 +13,12 @@ NS = {"f": "http://hl7.org/fhir"}
 MappingDeclaration = collections.namedtuple("MappingDeclaration", ["identity", "uri", "name"])
 ElementMapping = collections.namedtuple("ElementMapping", ["path", "map", "comment"])
 
+@dataclass
+class Element:
+    path: str
+    min: int = None
+    max: str = None
+
 class Profile:
     def __init__(self):
         pass
@@ -23,37 +30,43 @@ class Profile:
         instance.__parseXML__(root)
         return instance
 
+    def __fhirValue__(self, root, el_name):
+        el = root.find("f:" + el_name, NS)
+        if el != None:
+            return el.get("value")
+        return None
+
     def __parseXML__(self, xml_root):
-        self.name = xml_root.find("f:name", NS).get("value")
-        self.id = xml_root.find("f:id", NS).get("value")
-        self.title = xml_root.find("f:title", NS).get("value")
-        self.parent = xml_root.find("f:baseDefinition", NS).get("value").replace("http://hl7.org/fhir/StructureDefinition/", "")
-        
-        differential = xml_root.find("f:differential", NS)
+        self.name = self.__fhirValue__(xml_root, "name")
+        self.id = self.__fhirValue__(xml_root, "id")
+        self.title = self.__fhirValue__(xml_root, "title")
+        self.parent = self.__fhirValue__(xml_root, "baseDefinition").replace("http://hl7.org/fhir/StructureDefinition/", "")
         
         self.mapping_declarations = []
         self.el_mappings = {}
         for mapping in xml_root.findall("f:mapping", NS):
             declaration = MappingDeclaration(
-                mapping.find("f:identity", NS).get("value"),
-                mapping.find("f:uri", NS).get("value"),
-                mapping.find("f:name", NS).get("value"),
+                self.__fhirValue__(mapping, "identity"),
+                self.__fhirValue__(mapping, "uri"),
+                self.__fhirValue__(mapping, "name")
             )
             self.mapping_declarations.append(declaration)
             self.el_mappings[declaration.identity] = []
 
         elements = []
-        for el in differential.findall("f:element", NS):
-            fshPath = el.get("id")
+        differential = xml_root.find("f:differential", NS)
+        for xml_el in differential.findall("f:element", NS):
+            fshPath = xml_el.get("id")
             fshPath = ".".join(fshPath.split(".")[1:]) # Cut off resource name
             fshPath = re.sub(":(\\w*)", "[\\1]", fshPath, flags=re.MULTILINE) # Put slice names in brackets
+            el = Element(fshPath)
             
-            for mapping in el.findall("f:mapping", NS):
-                identity = mapping.find("f:identity", NS).get("value")
+            for mapping in xml_el.findall("f:mapping", NS):
+                identity = self.__fhirValue__(mapping, "identity")
                 el_mapping = ElementMapping(
                     path = fshPath,
-                    map = mapping.find("f:map", NS).get("value"),
-                    comment = mapping.find("f:comment", NS).get("value")
+                    map = self.__fhirValue__(mapping, "map"),
+                    comment = self.__fhirValue__(mapping, "comment")
                 )
                 self.el_mappings[identity].append(el_mapping)
 
