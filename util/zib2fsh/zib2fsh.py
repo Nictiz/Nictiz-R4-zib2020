@@ -18,6 +18,8 @@ class Element:
     path: str
     min: int = None
     max: str = None
+    value_set: str = None
+    binding_strength: str = None
 
 class Profile:
     def __init__(self):
@@ -60,10 +62,16 @@ class Profile:
             fshPath = ".".join(fshPath.split(".")[1:]) # Cut off resource name
             fshPath = re.sub(":(\\w*)", "[\\1]", fshPath, flags=re.MULTILINE) # Put slice names in brackets
             el = Element(fshPath)
+            self.elements.append(el)
+
             el.min = self.__fhirValue__(xml_el, "min")
             el.max = self.__fhirValue__(xml_el, "max")
-            self.elements.append(el)
             
+            binding = xml_el.find("f:binding", NS)
+            if binding != None:
+                el.value_set = self.__fhirValue__(binding, "valueSet")
+                el.binding_strength = self.__fhirValue__(binding, "strength")
+                            
             for mapping in xml_el.findall("f:mapping", NS):
                 identity = self.__fhirValue__(mapping, "identity")
                 el_mapping = ElementMapping(
@@ -82,6 +90,8 @@ class Profile:
         for el in self.elements:
             if el.min or el.max:
                 fsh += f"* {el.path} {el.min if el.min else ''}..{el.max if el.max else ''}\n"
+            if el.value_set or el.binding_strength:
+                fsh += f"* {el.path} from {el.value_set} {el.binding_strength if el.binding_strength else ''}\n"
 
         for mapping in self.mapping_declarations:
             fsh += f"\nMapping: {mapping.identity}\n"
