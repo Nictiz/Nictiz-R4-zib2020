@@ -140,7 +140,7 @@ class Profile:
                     
 
         for mapping in self.mapping_declarations:
-            fsh += f"\nMapping: {self.name}-to-zib\n"
+            fsh += f"\nMapping: {self.name}-to-{mapping.identity}\n"
             fsh += f"Id: {mapping.identity}\n"
             fsh += f'Title: "{mapping.name}"\n'
             fsh += f"Source: {self.name}\n"
