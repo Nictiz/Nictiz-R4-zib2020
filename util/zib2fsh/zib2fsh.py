@@ -23,6 +23,7 @@ class Element:
     binding_strength: str = None
     types: list[str] = field(default_factory=list)
     target_profiles: list[str] = field(default_factory=list)
+    profiles: list[str] = field(default_factory=list)
     slicing_type: str = None
     slicing_path: str = None
     slice_name: str = None
@@ -86,6 +87,8 @@ class Profile:
                     el.types.append(code.get("value"))
                 for profile in data_type.findall("f:targetProfile", NS):
                     el.target_profiles.append(profile.get("value"))
+                for profile in data_type.findall("f:profile", NS):
+                    el.profiles.append(profile.get("value"))
 
             slicing = xml_el.find("f:slicing", NS)
             if slicing != None:
@@ -109,11 +112,23 @@ class Profile:
         fsh += f"Parent: {self.parent}\n"
         fsh += f"Id: {self.id}\n"
         fsh += f'Title: "{self.title}"\n'
+
+        # Write out extensions first
+        extension_elements = [ext_el for ext_el in self.elements if len(ext_el.types) > 0 and ext_el.types[0] == "Extension"]
+        extension_fsh_strings = []
+        for ext_el in extension_elements:
+            ext_fsh = f"{ext_el.profiles[0]} named {ext_el.slice_name} {ext_el.min if ext_el.min else ''}..{ext_el.max if ext_el.max else '*'}"
+            extension_fsh_strings.append(ext_fsh)
+        if len(extension_fsh_strings) > 0:
+            fsh += f"* extension contains:\n    " + " and\n    ".join(extension_fsh_strings) + "\n"
+
         for el in self.elements:
             if (el.min or el.max) and not el.slice_name:
                 fsh += f"* {el.fsh_path} {el.min if el.min else ''}..{el.max if el.max else ''}\n"
             if len(el.types) > 0:
-                if len(el.target_profiles):
+                if el.types[0] == "Extension": # Extensions are handled different in FSH
+                    pass
+                elif len(el.target_profiles):
                     fsh += f"* {el.fsh_path} only Canonical({' or '.join(el.target_profiles)})\n"
                 else:
                     fsh += f"* {el.fsh_path} only {' or '.join(el.types)}\n" # Not bulletproof, but it doesn't need to be
