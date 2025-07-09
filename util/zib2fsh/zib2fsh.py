@@ -126,6 +126,9 @@ class Profile:
             if (el.min or el.max) and not el.slice_name:
                 fsh += f"* {el.fsh_path} {el.min if el.min else ''}..{el.max if el.max else ''}\n"
             if len(el.types) > 0:
+                if el.types[0] != "Extension":
+                    for profile in el.profiles:
+                        fsh += f"* {el.fsh_path} ^type.profile = {profile}\n"
                 if el.types[0] == "Extension": # Extensions are handled different in FSH
                     pass
                 elif len(el.target_profiles):
