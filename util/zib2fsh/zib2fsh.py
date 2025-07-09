@@ -27,6 +27,15 @@ class Element:
     slicing_type: str = None
     slicing_path: str = None
     slice_name: str = None
+    constraints: list[str] = field(default_factory=list) # Only constraint keys here
+    conditions: list[str] = field(default_factory=list)
+
+@dataclass
+class Constraint:
+    key: str
+    severity: str
+    human: str
+    expression: str
 
 class Profile:
     def __init__(self):
@@ -63,6 +72,7 @@ class Profile:
             self.el_mappings[declaration.identity] = []
 
         self.elements = []
+        self.constraints = []
         differential = xml_root.find("f:differential", NS)
         for xml_el in differential.findall("f:element", NS):
             fsh_path = xml_el.get("id")
@@ -105,6 +115,19 @@ class Profile:
                     comment = self.__fhirValue__(mapping, "comment")
                 )
                 self.el_mappings[identity].append(el_mapping)
+            
+            for constraint_el in xml_el.findall("f:constraint", NS):
+                constraint = Constraint(
+                    self.__fhirValue__(constraint_el, "key"),
+                    self.__fhirValue__(constraint_el, "severity"),
+                    self.__fhirValue__(constraint_el, "human"),
+                    self.__fhirValue__(constraint_el, "expression")
+                )
+                self.constraints.append(constraint)
+                el.constraints.append(constraint.key)
+            
+            for condition_el in xml_el.findall("f:condition", NS):
+                el.conditions.append(condition_el.get("value"))
 
     def asFSH(self):
         fsh = ""
@@ -155,7 +178,11 @@ class Profile:
                             # It is required to add a cardinality, so default to ..* if nothing exists
                             slice_declaration += " ..*"
                         slice_declarations.append(slice_declaration)
-                    fsh += f"* {el.fsh_path} contains\n    " + " and\n    ".join(slice_declarations) + "\n"                   
+                    fsh += f"* {el.fsh_path} contains\n    " + " and\n    ".join(slice_declarations) + "\n"
+            if len(el.constraints) > 0:
+                fsh += f"* {el.fsh_path}{' ' if el.fsh_path else ''}obeys " + " and ".join(el.constraints) + "\n"
+            for condition in el.conditions:
+                fsh += f"* {el.fsh_path} ^condition = {condition}\n"
 
         for mapping in self.mapping_declarations:
             fsh += f"\nMapping: {self.name}-to-{mapping.identity}\n"
@@ -165,6 +192,13 @@ class Profile:
             fsh += f'Target: "{mapping.uri}"\n'
             for el_mapping in self.el_mappings[mapping.identity]:
                 fsh += f'* {el_mapping.fsh_path} -> "{el_mapping.map}" "{el_mapping.comment}"\n'
+
+        for constraint in self.constraints:
+            fsh += f"\nInvariant: {constraint.key}\n"
+            fsh += f'Description: "{constraint.human}"\n'
+            fsh += f"Severity: #{constraint.severity}\n"
+            fsh += f'Expression: "{constraint.expression}"\n'
+
         return (fsh)
 
 if __name__ == "__main__":
