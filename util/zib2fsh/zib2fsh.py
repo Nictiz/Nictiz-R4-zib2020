@@ -11,11 +11,12 @@ OUT_DIR = Path("../../fsh-input/zib")
 NS = {"f": "http://hl7.org/fhir"}
 
 MappingDeclaration = collections.namedtuple("MappingDeclaration", ["identity", "uri", "name"])
-ElementMapping = collections.namedtuple("ElementMapping", ["path", "map", "comment"])
+ElementMapping = collections.namedtuple("ElementMapping", ["fsh_path", "map", "comment"])
 
 @dataclass
 class Element:
-    path: str
+    fsh_path: str
+    fhir_path: str
     min: int = None
     max: str = None
     value_set: str = None
@@ -63,12 +64,12 @@ class Profile:
         self.elements = []
         differential = xml_root.find("f:differential", NS)
         for xml_el in differential.findall("f:element", NS):
-            fshPath = xml_el.get("id")
-            fshPath = ".".join(fshPath.split(".")[1:]) # Cut off resource name
-            fshPath = re.sub("(\\.?)\\w+\\[x]\\:(\\w*)", "\\1\\2", fshPath) # When the pattern is element[x]:elementDataType, in FSH this needs to be simply elementDataType. This conversion isn't bulletproof, but good enough for our puropses
-            fshPath = re.sub(":(\\w*)", "[\\1]", fshPath, flags=re.MULTILINE) # Put slice names in brackets
+            fsh_path = xml_el.get("id")
+            fsh_path = ".".join(fsh_path.split(".")[1:]) # Cut off resource name
+            fsh_path = re.sub("(\\.?)\\w+\\[x]\\:([\\w-]+)", "\\1\\2", fsh_path) # When the pattern is element[x]:elementDataType, in FSH this needs to be simply elementDataType. This conversion isn't bulletproof, but good enough for our puropses
+            fsh_path = re.sub(":([\\w-]+)", "[\\1]", fsh_path, flags=re.MULTILINE) # Put slice names in brackets
             
-            el = Element(fshPath)
+            el = Element(fsh_path, self.__fhirValue__(xml_el, "path"))
             self.elements.append(el)
 
             el.min = self.__fhirValue__(xml_el, "min")
@@ -96,7 +97,7 @@ class Profile:
             for mapping in xml_el.findall("f:mapping", NS):
                 identity = self.__fhirValue__(mapping, "identity")
                 el_mapping = ElementMapping(
-                    path = fshPath,
+                    fsh_path = fsh_path,
                     map = self.__fhirValue__(mapping, "map"),
                     comment = self.__fhirValue__(mapping, "comment")
                 )
@@ -110,22 +111,22 @@ class Profile:
         fsh += f'Title: "{self.title}"\n'
         for el in self.elements:
             if (el.min or el.max) and not el.slice_name:
-                fsh += f"* {el.path} {el.min if el.min else ''}..{el.max if el.max else ''}\n"
+                fsh += f"* {el.fsh_path} {el.min if el.min else ''}..{el.max if el.max else ''}\n"
             if len(el.types) > 0:
                 if len(el.target_profiles):
-                    fsh += f"* {el.path} only Canonical({' or '.join(el.target_profiles)})\n"
+                    fsh += f"* {el.fsh_path} only Canonical({' or '.join(el.target_profiles)})\n"
                 else:
-                    fsh += f"* {el.path} only {' or '.join(el.types)}\n" # Not bulletproof, but it doesn't need to be
+                    fsh += f"* {el.fsh_path} only {' or '.join(el.types)}\n" # Not bulletproof, but it doesn't need to be
             if el.value_set or el.binding_strength:
-                fsh += f"* {el.path} from {el.value_set}"
+                fsh += f"* {el.fsh_path} from {el.value_set}"
                 if el.binding_strength:
                     fsh += f" ({el.binding_strength})\n"
             if el.slicing_path and el.slicing_type :
-                fsh += f"* {el.path} ^slicing.discriminator.type = #{el.slicing_type}\n"
-                fsh += f'* {el.path} ^slicing.discriminator.path = "{el.slicing_path}"\n'
-                fsh += f"* {el.path} ^slicing.rules = #open\n" # default
+                fsh += f"* {el.fsh_path} ^slicing.discriminator.type = #{el.slicing_type}\n"
+                fsh += f'* {el.fsh_path} ^slicing.discriminator.path = "{el.slicing_path}"\n'
+                fsh += f"* {el.fsh_path} ^slicing.rules = #open\n" # default
                 if el.slicing_type != "type": # Type slicing works a bit different
-                    sliced_elements = [sliced_el for sliced_el in self.elements if re.match(f"^{el.path}\[\w+\]$", sliced_el.path)]
+                    sliced_elements = [sliced_el for sliced_el in self.elements if (sliced_el.slice_name != None and sliced_el.fhir_path == el.fhir_path)]
                     slice_declarations = []
                     for sliced_el in sliced_elements:
                         slice_declaration = sliced_el.slice_name
@@ -136,8 +137,7 @@ class Profile:
                             # It is required to add a cardinality, so default to ..* if nothing exists
                             slice_declaration += " ..*"
                         slice_declarations.append(slice_declaration)
-                    fsh += f"* {el.path} contains\n    " + " and\n    ".join(slice_declarations) + "\n"
-                    
+                    fsh += f"* {el.fsh_path} contains\n    " + " and\n    ".join(slice_declarations) + "\n"                   
 
         for mapping in self.mapping_declarations:
             fsh += f"\nMapping: {self.name}-to-{mapping.identity}\n"
@@ -146,7 +146,7 @@ class Profile:
             fsh += f"Source: {self.name}\n"
             fsh += f'Target: "{mapping.uri}"\n'
             for el_mapping in self.el_mappings[mapping.identity]:
-                fsh += f'* {el_mapping.path} -> "{el_mapping.map}" "{el_mapping.comment}"\n'
+                fsh += f'* {el_mapping.fsh_path} -> "{el_mapping.map}" "{el_mapping.comment}"\n'
         return (fsh)
 
 if __name__ == "__main__":
