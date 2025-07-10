@@ -63,7 +63,11 @@ class Profile:
         self.id = self.__fhirValue__(xml_root, "id")
         self.title = self.__fhirValue__(xml_root, "title")
         self.parent = self.__fhirValue__(xml_root, "baseDefinition").replace("http://hl7.org/fhir/StructureDefinition/", "")
-        
+        if self.parent == "Extension":
+            # We only have contexts of type "element"
+            context = xml_root.find("f:context", NS)
+            self.context = self.__fhirValue__(context, "expression")
+
         self.mapping_declarations = []
         self.el_mappings = {}
         for mapping in xml_root.findall("f:mapping", NS):
@@ -158,6 +162,18 @@ class Profile:
 
     def asFSH(self):
         fsh = ""
+
+        if self.parent == "Extension":
+            fsh += self.__fshExtension__()
+        else:
+            fsh += self.__fshProfile__()
+
+        fsh += self.__fshMappings__()
+        return fsh
+    
+    def __fshProfile__(self):
+        fsh = ""
+
         fsh += f"Profile: {self.name}\n"
         fsh += f"Parent: {self.parent}\n"
         fsh += f"Id: {self.id}\n"
@@ -174,10 +190,29 @@ class Profile:
             fsh += self.__fshPatterns__(el)
             fsh += self.__fshConstraintsInProfile__(el)
 
-        fsh += self.__fshMappings__()
         fsh += self.__fshConstraints__()
 
-        return (fsh)
+        return fsh
+
+    def __fshExtension__(self):
+        fsh = ""
+
+        fsh += f"Extension: {self.name}\n"
+        fsh += f"Id: {self.id}\n"
+        fsh += f'Title: "{self.title}"\n'
+        fsh += f"Context: {self.context}\n"
+
+        for el in self.elements:
+            fsh += self.__fshElementLine__(el)
+            fsh += self.__fshTypes__(el)
+            fsh += self.__fshTerminologyBinding__(el)
+            fsh += self.__fshSlicing__(el)
+            fsh += self.__fshPatterns__(el)
+            fsh += self.__fshConstraintsInProfile__(el)
+
+        fsh += self.__fshConstraints__()
+
+        return fsh
 
     def __fshExtensions__(self):
         extensions = [el for el in self.elements if len(el.types) > 0 and el.types[0] == "Extension"]
@@ -298,7 +333,7 @@ if __name__ == "__main__":
     shutil.rmtree(OUT_DIR, ignore_errors=True)
     OUT_DIR.mkdir(exist_ok=True, parents=True)
 
-    for in_file in IN_DIR.glob("zib-*.xml"):
+    for in_file in IN_DIR.glob("*.xml"):
         profile = Profile.fromXML(in_file)
         out_name = in_file.name.replace(".xml", ".fsh")
         with open(OUT_DIR / out_name, "w") as out_file:
