@@ -72,6 +72,19 @@ class Profile:
             context = xml_root.find("f:context", NS)
             self.context = self.__fhirValue__(context, "expression")
 
+        self.zib_name = None
+        self.zib_version = None
+        self.resource_type = None
+        self.purpose = None
+        purpose = self.__fhirValue__(xml_root, "purpose")
+        if purpose:
+            if match := re.search("^This (\\w+) resource represents the Dutch \\[zib \\('Zorginformatiebouwsteen', i.e. Health and Care Information Model\\) (\\w+) v(\\S+) ", purpose, re.MULTILINE):
+                self.zib_name = match.group(2)
+                self.zib_version = match.group(3)
+                self.resource_type = match.group(1)
+            else:
+                self.purpose = purpose
+
         self.mapping_declarations = []
         self.el_mappings = {}
         for mapping in xml_root.findall("f:mapping", NS):
@@ -188,6 +201,12 @@ class Profile:
         fsh += f"Parent: {self.parent}\n"
         fsh += f"Id: {self.id}\n"
         fsh += f'Title: "{self.title}"\n'
+        if self.zib_name and self.zib_version:
+            fsh += f"* insert CoreProfileMetaData({self.zib_name}, {self.zib_version}, {self.resource_type})\n"
+        else:
+            if self.purpose:
+                fsh += f'* ^purpose = "{self.purpose}"\n'
+            fsh += "* insert BoilerPlate\n"
 
         # Write out extensions first
         fsh += self.__fshExtensions__()
