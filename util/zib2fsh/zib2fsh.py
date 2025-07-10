@@ -10,6 +10,9 @@ IN_DIR = Path("../../resources/zib")
 OUT_DIR = Path("../../fsh-input/zib")
 NS = {"f": "http://hl7.org/fhir"}
 
+# Comment and definition texts below this size are inlined in the main flow of the profile, any larger or multiline text will be put in a separate section
+INLINE_TEXT_CUTOFF = 120
+
 MappingDeclaration = collections.namedtuple("MappingDeclaration", ["identity", "uri", "name"])
 ElementMapping = collections.namedtuple("ElementMapping", ["fsh_path", "map", "comment"])
 PatternCodeableConcept = collections.namedtuple("PatternCodeableConcept", ["system", "code"])
@@ -24,8 +27,8 @@ class Element:
     max: str = None
     short: str = None
     alias: list[str] = field(default_factory=list)
-    definition: str = None
-    comment: str = None
+    definition: list[str] = field(default_factory=list) # A list of lines
+    comment: list[str] = field(default_factory=list) # A list of lines
     value_set: str = None
     binding_strength: str = None
     types: list[str] = field(default_factory=list)
@@ -101,8 +104,10 @@ class Profile:
             el.short = self.__fhirValue__(xml_el, "short")
             for alias in xml_el.findall("f:alias", NS):
                 el.alias.append(alias.get("value"))
-            el.definition = self.__fhirValue__(xml_el, "definition")
-            el.comment = self.__fhirValue__(xml_el, "comment")
+            if definition := self.__fhirValue__(xml_el, "definition"):
+                el.definition = definition.split("\n")
+            if comment := self.__fhirValue__(xml_el, "comment"):
+                el.comment = comment.split("\n")
 
             binding = xml_el.find("f:binding", NS)
             if binding != None:
@@ -198,14 +203,8 @@ class Profile:
             fsh += self.__fshTerminologyBinding__(el)
             fsh += self.__fshSlicing__(el)
             fsh += self.__fshPatterns__(el)
-            fsh += self.__fshConstraintsInProfile__(el)
 
-        text_section = ""
-        for el in self.elements:
-            text_section += self.__fshDefinitionAndComment__(el)
-        if len(text_section):
-            fsh += "\n// Definition and comment texts\n"
-            fsh += text_section
+        fsh += self.__fshMultilineTextSection__()
 
         fsh += self.__fshConstraints__()
 
@@ -225,7 +224,8 @@ class Profile:
             fsh += self.__fshTerminologyBinding__(el)
             fsh += self.__fshSlicing__(el)
             fsh += self.__fshPatterns__(el)
-            fsh += self.__fshConstraintsInProfile__(el)
+
+        fsh += self.__fshMultilineTextSection__()
 
         fsh += self.__fshConstraints__()
 
@@ -242,9 +242,39 @@ class Profile:
         return ""
 
     def __fshElementLine__(self, el):
+        write_out = [
+            (el.min or el.max) and not el.slice_name,
+            len(el.constraints) > 0,
+            len(el.conditions) > 0,
+            len(el.definition) == 1 and len(el.definition[0]) <= INLINE_TEXT_CUTOFF,
+            len(el.comment) == 1 and len(el.comment[0]) <= INLINE_TEXT_CUTOFF
+        ]
+        if not any(write_out):
+            return ""
+
+        fsh = f"* {el.fsh_path}"
+        card = False
         if (el.min or el.max) and not el.slice_name:
-            return f"* {el.fsh_path} {el.min if el.min else ''}..{el.max if el.max else ''}\n"
-        return ""
+            fsh += f" {el.min if el.min else ''}..{el.max if el.max else ''}"
+            card = True
+
+        fsh_strings = []
+        if len(el.constraints) > 0:
+            fsh_strings.append(f"obeys " + " and ".join(el.constraints))
+        for condition in el.conditions:
+            fsh_strings.append(f"^condition[+] = {condition}")
+        if write_out[3]:
+            fsh_strings.append(f'^definition = "{el.definition[0]}"')
+        if write_out[4]:
+            fsh_strings.append(f'^comment = "{el.comment[0]}"')
+        if card or len(fsh_strings) > 1:
+            fsh += "\n"
+            for fsh_string in fsh_strings:
+                fsh += f"  * {fsh_string}\n"
+        else:
+            fsh += f" {fsh_strings[0]}\n"
+
+        return fsh
 
     def __fshTypes__(self, el):
         fsh = ""
@@ -346,27 +376,37 @@ class Profile:
         
         return fsh
 
-    def __fshDefinitionAndComment__(self, el):
+    def __fshMultilineTextSection__(self):
         fsh = ""
-        if el.definition or el.comment:
-            fsh += f"* {el.fsh_path if el.fsh_path else '.'}\n"
-            if el.definition:
-                fsh += f'  * ^definition = {self.__tripleQuote__(el.definition, 4)}\n'
-            if el.comment:
-                fsh += f'  * ^comment = {self.__tripleQuote__(el.comment, 4)}\n'
+        for el in self.elements:
+            definition = None
+            comment = None
+            if len(el.definition) > 1 or (len(el.definition) > 0 and len(el.definition[0]) > INLINE_TEXT_CUTOFF):
+                definition = "^definition = " + self.__tripleQuote__(el.definition, 4)
+            if len(el.comment) > 1 or (len(el.comment) > 0 and len(el.comment[0]) > INLINE_TEXT_CUTOFF):
+                comment = "^comment = " + self.__tripleQuote__(el.comment, 4)
+            if definition or comment:
+                fsh += f"* {el.fsh_path if el.fsh_path else '.'}"
+                if not definition:
+                    fsh += f" {comment}\n"
+                elif not comment:
+                    fsh += f" {definition}\n"
+                else:
+                    fsh += f"\n  * {definition}\n"
+                    fsh += f"  * {comment}\n"
+        if len(fsh):
+            return "\n// Definition and comment texts\n" + fsh
+        return ""
 
-        return fsh
-
-    def __tripleQuote__(self, text, indent_level):
-        lines = text.split("\n")
+    def __tripleQuote__(self, lines, indent_level):
         if len(lines) > 1:
             quoted = '"""\n'
-            for line in text.split("\n"):
+            for line in lines:
                 quoted += f"{' ' * indent_level}{line}\n"
             quoted += f'{" " * indent_level}"""'
             return quoted
         else:
-            return f'"{text}"'
+            return f'"{lines[0]}"'
 
 if __name__ == "__main__":
     shutil.rmtree(OUT_DIR, ignore_errors=True)
