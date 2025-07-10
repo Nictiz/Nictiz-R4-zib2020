@@ -22,6 +22,10 @@ class Element:
     fhir_path: str
     min: int = None
     max: str = None
+    short: str = None
+    alias: list[str] = field(default_factory=list)
+    definition: str = None
+    comment: str = None
     value_set: str = None
     binding_strength: str = None
     types: list[str] = field(default_factory=list)
@@ -94,6 +98,12 @@ class Profile:
             el.min = self.__fhirValue__(xml_el, "min")
             el.max = self.__fhirValue__(xml_el, "max")
             
+            el.short = self.__fhirValue__(xml_el, "short")
+            for alias in xml_el.findall("f:alias", NS):
+                el.alias.append(alias.get("value"))
+            el.definition = self.__fhirValue__(xml_el, "definition")
+            el.comment = self.__fhirValue__(xml_el, "comment")
+
             binding = xml_el.find("f:binding", NS)
             if binding != None:
                 el.value_set = self.__fhirValue__(binding, "valueSet")
@@ -189,6 +199,13 @@ class Profile:
             fsh += self.__fshSlicing__(el)
             fsh += self.__fshPatterns__(el)
             fsh += self.__fshConstraintsInProfile__(el)
+
+        text_section = ""
+        for el in self.elements:
+            text_section += self.__fshDefinitionAndComment__(el)
+        if len(text_section):
+            fsh += "\n// Definition and comment texts\n"
+            fsh += text_section
 
         fsh += self.__fshConstraints__()
 
@@ -328,6 +345,28 @@ class Profile:
             fsh += f'Expression: "{constraint.expression}"\n'
         
         return fsh
+
+    def __fshDefinitionAndComment__(self, el):
+        fsh = ""
+        if el.definition or el.comment:
+            fsh += f"* {el.fsh_path if el.fsh_path else '.'}\n"
+            if el.definition:
+                fsh += f'  * ^definition = {self.__tripleQuote__(el.definition, 4)}\n'
+            if el.comment:
+                fsh += f'  * ^comment = {self.__tripleQuote__(el.comment, 4)}\n'
+
+        return fsh
+
+    def __tripleQuote__(self, text, indent_level):
+        lines = text.split("\n")
+        if len(lines) > 1:
+            quoted = '"""\n'
+            for line in text.split("\n"):
+                quoted += f"{' ' * indent_level}{line}\n"
+            quoted += f'{" " * indent_level}"""'
+            return quoted
+        else:
+            return f'"{text}"'
 
 if __name__ == "__main__":
     shutil.rmtree(OUT_DIR, ignore_errors=True)
