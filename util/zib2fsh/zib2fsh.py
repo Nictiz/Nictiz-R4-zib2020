@@ -10,9 +10,6 @@ IN_DIR = Path("../../resources/zib")
 OUT_DIR = Path("../../fsh-input/zib")
 NS = {"f": "http://hl7.org/fhir"}
 
-# Comment and definition texts below this size are inlined in the main flow of the profile, any larger or multiline text will be put in a separate section
-INLINE_TEXT_CUTOFF = 120
-
 MappingDeclaration = collections.namedtuple("MappingDeclaration", ["identity", "uri", "name"])
 ElementMapping = collections.namedtuple("ElementMapping", ["fsh_path", "map", "comment"])
 PatternCodeableConcept = collections.namedtuple("PatternCodeableConcept", ["system", "code"])
@@ -27,8 +24,8 @@ class Element:
     max: str = None
     short: str = None
     alias: list[str] = field(default_factory=list)
-    definition: list[str] = field(default_factory=list) # A list of lines
-    comment: list[str] = field(default_factory=list) # A list of lines
+    definition: str = None
+    comment: str = None
     value_set: str = None
     binding_strength: str = None
     types: list[str] = field(default_factory=list)
@@ -104,10 +101,8 @@ class Profile:
             el.short = self.__fhirValue__(xml_el, "short")
             for alias in xml_el.findall("f:alias", NS):
                 el.alias.append(alias.get("value"))
-            if definition := self.__fhirValue__(xml_el, "definition"):
-                el.definition = definition.split("\n")
-            if comment := self.__fhirValue__(xml_el, "comment"):
-                el.comment = comment.split("\n")
+            el.definition = self.__fhirValue__(xml_el, "definition")
+            el.comment = self.__fhirValue__(xml_el, "comment")
 
             binding = xml_el.find("f:binding", NS)
             if binding != None:
@@ -204,7 +199,7 @@ class Profile:
             fsh += self.__fshSlicing__(el)
             fsh += self.__fshPatterns__(el)
 
-        fsh += self.__fshMultilineTextSection__()
+        fsh += self.__fshTextSection__()
 
         fsh += self.__fshConstraints__()
 
@@ -225,7 +220,7 @@ class Profile:
             fsh += self.__fshSlicing__(el)
             fsh += self.__fshPatterns__(el)
 
-        fsh += self.__fshMultilineTextSection__()
+        fsh += self.__fshTextSection__()
 
         fsh += self.__fshConstraints__()
 
@@ -246,8 +241,6 @@ class Profile:
             (el.min or el.max) and not el.slice_name,
             len(el.constraints) > 0,
             len(el.conditions) > 0,
-            len(el.definition) == 1 and len(el.definition[0]) <= INLINE_TEXT_CUTOFF,
-            len(el.comment) == 1 and len(el.comment[0]) <= INLINE_TEXT_CUTOFF
         ]
         if not any(write_out):
             return ""
@@ -263,10 +256,6 @@ class Profile:
             fsh_strings.append(f"obeys " + " and ".join(el.constraints))
         for condition in el.conditions:
             fsh_strings.append(f"^condition[+] = {condition}")
-        if write_out[3]:
-            fsh_strings.append(f'^definition = "{el.definition[0]}"')
-        if write_out[4]:
-            fsh_strings.append(f'^comment = "{el.comment[0]}"')
         if card or len(fsh_strings) > 1:
             fsh += "\n"
             for fsh_string in fsh_strings:
@@ -341,16 +330,6 @@ class Profile:
 
         return fsh
 
-    def __fshConstraintsInProfile__(self, el):
-        fsh = ""
-
-        if len(el.constraints) > 0:
-            fsh += f"* {el.fsh_path}{' ' if el.fsh_path else ''}obeys " + " and ".join(el.constraints) + "\n"
-        for condition in el.conditions:
-            fsh += f"* {el.fsh_path} ^condition[+] = {condition}\n"
-
-        return fsh
-
     def __fshMappings__(self):
         fsh = ""
 
@@ -376,29 +355,30 @@ class Profile:
         
         return fsh
 
-    def __fshMultilineTextSection__(self):
+    def __fshTextSection__(self):
         fsh = ""
         for el in self.elements:
-            definition = None
-            comment = None
-            if len(el.definition) > 1 or (len(el.definition) > 0 and len(el.definition[0]) > INLINE_TEXT_CUTOFF):
-                definition = "^definition = " + self.__tripleQuote__(el.definition, 4)
-            if len(el.comment) > 1 or (len(el.comment) > 0 and len(el.comment[0]) > INLINE_TEXT_CUTOFF):
-                comment = "^comment = " + self.__tripleQuote__(el.comment, 4)
-            if definition or comment:
-                fsh += f"* {el.fsh_path if el.fsh_path else '.'}"
-                if not definition:
-                    fsh += f" {comment}\n"
-                elif not comment:
-                    fsh += f" {definition}\n"
-                else:
-                    fsh += f"\n  * {definition}\n"
-                    fsh += f"  * {comment}\n"
+            fsh_strings = []
+            if el.short:
+                fsh_strings.append(f'^short = "{el.short}"')
+            for alias in el.alias:
+                fsh_strings.append(f'^alias[+] = "{alias}"')
+            if el.definition:
+                fsh_strings.append("^definition = " + self.__tripleQuote__(el.definition, 4))
+            if el.comment:
+                fsh_strings.append("^comment = " + self.__tripleQuote__(el.comment, 4))
+            
+            if len(fsh_strings) == 1:
+                fsh += f"* {el.fsh_path if el.fsh_path else '.'} {fsh_strings[0]}\n"
+            elif len(fsh_strings) > 1:
+                fsh += f"* {el.fsh_path if el.fsh_path else '.'}\n"
+                fsh += "  * " + "\n  * ".join(fsh_strings) + "\n"
         if len(fsh):
-            return "\n// Definition and comment texts\n" + fsh
+            return "\n// Short, alias, definition and comment texts\n" + fsh
         return ""
 
-    def __tripleQuote__(self, lines, indent_level):
+    def __tripleQuote__(self, text, indent_level):
+        lines = text.split("\n")
         if len(lines) > 1:
             quoted = '"""\n'
             for line in lines:
@@ -406,7 +386,7 @@ class Profile:
             quoted += f'{" " * indent_level}"""'
             return quoted
         else:
-            return f'"{lines[0]}"'
+            return f'"{text}"'
 
 if __name__ == "__main__":
     shutil.rmtree(OUT_DIR, ignore_errors=True)
