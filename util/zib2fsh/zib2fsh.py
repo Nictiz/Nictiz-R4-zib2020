@@ -164,62 +164,113 @@ class Profile:
         fsh += f'Title: "{self.title}"\n'
 
         # Write out extensions first
-        extension_elements = [ext_el for ext_el in self.elements if len(ext_el.types) > 0 and ext_el.types[0] == "Extension"]
-        extension_fsh_strings = []
-        for ext_el in extension_elements:
-            ext_fsh = f"{ext_el.profiles[0]} named {ext_el.slice_name} {ext_el.min if ext_el.min else ''}..{ext_el.max if ext_el.max else '*'}"
-            extension_fsh_strings.append(ext_fsh)
-        if len(extension_fsh_strings) > 0:
-            fsh += f"* extension contains:\n    " + " and\n    ".join(extension_fsh_strings) + "\n"
+        fsh += self.__fshExtensions__()
 
         for el in self.elements:
-            if (el.min or el.max) and not el.slice_name:
-                fsh += f"* {el.fsh_path} {el.min if el.min else ''}..{el.max if el.max else ''}\n"
-            if len(el.types) > 0:
-                if el.types[0] != "Extension":
-                    for profile in el.profiles:
-                        fsh += f"* {el.fsh_path} ^type.profile = {profile}\n"
-                if el.types[0] == "Extension": # Extensions are handled different in FSH
-                    pass
-                elif len(el.target_profiles):
-                    fsh += f"* {el.fsh_path} only Canonical({' or '.join(el.target_profiles)})\n"
-                else:
-                    fsh += f"* {el.fsh_path} only {' or '.join(el.types)}\n" # Not bulletproof, but it doesn't need to be
-            if el.value_set or el.binding_strength:
-                fsh += f"* {el.fsh_path} from {el.value_set}"
-                if el.binding_strength:
-                    fsh += f" ({el.binding_strength})\n"
-            if el.slicing_path and el.slicing_type :
-                fsh += f"* insert Discriminator({el.fsh_path}, {el.slicing_type}, {el.slicing_path})\n"
-                if el.slicing_type != "type": # Type slicing works a bit different
-                    sliced_elements = [sliced_el for sliced_el in self.elements if (sliced_el.slice_name != None and sliced_el.fhir_path == el.fhir_path)]
-                    slice_declarations = []
-                    for sliced_el in sliced_elements:
-                        slice_declaration = sliced_el.slice_name
+            fsh += self.__fshElementLine__(el)
+            fsh += self.__fshTypes__(el)
+            fsh += self.__fshTerminologyBinding__(el)
+            fsh += self.__fshSlicing__(el)
+            fsh += self.__fshPatterns__(el)
+            fsh += self.__fshConstraintsInProfile__(el)
 
-                        if sliced_el.min or sliced_el.max:
-                            slice_declaration += f" {sliced_el.min if sliced_el.min else ''}..{sliced_el.max if sliced_el.max else ''}"
-                        else:
-                            # It is required to add a cardinality, so default to ..* if nothing exists
-                            slice_declaration += " ..*"
-                        slice_declarations.append(slice_declaration)
-                    fsh += f"* {el.fsh_path} contains\n    " + " and\n    ".join(slice_declarations) + "\n"
-            for pattern in el.patterns["CodeableConcept"]:
-                fsh += f"* {el.fsh_path} = {pattern.system}#{pattern.code}\n"
-            for pattern in el.patterns["Quantity"]:
-                value_fsh = f"{pattern.value} " if pattern.value else ""
-                if pattern.system == "http://unitsofmeasure.org":
-                    code_fsh = f"'{pattern.code}'"
-                else:
-                    code_fsh = f"{pattern.system}#{pattern.code}"
-                unit_fsh = f' "{pattern.unit}"' if pattern.unit else ""
-                fsh += f"* {el.fsh_path} = {value_fsh}{code_fsh}{unit_fsh}\n"
-            for pattern in el.patterns["Identifier"]:
-                fsh += f'* {el.fsh_path} ^system = "{pattern.system}"\n'
-            if len(el.constraints) > 0:
-                fsh += f"* {el.fsh_path}{' ' if el.fsh_path else ''}obeys " + " and ".join(el.constraints) + "\n"
-            for condition in el.conditions:
-                fsh += f"* {el.fsh_path} ^condition = {condition}\n"
+        fsh += self.__fshMappings__()
+        fsh += self.__fshConstraints__()
+
+        return (fsh)
+
+    def __fshExtensions__(self):
+        extensions = [el for el in self.elements if len(el.types) > 0 and el.types[0] == "Extension"]
+        fsh_strings = []
+        for el in extensions:
+            fsh = f"{el.profiles[0]} named {el.slice_name} {el.min if el.min else ''}..{el.max if el.max else '*'}"
+            fsh_strings.append(fsh)
+        if len(fsh_strings) > 0:
+            return f"* extension contains:\n    " + " and\n    ".join(fsh_strings) + "\n"
+        return ""
+
+    def __fshElementLine__(self, el):
+        if (el.min or el.max) and not el.slice_name:
+            return f"* {el.fsh_path} {el.min if el.min else ''}..{el.max if el.max else ''}\n"
+        return ""
+
+    def __fshTypes__(self, el):
+        fsh = ""
+
+        if len(el.types) > 0:
+            if el.types[0] != "Extension":
+                for profile in el.profiles:
+                    fsh += f"* {el.fsh_path} ^type.profile = {profile}\n"
+            if el.types[0] == "Extension": # Extensions are handled different in FSH
+                pass
+            elif len(el.target_profiles):
+                fsh += f"* {el.fsh_path} only Canonical({' or '.join(el.target_profiles)})\n"
+            else:
+                fsh += f"* {el.fsh_path} only {' or '.join(el.types)}\n" # Not bulletproof, but it doesn't need to be
+
+        return fsh
+
+    def __fshTerminologyBinding__(self, el):
+        fsh = ""
+
+        if el.value_set or el.binding_strength:
+            fsh += f"* {el.fsh_path} from {el.value_set}"
+            if el.binding_strength:
+                fsh += f" ({el.binding_strength})\n"
+
+        return fsh
+
+    def __fshSlicing__(self, el):
+        fsh = ""
+
+        if el.slicing_path and el.slicing_type :
+            fsh += f"* insert Discriminator({el.fsh_path}, {el.slicing_type}, {el.slicing_path})\n"
+            if el.slicing_type != "type": # Type slicing works a bit different
+                sliced_elements = [sliced_el for sliced_el in self.elements if (sliced_el.slice_name != None and sliced_el.fhir_path == el.fhir_path)]
+                slice_declarations = []
+                for sliced_el in sliced_elements:
+                    slice_declaration = sliced_el.slice_name
+
+                    if sliced_el.min or sliced_el.max:
+                        slice_declaration += f" {sliced_el.min if sliced_el.min else ''}..{sliced_el.max if sliced_el.max else ''}"
+                    else:
+                        # It is required to add a cardinality, so default to ..* if nothing exists
+                        slice_declaration += " ..*"
+                    slice_declarations.append(slice_declaration)
+                fsh += f"* {el.fsh_path} contains\n    " + " and\n    ".join(slice_declarations) + "\n"
+        
+        return fsh
+
+    def __fshPatterns__(self, el):
+        fsh = ""
+
+        for pattern in el.patterns["CodeableConcept"]:
+            fsh += f"* {el.fsh_path} = {pattern.system}#{pattern.code}\n"
+        for pattern in el.patterns["Quantity"]:
+            value_fsh = f"{pattern.value} " if pattern.value else ""
+            if pattern.system == "http://unitsofmeasure.org":
+                code_fsh = f"'{pattern.code}'"
+            else:
+                code_fsh = f"{pattern.system}#{pattern.code}"
+            unit_fsh = f' "{pattern.unit}"' if pattern.unit else ""
+            fsh += f"* {el.fsh_path} = {value_fsh}{code_fsh}{unit_fsh}\n"
+        for pattern in el.patterns["Identifier"]:
+            fsh += f'* {el.fsh_path} ^system = "{pattern.system}"\n'
+
+        return fsh
+
+    def __fshConstraintsInProfile__(self, el):
+        fsh = ""
+
+        if len(el.constraints) > 0:
+            fsh += f"* {el.fsh_path}{' ' if el.fsh_path else ''}obeys " + " and ".join(el.constraints) + "\n"
+        for condition in el.conditions:
+            fsh += f"* {el.fsh_path} ^condition = {condition}\n"
+
+        return fsh
+
+    def __fshMappings__(self):
+        fsh = ""
 
         for mapping in self.mapping_declarations:
             fsh += f"\nMapping: {self.name}-to-{mapping.identity}\n"
@@ -230,13 +281,18 @@ class Profile:
             for el_mapping in self.el_mappings[mapping.identity]:
                 fsh += f'* {el_mapping.fsh_path} -> "{el_mapping.map}" "{el_mapping.comment}"\n'
 
+        return fsh
+
+    def __fshConstraints__(self):
+        fsh = ""
+
         for constraint in self.constraints:
             fsh += f"\nInvariant: {constraint.key}\n"
             fsh += f'Description: "{constraint.human}"\n'
             fsh += f"Severity: #{constraint.severity}\n"
             fsh += f'Expression: "{constraint.expression}"\n'
-
-        return (fsh)
+        
+        return fsh
 
 if __name__ == "__main__":
     shutil.rmtree(OUT_DIR, ignore_errors=True)
