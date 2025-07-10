@@ -12,6 +12,9 @@ NS = {"f": "http://hl7.org/fhir"}
 
 MappingDeclaration = collections.namedtuple("MappingDeclaration", ["identity", "uri", "name"])
 ElementMapping = collections.namedtuple("ElementMapping", ["fsh_path", "map", "comment"])
+PatternCodeableConcept = collections.namedtuple("PatternCodeableConcept", ["system", "code"])
+PatternQuantity = collections.namedtuple("PatternQuantity", ["value", "system", "code", "unit"])
+PatternIdentifier = collections.namedtuple("PatternIdentifier", ["system"])
 
 @dataclass
 class Element:
@@ -29,6 +32,7 @@ class Element:
     slice_name: str = None
     constraints: list[str] = field(default_factory=list) # Only constraint keys here
     conditions: list[str] = field(default_factory=list)
+    patterns: dict[str, list[str]] = field(default_factory=lambda: {"CodeableConcept": [], "Quantity": [], "Identifier": []})
 
 @dataclass
 class Constraint:
@@ -128,6 +132,29 @@ class Profile:
             
             for condition_el in xml_el.findall("f:condition", NS):
                 el.conditions.append(condition_el.get("value"))
+            
+            for pattern_el in xml_el.findall("f:patternCodeableConcept", NS):
+                coding_el = pattern_el.find("f:coding", NS)
+                pattern = PatternCodeableConcept(
+                    self.__fhirValue__(coding_el, "system"),
+                    self.__fhirValue__(coding_el, "code"),
+                )
+                el.patterns["CodeableConcept"].append(pattern)
+
+            for pattern_el in xml_el.findall("f:patternQuantity", NS):
+                pattern = PatternQuantity(
+                    self.__fhirValue__(pattern_el, "value"),
+                    self.__fhirValue__(pattern_el, "system"),
+                    self.__fhirValue__(pattern_el, "code"),
+                    self.__fhirValue__(pattern_el, "unit"),
+                )
+                el.patterns["Quantity"].append(pattern)
+
+            for pattern_el in xml_el.findall("f:patternIdentifier", NS):
+                pattern = PatternIdentifier(
+                    self.__fhirValue__(pattern_el, "system"),
+                )
+                el.patterns["Identifier"].append(pattern)
 
     def asFSH(self):
         fsh = ""
@@ -179,6 +206,18 @@ class Profile:
                             slice_declaration += " ..*"
                         slice_declarations.append(slice_declaration)
                     fsh += f"* {el.fsh_path} contains\n    " + " and\n    ".join(slice_declarations) + "\n"
+            for pattern in el.patterns["CodeableConcept"]:
+                fsh += f"* {el.fsh_path} = {pattern.system}#{pattern.code}\n"
+            for pattern in el.patterns["Quantity"]:
+                value_fsh = f"{pattern.value} " if pattern.value else ""
+                if pattern.system == "http://unitsofmeasure.org":
+                    code_fsh = f"'{pattern.code}'"
+                else:
+                    code_fsh = f"{pattern.system}#{pattern.code}"
+                unit_fsh = f' "{pattern.unit}"' if pattern.unit else ""
+                fsh += f"* {el.fsh_path} = {value_fsh}{code_fsh}{unit_fsh}\n"
+            for pattern in el.patterns["Identifier"]:
+                fsh += f'* {el.fsh_path} ^system = "{pattern.system}"\n'
             if len(el.constraints) > 0:
                 fsh += f"* {el.fsh_path}{' ' if el.fsh_path else ''}obeys " + " and ".join(el.constraints) + "\n"
             for condition in el.conditions:
