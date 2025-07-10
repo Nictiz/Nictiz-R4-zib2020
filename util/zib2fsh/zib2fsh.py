@@ -300,7 +300,7 @@ class Profile:
         if len(el.constraints) > 0:
             fsh += f"* {el.fsh_path}{' ' if el.fsh_path else ''}obeys " + " and ".join(el.constraints) + "\n"
         for condition in el.conditions:
-            fsh += f"* {el.fsh_path} ^condition = {condition}\n"
+            fsh += f"* {el.fsh_path} ^condition[+] = {condition}\n"
 
         return fsh
 
