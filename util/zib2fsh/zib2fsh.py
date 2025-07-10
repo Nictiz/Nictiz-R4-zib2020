@@ -190,9 +190,7 @@ class Profile:
                 if el.binding_strength:
                     fsh += f" ({el.binding_strength})\n"
             if el.slicing_path and el.slicing_type :
-                fsh += f"* {el.fsh_path} ^slicing.discriminator.type = #{el.slicing_type}\n"
-                fsh += f'* {el.fsh_path} ^slicing.discriminator.path = "{el.slicing_path}"\n'
-                fsh += f"* {el.fsh_path} ^slicing.rules = #open\n" # default
+                fsh += f"* insert Discriminator({el.fsh_path}, {el.slicing_type}, {el.slicing_path})\n"
                 if el.slicing_type != "type": # Type slicing works a bit different
                     sliced_elements = [sliced_el for sliced_el in self.elements if (sliced_el.slice_name != None and sliced_el.fhir_path == el.fhir_path)]
                     slice_declarations = []
