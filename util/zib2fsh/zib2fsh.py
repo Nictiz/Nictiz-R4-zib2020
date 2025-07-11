@@ -333,7 +333,7 @@ class Profile:
         fsh = ""
 
         if el.slicing_path and el.slicing_type :
-            slicing_path = el.slicing_path.replace("(", "\\(").replace(")", "\\)")
+            slicing_path = el.slicing_path.replace(")", "\\)")
             fsh += f"* insert Discriminator({el.fsh_path}, {el.slicing_type}, {slicing_path})\n"
             if el.slicing_type != "type": # Type slicing works a bit different
                 sliced_elements = [sliced_el for sliced_el in self.elements if (sliced_el.slice_name != None and sliced_el.fhir_path == el.fhir_path)]
@@ -365,7 +365,7 @@ class Profile:
             unit_fsh = f' "{pattern.unit}"' if pattern.unit else ""
             fsh += f"* {el.fsh_path} = {value_fsh}{code_fsh}{unit_fsh}\n"
         for pattern in el.patterns["Identifier"]:
-            fsh += f'* {el.fsh_path} ^system = "{pattern.system}"\n'
+            fsh += f'* {el.fsh_path} ^patternIdentifier.system = "{pattern.system}"\n'
 
         return fsh
 
