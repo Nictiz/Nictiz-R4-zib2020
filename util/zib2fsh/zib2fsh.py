@@ -216,8 +216,8 @@ class Profile:
             fsh += f'* ^purpose = "{self.purpose}"\n'
 
         for el in self.elements:
-            fsh += self.__fshElementLine__(el)
             fsh += self.__fshExtensions__(el)
+            fsh += self.__fshElementLine__(el)
             fsh += self.__fshTypes__(el)
             fsh += self.__fshTerminologyBinding__(el)
             fsh += self.__fshSlicing__(el)
@@ -307,15 +307,15 @@ class Profile:
         fsh = ""
 
         if len(el.types) > 0:
-            if el.types[0] != "Extension":
-                for profile in el.profiles:
-                    fsh += f"* {el.fsh_path} ^type.profile = {profile}\n"
             if el.types[0] == "Extension": # Extensions are handled different in FSH
                 pass
             elif len(el.target_profiles):
                 fsh += f"* {el.fsh_path} only Reference({' or '.join(el.target_profiles)})\n"
             else:
                 fsh += f"* {el.fsh_path} only {' or '.join(el.types)}\n" # Not bulletproof, but it doesn't need to be
+            if el.types[0] != "Extension":
+                for profile in el.profiles:
+                    fsh += f"* {el.fsh_path} ^type.profile = {profile}\n"
 
         return fsh
 
