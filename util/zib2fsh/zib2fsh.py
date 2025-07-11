@@ -195,23 +195,29 @@ class Profile:
 
         fsh += self.__fshMappings__()
         return fsh
+
+    def __fshInitialize__(self):
+        self.handled_extension_path = None
     
     def __fshProfile__(self):
+        self.__fshInitialize__()
+
         fsh = ""
 
         fsh += f"Profile: {self.name}\n"
         fsh += f"Parent: {self.parent}\n"
         fsh += f"Id: {self.id}\n"
         fsh += f'Title: "{self.title}"\n'
-        fsh += f"* insert ZibProfileMetadata({self.uniq_id})\n"
+        if self.id.startswith("zib-"):
+            fsh += f"* insert ZibProfileMetadata({self.uniq_id})\n"
+        else:
+            fsh += f"* insert ProfileMetadata({self.uniq_id})\n"
         if self.purpose:
             fsh += f'* ^purpose = "{self.purpose}"\n'
 
-        # Write out extensions first
-        fsh += self.__fshExtensions__()
-
         for el in self.elements:
             fsh += self.__fshElementLine__(el)
+            fsh += self.__fshExtensions__(el)
             fsh += self.__fshTypes__(el)
             fsh += self.__fshTerminologyBinding__(el)
             fsh += self.__fshSlicing__(el)
@@ -224,6 +230,8 @@ class Profile:
         return fsh
 
     def __fshExtension__(self):
+        self.__fshInitialize__()
+
         fsh = ""
 
         fsh += f"Extension: {self.name}\n"
@@ -245,14 +253,25 @@ class Profile:
 
         return fsh
 
-    def __fshExtensions__(self):
-        extensions = [el for el in self.elements if len(el.types) > 0 and el.types[0] == "Extension"]
+    def __fshExtensions__(self, el):
+        if not el.fhir_path.endswith(".extension"):
+            return ""
+        
+        # Guard because of the way differentials are organized. Each extension has a separate element in the differential,
+        # but in FSH they will be defined in a single entry. We need this guard to prevent the extension definition
+        # written out multiple times
+        if el.fhir_path == self.handled_extension_path:
+            return ""
+        self.handled_extension_path = el.fhir_path
+
+        extensions = [ext_el for ext_el in self.elements if len(ext_el.types) > 0 and ext_el.types[0] == "Extension" and ext_el.fhir_path == el.fhir_path]
         fsh_strings = []
-        for el in extensions:
-            fsh = f"{el.profiles[0]} named {el.slice_name} {el.min if el.min else ''}..{el.max if el.max else '*'}"
+        for extension in extensions:
+            fsh = f"{extension.profiles[0]} named {extension.slice_name} {extension.min if extension.min else ''}..{extension.max if extension.max else '*'}"
             fsh_strings.append(fsh)
         if len(fsh_strings) > 0:
-            return f"* extension contains\n    " + " and\n    ".join(fsh_strings) + "\n"
+            fsh_path = ".".join(el.fhir_path.split(".")[1:-1])
+            return f"* {fsh_path}{'.' if fsh_path else ''}extension contains\n    " + " and\n    ".join(fsh_strings) + "\n"
         return ""
 
     def __fshElementLine__(self, el):
