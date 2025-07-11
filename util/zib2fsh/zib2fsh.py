@@ -65,6 +65,7 @@ class Profile:
     def __parseXML__(self, xml_root):
         self.name = self.__fhirValue__(xml_root, "name")
         self.id = self.__fhirValue__(xml_root, "id")
+        self.uniq_id = self.id.replace("zib-", "")
         self.title = self.__fhirValue__(xml_root, "title")
         self.parent = self.__fhirValue__(xml_root, "baseDefinition").replace("http://hl7.org/fhir/StructureDefinition/", "")
         if self.parent == "Extension":
@@ -84,6 +85,7 @@ class Profile:
                 self.resource_type = match.group(1)
             else:
                 self.purpose = purpose
+        self.description = self.__fhirValue__(xml_root, "description")
 
         self.mapping_declarations = []
         self.el_mappings = {}
@@ -201,12 +203,9 @@ class Profile:
         fsh += f"Parent: {self.parent}\n"
         fsh += f"Id: {self.id}\n"
         fsh += f'Title: "{self.title}"\n'
-        if self.zib_name and self.zib_version:
-            fsh += f"* insert CoreProfileMetaData({self.zib_name}, {self.zib_version}, {self.resource_type})\n"
-        else:
-            if self.purpose:
-                fsh += f'* ^purpose = "{self.purpose}"\n'
-            fsh += "* insert BoilerPlate\n"
+        fsh += f"* insert ZibProfileMetadata({self.uniq_id})\n"
+        if self.purpose:
+            fsh += f'* ^purpose = "{self.purpose}"\n'
 
         # Write out extensions first
         fsh += self.__fshExtensions__()
@@ -231,6 +230,7 @@ class Profile:
         fsh += f"Id: {self.id}\n"
         fsh += f'Title: "{self.title}"\n'
         fsh += f"Context: {self.context}\n"
+        fsh += f"* insert ProfileMetadata({self.uniq_id})\n"
 
         for el in self.elements:
             fsh += self.__fshElementLine__(el)
@@ -252,7 +252,7 @@ class Profile:
             fsh = f"{el.profiles[0]} named {el.slice_name} {el.min if el.min else ''}..{el.max if el.max else '*'}"
             fsh_strings.append(fsh)
         if len(fsh_strings) > 0:
-            return f"* extension contains:\n    " + " and\n    ".join(fsh_strings) + "\n"
+            return f"* extension contains\n    " + " and\n    ".join(fsh_strings) + "\n"
         return ""
 
     def __fshElementLine__(self, el):
@@ -264,7 +264,7 @@ class Profile:
         if not any(write_out):
             return ""
 
-        fsh = f"* {el.fsh_path}"
+        fsh = f"* {el.fsh_path if el.fsh_path else '.'}"
         card = False
         if (el.min or el.max) and not el.slice_name:
             fsh += f" {el.min if el.min else ''}..{el.max if el.max else ''}"
@@ -294,7 +294,7 @@ class Profile:
             if el.types[0] == "Extension": # Extensions are handled different in FSH
                 pass
             elif len(el.target_profiles):
-                fsh += f"* {el.fsh_path} only Canonical({' or '.join(el.target_profiles)})\n"
+                fsh += f"* {el.fsh_path} only Reference({' or '.join(el.target_profiles)})\n"
             else:
                 fsh += f"* {el.fsh_path} only {' or '.join(el.types)}\n" # Not bulletproof, but it doesn't need to be
 
@@ -314,7 +314,8 @@ class Profile:
         fsh = ""
 
         if el.slicing_path and el.slicing_type :
-            fsh += f"* insert Discriminator({el.fsh_path}, {el.slicing_type}, {el.slicing_path})\n"
+            slicing_path = el.slicing_path.replace("(", "\\(").replace(")", "\\)")
+            fsh += f"* insert Discriminator({el.fsh_path}, {el.slicing_type}, {slicing_path})\n"
             if el.slicing_type != "type": # Type slicing works a bit different
                 sliced_elements = [sliced_el for sliced_el in self.elements if (sliced_el.slice_name != None and sliced_el.fhir_path == el.fhir_path)]
                 slice_declarations = []
@@ -376,6 +377,8 @@ class Profile:
 
     def __fshTextSection__(self):
         fsh = ""
+        if self.description:
+            fsh += f"* ^description = {self.__tripleQuote__(self.description, 4)}\n"
         for el in self.elements:
             fsh_strings = []
             if el.short:
@@ -401,11 +404,11 @@ class Profile:
         if len(lines) > 1:
             quoted = '"""\n'
             for line in lines:
-                quoted += f"{' ' * indent_level}{line}\n"
+                quoted += f"{' ' * indent_level}" + line.replace('\"', '\\\"') + "\n"
             quoted += f'{" " * indent_level}"""'
             return quoted
         else:
-            return f'"{text}"'
+            return '\"' + text.replace('\"', '\\\"') + '\"'
 
 if __name__ == "__main__":
     shutil.rmtree(OUT_DIR, ignore_errors=True)
