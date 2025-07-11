@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 import collections
+import copy
 import re
 import shutil
 import xml.etree.ElementTree as ET
@@ -139,6 +140,10 @@ class Profile:
                 el.slicing_type = self.__fhirValue__(discriminator, "type")
                 el.slicing_path = self.__fhirValue__(discriminator, "path")
             el.slice_name = self.__fhirValue__(xml_el, "sliceName")
+            if el.slice_name and not (el.min or el.max):
+                # If we have a slice definition or extension without min or max, we should set a default because FSH requires it
+                el.min = "0"
+                el.max = "*"
 
             for mapping in xml_el.findall("f:mapping", NS):
                 identity = self.__fhirValue__(mapping, "identity")
@@ -185,6 +190,81 @@ class Profile:
                 )
                 el.patterns["Identifier"].append(pattern)
 
+    def asBase(self):
+        base = copy.deepcopy(self)
+
+        base.name = self.name.replace("Zib", "Nlbase")
+        base.id = self.id.replace("zib", "nl-base")
+        base.title = self.title.replace("zib", "nl base")
+        base.parent = self.parent.replace("zib", "nl-base")
+
+        for el in base.elements:
+            # Remove cardinality constraints. When it is a slice definition, set them to 0..* because FSH requires them
+            if not el.slice_name:
+                el.min = None
+                el.max = None
+            else:
+                if el.min != "0":
+                    el.min = "0"
+                if el.max != "*":
+                    el.max = "*"    
+            
+            if el.comment:
+                el.comment = el.comment.replace("zib-", "nl-base-")
+
+            if el.binding_strength:
+                # Set binding strengths to preferred
+                el.binding_strength = "preferred"
+
+            el.target_profiles = [p.replace("zib-", "nl-base-") for p in el.target_profiles]
+            el.profiles = [p.replace("zib-", "nl-base-") for p in el.profiles]
+
+        return base
+
+    def asCore(self):
+        core = copy.deepcopy(self)
+
+        core.name = self.name.replace("Zib", "Nlcore")
+        core.id = self.id.replace("zib", "nl-core")
+        core.title = self.title.replace("zib", "nl core")
+        core.parent = f"http://nictiz.nl/fhir/StructureDefinition/nl-base-{self.uniq_id}"
+        
+        # Mappings and constraints are defined in base
+        core.mappings = []
+        core.constraints = []
+
+        for el in core.elements:
+            el.short = None
+            el.alias = []
+            el.definition = None
+            if el.comment:
+                comment = el.comment.replace("zib-", "nl-core-")
+                if comment == el.comment:
+                    el.comment = None # No need to override
+                else:
+                    el.comment = comment
+
+            if el.min == "0":
+                el.min = None
+            if el.max == "*":
+                el.max = None
+
+            # Don't emit discriminators again
+            el.slicing_type = None
+            el.slicing_path = None
+
+            el.target_profiles = [p.replace("zib-", "nl-core-") for p in el.target_profiles if "zib-" in p]
+            if len(el.types) == 0 or el.types[0] != "Extension":
+                el.profiles = [p.replace("zib-", "nl-core-") for p in el.profiles if "zib-" in p]
+            el.conditions = []
+            el.patterns = {
+                "CodeableConcept": [],
+                "Quantity": [],
+                "Identifier": []
+            }
+        
+        return core
+
     def asFSH(self):
         fsh = ""
 
@@ -208,10 +288,9 @@ class Profile:
         fsh += f"Parent: {self.parent}\n"
         fsh += f"Id: {self.id}\n"
         fsh += f'Title: "{self.title}"\n'
-        if self.id.startswith("zib-"):
-            fsh += f"* insert ZibProfileMetadata({self.uniq_id})\n"
-        else:
-            fsh += f"* insert ProfileMetadata({self.uniq_id})\n"
+        fsh += f"* insert ProfileMetadata({self.id})\n"
+        if self.zib_name and self.zib_version and self.resource_type:
+            fsh += f"* insert Purpose({self.zib_name}, {self.zib_version}, {self.resource_type})\n"
         if self.purpose:
             fsh += f'* ^purpose = "{self.purpose}"\n'
 
@@ -267,8 +346,9 @@ class Profile:
         extensions = [ext_el for ext_el in self.elements if len(ext_el.types) > 0 and ext_el.types[0] == "Extension" and ext_el.fhir_path == el.fhir_path]
         fsh_strings = []
         for extension in extensions:
-            fsh = f"{extension.profiles[0]} named {extension.slice_name} {extension.min if extension.min else ''}..{extension.max if extension.max else '*'}"
-            fsh_strings.append(fsh)
+            if extension.min or extension.max:
+                fsh = f"{extension.profiles[0]} named {extension.slice_name} {extension.min if extension.min else ''}..{extension.max if extension.max else '*'}"
+                fsh_strings.append(fsh)
         if len(fsh_strings) > 0:
             fsh_path = ".".join(el.fhir_path.split(".")[1:-1])
             return f"* {fsh_path}{'.' if fsh_path else ''}extension contains\n    " + " and\n    ".join(fsh_strings) + "\n"
@@ -339,14 +419,9 @@ class Profile:
                 sliced_elements = [sliced_el for sliced_el in self.elements if (sliced_el.slice_name != None and sliced_el.fhir_path == el.fhir_path)]
                 slice_declarations = []
                 for sliced_el in sliced_elements:
-                    slice_declaration = sliced_el.slice_name
-
-                    if sliced_el.min or sliced_el.max:
-                        slice_declaration += f" {sliced_el.min if sliced_el.min else ''}..{sliced_el.max if sliced_el.max else ''}"
-                    else:
-                        # It is required to add a cardinality, so default to ..* if nothing exists
-                        slice_declaration += " ..*"
-                    slice_declarations.append(slice_declaration)
+                    if sliced_el.min or sliced_el.max: # Only write out if we have a cardinality
+                        slice_declaration = f"{sliced_el.slice_name} {sliced_el.min if sliced_el.min else ''}..{sliced_el.max if sliced_el.max else ''}"
+                        slice_declarations.append(slice_declaration)
                 fsh += f"* {el.fsh_path} contains\n    " + " and\n    ".join(slice_declarations) + "\n"
         
         return fsh
@@ -435,6 +510,13 @@ if __name__ == "__main__":
 
     for in_file in IN_DIR.glob("*.xml"):
         profile = Profile.fromXML(in_file)
-        out_name = in_file.name.replace(".xml", ".fsh")
+        base = profile.asBase()
+        out_name = in_file.name.replace("zib-", "nl-base-").replace(".xml", ".fsh")
         with open(OUT_DIR / out_name, "w") as out_file:
-            out_file.write(profile.asFSH())
+            out_file.write(base.asFSH())
+
+        if in_file.name.startswith("zib-"):
+            core = profile.asCore()
+            out_name = in_file.name.replace("zib-", "nl-core-").replace(".xml", ".fsh")
+            with open(OUT_DIR / out_name, "w") as out_file:
+                out_file.write(core.asFSH())
