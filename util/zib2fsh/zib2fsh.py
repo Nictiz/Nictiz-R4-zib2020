@@ -29,6 +29,7 @@ class Element:
     definition: str = None
     comment: str = None
     value_set: str = None
+    permitted_values: str = None
     binding_strength: str = None
     types: list[str] = field(default_factory=list)
     target_profiles: list[str] = field(default_factory=list)
@@ -125,6 +126,10 @@ class Profile:
             if binding != None:
                 el.value_set = self.__fhirValue__(binding, "valueSet")
                 el.binding_strength = self.__fhirValue__(binding, "strength")
+                if value_set_el := binding.find("f:valueSet", NS):
+                    for ext in value_set_el.findall("f:extension", NS):
+                        if ext.get("url") == "http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap":
+                            el.permitted_values = self.__fhirValue__(ext, "valueCanonical")
 
             data_type = xml_el.find("f:type", NS)
             if data_type != None:
@@ -250,6 +255,8 @@ class Profile:
             if el.max == "*":
                 el.max = None
 
+            el.permitted_values = None
+
             # Don't emit discriminators again
             el.slicing_type = None
             el.slicing_path = None
@@ -294,7 +301,8 @@ class Profile:
             fsh += f"* insert Purpose({self.zib_name}, {self.zib_version}, {self.resource_type})\n"
         if self.purpose:
             fsh += f'* ^purpose = "{self.purpose}"\n'
-
+        fsh += "\n"
+        
         for el in self.elements:
             fsh += self.__fshExtensionsDefinition__(el)
             fsh += self.__fshSlicing__(el)
@@ -318,7 +326,7 @@ class Profile:
         fsh += f"Id: {self.id}\n"
         fsh += f'Title: "{self.title}"\n'
         fsh += f"Context: {self.context}\n"
-        fsh += f"* insert ProfileMetadata({self.uniq_id})\n"
+        fsh += f"* insert ProfileMetadata({self.uniq_id})\n\n"
 
         for el in self.elements:
             fsh += self.__fshElementLine__(el)
@@ -405,6 +413,8 @@ class Profile:
             write_out = True
         if len(el.conditions) > 0:
             write_out = True
+        if el.permitted_values:
+            write_out = True
 
         if not write_out:
             return ""
@@ -420,6 +430,8 @@ class Profile:
             fsh_strings.append(f"obeys " + " and ".join(el.constraints))
         for condition in el.conditions:
             fsh_strings.append(f"^condition[+] = {condition}")
+        if el.permitted_values:
+            fsh_strings.append(f"insert PermittedValues({el.permitted_values})")
         if card or len(fsh_strings) > 1: # Multiple lines
             fsh += "\n"
             for fsh_string in fsh_strings:
