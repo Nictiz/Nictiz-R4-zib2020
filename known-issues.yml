@@ -822,7 +822,7 @@ zib-TextResult.VisualResult:
       - cardinality: 1..1 instead of 0..*
         reason: The use of the Media resource referenced in zib-TextResult DiagnosticReport.media.link is optional (0..*), but if the Media resource is used, Media.content should be present (1..1).
 
-zib-TreatmentDirective2-Consent:
+zib-TreatmentDirective2:
   zib deviations:
     Consent.source[x]:sourceReference:
       - cardinality: 0..1 instead of 0..*
@@ -838,12 +838,6 @@ zib-TreatmentDirective2-Consent:
       - message: "Constraint failed: sd-pg-03: 'If mapping.map exists and the mapping is not implicit and the element is not the root element, definition should exist.'"
         reason: The mapping is to a zib container, which doesn't have a useful description if implemented in a profile.
 
-zib-TreatmentDirective2-ServiceRequest:
-  zib deviations:
-    ServiceRequest.doNotPerform:
-      - datatype: boolean instead of CD
-        reason: Zib concept TreatmentDecision cannot directly be mapped to ServiceRequest, but an indirect mapping is made to ServiceRequest.doNotPerform and to the ext-TreatmentDirective2.SpecificationOther modifier extension.
-        
 zib-TreatmentObjective:
   zib deviations:
     Goal:
