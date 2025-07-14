@@ -5,6 +5,7 @@ import collections
 import copy
 import re
 import shutil
+import textwrap
 import xml.etree.ElementTree as ET
 
 IN_DIR = Path("../../resources/zib")
@@ -365,7 +366,7 @@ class Profile:
             return ""
 
         slicing_path = el.slicing_path.replace(")", "\\)")
-        fsh += f"* insert Discriminator({el.fsh_path}, {el.slicing_type}, {slicing_path})\n"
+        fsh += f"* {el.fsh_path}{' ' if el.fsh_path else ''}insert Discriminator({el.slicing_type}, {slicing_path})\n"
 
         if el.slicing_type == "type": # Type slicing works a bit different
             return fsh
@@ -535,6 +536,48 @@ class Profile:
 if __name__ == "__main__":
     shutil.rmtree(OUT_DIR, ignore_errors=True)
     OUT_DIR.mkdir(exist_ok=True, parents=True)
+
+    with open(OUT_DIR / "Utility.fsh", "w") as out_file:
+        out_file.write(textwrap.dedent("""\
+        RuleSet: Discriminator(type, path)
+        * ^slicing.discriminator.type = #{type}
+        * ^slicing.discriminator.path = "{path}"
+        * ^slicing.rules = #open
+
+        RuleSet: PermittedValues(canonical)
+        * ^binding.valueSet.extension[+].url = "http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap"
+        * ^binding.valueSet.extension[=].valueCanonical = "{canonical}"
+        """))
+    
+    with open(OUT_DIR / "Metadata.fsh", "w") as out_file:
+        out_file.write(textwrap.dedent("""\
+        RuleSet: BaseProfileMetadata(UniqueId)
+        * insert ProfileMetadata(nl-base-{UniqueId})
+
+        RuleSet: CoreProfileMetadata(UniqueId)
+        * insert ProfileMetadata(nl-core-{UniqueId})
+
+        RuleSet: ZibProfileMetadata(UniqueId)
+        * insert ProfileMetadata(zib-{UniqueId})
+
+        RuleSet: ProfileMetadata(id)
+        * ^url = "http://nictiz.nl/fhir/StructureDefinition/{id}"
+        * insert BoilerPlate
+
+        RuleSet: Purpose(ZibName, ZibVersion, ResourceType)
+        * ^purpose = "This {ResourceType} resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) {ZibName} v{ZibVersion} (2020)](https://zibs.nl/wiki/{ZibName}-v{ZibVersion}(2020EN))."
+
+        RuleSet: BoilerPlate
+        * ^text.status = #empty
+        * ^text.div = "<div xmlns=\"http://www.w3.org/1999/xhtml\">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>"
+        * ^status = #draft
+        * ^publisher = "Nictiz"
+        * ^contact.name = "Nictiz"
+        * ^contact.telecom.system = #url
+        * ^contact.telecom.value = "https://www.nictiz.nl"
+        * ^contact.telecom.use = #work
+        * ^copyright = "Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise."
+        """))
 
     for in_file in IN_DIR.glob("*.xml"):
         profile = Profile.fromXML(in_file)
