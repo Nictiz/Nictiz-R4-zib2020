@@ -143,7 +143,6 @@ class Profile:
             if el.slice_name and not (el.min or el.max):
                 # If we have a slice definition or extension without min or max, we should set a default because FSH requires it
                 el.min = "0"
-                el.max = "*"
 
             for mapping in xml_el.findall("f:mapping", NS):
                 identity = self.__fhirValue__(mapping, "identity")
@@ -206,8 +205,8 @@ class Profile:
             else:
                 if el.min != "0":
                     el.min = "0"
-                if el.max != "*":
-                    el.max = "*"    
+                #if el.max != "*":
+                #    el.max = "*"    
             
             if el.comment:
                 el.comment = el.comment.replace("zib-", "nl-base-")
@@ -231,6 +230,7 @@ class Profile:
         
         # Mappings and constraints are defined in base
         core.mappings = []
+        core.mapping_declarations = []
         core.constraints = []
 
         for el in core.elements:
@@ -254,8 +254,8 @@ class Profile:
             el.slicing_path = None
 
             el.target_profiles = [p.replace("zib-", "nl-core-") for p in el.target_profiles if "zib-" in p]
-            if len(el.types) == 0 or el.types[0] != "Extension":
-                el.profiles = [p.replace("zib-", "nl-core-") for p in el.profiles if "zib-" in p]
+            el.profiles = [p.replace("zib-", "nl-core-") for p in el.profiles if "zib-" in p]
+            el.types = []
             el.conditions = []
             el.patterns = {
                 "CodeableConcept": [],
@@ -277,7 +277,7 @@ class Profile:
         return fsh
 
     def __fshInitialize__(self):
-        self.handled_extension_path = None
+        self.handled_slices = []
     
     def __fshProfile__(self):
         self.__fshInitialize__()
@@ -295,11 +295,11 @@ class Profile:
             fsh += f'* ^purpose = "{self.purpose}"\n'
 
         for el in self.elements:
-            fsh += self.__fshExtensions__(el)
+            fsh += self.__fshExtensionsDefinition__(el)
+            fsh += self.__fshSlicing__(el)
             fsh += self.__fshElementLine__(el)
             fsh += self.__fshTypes__(el)
             fsh += self.__fshTerminologyBinding__(el)
-            fsh += self.__fshSlicing__(el)
             fsh += self.__fshPatterns__(el)
 
         fsh += self.__fshTextSection__()
@@ -332,40 +332,85 @@ class Profile:
 
         return fsh
 
-    def __fshExtensions__(self, el):
+    def __fshExtensionsDefinition__(self, el):
         if not el.fhir_path.endswith(".extension"):
             return ""
         
-        # Guard because of the way differentials are organized. Each extension has a separate element in the differential,
-        # but in FSH they will be defined in a single entry. We need this guard to prevent the extension definition
-        # written out multiple times
-        if el.fhir_path == self.handled_extension_path:
-            return ""
-        self.handled_extension_path = el.fhir_path
+        extensions = []
+        for ext_el in self.elements:
+            if not ext_el.fhir_path == el.fhir_path:
+                continue # Not an extension in the parent element
+            if not (len(ext_el.types) > 0 and ext_el.types[0] == "Extension"):
+                continue # Not an extension definition (but profiled path within an extension)
+            if not len(ext_el.profiles) > 0:
+                continue # Not an extension definition, only a constraint
+            if ext_el.fsh_path in self.handled_slices:
+                continue # Already handled this
+            extensions.append(ext_el)
+            self.handled_slices.append(ext_el.fsh_path)
 
-        extensions = [ext_el for ext_el in self.elements if len(ext_el.types) > 0 and ext_el.types[0] == "Extension" and ext_el.fhir_path == el.fhir_path]
         fsh_strings = []
         for extension in extensions:
-            if extension.min or extension.max:
-                fsh = f"{extension.profiles[0]} named {extension.slice_name} {extension.min if extension.min else ''}..{extension.max if extension.max else '*'}"
-                fsh_strings.append(fsh)
+            fsh = f"{extension.profiles[0]} named {extension.slice_name} {extension.min if extension.min else ''}..{extension.max if extension.max else '*'}"
+            fsh_strings.append(fsh)
         if len(fsh_strings) > 0:
             fsh_path = ".".join(el.fhir_path.split(".")[1:-1])
             return f"* {fsh_path}{'.' if fsh_path else ''}extension contains\n    " + " and\n    ".join(fsh_strings) + "\n"
         return ""
 
+    def __fshSlicing__(self, el):
+        fsh = ""
+
+        if not (el.slicing_path and el.slicing_type):
+            return ""
+
+        slicing_path = el.slicing_path.replace(")", "\\)")
+        fsh += f"* insert Discriminator({el.fsh_path}, {el.slicing_type}, {slicing_path})\n"
+
+        if el.slicing_type == "type": # Type slicing works a bit different
+            return fsh
+
+        slices = []
+        for sliced_el in self.elements:
+            if not sliced_el.fhir_path == el.fhir_path:
+                continue # Not an extension in the parent element
+            if not (sliced_el.slice_name):
+                continue # Not a slice
+            if not (sliced_el.min or sliced_el.max):
+                continue # We only write out something if we have explicit cardinalities
+            if sliced_el.fsh_path in self.handled_slices:
+                continue # Already handled this
+
+            slices.append(sliced_el)
+            self.handled_slices.append(sliced_el.fsh_path)
+
+        fsh_strings = []
+        for sliced_el in slices:
+            fsh_string = f"{sliced_el.slice_name} {sliced_el.min if sliced_el.min else ''}..{sliced_el.max if sliced_el.max else ''}"
+            fsh_strings.append(fsh_string)
+        fsh += f"* {el.fsh_path} contains\n    " + " and\n    ".join(fsh_strings) + "\n"
+        
+        return fsh
+
     def __fshElementLine__(self, el):
-        write_out = [
-            (el.min or el.max) and not el.slice_name,
-            len(el.constraints) > 0,
-            len(el.conditions) > 0,
-        ]
-        if not any(write_out):
+        # Write a line if we have explicit cardinality, constraints or conditions. Cardinality is only written if it
+        # wasn't defined already in a "contains" line.
+        write_out = False
+        if (el.min or el.max):
+            if el.fsh_path not in self.handled_slices:
+                if not (el.slice_name and el.fhir_path.endswith("[x]") and el.min == "0" and el.max in [None, "*"]): # Don't write out type slices with default cardinalities
+                    write_out = True
+        if len(el.constraints) > 0:
+            write_out = True
+        if len(el.conditions) > 0:
+            write_out = True
+
+        if not write_out:
             return ""
 
         fsh = f"* {el.fsh_path if el.fsh_path else '.'}"
         card = False
-        if (el.min or el.max) and not el.slice_name:
+        if (el.min or el.max) and (el.fsh_path not in self.handled_slices):
             fsh += f" {el.min if el.min else ''}..{el.max if el.max else ''}"
             card = True
 
@@ -374,7 +419,7 @@ class Profile:
             fsh_strings.append(f"obeys " + " and ".join(el.constraints))
         for condition in el.conditions:
             fsh_strings.append(f"^condition[+] = {condition}")
-        if card or len(fsh_strings) > 1:
+        if card or len(fsh_strings) > 1: # Multiple lines
             fsh += "\n"
             for fsh_string in fsh_strings:
                 fsh += f"  * {fsh_string}\n"
@@ -407,23 +452,6 @@ class Profile:
             if el.binding_strength:
                 fsh += f" ({el.binding_strength})\n"
 
-        return fsh
-
-    def __fshSlicing__(self, el):
-        fsh = ""
-
-        if el.slicing_path and el.slicing_type :
-            slicing_path = el.slicing_path.replace(")", "\\)")
-            fsh += f"* insert Discriminator({el.fsh_path}, {el.slicing_type}, {slicing_path})\n"
-            if el.slicing_type != "type": # Type slicing works a bit different
-                sliced_elements = [sliced_el for sliced_el in self.elements if (sliced_el.slice_name != None and sliced_el.fhir_path == el.fhir_path)]
-                slice_declarations = []
-                for sliced_el in sliced_elements:
-                    if sliced_el.min or sliced_el.max: # Only write out if we have a cardinality
-                        slice_declaration = f"{sliced_el.slice_name} {sliced_el.min if sliced_el.min else ''}..{sliced_el.max if sliced_el.max else ''}"
-                        slice_declarations.append(slice_declaration)
-                fsh += f"* {el.fsh_path} contains\n    " + " and\n    ".join(slice_declarations) + "\n"
-        
         return fsh
 
     def __fshPatterns__(self, el):
