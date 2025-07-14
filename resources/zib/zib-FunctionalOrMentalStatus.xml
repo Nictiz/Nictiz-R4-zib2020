@@ -75,6 +75,7 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <comment value="As `Observation.code` (zib concept StatusName, NL-CM:4.26.2) contains details about the functional or mental parameter being observed, `Observation.category` is used to indicate that his is an observation about a functional or mental status (i.e. an instance of the zib).&#xD;&#xA;&#xD;&#xA;However, functional statuses and mental statuses are unrelated concepts in SNOMED. Therefore, no common category code exists to indicate a &quot;functional or mental status&quot;. As a result, functional status Observations should be categorized differently than mental status Observations (using SNOMED 118228005 versus SNOMED 384821006). In the profile, this is indicated using the slices `.category:functionalStatusFinding` and `.category:mentalStatusFinding`. It is up to the sending system and assign one of these codes to the `.category`. More information can be found in [zib ticket ZIB-1549](https://nictiz.atlassian.net/browse/ZIB-1549)." />
       <min value="1" />
       <constraint>
         <key value="zib-FunctionalOrMentalStatus-1" />
@@ -86,6 +87,7 @@
     <element id="Observation.category:functionalStatusFinding">
       <path value="Observation.category" />
       <sliceName value="functionalStatusFinding" />
+      <comment value="See the comment on `.category` for guidance on using this slice." />
       <max value="1" />
       <patternCodeableConcept>
         <coding>
@@ -98,6 +100,7 @@
     <element id="Observation.category:mentalStatusFinding">
       <path value="Observation.category" />
       <sliceName value="mentalStatusFinding" />
+      <comment value="See the comment on `.category` for guidance on using this slice." />
       <max value="1" />
       <patternCodeableConcept>
         <coding>
