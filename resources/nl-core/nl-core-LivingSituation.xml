@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-LivingSituation" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LivingSituation" />
   <name value="NlcoreLivingSituation" />
   <title value="nl core LivingSituation" />
@@ -35,18 +33,43 @@
   <differential>
     <element id="Observation">
       <path value="Observation" />
+      <comment value="Several concepts of zib LivingSituation are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* HouseType (NL-CM:7.8.3): [nl-core-LivingSituation.HouseType](http://nictiz.nl/fhir/StructureDefinition/nl-core-LivingSituation.HouseType)&#xD;&#xA;* HomeAdaption (NL-CM:7.8.5): [nl-core-LivingSituation.HomeAdaption ](http://nictiz.nl/fhir/StructureDefinition/nl-core-LivingSituation.HomeAdaption)&#xD;&#xA;* LivingCondition (NL-CM:7.8.4): [nl-core-LivingSituation.LivingCondition ](http://nictiz.nl/fhir/StructureDefinition/nl-core-LivingSituation.LivingCondition)" />
       <alias value="nl-core-LivingSituation" />
-        </element>
-        <element id="Observation.subject">
-            <path value="Observation.subject"/>
-            <type>
-                <code value="Reference"/>
-                <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient"/>
-                <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group"/>
-                <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device"/>
-                <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location"/>
-                <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
-            </type>
+    </element>
+    <element id="Observation.subject">
+      <path value="Observation.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:houseType">
+      <path value="Observation.hasMember" />
+      <sliceName value="houseType" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LivingSituation.HouseType" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:homeAdaption">
+      <path value="Observation.hasMember" />
+      <sliceName value="homeAdaption" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LivingSituation.HomeAdaption" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:livingCondition">
+      <path value="Observation.hasMember" />
+      <sliceName value="livingCondition" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LivingSituation.LivingCondition" />
+      </type>
     </element>
   </differential>
 </StructureDefinition>

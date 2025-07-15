@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-Pregnancy.DateLastMenstruation" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy.DateLastMenstruation" />
   <name value="ZibPregnancyDateLastMenstruation" />
   <title value="zib Pregnancy.DateLastMenstruation" />
@@ -35,7 +33,7 @@
   <differential>
     <element id="Observation">
       <path value="Observation" />
-      <comment value="This profile on the Observation resource represents the DateLastMenstruation concept (NL-CM:7.14.8) of zib Pregnancy. It can be used together with the [zib-Pregnancy](http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy) profile on the Condition resource, which can be referenced using `Observation.focus`." />
+      <comment value="This profile on the Observation resource represents the DateLastMenstruation concept (NL-CM:7.14.8) of zib Pregnancy. It can be used together with the [zib-Pregnancy](http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy) profile on the Observation resource, which groups references to the current and other resources on `Observation.hasMember`." />
     </element>
     <element id="Observation.code">
       <path value="Observation.code" />
@@ -45,15 +43,6 @@
           <code value="21840007" />
         </coding>
       </patternCodeableConcept>
-    </element>
-    <element id="Observation.focus">
-      <path value="Observation.focus" />
-      <max value="1" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy" />
-      </type>
     </element>
     <element id="Observation.value[x]">
       <path value="Observation.value[x]" />

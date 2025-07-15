@@ -283,7 +283,7 @@ This document contains release notes per zib, indicating differences with their 
 * Both InsuranceCompany and 'PayerPerson as Organization' have been mapped in the profile Payer-Organization.
 
 ## zib-Pregnancy
-* The value of `Condition.code` has changed from 118185001 to 364320009.
+* The mapping of zib Pregnancy is now mapped onto an Observation resource rather than a Condition resource, aligning with the meaning of the zib.
 
 ## zib-Pregnancy.DateLastMenstruation
 * The zib-Pregnancy extension has moved from `Observation.extension` to `Observation.focus`.
@@ -406,6 +406,11 @@ This document contains release notes per zib, indicating differences with their 
 * Added guidance for mandatory elements `Consent.status`, `Consent.scope` and `Consent.policy` or `Consent.policyRule`.
 * Moved AdvanceDirective from `Consent.source[x]` to `Consent.source[x]:sourceReference` to be more specific.
 * Removed references that are not defined by the zib (e.g. `Consent.organization` and `Consent.actor`).
+
+## zib-TreatmentObjective
+* DesiredHealthcareResult element moved to `Goal.description.text`.
+* Removed the mapping on `Goal.expressedBy` and the reference to PractitionerRole.
+* The reference TreatmentObjective -> FunctionalOrMentalStatus -> MedicalDevice is mapped in reverse onto the resource-pertainsToGoal extension in zib-MedicalDevice.
 
 ## zib-Vaccination
 * Renamed profile names: zib-Vaccination to zib-Vaccination-event and zib-VaccinationRecommendation to zib-Vaccination-request conform new profiling guidelines.

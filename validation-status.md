@@ -96,7 +96,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 
 ### BarthelADLIndex v3.1
 * Profile: zib-BarthelADLIndex
-* Status: in progress
+* Status: validated
 
 ### BladderFunction v3.2
 * Profiles:
@@ -139,7 +139,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
     * zib-wounds.WoundCharacteristics
     * zib-wounds.DateOfLastDressingChange
     * zib-wounds.WoundImage
-* Status: in progress
+* Status: rejected
 
 ### CareAgreement v1.0
 * Status: not submitted for validation
@@ -150,7 +150,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 
 ### ChecklistPainBehavior v1.1
 * Profile: zib-ChecklistPainBehavior
-* Status: in progress
+* Status: validated
 
 ### ComfortScale v1.1
 * Profile: zib-ComfortScale
@@ -340,7 +340,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
     * zib-MedicalDevice
     * zib-MedicalDevice.Product
     * zib-Procedure-event
-* Status: in progress
+* Status: validated
 
 ### MedicationAdministration2 v1.1.1
 * Status: not submitted for validation
@@ -383,7 +383,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 * Profiles:
     * zib-NameInformation
     * zib-NameInformation.GivenName
-* Status: in progress
+* Status: validated
 
 ### Nationality v3.0
 * Profiles: zib-Patient
@@ -399,7 +399,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 
 ### O2Saturation v3.1
 * Profile: zib-O2Saturation
-* Status: in progress
+* Status: validated
 
 ### OutcomeOfCare v3.2
 * Status: not submitted for validation
@@ -409,7 +409,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 
 ### PainScore v4.0
 * Profile: zib-PainScore
-* Status: in progress
+* Status: validated
 
 ### ParticipationInSociety v3.1
 * Profiles:
@@ -434,7 +434,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 
 ### PharmaceuticalProduct v2.1.2
 * Profile: zib-PharmaceuticalProduct
-* Status: in progress
+* Status: validated
 
 ### Pregnancy-v4.0
 * Profiles:
@@ -444,7 +444,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
     * zib-Pregnancy.Gravidity
     * zib-Pregnancy.Parity
     * zib-Pregnancy.PregnancyDuration
-* Status: validated
+* Status: not submitted for validation
 
 ### PressureUlcer v3.4
 * Profiles:
@@ -455,7 +455,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
     * zib-wounds.WoundImage
     * zib-wounds.WoundLength
     * zib-wounds.WoundWidth
-* Status: in progress
+* Status: rejected
 
 ### Procedure v5.2 (past use)
 * Profiles:
@@ -589,6 +589,6 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
     * zib-wounds.WoundLength
     * zib-wounds.WoundWidth
     * zib-MedicalDevice
-* Status: in progress
+* Status: rejected
 
 
