@@ -88,5 +88,16 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole" />
       </type>
     </element>
+    <element id="Consent.provision.code">
+      <path value="Consent.provision.code" />
+      <binding>
+        <description value="If applicable, the ConceptMap NHGTabel62Behandelgrenzen-to-TreatmentCodelist may be used for translating from the NHG Tabel to the TreatmentCodelist." />
+        <valueSet>
+          <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
+            <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/NHGTabel62Behandelgrenzen-to-TreatmentCodelist" />
+          </extension>
+        </valueSet>
+      </binding>
+    </element>
   </differential>
 </StructureDefinition>

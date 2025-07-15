@@ -34,7 +34,7 @@
     <element id="Consent">
       <path value="Consent" />
       <short value="TreatmentDirective" />
-      <comment value="A straightforward and accurate mapping of zib TreatmentDirective2 to FHIR is not possible. The main consideration is to choose between the Consent and CarePlan resource. Unfortunately, the Consent resource does not have full support for treatment directives yet as its main focus is to model Patient's privacy consents. Regardless, it seems to be the best match to represent the intention of the zib, as both the resource and the zib cover a mutual agreement about treatments and not per se the resulting actions or policy for treatments, which would better be handled using the CarePlan resource. Future migration to a later version of FHIR or the zib will result in the reevaluation of the mapping.&#xD;&#xA;&#xD;&#xA;Within this TreatmentDirective resource, references to AdvanceDirective(s) can be made using either the Consent.extension:additionalAdvanceDirective or the Consent.source[x]:sourceReference element. The content of the referenced AdvanceDirective is not dependent on the element used; however, it is essential that each element refers to a different AdvanceDirective. This ensures that two distinct AdvanceDirectives are recorded and can be individually identified within this resource." />
+      <comment value="A straightforward and accurate mapping of zib TreatmentDirective2 to FHIR is not possible. The main consideration is to choose between the Consent and CarePlan resource. Unfortunately, the Consent resource does not have full support for treatment directives yet as its main focus is to model Patient's privacy consents. Regardless, it seems to be the best match to represent the intention of the zib, as both the resource and the zib cover a mutual agreement about treatments and not per se the resulting actions or policy for treatments, which would better be handled using the CarePlan resource. Future migration to a later version of FHIR or the zib will result in the reevaluation of the mapping." />      
       <alias value="BehandelAanwijzing" />
       <constraint>
         <key value="zib-TreatmentDirective2-1" />
@@ -311,12 +311,7 @@
       <max value="1" />
       <binding>
         <strength value="required" />
-        <description value="If applicable, the ConceptMap NHGTabel62Behandelgrenzen-to-TreatmentCodelist may be used for translating from the NHG Tabel to the TreatmentCodelist." />
-        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.2.2.1--20200901000000">
-        <extension url="http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap">
-          <valueCanonical value="http://nictiz.nl/fhir/ConceptMap/ConceptMap-NHGTabel62Behandelgrenzen-to-TreatmentCodelist" />
-        </extension>
-        </valueSet>
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.2.2.1--20200901000000" />
       </binding>
       <mapping>
         <identity value="zib-treatmentdirective2-v1.0-2020EN" />
