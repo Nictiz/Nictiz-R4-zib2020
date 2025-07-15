@@ -4,7 +4,7 @@ Zib TreatmentDirective2 is concerned with the desirability to perform a treatmen
 
 In FHIR, the decision to perform the treatment is modeled using the `Consent.provision.type` concept. However, this has a _required_ binding to a limited ValueSet that only contains the options _deny_ and _permit_. This binary choice is thus not granular enough for the zib.
 
-For this reason, a modifier extension is created, named "ext-TreatmentDirective2.SpecificationOther". If present, this extension carries the textual guidance on the desirability of the treatment. If this modifier extension is present, it's value overrules `Consent.provision.type`. Sending systems SHOULD refrain from setting this values when the treatment decision is "Other", and receiving systems MUST present the information from the modifier extension to the user.
+For this reason, a modifier extension is created, named "ext-TreatmentDirective2.SpecificationOther". If present, this extension carries the textual guidance on the desirability of the treatment. If this modifier extension is present, it's value overrules `Consent.provision.type`. Sending systems MUST refrain from setting this value when the treatment decision is "Other". Receiving systems MUST present the information from the modifier extension to the user.
 
 Note that this must be a [modifier extension](https://www.hl7.org/fhir/R4/extensibility.html#modifierExtension) instead of a regular extension, as the resource cannot be safely processed without interpreting the information in the extension.
 
