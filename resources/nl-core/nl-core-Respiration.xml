@@ -33,7 +33,7 @@
   <differential>
     <element id="Observation">
       <path value="Observation" />
-      <comment value="Several concepts of zib Respiration are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* BreathingFrequency (NL-CM:12.5.2): [nl-core-Respiration.BreathingFrequency](http://nictiz.nl/fhir/StructureDefinition/nl-core-Respiration.BreathingFrequency)&#xD;&#xA;* Rhythm (NL-CM:12.5.5): [nl-core-Respiration.Rhythm](http://nictiz.nl/fhir/StructureDefinition/nl-core-Respiration.Rhythm)&#xD;&#xA;* Depth (NL-CM:12.5.6): [nl-core-Respiration.Depth](http://nictiz.nl/fhir/StructureDefinition/nl-core-Respiration.Depth)&#xD;&#xA;* DeviatingBreathingPattern (NL-CM:12.5.7): [nl-core-Respiration.DeviatingBreathingPattern](http://nictiz.nl/fhir/StructureDefinition/nl-core-Respiration.DeviatingBreathingPattern)&#xD;&#xA;* ExtraOxygenAdministration (NL-CM:12.5.12): [nl-core-Respiration.ExtraOxygenAdministration](http://nictiz.nl/fhir/StructureDefinition/nl-core-Respiration.ExtraOxygenAdministration)&#xD;&#xA;* FlowRate (NL-CM:12.5.10): [nl-core-Respiration.AdministeredOxygen.FlowRate](http://nictiz.nl/fhir/StructureDefinition/nl-core-&#xD;&#xA;Respiration.AdministeredOxygen.FlowRate)&#xD;&#xA;* FiO2 (NL-CM:12.5.9): [nl-core-Respiration.AdministeredOxygen.FiO2](http://nictiz.nl/fhir/StructureDefinition/nl-core-Respiration.AdministeredOxygen.FiO2)&#xD;&#xA;&#xD;&#xA;Note that the concepts FlowRate and FiO2 are grouped in the AdministeredOxygen container on the zib level. This container is left out in the FHIR modeling as it servers no practical purpose in exchange of this information. A respiration assessment can contain just a single observation about administered oxygen and the definition codes for these two concepts are sufficient to encode what the information is about.&#xD;&#xA;&#xD;&#xA;In addition, the AdministrationDevice concept (NL-CM:12.5.13) is represented using the [nl-core-Respiration.AdministrationDevice](http://nictiz.nl/fhir/StructureDefinition/nl-core-Respiration.AdministrationDevice) profile on the DeviceUseStatement resource. It can be referenced using `.extension:administrationDevice`." />
+      <comment value="Several concepts of zib Respiration are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* BreathingFrequency (NL-CM:12.5.2): [nl-core-Respiration.BreathingFrequency](http://nictiz.nl/fhir/StructureDefinition/nl-core-Respiration.BreathingFrequency)&#xD;&#xA;* Rhythm (NL-CM:12.5.5): [nl-core-Respiration.Rhythm](http://nictiz.nl/fhir/StructureDefinition/nl-core-Respiration.Rhythm)&#xD;&#xA;* Depth (NL-CM:12.5.6): [nl-core-Respiration.Depth](http://nictiz.nl/fhir/StructureDefinition/nl-core-Respiration.Depth)&#xD;&#xA;* DeviatingBreathingPattern (NL-CM:12.5.7): [nl-core-Respiration.DeviatingBreathingPattern](http://nictiz.nl/fhir/StructureDefinition/nl-core-Respiration.DeviatingBreathingPattern)&#xD;&#xA;* ExtraOxygenAdministration (NL-CM:12.5.12): [nl-core-Respiration.ExtraOxygenAdministration](http://nictiz.nl/fhir/StructureDefinition/nl-core-Respiration.ExtraOxygenAdministration)&#xD;&#xA;* FlowRate (NL-CM:12.5.10): [nl-core-Respiration.AdministeredOxygen.FlowRate](http://nictiz.nl/fhir/StructureDefinition/nl-core-Respiration.AdministeredOxygen.FlowRate)&#xD;&#xA;* FiO2 (NL-CM:12.5.9): [nl-core-Respiration.AdministeredOxygen.FiO2](http://nictiz.nl/fhir/StructureDefinition/nl-core-Respiration.AdministeredOxygen.FiO2)&#xD;&#xA;&#xD;&#xA;Note that the concepts FlowRate and FiO2 are grouped in the AdministeredOxygen container on the zib level. This container is left out in the FHIR modeling as it servers no practical purpose in exchange of this information. A respiration assessment can contain just a single observation about administered oxygen and the definition codes for these two concepts are sufficient to encode what the information is about.&#xD;&#xA;&#xD;&#xA;In addition, the AdministrationDevice concept (NL-CM:12.5.13) is represented using the [nl-core-Respiration.AdministrationDevice](http://nictiz.nl/fhir/StructureDefinition/nl-core-Respiration.AdministrationDevice) profile on the DeviceUseStatement resource. It can be referenced using `.extension:administrationDevice`." />
       <alias value="nl-core-Respiration" />
     </element>
     <element id="Observation.extension.value[x]">
@@ -100,7 +100,7 @@
       <sliceName value="administeredOxygen-FlowRate" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdministeredOxygen.FlowRate" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Respiration.AdministeredOxygen.FlowRate" />
       </type>
     </element>
     <element id="Observation.hasMember:administeredOxygen-FiO2">
@@ -108,7 +108,7 @@
       <sliceName value="administeredOxygen-FiO2" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdministeredOxygen.FiO2" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Respiration.AdministeredOxygen.FiO2" />
       </type>
     </element>
   </differential>
