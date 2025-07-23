@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-TreatmentDirective2" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective2" />
   <name value="ZibTreatmentDirective2" />
   <title value="zib TreatmentDirective2" />
@@ -36,7 +34,7 @@
     <element id="Consent">
       <path value="Consent" />
       <short value="TreatmentDirective" />
-      <comment value="A straightforward and accurate mapping of zib TreatmentDirective2 to FHIR is not possible. The main consideration is to choose between the Consent and CarePlan resource. Unfortunately, the Consent resource does not have full support for treatment directives yet as its main focus is to model Patient's privacy consents. Regardless, it seems to be the best match to represent the intention of the zib, as both the resource and the zib cover a mutual agreement about treatments and not per se the resulting actions or policy for treatments, which would better be handled using the CarePlan resource. Future migration to a later version of FHIR or the zib will result in the reevaluation of the mapping." />
+      <comment value="A straightforward and accurate mapping of zib TreatmentDirective2 to FHIR is not possible. The main consideration is to choose between the Consent and CarePlan resource. Unfortunately, the Consent resource does not have full support for treatment directives yet as its main focus is to model Patient's privacy consents. Regardless, it seems to be the best match to represent the intention of the zib, as both the resource and the zib cover a mutual agreement about treatments and not per se the resulting actions or policy for treatments, which would better be handled using the CarePlan resource. Future migration to a later version of FHIR or the zib will result in the reevaluation of the mapping." />      
       <alias value="BehandelAanwijzing" />
       <constraint>
         <key value="zib-TreatmentDirective2-1" />
@@ -208,6 +206,7 @@
       <path value="Consent.provision.type" />
       <short value="TreatmentDecision" />
       <definition value="The joint decision taken with regard to the desirability of performing the indicated treatment. If the agreement is 'Other', 'Specification Other' shall contain the instructions for whether or not to carry out the treatment. Implementers SHALL support the specificationOther modifier extension for this." />
+      <comment value="This element can only be used for situations where TreatmentDecision is _Wel uitvoeren_ (_allow_) or _Niet uitvoeren_ (_deny_). It the TreatmentDecision is _Anders_, this element MUST be absent and the modifier extension [ext-TreatmentDirective2.SpecificationOther](http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.SpecificationOther) MUST be populated with the textual decision according to zib concept SpecificationOther." />
       <alias value="BehandelBesluit" />
       <condition value="zib-TreatmentDirective2-2" />
       <binding>
