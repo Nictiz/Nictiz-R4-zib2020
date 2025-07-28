@@ -627,6 +627,9 @@ class Profile:
         fsh = ""
         if self.description:
             fsh += f"* ^description = {self.__tripleQuote__(self.description, 4)}\n"
+        # Only add purpose field for extensions, as profiles handle it separately
+        if self.purpose and self.parent == "Extension":
+            fsh += f"* ^purpose = {self.__tripleQuote__(self.purpose, 4)}\n"
         for el in self.elements:
             fsh_strings = []
             if el.short:
