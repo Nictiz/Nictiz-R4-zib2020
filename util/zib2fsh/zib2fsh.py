@@ -299,10 +299,23 @@ class Profile:
                 else:
                     el.comment = comment
 
-            if el.min == "0":
+            # For slices that are already defined in the base profile, we must clear their
+            # cardinality to prevent them from being defined again in the core profile.
+            if el.slice_name and not el.slicing_path:
                 el.min = None
-            if el.max == "*":
                 el.max = None
+            else:
+                # For non-slice elements, just remove default cardinality
+                if el.min == "0":
+                    el.min = None
+                if el.max == "*":
+                    el.max = None
+
+            # This is the key change for types. We only want to output type rules for
+            # References, as they must be updated to point to other nl-core profiles.
+            # type constraints (e.g., `only Quantity`) are inherited from the base.
+            if not el.target_profiles:
+                el.types = []
 
             el.permitted_values = None
 
@@ -310,16 +323,16 @@ class Profile:
             el.slicing_type = None
             el.slicing_path = None
 
-            el.target_profiles = [p.replace("zib-", "nl-core-") for p in el.target_profiles if "zib-" in p]
-            el.profiles = [p.replace("zib-", "nl-core-") for p in el.profiles if "zib-" in p]
-            el.types = []
             el.conditions = []
             el.patterns = {
                 "CodeableConcept": [],
                 "Quantity": [],
                 "Identifier": []
             }
-        
+
+            el.target_profiles = [p.replace("zib-", "nl-core-") for p in el.target_profiles]
+            el.profiles = [p.replace("zib-", "nl-core-") for p in el.profiles]
+
         return core
 
     def asFSH(self):
