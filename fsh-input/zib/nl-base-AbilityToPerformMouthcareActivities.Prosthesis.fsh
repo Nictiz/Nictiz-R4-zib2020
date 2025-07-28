@@ -5,7 +5,7 @@ Title: "nl base AbilityToPerformMouthcareActivities.Prosthesis"
 * insert ProfileMetadata(nl-base-AbilityToPerformMouthcareActivities.Prosthesis)
 * ^purpose = "This DeviceUseStatement resource represents the adaptations for the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) AbilityToPerformMouthcareActivities v3.1 (2020)](https://zibs.nl/wiki/AbilityToPerformMouthcareActivities-v3.1(2020EN)) of [zib MedicalDevice v3.3.1 (2020)](https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN))."
 
-* device only Reference(http://hl7.org/fhir/StructureDefinition/Device or http://nictiz.nl/fhir/StructureDefinition/nl-base-AbilityToPerformMouthcareActivities.Prosthesis.Product)
+* device only Reference(Device or http://nictiz.nl/fhir/StructureDefinition/nl-base-AbilityToPerformMouthcareActivities.Prosthesis.Product)
 * reasonReference[stoma] 0..0
 
 // Short, alias, definition and comment texts

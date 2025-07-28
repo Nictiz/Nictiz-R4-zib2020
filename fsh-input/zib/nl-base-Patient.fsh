@@ -44,7 +44,7 @@ Title: "nl base Patient"
 * multipleBirthBoolean only boolean
 * contact.extension contains
     http://hl7.org/fhir/StructureDefinition/patient-relatedPerson named contactPerson 0..1
-* contact.extension[contactPerson].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/RelatedPerson or http://nictiz.nl/fhir/StructureDefinition/nl-base-ContactPerson)
+* contact.extension[contactPerson].value[x] only Reference(RelatedPerson or http://nictiz.nl/fhir/StructureDefinition/nl-base-ContactPerson)
 * contact.relationship insert Discriminator(value, $this)
 * contact.relationship contains
     role 0.. and

@@ -17,7 +17,7 @@ Title: "nl base CareTeam"
     healthProfessionalRole 0..1
 * participant[healthcareProfessional].role[healthProfessionalRole] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.1.5--20200901000000 (preferred)
 * participant[healthcareProfessional].member only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthProfessional-PractitionerRole)
-* reasonReference only Reference(http://hl7.org/fhir/StructureDefinition/Condition or http://nictiz.nl/fhir/StructureDefinition/nl-base-Problem)
+* reasonReference only Reference(Condition or http://nictiz.nl/fhir/StructureDefinition/nl-base-Problem)
 
 // Short, alias, definition and comment texts
 * ^description = "A care team is a group of health professionals and other people involved in caring for a patient for one or more problems."

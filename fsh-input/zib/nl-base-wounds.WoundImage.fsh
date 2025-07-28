@@ -6,7 +6,7 @@ Title: "nl base wounds.WoundImage"
 * ^purpose = "This DocumentReference resource represents the WoundImage concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Burnwound v3.4 (2020)](https://zibs.nl/wiki/Burnwound-v3.4(2020EN)), the Dutch [zib PressureUlcer v3.4 (2020)](https://zibs.nl/wiki/PressureUlcer-v3.4(2020EN)) and the Dutch [zib Wound v3.3 (2020)](https://zibs.nl/wiki/Wound-v3.3(2020EN)) (NL-CM:19.4.11/NL-CM:19.1.12/NL-CM:19.2.15)."
 
 * type = http://loinc.org#72170-4
-* context.related only Reference(http://hl7.org/fhir/StructureDefinition/Resource or http://nictiz.nl/fhir/StructureDefinition/nl-base-wounds.WoundCharacteristics)
+* context.related only Reference(Resource or http://nictiz.nl/fhir/StructureDefinition/nl-base-wounds.WoundCharacteristics)
 
 // Short, alias, definition and comment texts
 * ^description = "A photo of the wound, burn wound or decubitus wound as visual information."

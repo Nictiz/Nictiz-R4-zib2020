@@ -5,8 +5,8 @@ Title: "nl base HealthProfessional PractitionerRole"
 * insert ProfileMetadata(nl-base-HealthProfessional-PractitionerRole)
 * insert Purpose(HealthProfessional, 3.5, PractitionerRole)
 
-* practitioner only Reference(http://hl7.org/fhir/StructureDefinition/Practitioner or http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthProfessional-Practitioner)
-* organization only Reference(http://hl7.org/fhir/StructureDefinition/Organization or http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthcareProvider-Organization)
+* practitioner only Reference(Practitioner or http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthProfessional-Practitioner)
+* organization only Reference(Organization or http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthcareProvider-Organization)
 * specialty insert Discriminator(value, $this)
 * specialty contains
     specialty 0..1

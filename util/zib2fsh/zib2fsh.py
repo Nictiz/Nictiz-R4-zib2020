@@ -270,7 +270,9 @@ class Profile:
                     else:
                         el.binding_strength = "preferred"
 
-            el.target_profiles = [p.replace("zib-", "nl-base-") for p in el.target_profiles]
+            target_profiles = [p.replace("zib-", "nl-base-") for p in el.target_profiles]
+            target_profiles = [p.replace("http://hl7.org/fhir/StructureDefinition/", "") for p in target_profiles]
+            el.target_profiles = target_profiles
             el.profiles = [p.replace("zib-", "nl-base-") for p in el.profiles]
 
         return base

@@ -11,7 +11,7 @@ Title: "nl base TreatmentObjective"
 * target.detailCodeableConcept from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.3--20200901000000 (preferred)
 * target.due[x] insert Discriminator(type, $this)
 * target.dueDate only date
-* addresses only Reference(http://hl7.org/fhir/StructureDefinition/Condition or http://hl7.org/fhir/StructureDefinition/Observation or http://hl7.org/fhir/StructureDefinition/MedicationStatement or http://hl7.org/fhir/StructureDefinition/NutritionOrder or http://hl7.org/fhir/StructureDefinition/ServiceRequest or http://hl7.org/fhir/StructureDefinition/RiskAssessment or http://nictiz.nl/fhir/StructureDefinition/nl-base-Problem)
+* addresses only Reference(Condition or Observation or MedicationStatement or NutritionOrder or ServiceRequest or RiskAssessment or http://nictiz.nl/fhir/StructureDefinition/nl-base-Problem)
 
 // Short, alias, definition and comment texts
 * ^description = "The treatment objective describes the desired result of the treatment/interventions in terms of the patient’s diagnosed problem. The objective and target date are entered in addition to the target value. Comparing the healthcare results to the treatment objective provides insight into the effectivity of the treatment/interventions."

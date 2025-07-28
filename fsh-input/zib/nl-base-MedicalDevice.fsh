@@ -9,7 +9,7 @@ Title: "nl base MedicalDevice"
     http://nictiz.nl/fhir/StructureDefinition/ext-MedicalDevice.HealthProfessional named healthProfessional 0..* and
     http://nictiz.nl/fhir/StructureDefinition/ext-MedicalDevice.Location named location 0..* and
     http://hl7.org/fhir/StructureDefinition/resource-pertainsToGoal named treatmentObjective 0..*
-* extension[treatmentObjective].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Goal or http://nictiz.nl/fhir/StructureDefinition/nl-base-TreatmentObjective)
+* extension[treatmentObjective].value[x] only Reference(Goal or http://nictiz.nl/fhir/StructureDefinition/nl-base-TreatmentObjective)
 * derivedFrom insert Discriminator(profile, resolve(\))
 * derivedFrom contains
     procedure-request 0.. and
@@ -18,7 +18,7 @@ Title: "nl base MedicalDevice"
 * derivedFrom[procedure-event] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-base-Procedure-event)
 * timing[x] insert Discriminator(type, $this)
 * timingPeriod only Period
-* device only Reference(http://hl7.org/fhir/StructureDefinition/Device or http://nictiz.nl/fhir/StructureDefinition/nl-base-MedicalDevice.Product)
+* device only Reference(Device or http://nictiz.nl/fhir/StructureDefinition/nl-base-MedicalDevice.Product)
 * reasonReference insert Discriminator(profile, resolve(\))
 * reasonReference contains
     indication 0.. and

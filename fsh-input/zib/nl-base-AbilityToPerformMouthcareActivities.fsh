@@ -7,7 +7,7 @@ Title: "nl base AbilityToPerformMouthcareActivities"
 
 * extension contains
     http://hl7.org/fhir/StructureDefinition/workflow-supportingInfo named prosthesis 0..*
-* extension[prosthesis].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Resource or http://nictiz.nl/fhir/StructureDefinition/nl-base-AbilityToPerformMouthcareActivities.Prosthesis)
+* extension[prosthesis].value[x] only Reference(Resource or http://nictiz.nl/fhir/StructureDefinition/nl-base-AbilityToPerformMouthcareActivities.Prosthesis)
 * code = http://snomed.info/sct#288470005
 * value[x] insert Discriminator(type, $this)
 * valueCodeableConcept only CodeableConcept

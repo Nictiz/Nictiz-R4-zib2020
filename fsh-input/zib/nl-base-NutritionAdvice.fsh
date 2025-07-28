@@ -7,7 +7,7 @@ Title: "nl base NutritionAdvice"
 
 * extension contains
     http://hl7.org/fhir/StructureDefinition/workflow-reasonReference named indication 0..1
-* extension[indication].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Condition or http://hl7.org/fhir/StructureDefinition/DiagnosticReport or http://hl7.org/fhir/StructureDefinition/DocumentReference or http://hl7.org/fhir/StructureDefinition/Observation or http://nictiz.nl/fhir/StructureDefinition/nl-base-Problem)
+* extension[indication].value[x] only Reference(Condition or DiagnosticReport or DocumentReference or Observation or http://nictiz.nl/fhir/StructureDefinition/nl-base-Problem)
 
 // Short, alias, definition and comment texts
 * ^description = "A nutritional advice is a description of nourishment for the patient, which must meet specific requirements in view of the health condition of the patient. Allergies and food intolerances or chewing and swallowing problems may be a reason for special nutrition."

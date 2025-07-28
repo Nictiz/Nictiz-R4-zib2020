@@ -7,7 +7,7 @@ Title: "nl base VisualFunction"
 
 * extension contains
     http://hl7.org/fhir/StructureDefinition/workflow-supportingInfo named visualAid 0..*
-* extension[visualAid].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Resource or http://nictiz.nl/fhir/StructureDefinition/nl-base-VisualFunction.VisualAid)
+* extension[visualAid].value[x] only Reference(Resource or http://nictiz.nl/fhir/StructureDefinition/nl-base-VisualFunction.VisualAid)
 * code = http://snomed.info/sct#281004000
 * value[x] insert Discriminator(type, $this)
 * valueCodeableConcept only CodeableConcept

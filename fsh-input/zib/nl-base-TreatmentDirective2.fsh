@@ -24,7 +24,7 @@ Title: "nl base TreatmentDirective2"
 * source[x] ^condition[+] = zib-TreatmentDirective2-1
 * sourceReference 0..
   * ^condition[+] = zib-TreatmentDirective2-1
-* sourceReference only Reference(http://hl7.org/fhir/StructureDefinition/Consent or http://hl7.org/fhir/StructureDefinition/DocumentReference or http://hl7.org/fhir/StructureDefinition/Contract or http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse or http://nictiz.nl/fhir/StructureDefinition/nl-base-AdvanceDirective)
+* sourceReference only Reference(Consent or DocumentReference or Contract or QuestionnaireResponse or http://nictiz.nl/fhir/StructureDefinition/nl-base-AdvanceDirective)
 * provision.extension contains
     http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.ReasonForEnding named reasonForEnding 0..*
 * provision.type
@@ -35,7 +35,7 @@ Title: "nl base TreatmentDirective2"
 * provision.actor contains
     agreementParty 0..
 * provision.actor[agreementParty].role = http://terminology.hl7.org/CodeSystem/v3-RoleCode#CONSENTER
-* provision.actor[agreementParty].reference only Reference(http://hl7.org/fhir/StructureDefinition/Device or http://hl7.org/fhir/StructureDefinition/Group or http://hl7.org/fhir/StructureDefinition/CareTeam or http://hl7.org/fhir/StructureDefinition/Organization or http://hl7.org/fhir/StructureDefinition/Patient or http://hl7.org/fhir/StructureDefinition/Practitioner or http://hl7.org/fhir/StructureDefinition/RelatedPerson or http://hl7.org/fhir/StructureDefinition/PractitionerRole or http://nictiz.nl/fhir/StructureDefinition/nl-base-Patient or http://nictiz.nl/fhir/StructureDefinition/nl-base-ContactPerson or http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthProfessional-PractitionerRole)
+* provision.actor[agreementParty].reference only Reference(Device or Group or CareTeam or Organization or Patient or Practitioner or RelatedPerson or PractitionerRole or http://nictiz.nl/fhir/StructureDefinition/nl-base-Patient or http://nictiz.nl/fhir/StructureDefinition/nl-base-ContactPerson or http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthProfessional-PractitionerRole)
 * provision.code from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.2.2.1--20200901000000 (preferred)
 
 // Short, alias, definition and comment texts

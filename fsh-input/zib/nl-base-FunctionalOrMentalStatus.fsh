@@ -7,7 +7,7 @@ Title: "nl base FunctionalOrMentalStatus"
 
 * extension contains
     http://hl7.org/fhir/StructureDefinition/workflow-supportingInfo named medicalDevice 0..*
-* extension[medicalDevice].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Resource or http://nictiz.nl/fhir/StructureDefinition/nl-base-MedicalDevice)
+* extension[medicalDevice].value[x] only Reference(Resource or http://nictiz.nl/fhir/StructureDefinition/nl-base-MedicalDevice)
 * category insert Discriminator(value, $this)
 * category contains
     functionalStatusFinding 0..1 and

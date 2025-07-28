@@ -15,7 +15,7 @@ Title: "nl base VisualAcuity"
 * bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-base-AnatomicalLocation
 * bodySite = http://snomed.info/sct#81745001
 * bodySite.extension[laterality] 0..
-* device only Reference(http://hl7.org/fhir/StructureDefinition/Device or http://hl7.org/fhir/StructureDefinition/DeviceMetric or http://nictiz.nl/fhir/StructureDefinition/nl-base-VisualAcuity.VisualAcuityMeasurementDevice)
+* device only Reference(Device or DeviceMetric or http://nictiz.nl/fhir/StructureDefinition/nl-base-VisualAcuity.VisualAcuityMeasurementDevice)
 * component insert Discriminator(value, code)
 * component contains
     visualAcuityType 0..1 and

@@ -27,7 +27,7 @@ Title: "nl base Encounter"
 * reasonReference[procedure] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-base-Procedure-event)
 * hospitalization.admitSource from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.15.1.2--20200901000000 (preferred)
 * hospitalization.dischargeDisposition from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.15.1.3--20200901000000 (preferred)
-* location.location only Reference(http://hl7.org/fhir/StructureDefinition/Location or http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthcareProvider)
+* location.location only Reference(Location or http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthcareProvider)
 
 // Short, alias, definition and comment texts
 * ^description = """

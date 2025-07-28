@@ -7,7 +7,7 @@ Title: "nl base SkinDisorder"
 
 * extension contains
     http://hl7.org/fhir/StructureDefinition/condition-dueTo named cause 0..1
-* extension[cause].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Condition or http://hl7.org/fhir/StructureDefinition/Procedure or http://hl7.org/fhir/StructureDefinition/MedicationAdministration or http://hl7.org/fhir/StructureDefinition/Immunization or http://hl7.org/fhir/StructureDefinition/MedicationStatement or http://nictiz.nl/fhir/StructureDefinition/nl-base-Problem)
+* extension[cause].value[x] only Reference(Condition or Procedure or MedicationAdministration or Immunization or MedicationStatement or http://nictiz.nl/fhir/StructureDefinition/nl-base-Problem)
 * category insert Discriminator(value, $this)
 * category contains
     skinDisorderCode 0..1

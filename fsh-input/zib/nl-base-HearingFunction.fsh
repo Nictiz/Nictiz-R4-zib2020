@@ -7,7 +7,7 @@ Title: "nl base HearingFunction"
 
 * extension contains
     http://hl7.org/fhir/StructureDefinition/workflow-supportingInfo named hearingAid 0..*
-* extension[hearingAid].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Resource or http://nictiz.nl/fhir/StructureDefinition/nl-base-HearingFunction.HearingAid)
+* extension[hearingAid].value[x] only Reference(Resource or http://nictiz.nl/fhir/StructureDefinition/nl-base-HearingFunction.HearingAid)
 * code = http://snomed.info/sct#47078008
 * value[x] insert Discriminator(type, $this)
 * valueCodeableConcept only CodeableConcept

@@ -13,7 +13,7 @@ Title: "nl base Vaccination event"
 * performer contains
     administrator 0..1
 * performer[administrator].function = http://terminology.hl7.org/CodeSystem/v2-0443#AP
-* performer[administrator].actor only Reference(http://hl7.org/fhir/StructureDefinition/Practitioner or http://hl7.org/fhir/StructureDefinition/PractitionerRole or http://hl7.org/fhir/StructureDefinition/Organization or http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthProfessional-PractitionerRole)
+* performer[administrator].actor only Reference(Practitioner or PractitionerRole or Organization or http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthProfessional-PractitionerRole)
 
 // Short, alias, definition and comment texts
 * ^description = """

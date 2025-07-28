@@ -6,12 +6,12 @@ Title: "nl base SOAPReport"
 * insert Purpose(SOAPReport, 1.0, Composition)
 
 * type = http://snomed.info/sct#11591000146107
-* author only Reference(http://hl7.org/fhir/StructureDefinition/Practitioner or http://hl7.org/fhir/StructureDefinition/PractitionerRole or http://hl7.org/fhir/StructureDefinition/Device or http://hl7.org/fhir/StructureDefinition/Patient or http://hl7.org/fhir/StructureDefinition/RelatedPerson or http://hl7.org/fhir/StructureDefinition/Organization or http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthProfessional-PractitionerRole)
+* author only Reference(Practitioner or PractitionerRole or Device or Patient or RelatedPerson or Organization or http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthProfessional-PractitionerRole)
 * section insert Discriminator(value, code)
 * section contains
     soapLine 0..4
 * section[soapLine].code from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.6.2--20200901000000 (preferred)
-* section[soapLine].entry only Reference(http://hl7.org/fhir/StructureDefinition/Resource or http://nictiz.nl/fhir/StructureDefinition/nl-base-SOAPReport.SOAPLine)
+* section[soapLine].entry only Reference(Resource or http://nictiz.nl/fhir/StructureDefinition/nl-base-SOAPReport.SOAPLine)
 
 // Short, alias, definition and comment texts
 * ^description = """

@@ -8,7 +8,7 @@ Title: "nl base BowelFunction"
 * extension contains
     http://nictiz.nl/fhir/StructureDefinition/ext-StomaReference named stoma 0..1 and
     http://hl7.org/fhir/StructureDefinition/workflow-supportingInfo named incontinenceMaterial 0..*
-* extension[incontinenceMaterial].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Resource or http://nictiz.nl/fhir/StructureDefinition/nl-base-MedicalDevice)
+* extension[incontinenceMaterial].value[x] only Reference(Resource or http://nictiz.nl/fhir/StructureDefinition/nl-base-MedicalDevice)
 * code = http://snomed.info/sct#111989001
 * hasMember insert Discriminator(profile, resolve(\))
 * hasMember contains

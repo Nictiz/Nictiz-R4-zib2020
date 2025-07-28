@@ -15,7 +15,7 @@ Title: "nl base HealthcareProvider"
 * telecom[emailAddresses] ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-base-ContactInformation-EmailAddresses
 * address only Address
 * address ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-base-AddressInformation
-* managingOrganization only Reference(http://hl7.org/fhir/StructureDefinition/Organization or http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthcareProvider-Organization)
+* managingOrganization only Reference(Organization or http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthcareProvider-Organization)
 
 // Short, alias, definition and comment texts
 * ^description = "A healthcare provider is an organization that offers and provides medical, paramedic and/or nursing care to patients/clients. Examples include: hospitals, nursing homes, doctor’s offices."

@@ -13,7 +13,7 @@ Title: "nl base TextResult"
 * code from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.2.1--20200901000000 (preferred)
 * effective[x] insert Discriminator(type, $this)
 * effectiveDateTime only dateTime
-* media.link only Reference(http://hl7.org/fhir/StructureDefinition/Media or http://nictiz.nl/fhir/StructureDefinition/nl-base-TextResult.VisualResult)
+* media.link only Reference(Media or http://nictiz.nl/fhir/StructureDefinition/nl-base-TextResult.VisualResult)
 
 // Short, alias, definition and comment texts
 * ^description = "Textual results describe the findings and interpretation of diagnostic or therapeutic procedures carried out on patients or on specimens from the patient."

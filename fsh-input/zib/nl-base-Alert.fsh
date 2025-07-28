@@ -15,7 +15,7 @@ Title: "nl base Alert"
 * extension[condition].value[x]
   * ^condition[+] = zib-Alert-1
   * ^condition[+] = zib-Alert-2
-* extension[condition].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Resource or http://nictiz.nl/fhir/StructureDefinition/nl-base-Problem)
+* extension[condition].value[x] only Reference(Resource or http://nictiz.nl/fhir/StructureDefinition/nl-base-Problem)
 * category insert Discriminator(value, $this)
 * category contains
     alertType 0..1

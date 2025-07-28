@@ -5,7 +5,7 @@ Title: "nl base FeedingPatternInfant"
 * insert ProfileMetadata(nl-base-FeedingPatternInfant)
 * insert Purpose(FeedingPatternInfant, 1.1, Observation)
 
-* basedOn only Reference(http://hl7.org/fhir/StructureDefinition/CarePlan or http://hl7.org/fhir/StructureDefinition/DeviceRequest or http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation or http://hl7.org/fhir/StructureDefinition/MedicationRequest or http://hl7.org/fhir/StructureDefinition/NutritionOrder or http://hl7.org/fhir/StructureDefinition/ServiceRequest or http://nictiz.nl/fhir/StructureDefinition/nl-base-NutritionAdvice)
+* basedOn only Reference(CarePlan or DeviceRequest or ImmunizationRecommendation or MedicationRequest or NutritionOrder or ServiceRequest or http://nictiz.nl/fhir/StructureDefinition/nl-base-NutritionAdvice)
 * code = http://snomed.info/sct#289145007
 * effective[x] insert Discriminator(type, $this)
 * effectiveDateTime only dateTime

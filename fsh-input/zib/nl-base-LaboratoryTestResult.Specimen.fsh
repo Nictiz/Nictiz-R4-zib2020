@@ -6,8 +6,8 @@ Title: "nl base LaboratoryTestResult.Specimen"
 * ^purpose = "This Specimen resource represents the Specimen concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) LaboratoryTestResult v4.6 (2020)](https://zibs.nl/wiki/LaboratoryTestResult-v4.6(2020EN))."
 
 * type from http://nictiz.nl/fhir/ValueSet/Monstermateriaal-en-Microorganisme-Codelijsten (preferred)
-* subject only Reference(http://hl7.org/fhir/StructureDefinition/Patient or http://hl7.org/fhir/StructureDefinition/Group or http://hl7.org/fhir/StructureDefinition/Device or http://hl7.org/fhir/StructureDefinition/Substance or http://hl7.org/fhir/StructureDefinition/Location or http://nictiz.nl/fhir/StructureDefinition/nl-base-LaboratoryTestResult.SpecimenSource)
-* parent only Reference(http://hl7.org/fhir/StructureDefinition/Specimen or http://nictiz.nl/fhir/StructureDefinition/nl-base-LaboratoryTestResult.Specimen)
+* subject only Reference(Patient or Group or Device or Substance or Location or http://nictiz.nl/fhir/StructureDefinition/nl-base-LaboratoryTestResult.SpecimenSource)
+* parent only Reference(Specimen or http://nictiz.nl/fhir/StructureDefinition/nl-base-LaboratoryTestResult.Specimen)
 * collection.collected[x] insert Discriminator(type, $this)
 * collection.collectedDateTime only dateTime
 * collection.collectedPeriod only Period

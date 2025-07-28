@@ -8,7 +8,7 @@ Title: "nl base Payer.PayerPerson"
 * extension contains
     http://nictiz.nl/fhir/StructureDefinition/ext-Payer.BankInformation named bankInformation 0..*
 * type = http://terminology.hl7.org/CodeSystem/coverage-selfpay#pay
-* payor only Reference(http://hl7.org/fhir/StructureDefinition/Organization or http://hl7.org/fhir/StructureDefinition/Patient or http://hl7.org/fhir/StructureDefinition/RelatedPerson or http://nictiz.nl/fhir/StructureDefinition/nl-base-Payer-Organization or http://nictiz.nl/fhir/StructureDefinition/nl-base-Patient or http://nictiz.nl/fhir/StructureDefinition/nl-base-ContactPerson)
+* payor only Reference(Organization or Patient or RelatedPerson or http://nictiz.nl/fhir/StructureDefinition/nl-base-Payer-Organization or http://nictiz.nl/fhir/StructureDefinition/nl-base-Patient or http://nictiz.nl/fhir/StructureDefinition/nl-base-ContactPerson)
 
 // Short, alias, definition and comment texts
 * ^description = "Payers are organizations or individuals that pay for the healthcare supplied to the patient. These organizations or individuals can be: facilities or people who financially guarantee or who are responsible for the patient (such as parents or guardians of minors), organizations with direct financial responsibility, combinations of these or the patient themselves."

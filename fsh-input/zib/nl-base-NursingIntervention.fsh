@@ -16,11 +16,11 @@ Title: "nl base NursingIntervention"
 * contributor[requester] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthProfessional-PractitionerRole)
 * contributor.extension contains
     http://nictiz.nl/fhir/StructureDefinition/ext-NursingIntervention-ContributorIsRequester named contributorIsRequester 0..1
-* addresses only Reference(http://hl7.org/fhir/StructureDefinition/Condition or http://nictiz.nl/fhir/StructureDefinition/nl-base-Problem)
-* goal only Reference(http://hl7.org/fhir/StructureDefinition/Goal or http://nictiz.nl/fhir/StructureDefinition/nl-base-TreatmentObjective)
+* addresses only Reference(Condition or http://nictiz.nl/fhir/StructureDefinition/nl-base-Problem)
+* goal only Reference(Goal or http://nictiz.nl/fhir/StructureDefinition/nl-base-TreatmentObjective)
 * activity.detail.extension contains
     http://nictiz.nl/fhir/StructureDefinition/ext-CarePlan-MaterialUsed named medicalDevice 0..*
-* activity.detail.extension[medicalDevice].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/DeviceUseStatement or http://nictiz.nl/fhir/StructureDefinition/nl-base-MedicalDevice)
+* activity.detail.extension[medicalDevice].value[x] only Reference(DeviceUseStatement or http://nictiz.nl/fhir/StructureDefinition/nl-base-MedicalDevice)
 * activity.detail.code from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.18--20200901000000 (preferred)
 * activity.detail.scheduled[x] insert Discriminator(type, $this)
 * activity.detail.scheduledTiming only Timing

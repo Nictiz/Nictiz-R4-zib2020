@@ -7,7 +7,7 @@ Title: "nl base Mobility"
 
 * extension contains
     http://hl7.org/fhir/StructureDefinition/workflow-supportingInfo named medicalDevice 0..*
-* extension[medicalDevice].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Resource or http://nictiz.nl/fhir/StructureDefinition/nl-base-MedicalDevice)
+* extension[medicalDevice].value[x] only Reference(Resource or http://nictiz.nl/fhir/StructureDefinition/nl-base-MedicalDevice)
 * code = http://snomed.info/sct#301438001
 * hasMember insert Discriminator(profile, resolve(\))
 * hasMember contains

@@ -14,7 +14,7 @@ However, the HL7 Vital Signs profile imposes two issues that make it impossible 
 * category contains
     VSCat 0..1
 * category[VSCat] = http://terminology.hl7.org/CodeSystem/observation-category#vital-signs
-* subject only Reference(http://hl7.org/fhir/StructureDefinition/Patient)
+* subject only Reference(Patient)
 * effective[x]
   * obeys vs-1
   * ^condition[+] = vs-1
