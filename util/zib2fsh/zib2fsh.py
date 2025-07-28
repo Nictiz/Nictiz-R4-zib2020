@@ -12,6 +12,7 @@ IN_DIR = Path("../../resources/zib")
 OUT_DIR = Path("../../fsh/NictizR4Zib2020/input/fsh")
 NS = {"f": "http://hl7.org/fhir"}
 
+# Chosen pragmatic route by hard coding the FHIR core bindings, instead of resolving core specification.
 # FHIR R4 elements that have Required binding strength in the core specification
 # These should not have their binding strength weakened in base profiles
 FHIR_CORE_REQUIRED_BINDINGS = {
@@ -514,10 +515,8 @@ class Profile:
             fsh += f"* {el.fsh_path} = {pattern.system}#{pattern.code}\n"
         for pattern in el.patterns["Quantity"]:
             value_fsh = f"{pattern.value} " if pattern.value else ""
-            if pattern.system == "http://unitsofmeasure.org":
-                code_fsh = f"'{pattern.code}'"
-            else:
-                code_fsh = f"{pattern.system}#{pattern.code}"
+            # For quantity patterns, always use the full system#code format to avoid the UCOM Code including the char: ` like [p'diop] 
+            code_fsh = f"{pattern.system}#{pattern.code}"
             unit_fsh = f' "{pattern.unit}"' if pattern.unit else ""
             fsh += f"* {el.fsh_path} = {value_fsh}{code_fsh}{unit_fsh}\n"
         for pattern in el.patterns["Identifier"]:
