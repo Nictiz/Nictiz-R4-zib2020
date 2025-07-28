@@ -1,0 +1,18 @@
+Profile: NlcoreLaboratoryTestResultSpecimen
+Parent: http://nictiz.nl/fhir/StructureDefinition/nl-base-LaboratoryTestResult.Specimen
+Id: nl-core-LaboratoryTestResult.Specimen
+Title: "nl core LaboratoryTestResult.Specimen"
+* insert ProfileMetadata(nl-core-LaboratoryTestResult.Specimen)
+* ^purpose = "This Specimen resource represents the Specimen concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) LaboratoryTestResult v4.6 (2020)](https://zibs.nl/wiki/LaboratoryTestResult-v4.6(2020EN))."
+
+* type from http://nictiz.nl/fhir/ValueSet/Monstermateriaal-en-Microorganisme-Codelijsten (required)
+* collection.method from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.2--20200901000000 (required)
+* collection.bodySite from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000 (required)
+* collection.bodySite.extension[morphology] ..1
+* container.type from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.9--20200901000000 (extensible)
+* note ..1
+
+// Short, alias, definition and comment texts
+* ^description = "Obtained specimen material or a microbial isolate that is used in a laboratory analysis."
+* . ^alias[+] = "nl-core-LaboratoryTestResult.Specimen"
+* subject ^comment = "If zib concept SpecimenSource (NL-CM:13.1.29) is used, it can be recorded here using a reference to an instance of the [nl-core-LaboratoryTestResult.SpecimenSource](http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.SpecimenSource) profile."

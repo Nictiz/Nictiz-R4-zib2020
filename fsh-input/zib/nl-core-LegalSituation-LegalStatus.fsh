@@ -1,0 +1,21 @@
+Profile: NlcoreLegalSituationLegalStatus
+Parent: http://nictiz.nl/fhir/StructureDefinition/nl-base-LegalSituation-LegalStatus
+Id: nl-core-LegalSituation-LegalStatus
+Title: "nl core LegalSituation LegalStatus"
+* insert ProfileMetadata(nl-core-LegalSituation-LegalStatus)
+* ^purpose = "This Condition resource represents the LegalStatus concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) LegalSituation v2.0 (2020)](https://zibs.nl/wiki/LegalSituation-v2.0(2020EN))."
+
+* category 1..
+* category[legalStatusCode] 1..1
+* code 1..
+* code from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.17.1--20200901000000 (required)
+
+// Short, alias, definition and comment texts
+* ^description = """
+    A legal situation can concern a legal status and/or representation.
+    
+    The legal status indicates the basis on which the patient is staying in a healthcare organization. This can be either voluntary or involuntary, however the legal status is always determined by a judge.
+    """
+* .
+  * ^alias[+] = "nl-core-LegalSituation-LegalStatus"
+  * ^comment = "Zib LegalSituation is implemented using two profiles: this profile implements the LegalStatus concept of the zib, while <http://nictiz.nl/fhir/StructureDefinition/nl-core-LegalSituation-Representation> represents the Representation concept of the zib."

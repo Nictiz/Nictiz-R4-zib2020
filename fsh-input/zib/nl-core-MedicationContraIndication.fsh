@@ -1,0 +1,21 @@
+Profile: NlcoreMedicationContraIndication
+Parent: http://nictiz.nl/fhir/StructureDefinition/nl-base-MedicationContraIndication
+Id: nl-core-MedicationContraIndication
+Title: "nl core MedicationContraIndication"
+* insert ProfileMetadata(nl-core-MedicationContraIndication)
+* insert Purpose(MedicationContraIndication, 1.0, Flag)
+
+* extension[comment] ..1
+* extension[reasonClosure] ..1
+* category 1..
+* category[medicationContraIndicationCode] 1..1
+* code from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.14.1--20200901000000 (required)
+
+// Short, alias, definition and comment texts
+* ^description = "A contraindication (CI) for medication safety is a condition or characteristic of a patient where healthcare professionals are not allowed to subscribe certain medicines, or only under certain conditions."
+* . ^alias[+] = "nl-core-MedicationContraIndication"
+* author ^comment = """
+    Each occurrence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [nl-core-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [nl-core-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner)). The Practitioner resource is referenced from the PractitionerRole instance. For this reason, sending systems should fill the reference to the PractitionerRole instance here, and not the Practitioner resource. Receiving systems can then retrieve the reference to the Practitioner resource from that PractitionerRole instance.
+    
+    In rare circumstances, there is only a Practitioner instance, in which case it is that instance which will be referenced here. However, since this should be the exception, the nl-core-HealthProfessional-Practitioner profile is not explicitly mentioned as a target profile.
+    """
