@@ -15,6 +15,8 @@ Title: "nl base MedicalDevice.Product"
 * udiCarrier contains
     gs1UdiCarrier 0..1 and
     hibcUdiCarrier 0..1
+* udiCarrier[gs1UdiCarrier].issuer ^patternUri = "https://www.gs1.org/gtin"
+* udiCarrier[hibcUdiCarrier].issuer ^patternUri = "urn:oid:2.16.840.1.113883.6.40"
 * type from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.10.1.1--20200901000000 (preferred)
 
 // Short, alias, definition and comment texts
