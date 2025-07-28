@@ -456,12 +456,7 @@ class Profile:
 
         fsh_strings = []
         for modifier_extension in modifier_extensions:
-            # HACK Determine the max cardinality - if not specified in the slice, use known values for specific extensions
-            # HACK To manually set the max cardinality for specificationOther because the max value is inside the extension
             max_val = modifier_extension.max if modifier_extension.max else '*'
-            if modifier_extension.slice_name == "specificationOther":
-                max_val = "1"  # ext-TreatmentDirective2.SpecificationOther has max="1"
-            
             fsh = f"{modifier_extension.profiles[0]} named {modifier_extension.slice_name} {modifier_extension.min if modifier_extension.min else ''}..{max_val}"
             fsh_strings.append(fsh)
         if len(fsh_strings) > 0:
