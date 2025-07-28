@@ -9,8 +9,35 @@ import textwrap
 import xml.etree.ElementTree as ET
 
 IN_DIR = Path("../../resources/zib")
-OUT_DIR = Path("../../fsh-input/zib")
+OUT_DIR = Path("../../fsh/NictizR4Zib2020/input/fsh")
 NS = {"f": "http://hl7.org/fhir"}
+
+# FHIR R4 elements that have Required binding strength in the core specification
+# These should not have their binding strength weakened in base profiles
+FHIR_CORE_REQUIRED_BINDINGS = {
+    "ContactPoint.use",
+    "ContactPoint.system", 
+    "Identifier.use",
+    "HumanName.use",
+    "Address.use",
+    "Address.type",
+    "Timing.repeat.durationUnit",
+    "Timing.repeat.periodUnit",
+    "Timing.repeat.dayOfWeek",
+    "Timing.repeat.when"
+}
+
+# FHIR R4 elements that have Extensible binding strength in the core specification
+# These should not have their binding strength weakened below extensible
+FHIR_CORE_EXTENSIBLE_BINDINGS = {
+    "Identifier.type",
+    "Encounter.class",
+    "Encounter.participant.type",
+    "Observation.interpretation",
+    "Patient.maritalStatus",
+    "Patient.contact.relationship",
+    "Condition.category"
+}
 
 MappingDeclaration = collections.namedtuple("MappingDeclaration", ["identity", "uri", "name"])
 ElementMapping = collections.namedtuple("ElementMapping", ["fsh_path", "map", "comment"])
@@ -217,9 +244,22 @@ class Profile:
             if el.comment:
                 el.comment = el.comment.replace("zib-", "nl-base-")
 
-            if el.binding_strength:
-                # Set binding strengths to preferred
-                el.binding_strength = "preferred"
+            if el.binding_strength and el.value_set:
+                # Set binding strengths to preferred, but preserve FHIR core bindings
+                # Don't weaken if:
+                # 1. ValueSet is from FHIR core (http://hl7.org/ or http://terminology.hl7.org/)
+                # 2. Element path has Required binding in FHIR core
+                # 3. Element path has Extensible binding in FHIR core (keep as extensible)
+                is_hl7_valueset = (el.value_set.startswith("http://hl7.org/") or 
+                                 el.value_set.startswith("http://terminology.hl7.org/"))
+                
+                if (not is_hl7_valueset and 
+                    el.fhir_path not in FHIR_CORE_REQUIRED_BINDINGS):
+                    
+                    if el.fhir_path in FHIR_CORE_EXTENSIBLE_BINDINGS:
+                        el.binding_strength = "extensible"
+                    else:
+                        el.binding_strength = "preferred"
 
             el.target_profiles = [p.replace("zib-", "nl-base-") for p in el.target_profiles]
             el.profiles = [p.replace("zib-", "nl-base-") for p in el.profiles]
