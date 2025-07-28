@@ -270,7 +270,12 @@ class Profile:
                 "Quantity": [],
                 "Identifier": []
             }
-        
+
+        # Insert root element to set alias
+        if core.elements[0].fsh_path != "":
+            core.elements.insert(0, Element("", core.elements[0].fhir_path.split(".")[0]))
+        core.elements[0].alias = [f"nl-core-{self.uniq_id}"] # Default alias on root element
+
         return core
 
     def asFSH(self):
