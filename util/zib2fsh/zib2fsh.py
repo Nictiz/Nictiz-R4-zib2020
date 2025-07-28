@@ -656,6 +656,32 @@ class Profile:
         else:
             return '\"' + text.replace('\"', '\\\"') + '\"'
 
+def postprocess_wound_drain_slicing():
+    """
+    Post-processing step to fix nl-base-Wound.Drain slicing.
+    This is a corner case where a slice is added on top of inherited slicing. Could not fix the slicing definition to work this.
+    """
+    wound_drain_file = OUT_DIR / "nl-base-Wound.Drain.fsh"
+    if not wound_drain_file.exists():
+        return
+        
+    try:
+        with open(wound_drain_file, 'r') as f:
+            content = f.read()
+        
+        # Replace the incorrect pattern with the correct one
+        old_pattern = "* reasonReference[wound] 0..\n* reasonReference[wound] only Reference"
+        new_pattern = "* reasonReference contains wound 0..\n* reasonReference[wound] only Reference"
+        
+        if old_pattern in content:
+            content = content.replace(old_pattern, new_pattern)
+            
+            with open(wound_drain_file, 'w') as f:
+                f.write(content)
+            print(f"Post-processed {wound_drain_file.name} to fix wound slice contains statement")
+    except Exception as e:
+        print(f"Warning: Could not post-process {wound_drain_file.name}: {e}")
+
 if __name__ == "__main__":
     shutil.rmtree(OUT_DIR, ignore_errors=True)
     OUT_DIR.mkdir(exist_ok=True, parents=True)
@@ -704,6 +730,7 @@ if __name__ == "__main__":
 
     for in_file in IN_DIR.glob("*.xml"):
         profile = Profile.fromXML(in_file)
+        print("Processing", in_file.name, "->", profile.name)
         base = profile.asBase()
         out_name = in_file.name.replace("zib-", "nl-base-").replace(".xml", ".fsh")
         with open(OUT_DIR / out_name, "w") as out_file:
@@ -714,3 +741,6 @@ if __name__ == "__main__":
             out_name = in_file.name.replace("zib-", "nl-core-").replace(".xml", ".fsh")
             with open(OUT_DIR / out_name, "w") as out_file:
                 out_file.write(core.asFSH())
+
+    # Post-processing steps for corner cases
+    postprocess_wound_drain_slicing()
