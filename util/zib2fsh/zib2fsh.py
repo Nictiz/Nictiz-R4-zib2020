@@ -68,6 +68,8 @@ class Element:
     constraints: list[str] = field(default_factory=list) # Only constraint keys here
     conditions: list[str] = field(default_factory=list)
     patterns: dict[str, list[str]] = field(default_factory=lambda: {"CodeableConcept": [], "Quantity": [], "Identifier": []})
+    is_modifier: bool = None
+    is_modifier_reason: str = None
 
 @dataclass
 class Constraint:
@@ -149,6 +151,12 @@ class Profile:
                 el.alias.append(alias.get("value"))
             el.definition = self.__fhirValue__(xml_el, "definition")
             el.comment = self.__fhirValue__(xml_el, "comment")
+            
+            # Parse isModifier and isModifierReason
+            is_modifier_value = self.__fhirValue__(xml_el, "isModifier")
+            if is_modifier_value:
+                el.is_modifier = is_modifier_value.lower() == "true"
+            el.is_modifier_reason = self.__fhirValue__(xml_el, "isModifierReason")
 
             binding = xml_el.find("f:binding", NS)
             if binding != None:
@@ -233,7 +241,7 @@ class Profile:
 
         for el in base.elements:
             # Remove cardinality constraints. When it is a slice definition, set them to 0..* because FSH requires them
-            if not el.slice_name:
+            if not el.slice_name and el.fhir_path != "Extension":
                 el.min = None
                 el.max = None
             else:
@@ -346,6 +354,7 @@ class Profile:
         
         for el in self.elements:
             fsh += self.__fshExtensionsDefinition__(el)
+            fsh += self.__fshModifierExtensionsDefinition__(el)
             fsh += self.__fshSlicing__(el)
             fsh += self.__fshElementLine__(el)
             fsh += self.__fshTypes__(el)
@@ -369,15 +378,35 @@ class Profile:
         fsh += f"Context: {self.context}\n"
         fsh += f"* insert ProfileMetadata({self.uniq_id})\n\n"
 
+        # Find the root element and add cardinality if specified
+        root_element = None
         for el in self.elements:
+            if el.fhir_path == "Extension":
+                root_element = el
+                break
+        
+        if root_element and (root_element.min or root_element.max):
+            min_val = root_element.min if root_element.min else ""
+            max_val = root_element.max if root_element.max else "*"
+            fsh += f"* . {min_val}..{max_val}\n"
+
+        for el in self.elements:
+            if el.is_modifier is True:
+                # For the root element, generate the isModifier and isModifierReason
+                fsh += f"* . ?!\n"
+                if el.is_modifier_reason:
+                    fsh += f"* . ^isModifierReason = \"{el.is_modifier_reason}\"\n"
+
+            if el.fhir_path == "Extension":
+                continue
+
             fsh += self.__fshElementLine__(el)
             fsh += self.__fshTypes__(el)
             fsh += self.__fshTerminologyBinding__(el)
             fsh += self.__fshSlicing__(el)
             fsh += self.__fshPatterns__(el)
-
+        
         fsh += self.__fshTextSection__()
-
         fsh += self.__fshConstraints__()
 
         return fsh
@@ -406,6 +435,38 @@ class Profile:
         if len(fsh_strings) > 0:
             fsh_path = ".".join(el.fhir_path.split(".")[1:-1])
             return f"* {fsh_path}{'.' if fsh_path else ''}extension contains\n    " + " and\n    ".join(fsh_strings) + "\n"
+        return ""
+
+    def __fshModifierExtensionsDefinition__(self, el):
+        if not el.fhir_path.endswith(".modifierExtension"):
+            return ""
+        
+        modifier_extensions = []
+        for ext_el in self.elements:
+            if not ext_el.fhir_path == el.fhir_path:
+                continue # Not a modifierExtension in the parent element
+            if not (len(ext_el.types) > 0 and ext_el.types[0] == "Extension"):
+                continue # Not a modifierExtension definition (but profiled path within an extension)
+            if not len(ext_el.profiles) > 0:
+                continue # Not a modifierExtension definition, only a constraint
+            if ext_el.fsh_path in self.handled_slices:
+                continue # Already handled this
+            modifier_extensions.append(ext_el)
+            self.handled_slices.append(ext_el.fsh_path)
+
+        fsh_strings = []
+        for modifier_extension in modifier_extensions:
+            # HACK Determine the max cardinality - if not specified in the slice, use known values for specific extensions
+            # HACK To manually set the max cardinality for specificationOther because the max value is inside the extension
+            max_val = modifier_extension.max if modifier_extension.max else '*'
+            if modifier_extension.slice_name == "specificationOther":
+                max_val = "1"  # ext-TreatmentDirective2.SpecificationOther has max="1"
+            
+            fsh = f"{modifier_extension.profiles[0]} named {modifier_extension.slice_name} {modifier_extension.min if modifier_extension.min else ''}..{max_val}"
+            fsh_strings.append(fsh)
+        if len(fsh_strings) > 0:
+            fsh_path = ".".join(el.fhir_path.split(".")[1:-1])
+            return f"* {fsh_path}{'.' if fsh_path else ''}modifierExtension contains\n    " + " and\n    ".join(fsh_strings) + "\n"
         return ""
 
     def __fshSlicing__(self, el):
@@ -446,7 +507,13 @@ class Profile:
         # Write a line if we have explicit cardinality, constraints or conditions. Cardinality is only written if it
         # wasn't defined already in a "contains" line.
         write_out = False
-        if (el.min or el.max):
+        
+        # Only add cardinality for modifierExtension if it's the slice itself, not its sub-elements
+        should_add_modifier_cardinality = ("modifierExtension[" in el.fsh_path and 
+                                         not el.fsh_path.endswith(".value[x]") and
+                                         not "." in el.fsh_path.split("modifierExtension[")[1])
+        
+        if (el.min or el.max or should_add_modifier_cardinality):
             if el.fsh_path not in self.handled_slices:
                 if not (el.slice_name and el.fhir_path.endswith("[x]") and el.min == "0" and el.max in [None, "*"]): # Don't write out type slices with default cardinalities
                     write_out = True
@@ -462,8 +529,16 @@ class Profile:
 
         fsh = f"* {el.fsh_path if el.fsh_path else '.'}"
         card = False
-        if (el.min or el.max) and (el.fsh_path not in self.handled_slices):
-            fsh += f" {el.min if el.min else ''}..{el.max if el.max else ''}"
+        if (el.min or el.max or should_add_modifier_cardinality) and (el.fsh_path not in self.handled_slices):
+            # Special handling for modifierExtension slices that reference specific extensions
+            max_val = el.max if el.max else ''
+            if should_add_modifier_cardinality and not max_val:
+                # For modifierExtension slices, try to determine max from the extension definition
+                if el.slice_name == "specificationOther":
+                    max_val = "1"  # SpecificationOther extension has max="1"
+                else:
+                    max_val = "*"  # Default for extensions
+            fsh += f" {el.min if el.min else ''}..{max_val}"
             card = True
 
         fsh_strings = []
