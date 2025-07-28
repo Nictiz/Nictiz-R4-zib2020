@@ -8,7 +8,7 @@ Title: "nl base ContactInformation EmailAddresses"
 To implement the entire zib, the complementary profile [zib-ContactInformation-TelephoneNumbers](http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelephoneNumbers) should be used. Both profiles can be added in a slice with the discriminator set to `profile`/`$this`."
 
 * use insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/EmailSoortCodelijst-to-ContactInformation-EmailAddressesUse)
-* use from http://nictiz.nl/fhir/ValueSet/ContactInformation-EmailAddressesUse (preferred)
+* use from http://nictiz.nl/fhir/ValueSet/ContactInformation-EmailAddressesUse (required)
 
 // Short, alias, definition and comment texts
 * ^description = "Contact information includes a person's telephone numbers en e-mail addresses."

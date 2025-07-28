@@ -8,6 +8,7 @@ Context: Consent
 
 // Short, alias, definition and comment texts
 * ^description = "An extension to provide the problem or disorder to which the living will applies."
+* ^purpose = "This extension represents the Disorder concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) AdvanceDirective v3.1.1 (2020)](https://zibs.nl/wiki/AdvanceDirective-v3.1.1(2020EN))."
 * value[x]
   * ^short = "Disorder"
   * ^alias[+] = "Aandoening"

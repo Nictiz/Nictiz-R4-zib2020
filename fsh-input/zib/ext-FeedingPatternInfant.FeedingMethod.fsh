@@ -9,6 +9,7 @@ Context: Observation.component
 
 // Short, alias, definition and comment texts
 * ^description = "An extension to provide the method how the feeding is given to the infant."
+* ^purpose = "This extension represents the FeedingMethod concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) FeedingPatternInfant v1.1 (2020)](https://zibs.nl/wiki/FeedingPatternInfant-v1.1(2020EN))."
 * value[x]
   * ^short = "FeedingMethod"
   * ^alias[+] = "VoedingMethode"

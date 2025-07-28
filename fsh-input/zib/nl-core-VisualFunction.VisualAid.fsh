@@ -5,6 +5,7 @@ Title: "nl core VisualFunction.VisualAid"
 * insert ProfileMetadata(nl-core-VisualFunction.VisualAid)
 * ^purpose = "This DeviceUseStatement resource represents the adaptations for the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) VisualFunction v3.1 (2020)](https://zibs.nl/wiki/VisualFunction-v3.1(2020EN)) of [zib MedicalDevice v3.3.1 (2020)](https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN))."
 
+* device only Reference(http://hl7.org/fhir/StructureDefinition/Device or http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualFunction.VisualAid.Product)
 * reasonReference[stoma] ..0
 
 // Short, alias, definition and comment texts

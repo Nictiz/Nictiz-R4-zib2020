@@ -9,6 +9,7 @@ Context: Specimen.collection.bodySite
 
 // Short, alias, definition and comment texts
 * ^description = "An extension to provide the morphological abnormalities of the anatomical location where the specimen material is taken, for example wound, ulcer."
+* ^purpose = "This extension represents the Specimen.Morphology concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) LaboratoryTestResult v4.6 (2020)](https://zibs.nl/wiki/LaboratoryTestResult-v4.6(2020EN))."
 * value[x]
   * ^short = "Morphology"
   * ^alias[+] = "Morfologie"

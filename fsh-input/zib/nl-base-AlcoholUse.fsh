@@ -16,7 +16,7 @@ Title: "nl base AlcoholUse"
     amount 0..1
 * component[amount].code = http://snomed.info/sct#897148007
 * component[amount].value[x] only Quantity
-* component[amount].value[x] = 'None'
+* component[amount].value[x] = http://unitsofmeasure.org#None
 
 // Short, alias, definition and comment texts
 * ^description = "In the context of this information model, alcohol is the collective term for alcoholic beverages consumed as a leisure product. This information model describes the information asked of the patient about their alcohol use."

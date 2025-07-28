@@ -6,9 +6,9 @@ Title: "nl base Problem"
 * insert Purpose(Problem, 4.4, Condition)
 
 * clinicalStatus insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/ProbleemStatusCodelijst-to-ConditionClinicalStatusCodes)
-* clinicalStatus from http://hl7.org/fhir/ValueSet/condition-clinical|4.0.1 (preferred)
+* clinicalStatus from http://hl7.org/fhir/ValueSet/condition-clinical|4.0.1 (required)
 * verificationStatus insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/VerificatieStatusCodelijst-to-ConditionVerificationStatus)
-* verificationStatus from http://hl7.org/fhir/ValueSet/condition-ver-status|4.0.1 (preferred)
+* verificationStatus from http://hl7.org/fhir/ValueSet/condition-ver-status|4.0.1 (required)
 * verificationStatus.coding insert Discriminator(value, $this)
 * verificationStatus.coding contains
     verificationStatusCodelist 0..1
@@ -16,7 +16,7 @@ Title: "nl base Problem"
 * category insert Discriminator(value, $this)
 * category contains
     problemType 0..1
-* category[problemType] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.5.1.1--20200901000000 (preferred)
+* category[problemType] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.5.1.1--20200901000000 (extensible)
 * code from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.5.1.3--20200901000000 (preferred)
 * code.extension contains
     http://nictiz.nl/fhir/StructureDefinition/ext-Problem.FurtherSpecificationProblemName named furtherSpecificationProblemName 0..1

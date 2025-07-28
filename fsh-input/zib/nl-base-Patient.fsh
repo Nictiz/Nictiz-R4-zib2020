@@ -30,7 +30,7 @@ Title: "nl base Patient"
 * telecom[emailAddresses] only ContactPoint
 * telecom[emailAddresses] ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-base-ContactInformation-EmailAddresses
 * gender insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/GeslachtCodelijst-to-AdministrativeGender)
-* gender from http://hl7.org/fhir/ValueSet/administrative-gender|4.0.1 (preferred)
+* gender from http://hl7.org/fhir/ValueSet/administrative-gender|4.0.1 (required)
 * gender.extension contains
     http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification named genderCodelist 0..1
 * gender.extension[genderCodelist].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1--20200901000000 (preferred)
@@ -39,7 +39,7 @@ Title: "nl base Patient"
 * deceasedDateTime only dateTime
 * address only Address
 * address ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-base-AddressInformation
-* maritalStatus from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.9.1--20200901000000 (preferred)
+* maritalStatus from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.9.1--20200901000000 (extensible)
 * multipleBirth[x] insert Discriminator(type, $this)
 * multipleBirthBoolean only boolean
 * contact.extension contains
@@ -49,8 +49,8 @@ Title: "nl base Patient"
 * contact.relationship contains
     role 0.. and
     relationship 0..
-* contact.relationship[role] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.3.1.2--20200901000000 (preferred)
-* contact.relationship[relationship] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.3.1.1--20200901000000 (preferred)
+* contact.relationship[role] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.3.1.2--20200901000000 (extensible)
+* contact.relationship[relationship] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.3.1.1--20200901000000 (extensible)
 * contact.name only HumanName
 * contact.name ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-base-NameInformation
 * contact.telecom insert Discriminator(profile, $this)
@@ -68,7 +68,6 @@ Title: "nl base Patient"
     http://nictiz.nl/fhir/StructureDefinition/ext-LanguageProficiency.CommunicationDetails named communicationDetails 0..* and
     http://nictiz.nl/fhir/StructureDefinition/ext-Comment named comment 0..1
 * communication.extension[languageControl].extension[level] 0..
-* communication.extension[languageControl].extension[level].value[x] from None (preferred)
 * communication.extension[languageControl].extension[type] 0..1
 * communication.language from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.12.2--20200901000000 (preferred)
 

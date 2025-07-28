@@ -7,7 +7,9 @@ Title: "nl core PulseRate"
 
 * note ..1
 * hasMember[pulseRateValue] ..1
+* hasMember[pulseRateValue] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-PulseRate.PulseRateValue)
 * hasMember[pulseRegularity] ..1
+* hasMember[pulseRegularity] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-PulseRate.PulseRegularity)
 
 // Short, alias, definition and comment texts
 * ^description = "The element contains the value of the pulse rate measured. The pulse rate is expressed in the number of tangible pulsations of an artery per minute, usually the a. radialis, a. carotis or a. femoralis."

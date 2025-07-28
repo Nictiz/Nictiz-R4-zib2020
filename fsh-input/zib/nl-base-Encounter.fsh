@@ -6,11 +6,11 @@ Title: "nl base Encounter"
 * insert Purpose(Encounter, 4.0.1, Encounter)
 
 * class insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/ContactTypeCodeLijst-to-ActEncounterCode)
-* class from http://terminology.hl7.org/ValueSet/v3-ActEncounterCode (preferred)
+* class from http://terminology.hl7.org/ValueSet/v3-ActEncounterCode (extensible)
 * participant insert Discriminator(profile, individual.resolve(\))
 * participant contains
     healthProfessional 0..
-* participant[healthProfessional].type from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.1.5--20200901000000 (preferred)
+* participant[healthProfessional].type from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.1.5--20200901000000 (extensible)
 * participant[healthProfessional].individual only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthProfessional-PractitionerRole)
 * reasonCode insert Discriminator(exists, coding)
 * reasonCode contains

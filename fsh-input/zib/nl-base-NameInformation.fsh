@@ -11,7 +11,7 @@ For the entire zib, the complementary profile [zib-NameInformation.GivenName](ht
 * extension contains
     http://hl7.org/fhir/StructureDefinition/humanname-assembly-order named nameUsage 0..1
 * extension[nameUsage].value[x] insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/NaamgebruikCodelijst-to-HumanNameAssemblyOrder)
-* extension[nameUsage].value[x] from http://hl7.org/fhir/ValueSet/name-assembly-order|4.0.1 (preferred)
+* extension[nameUsage].value[x] from http://hl7.org/fhir/ValueSet/name-assembly-order|4.0.1 (required)
 * family.extension contains
     http://hl7.org/fhir/StructureDefinition/humanname-own-prefix named prefix 0..* and
     http://hl7.org/fhir/StructureDefinition/humanname-own-name named lastName 0..* and

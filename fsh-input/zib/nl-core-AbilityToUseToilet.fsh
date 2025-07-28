@@ -7,7 +7,9 @@ Title: "nl core AbilityToUseToilet"
 
 * insert NlCorePatientForObservation
 * hasMember[toiletUse] ..1
+* hasMember[toiletUse] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToUseToilet.ToiletUse)
 * hasMember[menstrualCare] ..1
+* hasMember[menstrualCare] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToUseToilet.MenstrualCare)
 
 // Short, alias, definition and comment texts
 * ^description = """

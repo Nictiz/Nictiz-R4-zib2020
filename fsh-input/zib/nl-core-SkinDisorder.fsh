@@ -6,6 +6,7 @@ Title: "nl core SkinDisorder"
 * insert Purpose(SkinDisorder, 3.3, Observation)
 
 * extension[cause] ..1
+* extension[cause].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Condition or http://hl7.org/fhir/StructureDefinition/Procedure or http://hl7.org/fhir/StructureDefinition/MedicationAdministration or http://hl7.org/fhir/StructureDefinition/Immunization or http://hl7.org/fhir/StructureDefinition/MedicationStatement or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
 * category 1..
 * category[skinDisorderCode] 1..1
 * code from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.19.3.1--20200901000000 (extensible)

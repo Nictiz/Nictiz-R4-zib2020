@@ -9,11 +9,11 @@ Title: "nl base HeartRate"
 * effective[x] insert Discriminator(type, $this)
 * effectiveDateTime only dateTime
 * value[x] only Quantity
-* value[x] = '/min'
+* value[x] = http://unitsofmeasure.org#/min
 * interpretation insert Discriminator(value, $this)
 * interpretation contains
     interpretationHeartRate 0..1
-* interpretation[interpretationHeartRate] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.3.3--20200901000000 (preferred)
+* interpretation[interpretationHeartRate] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.3.3--20200901000000 (extensible)
 * method from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.3.2--20200901000000 (preferred)
 * hasMember insert Discriminator(profile, resolve(\))
 * hasMember contains

@@ -22,10 +22,10 @@ Title: "nl base BloodPressure"
     averageBloodPressure 0..1
 * component[SystolicBP].code = http://loinc.org#8480-6
 * component[SystolicBP].value[x] only Quantity
-* component[SystolicBP].value[x] = 'mm[Hg]'
+* component[SystolicBP].value[x] = http://unitsofmeasure.org#mm[Hg]
 * component[DiastolicBP].code = http://loinc.org#8462-4
 * component[DiastolicBP].value[x] only Quantity
-* component[DiastolicBP].value[x] = 'mm[Hg]'
+* component[DiastolicBP].value[x] = http://unitsofmeasure.org#mm[Hg]
 * component[diastolicEndpoint].code = http://snomed.info/sct#85549003
 * component[diastolicEndpoint].value[x] only CodeableConcept
 * component[diastolicEndpoint].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.4.2--20200901000000 (preferred)
@@ -34,7 +34,7 @@ Title: "nl base BloodPressure"
 * component[cuffType].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.4.3--20200901000000 (preferred)
 * component[averageBloodPressure].code = http://snomed.info/sct#6797001
 * component[averageBloodPressure].value[x] only Quantity
-* component[averageBloodPressure].value[x] = 'mm[Hg]'
+* component[averageBloodPressure].value[x] = http://unitsofmeasure.org#mm[Hg]
 
 // Short, alias, definition and comment texts
 * ^description = "The blood pressure is a parameter for determining the condition of the blood circulation and is expressed in systolic and diastolic pressure in mmHg."

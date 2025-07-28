@@ -7,7 +7,9 @@ Title: "nl core FluidBalance"
 
 * note ..1
 * hasMember[fluidTotalIn] ..1
+* hasMember[fluidTotalIn] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-FluidBalance.FluidTotalIn)
 * hasMember[fluidTotalOut] ..1
+* hasMember[fluidTotalOut] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-FluidBalance.FluidTotalOut)
 
 // Short, alias, definition and comment texts
 * ^description = "The total water intake and water excretion within a certain time period: a disbalance can lead to for example dehydration or overfilling."

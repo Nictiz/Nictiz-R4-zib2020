@@ -13,7 +13,7 @@ Title: "nl base BodyTemperature"
 * effective[x] insert Discriminator(type, $this)
 * effectiveDateTime only dateTime
 * value[x] only Quantity
-* value[x] = 'Cel'
+* value[x] = http://unitsofmeasure.org#Cel
 
 // Short, alias, definition and comment texts
 * ^description = "Measuring and documenting the body temperature of a person as a surrogate for a person’s central body temperature (the highest temperature at the centre of the torso)"

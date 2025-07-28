@@ -11,8 +11,11 @@ Title: "nl core HelpFromOthers"
 * activity.detail.code from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.3.2.1--20200901000000 (extensible)
 * activity.detail.performer ..1
 * activity.detail.performer[healthProfessional] ..1
+* activity.detail.performer[healthProfessional] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
 * activity.detail.performer[caregiver] ..1
+* activity.detail.performer[caregiver] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson)
 * activity.detail.performer[healthcareProvider] ..1
+* activity.detail.performer[healthcareProvider] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization)
 * note ..1
 
 // Short, alias, definition and comment texts

@@ -10,6 +10,7 @@ Title: "nl core HeartRate"
 * note ..1
 * method from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.3.2--20200901000000 (extensible)
 * hasMember[heartbeatRegularity] ..1
+* hasMember[heartbeatRegularity] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-HeartRate.HeartbeatRegularity)
 
 // Short, alias, definition and comment texts
 * ^description = "The heart rate is the number of heartbeats per minute."

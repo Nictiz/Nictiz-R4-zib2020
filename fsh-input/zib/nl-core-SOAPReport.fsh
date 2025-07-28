@@ -6,10 +6,12 @@ Title: "nl core SOAPReport"
 * insert Purpose(SOAPReport, 1.0, Composition)
 
 * author ..1
+* author only Reference(http://hl7.org/fhir/StructureDefinition/Practitioner or http://hl7.org/fhir/StructureDefinition/PractitionerRole or http://hl7.org/fhir/StructureDefinition/Device or http://hl7.org/fhir/StructureDefinition/Patient or http://hl7.org/fhir/StructureDefinition/RelatedPerson or http://hl7.org/fhir/StructureDefinition/Organization or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
 * section[soapLine] ..4
 * section[soapLine].code 1..
 * section[soapLine].code from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.6.2--20200901000000 (required)
 * section[soapLine].entry 1..
+* section[soapLine].entry only Reference(http://hl7.org/fhir/StructureDefinition/Resource or http://nictiz.nl/fhir/StructureDefinition/nl-core-SOAPReport.SOAPLine)
 
 // Short, alias, definition and comment texts
 * ^description = """

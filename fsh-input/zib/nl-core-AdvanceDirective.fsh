@@ -8,6 +8,7 @@ Title: "nl core AdvanceDirective"
 * extension[comment] ..1
 * category[advanceDirectiveCode] 1..1
 * provision.actor[representative] ..1
+* provision.actor[representative].reference only Reference(http://hl7.org/fhir/StructureDefinition/Device or http://hl7.org/fhir/StructureDefinition/Group or http://hl7.org/fhir/StructureDefinition/CareTeam or http://hl7.org/fhir/StructureDefinition/Organization or http://hl7.org/fhir/StructureDefinition/Patient or http://hl7.org/fhir/StructureDefinition/Practitioner or http://hl7.org/fhir/StructureDefinition/RelatedPerson or http://hl7.org/fhir/StructureDefinition/PractitionerRole or http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson)
 * provision.code ..1
 * provision.code from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.15.1--20200901000000 (required)
 

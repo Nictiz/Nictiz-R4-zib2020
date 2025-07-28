@@ -32,7 +32,7 @@ Title: "nl base HealthProfessional Practitioner"
 * address only Address
 * address ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-base-AddressInformation
 * gender insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/GeslachtCodelijst-to-AdministrativeGender)
-* gender from http://hl7.org/fhir/ValueSet/administrative-gender|4.0.1 (preferred)
+* gender from http://hl7.org/fhir/ValueSet/administrative-gender|4.0.1 (required)
 * gender.extension contains
     http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification named genderCodelist 0..*
 * gender.extension[genderCodelist].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.1.8--20200901000000 (preferred)

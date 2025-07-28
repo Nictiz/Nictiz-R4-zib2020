@@ -12,7 +12,9 @@ Title: "nl core FreedomRestrictingIntervention"
 * reasonCode ..1
 * reasonCode from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.20.5.4--20200901000000 (extensible)
 * reasonReference[legalSituation-LegalStatus] ..1
+* reasonReference[legalSituation-LegalStatus] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-LegalSituation-LegalStatus)
 * reasonReference[legalSituation-Representation] ..1
+* reasonReference[legalSituation-Representation] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-LegalSituation-Representation)
 
 // Short, alias, definition and comment texts
 * ^description = """

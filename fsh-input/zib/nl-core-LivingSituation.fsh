@@ -7,6 +7,9 @@ Title: "nl core LivingSituation"
 
 * note ..1
 * hasMember[houseType] ..1
+* hasMember[houseType] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-LivingSituation.HouseType)
+* hasMember[homeAdaption] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-LivingSituation.HomeAdaption)
+* hasMember[livingCondition] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-LivingSituation.LivingCondition)
 
 // Short, alias, definition and comment texts
 * ^description = "The living situation is the physical environment in which the patient normally lives, sleeps, keeps their clothing, etc."

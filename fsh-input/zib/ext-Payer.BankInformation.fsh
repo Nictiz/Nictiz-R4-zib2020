@@ -4,6 +4,7 @@ Title: "ext Payer.BankInformation"
 Context: Coverage
 * insert ProfileMetadata(ext-Payer.BankInformation)
 
+* . 0..*
 * extension insert Discriminator(value, url)
 * extension contains
     bankName 0..1 and
@@ -15,6 +16,7 @@ Context: Coverage
 
 // Short, alias, definition and comment texts
 * ^description = "This extension adds the BankInformation concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Payer v3.1.1 (2020)](https://zibs.nl/wiki/Payer-v3.1.1(2020EN)) to the `.payor` element of the Consent resource. The extension contains all data elements of the BankInformation concept."
+* ^purpose = "This extension represents the BankInformation concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Payer v3.1.1 (2020)](https://zibs.nl/wiki/Payer-v3.1.1(2020EN))."
 * .
   * ^short = "BankInformation"
   * ^alias[+] = "Bankgegevens"

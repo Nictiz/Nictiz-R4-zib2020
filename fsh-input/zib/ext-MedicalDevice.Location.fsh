@@ -4,10 +4,12 @@ Title: "ext MedicalDevice.Location"
 Context: DeviceUseStatement
 * insert ProfileMetadata(ext-MedicalDevice.Location)
 
+* . 0..1
 * value[x] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthcareProvider)
 
 // Short, alias, definition and comment texts
 * ^description = "An extension to provide the healthcare provider at which use of the medical device was initiated or where the aid was implanted."
+* ^purpose = "This extension represents the Location concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) MedicalDevice v3.3.1 (2020)](https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN))."
 * value[x]
   * ^short = "Location"
   * ^alias[+] = "Locatie"

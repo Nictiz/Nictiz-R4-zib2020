@@ -11,8 +11,9 @@ Title: "nl base TreatmentDirective2"
     http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.AdvanceDirective named additionalAdvanceDirective 0..*
 * extension[additionalAdvanceDirective] ^condition[+] = zib-TreatmentDirective2-1
 * extension[additionalAdvanceDirective].value[x] ^condition[+] = zib-TreatmentDirective2-1
-* modifierExtension[specificationOther] 0..
-  * ^condition[+] = zib-TreatmentDirective2-2
+* modifierExtension contains
+    http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.SpecificationOther named specificationOther 0..*
+* modifierExtension[specificationOther] ^condition[+] = zib-TreatmentDirective2-2
 * modifierExtension[specificationOther].value[x] ^condition[+] = zib-TreatmentDirective2-2
 * scope = http://terminology.hl7.org/CodeSystem/consentscope#treatment
 * category insert Discriminator(value, $this)
@@ -29,7 +30,7 @@ Title: "nl base TreatmentDirective2"
 * provision.type
   * ^condition[+] = zib-TreatmentDirective2-2
   * insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/TreatmentDecisionCodelist-to-ConsentProvisionType)
-* provision.type from http://hl7.org/fhir/ValueSet/consent-provision-type|4.0.1 (preferred)
+* provision.type from http://hl7.org/fhir/ValueSet/consent-provision-type|4.0.1 (required)
 * provision.actor insert Discriminator(value, role)
 * provision.actor contains
     agreementParty 0..

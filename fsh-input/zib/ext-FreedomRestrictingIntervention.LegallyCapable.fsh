@@ -4,7 +4,7 @@ Title: "ext FreedomRestrictingIntervention.LegallyCapable"
 Context: Procedure
 * insert ProfileMetadata(ext-FreedomRestrictingIntervention.LegallyCapable)
 
-* . obeys zib-FreedomRestrictingIntervention-01
+* . 0..*
 * extension insert Discriminator(value, url)
 * extension contains
     legallyCapable 0..1 and
@@ -18,6 +18,7 @@ Context: Procedure
 
 // Short, alias, definition and comment texts
 * ^description = "An extension to indicate whether the patient is deemed capable of overseeing the consequences of a certain procedure, situation or decision, and to provide a comment on the decisions which the patient is legally capable of making."
+* ^purpose = "This extension represents the LegallyCapable and LegallyCapableComment concepts of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) FreedomRestrictingIntervention v1.0 (2020)](https://zibs.nl/wiki/FreedomRestrictingIntervention-v1.0(2020EN))."
 * extension[legallyCapable].value[x]
   * ^short = "LegallyCapable"
   * ^alias[+] = "Wilsbekwaam"

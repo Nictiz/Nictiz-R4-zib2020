@@ -6,14 +6,23 @@ Title: "nl core wounds.WoundCharacteristics"
 * ^purpose = "This Observation profile groups multiple observable properties of wounds that are used in the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Burnwound v3.4 (2020)](https://zibs.nl/wiki/Burnwound-v3.4(2020EN)), the Dutch [zib PressureUlcer v3.4 (2020)](https://zibs.nl/wiki/PressureUlcer-v3.4(2020EN)) and the Dutch [zib Wound v3.3 (2020)](https://zibs.nl/wiki/Wound-v3.3(2020EN))."
 
 * hasMember[dateOfLastDressingChange] ..1
+* hasMember[dateOfLastDressingChange] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-wounds.DateOfLastDressingChange)
 * hasMember[woundLength] ..1
+* hasMember[woundLength] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-wounds.WoundLength)
 * hasMember[woundWidth] ..1
+* hasMember[woundWidth] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-wounds.WoundWidth)
 * hasMember[woundDepth] ..1
+* hasMember[woundDepth] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-wounds.WoundDepth)
 * hasMember[woundTissue] ..1
+* hasMember[woundTissue] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Wound.WoundTissue)
 * hasMember[woundInfection] ..1
+* hasMember[woundInfection] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Wound.WoundInfection)
 * hasMember[woundMoisture] ..1
+* hasMember[woundMoisture] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Wound.WoundMoisture)
 * hasMember[woundEdge] ..1
+* hasMember[woundEdge] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Wound.WoundEdge)
 * hasMember[extent] ..1
+* hasMember[extent] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Burnwound.Extent)
 
 // Short, alias, definition and comment texts
 * ^description = "Observable properties of a wound, burnwound or pressureulcer."

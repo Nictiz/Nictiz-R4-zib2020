@@ -9,6 +9,7 @@ Context: Patient.communication
 
 // Short, alias, definition and comment texts
 * ^description = "An extension to provide additional ways or tools that the person uses to communicate, such as braille, sign language, etc."
+* ^purpose = "This extension represents the CommunicationDetails concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) LanguageProficiency v3.2 (2020)](https://zibs.nl/wiki/LanguageProficiency-v3.2(2020EN))."
 * value[x]
   * ^short = "CommunicationDetails"
   * ^alias[+] = "CommunicatieBijzonderheden"

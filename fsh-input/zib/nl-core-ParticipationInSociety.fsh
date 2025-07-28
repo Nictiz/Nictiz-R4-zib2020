@@ -7,8 +7,11 @@ Title: "nl core ParticipationInSociety"
 
 * note ..1
 * hasMember[socialNetwork] ..1
+* hasMember[socialNetwork] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-ParticipationInSociety.SocialNetwork)
 * hasMember[hobby] ..1
+* hasMember[hobby] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-ParticipationInSociety.Hobby)
 * hasMember[workSituation] ..1
+* hasMember[workSituation] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-ParticipationInSociety.WorkSituation)
 
 // Short, alias, definition and comment texts
 * ^description = "Participation in society pertains to the patient’s initiative to participate in social activities in daily life, such as practicing a profession and hobbies. Participation in society also describes the patient’s social network."

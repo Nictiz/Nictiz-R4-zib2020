@@ -5,7 +5,6 @@ Title: "nl base VisualFunction.VisualAid.Product"
 * insert ProfileMetadata(nl-base-VisualFunction.VisualAid.Product)
 * ^purpose = "This Device resource represents the Product concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) MedicalDevice v3.3.1 (2020)](https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN)) adjusted to the requirements of the [zib VisualFunction v3.1 (2020)](https://zibs.nl/wiki/VisualFunction-v3.1(2020EN))."
 
-* type from None (preferred)
 
 // Short, alias, definition and comment texts
 * ^description = """

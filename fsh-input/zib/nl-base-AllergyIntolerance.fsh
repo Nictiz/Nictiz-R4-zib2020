@@ -6,16 +6,16 @@ Title: "nl base AllergyIntolerance"
 * insert Purpose(AllergyIntolerance, 3.3, AllergyIntolerance)
 
 * clinicalStatus insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/AllergieStatusCodelijst-to-AllergyIntoleranceClinicalStatusCodes)
-* clinicalStatus from http://hl7.org/fhir/ValueSet/allergyintolerance-clinical|4.0.1 (preferred)
+* clinicalStatus from http://hl7.org/fhir/ValueSet/allergyintolerance-clinical|4.0.1 (required)
 * verificationStatus insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/AllergieStatusCodelijst-to-AllergyIntoleranceVerificationStatus)
-* verificationStatus from http://hl7.org/fhir/ValueSet/allergyintolerance-verification|4.0.1 (preferred)
+* verificationStatus from http://hl7.org/fhir/ValueSet/allergyintolerance-verification|4.0.1 (required)
 * category insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/AllergieCategorieCodelijst-to-AllergyIntoleranceCategory)
-* category from http://hl7.org/fhir/ValueSet/allergy-intolerance-category|4.0.1 (preferred)
+* category from http://hl7.org/fhir/ValueSet/allergy-intolerance-category|4.0.1 (required)
 * category.extension contains
     http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification named allergyCategoryCodelist 0..1
 * category.extension[allergyCategoryCodelist].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.8.2.2--20200901000000 (preferred)
 * criticality insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/MateVanKritiekZijnCodelijst-to-AllergyIntoleranceCriticality)
-* criticality from http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality|4.0.1 (preferred)
+* criticality from http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality|4.0.1 (required)
 * criticality.extension contains
     http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification named criticalExtentCodelist 0..1
 * criticality.extension[criticalExtentCodelist].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.8.2.4--20200901000000 (preferred)
@@ -25,7 +25,7 @@ Title: "nl base AllergyIntolerance"
 * reaction.substance from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.1--20200901000000 (preferred)
 * reaction.manifestation from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.8.2.5--20200901000000 (preferred)
 * reaction.severity insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/ErnstCodelijst-to-AllergyIntoleranceSeverity)
-* reaction.severity from http://hl7.org/fhir/ValueSet/reaction-event-severity|4.0.1 (preferred)
+* reaction.severity from http://hl7.org/fhir/ValueSet/reaction-event-severity|4.0.1 (required)
 * reaction.exposureRoute from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.8.2.12--20200901000000 (preferred)
 
 // Short, alias, definition and comment texts

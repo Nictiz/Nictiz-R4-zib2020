@@ -8,16 +8,23 @@ Title: "nl core NursingIntervention"
 * . obeys zib-NursingIntervention-1
 * category 1..
 * category[nursingInterventionCode] 1..1
+* contributor[requester] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
 * contributor[requester].extension 1..
 * contributor[requester].extension[contributorIsRequester] 1..1
 * addresses ..1
+* addresses only Reference(http://hl7.org/fhir/StructureDefinition/Condition or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
 * goal ..1
+* goal only Reference(http://hl7.org/fhir/StructureDefinition/Goal or http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentObjective)
 * activity ..1
+* activity.detail.extension[medicalDevice].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/DeviceUseStatement or http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice)
 * activity.detail.code from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.18--20200901000000 (required)
 * activity.detail.performer ..1
 * activity.detail.performer[healthcareProvider] ..1
+* activity.detail.performer[healthcareProvider] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
 * activity.detail.performer[caregiver] ..1
+* activity.detail.performer[caregiver] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson)
 * activity.detail.performer[patient] ..1
+* activity.detail.performer[patient] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * note ..1
 
 // Short, alias, definition and comment texts

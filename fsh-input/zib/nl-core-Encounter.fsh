@@ -8,12 +8,16 @@ Title: "nl core Encounter"
 * class from http://terminology.hl7.org/ValueSet/v3-ActEncounterCode (extensible)
 * participant[healthProfessional].type ..1
 * participant[healthProfessional].type from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.1.5--20200901000000 (extensible)
+* participant[healthProfessional].individual only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
 * reasonCode[deviatingResult].extension[commentContactReason] ..1
 * reasonCode[deviatingResult].coding ..0
 * reasonReference.extension[commentContactReason] ..1
+* reasonReference[problem] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
+* reasonReference[procedure] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event)
 * hospitalization.admitSource from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.15.1.2--20200901000000 (extensible)
 * hospitalization.dischargeDisposition from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.15.1.3--20200901000000 (extensible)
 * location ..1
+* location.location only Reference(http://hl7.org/fhir/StructureDefinition/Location or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider)
 
 // Short, alias, definition and comment texts
 * ^description = """

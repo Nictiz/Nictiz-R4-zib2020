@@ -7,7 +7,7 @@ Title: "nl base Wound.Drain"
 
 * device only Reference(http://hl7.org/fhir/StructureDefinition/Device or http://nictiz.nl/fhir/StructureDefinition/nl-base-Wound.Drain.Product)
 * reasonReference[stoma] 0..0
-* reasonReference[wound] 0..
+* reasonReference contains wound 0..
 * reasonReference[wound] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-base-Wound)
 
 // Short, alias, definition and comment texts

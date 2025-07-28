@@ -9,6 +9,7 @@ Context: Address
 
 // Short, alias, definition and comment texts
 * ^description = "An extension to bind the zib AddressInformation ValueSet \"AdresTypeCodelijst\" to the FHIR _Address_ datatype."
+* ^purpose = "This extension represents the AddressType concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) AddressInformation v1.1 (2020)](https://zibs.nl/wiki/AddressInformation-v1.1(2020EN))."
 * value[x]
   * ^short = "AddressType"
   * ^alias[+] = "AdresSoort"

@@ -5,6 +5,7 @@ Title: "nl core FunctionalOrMentalStatus"
 * insert ProfileMetadata(nl-core-FunctionalOrMentalStatus)
 * insert Purpose(FunctionalOrMentalStatus, 3.2, Observation)
 
+* extension[medicalDevice].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Resource or http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice)
 * category 1..
   * obeys zib-FunctionalOrMentalStatus-1
 * category[functionalStatusFinding] ..1

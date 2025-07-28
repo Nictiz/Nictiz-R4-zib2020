@@ -7,6 +7,7 @@ Title: "nl core AbilityToEat"
 
 * insert NlCorePatientForObservation
 * valueCodeableConcept from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.7.1--20200901000000 (required)
+* hasMember[eatingLimitations] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToEat.EatingLimitations)
 
 // Short, alias, definition and comment texts
 * ^description = """

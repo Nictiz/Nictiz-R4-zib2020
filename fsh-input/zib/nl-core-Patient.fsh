@@ -12,11 +12,11 @@ Title: "nl core Patient"
 * gender.extension[genderCodelist].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1--20200901000000 (required)
 * maritalStatus from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.9.1--20200901000000 (required)
 * contact.extension[contactPerson] ..1
+* contact.extension[contactPerson].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/RelatedPerson or http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson)
 * contact.relationship[role] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.3.1.2--20200901000000 (required)
 * contact.relationship[relationship] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.3.1.1--20200901000000 (required)
 * communication.extension[languageControl].extension 2..
 * communication.extension[languageControl].extension[level] 1..
-* communication.extension[languageControl].extension[level].value[x] from None (required)
 * communication.extension[languageControl].extension[type] 1..1
 * communication.extension[comment] ..1
 * communication.language from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.12.2--20200901000000 (required)

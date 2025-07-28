@@ -35,7 +35,7 @@ Title: "nl base Refraction"
   * ^condition[+] = zib-Refraction-1
   * ^condition[+] = zib-Refraction-2
 * component[cylindricalRefractionValue].value[x] only Quantity
-* component[cylindricalRefractionValue].value[x] = '[diop]'
+* component[cylindricalRefractionValue].value[x] = http://unitsofmeasure.org#[diop]
 * component[cylindricalRefractionAxis]
   * ^condition[+] = zib-Refraction-1
   * ^condition[+] = zib-Refraction-2
@@ -47,7 +47,7 @@ Title: "nl base Refraction"
   * ^condition[+] = zib-Refraction-1
   * ^condition[+] = zib-Refraction-2
 * component[cylindricalRefractionAxis].value[x] only Quantity
-* component[cylindricalRefractionAxis].value[x] = 'deg'
+* component[cylindricalRefractionAxis].value[x] = http://unitsofmeasure.org#deg
 * component[prismValue]
   * ^condition[+] = zib-Refraction-3
   * ^condition[+] = zib-Refraction-4
@@ -59,7 +59,7 @@ Title: "nl base Refraction"
   * ^condition[+] = zib-Refraction-3
   * ^condition[+] = zib-Refraction-4
 * component[prismValue].value[x] only Quantity
-* component[prismValue].value[x] = '[p'diop]'
+* component[prismValue].value[x] = http://unitsofmeasure.org#[p'diop]
 * component[prismBase]
   * ^condition[+] = zib-Refraction-3
   * ^condition[+] = zib-Refraction-4
@@ -71,22 +71,22 @@ Title: "nl base Refraction"
   * ^condition[+] = zib-Refraction-3
   * ^condition[+] = zib-Refraction-4
 * component[prismBase].value[x] only Quantity
-* component[prismBase].value[x] = 'deg'
+* component[prismBase].value[x] = http://unitsofmeasure.org#deg
 * component[sphericalRefractionValue] ^condition[+] = zib-Refraction-5
 * component[sphericalRefractionValue].code ^condition[+] = zib-Refraction-5
 * component[sphericalRefractionValue].code = http://snomed.info/sct#251795007
 * component[sphericalRefractionValue].value[x] ^condition[+] = zib-Refraction-5
 * component[sphericalRefractionValue].value[x] only Quantity
-* component[sphericalRefractionValue].value[x] = '[diop]'
+* component[sphericalRefractionValue].value[x] = http://unitsofmeasure.org#[diop]
 * component[sphericalEquivalent] ^condition[+] = zib-Refraction-5
 * component[sphericalEquivalent].code ^condition[+] = zib-Refraction-5
 * component[sphericalEquivalent].code = http://snomed.info/sct#112881000146107
 * component[sphericalEquivalent].value[x] ^condition[+] = zib-Refraction-5
 * component[sphericalEquivalent].value[x] only Quantity
-* component[sphericalEquivalent].value[x] = '[diop]'
+* component[sphericalEquivalent].value[x] = http://unitsofmeasure.org#[diop]
 * component[readAddition].code = http://snomed.info/sct#251718005
 * component[readAddition].value[x] only Quantity
-* component[readAddition].value[x] = '[diop]'
+* component[readAddition].value[x] = http://unitsofmeasure.org#[diop]
 
 // Short, alias, definition and comment texts
 * ^description = "The refraction measurement is a measurement with which the refractive error of the eye is determined. During the refraction measurement, the necessary correction is established: the spherical power (in diopters), the cylindrical power (in diopters), the axis direction (in degrees) for any cylindrical correction, the prism (in prism diopters) and any additional power of the reading area (in diopters), the so-called reading addition."

@@ -6,6 +6,7 @@ Title: "nl core FeedingPatternInfant"
 * insert Purpose(FeedingPatternInfant, 1.1, Observation)
 
 * basedOn ..1
+* basedOn only Reference(http://hl7.org/fhir/StructureDefinition/CarePlan or http://hl7.org/fhir/StructureDefinition/DeviceRequest or http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation or http://hl7.org/fhir/StructureDefinition/MedicationRequest or http://hl7.org/fhir/StructureDefinition/NutritionOrder or http://hl7.org/fhir/StructureDefinition/ServiceRequest or http://nictiz.nl/fhir/StructureDefinition/nl-core-NutritionAdvice)
 * note ..1
 * component[feedingSupplement].value[x].coding.display 1..
 * component[feedingFrequency] ..1

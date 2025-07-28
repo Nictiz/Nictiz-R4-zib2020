@@ -7,12 +7,19 @@ Title: "nl core DevelopmentChild"
 
 * note ..1
 * hasMember[toiletTrainednessUrine] ..1
+* hasMember[toiletTrainednessUrine] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-DevelopmentChild.ToiletTrainednessUrine)
 * hasMember[toiletTrainednessFeces] ..1
+* hasMember[toiletTrainednessFeces] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-DevelopmentChild.ToiletTrainednessFeces)
 * hasMember[ageFirstMenstruation] ..1
+* hasMember[ageFirstMenstruation] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-DevelopmentChild.AgeFirstMenstruation)
 * hasMember[developmentLocomotion] ..1
+* hasMember[developmentLocomotion] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-DevelopmentChild.DevelopmentLocomotion)
 * hasMember[developmentSocial] ..1
+* hasMember[developmentSocial] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-DevelopmentChild.DevelopmentSocial)
 * hasMember[developmentLinguistics] ..1
+* hasMember[developmentLinguistics] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-DevelopmentChild.DevelopmentLinguistics)
 * hasMember[developmentCognition] ..1
+* hasMember[developmentCognition] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-DevelopmentChild.DevelopmentCognition)
 
 // Short, alias, definition and comment texts
 * ^description = "Information on the development and growth of a child is important in determining the kind of care that should be provided to the child and the family. When the child is being transferred, continuity of care can be achieved. Information can provide insight in the process of development and whether the child has a developmental delay."

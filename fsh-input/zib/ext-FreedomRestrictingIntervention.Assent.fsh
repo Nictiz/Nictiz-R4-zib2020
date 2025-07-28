@@ -9,6 +9,7 @@ Context: Procedure
 
 // Short, alias, definition and comment texts
 * ^description = "An extension to provide the assent given to the health professional(s) by the patient or legal representative to implement the involuntary care."
+* ^purpose = "This extension represents the Assent concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) FreedomRestrictingIntervention v1.0 (2020)](https://zibs.nl/wiki/FreedomRestrictingIntervention-v1.0(2020EN))."
 * value[x]
   * ^short = "Assent"
   * ^alias[+] = "Instemming"

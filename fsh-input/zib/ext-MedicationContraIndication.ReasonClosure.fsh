@@ -8,6 +8,7 @@ Context: Flag
 
 // Short, alias, definition and comment texts
 * ^description = "An extension to provide a textual explanation of why the medication contraindication has been closed."
+* ^purpose = "This extension represents the ReasonClosure concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) MedicationContraIndication](https://zibs.nl/wiki/MedicationContraIndication-v1.0(2020EN))."
 * value[x]
   * ^short = "ReasonClosure"
   * ^alias[+] = "RedenVanAfsluiten"

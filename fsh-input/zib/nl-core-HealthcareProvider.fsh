@@ -5,6 +5,7 @@ Title: "nl core HealthcareProvider"
 * insert ProfileMetadata(nl-core-HealthcareProvider)
 * insert Purpose(HealthcareProvider, 3.4, Location)
 
+* managingOrganization only Reference(http://hl7.org/fhir/StructureDefinition/Organization or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization)
 
 // Short, alias, definition and comment texts
 * ^description = "A healthcare provider is an organization that offers and provides medical, paramedic and/or nursing care to patients/clients. Examples include: hospitals, nursing homes, doctor’s offices."

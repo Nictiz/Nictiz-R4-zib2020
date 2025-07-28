@@ -7,6 +7,7 @@ Title: "nl core EpisodeOfCare"
 
 * extension[comment] ..1
 * diagnosis ..1
+* diagnosis.condition only Reference(http://hl7.org/fhir/StructureDefinition/Condition or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
 
 // Short, alias, definition and comment texts
 * ^description = "The period in which a health problem, such as a complaint or illness, receives attention from a care provider. During this period the designation of this health problem can change due to evolving insight and/or the progress of the illness. An episode of care serves as a context for all data related to the health problem."

@@ -8,6 +8,7 @@ Context: Condition.code
 
 // Short, alias, definition and comment texts
 * ^description = "An extension to specify the problem name. The extension can be seen as an addition to the ProblemName concept mapped to the code element."
+* ^purpose = "This extension represents the FurtherSpecificationProblemName concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Problem v4.4 (2020)](https://zibs.nl/wiki/Problem-v4.4(2020EN))."
 * value[x]
   * ^short = "FurtherSpecificationProblemName"
   * ^alias[+] = "NadereSpecificatieProbleemNaam"

@@ -6,8 +6,11 @@ Title: "nl core IllnessPerception"
 * insert Purpose(IllnessPerception, 3.1, Observation)
 
 * hasMember[patientIllnessInsight] ..1
+* hasMember[patientIllnessInsight] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-IllnessPerception.PatientIllnessInsight)
 * hasMember[copingWithIllnessByPatient] ..1
+* hasMember[copingWithIllnessByPatient] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-IllnessPerception.CopingWithIllnessByPatient)
 * hasMember[copingWithIllnessByFamily] ..1
+* hasMember[copingWithIllnessByFamily] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-IllnessPerception.CopingWithIllnessByFamily)
 
 // Short, alias, definition and comment texts
 * ^description = "In nearly all cases, a lengthy or life-threatening illness is a traumatic experience for the patient and their environment. Every patient deals with this in their own way. The way in which a person deals with problems and stress is also referred to as coping. Illness perception entails both the way the patient sees their situation and the way in which the patient and their environment deal with the situation (coping strategies)."

@@ -9,7 +9,7 @@ Title: "nl base PulseRate.PulseRateValue"
 * effective[x] insert Discriminator(type, $this)
 * effectiveDateTime only dateTime
 * value[x] only Quantity
-* value[x] = '/min'
+* value[x] = http://unitsofmeasure.org#/min
 
 // Short, alias, definition and comment texts
 * ^description = "The value of the pulse rate measured. The pulse rate is expressed in the number of tangible pulsations of an artery per minute, usually the a. radialis, a. carotis or a. femoralis."

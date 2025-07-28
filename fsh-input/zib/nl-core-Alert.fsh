@@ -7,6 +7,7 @@ Title: "nl core Alert"
 
 * . obeys zib-Alert-1 and zib-Alert-2
 * extension[condition] ..1
+* extension[condition].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Resource or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
 * extension[comment] ..1
 * category[alertType] ..1
 * category[alertType] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.8.3.1--20200901000000 (required)

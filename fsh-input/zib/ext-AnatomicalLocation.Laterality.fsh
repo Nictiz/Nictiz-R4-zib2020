@@ -9,6 +9,7 @@ Context: CodeableConcept
 
 // Short, alias, definition and comment texts
 * ^description = "An extension to provide information about body site to the anatomic location, e.g. left."
+* ^purpose = "This extension represents the Laterality concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) AnatomicalLocation v1.0 (2020)](https://zibs.nl/wiki/AnatomicalLocation-v1.0(2020EN)). It is to be used together with the <http://nictiz.nl/fhir/StructureDefinition/zib-AnatomicalLocation> datatype profile."
 * value[x]
   * ^short = "Laterality"
   * ^alias[+] = "Lateraliteit"

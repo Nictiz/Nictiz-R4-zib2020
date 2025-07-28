@@ -9,7 +9,7 @@ Title: "nl base BodyHeight"
 * effective[x] insert Discriminator(type, $this)
 * effectiveDateTime only dateTime
 * value[x] only Quantity
-* value[x] from http://hl7.org/fhir/ValueSet/ucum-bodylength (preferred)
+* value[x] from http://hl7.org/fhir/ValueSet/ucum-bodylength (required)
 * component insert Discriminator(value, code)
 * component contains
     position 0..1

@@ -9,7 +9,7 @@ Title: "nl base O2Saturation"
 * effective[x] insert Discriminator(type, $this)
 * effectiveDateTime only dateTime
 * value[x] only Quantity
-* value[x] = '%'
+* value[x] = http://unitsofmeasure.org#%
 * component insert Discriminator(value, code)
 * component contains
     extraOxygenAdministration 0..1

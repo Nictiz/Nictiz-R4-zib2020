@@ -5,12 +5,18 @@ Title: "nl core Mobility"
 * insert ProfileMetadata(nl-core-Mobility)
 * insert Purpose(Mobility, 3.3, Observation)
 
+* extension[medicalDevice].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Resource or http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice)
 * note ..1
 * hasMember[walking] ..1
+* hasMember[walking] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility.Walking)
 * hasMember[climbingStairs] ..1
+* hasMember[climbingStairs] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility.ClimbingStairs)
 * hasMember[changingPosition] ..1
+* hasMember[changingPosition] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility.ChangingPosition)
 * hasMember[maintainingPosition] ..1
+* hasMember[maintainingPosition] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility.MaintainingPosition)
 * hasMember[transfer] ..1
+* hasMember[transfer] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility.Transfer)
 
 // Short, alias, definition and comment texts
 * ^description = "Mobility describes the abilities and any limitations in all aspects of mobility, such as changing position, walking and moving forward, in some cases with the help of an aid."

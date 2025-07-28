@@ -5,6 +5,7 @@ Title: "nl core HearingFunction.HearingAid"
 * insert ProfileMetadata(nl-core-HearingFunction.HearingAid)
 * ^purpose = "This DeviceUseStatement resource represents the adaptations for [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) HearingFunction v3.2 (2020)](https://zibs.nl/wiki/HearingFunction-v3.2(2020EN)) of [zib MedicalDevice v3.3.1 (2020)](https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN))."
 
+* device only Reference(http://hl7.org/fhir/StructureDefinition/Device or http://nictiz.nl/fhir/StructureDefinition/nl-core-HearingFunction.HearingAid.Product)
 * reasonReference[stoma] ..0
 * bodySite from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.17.3--20200901000000 (required)
 

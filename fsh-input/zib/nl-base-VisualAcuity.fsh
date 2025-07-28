@@ -10,7 +10,7 @@ Title: "nl base VisualAcuity"
 * effectiveDateTime only dateTime
 * value[x] insert Discriminator(type, $this)
 * valueQuantity only Quantity
-* valueQuantity = '1'
+* valueQuantity = http://unitsofmeasure.org#1
 * bodySite only CodeableConcept
 * bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-base-AnatomicalLocation
 * bodySite = http://snomed.info/sct#81745001
@@ -29,7 +29,7 @@ Title: "nl base VisualAcuity"
 * component[visualAcuityMeasurementChart].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.19.3--20200901000000 (preferred)
 * component[distanceFromChart].code = http://snomed.info/sct#152731000146106
 * component[distanceFromChart].value[x] only Quantity
-* component[distanceFromChart].value[x] = 'm'
+* component[distanceFromChart].value[x] = http://unitsofmeasure.org#m
 
 // Short, alias, definition and comment texts
 * ^description = "Visual acuity is a measurement of sharpness of vision. It is a measure of the smallest details that someone can still distinguish."
