@@ -5,6 +5,7 @@ Title: "nl core AbilityToGroom"
 * insert ProfileMetadata(nl-core-AbilityToGroom)
 * insert Purpose(AbilityToGroom, 1.0.1, Observation)
 
+* insert NlCorePatientForObservation
 * valueCodeableConcept from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.33.1--20200901000000 (required)
 
 // Short, alias, definition and comment texts

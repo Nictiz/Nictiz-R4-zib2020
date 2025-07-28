@@ -5,6 +5,7 @@ Title: "nl core AbilityToUseToilet"
 * insert ProfileMetadata(nl-core-AbilityToUseToilet)
 * insert Purpose(AbilityToUseToilet, 3.1.1, Observation)
 
+* insert NlCorePatientForObservation
 * hasMember[toiletUse] ..1
 * hasMember[menstrualCare] ..1
 

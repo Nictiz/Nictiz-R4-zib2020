@@ -5,6 +5,7 @@ Title: "nl core AbilityToDressOneself"
 * insert ProfileMetadata(nl-core-AbilityToDressOneself)
 * insert Purpose(AbilityToDressOneself, 3.1.1, Observation)
 
+* insert NlCorePatientForObservation
 * valueCodeableConcept from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.11.1--20200901000000 (required)
 * component[bodyPartToBeDressed].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.11.2--20200901000000 (required)
 

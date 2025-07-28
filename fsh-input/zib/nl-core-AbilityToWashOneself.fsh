@@ -5,6 +5,7 @@ Title: "nl core AbilityToWashOneself"
 * insert ProfileMetadata(nl-core-AbilityToWashOneself)
 * insert Purpose(AbilityToWashOneself, 3.1.1, Observation)
 
+* insert NlCorePatientForObservation
 * valueCodeableConcept from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.10.1--20200901000000 (required)
 * component[bodyPartToBeBathed].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.10.2--20200901000000 (required)
 
