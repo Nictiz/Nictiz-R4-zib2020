@@ -29,7 +29,7 @@ Title: "nl base TreatmentDirective2"
     http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.ReasonForEnding named reasonForEnding 0..*
 * provision.type
   * ^condition[+] = zib-TreatmentDirective2-2
-  * insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/TreatmentDecisionCodelist-to-ConsentProvisionType)
+  * insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/TreatmentDecisionCodelist-to-ConsentProvisionType, TreatmentDecisionCodelist-to-ConsentProvisionType, ConsentProvisionType)
 * provision.type from http://hl7.org/fhir/ValueSet/consent-provision-type|4.0.1 (required)
 * provision.actor insert Discriminator(value, role)
 * provision.actor contains

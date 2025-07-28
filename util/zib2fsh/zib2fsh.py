@@ -59,6 +59,7 @@ class Element:
     value_set: str = None
     permitted_values: str = None
     binding_strength: str = None
+    binding_description: str = None
     types: list[str] = field(default_factory=list)
     target_profiles: list[str] = field(default_factory=list)
     profiles: list[str] = field(default_factory=list)
@@ -162,6 +163,7 @@ class Profile:
             if binding != None:
                 el.value_set = self.__fhirValue__(binding, "valueSet")
                 el.binding_strength = self.__fhirValue__(binding, "strength")
+                el.binding_description = self.__fhirValue__(binding, "description")
                 if value_set_el := binding.find("f:valueSet", NS):
                     for ext in value_set_el.findall("f:extension", NS):
                         if ext.get("url") == "http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap":
@@ -555,7 +557,8 @@ class Profile:
         for condition in el.conditions:
             fsh_strings.append(f"^condition[+] = {condition}")
         if el.permitted_values:
-            fsh_strings.append(f"insert PermittedValues({el.permitted_values})")
+            match = re.match("Use ConceptMap (.*) to translate terminology from the functional model to profile terminology in ValueSet (.*)\.", el.binding_description)
+            fsh_strings.append(f"insert PermittedValues({el.permitted_values}, {match.group(1)}, {match.group(2)})")
         if card or len(fsh_strings) > 1: # Multiple lines
             fsh += "\n"
             for fsh_string in fsh_strings:
@@ -706,9 +709,25 @@ if __name__ == "__main__":
         * ^slicing.discriminator.path = "{path}"
         * ^slicing.rules = #open
 
-        RuleSet: PermittedValues(canonical)
+        RuleSet: PermittedValues(canonical, ConceptMapName, ValueSetName)
         * ^binding.valueSet.extension[+].url = "http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap"
         * ^binding.valueSet.extension[=].valueCanonical = "{canonical}"
+        * ^binding.description = "Use ConceptMap {ConceptMapName} to translate terminology from the functional model to profile terminology in ValueSet {ValueSetName}."
+
+        RuleSet: AdditionalBinding(purpose, canonical)
+        * ^binding.extension[+].url = "http://hl7.org/fhir/tools/StructureDefinition/additional-binding"
+        * ^binding.extension[=].extension[+].url = "purpose"
+        * ^binding.extension[=].extension[=].valueCode = #{purpose}
+        * ^binding.extension[=].extension[+].url = "valueSet"
+        * ^binding.extension[=].extension[=].valueCanonical = "{canonical}"
+
+        // Add nl-core-Patient as a target profile for various resources. Unfortunately, the entire list of target profiles
+        // has to be specified in a differential.
+        RuleSet: NlCorePatientForObservation
+        * subject only Reference(Patient or Group or Device or Location or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
+
+        RuleSet: NlCorePatientForDeviceUseStatement
+        * subject only Reference(Patient or Group or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
         """))
     
     with open(OUT_DIR / "Metadata.fsh", "w") as out_file:

@@ -31,7 +31,7 @@ Title: "nl base HealthProfessional Practitioner"
 * telecom[emailAddresses] ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-base-ContactInformation-EmailAddresses
 * address only Address
 * address ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-base-AddressInformation
-* gender insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/GeslachtCodelijst-to-AdministrativeGender)
+* gender insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/GeslachtCodelijst-to-AdministrativeGender, GeslachtCodelijst-to-AdministrativeGender, AdministrativeGender. This ConceptMap is based on GeslachtCodelijst as defined in the zib Patient to avoid duplication of ConceptMaps. The GeslachtCodelijst of Patient and HealthProfessional are identical in terms of codes)
 * gender from http://hl7.org/fhir/ValueSet/administrative-gender|4.0.1 (required)
 * gender.extension contains
     http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification named genderCodelist 0..*

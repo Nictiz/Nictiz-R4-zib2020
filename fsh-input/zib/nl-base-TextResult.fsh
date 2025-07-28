@@ -5,7 +5,7 @@ Title: "nl base TextResult"
 * insert ProfileMetadata(nl-base-TextResult)
 * insert Purpose(TextResult, 4.4, DiagnosticReport)
 
-* status insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/TekstStatusCodelijst-to-DiagnosticReportStatus)
+* status insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/TekstStatusCodelijst-to-DiagnosticReportStatus, TekstStatusCodelijst_to_DiagnosticReportStatus, DiagnosticReportStatus)
 * status from http://hl7.org/fhir/ValueSet/diagnostic-report-status|4.0.1 (required)
 * status.extension contains
     http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification named textResultStatus 0..1
