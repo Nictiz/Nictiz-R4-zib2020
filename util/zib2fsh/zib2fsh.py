@@ -501,10 +501,9 @@ class Profile:
     def __fshTerminologyBinding__(self, el):
         fsh = ""
 
-        if el.value_set or el.binding_strength:
+        if el.value_set and el.binding_strength:
             fsh += f"* {el.fsh_path} from {el.value_set}"
-            if el.binding_strength:
-                fsh += f" ({el.binding_strength})\n"
+            fsh += f" ({el.binding_strength})\n"
 
         return fsh
 
