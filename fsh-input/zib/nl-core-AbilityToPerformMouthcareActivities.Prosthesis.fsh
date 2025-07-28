@@ -10,6 +10,7 @@ Title: "nl core AbilityToPerformMouthcareActivities.Prosthesis"
 * extension[healthProfessional].value[x] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
 * extension[location] 0..1
 * extension[location].value[x] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider)
+* extension[treatmentObjective].value[x] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentObjective)
 
 * insert NlCorePatientForDeviceUseStatement
 
@@ -20,7 +21,7 @@ Title: "nl core AbilityToPerformMouthcareActivities.Prosthesis"
 * reasonReference[indication] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
 * reasonReference[stoma] ..0
 
-* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-base-AnatomicalLocation
+* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation
 * bodySite from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000 (required)
 
 * note 0..1
