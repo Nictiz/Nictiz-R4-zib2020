@@ -12,6 +12,34 @@ IN_DIR = Path("../../resources/zib")
 OUT_DIR = Path("../../fsh-input/zib")
 NS = {"f": "http://hl7.org/fhir"}
 
+# Chosen pragmatic route by hard coding the FHIR core bindings, instead of resolving core specification.
+# FHIR R4 elements that have Required binding strength in the core specification
+# These should not have their binding strength weakened in base profiles
+FHIR_CORE_REQUIRED_BINDINGS = {
+    "ContactPoint.use",
+    "ContactPoint.system", 
+    "Identifier.use",
+    "HumanName.use",
+    "Address.use",
+    "Address.type",
+    "Timing.repeat.durationUnit",
+    "Timing.repeat.periodUnit",
+    "Timing.repeat.dayOfWeek",
+    "Timing.repeat.when"
+}
+
+# FHIR R4 elements that have Extensible binding strength in the core specification
+# These should not have their binding strength weakened below extensible
+FHIR_CORE_EXTENSIBLE_BINDINGS = {
+    "Identifier.type",
+    "Encounter.class",
+    "Encounter.participant.type",
+    "Observation.interpretation",
+    "Patient.maritalStatus",
+    "Patient.contact.relationship",
+    "Condition.category"
+}
+
 MappingDeclaration = collections.namedtuple("MappingDeclaration", ["identity", "uri", "name"])
 ElementMapping = collections.namedtuple("ElementMapping", ["fsh_path", "map", "comment"])
 PatternCodeableConcept = collections.namedtuple("PatternCodeableConcept", ["system", "code"])
@@ -40,6 +68,8 @@ class Element:
     constraints: list[str] = field(default_factory=list) # Only constraint keys here
     conditions: list[str] = field(default_factory=list)
     patterns: dict[str, list[str]] = field(default_factory=lambda: {"CodeableConcept": [], "Quantity": [], "Identifier": []})
+    is_modifier: bool = None
+    is_modifier_reason: str = None
 
 @dataclass
 class Constraint:
@@ -121,6 +151,12 @@ class Profile:
                 el.alias.append(alias.get("value"))
             el.definition = self.__fhirValue__(xml_el, "definition")
             el.comment = self.__fhirValue__(xml_el, "comment")
+            
+            # Parse isModifier and isModifierReason
+            is_modifier_value = self.__fhirValue__(xml_el, "isModifier")
+            if is_modifier_value:
+                el.is_modifier = is_modifier_value.lower() == "true"
+            el.is_modifier_reason = self.__fhirValue__(xml_el, "isModifierReason")
 
             binding = xml_el.find("f:binding", NS)
             if binding != None:
@@ -205,7 +241,7 @@ class Profile:
 
         for el in base.elements:
             # Remove cardinality constraints. When it is a slice definition, set them to 0..* because FSH requires them
-            if not el.slice_name:
+            if not el.slice_name and el.fhir_path != "Extension":
                 el.min = None
                 el.max = None
             else:
@@ -217,9 +253,22 @@ class Profile:
             if el.comment:
                 el.comment = el.comment.replace("zib-", "nl-base-")
 
-            if el.binding_strength:
-                # Set binding strengths to preferred
-                el.binding_strength = "preferred"
+            if el.binding_strength and el.value_set:
+                # Set binding strengths to preferred, but preserve FHIR core bindings
+                # Don't weaken if:
+                # 1. ValueSet is from FHIR core (http://hl7.org/ or http://terminology.hl7.org/)
+                # 2. Element path has Required binding in FHIR core
+                # 3. Element path has Extensible binding in FHIR core (keep as extensible)
+                is_hl7_valueset = (el.value_set.startswith("http://hl7.org/") or 
+                                 el.value_set.startswith("http://terminology.hl7.org/"))
+                
+                if (not is_hl7_valueset and 
+                    el.fhir_path not in FHIR_CORE_REQUIRED_BINDINGS):
+                    
+                    if el.fhir_path in FHIR_CORE_EXTENSIBLE_BINDINGS:
+                        el.binding_strength = "extensible"
+                    else:
+                        el.binding_strength = "preferred"
 
             el.target_profiles = [p.replace("zib-", "nl-base-") for p in el.target_profiles]
             el.profiles = [p.replace("zib-", "nl-base-") for p in el.profiles]
@@ -255,15 +304,18 @@ class Profile:
             if el.max == "*":
                 el.max = None
 
+            # This is the key change for types. We only want to output type rules for
+            # References, as they must be updated to point to other nl-core profiles.
+            # type constraints (e.g., `only Quantity`) are inherited from the base.
+            if not el.target_profiles:
+                el.types = []
+
             el.permitted_values = None
 
             # Don't emit discriminators again
             el.slicing_type = None
             el.slicing_path = None
 
-            el.target_profiles = [p.replace("zib-", "nl-core-") for p in el.target_profiles if "zib-" in p]
-            el.profiles = [p.replace("zib-", "nl-core-") for p in el.profiles if "zib-" in p]
-            el.types = []
             el.conditions = []
             el.patterns = {
                 "CodeableConcept": [],
@@ -271,11 +323,14 @@ class Profile:
                 "Identifier": []
             }
 
+            el.target_profiles = [p.replace("zib-", "nl-core-") for p in el.target_profiles]
+            el.profiles = [p.replace("zib-", "nl-core-") for p in el.profiles]
+
         # Insert root element to set alias
         if core.elements[0].fsh_path != "":
             core.elements.insert(0, Element("", core.elements[0].fhir_path.split(".")[0]))
         core.elements[0].alias = [f"nl-core-{self.uniq_id}"] # Default alias on root element
-
+        
         return core
 
     def asFSH(self):
@@ -310,6 +365,7 @@ class Profile:
         
         for el in self.elements:
             fsh += self.__fshExtensionsDefinition__(el)
+            fsh += self.__fshModifierExtensionsDefinition__(el)
             fsh += self.__fshSlicing__(el)
             fsh += self.__fshElementLine__(el)
             fsh += self.__fshTypes__(el)
@@ -333,15 +389,35 @@ class Profile:
         fsh += f"Context: {self.context}\n"
         fsh += f"* insert ProfileMetadata({self.uniq_id})\n\n"
 
+        # Find the root element and add cardinality if specified
+        root_element = None
         for el in self.elements:
+            if el.fhir_path == "Extension":
+                root_element = el
+                break
+        
+        if root_element and (root_element.min or root_element.max):
+            min_val = root_element.min if root_element.min else ""
+            max_val = root_element.max if root_element.max else "*"
+            fsh += f"* . {min_val}..{max_val}\n"
+
+        for el in self.elements:
+            if el.is_modifier is True:
+                # For the root element, generate the isModifier and isModifierReason
+                fsh += f"* . ?!\n"
+                if el.is_modifier_reason:
+                    fsh += f"* . ^isModifierReason = \"{el.is_modifier_reason}\"\n"
+
+            if el.fhir_path == "Extension":
+                continue
+
             fsh += self.__fshElementLine__(el)
             fsh += self.__fshTypes__(el)
             fsh += self.__fshTerminologyBinding__(el)
             fsh += self.__fshSlicing__(el)
             fsh += self.__fshPatterns__(el)
-
+        
         fsh += self.__fshTextSection__()
-
         fsh += self.__fshConstraints__()
 
         return fsh
@@ -370,6 +446,33 @@ class Profile:
         if len(fsh_strings) > 0:
             fsh_path = ".".join(el.fhir_path.split(".")[1:-1])
             return f"* {fsh_path}{'.' if fsh_path else ''}extension contains\n    " + " and\n    ".join(fsh_strings) + "\n"
+        return ""
+
+    def __fshModifierExtensionsDefinition__(self, el):
+        if not el.fhir_path.endswith(".modifierExtension"):
+            return ""
+        
+        modifier_extensions = []
+        for ext_el in self.elements:
+            if not ext_el.fhir_path == el.fhir_path:
+                continue # Not a modifierExtension in the parent element
+            if not (len(ext_el.types) > 0 and ext_el.types[0] == "Extension"):
+                continue # Not a modifierExtension definition (but profiled path within an extension)
+            if not len(ext_el.profiles) > 0:
+                continue # Not a modifierExtension definition, only a constraint
+            if ext_el.fsh_path in self.handled_slices:
+                continue # Already handled this
+            modifier_extensions.append(ext_el)
+            self.handled_slices.append(ext_el.fsh_path)
+
+        fsh_strings = []
+        for modifier_extension in modifier_extensions:
+            max_val = modifier_extension.max if modifier_extension.max else '*'
+            fsh = f"{modifier_extension.profiles[0]} named {modifier_extension.slice_name} {modifier_extension.min if modifier_extension.min else ''}..{max_val}"
+            fsh_strings.append(fsh)
+        if len(fsh_strings) > 0:
+            fsh_path = ".".join(el.fhir_path.split(".")[1:-1])
+            return f"* {fsh_path}{'.' if fsh_path else ''}modifierExtension contains\n    " + " and\n    ".join(fsh_strings) + "\n"
         return ""
 
     def __fshSlicing__(self, el):
@@ -410,7 +513,13 @@ class Profile:
         # Write a line if we have explicit cardinality, constraints or conditions. Cardinality is only written if it
         # wasn't defined already in a "contains" line.
         write_out = False
-        if (el.min or el.max):
+        
+        # Only add cardinality for modifierExtension if it's the slice itself, not its sub-elements
+        should_add_modifier_cardinality = ("modifierExtension[" in el.fsh_path and 
+                                         not el.fsh_path.endswith(".value[x]") and
+                                         not "." in el.fsh_path.split("modifierExtension[")[1])
+        
+        if (el.min or el.max or should_add_modifier_cardinality):
             if el.fsh_path not in self.handled_slices:
                 if not (el.slice_name and el.fhir_path.endswith("[x]") and el.min == "0" and el.max in [None, "*"]): # Don't write out type slices with default cardinalities
                     write_out = True
@@ -426,8 +535,16 @@ class Profile:
 
         fsh = f"* {el.fsh_path if el.fsh_path else '.'}"
         card = False
-        if (el.min or el.max) and (el.fsh_path not in self.handled_slices):
-            fsh += f" {el.min if el.min else ''}..{el.max if el.max else ''}"
+        if (el.min or el.max or should_add_modifier_cardinality) and (el.fsh_path not in self.handled_slices):
+            # Special handling for modifierExtension slices that reference specific extensions
+            max_val = el.max if el.max else ''
+            if should_add_modifier_cardinality and not max_val:
+                # For modifierExtension slices, try to determine max from the extension definition
+                if el.slice_name == "specificationOther":
+                    max_val = "1"  # SpecificationOther extension has max="1"
+                else:
+                    max_val = "*"  # Default for extensions
+            fsh += f" {el.min if el.min else ''}..{max_val}"
             card = True
 
         fsh_strings = []
@@ -465,10 +582,9 @@ class Profile:
     def __fshTerminologyBinding__(self, el):
         fsh = ""
 
-        if el.value_set or el.binding_strength:
+        if el.value_set and el.binding_strength:
             fsh += f"* {el.fsh_path} from {el.value_set}"
-            if el.binding_strength:
-                fsh += f" ({el.binding_strength})\n"
+            fsh += f" ({el.binding_strength})\n"
 
         return fsh
 
@@ -479,10 +595,8 @@ class Profile:
             fsh += f"* {el.fsh_path} = {pattern.system}#{pattern.code}\n"
         for pattern in el.patterns["Quantity"]:
             value_fsh = f"{pattern.value} " if pattern.value else ""
-            if pattern.system == "http://unitsofmeasure.org":
-                code_fsh = f"'{pattern.code}'"
-            else:
-                code_fsh = f"{pattern.system}#{pattern.code}"
+            # For quantity patterns, always use the full system#code format to avoid the UCOM Code including the char: ` like [p'diop] 
+            code_fsh = f"{pattern.system}#{pattern.code}"
             unit_fsh = f' "{pattern.unit}"' if pattern.unit else ""
             fsh += f"* {el.fsh_path} = {value_fsh}{code_fsh}{unit_fsh}\n"
         for pattern in el.patterns["Identifier"]:
@@ -519,6 +633,9 @@ class Profile:
         fsh = ""
         if self.description:
             fsh += f"* ^description = {self.__tripleQuote__(self.description, 4)}\n"
+        # Only add purpose field for extensions, as profiles handle it separately
+        if self.purpose and self.parent == "Extension":
+            fsh += f"* ^purpose = {self.__tripleQuote__(self.purpose, 4)}\n"
         for el in self.elements:
             fsh_strings = []
             if el.short:
@@ -549,6 +666,32 @@ class Profile:
             return quoted
         else:
             return '\"' + text.replace('\"', '\\\"') + '\"'
+
+def postprocess_wound_drain_slicing():
+    """
+    Post-processing step to fix nl-base-Wound.Drain slicing.
+    This is a corner case where a slice is added on top of inherited slicing. Could not fix the slicing definition to work this.
+    """
+    wound_drain_file = OUT_DIR / "nl-base-Wound.Drain.fsh"
+    if not wound_drain_file.exists():
+        return
+        
+    try:
+        with open(wound_drain_file, 'r') as f:
+            content = f.read()
+        
+        # Replace the incorrect pattern with the correct one
+        old_pattern = "* reasonReference[wound] 0..\n* reasonReference[wound] only Reference"
+        new_pattern = "* reasonReference contains wound 0..\n* reasonReference[wound] only Reference"
+        
+        if old_pattern in content:
+            content = content.replace(old_pattern, new_pattern)
+            
+            with open(wound_drain_file, 'w') as f:
+                f.write(content)
+            print(f"Post-processed {wound_drain_file.name} to fix wound slice contains statement")
+    except Exception as e:
+        print(f"Warning: Could not post-process {wound_drain_file.name}: {e}")
 
 if __name__ == "__main__":
     shutil.rmtree(OUT_DIR, ignore_errors=True)
@@ -598,6 +741,7 @@ if __name__ == "__main__":
 
     for in_file in IN_DIR.glob("*.xml"):
         profile = Profile.fromXML(in_file)
+        print("Processing", in_file.name, "->", profile.name)
         base = profile.asBase()
         out_name = in_file.name.replace("zib-", "nl-base-").replace(".xml", ".fsh")
         with open(OUT_DIR / out_name, "w") as out_file:
@@ -608,3 +752,6 @@ if __name__ == "__main__":
             out_name = in_file.name.replace("zib-", "nl-core-").replace(".xml", ".fsh")
             with open(OUT_DIR / out_name, "w") as out_file:
                 out_file.write(core.asFSH())
+
+    # Post-processing steps for corner cases
+    postprocess_wound_drain_slicing()
