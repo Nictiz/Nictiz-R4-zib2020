@@ -7,9 +7,7 @@ Title: "nl base AddressInformation"
 
 * extension contains
     http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType named addressType 0..1
-* use from http://hl7.org/fhir/ValueSet/address-use|4.0.1 (required)
 * use insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/AdresSoortCodelijst-to-AddressUse, AdresSoortCodelijst-to-AddressUse, AddressUse)
-* type from http://hl7.org/fhir/ValueSet/address-type|4.0.1 (required)
 * type insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/AdresSoortCodelijst-to-AddressType, AdresSoortCodelijst-to-AddressType, AddressType)
 * line.extension contains
     http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName named streetName 0..1 and
@@ -64,7 +62,7 @@ Title: "nl base AddressInformation"
 * line ^comment = """
     The mapping of zib AddressInformation on the FHIR Address datatype is the result of compatibility with HL7v3, which is the format that a lot of healthcare data in the Netherlands is stored in.
     
-    The elements of Address stored in the address-part extensions will be ignored by applications that do not support them, so any information in them should also be duplicated in the `Address.line` to which they are attached. The value of `Address.line` should be populated with a complete string representation of all the separate extension values, like: \"[Street] [HouseNumberIndication] [HouseNumber] [HouseNumberLetter] [HouseNumberAddition]\".
+    The elements of Address stored in the address-part extensions will be ignored by applications that do not support them, so any information in them should also be duplicated in the `Address.line` to which they are attached. The value of `Address.line` should be populated with a complete string representation of all the separate extension values, like: "[Street] [HouseNumberIndication] [HouseNumber] [HouseNumberLetter] [HouseNumberAddition]".
     """
 * line.extension[streetName].value[x]
   * ^short = "Street"

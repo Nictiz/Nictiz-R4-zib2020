@@ -6,8 +6,6 @@ Title: "nl core AddressInformation"
 * ^purpose = "This Address datatype represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) AddressInformation v1.1 (2020)](https://zibs.nl/wiki/AddressInformation-v1.1(2020EN))."
 
 * extension[addressType] ..1
-* use from http://hl7.org/fhir/ValueSet/address-use|4.0.1 (required)
-* type from http://hl7.org/fhir/ValueSet/address-type|4.0.1 (required)
 * line.extension[streetName] ..1
 * line.extension[houseNumber] ..1
 * line.extension[houseNumberLetter-houseNumberAddition] ..1
