@@ -663,7 +663,7 @@ class Profile:
         if len(lines) > 1:
             quoted = '"""\n'
             for line in lines:
-                quoted += f"{' ' * indent_level}" + line.replace('\"', '\\\"') + "\n"
+                quoted += f"{' ' * indent_level}" + line + "\n"
             quoted += f'{" " * indent_level}"""'
             return quoted
         else:

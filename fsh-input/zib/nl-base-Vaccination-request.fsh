@@ -39,9 +39,9 @@ Title: "nl base Vaccination request"
   * ^alias[+] = "Toelichting"
   * ^definition = """
     Free text explanation. Examples of commonly used explanations are: 
-    * \"Vaccination according to the National Immunisation Program\".
-    * \"Not according to the National Immunisation Program\", followed by further explanation. 
-    * \"Unknown\"
+    * "Vaccination according to the National Immunisation Program".
+    * "Not according to the National Immunisation Program", followed by further explanation. 
+    * "Unknown"
     """
 
 Mapping: NlbaseVaccinationrequest-to-zib-vaccination-v4.0-2020EN

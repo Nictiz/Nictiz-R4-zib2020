@@ -42,7 +42,7 @@ Title: "nl base MedicationContraIndication"
   * ^definition = """
     The date and possibly time when the contraindication became relevant for medication safety monitoring.
     
-    Note: the zib specifies the StartDate concept as \"The date and possibly time when the contraindication for medication [monitoring] was identified\". This sentence was chosen specifically to indicate that the zib is about safety monitoring, which can only start once the contraindication has been identified. However, a date in the future is not prohibited, in which case the StartDate will not align with the identification date.
+    Note: the zib specifies the StartDate concept as "The date and possibly time when the contraindication for medication [monitoring] was identified". This sentence was chosen specifically to indicate that the zib is about safety monitoring, which can only start once the contraindication has been identified. However, a date in the future is not prohibited, in which case the StartDate will not align with the identification date.
     """
 * period.end
   * ^short = "EndDate"

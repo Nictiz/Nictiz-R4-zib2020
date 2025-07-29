@@ -23,7 +23,7 @@ For the entire zib, the complementary profile [zib-ContactInformation-EmailAddre
   * ^short = "TelephoneNumbers"
   * ^alias[+] = "Telefoonnummers"
   * ^comment = """
-    Implementation of the \"TelephoneNumbers\" concept of zib ContactInformation.
+    Implementation of the "TelephoneNumbers" concept of zib ContactInformation.
     
     Please note that, although the zib concepts TelecomType and NumberType are functionally equivalent to the FHIR concepts `ContactPoint.system` and `ContactPoint.use` respectively, a mismatch occurs on the concept of mobile phone numbers; the zib uses the first concept and FHIR the second. For this reason, the ValueSet on `ContactPoint.system` is too narrow and the zib code will need to be communicated using the ext-CodeSpecification extension.
     """

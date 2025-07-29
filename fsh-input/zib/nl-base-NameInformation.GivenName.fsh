@@ -13,7 +13,7 @@ For the entire zib, the complementary profile [zib-NameInformation](http://nicti
 * .
   * ^definition = "This slice represents the name information normally used to address the person."
   * ^comment = """
-    This `.name` element represents the Dutch given name (\"roepnaam\") according to the [zib NameInformation v1.1 (2020)](https://zibs.nl/wiki/NameInformation-v1.1(2020EN)).
+    This `.name` element represents the Dutch given name ("roepnaam") according to the [zib NameInformation v1.1 (2020)](https://zibs.nl/wiki/NameInformation-v1.1(2020EN)).
     
     **Note 1**: This element should only contain a person's _unofficial_ name. The official names are represented in one or more other `.name` elements with `.name.use` = _official_.
     

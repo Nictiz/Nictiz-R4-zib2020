@@ -32,7 +32,7 @@ Title: "nl base FeedingPatternInfant"
   * ^comment = """
     ## Deviation from zib FeedingPatternInfant
     
-    During the formal review of this profile by HL7 Netherlands, it was determined that the zib approach of sending feeding supplement data only as a single string is too restrictive, as many real-word systems have this data available in coded form. For this reason, the \"feedingSupplement\" component supports the _CodeableConcept_ data type rather than the _string_ data type. See the documentation on `.component:feedingSupplement.valueCodeableConcept` for guidance.
+    During the formal review of this profile by HL7 Netherlands, it was determined that the zib approach of sending feeding supplement data only as a single string is too restrictive, as many real-word systems have this data available in coded form. For this reason, the "feedingSupplement" component supports the _CodeableConcept_ data type rather than the _string_ data type. See the documentation on `.component:feedingSupplement.valueCodeableConcept` for guidance.
     """
 * basedOn
   * ^short = "NutritionAdvice"

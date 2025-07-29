@@ -86,7 +86,7 @@ Title: "nl base DOSScore"
     Score:
     0: never
     1: sometimes-always
-    (if the answer is \"don't know\", do not instantiate this concept)
+    (if the answer is "don't know", do not instantiate this concept)
     """
 * component[easilyDistracted].code ^comment = "The code to identify this concept (18007007 in code system urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1) aligns with the next version of the zib, since the current version doesn't provide a code. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for more information."
 * component[easilyDistracted].value[x]
@@ -100,7 +100,7 @@ Title: "nl base DOSScore"
     Score:
     0: never
     1: sometimes-always
-    (if the answer is \"don't know\", do not instantiate this concept)
+    (if the answer is "don't know", do not instantiate this concept)
     """
 * component[maintainsAttention].code ^comment = "The code to identify this concept (18007008 in code system urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1) aligns with the next version of the zib, since the current version doesn't provide a code. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for more information."
 * component[maintainsAttention].value[x]
@@ -114,7 +114,7 @@ Title: "nl base DOSScore"
     Score:
     1: never
     0: sometimes-always
-    (if the answer is \"don't know\", do not instantiate this concept)
+    (if the answer is "don't know", do not instantiate this concept)
     """
 * component[unfinishedQuestionAnswer].code ^comment = "The code to identify this concept (18007009 in code system urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1) aligns with the next version of the zib, since the current version doesn't provide a code. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for more information."
 * component[unfinishedQuestionAnswer].value[x]
@@ -126,7 +126,7 @@ Title: "nl base DOSScore"
     Score:
     0: never
     1: sometimes-always
-    (if the answer is \"don't know\", do not instantiate this concept)
+    (if the answer is "don't know", do not instantiate this concept)
     """
 * component[answersNoFit].code ^comment = "The code to identify this concept (18007010 in code system urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1) aligns with the next version of the zib, since the current version doesn't provide a code. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for more information."
 * component[answersNoFit].value[x]
@@ -138,7 +138,7 @@ Title: "nl base DOSScore"
     Score:
     0: never
     1: sometimes-always
-    (if the answer is \"don't know\", do not instantiate this concept)
+    (if the answer is "don't know", do not instantiate this concept)
     """
 * component[reactsSlowly].code ^comment = "The code to identify this concept (18007011 in code system urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1) aligns with the next version of the zib, since the current version doesn't provide a code. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for more information."
 * component[reactsSlowly].value[x]
@@ -152,7 +152,7 @@ Title: "nl base DOSScore"
     Score:
     0: never
     1: sometimes-always
-    (if the answer is \"don't know\", do not instantiate this concept)
+    (if the answer is "don't know", do not instantiate this concept)
     """
 * component[thinksSomewhereElse].code ^comment = "The code to identify this concept (18007012 in code system urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1) aligns with the next version of the zib, since the current version doesn't provide a code. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for more information."
 * component[thinksSomewhereElse].value[x]
@@ -166,7 +166,7 @@ Title: "nl base DOSScore"
     Score:
     0: never
     1: sometimes-always
-    (if the answer is \"don't know\", do not instantiate this concept)
+    (if the answer is "don't know", do not instantiate this concept)
     """
 * component[knowsPartDay].code ^comment = "The code to identify this concept (18007013 in code system urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1) aligns with the next version of the zib, since the current version doesn't provide a code. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for more information."
 * component[knowsPartDay].value[x]
@@ -180,7 +180,7 @@ Title: "nl base DOSScore"
     Score:
     1: never
     0: sometimes-always
-    (if the answer is \"don't know\", do not instantiate this concept)
+    (if the answer is "don't know", do not instantiate this concept)
     """
 * component[remembersRecent].code ^comment = "The code to identify this concept (18007014 in code system urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1) aligns with the next version of the zib, since the current version doesn't provide a code. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for more information."
 * component[remembersRecent].value[x]
@@ -194,7 +194,7 @@ Title: "nl base DOSScore"
     Score:
     1: never
     0: sometimes-always
-    (if the answer is \"don't know\", do not instantiate this concept)
+    (if the answer is "don't know", do not instantiate this concept)
     """
 * component[restless].code ^comment = "The code to identify this concept (18007015 in code system urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1) aligns with the next version of the zib, since the current version doesn't provide a code. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for more information."
 * component[restless].value[x]
@@ -206,7 +206,7 @@ Title: "nl base DOSScore"
     Score:
     0: never
     1: sometimes-always
-    (if the answer is \"don't know\", do not instantiate this concept)
+    (if the answer is "don't know", do not instantiate this concept)
     """
 * component[pullsWires].code ^comment = "The code to identify this concept (18007016 in code system urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1) aligns with the next version of the zib, since the current version doesn't provide a code. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for more information."
 * component[pullsWires].value[x]
@@ -218,7 +218,7 @@ Title: "nl base DOSScore"
     Score:
     0: never
     1: sometimes-always
-    (if the answer is \"don't know\", do not instantiate this concept)
+    (if the answer is "don't know", do not instantiate this concept)
     """
 * component[easilyEmotional].code ^comment = "The code to identify this concept (18007017 in code system urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1) aligns with the next version of the zib, since the current version doesn't provide a code. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for more information."
 * component[easilyEmotional].value[x]
@@ -232,7 +232,7 @@ Title: "nl base DOSScore"
     Score:
     0: never
     1: sometimes-always
-    (if the answer is \"don't know\", do not instantiate this concept)
+    (if the answer is "don't know", do not instantiate this concept)
     """
 * component[hallucinations].code ^comment = "The code to identify this concept (18007018 in code system urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.0.1) aligns with the next version of the zib, since the current version doesn't provide a code. See [ZIB-1674](https://bits.nictiz.nl/browse/ZIB-1674) for more information."
 * component[hallucinations].value[x]
@@ -246,7 +246,7 @@ Title: "nl base DOSScore"
     Score:
     0: never
     1: sometimes-always
-    (if the answer is \"don't know\", do not instantiate this concept)
+    (if the answer is "don't know", do not instantiate this concept)
     """
 
 Mapping: NlbaseDOSScore-to-zib-dosscore-v1.0-2020EN
