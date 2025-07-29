@@ -15,6 +15,7 @@ Title: "nl core Alert"
 * code.coding[alertName] ..1
 * code.coding[alertName] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.8.3.2--20200901000000 (required)
 * code.coding[dataAbsentReason] ..1
+* subject only Reference(Patient or Location or Group or Organization or Practitioner or PlanDefinition or Medication or Procedure or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 
 // Short, alias, definition and comment texts
 * ^description = """

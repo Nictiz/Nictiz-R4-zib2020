@@ -5,6 +5,10 @@ Title: "nl core ApgarScore 10Minute"
 * insert ProfileMetadata(nl-core-ApgarScore-10Minute)
 * insert Purpose(ApgarScore, 1.0.1, Observation)
 
+* insert NlCorePatientForObservation
+* valueInteger
+  * ^minValueInteger = 0
+  * ^maxValueInteger = 10
 * note ..1
 * component[respiratoryScore] ..1
 * component[respiratoryScore].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.16.1--20200901000000 (required)

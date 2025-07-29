@@ -5,21 +5,18 @@ Title: "nl core AllergyIntolerance"
 * insert ProfileMetadata(nl-core-AllergyIntolerance)
 * insert Purpose(AllergyIntolerance, 3.3, AllergyIntolerance)
 
-* clinicalStatus from http://hl7.org/fhir/ValueSet/allergyintolerance-clinical|4.0.1 (required)
-* verificationStatus from http://hl7.org/fhir/ValueSet/allergyintolerance-verification|4.0.1 (required)
 * category ..1
-* category from http://hl7.org/fhir/ValueSet/allergy-intolerance-category|4.0.1 (required)
 * category.extension[allergyCategoryCodelist] ..1
-* category.extension[allergyCategoryCodelist].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.8.2.2--20200901000000 (required)
-* criticality from http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality|4.0.1 (required)
+* category.extension[allergyCategoryCodelist] ^binding.strength = #required
 * criticality.extension[criticalExtentCodelist] ..1
-* criticality.extension[criticalExtentCodelist].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.8.2.4--20200901000000 (required)
-* code from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.2--20200901000000 (required)
+* criticality.extension[criticalExtentCodelist] ^binding.strength = #required
+* code ^binding.strength = #required
+* patient only Reference(Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * note ..1
-* reaction.substance from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.1--20200901000000 (required)
-* reaction.manifestation from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.8.2.5--20200901000000 (extensible)
-* reaction.severity from http://hl7.org/fhir/ValueSet/reaction-event-severity|4.0.1 (required)
-* reaction.exposureRoute from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.8.2.12--20200901000000 (required)
+* reaction.substance ^binding.strength = #required
+* reaction.manifestation ^binding.strength = #extensible
+* reaction.severity ^binding.strength = #required
+* reaction.exposureRoute ^binding.strength = #required
 
 // Short, alias, definition and comment texts
 * ^description = """

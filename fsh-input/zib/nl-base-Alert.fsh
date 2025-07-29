@@ -27,8 +27,9 @@ Title: "nl base Alert"
 * code.coding contains
     alertName 0..1 and
     dataAbsentReason 0..1
-* code.coding[alertName] ^condition[+] = zib-Alert-1
 * code.coding[alertName] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.8.3.2--20200901000000 (preferred)
+* code.coding[alertName] ^condition[+] = zib-Alert-1
+* code.coding[dataAbsentReason] = http://terminology.hl7.org/CodeSystem/data-absent-reason#not-applicable
 * code.coding[dataAbsentReason] ^condition[+] = zib-Alert-2
 
 // Short, alias, definition and comment texts
