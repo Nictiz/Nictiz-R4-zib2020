@@ -7,10 +7,10 @@ Title: "nl base AddressInformation"
 
 * extension contains
     http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType named addressType 0..1
-* use insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/AdresSoortCodelijst-to-AddressUse, AdresSoortCodelijst-to-AddressUse, AddressUse)
 * use from http://hl7.org/fhir/ValueSet/address-use|4.0.1 (required)
-* type insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/AdresSoortCodelijst-to-AddressType, AdresSoortCodelijst-to-AddressType, AddressType)
+* use insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/AdresSoortCodelijst-to-AddressUse, AdresSoortCodelijst-to-AddressUse, AddressUse)
 * type from http://hl7.org/fhir/ValueSet/address-type|4.0.1 (required)
+* type insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/AdresSoortCodelijst-to-AddressType, AdresSoortCodelijst-to-AddressType, AddressType)
 * line.extension contains
     http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName named streetName 0..1 and
     http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber named houseNumber 0..1 and

@@ -27,10 +27,9 @@ Title: "nl base TreatmentDirective2"
 * sourceReference only Reference(Consent or DocumentReference or Contract or QuestionnaireResponse or http://nictiz.nl/fhir/StructureDefinition/nl-base-AdvanceDirective)
 * provision.extension contains
     http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.ReasonForEnding named reasonForEnding 0..*
-* provision.type
-  * ^condition[+] = zib-TreatmentDirective2-2
-  * insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/TreatmentDecisionCodelist-to-ConsentProvisionType, TreatmentDecisionCodelist-to-ConsentProvisionType, ConsentProvisionType)
+* provision.type ^condition[+] = zib-TreatmentDirective2-2
 * provision.type from http://hl7.org/fhir/ValueSet/consent-provision-type|4.0.1 (required)
+* provision.type insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/TreatmentDecisionCodelist-to-ConsentProvisionType, TreatmentDecisionCodelist-to-ConsentProvisionType, ConsentProvisionType)
 * provision.actor insert Discriminator(value, role)
 * provision.actor contains
     agreementParty 0..

@@ -8,8 +8,8 @@ Title: "nl base LaboratoryTestResult"
 * extension contains
     http://hl7.org/fhir/StructureDefinition/observation-sequelTo named sequelTo 0..*
 * extension[sequelTo].value[x] only Reference(Observation or http://nictiz.nl/fhir/StructureDefinition/nl-base-LaboratoryTestResult)
-* status insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/TestUitslagStatusCodelijst-to-ObservationStatus, TestUitslagStatusCodelijst-to-ObservationStatus, ObservationStatus)
 * status from http://hl7.org/fhir/ValueSet/observation-status|4.0.1 (required)
+* status insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/TestUitslagStatusCodelijst-to-ObservationStatus, TestUitslagStatusCodelijst-to-ObservationStatus, ObservationStatus)
 * category insert Discriminator(value, $this)
 * category contains
     laboratoryCategory 0..1 and
@@ -27,8 +27,8 @@ Title: "nl base LaboratoryTestResult"
 * interpretation contains
     resultFlags 0.. and
     resultInterpretation 0..1
-* interpretation[resultFlags] insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/InterpretatieVlaggenCodelijst-to-ObservationInterpretationCodes, InterpretatieVlaggenCodelijst-to-ObservationInterpretationCodes, ObservationInterpretation)
 * interpretation[resultFlags] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.7--20200901000000 (extensible)
+* interpretation[resultFlags] insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/InterpretatieVlaggenCodelijst-to-ObservationInterpretationCodes, InterpretatieVlaggenCodelijst-to-ObservationInterpretationCodes, ObservationInterpretation)
 * method from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.4--20200901000000 (preferred)
 * specimen only Reference(Specimen or http://nictiz.nl/fhir/StructureDefinition/nl-base-LaboratoryTestResult.Specimen)
 * hasMember insert Discriminator(profile, resolve(\))

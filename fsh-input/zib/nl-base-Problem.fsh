@@ -5,10 +5,10 @@ Title: "nl base Problem"
 * insert ProfileMetadata(nl-base-Problem)
 * insert Purpose(Problem, 4.4, Condition)
 
-* clinicalStatus insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/ProbleemStatusCodelijst-to-ConditionClinicalStatusCodes, ProbleemStatusCodelijst_to_ConditionClinicalStatusCodes, ConditionClinicalStatusCodes)
 * clinicalStatus from http://hl7.org/fhir/ValueSet/condition-clinical|4.0.1 (required)
-* verificationStatus insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/VerificatieStatusCodelijst-to-ConditionVerificationStatus, VerificatieStatusCodelijst_to_ConditionVerificationStatus, ConditionVerificationStatus)
+* clinicalStatus insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/ProbleemStatusCodelijst-to-ConditionClinicalStatusCodes, ProbleemStatusCodelijst_to_ConditionClinicalStatusCodes, ConditionClinicalStatusCodes)
 * verificationStatus from http://hl7.org/fhir/ValueSet/condition-ver-status|4.0.1 (required)
+* verificationStatus insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/VerificatieStatusCodelijst-to-ConditionVerificationStatus, VerificatieStatusCodelijst_to_ConditionVerificationStatus, ConditionVerificationStatus)
 * verificationStatus.coding insert Discriminator(value, $this)
 * verificationStatus.coding contains
     verificationStatusCodelist 0..1

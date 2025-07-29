@@ -29,8 +29,8 @@ Title: "nl base Patient"
 * telecom[telephoneNumbers] ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-base-ContactInformation-TelephoneNumbers
 * telecom[emailAddresses] only ContactPoint
 * telecom[emailAddresses] ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-base-ContactInformation-EmailAddresses
-* gender insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/GeslachtCodelijst-to-AdministrativeGender, GeslachtCodelijst-to-AdministrativeGender, AdministrativeGender)
 * gender from http://hl7.org/fhir/ValueSet/administrative-gender|4.0.1 (required)
+* gender insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/GeslachtCodelijst-to-AdministrativeGender, GeslachtCodelijst-to-AdministrativeGender, AdministrativeGender)
 * gender.extension contains
     http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification named genderCodelist 0..1
 * gender.extension[genderCodelist].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1--20200901000000 (preferred)

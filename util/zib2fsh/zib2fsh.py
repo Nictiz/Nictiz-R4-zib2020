@@ -531,8 +531,6 @@ class Profile:
             write_out = True
         if len(el.conditions) > 0:
             write_out = True
-        if el.permitted_values:
-            write_out = True
 
         if not write_out:
             return ""
@@ -556,9 +554,6 @@ class Profile:
             fsh_strings.append(f"obeys " + " and ".join(el.constraints))
         for condition in el.conditions:
             fsh_strings.append(f"^condition[+] = {condition}")
-        if el.permitted_values:
-            match = re.match("Use ConceptMap (.*) to translate terminology from the functional model to profile terminology in ValueSet (.*)\.", el.binding_description)
-            fsh_strings.append(f"insert PermittedValues({el.permitted_values}, {match.group(1)}, {match.group(2)})")
         if card or len(fsh_strings) > 1: # Multiple lines
             fsh += "\n"
             for fsh_string in fsh_strings:
@@ -588,8 +583,10 @@ class Profile:
         fsh = ""
 
         if el.value_set and el.binding_strength:
-            fsh += f"* {el.fsh_path} from {el.value_set}"
-            fsh += f" ({el.binding_strength})\n"
+            fsh += f"* {el.fsh_path} from {el.value_set} ({el.binding_strength})\n"
+        if el.permitted_values:
+            match = re.match("Use ConceptMap (.*) to translate terminology from the functional model to profile terminology in ValueSet (.*)\.", el.binding_description)
+            fsh += f"* {el.fsh_path} insert PermittedValues({el.permitted_values}, {match.group(1)}, {match.group(2)})\n"
 
         return fsh
 

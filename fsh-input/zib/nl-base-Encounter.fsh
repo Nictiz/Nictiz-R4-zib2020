@@ -5,8 +5,8 @@ Title: "nl base Encounter"
 * insert ProfileMetadata(nl-base-Encounter)
 * insert Purpose(Encounter, 4.0.1, Encounter)
 
-* class insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/ContactTypeCodeLijst-to-ActEncounterCode, ContactTypeCodeLijst-to-ActEncounterCode, ActEncounterCode)
 * class from http://terminology.hl7.org/ValueSet/v3-ActEncounterCode (extensible)
+* class insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/ContactTypeCodeLijst-to-ActEncounterCode, ContactTypeCodeLijst-to-ActEncounterCode, ActEncounterCode)
 * participant insert Discriminator(profile, individual.resolve(\))
 * participant contains
     healthProfessional 0..
