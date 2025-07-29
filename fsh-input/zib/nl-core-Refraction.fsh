@@ -6,8 +6,8 @@ Title: "nl core Refraction"
 * insert Purpose(Refraction, 1.0, Observation)
 
 * . obeys zib-Refraction-1 and zib-Refraction-2 and zib-Refraction-3 and zib-Refraction-4 and zib-Refraction-5
-* bodySite.extension[laterality].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.20.2--20200901000000 (required)
-* method from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.20.1--20200901000000 (extensible)
+* bodySite.extension[laterality].value[x] ^binding.strength = #required
+* method ^binding.strength = #extensible
 * component[cylindricalRefractionValue] ..1
 * component[cylindricalRefractionAxis] ..1
 * component[prismValue] ..1

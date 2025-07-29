@@ -13,7 +13,7 @@ Title: "nl core CareTeam"
 * participant[patient].member only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * participant[healthcareProfessional] ..1
 * participant[healthcareProfessional].role[healthProfessionalRole] ..1
-* participant[healthcareProfessional].role[healthProfessionalRole] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.1.5--20200901000000 (required)
+* participant[healthcareProfessional].role[healthProfessionalRole] ^binding.strength = #required
 * participant[healthcareProfessional].member 1..
 * participant[healthcareProfessional].member only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
 * reasonReference only Reference(http://hl7.org/fhir/StructureDefinition/Condition or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)

@@ -13,7 +13,7 @@ Title: "nl core AddressInformation"
 * line.extension[houseNumberIndication].value[x] obeys houseNumberIndication
 * line.extension[additionalInformation] ..1
 * country.extension[countryCode] ..1
-* country.extension[countryCode].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.10--20200901000000 (required)
+* country.extension[countryCode].value[x] ^binding.strength = #required
 
 // Short, alias, definition and comment texts
 * ^description = "Address information includes data where a person resides (temporarily, permanently) or where a building is located."

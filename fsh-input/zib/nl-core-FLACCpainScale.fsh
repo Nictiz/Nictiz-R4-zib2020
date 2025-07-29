@@ -7,15 +7,15 @@ Title: "nl core FLACCpainScale"
 
 * note ..1
 * component[face] ..1
-* component[face].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.13.1--20200901000000 (required)
+* component[face].value[x] ^binding.strength = #required
 * component[legs] ..1
-* component[legs].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.13.2--20200901000000 (required)
+* component[legs].value[x] ^binding.strength = #required
 * component[activity] ..1
-* component[activity].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.13.3--20200901000000 (required)
+* component[activity].value[x] ^binding.strength = #required
 * component[cry] ..1
-* component[cry].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.13.4--20200901000000 (required)
+* component[cry].value[x] ^binding.strength = #required
 * component[consolability] ..1
-* component[consolability].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.13.5--20200901000000 (required)
+* component[consolability].value[x] ^binding.strength = #required
 
 // Short, alias, definition and comment texts
 * ^description = """

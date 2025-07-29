@@ -7,12 +7,12 @@ Title: "nl core GlasgowComaScale"
 
 * note ..1
 * component[gcsEyes] ..1
-* component[gcsEyes].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.8.1--20200901000000 (required)
+* component[gcsEyes].value[x] ^binding.strength = #required
 * component[gcsMotor] ..1
-* component[gcsMotor].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.5--20200901000000 (required)
+* component[gcsMotor].value[x] ^binding.strength = #required
 * component[gcsVerbal] ..1
-* component[gcsVerbal].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.6--20200901000000 (required)
-* component[conditionsDuringMeasurement].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.8.6--20200901000000 (extensible)
+* component[gcsVerbal].value[x] ^binding.strength = #required
+* component[conditionsDuringMeasurement].value[x] ^binding.strength = #extensible
 
 // Short, alias, definition and comment texts
 * ^description = """

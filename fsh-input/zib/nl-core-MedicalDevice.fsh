@@ -11,7 +11,7 @@ Title: "nl core MedicalDevice"
 * device only Reference(http://hl7.org/fhir/StructureDefinition/Device or http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice.Product)
 * reasonReference[indication] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
 * reasonReference[stoma] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Stoma)
-* bodySite from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000 (required)
+* bodySite ^binding.strength = #required
 * note ..1
 
 // Short, alias, definition and comment texts

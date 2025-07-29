@@ -8,10 +8,10 @@ Title: "nl core LaboratoryTestResult.Specimen"
 * type from http://nictiz.nl/fhir/ValueSet/Monstermateriaal-en-Microorganisme-Codelijsten (required)
 * subject only Reference(http://hl7.org/fhir/StructureDefinition/Patient or http://hl7.org/fhir/StructureDefinition/Group or http://hl7.org/fhir/StructureDefinition/Device or http://hl7.org/fhir/StructureDefinition/Substance or http://hl7.org/fhir/StructureDefinition/Location or http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.SpecimenSource)
 * parent only Reference(http://hl7.org/fhir/StructureDefinition/Specimen or http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen)
-* collection.method from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.2--20200901000000 (required)
-* collection.bodySite from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000 (required)
+* collection.method ^binding.strength = #required
+* collection.bodySite ^binding.strength = #required
 * collection.bodySite.extension[morphology] ..1
-* container.type from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.9--20200901000000 (extensible)
+* container.type ^binding.strength = #extensible
 * note ..1
 
 // Short, alias, definition and comment texts

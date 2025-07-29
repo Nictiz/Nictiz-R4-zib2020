@@ -8,13 +8,13 @@ Title: "nl core StrongKidsScore"
 * . obeys zib-StrongKidsScore-1 and zib-StrongKidsScore-2
 * note ..1
 * component[weightLossScore] ..1
-* component[weightLossScore].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.28.1--20200901000000 (required)
+* component[weightLossScore].value[x] ^binding.strength = #required
 * component[conditionScore] ..1
-* component[conditionScore].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.28.2--20200901000000 (required)
+* component[conditionScore].value[x] ^binding.strength = #required
 * component[nutritionScore] ..1
-* component[nutritionScore].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.28.3--20200901000000 (required)
+* component[nutritionScore].value[x] ^binding.strength = #required
 * component[nutritionStatusScore] ..1
-* component[nutritionStatusScore].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.28.4--20200901000000 (required)
+* component[nutritionStatusScore].value[x] ^binding.strength = #required
 
 // Short, alias, definition and comment texts
 * ^description = """

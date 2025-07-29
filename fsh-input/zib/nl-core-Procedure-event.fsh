@@ -6,12 +6,12 @@ Title: "nl core Procedure event"
 * insert Purpose(Procedure, 5.2, Procedure)
 
 * basedOn only Reference(http://hl7.org/fhir/StructureDefinition/CarePlan or http://hl7.org/fhir/StructureDefinition/ServiceRequest or http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request)
-* code from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.19--20200901000000 (required)
+* code ^binding.strength = #required
 * performer.actor only Reference(http://hl7.org/fhir/StructureDefinition/Practitioner or http://hl7.org/fhir/StructureDefinition/PractitionerRole or http://hl7.org/fhir/StructureDefinition/Organization or http://hl7.org/fhir/StructureDefinition/Patient or http://hl7.org/fhir/StructureDefinition/RelatedPerson or http://hl7.org/fhir/StructureDefinition/Device or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
 * location only Reference(http://hl7.org/fhir/StructureDefinition/Location or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider)
 * reasonReference only Reference(http://hl7.org/fhir/StructureDefinition/Condition or http://hl7.org/fhir/StructureDefinition/Observation or http://hl7.org/fhir/StructureDefinition/Procedure or http://hl7.org/fhir/StructureDefinition/DiagnosticReport or http://hl7.org/fhir/StructureDefinition/DocumentReference or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
 * bodySite ..1
-* bodySite from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000 (required)
+* bodySite ^binding.strength = #required
 * report[textResult] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-TextResult)
 
 // Short, alias, definition and comment texts

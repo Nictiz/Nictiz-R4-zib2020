@@ -5,7 +5,7 @@ Title: "nl core Vaccination event"
 * insert ProfileMetadata(nl-core-Vaccination-event)
 * insert Purpose(Vaccination, 4.0, Immunization)
 
-* vaccineCode from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.17--20200901000000 (required)
+* vaccineCode ^binding.strength = #required
 * performer[administrator] ..1
 * performer[administrator].function 1..
 * performer[administrator].actor only Reference(http://hl7.org/fhir/StructureDefinition/Practitioner or http://hl7.org/fhir/StructureDefinition/PractitionerRole or http://hl7.org/fhir/StructureDefinition/Organization or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)

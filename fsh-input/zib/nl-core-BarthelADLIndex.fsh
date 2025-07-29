@@ -6,25 +6,25 @@ Title: "nl core BarthelADLIndex"
 * insert Purpose(BarthelADLIndex, 3.1, Observation)
 
 * component[bowels] ..1
-* component[bowels].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.2.1--20200901000000 (required)
+* component[bowels].value[x] ^binding.strength = #required
 * component[bladder] ..1
-* component[bladder].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.2.2--20200901000000 (required)
+* component[bladder].value[x] ^binding.strength = #required
 * component[grooming] ..1
-* component[grooming].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.2.3--20200901000000 (required)
+* component[grooming].value[x] ^binding.strength = #required
 * component[toiletUse] ..1
-* component[toiletUse].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.2.4--20200901000000 (required)
+* component[toiletUse].value[x] ^binding.strength = #required
 * component[feeding] ..1
-* component[feeding].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.2.5--20200901000000 (required)
+* component[feeding].value[x] ^binding.strength = #required
 * component[transfers] ..1
-* component[transfers].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.2.6--20200901000000 (required)
+* component[transfers].value[x] ^binding.strength = #required
 * component[mobility] ..1
-* component[mobility].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.2.7--20200901000000 (required)
+* component[mobility].value[x] ^binding.strength = #required
 * component[dressing] ..1
-* component[dressing].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.2.8--20200901000000 (required)
+* component[dressing].value[x] ^binding.strength = #required
 * component[managingStairs] ..1
-* component[managingStairs].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.2.9--20200901000000 (required)
+* component[managingStairs].value[x] ^binding.strength = #required
 * component[bathing] ..1
-* component[bathing].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.2.10--20200901000000 (required)
+* component[bathing].value[x] ^binding.strength = #required
 
 // Short, alias, definition and comment texts
 * ^description = """

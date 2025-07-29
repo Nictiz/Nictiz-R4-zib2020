@@ -7,7 +7,7 @@ Title: "nl core HearingFunction.HearingAid"
 
 * device only Reference(http://hl7.org/fhir/StructureDefinition/Device or http://nictiz.nl/fhir/StructureDefinition/nl-core-HearingFunction.HearingAid.Product)
 * reasonReference[stoma] ..0
-* bodySite from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.17.3--20200901000000 (required)
+* bodySite ^binding.strength = #required
 
 // Short, alias, definition and comment texts
 * ^description = """

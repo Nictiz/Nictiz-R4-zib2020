@@ -8,11 +8,11 @@ Title: "nl core SNAQScore"
 * . obeys zib-SNAQScore-1 and zib-SNAQScore-2
 * note ..1
 * component[weightLossScore] ..1
-* component[weightLossScore].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.6.1--20200901000000 (required)
+* component[weightLossScore].value[x] ^binding.strength = #required
 * component[appetiteScore] ..1
-* component[appetiteScore].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.6.2--20200901000000 (required)
+* component[appetiteScore].value[x] ^binding.strength = #required
 * component[nutritionScore] ..1
-* component[nutritionScore].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.6.3--20200901000000 (required)
+* component[nutritionScore].value[x] ^binding.strength = #required
 
 // Short, alias, definition and comment texts
 * ^description = """

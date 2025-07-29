@@ -8,13 +8,13 @@ Title: "nl core SNAQ65plusScore"
 * . obeys zib-SNAQ65PlusScore-1 and zib-SNAQ65PlusScore-2
 * note ..1
 * component[weightLossScore] ..1
-* component[weightLossScore].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.30.1--20200901000000 (required)
+* component[weightLossScore].value[x] ^binding.strength = #required
 * component[upperarmCircumference] ..1
-* component[upperarmCircumference].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.30.4--20200901000000 (required)
+* component[upperarmCircumference].value[x] ^binding.strength = #required
 * component[appetiteScore] ..1
-* component[appetiteScore].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.30.2--20200901000000 (required)
+* component[appetiteScore].value[x] ^binding.strength = #required
 * component[exerciseScore] ..1
-* component[exerciseScore].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.30.3--20200901000000 (required)
+* component[exerciseScore].value[x] ^binding.strength = #required
 
 // Short, alias, definition and comment texts
 * ^description = """

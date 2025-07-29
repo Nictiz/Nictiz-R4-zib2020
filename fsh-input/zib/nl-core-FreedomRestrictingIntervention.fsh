@@ -8,9 +8,9 @@ Title: "nl core FreedomRestrictingIntervention"
 * extension[legallyCapable] ..1
 * extension[assent] ..1
 * category 1..
-* code from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.20--20200901000000 (extensible)
+* code ^binding.strength = #extensible
 * reasonCode ..1
-* reasonCode from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.20.5.4--20200901000000 (extensible)
+* reasonCode ^binding.strength = #extensible
 * reasonReference[legalSituation-LegalStatus] ..1
 * reasonReference[legalSituation-LegalStatus] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-LegalSituation-LegalStatus)
 * reasonReference[legalSituation-Representation] ..1

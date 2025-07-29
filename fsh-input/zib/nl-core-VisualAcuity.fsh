@@ -7,9 +7,9 @@ Title: "nl core VisualAcuity"
 
 * device only Reference(http://hl7.org/fhir/StructureDefinition/Device or http://hl7.org/fhir/StructureDefinition/DeviceMetric or http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualAcuity.VisualAcuityMeasurementDevice)
 * component[visualAcuityType] ..1
-* component[visualAcuityType].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.19.2--20200901000000 (extensible)
+* component[visualAcuityType].value[x] ^binding.strength = #extensible
 * component[visualAcuityMeasurementChart] ..1
-* component[visualAcuityMeasurementChart].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.19.3--20200901000000 (extensible)
+* component[visualAcuityMeasurementChart].value[x] ^binding.strength = #extensible
 * component[distanceFromChart] ..1
 
 // Short, alias, definition and comment texts

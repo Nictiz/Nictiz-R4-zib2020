@@ -17,7 +17,7 @@ Title: "nl core NursingIntervention"
 * goal only Reference(http://hl7.org/fhir/StructureDefinition/Goal or http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentObjective)
 * activity ..1
 * activity.detail.extension[medicalDevice].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/DeviceUseStatement or http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice)
-* activity.detail.code from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.18--20200901000000 (required)
+* activity.detail.code ^binding.strength = #required
 * activity.detail.performer ..1
 * activity.detail.performer[healthcareProvider] ..1
 * activity.detail.performer[healthcareProvider] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)

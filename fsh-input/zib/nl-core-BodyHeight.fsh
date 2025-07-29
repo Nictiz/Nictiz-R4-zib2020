@@ -8,7 +8,7 @@ Title: "nl core BodyHeight"
 * value[x] from http://hl7.org/fhir/ValueSet/ucum-bodylength (required)
 * note ..1
 * component[position] ..1
-* component[position].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.2.1--20200901000000 (extensible)
+* component[position].value[x] ^binding.strength = #extensible
 
 // Short, alias, definition and comment texts
 * ^description = "A person’s body height."

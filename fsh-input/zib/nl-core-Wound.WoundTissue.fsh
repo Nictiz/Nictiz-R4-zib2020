@@ -5,7 +5,7 @@ Title: "nl core Wound.WoundTissue"
 * insert ProfileMetadata(nl-core-Wound.WoundTissue)
 * ^purpose = "This Observation resource represents the WoundTissue concept (NL-CM:19.2.4) of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Wound v3.3 (2020)](https://zibs.nl/wiki/Wound-v3.3(2020EN))."
 
-* value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.21--20200901000000 (required)
+* value[x] ^binding.strength = #required
 
 // Short, alias, definition and comment texts
 * ^description = "Description of the tissue of the wound."

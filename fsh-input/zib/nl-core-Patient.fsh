@@ -5,21 +5,21 @@ Title: "nl core Patient"
 * insert ProfileMetadata(nl-core-Patient)
 * insert Purpose(Patient, 3.2, Patient)
 
-* extension[nationality].extension[code].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.6.3--20200901000000 (extensible)
+* extension[nationality].extension[code].value[x] ^binding.strength = #extensible
 * name[nameInformation] ..2
 * gender from http://hl7.org/fhir/ValueSet/administrative-gender|4.0.1 (required)
 * gender.extension[genderCodelist] ..1
-* gender.extension[genderCodelist].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1--20200901000000 (required)
-* maritalStatus from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.9.1--20200901000000 (required)
+* gender.extension[genderCodelist].value[x] ^binding.strength = #required
+* maritalStatus ^binding.strength = #required
 * contact.extension[contactPerson] ..1
 * contact.extension[contactPerson].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/RelatedPerson or http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson)
-* contact.relationship[role] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.3.1.2--20200901000000 (required)
-* contact.relationship[relationship] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.3.1.1--20200901000000 (required)
+* contact.relationship[role] ^binding.strength = #required
+* contact.relationship[relationship] ^binding.strength = #required
 * communication.extension[languageControl].extension 2..
 * communication.extension[languageControl].extension[level] 1..
 * communication.extension[languageControl].extension[type] 1..1
 * communication.extension[comment] ..1
-* communication.language from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.12.2--20200901000000 (required)
+* communication.language ^binding.strength = #required
 
 // Short, alias, definition and comment texts
 * ^description = """

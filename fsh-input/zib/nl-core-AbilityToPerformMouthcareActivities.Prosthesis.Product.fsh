@@ -9,7 +9,7 @@ Title: "nl core AbilityToPerformMouthcareActivities.Prosthesis.Product"
 // profile is sidelined and we have to apply the restrictions defined there here as well.
 * identifier 0..1
 * udiCarrier 0..1
-* type from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.10.1.1--20200901000000 (required)
+* type ^binding.strength = #required
 * note 0..1
 
 // Short, alias, definition and comment texts

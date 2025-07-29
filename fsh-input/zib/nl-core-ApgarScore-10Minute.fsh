@@ -11,15 +11,15 @@ Title: "nl core ApgarScore 10Minute"
   * ^maxValueInteger = 10
 * note ..1
 * component[respiratoryScore] ..1
-* component[respiratoryScore].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.16.1--20200901000000 (required)
+* component[respiratoryScore].value[x] ^binding.strength = #required
 * component[appearanceScore] ..1
-* component[appearanceScore].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.16.4--20200901000000 (required)
+* component[appearanceScore].value[x] ^binding.strength = #required
 * component[pulseScore] ..1
-* component[pulseScore].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.16.2--20200901000000 (required)
+* component[pulseScore].value[x] ^binding.strength = #required
 * component[grimaceScore] ..1
-* component[grimaceScore].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.16.5--20200901000000 (required)
+* component[grimaceScore].value[x] ^binding.strength = #required
 * component[muscleToneScore] ..1
-* component[muscleToneScore].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.16.3--20200901000000 (required)
+* component[muscleToneScore].value[x] ^binding.strength = #required
 
 // Short, alias, definition and comment texts
 * ^description = """

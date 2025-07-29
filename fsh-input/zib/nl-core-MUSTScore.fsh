@@ -8,11 +8,11 @@ Title: "nl core MUSTScore"
 * . obeys zib-MUSTScore-1 and zib-MUSTScore-2
 * note ..1
 * component[bmiScore] ..1
-* component[bmiScore].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.5.1--20200901000000 (required)
+* component[bmiScore].value[x] ^binding.strength = #required
 * component[weightLossScore] ..1
-* component[weightLossScore].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.5.2--20200901000000 (required)
+* component[weightLossScore].value[x] ^binding.strength = #required
 * component[illnessScore] ..1
-* component[illnessScore].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.5.3--20200901000000 (required)
+* component[illnessScore].value[x] ^binding.strength = #required
 
 // Short, alias, definition and comment texts
 * ^description = """

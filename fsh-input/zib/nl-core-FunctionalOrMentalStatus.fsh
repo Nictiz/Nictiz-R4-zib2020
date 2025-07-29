@@ -10,8 +10,8 @@ Title: "nl core FunctionalOrMentalStatus"
   * obeys zib-FunctionalOrMentalStatus-1
 * category[functionalStatusFinding] ..1
 * category[mentalStatusFinding] ..1
-* code from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.4--20200901000000 (required)
-* valueCodeableConcept from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.3--20200901000000 (required)
+* code ^binding.strength = #required
+* valueCodeableConcept ^binding.strength = #required
 * note ..1
 
 // Short, alias, definition and comment texts

@@ -7,7 +7,7 @@ Title: "nl core Vaccination request"
 
 * recommendation ..1
 * recommendation.vaccineCode ..1
-* recommendation.vaccineCode from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.17--20200901000000 (required)
+* recommendation.vaccineCode ^binding.strength = #required
 * recommendation.dateCriterion ..1
 
 // Short, alias, definition and comment texts

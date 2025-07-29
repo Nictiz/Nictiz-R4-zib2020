@@ -6,9 +6,9 @@ Title: "nl core HeartRate"
 * insert Purpose(HeartRate, 3.4, Observation)
 
 * interpretation[interpretationHeartRate] ..1
-* interpretation[interpretationHeartRate] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.3.3--20200901000000 (required)
+* interpretation[interpretationHeartRate] ^binding.strength = #required
 * note ..1
-* method from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.3.2--20200901000000 (extensible)
+* method ^binding.strength = #extensible
 * hasMember[heartbeatRegularity] ..1
 * hasMember[heartbeatRegularity] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-HeartRate.HeartbeatRegularity)
 

@@ -6,7 +6,7 @@ Title: "nl core AlcoholUse"
 * insert Purpose(AlcoholUse, 3.2, Observation)
 
 * insert NlCorePatientForObservation
-* valueCodeableConcept from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.3.2--20200901000000 (required)
+* valueCodeableConcept ^binding.strength = #required
 * note ..1
 * component[amount] ..1
 

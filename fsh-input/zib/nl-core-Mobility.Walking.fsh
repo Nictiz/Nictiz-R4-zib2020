@@ -5,7 +5,7 @@ Title: "nl core Mobility.Walking"
 * insert ProfileMetadata(nl-core-Mobility.Walking)
 * ^purpose = "This Observation resource represents the Walking concept (NL-CM:4.3.3) of Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Mobility v3.3 (2020)](https://zibs.nl/wiki/Mobility-v3.3(2020EN))."
 
-* value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.3.9--20200901000000 (required)
+* value[x] ^binding.strength = #required
 
 // Short, alias, definition and comment texts
 * ^description = "Walking is moving body from one place to another by moving legs stepwise by self, capacity to bear weight of body and walk with effective gait within the range of speed from slow, moderate and fast pace."

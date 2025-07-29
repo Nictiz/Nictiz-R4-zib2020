@@ -6,9 +6,9 @@ Title: "nl core HealthcareProvider Organization"
 * insert Purpose(HealthcareProvider, 3.4, Organization)
 
 * type[departmentSpecialty] ..1
-* type[departmentSpecialty] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.2.4--20200901000000 (required)
+* type[departmentSpecialty] ^binding.strength = #required
 * type[organizationType] ..1
-* type[organizationType] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.2.3--20200901000000 (required)
+* type[organizationType] ^binding.strength = #required
 
 // Short, alias, definition and comment texts
 * ^description = "A healthcare provider is an organization that offers and provides medical, paramedic and/or nursing care to patients/clients. Examples include: hospitals, nursing homes, doctor’s offices."

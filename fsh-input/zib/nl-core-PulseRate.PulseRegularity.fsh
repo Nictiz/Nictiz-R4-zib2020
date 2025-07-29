@@ -5,7 +5,7 @@ Title: "nl core PulseRate.PulseRegularity"
 * insert ProfileMetadata(nl-core-PulseRate.PulseRegularity)
 * ^purpose = "This Observation resource represents the PulseRegularity concept (NL-CM:12.7.5) of Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) PulseRate v3.3 (2020)](https://zibs.nl/wiki/PulseRate-v3.3(2020EN))."
 
-* value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.7.1--20200901000000 (required)
+* value[x] ^binding.strength = #required
 
 // Short, alias, definition and comment texts
 * ^description = "Regular or irregular rhythm."

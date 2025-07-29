@@ -11,7 +11,7 @@ For the entire zib, the complementary profile [zib-ContactInformation-EmailAddre
 * system 1..
 * system from http://nictiz.nl/fhir/ValueSet/ContactInformation-TelephoneNumbersSystem (required)
 * system.extension[telecomType] ..1
-* system.extension[telecomType].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.20.6.1--20200901000000 (required)
+* system.extension[telecomType].value[x] ^binding.strength = #required
 * use from http://nictiz.nl/fhir/ValueSet/ContactInformation-TelephoneNumbersUse (required)
 
 // Short, alias, definition and comment texts

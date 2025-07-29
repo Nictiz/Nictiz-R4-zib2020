@@ -5,8 +5,8 @@ Title: "nl core ContactPerson"
 * insert ProfileMetadata(nl-core-ContactPerson)
 * insert Purpose(ContactPerson, 3.4, RelatedPerson)
 
-* relationship[role] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.3.1.2--20200901000000 (required)
-* relationship[relationship] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.3.1.1--20200901000000 (required)
+* relationship[role] ^binding.strength = #required
+* relationship[relationship] ^binding.strength = #required
 * name[nameInformation] ..2
 
 // Short, alias, definition and comment texts

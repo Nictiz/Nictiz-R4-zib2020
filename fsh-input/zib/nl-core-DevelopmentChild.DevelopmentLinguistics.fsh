@@ -5,7 +5,7 @@ Title: "nl core DevelopmentChild.DevelopmentLinguistics"
 * insert ProfileMetadata(nl-core-DevelopmentChild.DevelopmentLinguistics)
 * ^purpose = "This Observation resource represents the DevelopmentLinguistics concept (NL-CM:4.32.9) of Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) DevelopmentChild v1.2 (2020)](https://zibs.nl/wiki/DevelopmentChild-v1.2(2020EN))."
 
-* value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.32.5--20200901000000 (required)
+* value[x] ^binding.strength = #required
 
 // Short, alias, definition and comment texts
 * ^description = "Milestones of lingual development of a child."

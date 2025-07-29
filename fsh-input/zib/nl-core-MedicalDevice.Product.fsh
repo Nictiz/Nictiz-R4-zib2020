@@ -11,7 +11,7 @@ Title: "nl core MedicalDevice.Product"
 * udiCarrier ..1
 * udiCarrier[gs1UdiCarrier] ..1
 * udiCarrier[hibcUdiCarrier] ..1
-* type from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.10.1.1--20200901000000 (required)
+* type ^binding.strength = #required
 * note ..1
 
 // Short, alias, definition and comment texts

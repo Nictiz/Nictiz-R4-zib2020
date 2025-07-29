@@ -7,19 +7,19 @@ Title: "nl core ComfortScale"
 
 * note ..1
 * component[alertness] ..1
-* component[alertness].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.12.1--20200901000000 (required)
+* component[alertness].value[x] ^binding.strength = #required
 * component[calmnessAgitation] ..1
-* component[calmnessAgitation].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.12.2--20200901000000 (required)
+* component[calmnessAgitation].value[x] ^binding.strength = #required
 * component[respiratoryResponse] ..1
-* component[respiratoryResponse].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.12.3--20200901000000 (required)
+* component[respiratoryResponse].value[x] ^binding.strength = #required
 * component[crying] ..1
-* component[crying].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.12.4--20200901000000 (required)
+* component[crying].value[x] ^binding.strength = #required
 * component[bodyMovement] ..1
-* component[bodyMovement].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.12.5--20200901000000 (required)
+* component[bodyMovement].value[x] ^binding.strength = #required
 * component[facialTone] ..1
-* component[facialTone].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.12.6--20200901000000 (required)
+* component[facialTone].value[x] ^binding.strength = #required
 * component[bodyMuscleTone] ..1
-* component[bodyMuscleTone].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.12.7--20200901000000 (required)
+* component[bodyMuscleTone].value[x] ^binding.strength = #required
 
 // Short, alias, definition and comment texts
 * ^description = """

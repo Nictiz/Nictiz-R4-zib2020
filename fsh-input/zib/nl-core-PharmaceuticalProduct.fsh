@@ -5,9 +5,9 @@ Title: "nl core PharmaceuticalProduct"
 * insert ProfileMetadata(nl-core-PharmaceuticalProduct)
 * insert Purpose(PharmaceuticalProduct, 2.1.2, Medication)
 
-* code from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.12--20200901000000 (required)
-* form from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.9.7.8--20200901000000 (required)
-* ingredient.itemCodeableConcept from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.13--20200901000000 (required)
+* code ^binding.strength = #required
+* form ^binding.strength = #required
+* ingredient.itemCodeableConcept ^binding.strength = #required
 
 // Short, alias, definition and comment texts
 * ^description = """

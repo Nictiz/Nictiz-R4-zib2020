@@ -5,8 +5,8 @@ Title: "nl core TreatmentObjective"
 * insert ProfileMetadata(nl-core-TreatmentObjective)
 * insert Purpose(TreatmentObjective, 3.2, Goal)
 
-* target.measure from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.4--20200901000000 (required)
-* target.detailCodeableConcept from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.3--20200901000000 (required)
+* target.measure ^binding.strength = #required
+* target.detailCodeableConcept ^binding.strength = #required
 * addresses ..1
 * addresses only Reference(http://hl7.org/fhir/StructureDefinition/Condition or http://hl7.org/fhir/StructureDefinition/Observation or http://hl7.org/fhir/StructureDefinition/MedicationStatement or http://hl7.org/fhir/StructureDefinition/NutritionOrder or http://hl7.org/fhir/StructureDefinition/ServiceRequest or http://hl7.org/fhir/StructureDefinition/RiskAssessment or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
 * note ..1

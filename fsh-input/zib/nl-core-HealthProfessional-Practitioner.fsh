@@ -7,7 +7,7 @@ Title: "nl core HealthProfessional Practitioner"
 
 * name[nameInformation] ..2
 * gender from http://hl7.org/fhir/ValueSet/administrative-gender|4.0.1 (required)
-* gender.extension[genderCodelist].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.1.8--20200901000000 (required)
+* gender.extension[genderCodelist].value[x] ^binding.strength = #required
 
 // Short, alias, definition and comment texts
 * ^description = "A health professional is a person who is authorized to perform actions in the field of individual healthcare."
