@@ -7,7 +7,6 @@ Title: "nl core MedicalDevice"
 
 * insert NlCoreMedicalDeviceRestrictions
 * device only Reference(Device or http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice.Product)
-* bodySite ^type.targetProfile = http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation
 
 // Short, alias, definition and comment texts
 * ^description = "Medical devices are any internally implanted and external devices and/or aids used by the patient (in the past) to reduce the effects of functional limitations in organ systems or to facilitate the treatment of a disease."
@@ -39,7 +38,7 @@ RuleSet: NlCoreMedicalDeviceRestrictions
     """
 * extension[healthProfessional].value[x] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
 * extension[location].value[x] ^comment = """
-    Please note that this zib concept (Location::HealthcareProvider) is also mapped on the `Procedure.location` element in profile [nl-core-Procedure-event](http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event). The reason for this is that this zib concept aligns with the Location::HealthcareProvider concept in zib Procedure (NL-CM:14.1.5), but only for the situation that the Procedure is about placing the implant which is described using this instance of zib MedicalDevice. This is normally not the case in the context of hearing aids, so the mapping in nl-core-Procedure-event should be ignored in this situation.
+    Please note that this zib concept (Location::HealthcareProvider) is also mapped on the `Procedure.location` element in profile [nl-core-Procedure-event](http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event). The reason for this is that this zib concept aligns with the Location::HealthcareProvider concept in zib Procedure (NL-CM:14.1.5), but only for the situation that the Procedure is about placing the implant which is described using this instance of zib MedicalDevice. In this situation, the current extension is redundant and it is advised to only use `Procedure.location` in profile nl-core-Procedure-event to represent the Location concept.
     """
 * extension[location].value[x] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider)
 * extension[treatmentObjective].value[x] ^comment = """
