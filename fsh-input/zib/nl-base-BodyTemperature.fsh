@@ -9,6 +9,7 @@ Title: "nl base BodyTemperature"
 * code.coding contains
     BodyTempCode 0..1 and
     temperatureType 0..1
+* code.coding[BodyTempCode] = http://loinc.org#8310-5
 * code.coding[temperatureType] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.6.1--20200901000000 (preferred)
 * effective[x] insert Discriminator(type, $this)
 * effectiveDateTime only dateTime

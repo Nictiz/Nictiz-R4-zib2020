@@ -5,6 +5,7 @@ Title: "nl core BowelFunction.DefecationColor"
 * insert ProfileMetadata(nl-core-BowelFunction.DefecationColor)
 * ^purpose = "This Observation resource represents the DefecationColor concept (NL-CM:4.15.10) of Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) BowelFunction v3.1.1 (2020)](https://zibs.nl/wiki/BowelFunction-v3.1.1(2020EN))."
 
+* insert NlCorePatientForObservation
 * value[x] ^binding.strength = #extensible
 
 // Short, alias, definition and comment texts

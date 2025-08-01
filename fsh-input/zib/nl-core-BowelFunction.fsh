@@ -6,7 +6,9 @@ Title: "nl core BowelFunction"
 * insert Purpose(BowelFunction, 3.1.1, Observation)
 
 * extension[stoma] ..1
+* extension[stoma].value[x] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Stoma)
 * extension[incontinenceMaterial].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Resource or http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice)
+* insert NlCorePatientForObservation
 * note ..1
 * hasMember[fecalContinence] ..1
 * hasMember[fecalContinence] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction.FecalContinence)

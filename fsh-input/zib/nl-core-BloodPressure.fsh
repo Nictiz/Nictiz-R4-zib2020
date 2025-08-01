@@ -6,6 +6,7 @@ Title: "nl core BloodPressure"
 * insert Purpose(BloodPressure, 3.2.1, Observation)
 
 * extension[position].value[x] ^binding.strength = #extensible
+* subject only Reference(Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * note ..1
 * bodySite ^binding.strength = #extensible
 * method ^binding.strength = #extensible

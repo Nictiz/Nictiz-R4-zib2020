@@ -5,6 +5,7 @@ Title: "nl core BodyWeight"
 * insert ProfileMetadata(nl-core-BodyWeight)
 * insert Purpose(BodyWeight, 3.2, Observation)
 
+* subject only Reference(Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * value[x] from http://nictiz.nl/fhir/ValueSet/zib-BodyWeight-units (required)
 * note ..1
 * component[clothing] ..1

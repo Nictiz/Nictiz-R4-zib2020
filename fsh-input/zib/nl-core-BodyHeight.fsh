@@ -5,6 +5,7 @@ Title: "nl core BodyHeight"
 * insert ProfileMetadata(nl-core-BodyHeight)
 * insert Purpose(BodyHeight, 3.1.1, Observation)
 
+* subject only Reference(Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * value[x] from http://hl7.org/fhir/ValueSet/ucum-bodylength (required)
 * note ..1
 * component[position] ..1

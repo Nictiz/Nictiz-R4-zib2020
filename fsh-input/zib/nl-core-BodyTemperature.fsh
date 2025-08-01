@@ -8,6 +8,7 @@ Title: "nl core BodyTemperature"
 * code.coding[BodyTempCode] 1..1
 * code.coding[temperatureType] ..1
 * code.coding[temperatureType] ^binding.strength = #required
+* subject only Reference(Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * note ..1
 
 // Short, alias, definition and comment texts

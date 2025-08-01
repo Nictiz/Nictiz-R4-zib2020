@@ -5,6 +5,7 @@ Title: "nl core Burnwound.Extent"
 * insert ProfileMetadata(nl-core-Burnwound.Extent)
 * ^purpose = "This Observation resource represents the Extent concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Burnwound v3.4 (2020)](https://zibs.nl/wiki/Burnwound-v3.4(2020EN))."
 
+* insert NlCorePatientForObservation
 
 // Short, alias, definition and comment texts
 * ^description = "The extent of a burn wound is indicated in a percentage of the ‘Total Body Surface Area’ (TBSA)."

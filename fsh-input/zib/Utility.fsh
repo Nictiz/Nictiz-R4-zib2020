@@ -17,8 +17,12 @@ RuleSet: AdditionalBinding(purpose, canonical)
 
 // Add nl-core-Patient as a target profile for various resources. Unfortunately, the entire list of target profiles
 // has to be specified in a differential.
-RuleSet: NlCorePatientForObservation
-* subject only Reference(Patient or Group or Device or Location or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
+RuleSet: NlCorePatientForCondition
+* subject only Reference(Patient or Group or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 
 RuleSet: NlCorePatientForDeviceUseStatement
 * subject only Reference(Patient or Group or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
+
+RuleSet: NlCorePatientForObservation
+* subject only Reference(Patient or Group or Device or Location or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
+

@@ -9,7 +9,10 @@ Title: "nl core Burnwound"
 * category[burnWoundCode] 1..1
 * code ^binding.strength = #extensible
 * bodySite ..1
+* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation
 * bodySite ^binding.strength = #required
+* bodySite.extension[laterality].value[x] ^binding.strength = #required
+* insert NlCorePatientForCondition
 * stage ..1
 * stage.summary ^binding.strength = #required
 * evidence.detail[woundCharacteristics] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-wounds.WoundCharacteristics)

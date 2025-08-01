@@ -5,6 +5,10 @@ Title: "nl core BarthelADLIndex"
 * insert ProfileMetadata(nl-core-BarthelADLIndex)
 * insert Purpose(BarthelADLIndex, 3.1, Observation)
 
+* insert NlCorePatientForObservation
+* valueInteger
+  * ^minValueInteger = 0
+  * ^maxValueInteger = 20
 * component[bowels] ..1
 * component[bowels].value[x] ^binding.strength = #required
 * component[bladder] ..1

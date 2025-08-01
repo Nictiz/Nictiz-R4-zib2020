@@ -5,6 +5,7 @@ Title: "nl core BowelFunction.FecalContinence"
 * insert ProfileMetadata(nl-core-BowelFunction.FecalContinence)
 * ^purpose = "This Observation resource represents the FecalContinence concept (NL-CM:4.15.2) of Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) BowelFunction v3.1.1 (2020)](https://zibs.nl/wiki/BowelFunction-v3.1.1(2020EN))."
 
+* insert NlCorePatientForObservation
 * value[x] ^binding.strength = #required
 
 // Short, alias, definition and comment texts

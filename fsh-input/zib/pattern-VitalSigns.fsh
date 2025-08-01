@@ -8,17 +8,21 @@ Title: "pattern VitalSigns"
 > If implementations use this Resource when expressing the profile-specific concepts as structured data, they SHALL conform to the following profiles:
 
 However, the HL7 Vital Signs profile imposes two issues that make it impossible to implement zib profiles for the relevant vital signs measurements directly onto it (see the comment on the profle root). To circumvent this problem, the zib profiles aim to be as compatible as possible without directly using the HL7 Vital Signs profile or one of its derivations. This pattern profile ensures this is done in a consistent way. It is not meant to be instantiated directly."
+* ^abstract = true
 
 * . obeys vs-2
+* category 1..
 * category insert Discriminator(pattern, $this)
 * category contains
-    VSCat 0..1
+    VSCat 1..1
 * category[VSCat] = http://terminology.hl7.org/CodeSystem/observation-category#vital-signs
+* code.coding ^min = 1
+* subject 1..1
 * subject only Reference(Patient)
-* effective[x]
+* effective[x] 1..1
   * obeys vs-1
   * ^condition[+] = vs-1
-* effective[x] only dateTime
+* effective[x] only dateTime or Period
 * value[x] ^condition[+] = vs-2
 * dataAbsentReason ^condition[+] = vs-2
 * component obeys vs-3
