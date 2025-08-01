@@ -9,6 +9,7 @@ Title: "nl core FreedomRestrictingIntervention"
 * extension[assent] ..1
 * category 1..
 * code ^binding.strength = #extensible
+* insert NlCorePatientForCondition
 * reasonCode ..1
 * reasonCode ^binding.strength = #extensible
 * reasonReference[legalSituation-LegalStatus] ..1

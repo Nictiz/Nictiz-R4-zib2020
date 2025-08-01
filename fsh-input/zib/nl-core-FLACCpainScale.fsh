@@ -5,6 +5,10 @@ Title: "nl core FLACCpainScale"
 * insert ProfileMetadata(nl-core-FLACCpainScale)
 * insert Purpose(FLACCpainScale, 1.1, Observation)
 
+* insert NlCorePatientForObservation
+* valueInteger
+  * ^minValueInteger = 0
+  * ^maxValueInteger = 10
 * note ..1
 * component[face] ..1
 * component[face].value[x] ^binding.strength = #required

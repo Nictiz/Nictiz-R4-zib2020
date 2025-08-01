@@ -18,8 +18,8 @@ Title: "nl base FeedingPatternInfant"
 * component[feedingSupplement].value[x] only CodeableConcept
 * component[feedingFrequency].code = http://snomed.info/sct#364653007
 * component[feedingFrequency].value[x] only Quantity
-* component.extension contains
-    http://nictiz.nl/fhir/StructureDefinition/ext-FeedingPatternInfant.FeedingMethod named feedingMethod 0..1
+* component[feedingType].extension contains
+    http://nictiz.nl/fhir/StructureDefinition/ext-FeedingPatternInfant.FeedingMethod named feedingMethod 0..*
 * component[feedingType].code = http://snomed.info/sct#109021000146107
 * component[feedingType].value[x] only CodeableConcept
 * component[feedingType].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.31.1--20200901000000 (preferred)

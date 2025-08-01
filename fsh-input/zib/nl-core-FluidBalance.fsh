@@ -5,6 +5,7 @@ Title: "nl core FluidBalance"
 * insert ProfileMetadata(nl-core-FluidBalance)
 * insert Purpose(FluidBalance, 1.0.1, Observation)
 
+* insert NlCorePatientForObservation
 * note ..1
 * hasMember[fluidTotalIn] ..1
 * hasMember[fluidTotalIn] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-FluidBalance.FluidTotalIn)
