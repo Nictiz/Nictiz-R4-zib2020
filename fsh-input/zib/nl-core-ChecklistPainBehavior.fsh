@@ -5,17 +5,51 @@ Title: "nl core ChecklistPainBehavior"
 * insert ProfileMetadata(nl-core-ChecklistPainBehavior)
 * insert Purpose(ChecklistPainBehavior, 1.1, Observation)
 
+* insert NlCorePatientForObservation
+* valueInteger
+  * ^minValueInteger = 0
+  * ^maxValueInteger = 10
 * note ..1
 * component[face] ..1
+* component[face].value[x]
+  * ^minValueInteger = 0
+  * ^maxValueInteger = 1
 * component[mouth] ..1
+* component[mouth].value[x]
+  * ^minValueInteger = 0
+  * ^maxValueInteger = 1
 * component[grimace] ..1
+* component[grimace].value[x]
+  * ^minValueInteger = 0
+  * ^maxValueInteger = 1
 * component[lookingSad] ..1
+* component[lookingSad].value[x]
+  * ^minValueInteger = 0
+  * ^maxValueInteger = 1
 * component[eyes] ..1
+* component[eyes].value[x]
+  * ^minValueInteger = 0
+  * ^maxValueInteger = 1
 * component[panic] ..1
+* component[panic].value[x]
+  * ^minValueInteger = 0
+  * ^maxValueInteger = 1
 * component[moaning] ..1
+* component[moaning].value[x]
+  * ^minValueInteger = 0
+  * ^maxValueInteger = 1
 * component[cry] ..1
+* component[cry].value[x]
+  * ^minValueInteger = 0
+  * ^maxValueInteger = 1
 * component[soundsOfRestlessness] ..1
+* component[soundsOfRestlessness].value[x]
+  * ^minValueInteger = 0
+  * ^maxValueInteger = 1
 * component[tears] ..1
+* component[tears].value[x]
+  * ^minValueInteger = 0
+  * ^maxValueInteger = 1
 
 // Short, alias, definition and comment texts
 * ^description = """

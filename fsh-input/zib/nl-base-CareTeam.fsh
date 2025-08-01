@@ -17,6 +17,7 @@ Title: "nl base CareTeam"
     healthProfessionalRole 0..1
 * participant[healthcareProfessional].role[healthProfessionalRole] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.17.1.5--20200901000000 (preferred)
 * participant[healthcareProfessional].member only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthProfessional-PractitionerRole)
+* participant[healthcareProfessional].onBehalfOf only Reference(Organization or http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthcareProvider-Organization)
 * reasonReference only Reference(Condition or http://nictiz.nl/fhir/StructureDefinition/nl-base-Problem)
 
 // Short, alias, definition and comment texts

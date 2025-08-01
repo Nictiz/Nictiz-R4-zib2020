@@ -16,6 +16,7 @@ Title: "nl core CareTeam"
 * participant[healthcareProfessional].role[healthProfessionalRole] ^binding.strength = #required
 * participant[healthcareProfessional].member 1..
 * participant[healthcareProfessional].member only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
+* participant[healthcareProfessional].onBehalfOf only Reference(Organization or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization)
 * reasonReference only Reference(http://hl7.org/fhir/StructureDefinition/Condition or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
 
 // Short, alias, definition and comment texts

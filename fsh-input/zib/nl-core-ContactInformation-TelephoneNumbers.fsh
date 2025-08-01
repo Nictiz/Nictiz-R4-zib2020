@@ -9,10 +9,8 @@ For the entire zib, the complementary profile [zib-ContactInformation-EmailAddre
 
 * extension[comment] ..1
 * system 1..
-* system from http://nictiz.nl/fhir/ValueSet/ContactInformation-TelephoneNumbersSystem (required)
 * system.extension[telecomType] ..1
 * system.extension[telecomType].value[x] ^binding.strength = #required
-* use from http://nictiz.nl/fhir/ValueSet/ContactInformation-TelephoneNumbersUse (required)
 
 // Short, alias, definition and comment texts
 * ^description = "Contact information includes a person's telephone numbers en e-mail addresses."

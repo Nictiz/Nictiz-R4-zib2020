@@ -17,6 +17,7 @@ To implement the entire zib, the complementary profile [zib-ContactInformation-T
   * ^alias[+] = "EmailAdressen"
   * ^comment = "Implementation of the \"EmailAddresses\" concept of zib ContactInformation."
 * system ^short = "email"
+* system = #email
 * value
   * ^short = "EmailAddress"
   * ^alias[+] = "EmailAdres"

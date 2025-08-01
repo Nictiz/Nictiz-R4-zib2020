@@ -5,6 +5,10 @@ Title: "nl core ComfortScale"
 * insert ProfileMetadata(nl-core-ComfortScale)
 * insert Purpose(ComfortScale, 1.1, Observation)
 
+* insert NlCorePatientForObservation
+* valueInteger
+  * ^minValueInteger = 0
+  * ^maxValueInteger = 35
 * note ..1
 * component[alertness] ..1
 * component[alertness].value[x] ^binding.strength = #required
