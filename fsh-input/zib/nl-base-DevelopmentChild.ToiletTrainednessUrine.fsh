@@ -13,7 +13,7 @@ Title: "nl base DevelopmentChild.ToiletTrainednessUrine"
 
 // Short, alias, definition and comment texts
 * ^description = "Degree of toilet trainedness for urine."
-* . ^comment = "This Observation resource represents the ToiletTrainednessUrine concept (NL-CM:4.32.2) of zib DevelopmentChild. It can be used together with the [nl-base-DevelopmentChild](http://nictiz.nl/fhir/StructureDefinition/nl-base-DevelopmentChild) profile on the Observation resource, which groups references to the current and other resources on `Observation.hasMember`."
+* . ^comment = "This Observation resource represents the ToiletTrainednessUrine concept (NL-CM:4.32.4) of zib DevelopmentChild. It can be used together with the [nl-base-DevelopmentChild](http://nictiz.nl/fhir/StructureDefinition/nl-base-DevelopmentChild) profile on the Observation resource, which groups references to the current and other resources on `Observation.hasMember`."
 * effectiveDateTime
   * ^short = "DevelopmentChildDateTime"
   * ^alias[+] = "OntwikkelingKindDatumTijd"

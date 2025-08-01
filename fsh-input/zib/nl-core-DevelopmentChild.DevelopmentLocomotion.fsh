@@ -5,6 +5,7 @@ Title: "nl core DevelopmentChild.DevelopmentLocomotion"
 * insert ProfileMetadata(nl-core-DevelopmentChild.DevelopmentLocomotion)
 * ^purpose = "This Observation resource represents the DevelopmentLocomotion concept (NL-CM:4.32.6) of Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) DevelopmentChild v1.2 (2020)](https://zibs.nl/wiki/DevelopmentChild-v1.2(2020EN))."
 
+* insert NlCorePatientForObservation
 * value[x] ^binding.strength = #required
 
 // Short, alias, definition and comment texts

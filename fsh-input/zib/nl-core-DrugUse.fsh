@@ -5,6 +5,7 @@ Title: "nl core DrugUse"
 * insert ProfileMetadata(nl-core-DrugUse)
 * insert Purpose(DrugUse, 3.3, Observation)
 
+* insert NlCorePatientForObservation
 * valueCodeableConcept ^binding.strength = #extensible
 * note ..1
 * component[amount] ..1

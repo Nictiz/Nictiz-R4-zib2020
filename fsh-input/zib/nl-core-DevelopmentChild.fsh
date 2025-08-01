@@ -5,6 +5,7 @@ Title: "nl core DevelopmentChild"
 * insert ProfileMetadata(nl-core-DevelopmentChild)
 * insert Purpose(DevelopmentChild, 1.2, Observation)
 
+* insert NlCorePatientForObservation
 * note ..1
 * hasMember[toiletTrainednessUrine] ..1
 * hasMember[toiletTrainednessUrine] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-DevelopmentChild.ToiletTrainednessUrine)
