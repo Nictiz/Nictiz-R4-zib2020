@@ -5,6 +5,7 @@ Title: "nl core HeartRate.HeartbeatRegularity"
 * insert ProfileMetadata(nl-core-HeartRate.HeartbeatRegularity)
 * ^purpose = "This Observation resource represents the HeartbeatRegularity concept (NL-CM-12.3.5) of Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) HeartRate v3.4 (2020)](https://zibs.nl/wiki/HeartRate-v3.4(2020EN))."
 
+* subject only Reference(Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * value[x] ^binding.strength = #required
 * method ^binding.strength = #extensible
 

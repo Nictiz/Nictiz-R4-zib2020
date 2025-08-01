@@ -5,6 +5,10 @@ Title: "nl core GlasgowComaScale"
 * insert ProfileMetadata(nl-core-GlasgowComaScale)
 * insert Purpose(GlasgowComaScale, 3.2, Observation)
 
+* insert NlCorePatientForObservation
+* valueInteger
+  * ^minValueInteger = 3
+  * ^maxValueInteger = 15
 * note ..1
 * component[gcsEyes] ..1
 * component[gcsEyes].value[x] ^binding.strength = #required

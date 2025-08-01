@@ -5,9 +5,9 @@ Title: "nl core HearingFunction.HearingAid"
 * insert ProfileMetadata(nl-core-HearingFunction.HearingAid)
 * ^purpose = "This DeviceUseStatement resource represents the adaptations for [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) HearingFunction v3.2 (2020)](https://zibs.nl/wiki/HearingFunction-v3.2(2020EN)) of [zib MedicalDevice v3.3.1 (2020)](https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN))."
 
-* device only Reference(http://hl7.org/fhir/StructureDefinition/Device or http://nictiz.nl/fhir/StructureDefinition/nl-core-HearingFunction.HearingAid.Product)
+* insert NlCoreMedicalDeviceRestrictions
+* device only Reference(Device or http://nictiz.nl/fhir/StructureDefinition/nl-core-HearingFunction.HearingAid.Product)
 * reasonReference[stoma] ..0
-* bodySite ^binding.strength = #required
 
 // Short, alias, definition and comment texts
 * ^description = """
@@ -16,5 +16,9 @@ Title: "nl core HearingFunction.HearingAid"
     """
 * .
   * ^alias[+] = "nl-core-HearingFunction.HearingAid"
-  * ^comment = "This is a specialization of the [nl-core-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice) profile to represent HearingAid devices within the context of zib HearingFunction."
+  * ^comment = """
+      This is a specialization of the profile for zib MedicalDevice to represent HearingAid devices within the context of zib HearingFunction.
+      
+      Note: because of the way derivation works in FHIR, this profile is not based on the [nl-core-MedicalDevice](http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice) profile but derived from a specialization in the nl-base layer.
+      """
 * extension[location].value[x] ^comment = "Please note that this zib concept (Location::HealthcareProvider) is also mapped on the `Procedure.location` element in profile [nl-core-Procedure-event](http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event). The reason for this is that this zib concept aligns with the Location::HealthcareProvider concept in zib Procedure (NL-CM:14.1.5), but only for the situation that the Procedure is about placing the implant which is described using this instance of zib MedicalDevice. This is normally not the case in the context of hearing aids, so the mapping in nl-core-Procedure-event should be ignored in this situation."

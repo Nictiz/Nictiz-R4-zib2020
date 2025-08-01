@@ -47,7 +47,7 @@ Title: "nl base HeartRate"
     Several concepts of zib HeartRate are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:
     
     **Multiple profiles to represent the zib**
-    The HeartbeatRegularity concept (NL-CM:12.3.5) is represented using distinct Observation resources, using profile [nl-base-HeartRate.HeartbeatRegularity](http://nictiz.nl/fhir/StructureDefinition/nl-base-HeartRate.HeartbeatRegularity). It is referenced from this resource using `Observation.hasMember`.
+    The HeartbeatRegularity concept (NL-CM:12.3.5) is represented using a distinct Observation resource, using profile [nl-base-HeartRate.HeartbeatRegularity](http://nictiz.nl/fhir/StructureDefinition/nl-base-HeartRate.HeartbeatRegularity). It is referenced from this resource using `Observation.hasMember`.
     """
 * effectiveDateTime
   * ^short = "HeartRateDateTime"

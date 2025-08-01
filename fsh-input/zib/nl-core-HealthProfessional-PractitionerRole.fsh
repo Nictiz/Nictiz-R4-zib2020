@@ -9,6 +9,9 @@ Title: "nl core HealthProfessional PractitionerRole"
 * organization only Reference(http://hl7.org/fhir/StructureDefinition/Organization or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization)
 * specialty[specialty] ..1
 * specialty[specialty] ^binding.strength = #required
+* location only Reference(Location or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider)
+* telecom[telephoneNumbers] ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactInformation-TelephoneNumbers
+* telecom[emailAddresses] ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactInformation-EmailAddresses
 
 // Short, alias, definition and comment texts
 * ^description = "A health professional is a person who is authorized to perform actions in the field of individual healthcare."

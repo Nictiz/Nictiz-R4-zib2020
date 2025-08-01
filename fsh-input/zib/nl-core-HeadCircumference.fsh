@@ -5,6 +5,7 @@ Title: "nl core HeadCircumference"
 * insert ProfileMetadata(nl-core-HeadCircumference)
 * insert Purpose(HeadCircumference, 1.3, Observation)
 
+* subject only Reference(Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * note ..1
 * method ^binding.strength = #extensible
 

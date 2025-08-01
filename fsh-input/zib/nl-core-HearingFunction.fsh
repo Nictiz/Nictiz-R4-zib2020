@@ -5,6 +5,7 @@ Title: "nl core HearingFunction"
 * insert ProfileMetadata(nl-core-HearingFunction)
 * insert Purpose(HearingFunction, 3.2, Observation)
 
+* insert NlCorePatientForObservation
 * extension[hearingAid].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Resource or http://nictiz.nl/fhir/StructureDefinition/nl-core-HearingFunction.HearingAid)
 * valueCodeableConcept ^binding.strength = #required
 * note ..1

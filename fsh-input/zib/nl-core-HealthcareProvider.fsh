@@ -5,7 +5,11 @@ Title: "nl core HealthcareProvider"
 * insert ProfileMetadata(nl-core-HealthcareProvider)
 * insert Purpose(HealthcareProvider, 3.4, Location)
 
-* managingOrganization only Reference(http://hl7.org/fhir/StructureDefinition/Organization or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization)
+* telecom[telephoneNumbers] ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactInformation-TelephoneNumbers
+* telecom[emailAddresses] ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactInformation-EmailAddresses
+* address ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-AddressInformation
+* managingOrganization only Reference(Organization or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization)
+* partOf only Reference(Location or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider)
 
 // Short, alias, definition and comment texts
 * ^description = "A healthcare provider is an organization that offers and provides medical, paramedic and/or nursing care to patients/clients. Examples include: hospitals, nursing homes, doctor’s offices."

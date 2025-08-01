@@ -5,14 +5,9 @@ Title: "nl core MedicalDevice"
 * insert ProfileMetadata(nl-core-MedicalDevice)
 * insert Purpose(MedicalDevice, 3.3.1, DeviceUseStatement)
 
-* extension[treatmentObjective].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Goal or http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentObjective)
-* derivedFrom[procedure-request] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request)
-* derivedFrom[procedure-event] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event)
-* device only Reference(http://hl7.org/fhir/StructureDefinition/Device or http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice.Product)
-* reasonReference[indication] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
-* reasonReference[stoma] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Stoma)
-* bodySite ^binding.strength = #required
-* note ..1
+* insert NlCoreMedicalDeviceRestrictions
+* device only Reference(Device or http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice.Product)
+* bodySite ^type.targetProfile = http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation
 
 // Short, alias, definition and comment texts
 * ^description = "Medical devices are any internally implanted and external devices and/or aids used by the patient (in the past) to reduce the effects of functional limitations in organ systems or to facilitate the treatment of a disease."
@@ -28,3 +23,41 @@ Title: "nl core MedicalDevice"
     
     This extension may thus be used to represent the link zib TreatmentObjective -> zib FunctionalOrMentalStatus -> zib MedicalDevice. In this situation, it is expected that `DeviceUseStatement.status` is set to _intended_.
     """
+
+/* Zib MedicalDevice is sometimes "derived" (specialized) in other zibs, introducing some derivation problems regarding
+   nl-core. For example, zib HearingFunction derives zib MedicalDevice for the HearingAid concept, so the nl-base
+   profiles for HearingAid are based on the nl-base profiles of zib MedicalDevice. Since The nl-core profiles for
+   HearingAid are based on their nl-base profiles, there is no link with the nl-core profiles of zib-MedicalDevice.
+   This RuleSet contains all the restrictions between nl-base-MedicalDevice and nl-core-MedicalDevice, so it can easily
+   applied to the nl-core layer for MedicalDevice derived profiles.
+*/
+RuleSet: NlCoreMedicalDeviceRestrictions
+* extension[healthProfessional].value[x] ^comment = """
+    Each occurrence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [nl-core-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [nl-core-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner)). The Practitioner resource is referenced from the PractitionerRole instance. For this reason, sending systems should fill the reference to the PractitionerRole instance here, and not the Practitioner resource. Receiving systems can then retrieve the reference to the Practitioner resource from that PractitionerRole instance.
+
+    In rare circumstances, there is only a Practitioner instance, in which case it is that instance which will be referenced here. However, since this should be the exception, the nl-core-HealthProfessional-Practitioner profile is not explicitly mentioned as a target profile.
+    """
+* extension[healthProfessional].value[x] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
+* extension[location].value[x] ^comment = """
+    Please note that this zib concept (Location::HealthcareProvider) is also mapped on the `Procedure.location` element in profile [nl-core-Procedure-event](http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event). The reason for this is that this zib concept aligns with the Location::HealthcareProvider concept in zib Procedure (NL-CM:14.1.5), but only for the situation that the Procedure is about placing the implant which is described using this instance of zib MedicalDevice. This is normally not the case in the context of hearing aids, so the mapping in nl-core-Procedure-event should be ignored in this situation.
+    """
+* extension[location].value[x] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider)
+* extension[treatmentObjective].value[x] ^comment = """
+    Zib TreatmentObjective (represented by the Goal resource in FHIR) can use the data model of zib FunctionalOrMentalStatus to describe the desired treatment objective, which in turn may refer zib MedicalDevice to indicate the intent to use that device for reaching the treatment objective.
+    
+    In FHIR, the modeling deviates somewhat from this approach:
+    
+    * Both zib TreatmentObjective and the desired zib FunctionalOrMentalStatus are represented using the [nl-core-TreatmentObjective](http://nictiz.nl/fhir/nl-core-TreatmentObjective) profile on the Goal resource.
+    * The reference from TreatmentObjective to MedicalDevice (via FunctionalOrMentalStatus) is in the opposite direction, to the Goal resource.
+    
+    This extension may thus be used to represent the link zib TreatmentObjective -> zib FunctionalOrMentalStatus -> zib MedicalDevice. In this situation, it is expected that `DeviceUseStatement.status` is set to _intended_.
+    """
+* extension[treatmentObjective].value[x] only Reference(Goal or http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentObjective)
+* subject only Reference(Patient or Group or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
+* derivedFrom[procedure-request] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request)
+* derivedFrom[procedure-event] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event)
+* reasonReference[indication] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
+* reasonReference[stoma] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Stoma)
+* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation
+* bodySite ^binding.strength = #required
+* note ..1

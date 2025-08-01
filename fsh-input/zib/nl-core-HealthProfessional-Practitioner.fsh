@@ -5,8 +5,11 @@ Title: "nl core HealthProfessional Practitioner"
 * insert ProfileMetadata(nl-core-HealthProfessional-Practitioner)
 * insert Purpose(HealthProfessional, 3.5, Practitioner)
 
-* name[nameInformation] ..2
-* gender from http://hl7.org/fhir/ValueSet/administrative-gender|4.0.1 (required)
+* name[nameInformation] ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-NameInformation
+* name[nameInformation-GivenName] ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-NameInformation.GivenName
+* telecom[telephoneNumbers] ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactInformation-TelephoneNumbers
+* telecom[emailAddresses] ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactInformation-EmailAddresses
+* address ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-AddressInformation
 * gender.extension[genderCodelist].value[x] ^binding.strength = #required
 
 // Short, alias, definition and comment texts

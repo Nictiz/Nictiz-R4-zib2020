@@ -5,6 +5,7 @@ Title: "nl core HeartRate"
 * insert ProfileMetadata(nl-core-HeartRate)
 * insert Purpose(HeartRate, 3.4, Observation)
 
+* subject only Reference(Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * interpretation[interpretationHeartRate] ..1
 * interpretation[interpretationHeartRate] ^binding.strength = #required
 * note ..1
@@ -38,5 +39,5 @@ Title: "nl core HeartRate"
     Several concepts of zib HeartRate are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:
     
     **Multiple profiles to represent the zib**
-    The HeartbeatRegularity concept (NL-CM:12.3.5) is represented using distinct Observation resources, using profile [nl-core-HeartRate.HeartbeatRegularity](http://nictiz.nl/fhir/StructureDefinition/nl-core-HeartRate.HeartbeatRegularity). It is referenced from this resource using `Observation.hasMember`.
+    The HeartbeatRegularity concept (NL-CM:12.3.5) is represented using a distinct Observation resource, using profile [nl-core-HeartRate.HeartbeatRegularity](http://nictiz.nl/fhir/StructureDefinition/nl-core-HeartRate.HeartbeatRegularity). It is referenced from this resource using `Observation.hasMember`.
     """
