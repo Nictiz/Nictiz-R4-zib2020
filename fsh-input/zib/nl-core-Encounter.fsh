@@ -5,7 +5,7 @@ Title: "nl core Encounter"
 * insert ProfileMetadata(nl-core-Encounter)
 * insert Purpose(Encounter, 4.0.1, Encounter)
 
-* class from http://terminology.hl7.org/ValueSet/v3-ActEncounterCode (extensible)
+* subject only Reference(Patient or Group or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * participant[healthProfessional].type ..1
 * participant[healthProfessional].type ^binding.strength = #extensible
 * participant[healthProfessional].individual only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)

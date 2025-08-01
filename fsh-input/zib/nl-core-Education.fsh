@@ -5,6 +5,7 @@ Title: "nl core Education"
 * insert ProfileMetadata(nl-core-Education)
 * insert Purpose(Education, 3.2, Observation)
 
+* insert NlCorePatientForObservation
 * valueCodeableConcept ^binding.strength = #extensible
 * note ..1
 
