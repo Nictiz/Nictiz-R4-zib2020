@@ -5,7 +5,7 @@ Title: "nl base NameInformation.GivenName"
 * insert ProfileMetadata(nl-base-NameInformation.GivenName)
 * ^purpose = "This HumanName datatype represents the GivenName concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) NameInformation v1.1 (2020)](https://zibs.nl/wiki/NameInformation-v1.1(2020EN)).
 
-For the entire zib, the complementary profile [zib-NameInformation](http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation) should be used. Both profiles can be added in a slice with the discriminator set to `value`/`use`."
+For the entire zib, the complementary profile [nl-base-NameInformation](http://nictiz.nl/fhir/StructureDefinition/nl-base-NameInformation) should be used. Both profiles can be added in a slice with the discriminator set to `value`/`use`."
 
 
 // Short, alias, definition and comment texts

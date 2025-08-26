@@ -25,7 +25,7 @@ Title: "nl base Procedure event"
 
 // Short, alias, definition and comment texts
 * ^description = """
-    Therapeutic or diagnostic procedure undergone by the patient (the complementary profile [zib-Procedure-request](http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-request) can be used for therapeutic or diagnostic procedures that the patient will undergo). A procedure can be a simple blood pressure measurement, but also a complex heart surgery.
+    Therapeutic or diagnostic procedure undergone by the patient (the complementary profile [nl-base-Procedure-request](http://nictiz.nl/fhir/StructureDefinition/nl-base-Procedure-request) can be used for therapeutic or diagnostic procedures that the patient will undergo). A procedure can be a simple blood pressure measurement, but also a complex heart surgery.
     In some care settings, the term treatment is used instead of the term procedure.
     """
 * .

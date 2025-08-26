@@ -5,7 +5,7 @@ Title: "nl base NameInformation"
 * insert ProfileMetadata(nl-base-NameInformation)
 * ^purpose = "This HumanName datatype represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) NameInformation v1.1 (2020)](https://zibs.nl/wiki/NameInformation-v1.1(2020EN)), except for the GivenName concept.
 
-For the entire zib, the complementary profile [zib-NameInformation.GivenName](http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation.GivenName) should be used. Both profiles can be added in a slice with the discriminator set to `value`/`use`."
+For the entire zib, the complementary profile [nl-base-NameInformation.GivenName](http://nictiz.nl/fhir/StructureDefinition/nl-base-NameInformation.GivenName) should be used. Both profiles can be added in a slice with the discriminator set to `value`/`use`."
 
 * . obeys zib-NameInformation-1 and zib-NameInformation-2
 * extension contains

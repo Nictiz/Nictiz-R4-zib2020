@@ -145,7 +145,7 @@ Title: "nl base Patient"
 * contact.extension[contactPerson].value[x]
   * ^short = "Contact"
   * ^alias[+] = "Contactpersoon"
-  * ^definition = "Reference to a [zib-ContactPerson](http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson) instance containing the full details for the current contact."
+  * ^definition = "Reference to a [nl-base-ContactPerson](http://nictiz.nl/fhir/StructureDefinition/nl-base-ContactPerson) instance containing the full details for the current contact."
 * contact.relationship[role]
   * ^short = "Role"
   * ^alias[+] = "Rol"

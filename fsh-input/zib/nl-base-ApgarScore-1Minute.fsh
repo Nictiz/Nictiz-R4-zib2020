@@ -37,7 +37,7 @@ Title: "nl base ApgarScore 1Minute"
 * ^description = """
     The Apgar score represents the overall clinical status of a newborn child. This is evaluated one, five and ten minutes after birth based on 5 parameters: Appearance, Pulse, Grimace, Activity, Respiration. If the score measured at 5 minutes is < 8, the Apgar score is measured again at 10, 15, 20 minutes etc. until the score = 8.
     
-    The zib explicitly defines the Apgar score at 1, 5 and 10 minutes after birth. This profile represents the Apgar score at 1 minute after birth. Profiles have also been defined for the Apgar score [at 5 minutes](http://nictiz.nl/fhir/StructureDefinition/zib-ApgarScore-5Minute) and [at 10 minutes](http://nictiz.nl/fhir/StructureDefinition/zib-ApgarScore-10Minute) after birth.
+    The zib explicitly defines the Apgar score at 1, 5 and 10 minutes after birth. This profile represents the Apgar score at 1 minute after birth. Profiles have also been defined for the Apgar score [at 5 minutes](http://nictiz.nl/fhir/StructureDefinition/nl-base-ApgarScore-5Minute) and [at 10 minutes](http://nictiz.nl/fhir/StructureDefinition/nl-base-ApgarScore-10Minute) after birth.
     """
 * .
   * ^short = "ApgarScore"

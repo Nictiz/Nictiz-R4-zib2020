@@ -5,7 +5,7 @@ Title: "nl base ContactInformation EmailAddresses"
 * insert ProfileMetadata(nl-base-ContactInformation-EmailAddresses)
 * ^purpose = "This ContactPoint resource represents the EmailAddresses concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) ContactInformation v1.2 (2020)](https://zibs.nl/wiki/ContactInformation-v1.2(2020EN)).
 
-To implement the entire zib, the complementary profile [zib-ContactInformation-TelephoneNumbers](http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelephoneNumbers) should be used. Both profiles can be added in a slice with the discriminator set to `profile`/`$this`."
+To implement the entire zib, the complementary profile [nl-base-ContactInformation-TelephoneNumbers](http://nictiz.nl/fhir/StructureDefinition/nl-base-ContactInformation-TelephoneNumbers) should be used. Both profiles can be added in a slice with the discriminator set to `profile`/`$this`."
 
 * use from http://nictiz.nl/fhir/ValueSet/ContactInformation-EmailAddressesUse (required)
 * use insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/EmailSoortCodelijst-to-ContactInformation-EmailAddressesUse, EmailSoortCodelijst-to-ContactInformation-EmailAddressesUse, ContactInformation-EmailAddressesUse)

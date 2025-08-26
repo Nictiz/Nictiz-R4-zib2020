@@ -5,7 +5,7 @@ Title: "nl base ContactInformation TelephoneNumbers"
 * insert ProfileMetadata(nl-base-ContactInformation-TelephoneNumbers)
 * ^purpose = "This ContactPoint resource represents the TelephoneNumbers concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) ContactInformation v1.2 (2020)](https://zibs.nl/wiki/ContactInformation-v1.2(2020EN)).
 
-For the entire zib, the complementary profile [zib-ContactInformation-EmailAddresses](http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-EmailAddresses) should be used. Both profiles can be added in a slice with the discriminator set to `profile`/`$this`."
+For the entire zib, the complementary profile [nl-base-ContactInformation-EmailAddresses](http://nictiz.nl/fhir/StructureDefinition/nl-base-ContactInformation-EmailAddresses) should be used. Both profiles can be added in a slice with the discriminator set to `profile`/`$this`."
 
 * extension contains
     http://nictiz.nl/fhir/StructureDefinition/ext-Comment named comment 0..1
