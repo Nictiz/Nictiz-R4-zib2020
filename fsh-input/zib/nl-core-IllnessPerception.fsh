@@ -5,6 +5,8 @@ Title: "nl core IllnessPerception"
 * insert ProfileMetadata(nl-core-IllnessPerception)
 * insert Purpose(IllnessPerception, 3.1, Observation)
 
+* insert NlCorePatientForObservation
+
 * hasMember[patientIllnessInsight] ..1
 * hasMember[patientIllnessInsight] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-IllnessPerception.PatientIllnessInsight)
 * hasMember[copingWithIllnessByPatient] ..1

@@ -7,6 +7,7 @@ Title: "nl core HelpFromOthers"
 
 * category 1..
 * category[helpFromOthersCode] 1..1
+* subject only Reference(Patient or Group or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * activity ..1
 * activity.detail.code ^binding.strength = #extensible
 * activity.detail.performer ..1

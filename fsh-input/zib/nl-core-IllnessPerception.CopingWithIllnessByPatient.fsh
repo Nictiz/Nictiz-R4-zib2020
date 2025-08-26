@@ -5,6 +5,7 @@ Title: "nl core IllnessPerception.CopingWithIllnessByPatient"
 * insert ProfileMetadata(nl-core-IllnessPerception.CopingWithIllnessByPatient)
 * ^purpose = "This Observation resource represents the CopingWithIllnessByPatient concept of (NL-CM:18.5.4) Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) IllnessPerception v3.1 (2020)](https://zibs.nl/wiki/IllnessPerception-v3.1(2020EN))."
 
+* insert NlCorePatientForObservation
 
 // Short, alias, definition and comment texts
 * ^description = "The description of how the patient deals with their illness or health problem."
