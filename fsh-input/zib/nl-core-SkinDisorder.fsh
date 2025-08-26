@@ -6,7 +6,7 @@ Title: "nl core SkinDisorder"
 * insert Purpose(SkinDisorder, 3.3, Observation)
 
 * extension[cause] ..1
-* extension[cause].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Condition or http://hl7.org/fhir/StructureDefinition/Procedure or http://hl7.org/fhir/StructureDefinition/MedicationAdministration or http://hl7.org/fhir/StructureDefinition/Immunization or http://hl7.org/fhir/StructureDefinition/MedicationStatement or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
+* extension[cause].value[x] only Reference(Condition or Procedure or MedicationAdministration or MedicationAdministration or Immunization or MedicationStatement or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
 * category 1..
 * category[skinDisorderCode] 1..1
 * code ^binding.strength = #extensible

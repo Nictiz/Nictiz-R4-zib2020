@@ -5,11 +5,11 @@ Title: "nl core Procedure event"
 * insert ProfileMetadata(nl-core-Procedure-event)
 * insert Purpose(Procedure, 5.2, Procedure)
 
-* basedOn only Reference(http://hl7.org/fhir/StructureDefinition/CarePlan or http://hl7.org/fhir/StructureDefinition/ServiceRequest or http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request)
+* basedOn only Reference(CarePlan or ServiceRequest or http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request)
 * code ^binding.strength = #required
-* performer.actor only Reference(http://hl7.org/fhir/StructureDefinition/Practitioner or http://hl7.org/fhir/StructureDefinition/PractitionerRole or http://hl7.org/fhir/StructureDefinition/Organization or http://hl7.org/fhir/StructureDefinition/Patient or http://hl7.org/fhir/StructureDefinition/RelatedPerson or http://hl7.org/fhir/StructureDefinition/Device or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
-* location only Reference(http://hl7.org/fhir/StructureDefinition/Location or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider)
-* reasonReference only Reference(http://hl7.org/fhir/StructureDefinition/Condition or http://hl7.org/fhir/StructureDefinition/Observation or http://hl7.org/fhir/StructureDefinition/Procedure or http://hl7.org/fhir/StructureDefinition/DiagnosticReport or http://hl7.org/fhir/StructureDefinition/DocumentReference or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
+* performer.actor only Reference(Practitioner or PractitionerRole or Organization or Patient or RelatedPerson or Device or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
+* location only Reference(Location or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider)
+* reasonReference only Reference(Condition or Observation or Procedure or DiagnosticReport or DocumentReference or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
 * bodySite ..1
 * bodySite ^binding.strength = #required
 * report[textResult] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-TextResult)

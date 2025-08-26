@@ -5,7 +5,7 @@ Title: "nl core VisualFunction"
 * insert ProfileMetadata(nl-core-VisualFunction)
 * insert Purpose(VisualFunction, 3.1, Observation)
 
-* extension[visualAid].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Resource or http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualFunction.VisualAid)
+* extension[visualAid].value[x] only Reference(Resource or http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualFunction.VisualAid)
 * note ..1
 
 // Short, alias, definition and comment texts

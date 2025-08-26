@@ -12,7 +12,7 @@ Title: "nl core Patient"
 * gender.extension[genderCodelist].value[x] ^binding.strength = #required
 * maritalStatus ^binding.strength = #required
 * contact.extension[contactPerson] ..1
-* contact.extension[contactPerson].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/RelatedPerson or http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson)
+* contact.extension[contactPerson].value[x] only Reference(RelatedPerson or http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson)
 * contact.relationship[role] ^binding.strength = #required
 * contact.relationship[relationship] ^binding.strength = #required
 * communication.extension[languageControl].extension 2..

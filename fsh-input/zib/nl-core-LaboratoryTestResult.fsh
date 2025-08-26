@@ -8,7 +8,7 @@ Title: "nl core LaboratoryTestResult"
 * extension contains
     http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber named edifactReferenceNumber 0..1 and
     http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator named copyIndicator 0..1
-* extension[sequelTo].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Observation or http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult)
+* extension[sequelTo].value[x] only Reference(Observation or http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult)
 * category 1..
 * category[laboratoryCategory] 1..1
 * category[resultType] ..1
@@ -23,7 +23,7 @@ Title: "nl core LaboratoryTestResult"
 * interpretation[resultInterpretation].coding ..0
 * note ..1
 * method ^binding.strength = #required
-* specimen only Reference(http://hl7.org/fhir/StructureDefinition/Specimen or http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen)
+* specimen only Reference(Specimen or http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen)
 * hasMember[laboratoryTest] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult)
 
 // Short, alias, definition and comment texts

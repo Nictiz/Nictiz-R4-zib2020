@@ -10,7 +10,8 @@ Title: "nl core MedicationContraIndication"
 * category 1..
 * category[medicationContraIndicationCode] 1..1
 * code ^binding.strength = #required
-* author only Reference(http://hl7.org/fhir/StructureDefinition/Device or http://hl7.org/fhir/StructureDefinition/Organization or http://hl7.org/fhir/StructureDefinition/Patient or http://hl7.org/fhir/StructureDefinition/Practitioner or http://hl7.org/fhir/StructureDefinition/PractitionerRole or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
+* subject only Reference(Patient or Location or Group or Organization or Practitioner or PlanDefinition or Medication or Procedure or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
+* author only Reference(Device or Organization or Patient or Practitioner or PractitionerRole or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
 
 // Short, alias, definition and comment texts
 * ^description = "A contraindication (CI) for medication safety is a condition or characteristic of a patient where healthcare professionals are not allowed to subscribe certain medicines, or only under certain conditions."

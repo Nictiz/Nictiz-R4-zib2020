@@ -7,7 +7,7 @@ Title: "nl core BowelFunction"
 
 * extension[stoma] ..1
 * extension[stoma].value[x] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Stoma)
-* extension[incontinenceMaterial].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Resource or http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice)
+* extension[incontinenceMaterial].value[x] only Reference(Resource or http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice)
 * insert NlCorePatientForObservation
 * note ..1
 * hasMember[fecalContinence] ..1

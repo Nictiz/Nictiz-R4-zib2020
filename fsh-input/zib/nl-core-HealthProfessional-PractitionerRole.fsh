@@ -5,8 +5,8 @@ Title: "nl core HealthProfessional PractitionerRole"
 * insert ProfileMetadata(nl-core-HealthProfessional-PractitionerRole)
 * insert Purpose(HealthProfessional, 3.5, PractitionerRole)
 
-* practitioner only Reference(http://hl7.org/fhir/StructureDefinition/Practitioner or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner)
-* organization only Reference(http://hl7.org/fhir/StructureDefinition/Organization or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization)
+* practitioner only Reference(Practitioner or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner)
+* organization only Reference(Organization or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization)
 * specialty[specialty] ..1
 * specialty[specialty] ^binding.strength = #required
 * location only Reference(Location or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider)

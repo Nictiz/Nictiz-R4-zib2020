@@ -17,7 +17,7 @@ Title: "nl core Encounter"
 * hospitalization.admitSource ^binding.strength = #extensible
 * hospitalization.dischargeDisposition ^binding.strength = #extensible
 * location ..1
-* location.location only Reference(http://hl7.org/fhir/StructureDefinition/Location or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider)
+* location.location only Reference(Location or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider)
 
 // Short, alias, definition and comment texts
 * ^description = """

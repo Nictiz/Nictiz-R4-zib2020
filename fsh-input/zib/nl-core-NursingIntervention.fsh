@@ -12,11 +12,11 @@ Title: "nl core NursingIntervention"
 * contributor[requester].extension 1..
 * contributor[requester].extension[contributorIsRequester] 1..1
 * addresses ..1
-* addresses only Reference(http://hl7.org/fhir/StructureDefinition/Condition or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
+* addresses only Reference(Condition or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
 * goal ..1
-* goal only Reference(http://hl7.org/fhir/StructureDefinition/Goal or http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentObjective)
+* goal only Reference(Goal or http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentObjective)
 * activity ..1
-* activity.detail.extension[medicalDevice].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/DeviceUseStatement or http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice)
+* activity.detail.extension[medicalDevice].value[x] only Reference(DeviceUseStatement or http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice)
 * activity.detail.code ^binding.strength = #required
 * activity.detail.performer ..1
 * activity.detail.performer[healthcareProvider] ..1

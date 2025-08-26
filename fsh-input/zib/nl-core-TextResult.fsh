@@ -9,7 +9,7 @@ Title: "nl core TextResult"
 * status.extension[textResultStatus] ..1
 * status.extension[textResultStatus].value[x] ^binding.strength = #extensible
 * code ^binding.strength = #extensible
-* media.link only Reference(http://hl7.org/fhir/StructureDefinition/Media or http://nictiz.nl/fhir/StructureDefinition/nl-core-TextResult.VisualResult)
+* media.link only Reference(Media or http://nictiz.nl/fhir/StructureDefinition/nl-core-TextResult.VisualResult)
 
 // Short, alias, definition and comment texts
 * ^description = "Textual results describe the findings and interpretation of diagnostic or therapeutic procedures carried out on patients or on specimens from the patient."

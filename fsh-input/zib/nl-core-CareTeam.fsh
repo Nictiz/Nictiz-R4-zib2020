@@ -17,7 +17,7 @@ Title: "nl core CareTeam"
 * participant[healthcareProfessional].member 1..
 * participant[healthcareProfessional].member only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
 * participant[healthcareProfessional].onBehalfOf only Reference(Organization or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization)
-* reasonReference only Reference(http://hl7.org/fhir/StructureDefinition/Condition or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
+* reasonReference only Reference(Condition or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
 
 // Short, alias, definition and comment texts
 * ^description = "A care team is a group of health professionals and other people involved in caring for a patient for one or more problems."

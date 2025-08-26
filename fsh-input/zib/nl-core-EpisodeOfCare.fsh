@@ -7,7 +7,7 @@ Title: "nl core EpisodeOfCare"
 
 * extension[comment] ..1
 * diagnosis ..1
-* diagnosis.condition only Reference(http://hl7.org/fhir/StructureDefinition/Condition or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
+* diagnosis.condition only Reference(Condition or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
 * patient only Reference(Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 
 // Short, alias, definition and comment texts

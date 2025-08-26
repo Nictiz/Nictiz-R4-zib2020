@@ -6,7 +6,7 @@ Title: "nl core NutritionAdvice"
 * insert Purpose(NutritionAdvice, 3.2, NutritionOrder)
 
 * extension[indication] ..1
-* extension[indication].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Condition or http://hl7.org/fhir/StructureDefinition/DiagnosticReport or http://hl7.org/fhir/StructureDefinition/DocumentReference or http://hl7.org/fhir/StructureDefinition/Observation or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
+* extension[indication].value[x] only Reference(Condition or DiagnosticReport or DocumentReference or Observation or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
 * oralDiet.texture.modifier.coding.display 1..
 * oralDiet.fluidConsistencyType.coding.display 1..
 * note ..1

@@ -9,9 +9,9 @@ Title: "nl core TreatmentDirective2"
 * extension[comment] ..1
 * modifierExtension[specificationOther] ..1
 * category[treatmentDirectiveCode] 1..1
-* sourceReference only Reference(http://hl7.org/fhir/StructureDefinition/Consent or http://hl7.org/fhir/StructureDefinition/DocumentReference or http://hl7.org/fhir/StructureDefinition/Contract or http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse or http://nictiz.nl/fhir/StructureDefinition/nl-core-AdvanceDirective)
+* sourceReference only Reference(Consent or DocumentReference or Contract or QuestionnaireResponse or http://nictiz.nl/fhir/StructureDefinition/nl-core-AdvanceDirective)
 * provision.type from http://hl7.org/fhir/ValueSet/consent-provision-type|4.0.1 (required)
-* provision.actor[agreementParty].reference only Reference(http://hl7.org/fhir/StructureDefinition/Device or http://hl7.org/fhir/StructureDefinition/Group or http://hl7.org/fhir/StructureDefinition/CareTeam or http://hl7.org/fhir/StructureDefinition/Organization or http://hl7.org/fhir/StructureDefinition/Patient or http://hl7.org/fhir/StructureDefinition/Practitioner or http://hl7.org/fhir/StructureDefinition/RelatedPerson or http://hl7.org/fhir/StructureDefinition/PractitionerRole or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
+* provision.actor[agreementParty].reference only Reference(Device or Group or CareTeam or Organization or Patient or Practitioner or RelatedPerson or PractitionerRole or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
 * provision.code ..1
 * provision.code ^binding.strength = #required
 

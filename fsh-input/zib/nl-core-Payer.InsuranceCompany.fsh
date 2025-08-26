@@ -7,7 +7,7 @@ Title: "nl core Payer.InsuranceCompany"
 
 * type ^binding.strength = #required
 * payor ..1
-* payor only Reference(http://hl7.org/fhir/StructureDefinition/Organization or http://hl7.org/fhir/StructureDefinition/Patient or http://hl7.org/fhir/StructureDefinition/RelatedPerson or http://nictiz.nl/fhir/StructureDefinition/nl-core-Payer-Organization)
+* payor only Reference(Organization or Patient or RelatedPerson or http://nictiz.nl/fhir/StructureDefinition/nl-core-Payer-Organization)
 
 // Short, alias, definition and comment texts
 * ^description = "Payers are organizations or individuals that pay for the healthcare supplied to the patient. These organizations or individuals can be: facilities or people who financially guarantee or who are responsible for the patient (such as parents or guardians of minors), organizations with direct financial responsibility, combinations of these or the patient themselves."

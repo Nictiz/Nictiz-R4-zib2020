@@ -5,7 +5,7 @@ Title: "nl core VisualAcuity"
 * insert ProfileMetadata(nl-core-VisualAcuity)
 * insert Purpose(VisualAcuity, 1.0, Observation)
 
-* device only Reference(http://hl7.org/fhir/StructureDefinition/Device or http://hl7.org/fhir/StructureDefinition/DeviceMetric or http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualAcuity.VisualAcuityMeasurementDevice)
+* device only Reference(Device or DeviceMetric or http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualAcuity.VisualAcuityMeasurementDevice)
 * component[visualAcuityType] ..1
 * component[visualAcuityType].value[x] ^binding.strength = #extensible
 * component[visualAcuityMeasurementChart] ..1

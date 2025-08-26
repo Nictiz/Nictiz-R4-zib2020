@@ -8,7 +8,7 @@ Title: "nl core TreatmentObjective"
 * target.measure ^binding.strength = #required
 * target.detailCodeableConcept ^binding.strength = #required
 * addresses ..1
-* addresses only Reference(http://hl7.org/fhir/StructureDefinition/Condition or http://hl7.org/fhir/StructureDefinition/Observation or http://hl7.org/fhir/StructureDefinition/MedicationStatement or http://hl7.org/fhir/StructureDefinition/NutritionOrder or http://hl7.org/fhir/StructureDefinition/ServiceRequest or http://hl7.org/fhir/StructureDefinition/RiskAssessment or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
+* addresses only Reference(Condition or Observation or MedicationStatement or NutritionOrder or ServiceRequest or RiskAssessment or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
 * note ..1
 
 // Short, alias, definition and comment texts

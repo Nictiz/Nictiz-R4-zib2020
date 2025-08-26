@@ -8,7 +8,7 @@ Title: "nl core Vaccination event"
 * vaccineCode ^binding.strength = #required
 * performer[administrator] ..1
 * performer[administrator].function 1..
-* performer[administrator].actor only Reference(http://hl7.org/fhir/StructureDefinition/Practitioner or http://hl7.org/fhir/StructureDefinition/PractitionerRole or http://hl7.org/fhir/StructureDefinition/Organization or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
+* performer[administrator].actor only Reference(Practitioner or PractitionerRole or Organization or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
 * note ..1
 
 // Short, alias, definition and comment texts
