@@ -5,6 +5,7 @@ Title: "nl core Mobility.ChangingPosition"
 * insert ProfileMetadata(nl-core-Mobility.ChangingPosition)
 * ^purpose = "This Observation resource represents the ChangingPosition concept (NL_CM:4.3.8) of Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Mobility v3.3 (2020)](https://zibs.nl/wiki/Mobility-v3.3(2020EN))."
 
+* insert NlCorePatientForObservation
 * value[x] ^binding.strength = #required
 
 // Short, alias, definition and comment texts

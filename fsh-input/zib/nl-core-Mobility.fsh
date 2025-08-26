@@ -5,7 +5,8 @@ Title: "nl core Mobility"
 * insert ProfileMetadata(nl-core-Mobility)
 * insert Purpose(Mobility, 3.3, Observation)
 
-* extension[medicalDevice].value[x] only Reference(http://hl7.org/fhir/StructureDefinition/Resource or http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice)
+* extension[medicalDevice].value[x] only Reference(Resource or http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice)
+* insert NlCorePatientForObservation
 * note ..1
 * hasMember[walking] ..1
 * hasMember[walking] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility.Walking)

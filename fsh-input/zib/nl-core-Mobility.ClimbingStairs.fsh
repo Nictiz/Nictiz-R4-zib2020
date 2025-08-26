@@ -5,6 +5,7 @@ Title: "nl core Mobility.ClimbingStairs"
 * insert ProfileMetadata(nl-core-Mobility.ClimbingStairs)
 * ^purpose = "This Observation resource represents the ClimbingStairs concept (NL-CM:4.3.18) of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Mobility v3.3 (2020)](https://zibs.nl/wiki/Mobility-v3.3(2020EN))."
 
+* insert NlCorePatientForObservation
 * value[x] ^binding.strength = #required
 
 // Short, alias, definition and comment texts

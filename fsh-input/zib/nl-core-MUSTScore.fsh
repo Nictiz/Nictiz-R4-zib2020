@@ -6,6 +6,10 @@ Title: "nl core MUSTScore"
 * insert Purpose(MUSTScore, 3.1, Observation)
 
 * . obeys zib-MUSTScore-1 and zib-MUSTScore-2
+* insert NlCorePatientForObservation
+* valueInteger
+  * ^minValueInteger = 0
+  * ^maxValueInteger = 6
 * note ..1
 * component[bmiScore] ..1
 * component[bmiScore].value[x] ^binding.strength = #required
