@@ -5,6 +5,7 @@ Title: "nl core LivingSituation.HomeAdaption"
 * insert ProfileMetadata(nl-core-LivingSituation.HomeAdaption)
 * ^purpose = "This Observation resource represents the HomeAdaption concept (NL-CM:7.8.5) of Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) LivingSituation v3.3 (2020)](https://zibs.nl/wiki/LivingSituation-v3.3(2020EN))."
 
+* insert NlCorePatientForObservation
 * valueCodeableConcept ^binding.strength = #extensible
 
 // Short, alias, definition and comment texts

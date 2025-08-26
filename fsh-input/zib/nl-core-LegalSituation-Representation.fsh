@@ -9,6 +9,7 @@ Title: "nl core LegalSituation Representation"
 * category[representationCode] 1..1
 * code 1..
 * code ^binding.strength = #required
+* insert NlCorePatientForCondition
 
 // Short, alias, definition and comment texts
 * ^description = """

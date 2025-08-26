@@ -5,6 +5,7 @@ Title: "nl core LivingSituation"
 * insert ProfileMetadata(nl-core-LivingSituation)
 * insert Purpose(LivingSituation, 3.3, Observation)
 
+* insert NlCorePatientForObservation
 * note ..1
 * hasMember[houseType] ..1
 * hasMember[houseType] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-LivingSituation.HouseType)

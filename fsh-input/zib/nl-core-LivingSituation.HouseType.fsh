@@ -5,6 +5,7 @@ Title: "nl core LivingSituation.HouseType"
 * insert ProfileMetadata(nl-core-LivingSituation.HouseType)
 * ^purpose = "This Observation resource represents the HouseType concept (NL-CM:7.8.3) of Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) LivingSituation v3.3 (2020)](https://zibs.nl/wiki/LivingSituation-v3.3(2020EN))."
 
+* insert NlCorePatientForObservation
 * valueCodeableConcept ^binding.strength = #required
 
 // Short, alias, definition and comment texts

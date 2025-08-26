@@ -5,6 +5,7 @@ Title: "nl core LifeStance"
 * insert ProfileMetadata(nl-core-LifeStance)
 * insert Purpose(LifeStance, 3.2, Observation)
 
+* insert NlCorePatientForObservation
 * valueCodeableConcept ^binding.strength = #extensible
 * note ..1
 
