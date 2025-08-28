@@ -5,6 +5,12 @@ Title: "nl core VisualAcuity"
 * insert ProfileMetadata(nl-core-VisualAcuity)
 * insert Purpose(VisualAcuity, 1.0, Observation)
 
+* insert NlCorePatientForObservation
+* valueQuantity
+  * ^minValueQuantity = 0 '1'
+  * ^maxValueQuantity = 2 '1'
+* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation
+* bodySite.extension[laterality].value[x] ^binding.strength = #required
 * device only Reference(Device or DeviceMetric or http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualAcuity.VisualAcuityMeasurementDevice)
 * component[visualAcuityType] ..1
 * component[visualAcuityType].value[x] ^binding.strength = #extensible

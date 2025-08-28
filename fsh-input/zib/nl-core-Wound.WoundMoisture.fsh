@@ -5,6 +5,7 @@ Title: "nl core Wound.WoundMoisture"
 * insert ProfileMetadata(nl-core-Wound.WoundMoisture)
 * ^purpose = "This Observation resource represents the WoundMoisture concept (NL-CM:19.2.6) of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Wound v3.3 (2020)](https://zibs.nl/wiki/Wound-v3.3(2020EN))."
 
+* insert NlCorePatientForObservation
 * value[x] ^binding.strength = #required
 
 // Short, alias, definition and comment texts

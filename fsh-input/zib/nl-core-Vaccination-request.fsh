@@ -5,6 +5,7 @@ Title: "nl core Vaccination request"
 * insert ProfileMetadata(nl-core-Vaccination-request)
 * insert Purpose(Vaccination, 4.0, ImmunizationRecommendation)
 
+* patient only Reference(Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * recommendation ..1
 * recommendation.vaccineCode ..1
 * recommendation.vaccineCode ^binding.strength = #required

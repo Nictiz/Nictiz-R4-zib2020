@@ -5,6 +5,7 @@ Title: "nl core Wound.WoundInfection"
 * insert ProfileMetadata(nl-core-Wound.WoundInfection)
 * ^purpose = "This Observation resource represents the WoundInfection concept (NL-CM:19.2.7) of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Wound v3.3 (2020)](https://zibs.nl/wiki/Wound-v3.3(2020EN))."
 
+* insert NlCorePatientForObservation
 
 // Short, alias, definition and comment texts
 * ^description = "Indication stating whether the wound is infected."

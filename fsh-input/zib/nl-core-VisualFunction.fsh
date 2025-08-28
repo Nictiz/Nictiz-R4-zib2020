@@ -6,6 +6,7 @@ Title: "nl core VisualFunction"
 * insert Purpose(VisualFunction, 3.1, Observation)
 
 * extension[visualAid].value[x] only Reference(Resource or http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualFunction.VisualAid)
+* insert NlCorePatientForObservation
 * note ..1
 
 // Short, alias, definition and comment texts

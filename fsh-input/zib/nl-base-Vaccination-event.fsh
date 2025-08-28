@@ -8,7 +8,7 @@ Title: "nl base Vaccination event"
 * vaccineCode from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.17--20200901000000 (preferred)
 * occurrence[x] insert Discriminator(type, $this)
 * occurrenceDateTime only dateTime
-* doseQuantity = http://unitsofmeasure.org#None
+* doseQuantity ^patternQuantity.system = "http://unitsofmeasure.org"
 * performer insert Discriminator(value, function)
 * performer contains
     administrator 0..1

@@ -5,6 +5,7 @@ Title: "nl core wounds.WoundCharacteristics"
 * insert ProfileMetadata(nl-core-wounds.WoundCharacteristics)
 * ^purpose = "This Observation profile groups multiple observable properties of wounds that are used in the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Burnwound v3.4 (2020)](https://zibs.nl/wiki/Burnwound-v3.4(2020EN)), the Dutch [zib PressureUlcer v3.4 (2020)](https://zibs.nl/wiki/PressureUlcer-v3.4(2020EN)) and the Dutch [zib Wound v3.3 (2020)](https://zibs.nl/wiki/Wound-v3.3(2020EN))."
 
+* insert NlCorePatientForObservation
 * hasMember[dateOfLastDressingChange] ..1
 * hasMember[dateOfLastDressingChange] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-wounds.DateOfLastDressingChange)
 * hasMember[woundLength] ..1

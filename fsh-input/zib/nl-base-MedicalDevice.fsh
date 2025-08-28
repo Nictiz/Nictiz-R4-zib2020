@@ -127,6 +127,7 @@ Id: zib-treatmentobjective-v3.2-2020EN
 Title: "zib TreatmentObjective-v3.2(2020EN)"
 Source: NlbaseMedicalDevice
 Target: "https://zibs.nl/wiki/TreatmentObjective-v3.2(2020EN)"
+* extension[treatmentObjective].value[x] -> "NL-CM:4.26.5" "Reversed reference for zib FunctionalOrMentalStatus.MedicalDevice, when using zib FunctionalOrMentalStatus in the context of zib TreatmentObjective"
 
 Mapping: NlbaseMedicalDevice-to-zib-functionalormentalstatus-v3.2-2020EN
 Id: zib-functionalormentalstatus-v3.2-2020EN

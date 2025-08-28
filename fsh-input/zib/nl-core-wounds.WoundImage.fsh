@@ -5,6 +5,7 @@ Title: "nl core wounds.WoundImage"
 * insert ProfileMetadata(nl-core-wounds.WoundImage)
 * ^purpose = "This DocumentReference resource represents the WoundImage concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Burnwound v3.4 (2020)](https://zibs.nl/wiki/Burnwound-v3.4(2020EN)), the Dutch [zib PressureUlcer v3.4 (2020)](https://zibs.nl/wiki/PressureUlcer-v3.4(2020EN)) and the Dutch [zib Wound v3.3 (2020)](https://zibs.nl/wiki/Wound-v3.3(2020EN)) (NL-CM:19.4.11/NL-CM:19.1.12/NL-CM:19.2.15)."
 
+* subject only Reference(Patient or Practitioner or Group or Device or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * context.related only Reference(Resource or http://nictiz.nl/fhir/StructureDefinition/nl-core-wounds.WoundCharacteristics)
 
 // Short, alias, definition and comment texts
