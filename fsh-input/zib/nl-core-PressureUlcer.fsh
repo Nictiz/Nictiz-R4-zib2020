@@ -5,7 +5,9 @@ Title: "nl core PressureUlcer"
 * insert ProfileMetadata(nl-core-PressureUlcer)
 * insert Purpose(PressureUlcer, 3.4, Condition)
 
+* insert NlCorePatientForCondition
 * bodySite ..1
+* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation
 * bodySite ^binding.strength = #required
 * stage ..1
 * stage.summary ^binding.strength = #required

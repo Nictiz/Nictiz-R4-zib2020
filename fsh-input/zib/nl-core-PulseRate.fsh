@@ -5,6 +5,7 @@ Title: "nl core PulseRate"
 * insert ProfileMetadata(nl-core-PulseRate)
 * insert Purpose(PulseRate, 3.3, Observation)
 
+* subject only Reference(Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * note ..1
 * hasMember[pulseRateValue] ..1
 * hasMember[pulseRateValue] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-PulseRate.PulseRateValue)

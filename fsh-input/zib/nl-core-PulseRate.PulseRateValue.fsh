@@ -5,6 +5,7 @@ Title: "nl core PulseRate.PulseRateValue"
 * insert ProfileMetadata(nl-core-PulseRate.PulseRateValue)
 * ^purpose = "This Observation resource represents the PulseRateValue concept (NL-CM:12.7.5) of Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) PulseRate v3.3 (2020)](https://zibs.nl/wiki/PulseRate-v3.3(2020EN))."
 
+* subject only Reference(Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 
 // Short, alias, definition and comment texts
 * ^description = "The value of the pulse rate measured. The pulse rate is expressed in the number of tangible pulsations of an artery per minute, usually the a. radialis, a. carotis or a. femoralis."
