@@ -5,6 +5,7 @@ Title: "nl core O2Saturation"
 * insert ProfileMetadata(nl-core-O2Saturation)
 * insert Purpose(O2Saturation, 3.1, Observation)
 
+* subject only Reference(Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * note ..1
 * component[extraOxygenAdministration] ..1
 

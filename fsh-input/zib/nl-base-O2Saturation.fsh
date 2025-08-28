@@ -5,7 +5,8 @@ Title: "nl base O2Saturation"
 * insert ProfileMetadata(nl-base-O2Saturation)
 * insert Purpose(O2Saturation, 3.1, Observation)
 
-* code = http://loinc.org#2708-6
+* code ^patternCodeableConcept.coding[+] = http://loinc.org#2708-6
+* code ^patternCodeableConcept.coding[+] = http://loinc.org#59408-5
 * effective[x] insert Discriminator(type, $this)
 * effectiveDateTime only dateTime
 * value[x] only Quantity

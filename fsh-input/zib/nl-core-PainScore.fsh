@@ -6,6 +6,7 @@ Title: "nl core PainScore"
 * insert Purpose(PainScore, 4.0, Observation)
 
 * . obeys zib-PainScore-1 and zib-PainScore-2
+* insert NlCorePatientForObservation
 * note ..1
 * method ^binding.strength = #required
 

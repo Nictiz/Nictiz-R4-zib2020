@@ -5,6 +5,7 @@ Title: "nl core ParticipationInSociety.Hobby"
 * insert ProfileMetadata(nl-core-ParticipationInSociety.Hobby)
 * ^purpose = "This Observation resource represents the Hobby concept (NL-CM:18.6.3) of Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) ParticipationInSociety v3.1 (2020)](https://zibs.nl/wiki/ParticipationInSociety-v3.1(2020EN))."
 
+* insert NlCorePatientForObservation
 
 // Short, alias, definition and comment texts
 * ^description = "An activity the patient enjoys doing in their free time."

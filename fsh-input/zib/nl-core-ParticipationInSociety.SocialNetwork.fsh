@@ -5,6 +5,7 @@ Title: "nl core ParticipationInSociety.SocialNetwork"
 * insert ProfileMetadata(nl-core-ParticipationInSociety.SocialNetwork)
 * ^purpose = "This Observation resource represents the SocialNetwork concept (NL-CM:18.6.2) of Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) ParticipationInSociety v3.1 (2020)](https://zibs.nl/wiki/ParticipationInSociety-v3.1(2020EN))."
 
+* insert NlCorePatientForObservation
 
 // Short, alias, definition and comment texts
 * ^description = "A description of the patient’s social network, such as family, neighbors and friends."

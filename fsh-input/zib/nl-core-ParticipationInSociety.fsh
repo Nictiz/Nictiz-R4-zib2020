@@ -5,6 +5,7 @@ Title: "nl core ParticipationInSociety"
 * insert ProfileMetadata(nl-core-ParticipationInSociety)
 * insert Purpose(ParticipationInSociety, 3.1, Observation)
 
+* insert NlCorePatientForObservation
 * note ..1
 * hasMember[socialNetwork] ..1
 * hasMember[socialNetwork] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-ParticipationInSociety.SocialNetwork)
