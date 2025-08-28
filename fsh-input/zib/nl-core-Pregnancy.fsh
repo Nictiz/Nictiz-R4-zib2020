@@ -6,6 +6,7 @@ Title: "nl core Pregnancy"
 * insert Purpose(Pregnancy, 4.0, Observation)
 
 * note ..1
+* insert NlCorePatientForObservation
 * hasMember[pregnancyDuration] ..1
 * hasMember[pregnancyDuration] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.PregnancyDuration)
 * hasMember[parity] ..1

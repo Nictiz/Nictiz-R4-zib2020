@@ -5,6 +5,7 @@ Title: "nl core Pregnancy.DateLastMenstruation"
 * insert ProfileMetadata(nl-core-Pregnancy.DateLastMenstruation)
 * ^purpose = "This Observation resource represents the DateLastMenstruation concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Pregnancy v4.0 (2020)](https://zibs.nl/wiki/Pregnancy-v4.0(2020EN))."
 
+* subject only Reference(Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 
 // Short, alias, definition and comment texts
 * ^description = "Pregnancy or gravidity is the condition in which a woman carries a fertilized egg, which grows into an embryo and then a fetus. A pregnancy of between 37 and 42 weeks is considered normal. “Term pregnancy” is 37 to 42 weeks. The term gravidity is also used for the number of times a woman has been pregnant. This and parity - the number of times a woman has given birth - provides insight into the patient’s obstetric history."

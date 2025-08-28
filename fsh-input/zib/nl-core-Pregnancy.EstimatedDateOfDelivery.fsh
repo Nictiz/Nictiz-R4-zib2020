@@ -5,6 +5,7 @@ Title: "nl core Pregnancy.EstimatedDateOfDelivery"
 * insert ProfileMetadata(nl-core-Pregnancy.EstimatedDateOfDelivery)
 * ^purpose = "This Observation resource represents the EstimatedDateOfDelivery concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Pregnancy v4.0 (2020)](https://zibs.nl/wiki/Pregnancy-v4.0(2020EN))."
 
+* subject only Reference(Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * method ^binding.strength = #extensible
 
 // Short, alias, definition and comment texts
