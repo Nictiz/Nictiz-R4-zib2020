@@ -5,8 +5,6 @@ Title: "nl core Problem"
 * insert ProfileMetadata(nl-core-Problem)
 * insert Purpose(Problem, 4.4, Condition)
 
-* clinicalStatus from http://hl7.org/fhir/ValueSet/condition-clinical|4.0.1 (required)
-* verificationStatus from http://hl7.org/fhir/ValueSet/condition-ver-status|4.0.1 (required)
 * verificationStatus.coding 1..
 * verificationStatus.coding[verificationStatusCodelist] 1..1
 * verificationStatus.coding[verificationStatusCodelist] ^binding.strength = #required
@@ -15,7 +13,9 @@ Title: "nl core Problem"
 * code ^binding.strength = #required
 * code.extension[furtherSpecificationProblemName] ..1
 * bodySite ..1
+* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation
 * bodySite ^binding.strength = #required
+* insert NlCorePatientForCondition
 * note ..1
 
 // Short, alias, definition and comment texts

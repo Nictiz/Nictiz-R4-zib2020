@@ -7,17 +7,19 @@ Title: "nl core Procedure request"
 
 * code ^binding.strength = #required
 * orderDetail[procedureMethod] ^binding.strength = #required
+* subject only Reference(Patient or Group or Location or Device or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * requester only Reference(Practitioner or PractitionerRole or Organization or Patient or RelatedPerson or Device or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
 * performer only Reference(Practitioner or PractitionerRole or Organization or CareTeam or HealthcareService or Patient or Device or RelatedPerson or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole or http://nictiz.nl/fhir/StructureDefinition/nl-core-CareTeam)
 * locationReference ..1
 * locationReference only Reference(Location or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider)
 * reasonReference only Reference(Condition or Observation or DiagnosticReport or DocumentReference or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
 * bodySite ..1
+* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation
 * bodySite ^binding.strength = #required
 
 // Short, alias, definition and comment texts
 * ^description = """
-    Therapeutic or diagnostic procedure the patient will undergo (the complementary profile [zib-Procedure-event](http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-event) can be used for therapeutic or diagnostic procedures that the patient has undergone). A procedure can be a simple blood pressure measurement, but also a complex heart surgery.
+    Therapeutic or diagnostic procedure the patient will undergo (the complementary profile [nl-core-Procedure-event](http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event) can be used for therapeutic or diagnostic procedures that the patient has undergone). A procedure can be a simple blood pressure measurement, but also a complex heart surgery.
     In some care settings, the term treatment is used instead of the term procedure.
     """
 * .

@@ -5,9 +5,7 @@ Title: "nl base Problem"
 * insert ProfileMetadata(nl-base-Problem)
 * insert Purpose(Problem, 4.4, Condition)
 
-* clinicalStatus from http://hl7.org/fhir/ValueSet/condition-clinical|4.0.1 (required)
 * clinicalStatus insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/ProbleemStatusCodelijst-to-ConditionClinicalStatusCodes, ProbleemStatusCodelijst_to_ConditionClinicalStatusCodes, ConditionClinicalStatusCodes)
-* verificationStatus from http://hl7.org/fhir/ValueSet/condition-ver-status|4.0.1 (required)
 * verificationStatus insert PermittedValues(http://nictiz.nl/fhir/ConceptMap/VerificatieStatusCodelijst-to-ConditionVerificationStatus, VerificatieStatusCodelijst_to_ConditionVerificationStatus, ConditionVerificationStatus)
 * verificationStatus.coding insert Discriminator(value, $this)
 * verificationStatus.coding contains
@@ -60,6 +58,7 @@ Title: "nl base Problem"
   * ^short = "VerificationStatus"
   * ^alias[+] = "VerificatieStatus"
   * ^definition = "Clinical status of the problem or the diagnosis."
+* verificationStatus.coding[verificationStatusCodelist] ^binding.description = "In addition to a coding from this ValueSet, the corresponding coding from the FHIR base ValueSet SHALL be communicated. The ConceptMap <http://nictiz.nl/fhir/ConceptMap/VerificatieStatusCodelijst-to-ConditionVerificationStatus> can be used to relate these two ValueSets."
 * category[problemType]
   * ^short = "ProblemType"
   * ^alias[+] = "ProbleemType"

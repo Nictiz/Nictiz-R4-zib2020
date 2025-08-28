@@ -7,16 +7,18 @@ Title: "nl core Procedure event"
 
 * basedOn only Reference(CarePlan or ServiceRequest or http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request)
 * code ^binding.strength = #required
+* subject only Reference(Patient or Group or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * performer.actor only Reference(Practitioner or PractitionerRole or Organization or Patient or RelatedPerson or Device or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
 * location only Reference(Location or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider)
 * reasonReference only Reference(Condition or Observation or Procedure or DiagnosticReport or DocumentReference or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
 * bodySite ..1
+* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation
 * bodySite ^binding.strength = #required
 * report[textResult] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-TextResult)
 
 // Short, alias, definition and comment texts
 * ^description = """
-    Therapeutic or diagnostic procedure undergone by the patient (the complementary profile [zib-Procedure-request](http://nictiz.nl/fhir/StructureDefinition/zib-Procedure-request) can be used for therapeutic or diagnostic procedures that the patient will undergo). A procedure can be a simple blood pressure measurement, but also a complex heart surgery.
+    Therapeutic or diagnostic procedure undergone by the patient (the complementary profile [nl-core-Procedure-request](http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request) can be used for therapeutic or diagnostic procedures that the patient will undergo). A procedure can be a simple blood pressure measurement, but also a complex heart surgery.
     In some care settings, the term treatment is used instead of the term procedure.
     """
 * .
