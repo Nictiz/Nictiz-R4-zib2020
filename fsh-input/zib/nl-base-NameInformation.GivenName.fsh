@@ -7,6 +7,7 @@ Title: "nl base NameInformation.GivenName"
 
 For the entire zib, the complementary profile [nl-base-NameInformation](http://nictiz.nl/fhir/StructureDefinition/nl-base-NameInformation) should be used. Both profiles can be added in a slice with the discriminator set to `value`/`use`."
 
+* use = #usual
 
 // Short, alias, definition and comment texts
 * ^description = "The name normally used to address the person."
