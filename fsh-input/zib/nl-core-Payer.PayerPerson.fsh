@@ -6,6 +6,7 @@ Title: "nl core Payer.PayerPerson"
 * ^purpose = "This Coverage resource represents the PayerPerson concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) Payer v3.1.1 (2020)](https://zibs.nl/wiki/Payer-v3.1.1(2020EN))."
 
 * type 1..
+* beneficiary only Reference(Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * payor ..1
 * payor only Reference(Organization or Patient or RelatedPerson or http://nictiz.nl/fhir/StructureDefinition/nl-core-Payer-Organization or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson)
 
