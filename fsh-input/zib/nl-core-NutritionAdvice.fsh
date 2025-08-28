@@ -7,6 +7,7 @@ Title: "nl core NutritionAdvice"
 
 * extension[indication] ..1
 * extension[indication].value[x] only Reference(Condition or DiagnosticReport or DocumentReference or Observation or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
+* patient only Reference(Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * oralDiet.texture.modifier.coding.display 1..
 * oralDiet.fluidConsistencyType.coding.display 1..
 * note ..1

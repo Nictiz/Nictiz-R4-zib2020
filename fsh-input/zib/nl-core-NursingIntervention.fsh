@@ -8,6 +8,7 @@ Title: "nl core NursingIntervention"
 * . obeys zib-NursingIntervention-1
 * category 1..
 * category[nursingInterventionCode] 1..1
+* subject only Reference(Patient or Group or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * contributor[requester] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
 * contributor[requester].extension 1..
 * contributor[requester].extension[contributorIsRequester] 1..1
