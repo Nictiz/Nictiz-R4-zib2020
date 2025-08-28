@@ -21,7 +21,7 @@ Title: "nl base TobaccoUse"
 * component[typeOfTobaccoUsed].value[x] from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.7.2.3--20200901000000 (preferred)
 * component[amount].code = http://snomed.info/sct#266918002
 * component[amount].value[x] only Quantity
-* component[amount].value[x] = http://unitsofmeasure.org#None
+* component[amount].value[x] ^patternQuantity.system = "http://unitsofmeasure.org"
 * component[packYears].code = http://snomed.info/sct#401201003
 * component[packYears].value[x] only integer
 

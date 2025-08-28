@@ -6,6 +6,10 @@ Title: "nl core StrongKidsScore"
 * insert Purpose(StrongKidsScore, 1.1, Observation)
 
 * . obeys zib-StrongKidsScore-1 and zib-StrongKidsScore-2
+* insert NlCorePatientForObservation
+* valueInteger
+  * ^minValueInteger = 0
+  * ^maxValueInteger = 5
 * note ..1
 * component[weightLossScore] ..1
 * component[weightLossScore].value[x] ^binding.strength = #required

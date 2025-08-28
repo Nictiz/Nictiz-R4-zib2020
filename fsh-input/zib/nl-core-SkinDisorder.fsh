@@ -6,11 +6,13 @@ Title: "nl core SkinDisorder"
 * insert Purpose(SkinDisorder, 3.3, Observation)
 
 * extension[cause] ..1
-* extension[cause].value[x] only Reference(Condition or Procedure or MedicationAdministration or MedicationAdministration or Immunization or MedicationStatement or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
+* extension[cause].value[x] only Reference(Condition or Procedure or MedicationAdministration or Immunization or MedicationStatement or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
+* insert NlCorePatientForCondition
 * category 1..
 * category[skinDisorderCode] 1..1
 * code ^binding.strength = #extensible
 * bodySite ..1
+* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation
 * bodySite ^binding.strength = #required
 * note ..1
 

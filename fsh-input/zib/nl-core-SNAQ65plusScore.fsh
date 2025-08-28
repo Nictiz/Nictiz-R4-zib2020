@@ -6,6 +6,10 @@ Title: "nl core SNAQ65plusScore"
 * ^purpose = "This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) SNAQ65+Score v1.2 (2020)](https://zibs.nl/wiki/SNAQ65%2BScore-v1.2(2020EN))."
 
 * . obeys zib-SNAQ65PlusScore-1 and zib-SNAQ65PlusScore-2
+* insert NlCorePatientForObservation
+* valueInteger
+  * ^minValueInteger = 0
+  * ^maxValueInteger = 5
 * note ..1
 * component[weightLossScore] ..1
 * component[weightLossScore].value[x] ^binding.strength = #required

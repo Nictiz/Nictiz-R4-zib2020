@@ -9,7 +9,9 @@ Title: "nl core Stoma"
 * category[stomaCode] 1..1
 * code 1..
 * code ^binding.strength = #extensible
+* insert NlCorePatientForCondition
 * bodySite ..1
+* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation
 * bodySite ^binding.strength = #required
 * note ..1
 

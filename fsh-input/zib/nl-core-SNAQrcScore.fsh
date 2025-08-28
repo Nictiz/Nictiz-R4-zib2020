@@ -6,6 +6,10 @@ Title: "nl core SNAQrcScore"
 * insert Purpose(SNAQrcScore, 1.1, Observation)
 
 * . obeys zib-SNAQrcScore-1 and zib-SNAQrcScore-2
+* insert NlCorePatientForObservation
+* valueInteger
+  * ^minValueInteger = 0
+  * ^maxValueInteger = 6
 * note ..1
 * component[weightLossScore] ..1
 * component[weightLossScore].value[x] ^binding.strength = #required

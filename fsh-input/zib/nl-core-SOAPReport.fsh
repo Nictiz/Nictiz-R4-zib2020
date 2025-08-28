@@ -7,6 +7,8 @@ Title: "nl core SOAPReport"
 
 * author ..1
 * author only Reference(Practitioner or PractitionerRole or Device or Patient or RelatedPerson or Organization or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
+* subject only Reference(Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
+* encounter only Reference(Encounter or http://nictiz.nl/fhir/StructureDefinition/nl-core-Encounter)
 * section[soapLine] ..4
 * section[soapLine].code 1..
 * section[soapLine].code ^binding.strength = #required

@@ -5,10 +5,10 @@ Title: "nl core TextResult"
 * insert ProfileMetadata(nl-core-TextResult)
 * insert Purpose(TextResult, 4.4, DiagnosticReport)
 
-* status from http://hl7.org/fhir/ValueSet/diagnostic-report-status|4.0.1 (required)
 * status.extension[textResultStatus] ..1
 * status.extension[textResultStatus].value[x] ^binding.strength = #extensible
 * code ^binding.strength = #extensible
+* subject only Reference(Patient or Group or Device or Location or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * media.link only Reference(Media or http://nictiz.nl/fhir/StructureDefinition/nl-core-TextResult.VisualResult)
 
 // Short, alias, definition and comment texts

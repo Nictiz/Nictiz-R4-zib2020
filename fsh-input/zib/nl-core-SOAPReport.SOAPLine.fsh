@@ -6,6 +6,9 @@ Title: "nl core SOAPReport.SOAPLine"
 * ^purpose = "This Observation resource represents the SOAPLine concept of the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) SOAPReport v1.0 (2020)](https://zibs.nl/wiki/SOAPReport-v1.0(2020EN))."
 
 * . obeys zib-SOAPReport-1
+* extension[soapLineCode].value[x] ^binding.strength = #required
+* extension[soapLineCode].value[x].coding ^binding.strength = #required
+* insert NlCorePatientForObservation
 * code ^binding.strength = #required
 
 // Short, alias, definition and comment texts

@@ -5,6 +5,7 @@ Title: "nl core TreatmentObjective"
 * insert ProfileMetadata(nl-core-TreatmentObjective)
 * insert Purpose(TreatmentObjective, 3.2, Goal)
 
+* subject only Reference(Patient or Group or Organization or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * target.measure ^binding.strength = #required
 * target.detailCodeableConcept ^binding.strength = #required
 * addresses ..1

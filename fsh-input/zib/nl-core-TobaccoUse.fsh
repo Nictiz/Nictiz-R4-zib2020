@@ -5,6 +5,7 @@ Title: "nl core TobaccoUse"
 * insert ProfileMetadata(nl-core-TobaccoUse)
 * insert Purpose(TobaccoUse, 3.2, Observation)
 
+* insert NlCorePatientForObservation
 * valueCodeableConcept ^binding.strength = #extensible
 * note ..1
 * component[typeOfTobaccoUsed] ..1
