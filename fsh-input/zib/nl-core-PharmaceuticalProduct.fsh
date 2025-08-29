@@ -25,3 +25,11 @@ Title: "nl core PharmaceuticalProduct"
     This is a partial information model.
     """
 * . ^alias[+] = "nl-core-PharmaceuticalProduct"
+
+Mapping: NlcorePharmaceuticalProduct-to-imm-Vaccination-Immunization-20211118
+Id: imm-Vaccination-Immunization-20211118
+Title: "ART-DECOR Dataset Vaccination-Immunization 20211118T10:06:34"
+Source: NlcorePharmaceuticalProduct
+Target: "https://decor.nictiz.nl/ad/#/imm-/datasets/dataset/2.16.840.1.113883.2.4.3.11.60.131.1.1/2021-11-18T10:06:34"
+* identifier -> "imm-dataelement-146" "SerialNumber"
+* batch.lotNumber -> "imm-dataelement-145" "Batch/lotNumber"
