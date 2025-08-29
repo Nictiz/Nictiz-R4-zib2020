@@ -12,8 +12,7 @@ Title: "nl core Procedure event"
 * location only Reference(Location or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider)
 * reasonReference only Reference(Condition or Observation or Procedure or DiagnosticReport or DocumentReference or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
 * bodySite ..1
-* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation
-* bodySite ^binding.strength = #required
+* bodySite insert PatternNlCoreAnatomicalLocation
 * report[textResult] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-TextResult)
 
 // Short, alias, definition and comment texts

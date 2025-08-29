@@ -10,9 +10,7 @@ Title: "nl base Wound"
     woundCode 0..1
 * category[woundCode] = http://snomed.info/sct#416462003
 * code from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.19.2.4--20200901000000 (preferred)
-* bodySite only CodeableConcept
-* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-base-AnatomicalLocation
-* bodySite from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000 (preferred)
+* bodySite insert PatternNlBaseAnatomicalLocation
 * onset[x] insert Discriminator(type, $this)
 * onsetDateTime only dateTime
 * evidence.detail insert Discriminator(profile, resolve(\))

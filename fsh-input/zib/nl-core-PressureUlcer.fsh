@@ -7,8 +7,7 @@ Title: "nl core PressureUlcer"
 
 * insert NlCorePatientForCondition
 * bodySite ..1
-* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation
-* bodySite ^binding.strength = #required
+* bodySite insert PatternNlCoreAnatomicalLocation
 * stage ..1
 * stage.summary ^binding.strength = #required
 * evidence.detail[woundCharacteristics] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-wounds.WoundCharacteristics)

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-Respiration-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Respiration"/>
+   </meta>
+   <extension url="http://hl7.org/fhir/StructureDefinition/workflow-supportingInfo">
+      <valueReference>
+         <reference value="DeviceUseStatement/nl-core-Respiration.AdministrationDevice-01"/>
+         <type value="DeviceUseStatement"/>
+      </valueReference>
+   </extension>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422834003"/>
+         <display value="evaluatie van ademhaling"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <effectiveDateTime value="2015-03-11T14:47:00+01:00"/>
+   <hasMember>
+      <reference value="Observation/nl-core-Respiration.BreathingFrequency-01"/>
+      <type value="Observation"/>
+      <display value="Ademfrequentie: 15//min"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-Respiration.Rhythm-01"/>
+      <type value="Observation"/>
+      <display value="ademhalingsritme: Normaal ademhalingsritme"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-Respiration.Depth-01"/>
+      <type value="Observation"/>
+      <display value="diepte van ademhaling: Normale ademhalingsdiepte"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-Respiration.DeviatingBreathingPattern-01"/>
+      <type value="Observation"/>
+      <display value="ademhalingspatroon: Apneuse"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-Respiration.ExtraOxygenAdministration-01"/>
+      <type value="Observation"/>
+      <display value="zuurstoftoevoer: ja"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-Respiration.AdministeredOxygen.FlowRate-01"/>
+      <type value="Observation"/>
+      <display value="stroomsnelheid van toegediende zuurstof: 2 L/min"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-Respiration.AdministeredOxygen.FiO2-01"/>
+      <type value="Observation"/>
+      <display value="fractionele inspiratoire zuurstofconcentratie: 0.29 1"/>
+   </hasMember>
+</Observation>

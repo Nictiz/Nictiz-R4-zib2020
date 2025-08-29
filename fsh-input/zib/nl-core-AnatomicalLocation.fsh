@@ -10,3 +10,8 @@ Title: "nl core AnatomicalLocation"
 // Short, alias, definition and comment texts
 * ^description = "An anatomical location specifies the location (e.g. foot) and laterality (e.g. left) of a body part."
 * . ^alias[+] = "nl-core-AnatomicalLocation"
+
+// A data type profile cannot set bindings etc. on the root element, so this pattern can be used to apply them
+RuleSet: PatternNlCoreAnatomicalLocation
+* ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation
+* ^binding.strength = #required

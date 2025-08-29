@@ -15,9 +15,7 @@ Title: "nl base Procedure event"
 * performer.actor only Reference(Practitioner or PractitionerRole or Organization or Patient or RelatedPerson or Device or http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthProfessional-PractitionerRole)
 * location only Reference(Location or http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthcareProvider)
 * reasonReference only Reference(Condition or Observation or Procedure or DiagnosticReport or DocumentReference or http://nictiz.nl/fhir/StructureDefinition/nl-base-Problem)
-* bodySite only CodeableConcept
-* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-base-AnatomicalLocation
-* bodySite from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000 (preferred)
+* bodySite insert PatternNlBaseAnatomicalLocation
 * report insert Discriminator(profile, resolve(\))
 * report contains
     textResult 0..

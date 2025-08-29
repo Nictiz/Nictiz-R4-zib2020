@@ -12,8 +12,7 @@ Title: "nl core SkinDisorder"
 * category[skinDisorderCode] 1..1
 * code ^binding.strength = #extensible
 * bodySite ..1
-* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation
-* bodySite ^binding.strength = #required
+* bodySite insert PatternNlCoreAnatomicalLocation
 * note ..1
 
 // Short, alias, definition and comment texts

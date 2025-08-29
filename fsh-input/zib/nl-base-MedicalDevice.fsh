@@ -25,9 +25,7 @@ Title: "nl base MedicalDevice"
     stoma 0..
 * reasonReference[indication] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-base-Problem)
 * reasonReference[stoma] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-base-Stoma)
-* bodySite only CodeableConcept
-* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-base-AnatomicalLocation
-* bodySite from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000 (preferred)
+* bodySite insert PatternNlBaseAnatomicalLocation
 
 // Short, alias, definition and comment texts
 * ^description = "Medical devices are any internally implanted and external devices and/or aids used by the patient (in the past) to reduce the effects of functional limitations in organ systems or to facilitate the treatment of a disease."

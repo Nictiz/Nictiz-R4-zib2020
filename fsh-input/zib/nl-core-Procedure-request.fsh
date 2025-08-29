@@ -14,8 +14,7 @@ Title: "nl core Procedure request"
 * locationReference only Reference(Location or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider)
 * reasonReference only Reference(Condition or Observation or DiagnosticReport or DocumentReference or http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
 * bodySite ..1
-* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation
-* bodySite ^binding.strength = #required
+* bodySite insert PatternNlCoreAnatomicalLocation
 
 // Short, alias, definition and comment texts
 * ^description = """

@@ -13,8 +13,7 @@ Title: "nl core Problem"
 * code ^binding.strength = #required
 * code.extension[furtherSpecificationProblemName] ..1
 * bodySite ..1
-* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation
-* bodySite ^binding.strength = #required
+* bodySite insert PatternNlCoreAnatomicalLocation
 * insert NlCorePatientForCondition
 * note ..1
 

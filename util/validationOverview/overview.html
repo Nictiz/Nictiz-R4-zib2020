@@ -1,0 +1,606 @@
+<!DOCTYPE HTML><html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <style>
+                    .validated {
+                        background-color: green;
+                    }
+                    
+                    .in-progress {
+                        background-color: blue;
+                    }
+                    
+                    .rejected {
+                        background-color: red;
+                    }
+                    
+                    .not-submitted {
+                        color: grey;
+                    }
+                </style>
+   </head>
+   <body>
+      <table>
+         <thead>
+            <tr>
+               <th>Zib name</th>
+               <th>Profile(s)</th>
+               <th>Validation status</th>
+               <th>Remarks</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr class="not-submitted">
+               <td><a href="https://zibs.nl/wiki/AdministrationAgreement-v1.0.3(2020EN)">AdministrationAgreement v1.0.3</a></td>
+               <td>
+                  <ul></ul>
+               </td>
+               <td>not submitted for validation</td>
+               <td>
+                  <p>For the medication related zibs, there's an ongoing discussion if the profiles will
+                     be published as the zibs (and thus the profiles) are incompatible with the requirements
+                     of the MP9 program, which is the main use case for exchange of medication information
+                     in the Netherlands. Pending this discussion, these profiles are withheld from validation.</p>
+               </td>
+            </tr>
+            <tr class="in-progress">
+               <td><a href="https://zibs.nl/wiki/Alert-v4.1(2020EN)">Alert v4.1</a></td>
+               <td>zib-Alert</td>
+               <td>in progress</td>
+               <td></td>
+            </tr>
+            <tr class="validated">
+               <td><a href="https://zibs.nl/wiki/AllergyIntolerance-v3.3(2020EN)">AllergyIntolerance v3.3</a></td>
+               <td>zib-AllergyIntolerance</td>
+               <td>validated</td>
+               <td></td>
+            </tr>
+            <tr class="not-submitted">
+               <td><a href="https://zibs.nl/wiki/BladderFunction-v3.2(2020EN)">BladderFunction v3.2</a></td>
+               <td>
+                  <ul>
+                     <li>zib-BladderFunction</li>
+                     <li>zib-Stoma</li>
+                     <li>zib-MedicalDevice</li>
+                     <li>zib-MedicalDevice.Product</li>
+                  </ul>
+               </td>
+               <td>not submitted for validation</td>
+               <td></td>
+            </tr>
+            <tr class="validated">
+               <td><a href="https://zibs.nl/wiki/BloodPressure-v3.2.1(2020EN)">BloodPressure v3.2.1</a></td>
+               <td>zib-BloodPressure</td>
+               <td>validated</td>
+               <td></td>
+            </tr>
+            <tr class="validated">
+               <td><a href="https://zibs.nl/wiki/BodyHeight-v3.1.1(2020EN)">BodyHeight v3.1.1</a></td>
+               <td>zib-BodyHeight</td>
+               <td>validated</td>
+               <td></td>
+            </tr>
+            <tr class="validated">
+               <td><a href="https://zibs.nl/wiki/BodyTemperature-v3.1.2(2020EN)">BodyTemperature v3.1.2</a></td>
+               <td>zib-BodyTemperature</td>
+               <td>validated</td>
+               <td></td>
+            </tr>
+            <tr class="validated">
+               <td><a href="https://zibs.nl/wiki/BodyWeight-v3.2(2020EN)">BodyWeight v3.2</a></td>
+               <td>zib-BodyWeight</td>
+               <td>validated</td>
+               <td></td>
+            </tr>
+            <tr class="in-progress">
+               <td><a href="https://zibs.nl/wiki/BowelFunction-v3.1.1(2020EN)">BowelFunction v3.1.1</a></td>
+               <td>
+                  <ul>
+                     <li>zib-BowelFunction</li>
+                     <li>zib-BowelFunction.FecalContinence</li>
+                     <li>zib-BowelFunction.Frequency</li>
+                     <li>zib-BowelFunction.DefecationConsistency</li>
+                     <li>zib-BowelFunction.DefecationColor</li>
+                     <li>zib-MedicalDevice</li>
+                  </ul>
+               </td>
+               <td>in progress</td>
+               <td></td>
+            </tr>
+            <tr class="in-progress">
+               <td><a href="https://zibs.nl/wiki/Burnwound-v3.4(2020EN)">Burnwound v3.4</a></td>
+               <td>
+                  <ul>
+                     <li>zib-Burnwound</li>
+                     <li>zib-Burnwound.Extent</li>
+                     <li>zib-wounds.WoundCharacteristics</li>
+                     <li>zib-wounds.DateOfLastDressingChange</li>
+                     <li>zib-wounds.WoundImage</li>
+                  </ul>
+               </td>
+               <td>in progress</td>
+               <td></td>
+            </tr>
+            <tr class="validated">
+               <td><a href="https://zibs.nl/wiki/CareTeam-v1.0(2020EN)">CareTeam v1.0</a></td>
+               <td>zib-CareTeam</td>
+               <td>validated</td>
+               <td></td>
+            </tr>
+            <tr class="validated">
+               <td><a href="https://zibs.nl/wiki/ContactPerson-v3.4(2020EN)">ContactPerson v3.4</a></td>
+               <td>
+                  <ul>
+                     <li>zib-ContactPerson</li>
+                     <li>zib-Patient</li>
+                  </ul>
+               </td>
+               <td>validated</td>
+               <td></td>
+            </tr>
+            <tr class="not-submitted">
+               <td><a href="https://zibs.nl/wiki/DispenseRequest-v1.0.3(2020EN)">DispenseRequest v1.0.3</a></td>
+               <td>
+                  <ul></ul>
+               </td>
+               <td>not submitted for validation</td>
+               <td>
+                  <p>For the medication related zibs, there's an ongoing discussion if the profiles will
+                     be published as the zibs (and thus the profiles) are incompatible with the requirements
+                     of the MP9 program, which is the main use case for exchange of medication information
+                     in the Netherlands. Pending this discussion, these profiles are withheld from validation.</p>
+               </td>
+            </tr>
+            <tr class="not-submitted">
+               <td><a href="https://zibs.nl/wiki/DAS-v1.0(2020EN)">DAS v1.0</a></td>
+               <td>
+                  <ul></ul>
+               </td>
+               <td>not submitted for validation</td>
+               <td></td>
+            </tr>
+            <tr class="not-submitted">
+               <td><a href="https://zibs.nl/wiki/DevelopmentChild-v1.2(2020EN)">DevelopmentChild v1.2</a></td>
+               <td>
+                  <ul>
+                     <li>zib-DevelopmentChild</li>
+                     <li>zib-DevelopmentChild.AgeFirstMenstruation</li>
+                     <li>zib-DevelopmentChild.DevelopmentCognition</li>
+                     <li>zib-DevelopmentChild.DevelopmentLinguistics</li>
+                     <li>zib-DevelopmentChild.DevelopmentLocomotion</li>
+                     <li>zib-DevelopmentChild.DevelopmentSocial</li>
+                     <li>zib-DevelopmentChild.ToiletTrainednessFeces</li>
+                     <li>zib-DevelopmentChild.ToiletTrainednessUrine</li>
+                  </ul>
+               </td>
+               <td>not submitted for validation</td>
+               <td>
+                  <p>Originally, this zib was profiled using a single Observation resource, but the Validatieraad
+                     rejected this approach and asked to use multiple Observation resources. Since then,
+                     an issue with the underlying zib has come up which prevents the completion of the
+                     profiles according to this new approach.</p>
+                  <p>See [ZIB-2262](https://nictiz.atlassian.net/browse/ZIB-2262) for details.</p>
+               </td>
+            </tr>
+            <tr class="in-progress">
+               <td><a href="https://zibs.nl/wiki/Encounter-v4.0.1(2020EN)">Encounter v4.0.1</a></td>
+               <td>zib-Encounter</td>
+               <td>in progress</td>
+               <td>
+                  <p>the profile had passed validation before, but afterwards the guidance is adjusted
+                     regarding start and stop dates</p>
+               </td>
+            </tr>
+            <tr class="validated">
+               <td><a href="https://zibs.nl/wiki/EpisodeOfCare-v1.0(2020EN)">EpisodeOfCare v1.0</a></td>
+               <td>zib-EpisodeOfCare</td>
+               <td>validated</td>
+               <td></td>
+            </tr>
+            <tr class="rejected">
+               <td><a href="https://zibs.nl/wiki/FeedingPatternInfant-v1.1(2020EN)">FeedingPatternInfant v1.1</a></td>
+               <td>zib-FeedingPatternInfant</td>
+               <td>rejected</td>
+               <td></td>
+            </tr>
+            <tr class="not-submitted">
+               <td><a href="https://zibs.nl/wiki/FeedingTubeSystem-v3.3(2020EN)">FeedingTubeSystem v3.3</a></td>
+               <td>
+                  <ul></ul>
+               </td>
+               <td>not submitted for validation</td>
+               <td>
+                  <p>This zib has a dependency on zib MedicationAdministration2. For the medication related
+                     zibs, there's an ongoing discussion if the profiles will be published as the zibs
+                     (and thus the profiles) are incompatible with the requirements of the MP9 program,
+                     which is the main use case for exchange of medication information in the Netherlands.
+                     Pending this discussion, the profile is withheld from validation.</p>
+               </td>
+            </tr>
+            <tr class="validated">
+               <td><a href="https://zibs.nl/wiki/FluidBalance-v1.0.1(2020EN)">FluidBalance v1.0.1</a></td>
+               <td>
+                  <ul>
+                     <li>zib-FluidBalance</li>
+                     <li>zib-FluidBalance.FluidTotalIn</li>
+                     <li>zib-FluidBalance.FluidTotalOut</li>
+                  </ul>
+               </td>
+               <td>validated</td>
+               <td></td>
+            </tr>
+            <tr class="not-submitted">
+               <td><a href="https://zibs.nl/wiki/FunctionalOrMentalStatus-v3.2(2020EN)">FunctionalOrMentalStatus v3.2</a></td>
+               <td>
+                  <ul>
+                     <li>zib-FunctionalOrMentalStatus</li>
+                     <li>zib-MedicalDevice</li>
+                  </ul>
+               </td>
+               <td>not submitted for validation</td>
+               <td></td>
+            </tr>
+            <tr class="validated">
+               <td><a href="https://zibs.nl/wiki/HeadCircumference-v1.3(2020EN)">HeadCircumference v1.3</a></td>
+               <td>zib-HeadCircumference</td>
+               <td>validated</td>
+               <td></td>
+            </tr>
+            <tr class="validated">
+               <td><a href="https://zibs.nl/wiki/HealthcareProvider-v3.4(2020EN)">HealthcareProvider v3.4</a></td>
+               <td>
+                  <ul>
+                     <li>zib-HealthcareProvider</li>
+                     <li>zib-HealthcareProvider-Organization</li>
+                  </ul>
+               </td>
+               <td>validated</td>
+               <td></td>
+            </tr>
+            <tr class="rejected">
+               <td><a href="https://zibs.nl/wiki/HealthProfessional-v3.5(2020EN)">HealthProfessional v3.5</a></td>
+               <td>
+                  <ul>
+                     <li>zib-HealthProfessional-Practitioner</li>
+                     <li>zib-HealthProfessional-PractitionerRole</li>
+                     <li>zib-CareTeam</li>
+                     <li>zib-Encounter</li>
+                  </ul>
+               </td>
+               <td>rejected</td>
+               <td>
+                  <p>The concept HealthProfessionalRole defined by this zib is in FHIR not part of a Practitioner
+                     or PractitionerRole resource, but rather part of the resource referencing these resources.
+                     Pending development of all profiles, this concept has not been properly mapped to
+                     each situation. See [this Github issue](https://github.com/Nictiz/Nictiz-R4-zib2020/issues/44)
+                     for more information.</p>
+               </td>
+            </tr>
+            <tr class="not-submitted">
+               <td><a href="https://zibs.nl/wiki/HearingFunction-v3.2(2020EN)">HearingFunction v3.2</a></td>
+               <td>
+                  <ul>
+                     <li>zib-HearingFunction</li>
+                     <li>zib-HearingFunction.HearingAid</li>
+                     <li>zib-HearingFunction.HearingAid.Product</li>
+                  </ul>
+               </td>
+               <td>not submitted for validation</td>
+               <td></td>
+            </tr>
+            <tr class="rejected">
+               <td><a href="https://zibs.nl/wiki/HeartRate-v3.4(2020EN)">HeartRate v3.4</a></td>
+               <td>
+                  <ul>
+                     <li>zib-HeartRate</li>
+                     <li>zib-HeartRate.HeartbeatRegularity</li>
+                     <li>zib-HeartRate.InterpretationHeartRate</li>
+                  </ul>
+               </td>
+               <td>rejected</td>
+               <td>
+                  <p>A discussion is ongoing if the InterpretationHeartRate concept should be regarded
+                     a distinct Observation of its own or an interpretation of the heart rate. See [ZIB-2570](https://nictiz.atlassian.net/browse/ZIB-2570)
+                     for details.</p>
+               </td>
+            </tr>
+            <tr class="not-submitted">
+               <td><a href="https://zibs.nl/wiki/Infusion-v3.3(2020EN)">Infusion v3.3</a></td>
+               <td>
+                  <ul></ul>
+               </td>
+               <td>not submitted for validation</td>
+               <td>
+                  <p>This zib has a dependency on zib MedicationAdministration2. For the medication related
+                     zibs, there's an ongoing discussion if the profiles will be published as the zibs
+                     (and thus the profiles) are incompatible with the requirements of the MP9 program,
+                     which is the main use case for exchange of medication information in the Netherlands.
+                     Pending this discussion, the profile is withheld from validation.</p>
+               </td>
+            </tr>
+            <tr class="not-submitted">
+               <td><a href="https://zibs.nl/wiki/LaboratoryTestResult-v4.6(2020EN)">LaboratoryTestResult v4.6</a></td>
+               <td>
+                  <ul>
+                     <li>zib-LaboratoryTestResult</li>
+                     <li>zib-LaboratoryTestResult.Specimen</li>
+                     <li>zib-LaboratoryTestResult.SpecimenSource</li>
+                  </ul>
+               </td>
+               <td>not submitted for validation</td>
+               <td></td>
+            </tr>
+            <tr class="in-progress">
+               <td><a href="https://zibs.nl/wiki/MedicalDevice-v3.3.1(2020EN)">MedicalDevice v3.3.1</a></td>
+               <td>
+                  <ul>
+                     <li>zib-MedicalDevice</li>
+                     <li>zib-MedicalDevice.Product</li>
+                     <li>zib-Procedure-event</li>
+                  </ul>
+               </td>
+               <td>in progress</td>
+               <td></td>
+            </tr>
+            <tr class="not-submitted">
+               <td><a href="https://zibs.nl/wiki/MedicationAdministration2-v1.1.1(2020EN)">MedicationAdministration2 v1.1.1</a></td>
+               <td>
+                  <ul></ul>
+               </td>
+               <td>not submitted for validation</td>
+               <td>
+                  <p>For the medication related zibs, there's an ongoing discussion if the profiles will
+                     be published as the zibs (and thus the profiles) are incompatible with the requirements
+                     of the MP9 program, which is the main use case for exchange of medication information
+                     in the Netherlands. Pending this discussion, these profiles are withheld from validation.</p>
+               </td>
+            </tr>
+            <tr class="not-submitted">
+               <td><a href="https://zibs.nl/wiki/MedicationAgreement-v1.2(2020EN)">MedicationAgreement v1.2</a></td>
+               <td>
+                  <ul></ul>
+               </td>
+               <td>not submitted for validation</td>
+               <td>
+                  <p>For the medication related zibs, there's an ongoing discussion if the profiles will
+                     be published as the zibs (and thus the profiles) are incompatible with the requirements
+                     of the MP9 program, which is the main use case for exchange of medication information
+                     in the Netherlands. Pending this discussion, these profiles are withheld from validation.</p>
+               </td>
+            </tr>
+            <tr class="in-progress">
+               <td><a href="https://zibs.nl/wiki/MedicationContraIndication-v1.0(2020EN)">MedicationContraIndication v1.0</a></td>
+               <td>zib-MedicationContraIndication</td>
+               <td>in progress</td>
+               <td></td>
+            </tr>
+            <tr class="not-submitted">
+               <td><a href="https://zibs.nl/wiki/MedicationDispense-v2.0.2(2020EN)">MedicationDispense v2.0.2</a></td>
+               <td>
+                  <ul></ul>
+               </td>
+               <td>not submitted for validation</td>
+               <td>
+                  <p>For the medication related zibs, there's an ongoing discussion if the profiles will
+                     be published as the zibs (and thus the profiles) are incompatible with the requirements
+                     of the MP9 program, which is the main use case for exchange of medication information
+                     in the Netherlands. Pending this discussion, these profiles are withheld from validation.</p>
+               </td>
+            </tr>
+            <tr class="not-submitted">
+               <td><a href="https://zibs.nl/wiki/MedicationUse2-v1.1.1(2020EN)">MedicationUse2 v1.1.1</a></td>
+               <td>
+                  <ul></ul>
+               </td>
+               <td>not submitted for validation</td>
+               <td>
+                  <p>For the medication related zibs, there's an ongoing discussion if the profiles will
+                     be published as the zibs (and thus the profiles) are incompatible with the requirements
+                     of the MP9 program, which is the main use case for exchange of medication information
+                     in the Netherlands. Pending this discussion, these profiles are withheld from validation.</p>
+               </td>
+            </tr>
+            <tr class="validated">
+               <td><a href="https://zibs.nl/wiki/Mobility-(2020EN)">Mobility</a></td>
+               <td>
+                  <ul>
+                     <li>zib-Mobility</li>
+                     <li>zib-Mobility.ChangingPosition</li>
+                     <li>zib-Mobility.ClimbingStairs</li>
+                     <li>zib-Mobility.MaintainingPosition</li>
+                     <li>zib-Mobility.Transfer</li>
+                     <li>zib-Mobility.Walking</li>
+                  </ul>
+               </td>
+               <td>validated</td>
+               <td></td>
+            </tr>
+            <tr class="not-submitted">
+               <td><a href="https://zibs.nl/wiki/MultidisciplinaryTeamMeeting-v1.0(2020EN)">MultidisciplinaryTeamMeeting v1.0</a></td>
+               <td>
+                  <ul></ul>
+               </td>
+               <td>not submitted for validation</td>
+               <td></td>
+            </tr>
+            <tr class="rejected">
+               <td><a href="https://zibs.nl/wiki/NutritionAdvice-v3.2(2020EN)">NutritionAdvice v3.2</a></td>
+               <td>zib-NutritionAdvice</td>
+               <td>rejected</td>
+               <td></td>
+            </tr>
+            <tr class="in-progress">
+               <td><a href="https://zibs.nl/wiki/O2Saturation-v3.1(2020EN)">O2Saturation v3.1</a></td>
+               <td>zib-O2Saturation</td>
+               <td>in progress</td>
+               <td></td>
+            </tr>
+            <tr class="not-submitted">
+               <td><a href="https://zibs.nl/wiki/PainCharacteristics-v1.0(2020EN)">PainCharacteristics v1.0</a></td>
+               <td>
+                  <ul></ul>
+               </td>
+               <td>not submitted for validation</td>
+               <td></td>
+            </tr>
+            <tr class="validated">
+               <td><a href="https://zibs.nl/wiki/Patient-v3.2(2020EN)">Patient v3.2</a></td>
+               <td>zib-Patient</td>
+               <td>validated</td>
+               <td></td>
+            </tr>
+            <tr class="validated">
+               <td><a href="https://zibs.nl/wiki/Payer-v3.1.1(2020EN)">Payer v3.1.1</a></td>
+               <td>
+                  <ul>
+                     <li>zib-Payer.PayerPerson</li>
+                     <li>zib-Payer.InsuranceCompany</li>
+                     <li>zib-Payer-Organization</li>
+                     <li>zib-ContactPerson</li>
+                     <li>zib-Patient</li>
+                  </ul>
+               </td>
+               <td>validated</td>
+               <td></td>
+            </tr>
+            <tr class="validated">
+               <td><a href="https://zibs.nl/wiki/Pregnancy-v4.0-(2020EN)">Pregnancy-v4.0</a></td>
+               <td>
+                  <ul>
+                     <li>zib-Pregnancy</li>
+                     <li>zib-Pregnancy.DateLastMenstruation</li>
+                     <li>zib-Pregnancy.EstimatedDateOfDelivery</li>
+                     <li>zib-Pregnancy.Gravidity</li>
+                     <li>zib-Pregnancy.Parity</li>
+                     <li>zib-Pregnancy.PregnancyDuration</li>
+                  </ul>
+               </td>
+               <td>validated</td>
+               <td></td>
+            </tr>
+            <tr class="in-progress">
+               <td><a href="https://zibs.nl/wiki/PressureUlcer-v3.4(2020EN)">PressureUlcer v3.4</a></td>
+               <td>
+                  <ul>
+                     <li>zib-PressureUlcer</li>
+                     <li>zib-wounds.WoundCharacteristics</li>
+                     <li>zib-wounds.DateOfLastDressingChange</li>
+                     <li>zib-wounds.WoundDepth</li>
+                     <li>zib-wounds.WoundImage</li>
+                     <li>zib-wounds.WoundLength</li>
+                     <li>zib-wounds.WoundWidth</li>
+                  </ul>
+               </td>
+               <td>in progress</td>
+               <td></td>
+            </tr>
+            <tr class="in-progress">
+               <td><a href="https://zibs.nl/wiki/Problem-v4.4(2020EN)">Problem v4.4</a></td>
+               <td>zib-Problem</td>
+               <td>in progress</td>
+               <td></td>
+            </tr>
+            <tr class="rejected">
+               <td><a href="https://zibs.nl/wiki/PulseRate-v3.3(2020EN)">PulseRate v3.3</a></td>
+               <td>
+                  <ul>
+                     <li>zib-PulseRate</li>
+                     <li>zib-PulseRate.PulseRegularity</li>
+                  </ul>
+               </td>
+               <td>rejected</td>
+               <td></td>
+            </tr>
+            <tr class="in-progress">
+               <td><a href="https://zibs.nl/wiki/Refraction-v1.0(2020EN)">Refraction v1.0</a></td>
+               <td>zib-Refraction</td>
+               <td>in progress</td>
+               <td></td>
+            </tr>
+            <tr class="not-submitted">
+               <td><a href="https://zibs.nl/wiki/Respiration-v3.2(2020EN)">Respiration v3.2</a></td>
+               <td>
+                  <ul></ul>
+               </td>
+               <td>not submitted for validation</td>
+               <td></td>
+            </tr>
+            <tr class="validated">
+               <td><a href="https://zibs.nl/wiki/SkinDisorder-v3.3(2020EN)">SkinDisorder v3.3</a></td>
+               <td>zib-SkinDisorder</td>
+               <td>validated</td>
+               <td></td>
+            </tr>
+            <tr class="in-progress">
+               <td><a href="https://zibs.nl/wiki/SOAPReport-v1.0(2020EN)">SOAPReport v1.0</a></td>
+               <td>
+                  <ul>
+                     <li>zib-SOAPReport</li>
+                     <li>zib-SOAPReport.SOAPLine</li>
+                  </ul>
+               </td>
+               <td>in progress</td>
+               <td></td>
+            </tr>
+            <tr class="validated">
+               <td><a href="https://zibs.nl/wiki/Stoma-v3.3(2020EN)">Stoma v3.3</a></td>
+               <td>
+                  <ul>
+                     <li>zib-Stoma</li>
+                     <li>zib-MedicalDevice</li>
+                  </ul>
+               </td>
+               <td>validated</td>
+               <td></td>
+            </tr>
+            <tr class="in-progress">
+               <td><a href="https://zibs.nl/wiki/TextResult-v4.4(2020EN)">TextResult v4.4</a></td>
+               <td>
+                  <ul>
+                     <li>zib-TextResult</li>
+                     <li>zib-TextResult.VisualResult</li>
+                     <li>zib-Procedure-event</li>
+                  </ul>
+               </td>
+               <td>in progress</td>
+               <td></td>
+            </tr>
+            <tr class="validated">
+               <td><a href="https://zibs.nl/wiki/Vaccination-v4.0(2020EN)">Vaccination v4.0 (past use)</a></td>
+               <td>zib-Vaccination-event</td>
+               <td>validated</td>
+               <td></td>
+            </tr>
+            <tr class="rejected">
+               <td><a href="https://zibs.nl/wiki/Vaccination-v4.0(2020EN)">Vaccination v4.0 (future use)</a></td>
+               <td>zib-Vaccination-request</td>
+               <td>rejected</td>
+               <td>
+                  <p>On the zib level, it is not entirely clear if future use means a concrete order, a
+                     clinical reminder, or both. Pending this discussion, further profiling efforts are
+                     withheld.</p>
+               </td>
+            </tr>
+            <tr class="not-submitted">
+               <td><a href="https://zibs.nl/wiki/VisualAcuity-v1.0(2020EN)">VisualAcuity v1.0</a></td>
+               <td>
+                  <ul></ul>
+               </td>
+               <td>not submitted for validation</td>
+               <td></td>
+            </tr>
+            <tr class="not-submitted">
+               <td><a href="https://zibs.nl/wiki/VisualFunction-v3.1(2020EN)">VisualFunction v3.1</a></td>
+               <td>
+                  <ul>
+                     <li>zib-VisualFunction</li>
+                     <li>zib-VisualFunction.VisualAid</li>
+                  </ul>
+               </td>
+               <td>not submitted for validation</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+   </body>
+</html>

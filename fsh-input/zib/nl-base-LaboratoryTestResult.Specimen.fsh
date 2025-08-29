@@ -12,9 +12,7 @@ Title: "nl base LaboratoryTestResult.Specimen"
 * collection.collectedDateTime only dateTime
 * collection.collectedPeriod only Period
 * collection.method from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.2--20200901000000 (preferred)
-* collection.bodySite only CodeableConcept
-* collection.bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-base-AnatomicalLocation
-* collection.bodySite from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000 (preferred)
+* collection.bodySite insert PatternNlBaseAnatomicalLocation
 * collection.bodySite.extension contains
     http://nictiz.nl/fhir/StructureDefinition/ext-LaboratoryTestResult.Specimen.Morphology named morphology 0..1
 * container.extension contains

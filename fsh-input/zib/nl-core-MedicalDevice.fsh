@@ -46,6 +46,5 @@ RuleSet: NlCoreMedicalDeviceRestrictions
 * derivedFrom[procedure-event] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event)
 * reasonReference[indication] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem)
 * reasonReference[stoma] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-Stoma)
-* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation
-* bodySite ^binding.strength = #required
+* bodySite insert PatternNlCoreAnatomicalLocation
 * note ..1

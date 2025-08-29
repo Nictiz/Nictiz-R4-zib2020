@@ -10,9 +10,7 @@ Title: "nl base Stoma"
     stomaCode 0..1
 * category[stomaCode] = http://snomed.info/sct#245857005
 * code from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.5.2.1--20200901000000 (preferred)
-* bodySite only CodeableConcept
-* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-base-AnatomicalLocation
-* bodySite from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000 (preferred)
+* bodySite insert PatternNlBaseAnatomicalLocation
 * onset[x] insert Discriminator(type, $this)
 * onset[x] only dateTime
 * onsetDateTime only dateTime

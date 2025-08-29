@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DeviceUseStatement xmlns="http://hl7.org/fhir">
+   <id value="nl-core-Respiration.AdministrationDevice-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Respiration.AdministrationDevice"/>
+   </meta>
+   <status value="completed"/>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <timingPeriod>
+      <start value="2010-06-19"/>
+      <end value="2011-03-04"/>
+   </timingPeriod>
+   <device>
+      <reference value="Device/nl-core-Respiration.AdministrationDevice.Product-01"/>
+      <type value="Device"/>
+   </device>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="51440002"/>
+               <display value="Bilateraal"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="45206002"/>
+         <display value="neus"/>
+      </coding>
+   </bodySite>
+</DeviceUseStatement>

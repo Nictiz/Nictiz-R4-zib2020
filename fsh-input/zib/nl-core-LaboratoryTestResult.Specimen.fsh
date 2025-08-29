@@ -9,8 +9,7 @@ Title: "nl core LaboratoryTestResult.Specimen"
 * subject only Reference(Patient or Group or Device or Substance or Location or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.SpecimenSource)
 * parent only Reference(Specimen or http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen)
 * collection.method ^binding.strength = #required
-* collection.bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-core-AnatomicalLocation
-* collection.bodySite ^binding.strength = #required
+* collection.bodySite insert PatternNlCoreAnatomicalLocation
 * collection.bodySite.extension[morphology] ..1
 * container.type from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.13.1.9--20220610000000 (extensible)
 * note ..1

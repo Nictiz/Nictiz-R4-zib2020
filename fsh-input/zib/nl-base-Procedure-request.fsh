@@ -17,9 +17,7 @@ Title: "nl base Procedure request"
 * performer only Reference(Practitioner or PractitionerRole or Organization or CareTeam or HealthcareService or Patient or Device or RelatedPerson or http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthProfessional-PractitionerRole or http://nictiz.nl/fhir/StructureDefinition/nl-base-CareTeam)
 * locationReference only Reference(Location or http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthcareProvider)
 * reasonReference only Reference(Condition or Observation or DiagnosticReport or DocumentReference or http://nictiz.nl/fhir/StructureDefinition/nl-base-Problem)
-* bodySite only CodeableConcept
-* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-base-AnatomicalLocation
-* bodySite from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000 (preferred)
+* bodySite insert PatternNlBaseAnatomicalLocation
 
 // Short, alias, definition and comment texts
 * ^description = """

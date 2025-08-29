@@ -6,9 +6,7 @@ Title: "nl base PressureUlcer"
 * insert Purpose(PressureUlcer, 3.4, Condition)
 
 * code = http://snomed.info/sct#399912005
-* bodySite only CodeableConcept
-* bodySite ^type.profile = http://nictiz.nl/fhir/StructureDefinition/nl-base-AnatomicalLocation
-* bodySite from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.121.11.11--20200901000000 (preferred)
+* bodySite insert PatternNlBaseAnatomicalLocation
 * onset[x] insert Discriminator(type, $this)
 * onsetDateTime only dateTime
 * stage.summary from http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.19.1.1--20200901000000 (preferred)
