@@ -7,10 +7,11 @@ Title: "nl core TreatmentDirective2"
 
 * . obeys zib-TreatmentDirective2-1 and zib-TreatmentDirective2-2
 * extension[comment] ..1
+* extension[additionalAdvanceDirective].value[x] only Reference(http://nictiz.nl/fhir/StructureDefinition/nl-core-AdvanceDirective)
 * modifierExtension[specificationOther] ..1
 * category[treatmentDirectiveCode] 1..1
+* patient only Reference(Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient)
 * sourceReference only Reference(Consent or DocumentReference or Contract or QuestionnaireResponse or http://nictiz.nl/fhir/StructureDefinition/nl-core-AdvanceDirective)
-* provision.type from http://hl7.org/fhir/ValueSet/consent-provision-type|4.0.1 (required)
 * provision.actor[agreementParty].reference only Reference(Device or Group or CareTeam or Organization or Patient or Practitioner or RelatedPerson or PractitionerRole or http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient or http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson or http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole)
 * provision.code ..1
 * provision.code ^binding.strength = #required
