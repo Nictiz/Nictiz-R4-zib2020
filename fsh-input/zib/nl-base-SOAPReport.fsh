@@ -42,11 +42,7 @@ Title: "nl base SOAPReport"
   * ^short = "Author"
   * ^alias[+] = "Auteur"
   * ^definition = "The healthcare provider who prepared the report and who is responsible for its content."
-  * ^comment = """
-    Each occurrence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [nl-base-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [nl-base-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/nl-base-HealthProfessional-Practitioner)). The Practitioner resource is referenced from the PractitionerRole instance. For this reason, sending systems should fill the reference to the PractitionerRole instance here, and not the Practitioner resource. Receiving systems can then retrieve the reference to the Practitioner resource from that PractitionerRole instance.
-    
-    In rare circumstances, there is only a Practitioner instance, in which case it is that instance which will be referenced here. However, since this should be the exception, the nl-base-HealthProfessional-Practitioner profile is not explicitly mentioned as a target profile.
-    """
+  * insert PatternNlBaseHealthProfessional
 * title ^definition = "Official human-readable label for the composition. Suggested value is the ICPC display name on the A entry."
 * section[soapLine]
   * ^short = "SOAPLine"
