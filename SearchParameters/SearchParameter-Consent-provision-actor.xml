@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SearchParameter xmlns="http://hl7.org/fhir">
+  <url value="http://nictiz.nl/fhir/SearchParameter/Consent-provision-actor" />
+  <name value="Consent_provision_actor" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Searches on the agreementparties of the consent, such as patient, relatedperson, practitionerrole, etc." />
+  <code value="provision-actor" />
+  <base value="Consent" />
+  <type value="reference" />
+  <expression value="Consent.provision.actor.reference" />
+  <target value="Patient" />
+  <target value="Practitioner" />
+  <target value="RelatedPerson" />
+</SearchParameter>
