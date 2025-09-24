@@ -66,7 +66,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 
 ### AdvanceDirective v3.1.1
 * Profile: zib-AdvanceDirective
-* Status: in progress
+* Status: validated
 
 ### AlcoholUse v3.2
 * Profile: zib-AlcoholUse
