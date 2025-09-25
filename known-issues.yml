@@ -204,6 +204,10 @@ zib-AdvanceDirective:
     Consent.provision.actor:representative.reference:
       - cardinality: 1..1 instead of 0..1
         reason: Consent.provision.actor:representative has cardinality 0..1, making the cardinality of Consent.provision.actor:representative.reference effectively 0..1 as required by the zib.
+  ignored issues:
+    Consent.provision.actor:representative.reference:
+      - message: "Constraint failed: sd-zpg-03: 'References to other resource profiles should be added next to the HL7 base references, unless they are added on a slice.'"
+        reason: The constraint on this profile is part of what defines the slice
 
 zib-AllergyIntolerance:
   zib deviations:
