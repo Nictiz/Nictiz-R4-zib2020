@@ -287,7 +287,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 * Profiles:
     * zib-HeartRate
     * zib-HeartRate.HeartbeatRegularity
-* Status: not submitted for validation
+* Status: validated
 
 ### HelpFromOthers v3.01
 * Status: not submitted for validation
@@ -477,8 +477,9 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 ### PulseRate v3.3
 * Profiles:
     * zib-PulseRate
+    * zib-PulseRate.PulseRateRegularity
     * zib-PulseRate.PulseRegularity
-* Status: rejected
+* Status: validated
 
 ### Range v1.0.1
 * Status: validated
