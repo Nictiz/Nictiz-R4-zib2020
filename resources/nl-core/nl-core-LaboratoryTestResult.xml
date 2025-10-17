@@ -94,6 +94,16 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
       </type>
     </element>
+    <element id="Observation.performer.extension">
+      <path value="Observation.performer.extension"/>
+      <slicing>
+        <discriminator>
+          <type value="value"/>
+          <path value="url"/>
+        </discriminator>
+        <rules value="open"/>
+      </slicing>
+    </element>
     <element id="Observation.performer.extension:performerFunction">
       <path value="Observation.performer.extension" />
       <sliceName value="performerFunction" />
