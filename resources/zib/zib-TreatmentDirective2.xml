@@ -34,7 +34,7 @@
     <element id="Consent">
       <path value="Consent" />
       <short value="TreatmentDirective" />
-      <comment value="A straightforward and accurate mapping of zib TreatmentDirective2 to FHIR is not possible. The main consideration is to choose between the Consent and CarePlan resource. Unfortunately, the Consent resource does not have full support for treatment directives yet as its main focus is to model Patient's privacy consents. Regardless, it seems to be the best match to represent the intention of the zib, as both the resource and the zib cover a mutual agreement about treatments and not per se the resulting actions or policy for treatments, which would better be handled using the CarePlan resource. Future migration to a later version of FHIR or the zib will result in the reevaluation of the mapping." />      
+      <comment value="A straightforward and accurate mapping of zib TreatmentDirective2 to FHIR is not possible. The main consideration is to choose between the Consent and CarePlan resource. Unfortunately, the Consent resource does not have full support for treatment directives yet as its main focus is to model Patient's privacy consents. Regardless, it seems to be the best match to represent the intention of the zib, as both the resource and the zib cover a mutual agreement about treatments and not per se the resulting actions or policy for treatments, which would better be handled using the CarePlan resource. Future migration to a later version of FHIR or the zib will result in the reevaluation of the mapping." />
       <alias value="BehandelAanwijzing" />
       <constraint>
         <key value="zib-TreatmentDirective2-1" />
@@ -194,6 +194,15 @@
       <path value="Consent.policy.uri" />
       <comment value="Either `.policy` or `.policyRule` should exist following core constraint ppc-1. If no explicit value is recorded, a fallback is to populate `.policy.uri` with &lt;https://wetten.overheid.nl/&gt; if the treatment directive is recorded following Dutch law and regulations." />
     </element>
+    <element id="Consent.provision">
+      <path value="Consent.provision" />
+      <constraint>
+        <key value="cons-actor-patient-or-representative" />
+        <severity value="error" />
+        <human value="Each provision SHALL include at least one actor: either the patient or the representative." />
+        <expression value="actor.where(role.coding.where(system = 'http://terminology.hl7.org/CodeSystem/v3-RoleCode' and (code = 'CONSENTER' or code = 'RESPRSN')).exists()).exists()" />
+      </constraint>
+    </element>
     <element id="Consent.provision.extension:reasonForEnding">
       <path value="Consent.provision.extension" />
       <sliceName value="reasonForEnding" />
@@ -239,16 +248,13 @@
       <path value="Consent.provision.actor" />
       <slicing>
         <discriminator>
-          <type value="value" />
-          <path value="role" />
+          <type value="pattern" />
+          <path value="$this" />
         </discriminator>
         <rules value="open" />
       </slicing>
-    </element>
-    <element id="Consent.provision.actor:agreementParty">
-      <path value="Consent.provision.actor" />
-      <sliceName value="agreementParty" />
       <short value="AgreementParty" />
+      <comment value="Each occurrence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [zib-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [zib-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner)). The Practitioner resource is referenced from the PractitionerRole instance. For this reason, sending systems should fill the reference to the PractitionerRole instance here, and not the Practitioner resource. Receiving systems can then retrieve the reference to the Practitioner resource from that PractitionerRole instance.&#xD;&#xA;&#xD;&#xA;In rare circumstances, there is only a Practitioner instance, in which case it is that instance which will be referenced here. However, since this should be the exception, the zib-HealthProfessional-Practitioner profile is not explicitly mentioned as a target profile." />
       <alias value="AfspraakPartij" />
       <mapping>
         <identity value="zib-treatmentdirective2-v1.0-2020EN" />
@@ -256,25 +262,33 @@
         <comment value="AgreementParty" />
       </mapping>
     </element>
-    <element id="Consent.provision.actor:agreementParty.role">
+    <element id="Consent.provision.actor:agreementPartyHealthProfessional">
+      <path value="Consent.provision.actor" />
+      <sliceName value="agreementPartyHealthProfessional" />
+      <min value="1" />
+      <mapping>
+        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+        <map value="NL-CM:2.2.12" />
+        <comment value="HealthProfessional" />
+      </mapping>
+    </element>
+    <element id="Consent.provision.actor:agreementPartyHealthProfessional.role">
       <path value="Consent.provision.actor.role" />
       <patternCodeableConcept>
         <coding>
           <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode" />
-          <code value="CONSENTER" />
+          <code value="CONSWIT" />
         </coding>
       </patternCodeableConcept>
     </element>
-    <element id="Consent.provision.actor:agreementParty.reference">
+    <element id="Consent.provision.actor:agreementPartyHealthProfessional.reference">
       <path value="Consent.provision.actor.reference" />
-      <short value="Patient / Representative / HealthProfessional" />
-      <definition value="* Patient as the person with whom the agreement was made.&#xD;&#xA;* Person who represents the patient in health care matters and with whom the agreement has been made (too).&#xD;&#xA;* HealthProfessional who has made the agreement regarding the treatment directive." />
-      <comment value="Each occurrence of the zib HealthProfessional is normally represented by _two_ FHIR resources: a PractitionerRole resource (instance of [zib-HealthProfessional-PractitionerRole](http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole)) and a Practitioner resource (instance of [zib-HealthProfessional-Practitioner](http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-Practitioner)). The Practitioner resource is referenced from the PractitionerRole instance. For this reason, sending systems should fill the reference to the PractitionerRole instance here, and not the Practitioner resource. Receiving systems can then retrieve the reference to the Practitioner resource from that PractitionerRole instance.&#xD;&#xA;&#xD;&#xA;In rare circumstances, there is only a Practitioner instance, in which case it is that instance which will be referenced here. However, since this should be the exception, the zib-HealthProfessional-Practitioner profile is not explicitly mentioned as a target profile." />
-      <alias value="Patient" />
-      <alias value="Vertegenwoordiger" />
+      <short value="HealthProfessional" />
+      <definition value="HealthProfessional who has made the agreement regarding the treatment directive." />
       <alias value="Zorgverlener" />
       <type>
         <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/CareTeam" />
@@ -283,24 +297,94 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
+      </type>
+      <mapping>
+        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+        <map value="NL-CM:2.2.12" />
+        <comment value="HealthProfessional" />
+      </mapping>
+    </element>
+    <element id="Consent.provision.actor:agreementPartyPatient">
+      <path value="Consent.provision.actor" />
+      <sliceName value="agreementPartyPatient" />
+      <max value="1" />
+      <mapping>
+        <identity value="zib-treatmentdirective2-v1.0-2020EN" />
+        <map value="NL-CM:2.2.10" />
+        <comment value="Patient" />
+      </mapping>
+    </element>
+    <element id="Consent.provision.actor:agreementPartyPatient.role">
+      <path value="Consent.provision.actor.role" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode" />
+          <code value="CONSENTER" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Consent.provision.actor:agreementPartyPatient.reference">
+      <path value="Consent.provision.actor.reference" />
+      <short value="Patient" />
+      <definition value="Patient as the person with whom the agreement was made." />
+      <alias value="Patient" />
+      <type>
+        <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-Patient" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson" />
-        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-HealthProfessional-PractitionerRole" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/CareTeam" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
       </type>
       <mapping>
         <identity value="zib-treatmentdirective2-v1.0-2020EN" />
         <map value="NL-CM:2.2.10" />
         <comment value="Patient" />
       </mapping>
+    </element>
+    <element id="Consent.provision.actor:agreementPartyRepresentative">
+      <path value="Consent.provision.actor" />
+      <sliceName value="agreementPartyRepresentative" />
       <mapping>
         <identity value="zib-treatmentdirective2-v1.0-2020EN" />
         <map value="NL-CM:2.2.11" />
         <comment value="Representative" />
       </mapping>
+    </element>
+    <element id="Consent.provision.actor:agreementPartyRepresentative.role">
+      <path value="Consent.provision.actor.role" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode" />
+          <code value="RESPRSN" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Consent.provision.actor:agreementPartyRepresentative.reference">
+      <path value="Consent.provision.actor.reference" />
+      <short value="Representative" />
+      <definition value="Person who represents the patient in health care matters and with whom the agreement has been made (too)." />
+      <alias value="Vertegenwoordiger" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-ContactPerson" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/CareTeam" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole" />
+      </type>
       <mapping>
         <identity value="zib-treatmentdirective2-v1.0-2020EN" />
-        <map value="NL-CM:2.2.12" />
-        <comment value="HealthProfessional" />
+        <map value="NL-CM:2.2.11" />
+        <comment value="Representative" />
       </mapping>
     </element>
     <element id="Consent.provision.code">
