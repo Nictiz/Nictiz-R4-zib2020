@@ -103,6 +103,41 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization" />
       </type>
     </element>
+    <element id="Observation.performer.extension">
+      <path value="Observation.performer.extension"/>
+      <slicing>
+        <discriminator>
+          <type value="value"/>
+          <path value="url"/>
+        </discriminator>
+        <rules value="open"/>
+      </slicing>
+    </element>
+    <element id="Observation.performer.extension:performerFunction">
+      <path value="Observation.performer.extension" />
+      <sliceName value="performerFunction" />
+      <definition value="Distinguishes the type of involvement of the performer in the event. For example, 'author',  'verifier' or 'responsible party'.&#xD;&#xA;&#xD;&#xA;This extension should be used to convey the information whether the laboratory responsible for the result outsourced the actual performing of the test to another lab. If that is the case this extension should be used with value set to &quot;RESP&quot;. Otherwise, this extension should not be used." />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/event-performerFunction" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Observation.performer.extension:performerFunction.value[x]">
+      <path value="Observation.performer.extension.value[x]" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://terminology.hl7.org/CodeSystem/v3-ParticipationType" />
+          <code value="RESP" />
+          <display value="responsible party" />
+        </coding>
+      </patternCodeableConcept>
+      <mapping>
+        <identity value="lu-dataset-laboratory-exchange-20210222" />
+        <map value="lu-concept-4520" />
+        <comment value="IsUitbesteed" />
+      </mapping>
+    </element>
     <element id="Observation.specimen">
       <path value="Observation.specimen" />
       <type>
