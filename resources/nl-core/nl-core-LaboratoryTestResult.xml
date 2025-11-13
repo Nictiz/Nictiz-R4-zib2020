@@ -119,5 +119,46 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult" />
       </type>
     </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="pattern" />
+          <path value="code" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:poctIndicator">
+      <path value="Observation.component" />
+      <sliceName value="poctIndicator" />
+      <short value="Point-of-care testing indicator" />
+      <definition value="Indicates whether this result was obtained via point of care testing." />
+      <max value="1" />
+      <mustSupport value="false" />
+    </element>
+    <element id="Observation.component:poctIndicator.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="405262001" />
+          <display value="Point of care testing (procedure)" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:poctIndicator.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="true if performed as POCT; false otherwise" />
+      <min value="1" />
+      <type>
+        <code value="boolean" />
+      </type>
+      <mapping>
+        <identity value="lu-dataset-laboratory-exchange-20210222" />
+        <map value="lu-concept-v2-4519" />
+        <comment value="IsPointOfCareTest" />
+      </mapping>
+    </element>
   </differential>
 </StructureDefinition>
