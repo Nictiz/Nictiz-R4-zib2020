@@ -388,6 +388,9 @@ This document contains release notes per zib, indicating differences with their 
 ## zib-TimeInterval
 * In the previous release, the concepts of this partial zib were mapped directly in the profiles where they are used. In this release the usage of this partial zib has been expanded and profiles have been created to aid the usage in profiles in the various situations that might occur.
 
+## zib-TNMTumorClassification
+* TNMTumorClassification is a newly added zib in the 2020 release. It has no previous profile and therefore no diff.
+
 ## zib-TextResult
 * New concept VisualResult mapped in additional profile zib-TextResult.VisualResult on `Media.content`. `DiagnosticReport.image.link` references this profile.
 

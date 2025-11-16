@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ext-TNMTumorClassification.Morphology" />
+  <url value="http://nictiz.nl/fhir/StructureDefinition/ext-TNMTumorClassification.Morphology" />
+  <name value="ExtTNMTumorClassificationMorphology" />
+  <title value="ext TNMTumorClassification.Morphology" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The Morphology concept of zib TNMTumorClassification." />
+  <purpose value="This extension represents the Morphology concept from Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) TNMTumorClassification-v1.0(2020EN)](https://zibs.nl/wiki/TNMTumorClassification-v1.0(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/TNMTumorClassification-v1.0(2020EN)" />
+    <name value="zib TNMTumorClassification-v1.0(2020EN)" />
+  </mapping>
+  <kind value="complex-type" />
+  <abstract value="false" />
+  <context>
+    <type value="element" />
+    <expression value="Observation.component" />
+  </context>
+  <type value="Extension" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Extension.url">
+      <path value="Extension.url" />
+      <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-TNMTumorClassification.AbnormalityNumber" />
+    </element>
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="Morphology" />
+      <definition value="Behavior of a tumor and cell type expressed in ICD-O-3 morphological or histology code. Describes the cell type (or histology) of the tumor, together with the behavior (malignant or benign). This is determined by a pathologist." />
+      <alias value="Morfologie" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.4.27.16--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-tnmtumorclassification-v1.0-2020EN" />
+        <map value="NL-CM:4.27.17" />
+        <comment value="Morphology" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>
