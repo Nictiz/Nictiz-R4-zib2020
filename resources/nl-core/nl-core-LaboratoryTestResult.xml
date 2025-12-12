@@ -92,14 +92,65 @@
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
       </type>
     </element>
-    <element id="Observation.performer:performer">
+    <element id="Observation.performer:performingHealthcareProvider">
       <path value="Observation.performer" />
-      <sliceName value="performer" />
-      <definition value="The organization where or by whom the LaboratoryTestResult was performed.&#xD;&#xA;&#xD;&#xA;Note: the zib formally defines this relation as a reference to zib HealthcareProvider, which is primarily defined as the location at which the service was performed, and only secondarily as the organization associated with this location. According to this logic, the expected reference would be to the zib HealthcareProvider Location profile (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider&gt;) rather than the Organization profile (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization&gt;). However, on a functional level this concept is usually understood to be about the organization rather than the location, which is in line with the way FHIR models the current element. For this reason, the Organization rather than the Location resource is referenced here. See https://bits.nictiz.nl/browse/MM-4747 for more information." />
+      <sliceName value="performingHealthcareProvider" />
+      <definition value="The organization where or by whom the LaboratoryTestResult was performed.&#xD;&#xA;&#xD;&#xA;Note that this can be a different organization than the one that is responsible for the laboratory test result. The responsible laboratory is represented using the `responsibleLaboratory` slice, where the &quot;event-performerFunction&quot; extension is set to _RESP_. If is not possible to mark an organization as both the responsible party and the performer, they need to be communicated separately even if they are the same organization.&#xD;&#xA;&#xD;&#xA;If there's a need to just indicate that the test was outsourced to another laboratory, this `.performer` instance can be populated using the dataAbsentReason extension." />
+      <comment value="Note: the zib formally defines this relation as a reference to zib HealthcareProvider, which is primarily defined as the location at which the service was performed, and only secondarily as the organization associated with this location. According to this logic, the expected reference would be to the zib HealthcareProvider Location profile (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider&gt;) rather than the Organization profile (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization&gt;). However, on a functional level this concept is usually understood to be about the organization rather than the location, which is in line with the way FHIR models the current element. For this reason, the Organization rather than the Location resource is referenced here. See https://bits.nictiz.nl/browse/MM-4747 for more information." />
       <type>
         <code value="Reference" />
         <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization" />
       </type>
+      <mapping>
+        <identity value="lu-dataset-laboratory-exchange-20210222" />
+        <map value="lu-concept-4520" />
+        <comment value="IsUitbesteed" />
+      </mapping>
+    </element>
+    <element id="Observation.performer:performingHealthcareProvider.extension:dataAbsentReason">
+      <path value="Observation.performer.extension" />
+      <sliceName value="dataAbsentReason" />
+      <short value="Reason performer is missing or not known." />
+      <definition value="If the actual performing laboratory is not known or not disclosed, this extension can indicate the reason." />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/data-absent-reason" />
+      </type>
+    </element>
+    <element id="Observation.performer:responsibleLaboratory">
+      <path value="Observation.performer" />
+      <sliceName value="responsibleLaboratory" />
+      <definition value="The organization responsible for the LaboratoryTestResult." />
+      <comment value="Note: the zib formally defines zib HealthcareProvider as the location at which the service was performed, and only secondarily as the organization associated with this location. According to this logic, the expected reference would be to the zib HealthcareProvider Location profile (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider&gt;) rather than the Organization profile (&lt;http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization&gt;). However, on a functional level this concept is usually understood to be about the organization rather than the location, which is in line with the way FHIR models the current element. For this reason, the Organization rather than the Location resource is referenced here. See https://bits.nictiz.nl/browse/MM-4747 for more information." />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization" />
+      </type>
+    </element>
+    <element id="Observation.performer:responsibleLaboratory.extension">
+      <path value="Observation.performer.extension" />
+      <min value="1" />
+    </element>
+    <element id="Observation.performer:responsibleLaboratory.extension:performerFunction">
+      <path value="Observation.performer.extension" />
+      <sliceName value="performerFunction" />
+      <definition value="Distinguishes the type of involvement of the performer in the event. For example, 'author',  'verifier' or 'responsible party'.&#xD;&#xA;&#xD;&#xA;The use of the extension on this slice is restricted to code 'RESP', which represents the 'responsible party'." />
+      <min value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/event-performerFunction" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Observation.performer:responsibleLaboratory.extension:performerFunction.value[x]">
+      <path value="Observation.performer.extension.value[x]" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://terminology.hl7.org/CodeSystem/v3-ParticipationType" />
+          <code value="RESP" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Observation.specimen">
       <path value="Observation.specimen" />

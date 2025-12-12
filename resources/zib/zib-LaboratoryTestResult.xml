@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-LaboratoryTestResult" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult" />
   <name value="ZibLaboratoryTestResult" />
   <title value="zib LaboratoryTestResult" />
@@ -196,12 +194,16 @@
           <type value="profile" />
           <path value="resolve()" />
         </discriminator>
+        <discriminator>
+          <type value="value" />
+          <path value="extension('http://hl7.org/fhir/StructureDefinition/event-performerFunction')" />
+        </discriminator>
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Observation.performer:performer">
+    <element id="Observation.performer:performingHealthcareProvider">
       <path value="Observation.performer" />
-      <sliceName value="performer" />
+      <sliceName value="performingHealthcareProvider" />
       <short value="Performer" />
       <definition value="The organization where or by whom the LaboratoryTestResult was performed.&#xD;&#xA;&#xD;&#xA;Note: the zib formally defines this relation as a reference to zib HealthcareProvider, which is primarily defined as the location at which the service was performed, and only secondarily as the organization associated with this location. According to this logic, the expected reference would be to the zib HealthcareProvider Location profile (&lt;http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider&gt;) rather than the Organization profile (&lt;http://nictiz.nl/fhir/StructureDefinition/zib-HealthcareProvider-Organization&gt;). However, on a functional level this concept is usually understood to be about the organization rather than the location, which is in line with the way FHIR models the current element. For this reason, the Organization rather than the Location resource is referenced here. See https://bits.nictiz.nl/browse/MM-4747 for more information." />
       <alias value="Uitvoerder" />
@@ -215,6 +217,29 @@
         <map value="NL-CM:13.1.35" />
         <comment value="Performer" />
       </mapping>
+    </element>
+    <element id="Observation.performer:performingHealthcareProvider.extension">
+      <path value="Observation.performer.extension" />
+      <min value="1" />
+    </element>
+    <element id="Observation.performer:performingHealthcareProvider.extension:performerFunction">
+      <path value="Observation.performer.extension" />
+      <sliceName value="performerFunction" />
+      <min value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/event-performerFunction" />
+      </type>
+      <isModifier value="false" />
+    </element>
+    <element id="Observation.performer:performingHealthcareProvider.extension:performerFunction.value[x]">
+      <path value="Observation.performer.extension.value[x]" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://terminology.hl7.org/CodeSystem/v3-ParticipationType" />
+          <code value="PPRF" />
+        </coding>
+      </patternCodeableConcept>
     </element>
     <element id="Observation.value[x]">
       <path value="Observation.value[x]" />
