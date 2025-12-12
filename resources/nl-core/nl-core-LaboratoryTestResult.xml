@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="nl-core-LaboratoryTestResult" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult" />
   <name value="NlcoreLaboratoryTestResult" />
   <title value="nl core LaboratoryTestResult" />
@@ -135,7 +133,6 @@
       <short value="Point-of-care testing indicator" />
       <definition value="Indicates whether this result was obtained via point of care testing." />
       <max value="1" />
-      <mustSupport value="false" />
     </element>
     <element id="Observation.component:poctIndicator.code">
       <path value="Observation.component.code" />
@@ -143,13 +140,13 @@
         <coding>
           <system value="http://snomed.info/sct" />
           <code value="405262001" />
-          <display value="Point of care testing (procedure)" />
         </coding>
       </patternCodeableConcept>
     </element>
     <element id="Observation.component:poctIndicator.value[x]">
       <path value="Observation.component.value[x]" />
-      <short value="true if performed as POCT; false otherwise" />
+      <short value="IsPointOfCareTest" />
+      <comment value="Set to 'true' if performed as point of care test, false otherwise" />
       <min value="1" />
       <type>
         <code value="boolean" />
