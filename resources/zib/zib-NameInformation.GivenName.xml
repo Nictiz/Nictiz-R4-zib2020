@@ -2,8 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-NameInformation.GivenName" />
   <text>
-    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-NameInformation.GivenName" />
   <name value="ZibNameInformationGivenName" />
   <title value="zib NameInformation.GivenName" />
@@ -37,14 +36,10 @@
       <definition value="This slice represents the name information normally used to address the person." />
       <comment value="This `.name` element represents the Dutch given name (&quot;roepnaam&quot;) according to the [zib NameInformation v1.1 (2020)](https://zibs.nl/wiki/NameInformation-v1.1(2020EN)).&#xD;&#xA;&#xD;&#xA;**Note 1**: This element should only contain a person's _unofficial_ name. The official names are represented in one or more other `.name` elements with `.name.use` = _official_.&#xD;&#xA;&#xD;&#xA;**Note 2**: The examples illustrate how the zib is mapped to FHIR." />
     </element>
-        <element id="HumanName.use">
+    <element id="HumanName.use">
       <path value="HumanName.use" />
       <min value="1" />
       <patternCode value="usual" />
-    </element>
-    <element id="HumanName.family">
-      <path value="HumanName.family" />
-      <max value="0" />
     </element>
     <element id="HumanName.given">
       <path value="HumanName.given" />
