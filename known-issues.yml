@@ -1032,6 +1032,8 @@ issues should occur: false
         reason: This is a bug in the extension. See https://jira.hl7.org/browse/FHIR-49977
       - message: "Constraint failed: ext-ab-1: 'Additional Bindings SHOULD have a key to allow a binding to be constrained.'"
         reason: This is a bug in the extension. See https://jira.hl7.org/browse/FHIR-49977
+      - message: The Profile 'http://hl7.org/fhir/tools/StructureDefinition/additional-binding|1.1.2' definition allows for the type uri but found type canonical
+        reason: The Validator seems to use the STU3 version instead of the R4 version of the tooling package, which uses uri.
     Consent.scope*:
       - message: Unknown Code 'adr' in the system 'http://terminology.hl7.org/CodeSystem/consentscope'
         reason: This concerns an error in the FHIR terminology server. The adr code has been removed for R5 and the terminology server was updated for it too soon. They will fix it according to zulip chat https://chat.fhir.org/#narrow/stream/179166-implementers/topic/Consent.2Escope.3A.20diff.20in.20codes.20shown.20on.20FHIR.20vs.20Tx.20server.
