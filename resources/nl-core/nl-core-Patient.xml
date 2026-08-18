@@ -125,6 +125,7 @@
     </element>
     <element id="Patient.contact.name">
       <path value="Patient.contact.name" />
+      <comment value="This element can and should not completely capture the NameInformation concept from zib ContactPerson; it should just be used for the information that is needed for contacting the person in relation to care of the patient. The full name information should instead be captured using an instance of [nl-core-ContactPerson](http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson), which can then be referenced from this resource. See the comment on `Patient.contact` for more information."/>
       <type>
         <code value="HumanName" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NameInformation" />
