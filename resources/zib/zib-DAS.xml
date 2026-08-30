@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="zib-DAS" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
+  <url value="http://nictiz.nl/fhir/StructureDefinition/zib-DAS" />
+  <name value="ZibDAS" />
+  <title value="zib DAS" />
+  <status value="draft" />
+  <publisher value="Nictiz" />
+  <contact>
+    <name value="Nictiz" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.nictiz.nl" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The Disease Activity Score (DAS) is a combined index developed in Nijmegen around 1990 to measure disease activity in patients with rheumatoid arthritis (RA). It concerns a formula with 28 or 44 painful and swollen joints, a blood value for inflammation (BSE or CRP) and the overall experience of disease activity by the patient. The DAS results in a number between 0 and 10, which indicates how active rheumatoid arthritis is at present. The score has been validated for use in clinical trials in combination with the EULAR response criteria." />
+  <purpose value="This Observation resource represents the Dutch [zib ('Zorginformatiebouwsteen', i.e. Health and Care Information Model) DAS v1.0 (2020)](https://zibs.nl/wiki/DAS-v1.0(2020EN))." />
+  <copyright value="Copyright and related rights waived via CC0, https://creativecommons.org/publicdomain/zero/1.0/. This does not apply to information from third parties, for example a medical terminology system. The implementer alone is responsible for identifying and obtaining any necessary licenses or authorizations to utilize third party IP in connection with the specification or otherwise." />
+  <fhirVersion value="4.0.1" />
+  <mapping>
+    <identity value="zib-das-v1.0-2020EN" />
+    <uri value="https://zibs.nl/wiki/DAS-v1.0(2020EN)" />
+    <name value="zib DAS-v1.0(2020EN)" />
+  </mapping>
+  <kind value="resource" />
+  <abstract value="true" />
+  <type value="Observation" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Observation" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Observation">
+      <path value="Observation" />
+      <short value="DAS" />
+      <comment value="Several concepts of zib DAS are represented using distinct Observation resources. These are grouped using the current resource and are referenced on `Observation.hasMember`:&#xD;&#xA;&#xD;&#xA;* AffectedJoint (NL-CM:12:18.2): [zib-DAS.AffectedJoint](http://nictiz.nl/fhir/StructureDefinition/zib-DAS.AffectedJoint).&#xD;&#xA;* CountOfSwollenJoints (NL-CM:12:18.11): [zib-DAS.CountOfSwollenJoints](http://nictiz.nl/fhir/StructureDefinition/zib-DAS.CountOfSwollenJoints).&#xD;&#xA;* CountOfTenderJoints (NL-CM:12:18.12): [zib-DAS.CountOfTenderJoints](http://nictiz.nl/fhir/StructureDefinition/zib-DAS.CountOfTenderJoints)." />
+      <alias value="DAS" />
+      <mapping>
+        <identity value="zib-das-v1.0-2020EN" />
+        <map value="NL-CM:12.18.1" />
+        <comment value="DAS" />
+      </mapping>
+    </element>
+    <element id="Observation.code">
+      <path value="Observation.code" />
+      <short value="DASMethod" />
+      <definition value="The specification of the DAS method used. There are different DAS scores. Each type has a different formula. DAS-28 or DAS-44 stands for 28 or 44 painful and swollen joints. One blood value for inflammation (a ESR or a CRP laboratory result) and the overall experience of disease activity by the patient via a Visual Analog Scale (VAS)." />
+      <alias value="DASMethode" />
+      <binding>
+        <strength value="extensible" />
+        <valueSet value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.18.2--20200901000000" />
+      </binding>
+      <mapping>
+        <identity value="zib-das-v1.0-2020EN" />
+        <map value="NL-CM:12.18.14" />
+        <comment value="DASMethod" />
+      </mapping>
+    </element>
+    <element id="Observation.effective[x]">
+      <path value="Observation.effective[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.effective[x]:effectiveDateTime">
+      <path value="Observation.effective[x]" />
+      <sliceName value="effectiveDateTime" />
+      <short value="DASDateTime" />
+      <definition value="The date and possibly time when the DAS score measurement was carried out." />
+      <alias value="DASDatumTijd" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <mapping>
+        <identity value="zib-das-v1.0-2020EN" />
+        <map value="NL-CM:12.18.17" />
+        <comment value="DASDateTime" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <slicing>
+        <discriminator>
+          <type value="type" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.value[x]:valueQuantity">
+      <path value="Observation.value[x]" />
+      <sliceName value="valueQuantity" />
+      <short value="DASValue" />
+      <definition value="The result (value)." />
+      <alias value="DASWaarde" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <minValueQuantity>
+        <value value="0.00" />
+      </minValueQuantity>
+      <maxValueQuantity>
+        <value value="10.00" />
+      </maxValueQuantity>
+      <mapping>
+        <identity value="zib-das-v1.0-2020EN" />
+        <map value="NL-CM:12.18.15" />
+        <comment value="DASValue" />
+      </mapping>
+    </element>
+    <element id="Observation.hasMember">
+      <path value="Observation.hasMember" />
+      <slicing>
+        <discriminator>
+          <type value="profile" />
+          <path value="resolve()" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.hasMember:affectedJoint">
+      <path value="Observation.hasMember" />
+      <sliceName value="affectedJoint" />
+      <definition value="The AffectedJoint concept (NL-CM:12.18.2) of zib DAS, represented as a distinct Observation resource." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-DAS.AffectedJoint" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:countOfTenderJoints">
+      <path value="Observation.hasMember" />
+      <sliceName value="countOfTenderJoints" />
+      <definition value="The CountOfTenderJoints concept (NL-CM:12.18.11) of zib DAS, represented as a distinct Observation resource." />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-DAS.CountOfTenderJoints" />
+      </type>
+    </element>
+    <element id="Observation.hasMember:countOfSwollenJoints">
+      <path value="Observation.hasMember" />
+      <sliceName value="countOfSwollenJoints" />
+      <definition value="The CountOfSwollenJoints concept (NL-CM:12.18.12) of zib DAS, represented as a distinct Observation resource." />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-DAS.CountOfSwollenJoints" />
+      </type>
+    </element>
+    <element id="Observation.derivedFrom">
+      <path value="Observation.derivedFrom" />
+      <short value="ESR / CRP" />
+      <definition value="The C-reactive protein (CRP) is a laboratory measurment valuable for determining the presence of inflammation or to monitor the effect of a medical treatment on the inflammation. The erythrocyte sedimentation rate (ESR or sed rate) is the rate at which red blood cells in anticoagulated whole blood descend in a standardized tube over a period of one hour. Both test results can be used to calculate the DAS." />
+      <alias value="BSE / CRP" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ImagingStudy" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Media" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MolecularSequence" />
+        <targetProfile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult" />
+      </type>
+      <mapping>
+        <identity value="zib-das-v1.0-2020EN" />
+        <map value="NL-CM:12.18.20" />
+        <comment value="ESR" />
+      </mapping>
+      <mapping>
+        <identity value="zib-das-v1.0-2020EN" />
+        <map value="NL-CM:12.18.19" />
+        <comment value="CRP" />
+      </mapping>
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="$this" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.component:dasFormula">
+      <path value="Observation.component" />
+      <sliceName value="dasFormula" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:dasFormula.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="430321000146109" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:dasFormula.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="DASFormula" />
+      <definition value="The specification of the type of DAS. There are different DAS scores. Each type has a different formula." />
+      <alias value="DASFormule" />
+      <type>
+        <code value="string" />
+      </type>
+      <mapping>
+        <identity value="zib-das-v1.0-2020EN" />
+        <map value="NL-CM:12.18.21" />
+        <comment value="DASFormula" />
+      </mapping>
+    </element>
+    <element id="Observation.component:vasGeneralHealth">
+      <path value="Observation.component" />
+      <sliceName value="vasGeneralHealth" />
+      <max value="1" />
+    </element>
+    <element id="Observation.component:vasGeneralHealth.code">
+      <path value="Observation.component.code" />
+      <patternCodeableConcept>
+        <coding>
+          <system value="http://snomed.info/sct" />
+          <code value="446661009" />
+        </coding>
+      </patternCodeableConcept>
+    </element>
+    <element id="Observation.component:vasGeneralHealth.value[x]">
+      <path value="Observation.component.value[x]" />
+      <short value="VASGeneralHealth" />
+      <definition value="The VAS score for general health as experienced by the patient on a scale of 1 to 100" />
+      <alias value="VASAlgemeneGezondheid" />
+      <type>
+        <code value="integer" />
+      </type>
+      <minValueInteger value="0" />
+      <maxValueInteger value="100" />
+      <mapping>
+        <identity value="zib-das-v1.0-2020EN" />
+        <map value="NL-CM:12.18.8" />
+        <comment value="VASGeneralHealth" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

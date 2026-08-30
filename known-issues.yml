@@ -294,6 +294,27 @@ zib-ContactPerson:
   additional notes:
     RelatedPerson.telecom: Although there is a cardinality mismatch for the mapping of zib concept ContactPerson.ContactInformation on this element (as pointed out above), the cardinalities between zib and FHIR do match for the mapping of zib concept Payer.ContactInformation (NL-CM:1.1.12), as these are both 0..*.
 
+zib-DAS:
+  zib deviations:
+    Observation.code:
+      - cardinality: 1..1 instead of 0..1
+        reason: Observation.code is required, which aligns with the requirement of DASMethod being present in order to interpret the outcome.
+    Observation.derivedFrom:
+      - cardinality: 0..* instead of 0..1
+        reason: The zib requires at most one instance of zib-LaboratoryTestResult for BSE or CRP; however, additional information, including additional instances of zib-LaboratoryTestResult could be used. In theory, the zib constraint could be added to the profile, but it is deemed too complex to interpret both for human consumption and for tooling (it would involve creating two derived profiles from zib-LaboratoryTestResult and the slicing by profile to add the constraints).
+
+zib-DAS.AffectedJoint:
+  zib deviations:
+    Observation.bodySite:
+      - datatype: CodeableConcept instead of a reference
+        reason: The referenced zib AnatomicalLocation is profiled on a datatype level and not a resource. Therefore it cannot be referenced, rather its concepts and constraints are added inline. This element conforms to the zib AnatomicalLocation.
+
+zib-DAS.CountOfSwollenJoints:
+  zib deviations:
+    Observation.value[x]:
+      - short: CountOfSwollenJoints instead of CountOfSwolenJoints
+        reason: The zib concept name "CountOfSwolenJoints" is an incorrect translation of the Dutch name into English.
+
 zib-Encounter:
   zib deviations:
     Encounter.class:
