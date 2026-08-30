@@ -77,7 +77,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
 
 ### Alert v4.1
 * Profile: zib-Alert
-* Status: in progress
+* Status: validated
 
 ### AllergyIntolerance v3.3
 * Profile: zib-AllergyIntolerance
@@ -130,7 +130,7 @@ Profiles that have passed validation at HL7 Netherlands are published with a bet
     * zib-BowelFunction.DefecationConsistency
     * zib-BowelFunction.DefecationColor
     * zib-MedicalDevice
-* Status: in progress
+* Status: validated
 
 ### Burnwound v3.4
 * Profiles:
