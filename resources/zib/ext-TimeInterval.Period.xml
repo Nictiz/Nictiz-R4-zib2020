@@ -71,5 +71,15 @@
         <source value="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period" />
       </constraint>
     </element>
+    <element id="Extension.value[x].end">
+      <path value="Extension.value[x].end" />
+      <constraint>
+        <key value="per-1" />
+        <severity value="error" />
+        <human value="If present, start SHALL have a lower or equal value than end" />
+        <expression value="start.hasValue().not() or end.hasValue().not() or (start.lowBoundary() &lt;= end.highBoundary())" />
+        <source value="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period" />
+      </constraint>
+    </element>
   </differential>
 </StructureDefinition>
