@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="zib-TimeInterval" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/zib-TimeInterval" />
   <name value="ZibTimeInterval" />
   <title value="zib TimeInterval" />
@@ -56,6 +54,12 @@
       <short value="startDateTime" />
       <definition value="The start date and time of the interval." />
       <alias value="startDatumTijd" />
+      <constraint>
+        <key value="per-1" />
+        <severity value="error" />
+        <human value="If present, start SHALL have a lower or equal value than end" />
+        <expression value="start.hasValue().not() or end.hasValue().not() or (start.lowBoundary() &lt;= end.highBoundary())" />
+      </constraint>
       <mapping>
         <identity value="zib-timeinterval-v1.0-2020EN" />
         <map value="NL-CM:20.3.2" />
@@ -67,6 +71,12 @@
       <short value="endDateTime" />
       <definition value="The end date and time of the interval." />
       <alias value="eindDatumTijd" />
+      <constraint>
+        <key value="per-1" />
+        <severity value="error" />
+        <human value="If present, start SHALL have a lower or equal value than end" />
+        <expression value="start.hasValue().not() or end.hasValue().not() or (start.lowBoundary() &lt;= end.highBoundary())" />
+      </constraint>
       <mapping>
         <identity value="zib-timeinterval-v1.0-2020EN" />
         <map value="NL-CM:20.3.3" />
