@@ -2,9 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="ext-TimeInterval.Period" />
   <text>
-    <status value="empty"/>
-    <div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div>
-  </text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml">No narrative is provided for definitional resources. A human-readable rendering can be found in the implementation guide(s) where this resource is used.</div></text>
   <url value="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period" />
   <name value="ExtTimeIntervalPeriod" />
   <title value="ext TimeInterval.Period" />
@@ -36,6 +34,10 @@
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
   <derivation value="constraint" />
   <differential>
+    <element id="Extension.extension">
+      <path value="Extension.extension" />
+      <max value="0" />
+    </element>
     <element id="Extension.url">
       <path value="Extension.url" />
       <fixedUri value="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period" />
@@ -46,6 +48,18 @@
         <code value="Period" />
         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-TimeInterval" />
       </type>
+    </element>
+    <element id="Extension.value[x].extension:duration">
+      <path value="Extension.value[x].extension" />
+      <sliceName value="duration" />
+    </element>
+    <element id="Extension.value[x].extension:duration.extension">
+      <path value="Extension.value[x].extension.extension" />
+      <max value="0" />
+    </element>
+    <element id="Extension.value[x].extension:duration.url">
+      <path value="Extension.value[x].extension.url" />
+      <fixedUri value="duration" />
     </element>
   </differential>
 </StructureDefinition>
